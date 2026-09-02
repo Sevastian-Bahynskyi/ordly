@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bot, Check, Loader2, Plus, Sparkles, WandSparkles, X } from 'lucide-react'
+import { Bot, Check, CircleAlert, Loader2, Plus, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
 interface Draft {
@@ -14,6 +14,8 @@ interface Draft {
 }
 
 type EnrichableField = Exclude<keyof Draft, 'danish'>
+
+type DuplicateEntry = { id: string; translation: string | null }
 
 const enrichableFields: EnrichableField[] = [
   'pronunciation',
@@ -37,7 +39,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const [saving, setSaving] = useState(false)
   const [aiLoading, setAiLoading] = useState<string | null>(null)
   const [aiSources, setAiSources] = useState<Partial<Record<EnrichableField, string>>>({})
-  const [duplicate, setDuplicate] = useState<{ id: string; translation: string | null }[] | null>(null)
+  const [duplicate, setDuplicate] = useState<DuplicateEntry[] | null>(null)
+  const [liveDuplicate, setLiveDuplicate] = useState<DuplicateEntry[]>([])
   const [allowDuplicate, setAllowDuplicate] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
   const [usedAI, setUsedAI] = useState(false)
@@ -59,9 +62,34 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     return () => window.removeEventListener('keydown', handler)
   }, [compact])
 
+  useEffect(() => {
+    const danish = draft.danish.trim()
+    setLiveDuplicate([])
+    if (!danish) return
+
+    let cancelled = false
+    const timer = window.setTimeout(async () => {
+      const { data } = await createClient()
+        .from('vocabulary_entries')
+        .select('id, translation')
+        .ilike('danish', danish)
+        .limit(5)
+
+      if (!cancelled) setLiveDuplicate(data || [])
+    }, 320)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+    }
+  }, [draft.danish])
+
   function patch(key: keyof Draft, value: string) {
     setDraft((d) => ({ ...d, [key]: value }))
-    if (key !== 'danish') {
+    if (key === 'danish') {
+      setDuplicate(null)
+      setAllowDuplicate(false)
+    } else {
       setAiSources((current) => {
         if (!current[key]) return current
         const next = { ...current }
@@ -70,6 +98,17 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       })
     }
     setNotice(null)
+  }
+
+  function clearDraft() {
+    setDraft(emptyDraft)
+    setAiSources({})
+    setDuplicate(null)
+    setLiveDuplicate([])
+    setAllowDuplicate(false)
+    setNotice(null)
+    setUsedAI(false)
+    window.setTimeout(() => firstInput.current?.focus(), 0)
   }
 
   async function normalizeBaseForm() {
@@ -201,6 +240,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setDraft(emptyDraft)
     setAiSources({})
     setDuplicate(null)
+    setLiveDuplicate([])
     setAllowDuplicate(false)
     setUsedAI(false)
     setNotice('Saved. It is ready for review.')
@@ -231,6 +271,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     return !!source && source !== draft.danish.trim()
   })
 
+  const duplicateMeanings = [...new Set(liveDuplicate.map((item) => item.translation?.trim() || 'No translation'))]
+
   return (
     <section className="composer-card" onKeyDown={keyDown}>
       <div className="composer-heading">
@@ -246,6 +288,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         <label className="field field-wide">
           <span>Danish word or phrase <AiMini label="Base form" loading={aiLoading === 'base-form'} onClick={normalizeBaseForm} /></span>
           <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="fortryde" />
+          {liveDuplicate.length > 0 && (
+            <small style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#7557b5', fontSize: 10.5, fontWeight: 620, minWidth: 0 }}>
+              <CircleAlert size={12} style={{ flex: '0 0 auto' }} />
+              <span style={{ whiteSpace: 'nowrap' }}>Already saved</span>
+              <span style={{ color: '#9a92a3', fontWeight: 520, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {duplicateMeanings.join(' · ')}</span>
+            </small>
+          )}
         </label>
         <label className="field">
           <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
@@ -278,10 +327,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       {notice && <div className={`notice ${notice.startsWith('Saved') ? 'success' : ''}`}>{notice.startsWith('Saved') ? <Check size={16} /> : <Bot size={16} />}{notice}</div>}
 
       <div className="composer-actions">
-        <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => enrich()}>
-          {aiLoading === 'all' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
-          {hasStaleAiFields ? 'Regenerate for this word' : 'Fill missing with AI'}
-        </button>
+        <div style={{ display: 'flex', gap: 8, flex: '1 1 auto' }}>
+          <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => enrich()} style={{ flex: '1 1 auto' }}>
+            {aiLoading === 'all' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
+            {hasStaleAiFields ? 'Regenerate for this word' : 'Fill missing with AI'}
+          </button>
+          <button className="soft-button" disabled={saving || !!aiLoading} onClick={clearDraft}>Clear</button>
+        </div>
         <div className="save-wrap">
           <span className="keyboard-hint">⌘ Enter</span>
           <button className="primary-button" disabled={saving} onClick={save}>
