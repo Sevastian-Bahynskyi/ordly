@@ -16,7 +16,7 @@ export default async function ReviewPage() {
 
   const [{ data }, { data: profile }, { count: newReviewedToday }] = await Promise.all([
     supabase.from('review_cards').select('*, vocabulary_entries(*)').lte('due', now).order('due', { ascending: true }).limit(120),
-    supabase.from('profiles').select('daily_new_limit').single(),
+    supabase.from('profiles').select('daily_new_limit, default_translation_language').single(),
     supabase.from('review_logs').select('id', { count: 'exact', head: true }).eq('study_date', today).eq('previous_state', 0),
   ])
 
@@ -30,5 +30,5 @@ export default async function ReviewPage() {
     return true
   })
 
-  return <AppShell><div className="page-wrap review-page"><ReviewSession initialItems={items} /></div></AppShell>
+  return <AppShell><div className="page-wrap review-page"><ReviewSession initialItems={items} translationLanguage={profile?.default_translation_language || 'ru'} /></div></AppShell>
 }
