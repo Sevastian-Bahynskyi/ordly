@@ -124,8 +124,63 @@
   .status-chip { height: 20px; padding: 0 6px; font-size: 8.5px; }
 
   .words-header { gap: 13px; margin-bottom: 17px; }
-  .header-actions { display: flex; gap: 7px; }
-  .quick-add-collapsed { height: 48px; }
+  .words-header .header-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    width: 100%;
+  }
+  .words-header .header-actions > .soft-button {
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 10px;
+    white-space: nowrap;
+    font-size: 11.5px;
+  }
+  .words-header .quick-add-collapsed {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 60px;
+    padding: 8px 11px;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: center;
+    gap: 11px;
+    border: 0;
+    border-radius: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #8165e3 0%, #6b4ed3 70%, #7352d6 100%);
+    box-shadow: 0 8px 22px rgba(91,65,188,.22);
+    transition: transform 120ms ease, box-shadow 160ms ease;
+  }
+  .words-header .quick-add-collapsed:active {
+    transform: scale(.99);
+    box-shadow: 0 5px 15px rgba(91,65,188,.18);
+  }
+  .words-header .quick-add-collapsed .quick-plus {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    color: #6548ca;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 3px 10px rgba(43,29,91,.13);
+  }
+  .words-header .quick-add-collapsed > span:nth-child(2) {
+    min-width: 0;
+    gap: 0;
+  }
+  .words-header .quick-add-collapsed strong {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+  }
+  .words-header .quick-add-collapsed small,
+  .words-header .quick-add-collapsed .keyboard-hint { display: none; }
+
   .words-toolbar { gap: 9px; margin-bottom: 10px; }
   .search-box { height: 44px; }
   .segmented { width: 100%; align-self: stretch; padding-bottom: 2px; }
@@ -173,6 +228,8 @@
   .stats-grid { grid-template-columns: 1fr; }
   .header-actions { flex-direction: column; }
   .header-actions > * { width: 100%; }
+  .words-header .header-actions { grid-template-columns: 1fr; }
+  .words-header .quick-add-collapsed { grid-column: 1; }
   .section-title-row { flex-direction: column; }
   .section-title-row a { padding-top: 0; }
 }
