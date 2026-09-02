@@ -2,27 +2,61 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
 
-const schema = {
+const contentSchema = {
   type: 'object',
   properties: {
-    danish: { type: 'string' },
-    pronunciation_ipa: {
-      type: 'string',
-      description: 'Normal contemporary Standard Danish pronunciation in IPA. This is an intermediate grounding field.',
-    },
-    pronunciation: {
-      type: 'string',
-      description: 'Russian-readable Cyrillic phonetic respelling derived from pronunciation_ipa, optimized so a Russian speaker reading it aloud sounds close to the Danish.',
-    },
     translation: { type: 'string' },
     example_sentence: { type: 'string' },
     example_translation: { type: 'string' },
   },
-  required: ['danish', 'pronunciation_ipa', 'pronunciation', 'translation', 'example_sentence', 'example_translation'],
+  required: ['translation', 'example_sentence', 'example_translation'],
+  additionalProperties: false,
+}
+
+const pronunciationSchema = {
+  type: 'object',
+  properties: {
+    pronunciation_ipa: { type: 'string' },
+    pronunciation: { type: 'string' },
+  },
+  required: ['pronunciation_ipa', 'pronunciation'],
   additionalProperties: false,
 }
 
 const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
+
+async function groqCompletion(body: Record<string, unknown>, label: string) {
+  let lastStatus = 0
+  let lastDetails = ''
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+
+    if (response.ok) {
+      const payload = await response.json()
+      const content = payload.choices?.[0]?.message?.content
+      if (!content) throw new Error(`${label}: Groq returned an empty response`)
+      return JSON.parse(content)
+    }
+
+    lastStatus = response.status
+    lastDetails = await response.text()
+    console.error(`Groq ${label} failed`, response.status, lastDetails)
+
+    const retryable = response.status === 429 || response.status >= 500
+    if (!retryable || attempt === 1) break
+    await new Promise((resolve) => setTimeout(resolve, 300))
+  }
+
+  throw new Error(`${label}: Groq request failed (${lastStatus}) ${lastDetails.slice(0, 240)}`)
+}
 
 export async function POST(request: Request) {
   const supabase = await createClient()
@@ -47,70 +81,115 @@ export async function POST(request: Request) {
   const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
   const level = profile?.danish_level || 'A1'
   const knownWords = (known || []).map((x) => x.danish).join(', ')
-  const requested = fields.length ? fields.join(', ') : 'all missing fields'
+  const needsPronunciation = fields.includes('pronunciation')
+  const needsContent = fields.some((field) => field === 'translation' || field === 'example_sentence' || field === 'example_translation')
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
-      reasoning_effort: 'medium',
-      temperature: 0.05,
-      messages: [
-        {
-          role: 'system',
-          content: `You create Danish study cards for one ${level} learner. The target translation language is ${targetLanguage}. The saved item is classified as a ${entryKind}. Keep translations concise and natural.
+  const result: Record<string, string> = {}
+  const failures: string[] = []
 
-PRONUNCIATION HAS A MANDATORY TWO-STAGE PROCESS:
-A) First determine the actual normal contemporary Standard Danish pronunciation and write it in pronunciation_ipa.
-B) Then IGNORE THE DANISH SPELLING and convert the IPA sound into a practical Russian-Cyrillic respelling in pronunciation.
+  const jobs: Promise<void>[] = []
 
-The pronunciation field is not letter transliteration. Its only purpose is this: if a Russian speaker reads the Cyrillic aloud naturally, the result should sound as close as practical to a Danish native speaker.
+  if (needsPronunciation) {
+    jobs.push((async () => {
+      try {
+        const parsed = await groqCompletion({
+          model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+          reasoning_effort: 'medium',
+          temperature: 0.05,
+          messages: [
+            {
+              role: 'system',
+              content: `You are a Danish pronunciation specialist helping a Russian-speaking learner. Return exactly two fields: pronunciation_ipa and pronunciation.
 
-Rules for pronunciation:
-- Never copy silent Danish letters into Cyrillic.
-- Respect reductions and the pronunciation of the expression in context, especially function words and fixed phrases.
-- Use only Russian Cyrillic letters, spaces, hyphens/apostrophes and optional stress marks in pronunciation. No IPA or Latin there.
-- Prefer sound accuracy over visual similarity to Danish spelling.
-- Danish sounds that Russian lacks should use the closest practical Russian approximation, not a spelling-derived compromise.
-- Validate by mentally pronouncing the final Cyrillic as Russian and comparing it against pronunciation_ipa.
-- For a whole sentence, transcribe connected natural Danish, not isolated spelling word-by-word.
-- Confirmed anchor for this app: synes [ˈsynəs] / [ˈsyns] → "сюнес".
-- Context anchors from standard Danish dictionaries: hvad in questions is commonly [va]/[vað] (so do NOT write "хвад"); kan as the modal can be [ka]/[kan]; godt as an adverb is around [gʌd] (do NOT mechanically preserve the written t); and lide in kunne lide is commonly [li]/[liˀ] (do NOT mechanically write "лиде"). Choose the best Russian-readable result from the actual phrase context.
+STEP 1 — pronunciation_ipa:
+Determine the actual normal contemporary Standard Danish pronunciation of the supplied text. For phrases and sentences, use natural connected speech, reductions, silent letters and normal function-word pronunciation rather than spelling each word separately.
 
-CONTENT RULES:
-- If entryKind is "sentence", translation means the translation of the entire saved Danish sentence/expression.
-- If entryKind is "word", translation means the lexical meaning of the saved word/phrase.
-- ${includeExample ? `A separate simple example sentence is enabled. Make it understandable at ${level} and make the saved word/phrase meaning obvious.` : 'A separate example is disabled. Return empty strings for example_sentence and example_translation.'}
-- Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}.
-- The user requested these fields now: ${requested}. Preserve manually supplied information unless a requested field must be regenerated for the current Danish text.
-- Return only the requested JSON schema.`,
-        },
-        {
-          role: 'user',
-          content: `Danish: ${danish}\nCard kind: ${entryKind}\nSeparate example enabled: ${includeExample ? 'yes' : 'no'}\nExisting pronunciation: ${draft.pronunciation || '(missing)'}\nExisting ${targetLanguage} translation: ${draft.translation || '(missing)'}\nExisting Danish example: ${draft.example_sentence || '(missing)'}\nExisting example translation: ${draft.example_translation || '(missing)'}`,
-        },
-      ],
-      response_format: { type: 'json_schema', json_schema: { name: 'danish_study_card', strict: true, schema } },
-    }),
-  })
+STEP 2 — pronunciation:
+Convert the sound represented by pronunciation_ipa into a practical Russian-Cyrillic respelling. The goal is NOT transliteration. The goal is that a Russian speaker who simply reads the Cyrillic aloud naturally should sound as close as practical to a Danish speaker.
 
-  if (!response.ok) {
-    const details = await response.text()
-    console.error('Groq enrich failed', response.status, details)
-    return NextResponse.json({ error: 'Groq could not enrich this text.' }, { status: 502 })
+Rules:
+- pronunciation must contain Russian Cyrillic only, plus spaces, hyphens, apostrophes and optional stress marks.
+- Never copy silent Danish letters merely because they are written.
+- Prefer the actual heard sound over Danish spelling in every case.
+- Danish y is front rounded; a practical Russian approximation is often ю after a consonant when that gives a closer result.
+- Soft/reduced final syllables must sound reduced rather than spelling-driven.
+- For connected speech, transcribe what is actually heard, not a word-by-word school transliteration.
+- Read your final Cyrillic aloud mentally as Russian and compare it with the IPA. Correct anything that would make a Russian reader say the wrong sound.
+
+Hard anchors for this app:
+- synes → IPA around [ˈsynəs]/[ˈsyns] → сюнес
+- selvfølgelig has a common reduced pronunciation around [sɛˈføːli] → a compact Russian-readable result should be close to сэфёли, not сельвфёльгелиг
+- hvad in an ordinary question is normally pronounced around [va]/[vað], so never хвад
+- godt as an adverb does not preserve a literal written final t
+- lide in kunne lide is normally reduced around [li]/[liˀ], not spelling-based лиде.
+
+Do not translate the text and do not explain anything.`
+            },
+            { role: 'user', content: danish },
+          ],
+          response_format: {
+            type: 'json_schema',
+            json_schema: { name: 'danish_pronunciation', strict: true, schema: pronunciationSchema },
+          },
+        }, 'pronunciation')
+
+        result.pronunciation = String(parsed.pronunciation || '').trim()
+      } catch (error) {
+        console.error(error)
+        failures.push('pronunciation')
+      }
+    })())
   }
 
-  const payload = await response.json()
-  const content = payload.choices?.[0]?.message?.content
-  if (!content) return NextResponse.json({ error: 'Groq returned an empty response.' }, { status: 502 })
+  if (needsContent) {
+    jobs.push((async () => {
+      try {
+        const parsed = await groqCompletion({
+          model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+          reasoning_effort: 'low',
+          temperature: 0.15,
+          messages: [
+            {
+              role: 'system',
+              content: `You create Danish study cards for one ${level} learner. The target translation language is ${targetLanguage}. The saved item is a ${entryKind}.
 
-  const parsed = JSON.parse(content)
+- If this is a sentence, translation is the natural translation of the whole Danish sentence/expression.
+- If this is a word/phrase, translation is its concise lexical meaning.
+- ${includeExample ? `Generate a simple natural Danish example at ${level} and its ${targetLanguage} translation.` : 'A separate example is disabled: return empty strings for example_sentence and example_translation.'}
+- Preserve the meaning of the exact Danish text supplied.
+- Prefer known words when natural: ${knownWords || 'none yet'}.
+- Do not return pronunciation or commentary.`
+            },
+            {
+              role: 'user',
+              content: `Danish: ${danish}\nExisting ${targetLanguage} translation: ${draft.translation || '(missing)'}\nExisting example: ${draft.example_sentence || '(missing)'}\nExisting example translation: ${draft.example_translation || '(missing)'}`,
+            },
+          ],
+          response_format: {
+            type: 'json_schema',
+            json_schema: { name: 'danish_study_content', strict: true, schema: contentSchema },
+          },
+        }, 'content')
+
+        result.translation = String(parsed.translation || '').trim()
+        result.example_sentence = includeExample ? String(parsed.example_sentence || '').trim() : ''
+        result.example_translation = includeExample ? String(parsed.example_translation || '').trim() : ''
+      } catch (error) {
+        console.error(error)
+        failures.push('content')
+      }
+    })())
+  }
+
+  await Promise.all(jobs)
+
+  if (!Object.keys(result).length) {
+    return NextResponse.json({ error: 'AI could not enrich this text. Please try again.' }, { status: 502 })
+  }
+
   return NextResponse.json({
-    danish: parsed.danish,
-    pronunciation: parsed.pronunciation,
-    translation: parsed.translation,
-    example_sentence: includeExample ? parsed.example_sentence : '',
-    example_translation: includeExample ? parsed.example_translation : '',
+    ...result,
+    partial: failures.length > 0,
+    failed: failures,
   })
 }
