@@ -15,6 +15,9 @@ export async function updateSession(request: NextRequest) {
     },
   })
 
-  await supabase.auth.getUser()
+  // Verify/refresh the JWT through Supabase's claims path. With modern
+  // asymmetric signing keys this is validated locally against cached JWKS,
+  // avoiding a full Auth network request for every navigation.
+  await supabase.auth.getClaims()
   return response
 }
