@@ -3,6 +3,7 @@ import { PwaRegistration } from '@/components/PwaRegistration'
 import './globals.css'
 import './nav.css'
 import './pwa.css'
+import './responsive.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
   themeColor: '#f6f5f9',
 }
 
