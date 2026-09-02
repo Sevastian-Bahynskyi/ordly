@@ -67,7 +67,7 @@ export async function POST(request: Request) {
   const body = await request.json()
   const draft = body.draft || {}
   const danish = String(draft.danish || '').trim()
-  const fields = Array.isArray(body.fields) ? body.fields.map(String) : []
+  const fields: string[] = Array.isArray(body.fields) ? body.fields.map(String) : []
   const entryKind: EntryKind = body.entryKind === 'sentence' ? 'sentence' : 'word'
   const includeExample = body.includeExample !== false
 
@@ -82,11 +82,10 @@ export async function POST(request: Request) {
   const level = profile?.danish_level || 'A1'
   const knownWords = (known || []).map((x) => x.danish).join(', ')
   const needsPronunciation = fields.includes('pronunciation')
-  const needsContent = fields.some((field) => field === 'translation' || field === 'example_sentence' || field === 'example_translation')
+  const needsContent = fields.some((field: string) => field === 'translation' || field === 'example_sentence' || field === 'example_translation')
 
   const result: Record<string, string> = {}
   const failures: string[] = []
-
   const jobs: Promise<void>[] = []
 
   if (needsPronunciation) {
