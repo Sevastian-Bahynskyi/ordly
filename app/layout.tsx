@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './nav.css'
 
 export const metadata: Metadata = {
   title: 'Ordly · Learn Danish words',
