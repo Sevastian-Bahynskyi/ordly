@@ -3,7 +3,10 @@ import { createClient } from '@/lib/supabase/server'
 
 export async function requireUser() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
-  return { supabase, user }
+  const { data, error } = await supabase.auth.getClaims()
+  const claims = data?.claims
+
+  if (error || !claims?.sub) redirect('/login')
+
+  return { supabase, userId: claims.sub, claims }
 }
