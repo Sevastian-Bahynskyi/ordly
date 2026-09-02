@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { BookOpen, Home, LogOut, Settings } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
@@ -16,12 +17,26 @@ const items = [
 export function AppNav() {
   const path = usePathname()
   const router = useRouter()
+  const [optimisticPath, setOptimisticPath] = useState(path)
+
+  useEffect(() => {
+    setOptimisticPath(path)
+  }, [path])
+
+  useEffect(() => {
+    items.forEach(({ href }) => {
+      if (href !== path) router.prefetch(href)
+    })
+  }, [path, router])
 
   async function signOut() {
     await createClient().auth.signOut()
     router.replace('/login')
     router.refresh()
   }
+
+  const activeIndex = Math.max(0, items.findIndex(({ href }) => href === optimisticPath))
+  const mobileNavStyle = { '--active-index': activeIndex } as CSSProperties
 
   return (
     <>
@@ -40,13 +55,24 @@ export function AppNav() {
           <span>Sign out</span>
         </button>
       </aside>
-      <nav className="mobile-nav">
-        {items.slice(0, 4).map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href} className={path === href ? 'active' : ''}>
-            <Icon size={20} />
-            <span>{label}</span>
-          </Link>
-        ))}
+      <nav className="mobile-nav" style={mobileNavStyle} aria-label="Primary navigation">
+        <span className="mobile-nav-indicator" aria-hidden="true" />
+        {items.map(({ href, label, icon: Icon }) => {
+          const active = optimisticPath === href
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={active ? 'active' : ''}
+              aria-current={path === href ? 'page' : undefined}
+              onPointerDown={() => setOptimisticPath(href)}
+              onClick={() => setOptimisticPath(href)}
+            >
+              <span className="mobile-nav-icon"><Icon size={20} /></span>
+              <span>{label}</span>
+            </Link>
+          )
+        })}
       </nav>
     </>
   )
