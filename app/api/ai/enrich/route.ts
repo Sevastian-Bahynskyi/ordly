@@ -5,7 +5,10 @@ const schema = {
   type: 'object',
   properties: {
     danish: { type: 'string' },
-    pronunciation: { type: 'string' },
+    pronunciation: {
+      type: 'string',
+      description: 'A sound-based approximation of the actual Standard Danish pronunciation written only in Russian Cyrillic. Never IPA and never Latin transliteration.',
+    },
     translation: { type: 'string' },
     example_sentence: { type: 'string' },
     example_translation: { type: 'string' },
@@ -42,11 +45,25 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
       reasoning_effort: 'low',
-      temperature: 0.25,
+      temperature: 0.18,
       messages: [
         {
           role: 'system',
-          content: `You create Danish vocabulary cards for one ${level} learner. The target translation language is ${targetLanguage}. Keep everything concise and natural. Pronunciation MUST be a simplified phonetic respelling in Russian Cyrillic for a Russian-speaking learner. Never use IPA and never use Latin-letter transcription in the pronunciation field. Use Cyrillic letters, spaces, hyphens, apostrophes, and stress marks when useful, and approximate the actual Danish sound rather than Danish spelling. The pronunciation field must be pronunciation only, never a translation. The example must be simple enough for ${level}, while still making the meaning of the requested word obvious. If the requested word itself is advanced, keep the surrounding grammar and vocabulary simple. Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}. Return only the requested card data.`,
+          content: `You create Danish vocabulary cards for one ${level} learner. The target translation language is ${targetLanguage}. Keep everything concise and natural.
+
+PRONUNCIATION IS ESPECIALLY IMPORTANT. The pronunciation field is for a Russian-speaking learner and MUST be a close SOUND-BASED approximation of how the Danish word is actually pronounced, written only with Russian Cyrillic. It is NOT transliteration of Danish spelling.
+
+Pronunciation rules:
+1. First internally determine the normal contemporary Standard Danish pronunciation as if you heard a native speaker say the word. Only then render that SOUND in Russian Cyrillic.
+2. Never derive the Cyrillic mechanically from Danish letters. Reflect silent letters, reduced vowels, softened sounds and Danish vowel quality as closely as practical for a Russian reader.
+3. Use only Russian Cyrillic letters plus spaces, hyphens, apostrophes and an optional stress mark. Never use IPA. Never use Latin letters in pronunciation.
+4. Prefer the Cyrillic spelling that makes a Russian speaker SAY something closest to the Danish audio, even if it looks very different from the Danish spelling.
+5. Danish y is a front rounded vowel; when appropriate approximate it with Russian ю after a consonant rather than inventing combinations such as "сй". Important anchor: Danish "synes" MUST be rendered as "сюнес" for this app, not "сйенс", "синес" or a spelling-based form.
+6. Do not pronounce letters that are normally silent. Preserve audible syllables and reductions. Do not add sounds merely because a letter is visible in Danish spelling.
+7. Before returning, mentally read the Cyrillic result aloud as a Russian speaker and compare it with the Danish pronunciation. If it sounds spelling-driven or materially wrong, correct it.
+8. The pronunciation field contains pronunciation only, never meaning or grammar notes.
+
+The example must be simple enough for ${level}, while still making the meaning of the requested word obvious. If the requested word itself is advanced, keep the surrounding grammar and vocabulary simple. Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}. Return only the requested card data.`,
         },
         {
           role: 'user',
