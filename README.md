@@ -18,6 +18,10 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 
 Next.js, TypeScript, Supabase, Groq, and `ts-fsrs`.
 
+## Deployment
+
+Production is deployed on Vercel from the `main` branch.
+
 ## Environment
 
 Copy `.env.example` to `.env.local` and provide:
