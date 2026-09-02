@@ -24,6 +24,8 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
     <div className="setting-row"><div><strong>Current Danish level</strong><p>AI sentences stay understandable without becoming childish.</p></div><select value={level} onChange={(e) => setLevel(e.target.value)}>{['A1','A2','B1','B2','C1'].map(x => <option key={x}>{x}</option>)}</select></div>
     <div className="setting-row"><div><strong>New words per day</strong><p>Due reviews are always shown first.</p></div><input className="number-input" type="number" min={1} max={50} value={limit} onChange={(e) => setLimit(Number(e.target.value))} /></div>
     <div className="settings-note"><strong>Scheduling</strong><p>FSRS controls review timing automatically. You rate each review as Again, Hard, Good, or Easy.</p></div>
-    <button className="primary-button settings-save" onClick={save} disabled={saving}>{saving ? <Loader2 className="spin" size={17}/> : saved ? <Check size={17}/> : null}{saved ? 'Saved' : 'Save settings'}</button>
+    <div style={{ padding: '18px 22px 22px' }}>
+      <button className="primary-button" onClick={save} disabled={saving}>{saving ? <Loader2 className="spin" size={17}/> : saved ? <Check size={17}/> : null}{saved ? 'Saved' : 'Save settings'}</button>
+    </div>
   </section>
 }
