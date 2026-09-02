@@ -13,6 +13,15 @@ interface Draft {
   example_translation: string
 }
 
+type EnrichableField = Exclude<keyof Draft, 'danish'>
+
+const enrichableFields: EnrichableField[] = [
+  'pronunciation',
+  'translation',
+  'example_sentence',
+  'example_translation',
+]
+
 const emptyDraft: Draft = {
   danish: '',
   pronunciation: '',
@@ -27,6 +36,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [aiLoading, setAiLoading] = useState<string | null>(null)
+  const [aiSources, setAiSources] = useState<Partial<Record<EnrichableField, string>>>({})
   const [duplicate, setDuplicate] = useState<{ id: string; translation: string | null }[] | null>(null)
   const [allowDuplicate, setAllowDuplicate] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
@@ -51,6 +61,14 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
   function patch(key: keyof Draft, value: string) {
     setDraft((d) => ({ ...d, [key]: value }))
+    if (key !== 'danish') {
+      setAiSources((current) => {
+        if (!current[key]) return current
+        const next = { ...current }
+        delete next[key]
+        return next
+      })
+    }
     setNotice(null)
   }
 
@@ -90,31 +108,54 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     }
   }
 
-  async function enrich(fields?: (keyof Draft)[]) {
-    if (!draft.danish.trim()) {
+  async function enrich(fields?: EnrichableField[]) {
+    const sourceDanish = draft.danish.trim()
+    if (!sourceDanish) {
       setNotice('Type a Danish word or phrase first.')
       return
     }
-    const loadingKey = fields?.join(',') || 'all'
+
+    const fullFill = !fields
+    const requestedFields = fields ?? enrichableFields.filter((key) => {
+      if (!draft[key].trim()) return true
+      const source = aiSources[key]
+      return !!source && source !== sourceDanish
+    })
+
+    if (!requestedFields.length) {
+      setNotice('Everything is already up to date for this word.')
+      return
+    }
+
+    const loadingKey = fullFill ? 'all' : requestedFields.join(',')
     setAiLoading(loadingKey)
     try {
       const res = await fetch('/api/ai/enrich', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ draft, fields }),
+        body: JSON.stringify({ draft, fields: requestedFields }),
       })
       const body = await res.json()
       if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
+
       setDraft((current) => {
         const next = { ...current }
-        for (const key of Object.keys(next) as (keyof Draft)[]) {
-          const explicitlyRequested = fields?.includes(key)
-          const shouldFill = fields ? explicitlyRequested : !current[key].trim()
-          if (body[key] && shouldFill) next[key] = body[key]
+        for (const key of requestedFields) {
+          if (body[key]) next[key] = body[key]
         }
         return next
       })
+
+      setAiSources((current) => {
+        const next = { ...current }
+        for (const key of requestedFields) {
+          if (body[key]) next[key] = sourceDanish
+        }
+        return next
+      })
+
       setUsedAI(true)
+      setNotice(null)
     } catch (error) {
       setNotice(error instanceof Error ? error.message : 'AI enrichment failed')
     } finally {
@@ -158,6 +199,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     }
 
     setDraft(emptyDraft)
+    setAiSources({})
     setDuplicate(null)
     setAllowDuplicate(false)
     setUsedAI(false)
@@ -184,6 +226,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     )
   }
 
+  const hasStaleAiFields = enrichableFields.some((key) => {
+    const source = aiSources[key]
+    return !!source && source !== draft.danish.trim()
+  })
+
   return (
     <section className="composer-card" onKeyDown={keyDown}>
       <div className="composer-heading">
@@ -202,7 +249,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         </label>
         <label className="field">
           <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
-          <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="фор-трю́-де" />
+          <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="сюнес" />
         </label>
         <label className="field">
           <span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'} translation <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
@@ -233,7 +280,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       <div className="composer-actions">
         <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => enrich()}>
           {aiLoading === 'all' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
-          Fill missing with AI
+          {hasStaleAiFields ? 'Regenerate for this word' : 'Fill missing with AI'}
         </button>
         <div className="save-wrap">
           <span className="keyboard-hint">⌘ Enter</span>
