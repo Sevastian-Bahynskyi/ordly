@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: 'system',
-          content: `You create Danish vocabulary cards for one ${level} learner. The target translation language is ${targetLanguage}. Keep everything concise and natural. Pronunciation MUST be simplified human-readable pronunciation, never IPA, using ordinary Latin letters and hyphens. The example must be simple enough for ${level}, while still making the meaning of the requested word obvious. If the requested word itself is advanced, keep the surrounding grammar and vocabulary simple. Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}. Return only the requested card data.`,
+          content: `You create Danish vocabulary cards for one ${level} learner. The target translation language is ${targetLanguage}. Keep everything concise and natural. Pronunciation MUST be a simplified phonetic respelling in Russian Cyrillic for a Russian-speaking learner. Never use IPA and never use Latin-letter transcription in the pronunciation field. Use Cyrillic letters, spaces, hyphens, apostrophes, and stress marks when useful, and approximate the actual Danish sound rather than Danish spelling. The pronunciation field must be pronunciation only, never a translation. The example must be simple enough for ${level}, while still making the meaning of the requested word obvious. If the requested word itself is advanced, keep the surrounding grammar and vocabulary simple. Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}. Return only the requested card data.`,
         },
         {
           role: 'user',

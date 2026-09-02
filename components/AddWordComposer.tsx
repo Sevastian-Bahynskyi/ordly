@@ -54,6 +54,42 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setNotice(null)
   }
 
+  async function normalizeBaseForm() {
+    const original = draft.danish.trim()
+    if (!original) {
+      setNotice('Type a Danish word or phrase first.')
+      return
+    }
+
+    setAiLoading('base-form')
+    try {
+      const res = await fetch('/api/ai/base-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ danish: original }),
+      })
+      const body = await res.json()
+      if (!res.ok) throw new Error(body.error || 'Could not find the base form')
+
+      const baseForm = String(body.base_form || '').trim()
+      if (!baseForm) throw new Error('AI returned an empty base form')
+
+      if (baseForm === original) {
+        setNotice('Already in base form.')
+      } else {
+        setDraft((current) => ({ ...current, danish: baseForm }))
+        setDuplicate(null)
+        setAllowDuplicate(false)
+        setUsedAI(true)
+        setNotice(`Base form: ${baseForm}`)
+      }
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Could not find the base form')
+    } finally {
+      setAiLoading(null)
+    }
+  }
+
   async function enrich(fields?: (keyof Draft)[]) {
     if (!draft.danish.trim()) {
       setNotice('Type a Danish word or phrase first.')
@@ -161,12 +197,12 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
       <div className="field-grid">
         <label className="field field-wide">
-          <span>Danish word or phrase</span>
+          <span>Danish word or phrase <AiMini label="Base form" loading={aiLoading === 'base-form'} onClick={normalizeBaseForm} /></span>
           <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="fortryde" />
         </label>
         <label className="field">
-          <span>Simplified pronunciation <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
-          <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="for-tree-de" />
+          <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
+          <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="фор-трю́-де" />
         </label>
         <label className="field">
           <span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'} translation <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
@@ -211,10 +247,10 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   )
 }
 
-function AiMini({ loading, onClick }: { loading: boolean; onClick: () => void }) {
+function AiMini({ loading, onClick, label = 'AI' }: { loading: boolean; onClick: () => void; label?: string }) {
   return (
-    <button type="button" className="ai-mini" onClick={(e) => { e.preventDefault(); onClick() }} aria-label="Fill with AI">
-      {loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} AI
+    <button type="button" className="ai-mini" onClick={(e) => { e.preventDefault(); onClick() }} aria-label={label === 'AI' ? 'Fill with AI' : label}>
+      {loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} {label}
     </button>
   )
 }
