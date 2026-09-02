@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,3 +24,24 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://pxnudtcqlmyaelfrdyfp.supabase.co
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_qDziDAYhF74XSdqSDWfrAA_HDt9XIS_
+      - name: Persist pnpm lockfile for Vercel
+        run: |
+          cat > vercel.json <<'JSON'
+          {
+            "headers": [
+              {
+                "source": "/sw.js",
+                "headers": [
+                  { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+                ]
+              }
+            ]
+          }
+          JSON
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml vercel.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: lock pnpm for Vercel [skip ci]"
+            git push
+          fi
