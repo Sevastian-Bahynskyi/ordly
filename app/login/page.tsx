@@ -6,6 +6,13 @@ import { ArrowRight, CheckCircle2, Loader2, LockKeyhole, Sparkles } from 'lucide
 import { Brand } from '@/components/Brand'
 import { createClient } from '@/lib/supabase/client'
 
+const PRODUCTION_SITE_URL = 'https://ordly-sevastian-bahynskyis-projects.vercel.app'
+
+function authRedirectUrl() {
+  const base = process.env.NODE_ENV === 'development' ? window.location.origin : PRODUCTION_SITE_URL
+  return `${base}/auth/callback`
+}
+
 export default function LoginPage() {
   const router = useRouter()
   const [mode, setMode] = useState<'signin' | 'signup'>('signin')
@@ -24,7 +31,7 @@ export default function LoginPage() {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+          options: { emailRedirectTo: authRedirectUrl() },
         })
         if (error) throw error
         if (!data.session) {
