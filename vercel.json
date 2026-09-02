@@ -1,0 +1,12 @@
+{
+  "installCommand": "corepack enable && corepack prepare pnpm@10.15.0 --activate && pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}
