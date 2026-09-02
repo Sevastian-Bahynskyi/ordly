@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { fsrs, Rating, type Card } from 'ts-fsrs'
+import { fsrs, type Card, type Grade } from 'ts-fsrs'
 import { createClient } from '@/lib/supabase/server'
 
 function copenhagenDate(date = new Date()) {
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { cardId, rating, answerResult } = await request.json()
-  if (!cardId || ![1,2,3,4].includes(rating)) return NextResponse.json({ error: 'Invalid rating' }, { status: 400 })
+  if (!cardId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: 'Invalid rating' }, { status: 400 })
 
   const { data: row, error } = await supabase.from('review_cards').select('*').eq('id', cardId).single()
   if (error || !row) return NextResponse.json({ error: 'Card not found' }, { status: 404 })
@@ -24,7 +24,8 @@ export async function POST(request: Request) {
   }
   const now = new Date()
   const scheduler = fsrs({ request_retention: 0.9, maximum_interval: 36500, enable_fuzz: true, enable_short_term: true, learning_steps: ['1m', '10m'], relearning_steps: ['10m'] })
-  const result = scheduler.next(card, now, rating as Rating)
+  const grade = rating as Grade
+  const result = scheduler.next(card, now, grade)
   const next = result.card
 
   const { error: updateError } = await supabase.from('review_cards').update({
