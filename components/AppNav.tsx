@@ -36,7 +36,7 @@ export function AppNav() {
   }
 
   const activeIndex = Math.max(0, items.findIndex(({ href }) => href === optimisticPath))
-  const mobileNavStyle = { '--active-index': activeIndex } as CSSProperties
+  const mobileNavStyle = { '--indicator-x': `${activeIndex * 100}%` } as CSSProperties
 
   return (
     <>
@@ -66,6 +66,7 @@ export function AppNav() {
               className={active ? 'active' : ''}
               aria-current={path === href ? 'page' : undefined}
               onPointerDown={() => setOptimisticPath(href)}
+              onPointerCancel={() => setOptimisticPath(path)}
               onClick={() => setOptimisticPath(href)}
             >
               <span className="mobile-nav-icon"><Icon size={20} /></span>
