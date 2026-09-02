@@ -1,5 +1,6 @@
 export type TranslationLanguage = 'ru' | 'en' | 'uk'
 export type LearningStatus = 'new' | 'learning' | 'mastered'
+export type EntryKind = 'word' | 'sentence'
 
 export interface Profile {
   id: string
@@ -18,6 +19,7 @@ export interface VocabularyEntry {
   translation: string | null
   example_sentence: string | null
   example_translation: string | null
+  entry_kind: EntryKind
   learning_status: LearningStatus
   familiarity: number
   ai_enriched: boolean

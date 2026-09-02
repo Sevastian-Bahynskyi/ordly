@@ -1,19 +1,24 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import type { EntryKind } from '@/lib/types'
 
 const schema = {
   type: 'object',
   properties: {
     danish: { type: 'string' },
+    pronunciation_ipa: {
+      type: 'string',
+      description: 'Normal contemporary Standard Danish pronunciation in IPA. This is an intermediate grounding field.',
+    },
     pronunciation: {
       type: 'string',
-      description: 'A sound-based approximation of the actual Standard Danish pronunciation written only in Russian Cyrillic. Never IPA and never Latin transliteration.',
+      description: 'Russian-readable Cyrillic phonetic respelling derived from pronunciation_ipa, optimized so a Russian speaker reading it aloud sounds close to the Danish.',
     },
     translation: { type: 'string' },
     example_sentence: { type: 'string' },
     example_translation: { type: 'string' },
   },
-  required: ['danish', 'pronunciation', 'translation', 'example_sentence', 'example_translation'],
+  required: ['danish', 'pronunciation_ipa', 'pronunciation', 'translation', 'example_sentence', 'example_translation'],
   additionalProperties: false,
 }
 
@@ -28,7 +33,11 @@ export async function POST(request: Request) {
   const body = await request.json()
   const draft = body.draft || {}
   const danish = String(draft.danish || '').trim()
-  if (!danish) return NextResponse.json({ error: 'Danish word is required.' }, { status: 400 })
+  const fields = Array.isArray(body.fields) ? body.fields.map(String) : []
+  const entryKind: EntryKind = body.entryKind === 'sentence' ? 'sentence' : 'word'
+  const includeExample = body.includeExample !== false
+
+  if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
   const [{ data: profile }, { data: known }] = await Promise.all([
     supabase.from('profiles').select('default_translation_language, danish_level').single(),
@@ -38,50 +47,70 @@ export async function POST(request: Request) {
   const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
   const level = profile?.danish_level || 'A1'
   const knownWords = (known || []).map((x) => x.danish).join(', ')
+  const requested = fields.length ? fields.join(', ') : 'all missing fields'
 
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
-      reasoning_effort: 'low',
-      temperature: 0.18,
+      reasoning_effort: 'medium',
+      temperature: 0.05,
       messages: [
         {
           role: 'system',
-          content: `You create Danish vocabulary cards for one ${level} learner. The target translation language is ${targetLanguage}. Keep everything concise and natural.
+          content: `You create Danish study cards for one ${level} learner. The target translation language is ${targetLanguage}. The saved item is classified as a ${entryKind}. Keep translations concise and natural.
 
-PRONUNCIATION IS ESPECIALLY IMPORTANT. The pronunciation field is for a Russian-speaking learner and MUST be a close SOUND-BASED approximation of how the Danish word is actually pronounced, written only with Russian Cyrillic. It is NOT transliteration of Danish spelling.
+PRONUNCIATION HAS A MANDATORY TWO-STAGE PROCESS:
+A) First determine the actual normal contemporary Standard Danish pronunciation and write it in pronunciation_ipa.
+B) Then IGNORE THE DANISH SPELLING and convert the IPA sound into a practical Russian-Cyrillic respelling in pronunciation.
 
-Pronunciation rules:
-1. First internally determine the normal contemporary Standard Danish pronunciation as if you heard a native speaker say the word. Only then render that SOUND in Russian Cyrillic.
-2. Never derive the Cyrillic mechanically from Danish letters. Reflect silent letters, reduced vowels, softened sounds and Danish vowel quality as closely as practical for a Russian reader.
-3. Use only Russian Cyrillic letters plus spaces, hyphens, apostrophes and an optional stress mark. Never use IPA. Never use Latin letters in pronunciation.
-4. Prefer the Cyrillic spelling that makes a Russian speaker SAY something closest to the Danish audio, even if it looks very different from the Danish spelling.
-5. Danish y is a front rounded vowel; when appropriate approximate it with Russian ю after a consonant rather than inventing combinations such as "сй". Important anchor: Danish "synes" MUST be rendered as "сюнес" for this app, not "сйенс", "синес" or a spelling-based form.
-6. Do not pronounce letters that are normally silent. Preserve audible syllables and reductions. Do not add sounds merely because a letter is visible in Danish spelling.
-7. Before returning, mentally read the Cyrillic result aloud as a Russian speaker and compare it with the Danish pronunciation. If it sounds spelling-driven or materially wrong, correct it.
-8. The pronunciation field contains pronunciation only, never meaning or grammar notes.
+The pronunciation field is not letter transliteration. Its only purpose is this: if a Russian speaker reads the Cyrillic aloud naturally, the result should sound as close as practical to a Danish native speaker.
 
-The example must be simple enough for ${level}, while still making the meaning of the requested word obvious. If the requested word itself is advanced, keep the surrounding grammar and vocabulary simple. Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}. Return only the requested card data.`,
+Rules for pronunciation:
+- Never copy silent Danish letters into Cyrillic.
+- Respect reductions and the pronunciation of the expression in context, especially function words and fixed phrases.
+- Use only Russian Cyrillic letters, spaces, hyphens/apostrophes and optional stress marks in pronunciation. No IPA or Latin there.
+- Prefer sound accuracy over visual similarity to Danish spelling.
+- Danish sounds that Russian lacks should use the closest practical Russian approximation, not a spelling-derived compromise.
+- Validate by mentally pronouncing the final Cyrillic as Russian and comparing it against pronunciation_ipa.
+- For a whole sentence, transcribe connected natural Danish, not isolated spelling word-by-word.
+- Confirmed anchor for this app: synes [ˈsynəs] / [ˈsyns] → "сюнес".
+- Context anchors from standard Danish dictionaries: hvad in questions is commonly [va]/[vað] (so do NOT write "хвад"); kan as the modal can be [ka]/[kan]; godt as an adverb is around [gʌd] (do NOT mechanically preserve the written t); and lide in kunne lide is commonly [li]/[liˀ] (do NOT mechanically write "лиде"). Choose the best Russian-readable result from the actual phrase context.
+
+CONTENT RULES:
+- If entryKind is "sentence", translation means the translation of the entire saved Danish sentence/expression.
+- If entryKind is "word", translation means the lexical meaning of the saved word/phrase.
+- ${includeExample ? `A separate simple example sentence is enabled. Make it understandable at ${level} and make the saved word/phrase meaning obvious.` : 'A separate example is disabled. Return empty strings for example_sentence and example_translation.'}
+- Prefer reusing known Danish vocabulary when natural: ${knownWords || 'none yet'}.
+- The user requested these fields now: ${requested}. Preserve manually supplied information unless a requested field must be regenerated for the current Danish text.
+- Return only the requested JSON schema.`,
         },
         {
           role: 'user',
-          content: `Complete this card without inventing a different meaning than the information already provided. Danish: ${danish}\nExisting pronunciation: ${draft.pronunciation || '(missing)'}\nExisting ${targetLanguage} translation: ${draft.translation || '(missing)'}\nExisting Danish sentence: ${draft.example_sentence || '(missing)'}\nExisting sentence translation: ${draft.example_translation || '(missing)'}`,
+          content: `Danish: ${danish}\nCard kind: ${entryKind}\nSeparate example enabled: ${includeExample ? 'yes' : 'no'}\nExisting pronunciation: ${draft.pronunciation || '(missing)'}\nExisting ${targetLanguage} translation: ${draft.translation || '(missing)'}\nExisting Danish example: ${draft.example_sentence || '(missing)'}\nExisting example translation: ${draft.example_translation || '(missing)'}`,
         },
       ],
-      response_format: { type: 'json_schema', json_schema: { name: 'danish_vocabulary_card', strict: true, schema } },
+      response_format: { type: 'json_schema', json_schema: { name: 'danish_study_card', strict: true, schema } },
     }),
   })
 
   if (!response.ok) {
     const details = await response.text()
     console.error('Groq enrich failed', response.status, details)
-    return NextResponse.json({ error: 'Groq could not enrich this word.' }, { status: 502 })
+    return NextResponse.json({ error: 'Groq could not enrich this text.' }, { status: 502 })
   }
 
   const payload = await response.json()
   const content = payload.choices?.[0]?.message?.content
   if (!content) return NextResponse.json({ error: 'Groq returned an empty response.' }, { status: 502 })
-  return NextResponse.json(JSON.parse(content))
+
+  const parsed = JSON.parse(content)
+  return NextResponse.json({
+    danish: parsed.danish,
+    pronunciation: parsed.pronunciation,
+    translation: parsed.translation,
+    example_sentence: includeExample ? parsed.example_sentence : '',
+    example_translation: includeExample ? parsed.example_translation : '',
+  })
 }

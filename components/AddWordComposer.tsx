@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Bot, Check, CircleAlert, Loader2, Plus, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { inferEntryKind } from '@/lib/entry-kind'
+import type { EntryKind } from '@/lib/types'
 
 interface Draft {
   danish: string
@@ -14,10 +16,9 @@ interface Draft {
 }
 
 type EnrichableField = Exclude<keyof Draft, 'danish'>
-
 type DuplicateEntry = { id: string; translation: string | null }
 
-const enrichableFields: EnrichableField[] = [
+const allEnrichableFields: EnrichableField[] = [
   'pronunciation',
   'translation',
   'example_sentence',
@@ -35,6 +36,9 @@ const emptyDraft: Draft = {
 export function AddWordComposer({ compact = false, translationLanguage = 'ru' }: { compact?: boolean; translationLanguage?: 'ru' | 'en' | 'uk' }) {
   const router = useRouter()
   const [draft, setDraft] = useState<Draft>(emptyDraft)
+  const [entryKind, setEntryKind] = useState<EntryKind>('word')
+  const [includeExample, setIncludeExample] = useState(true)
+  const [examplePreferenceTouched, setExamplePreferenceTouched] = useState(false)
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [aiLoading, setAiLoading] = useState<string | null>(null)
@@ -86,7 +90,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
   function patch(key: keyof Draft, value: string) {
     setDraft((d) => ({ ...d, [key]: value }))
+
     if (key === 'danish') {
+      const nextKind = inferEntryKind(value)
+      setEntryKind(nextKind)
+      if (!examplePreferenceTouched) {
+        setIncludeExample(nextKind !== 'sentence')
+      }
       setDuplicate(null)
       setAllowDuplicate(false)
     } else {
@@ -97,11 +107,30 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         return next
       })
     }
+
     setNotice(null)
+  }
+
+  function setExampleEnabled(enabled: boolean) {
+    setIncludeExample(enabled)
+    setExamplePreferenceTouched(true)
+
+    if (!enabled) {
+      setDraft((current) => ({ ...current, example_sentence: '', example_translation: '' }))
+      setAiSources((current) => {
+        const next = { ...current }
+        delete next.example_sentence
+        delete next.example_translation
+        return next
+      })
+    }
   }
 
   function clearDraft() {
     setDraft(emptyDraft)
+    setEntryKind('word')
+    setIncludeExample(true)
+    setExamplePreferenceTouched(false)
     setAiSources({})
     setDuplicate(null)
     setLiveDuplicate([])
@@ -114,7 +143,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   async function normalizeBaseForm() {
     const original = draft.danish.trim()
     if (!original) {
-      setNotice('Type a Danish word or phrase first.')
+      setNotice('Type Danish text first.')
       return
     }
 
@@ -135,6 +164,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         setNotice('Already in base form.')
       } else {
         setDraft((current) => ({ ...current, danish: baseForm }))
+        setEntryKind(inferEntryKind(baseForm))
         setDuplicate(null)
         setAllowDuplicate(false)
         setUsedAI(true)
@@ -150,29 +180,39 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   async function enrich(fields?: EnrichableField[]) {
     const sourceDanish = draft.danish.trim()
     if (!sourceDanish) {
-      setNotice('Type a Danish word or phrase first.')
+      setNotice('Type Danish text first.')
       return
     }
 
+    const activeFields = includeExample
+      ? allEnrichableFields
+      : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+
     const fullFill = !fields
-    const requestedFields = fields ?? enrichableFields.filter((key) => {
+    const requestedFields = fields ?? activeFields.filter((key) => {
       if (!draft[key].trim()) return true
       const source = aiSources[key]
       return !!source && source !== sourceDanish
     })
 
     if (!requestedFields.length) {
-      setNotice('Everything is already up to date for this word.')
+      setNotice('Everything is already up to date for this text.')
       return
     }
 
     const loadingKey = fullFill ? 'all' : requestedFields.join(',')
     setAiLoading(loadingKey)
+
     try {
       const res = await fetch('/api/ai/enrich', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ draft, fields: requestedFields }),
+        body: JSON.stringify({
+          draft,
+          fields: requestedFields,
+          entryKind,
+          includeExample,
+        }),
       })
       const body = await res.json()
       if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
@@ -180,7 +220,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       setDraft((current) => {
         const next = { ...current }
         for (const key of requestedFields) {
-          if (body[key]) next[key] = body[key]
+          if (typeof body[key] === 'string') next[key] = body[key]
+        }
+        if (!includeExample) {
+          next.example_sentence = ''
+          next.example_translation = ''
         }
         return next
       })
@@ -188,7 +232,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       setAiSources((current) => {
         const next = { ...current }
         for (const key of requestedFields) {
-          if (body[key]) next[key] = sourceDanish
+          if (typeof body[key] === 'string') next[key] = sourceDanish
         }
         return next
       })
@@ -203,8 +247,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }
 
   async function save() {
-    if (!draft.danish.trim()) return setNotice('The Danish word is required.')
+    if (!draft.danish.trim()) return setNotice('Danish text is required.')
     if (!draft.translation.trim()) return setNotice('Add a translation or use AI to fill it.')
+
     setSaving(true)
     const supabase = createClient()
 
@@ -214,6 +259,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         .select('id, translation')
         .ilike('danish', draft.danish.trim())
         .limit(5)
+
       if (data?.length) {
         setDuplicate(data)
         setSaving(false)
@@ -225,8 +271,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       danish: draft.danish.trim(),
       pronunciation: draft.pronunciation.trim() || null,
       translation: draft.translation.trim(),
-      example_sentence: draft.example_sentence.trim() || null,
-      example_translation: draft.example_translation.trim() || null,
+      example_sentence: includeExample ? draft.example_sentence.trim() || null : null,
+      example_translation: includeExample ? draft.example_translation.trim() || null : null,
+      entry_kind: entryKind,
       ai_enriched: usedAI,
       familiarity: 0,
     })
@@ -238,6 +285,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     }
 
     setDraft(emptyDraft)
+    setEntryKind('word')
+    setIncludeExample(true)
+    setExamplePreferenceTouched(false)
     setAiSources({})
     setDuplicate(null)
     setLiveDuplicate([])
@@ -245,6 +295,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setUsedAI(false)
     setNotice('Saved. It is ready for review.')
     setSaving(false)
+
     if (compact) setOpen(false)
     router.refresh()
   }
@@ -260,13 +311,17 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     return (
       <button className="quick-add-collapsed" onClick={() => setOpen(true)}>
         <span className="quick-plus"><Plus size={20} /></span>
-        <span><strong>Add a word</strong><small>Capture it before it disappears</small></span>
+        <span><strong>Add Danish</strong><small>Word, phrase, or sentence</small></span>
         <span className="keyboard-hint">⌘ K</span>
       </button>
     )
   }
 
-  const hasStaleAiFields = enrichableFields.some((key) => {
+  const activeFields = includeExample
+    ? allEnrichableFields
+    : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+
+  const hasStaleAiFields = activeFields.some((key) => {
     const source = aiSources[key]
     return !!source && source !== draft.danish.trim()
   })
@@ -278,45 +333,89 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       <div className="composer-heading">
         <div>
           <span className="eyebrow"><Sparkles size={14} /> QUICK CAPTURE</span>
-          <h2>Add a Danish word</h2>
-          <p>Manual first. AI only when you want it.</p>
+          <h2>Add Danish</h2>
+          <p>Word, phrase, or whole sentence. AI only when you want it.</p>
         </div>
         {compact && <button className="icon-button" onClick={() => setOpen(false)} aria-label="Close"><X size={18} /></button>}
       </div>
 
       <div className="field-grid">
         <label className="field field-wide">
-          <span>Danish word or phrase <AiMini label="Base form" loading={aiLoading === 'base-form'} onClick={normalizeBaseForm} /></span>
-          <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="fortryde" />
-          {liveDuplicate.length > 0 && (
-            <small style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#7557b5', fontSize: 10.5, fontWeight: 620, minWidth: 0 }}>
-              <CircleAlert size={12} style={{ flex: '0 0 auto' }} />
-              <span style={{ whiteSpace: 'nowrap' }}>Already saved</span>
-              <span style={{ color: '#9a92a3', fontWeight: 520, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {duplicateMeanings.join(' · ')}</span>
-            </small>
-          )}
+          <span>
+            <span>Danish word, phrase, or sentence</span>
+            {entryKind === 'word' && <AiMini label="Base form" loading={aiLoading === 'base-form'} onClick={normalizeBaseForm} />}
+          </span>
+          <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="synes · Hvad kan du godt lide?" />
+          <span style={{ minHeight: 16, justifyContent: 'flex-start', gap: 8 }}>
+            {draft.danish.trim() && (
+              <small style={{ color: entryKind === 'sentence' ? '#7557b5' : '#9a92a3', fontSize: 10, fontWeight: 650 }}>
+                {entryKind === 'sentence' ? 'Sentence detected' : 'Word / phrase'}
+              </small>
+            )}
+            {liveDuplicate.length > 0 && (
+              <small style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#7557b5', fontSize: 10.5, fontWeight: 620, minWidth: 0 }}>
+                <CircleAlert size={12} style={{ flex: '0 0 auto' }} />
+                <span style={{ whiteSpace: 'nowrap' }}>Already saved</span>
+                <span style={{ color: '#9a92a3', fontWeight: 520, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {duplicateMeanings.join(' · ')}</span>
+              </small>
+            )}
+          </span>
         </label>
+
         <label className="field">
           <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
           <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="сюнес" />
         </label>
+
         <label className="field">
           <span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'} translation <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
-          <input value={draft.translation} onChange={(e) => patch('translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'сожалеть' : translationLanguage === 'uk' ? 'шкодувати' : 'regret'} />
+          <input value={draft.translation} onChange={(e) => patch('translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'думать, считать' : translationLanguage === 'uk' ? 'думати, вважати' : 'think'} />
         </label>
-        <label className="field field-wide">
-          <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
-          <textarea rows={2} value={draft.example_sentence} onChange={(e) => patch('example_sentence', e.target.value)} placeholder="Jeg fortryder mit valg." />
-        </label>
-        <label className="field field-wide">
-          <span>Sentence translation</span>
-          <input value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я сожалею о своём выборе.' : translationLanguage === 'uk' ? 'Я шкодую про свій вибір.' : 'I regret my choice.'} />
-        </label>
+
+        <div className="field field-wide">
+          <span>
+            <span>Separate example sentence</span>
+            <button
+              type="button"
+              onClick={() => setExampleEnabled(!includeExample)}
+              style={{
+                border: 0,
+                borderRadius: 999,
+                padding: '4px 9px',
+                background: includeExample ? '#eee9ff' : '#f1eff3',
+                color: includeExample ? '#684dc7' : '#8d8793',
+                fontSize: 10,
+                fontWeight: 720,
+                cursor: 'pointer',
+              }}
+            >
+              {includeExample ? 'On' : 'Off'}
+            </button>
+          </span>
+          {!includeExample && (
+            <small style={{ color: '#9a92a3', fontSize: 10.5, lineHeight: 1.4 }}>
+              Off — the saved Danish text is reviewed directly. Translation stays required.
+            </small>
+          )}
+        </div>
+
+        {includeExample && (
+          <>
+            <label className="field field-wide">
+              <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
+              <textarea rows={2} value={draft.example_sentence} onChange={(e) => patch('example_sentence', e.target.value)} placeholder="Jeg synes, det er godt." />
+            </label>
+            <label className="field field-wide">
+              <span>Sentence translation</span>
+              <input value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
+            </label>
+          </>
+        )}
       </div>
 
       {duplicate && (
         <div className="duplicate-box">
-          <div><strong>This word already exists.</strong><span>{duplicate.map((d) => d.translation || 'No translation').join(' · ')}</span></div>
+          <div><strong>This text already exists.</strong><span>{duplicate.map((d) => d.translation || 'No translation').join(' · ')}</span></div>
           <div className="row-actions">
             <button className="soft-button" onClick={() => router.push(`/words?q=${encodeURIComponent(draft.danish)}`)}>Open existing</button>
             <button className="soft-button strong" onClick={() => { setAllowDuplicate(true); setDuplicate(null) }}>Add another meaning</button>
@@ -330,7 +429,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         <div style={{ display: 'flex', gap: 8, flex: '1 1 auto' }}>
           <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => enrich()} style={{ flex: '1 1 auto' }}>
             {aiLoading === 'all' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
-            {hasStaleAiFields ? 'Regenerate for this word' : 'Fill missing with AI'}
+            {hasStaleAiFields ? 'Regenerate for this text' : 'Fill missing with AI'}
           </button>
           <button className="soft-button" disabled={saving || !!aiLoading} onClick={clearDraft}>Clear</button>
         </div>
@@ -338,7 +437,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
           <span className="keyboard-hint">⌘ Enter</span>
           <button className="primary-button" disabled={saving} onClick={save}>
             {saving ? <Loader2 className="spin" size={17} /> : <Plus size={17} />}
-            Save word
+            {entryKind === 'sentence' ? 'Save sentence' : 'Save word'}
           </button>
         </div>
       </div>

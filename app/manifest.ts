@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Ordly · Learn Danish words',
+    name: 'Ordly · Learn Danish',
     short_name: 'Ordly',
-    description: 'Fast Danish vocabulary capture and spaced repetition.',
+    description: 'Fast Danish vocabulary and sentence capture with spaced repetition.',
     start_url: '/',
     scope: '/',
     display: 'standalone',
@@ -12,9 +12,22 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#7557db',
     icons: [
       {
-        src: '/ordly-icon.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
+        src: '/icon-192.png?v=5',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/icon-512.png?v=5',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/icon-512.png?v=5',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   }
