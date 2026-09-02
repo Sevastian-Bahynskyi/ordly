@@ -1,11 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export function RouteTransitionFeedback() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
   const timeoutRef = useRef<number | null>(null)
 
@@ -15,7 +14,7 @@ export function RouteTransitionFeedback() {
       window.clearTimeout(timeoutRef.current)
       timeoutRef.current = null
     }
-  }, [pathname, searchParams])
+  }, [pathname])
 
   useEffect(() => {
     function beginLoading() {
@@ -34,7 +33,7 @@ export function RouteTransitionFeedback() {
       const next = new URL(anchor.href, window.location.href)
       const current = new URL(window.location.href)
       if (next.origin !== current.origin) return
-      if (next.pathname === current.pathname && next.search === current.search) return
+      if (next.pathname === current.pathname) return
       beginLoading()
     }
 
