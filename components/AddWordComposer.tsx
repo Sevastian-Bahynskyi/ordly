@@ -49,6 +49,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const [notice, setNotice] = useState<string | null>(null)
   const [usedAI, setUsedAI] = useState(false)
   const firstInput = useRef<HTMLInputElement>(null)
+  const exampleSentenceDirty = useRef(false)
 
   useEffect(() => {
     if (open) setTimeout(() => firstInput.current?.focus(), 50)
@@ -116,6 +117,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setExamplePreferenceTouched(true)
 
     if (!enabled) {
+      exampleSentenceDirty.current = false
       setDraft((current) => ({ ...current, example_sentence: '', example_translation: '' }))
       setAiSources((current) => {
         const next = { ...current }
@@ -127,6 +129,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }
 
   function clearDraft() {
+    exampleSentenceDirty.current = false
     setDraft(emptyDraft)
     setEntryKind('word')
     setIncludeExample(true)
@@ -240,6 +243,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         return next
       })
 
+      if (requestedFields.includes('example_sentence') || requestedFields.includes('example_translation')) {
+        exampleSentenceDirty.current = false
+      }
       setUsedAI(true)
       setNotice(null)
     } catch (error) {
@@ -287,6 +293,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       return
     }
 
+    exampleSentenceDirty.current = false
     setDraft(emptyDraft)
     setEntryKind('word')
     setIncludeExample(true)
@@ -409,7 +416,21 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
           <>
             <label className="field field-wide">
               <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
-              <textarea rows={2} value={draft.example_sentence} onChange={(e) => patch('example_sentence', e.target.value)} placeholder="Jeg synes, det er godt." />
+              <textarea
+                rows={2}
+                value={draft.example_sentence}
+                onChange={(e) => {
+                  exampleSentenceDirty.current = true
+                  patch('example_sentence', e.target.value)
+                }}
+                onBlur={(e) => {
+                  const nextTarget = e.relatedTarget as HTMLElement | null
+                  if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini')) return
+                  exampleSentenceDirty.current = false
+                  void enrich(['example_translation'])
+                }}
+                placeholder="Jeg synes, det er godt."
+              />
             </label>
             <label className="field field-wide">
               <span>Sentence translation</span>
