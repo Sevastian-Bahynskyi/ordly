@@ -10,6 +10,7 @@ import './words-enhancements.css'
 import './notifications.css'
 import './composer-shortcuts.css'
 import './streak.css'
+import './mobile-form-controls.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
