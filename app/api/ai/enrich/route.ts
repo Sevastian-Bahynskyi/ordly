@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
+import {
+  fetchDdoPronunciations,
+  fetchWiktionaryPronunciations,
+  ipaToCyrillic,
+  isSingleDictionaryWord,
+  normalizePronunciationText,
+  resolveDictionaryPronunciation,
+  type PronunciationCandidate,
+} from '@/lib/pronunciation'
+
+const PIPELINE_VERSION = 1
 
 const contentSchema = {
   type: 'object',
@@ -13,19 +24,20 @@ const contentSchema = {
   additionalProperties: false,
 }
 
-const pronunciationSchema = {
+const ipaSchema = {
   type: 'object',
   properties: {
     pronunciation_ipa: { type: 'string' },
-    pronunciation: { type: 'string' },
   },
-  required: ['pronunciation_ipa', 'pronunciation'],
+  required: ['pronunciation_ipa'],
   additionalProperties: false,
 }
 
 const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
 
 async function groqCompletion(body: Record<string, unknown>, label: string) {
+  if (!process.env.GROQ_API_KEY) throw new Error(`${label}: Groq is not configured`)
+
   let lastStatus = 0
   let lastDetails = ''
 
@@ -52,17 +64,157 @@ async function groqCompletion(body: Record<string, unknown>, label: string) {
 
     const retryable = response.status === 429 || response.status >= 500
     if (!retryable || attempt === 1) break
-    await new Promise((resolve) => setTimeout(resolve, 300))
+    await new Promise((resolve) => setTimeout(resolve, 250))
   }
 
   throw new Error(`${label}: Groq request failed (${lastStatus}) ${lastDetails.slice(0, 240)}`)
+}
+
+async function chooseLowConfidenceCandidate(danish: string, candidates: PronunciationCandidate[]) {
+  if (!process.env.GROQ_API_KEY || candidates.length < 2) return null
+
+  const ids = candidates.map((candidate) => candidate.id)
+  const schema = {
+    type: 'object',
+    properties: {
+      candidate_id: { type: 'string', enum: ids },
+    },
+    required: ['candidate_id'],
+    additionalProperties: false,
+  }
+
+  const choices = candidates.map((candidate) => `${candidate.id}: ${candidate.source} ${candidate.ipa}`).join('\n')
+  const parsed = await groqCompletion({
+    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    reasoning_effort: 'low',
+    temperature: 0,
+    messages: [
+      {
+        role: 'system',
+        content: `You are resolving a disagreement between phonetic dictionary sources for a Danish learner. Select exactly one supplied IPA candidate that best represents ordinary contemporary Standard Danish pronunciation of the exact word. Do not invent or rewrite IPA. Prefer the normal spoken lexical pronunciation over spelling-driven, dialectal, compound-fragment, or clearly less complete variants. Return only the candidate id through the required JSON schema.`,
+      },
+      { role: 'user', content: `Danish word: ${danish}\nCandidates:\n${choices}` },
+    ],
+    response_format: {
+      type: 'json_schema',
+      json_schema: { name: 'pronunciation_source_choice', strict: true, schema },
+    },
+  }, 'pronunciation tie-break')
+
+  return candidates.find((candidate) => candidate.id === parsed.candidate_id) || null
+}
+
+async function generateIpaFallback(danish: string, entryKind: EntryKind) {
+  const parsed = await groqCompletion({
+    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    reasoning_effort: entryKind === 'sentence' ? 'medium' : 'low',
+    temperature: 0.02,
+    messages: [
+      {
+        role: 'system',
+        content: `Return only the actual contemporary Standard Danish IPA pronunciation of the supplied ${entryKind === 'sentence' ? 'sentence/expression' : 'word or phrase'}. Use natural spoken pronunciation, including silent letters and normal reductions. For a sentence or phrase, use connected speech. Do not transliterate, translate, explain, or return Cyrillic.`,
+      },
+      { role: 'user', content: danish },
+    ],
+    response_format: {
+      type: 'json_schema',
+      json_schema: { name: 'danish_ipa_fallback', strict: true, schema: ipaSchema },
+    },
+  }, 'IPA fallback')
+
+  return String(parsed.pronunciation_ipa || '').trim()
+}
+
+async function resolvePronunciation(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  userId: string,
+  danish: string,
+  entryKind: EntryKind,
+) {
+  const normalizedText = normalizePronunciationText(danish)
+
+  const { data: cached } = await supabase
+    .from('pronunciation_cache')
+    .select('pronunciation, ipa, source, confidence, ddo_ipa, wiktionary_ipa')
+    .eq('user_id', userId)
+    .eq('normalized_text', normalizedText)
+    .eq('pipeline_version', PIPELINE_VERSION)
+    .maybeSingle()
+
+  if (cached?.pronunciation && cached?.ipa) {
+    return {
+      pronunciation: String(cached.pronunciation),
+      ipa: String(cached.ipa),
+      source: String(cached.source),
+      confidence: Number(cached.confidence),
+      cached: true,
+    }
+  }
+
+  let ipa = ''
+  let source: 'ddo' | 'wiktionary' | 'groq' = 'groq'
+  let confidence = 0.45
+  let ddoIpa: string[] = []
+  let wiktionaryIpa: string[] = []
+
+  if (entryKind === 'word' && isSingleDictionaryWord(normalizedText)) {
+    ;[ddoIpa, wiktionaryIpa] = await Promise.all([
+      fetchDdoPronunciations(normalizedText),
+      fetchWiktionaryPronunciations(normalizedText),
+    ])
+
+    const resolution = resolveDictionaryPronunciation(ddoIpa, wiktionaryIpa)
+    if (resolution) {
+      ipa = resolution.ipa
+      source = resolution.source
+      confidence = resolution.confidence
+
+      if (resolution.needsTieBreak) {
+        try {
+          const selected = await chooseLowConfidenceCandidate(danish, resolution.candidates)
+          if (selected) {
+            ipa = selected.ipa
+            source = selected.source
+            confidence = 0.84
+          }
+        } catch (error) {
+          console.warn('Groq pronunciation tie-break failed; keeping DDO preference', error)
+        }
+      }
+    }
+  }
+
+  if (!ipa) {
+    ipa = await generateIpaFallback(danish, entryKind)
+    source = 'groq'
+    confidence = entryKind === 'sentence' ? 0.55 : 0.6
+  }
+
+  const pronunciation = ipaToCyrillic(ipa)
+  if (!pronunciation) throw new Error('Could not convert IPA to Cyrillic')
+
+  // Persist the final result so the same text becomes a single nearby Supabase read next time.
+  const { error: cacheError } = await supabase.from('pronunciation_cache').upsert({
+    user_id: userId,
+    normalized_text: normalizedText,
+    pipeline_version: PIPELINE_VERSION,
+    pronunciation,
+    ipa,
+    source,
+    confidence,
+    ddo_ipa: ddoIpa,
+    wiktionary_ipa: wiktionaryIpa,
+    updated_at: new Date().toISOString(),
+  }, { onConflict: 'user_id,normalized_text,pipeline_version' })
+  if (cacheError) console.warn('Could not cache pronunciation', cacheError.message)
+
+  return { pronunciation, ipa, source, confidence, cached: false }
 }
 
 export async function POST(request: Request) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'Groq is not configured yet.' }, { status: 503 })
 
   const body = await request.json()
   const draft = body.draft || {}
@@ -73,66 +225,22 @@ export async function POST(request: Request) {
 
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
-  const [{ data: profile }, { data: known }] = await Promise.all([
-    supabase.from('profiles').select('default_translation_language, danish_level').single(),
-    supabase.from('vocabulary_entries').select('danish').in('learning_status', ['learning', 'mastered']).not('danish', 'eq', danish).limit(30),
-  ])
-
-  const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
-  const level = profile?.danish_level || 'A1'
-  const knownWords = (known || []).map((x) => x.danish).join(', ')
   const needsPronunciation = fields.includes('pronunciation')
   const needsContent = fields.some((field: string) => field === 'translation' || field === 'example_sentence' || field === 'example_translation')
 
-  const result: Record<string, string> = {}
+  const result: Record<string, string | number | boolean> = {}
   const failures: string[] = []
   const jobs: Promise<void>[] = []
 
   if (needsPronunciation) {
     jobs.push((async () => {
       try {
-        const parsed = await groqCompletion({
-          model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
-          reasoning_effort: 'medium',
-          temperature: 0.05,
-          messages: [
-            {
-              role: 'system',
-              content: `You are a Danish pronunciation specialist helping a Russian-speaking learner. Return exactly two fields: pronunciation_ipa and pronunciation.
-
-STEP 1 — pronunciation_ipa:
-Determine the actual normal contemporary Standard Danish pronunciation of the supplied text. For phrases and sentences, use natural connected speech, reductions, silent letters and normal function-word pronunciation rather than spelling each word separately.
-
-STEP 2 — pronunciation:
-Convert the sound represented by pronunciation_ipa into a practical Russian-Cyrillic respelling. The goal is NOT transliteration. The goal is that a Russian speaker who simply reads the Cyrillic aloud naturally should sound as close as practical to a Danish speaker.
-
-Rules:
-- pronunciation must contain Russian Cyrillic only, plus spaces, hyphens, apostrophes and optional stress marks.
-- Never copy silent Danish letters merely because they are written.
-- Prefer the actual heard sound over Danish spelling in every case.
-- Danish y is front rounded; a practical Russian approximation is often ю after a consonant when that gives a closer result.
-- Soft/reduced final syllables must sound reduced rather than spelling-driven.
-- For connected speech, transcribe what is actually heard, not a word-by-word school transliteration.
-- Read your final Cyrillic aloud mentally as Russian and compare it with the IPA. Correct anything that would make a Russian reader say the wrong sound.
-
-Hard anchors for this app:
-- synes → IPA around [ˈsynəs]/[ˈsyns] → сюнес
-- selvfølgelig has a common reduced pronunciation around [sɛˈføːli] → a compact Russian-readable result should be close to сэфёли, not сельвфёльгелиг
-- hvad in an ordinary question is normally pronounced around [va]/[vað], so never хвад
-- godt as an adverb does not preserve a literal written final t
-- lide in kunne lide is normally reduced around [li]/[liˀ], not spelling-based лиде.
-
-Do not translate the text and do not explain anything.`
-            },
-            { role: 'user', content: danish },
-          ],
-          response_format: {
-            type: 'json_schema',
-            json_schema: { name: 'danish_pronunciation', strict: true, schema: pronunciationSchema },
-          },
-        }, 'pronunciation')
-
-        result.pronunciation = String(parsed.pronunciation || '').trim()
+        const pronunciation = await resolvePronunciation(supabase, user.id, danish, entryKind)
+        result.pronunciation = pronunciation.pronunciation
+        result.pronunciation_ipa = pronunciation.ipa
+        result.pronunciation_source = pronunciation.source
+        result.pronunciation_confidence = pronunciation.confidence
+        result.pronunciation_cached = pronunciation.cached
       } catch (error) {
         console.error(error)
         failures.push('pronunciation')
@@ -143,6 +251,15 @@ Do not translate the text and do not explain anything.`
   if (needsContent) {
     jobs.push((async () => {
       try {
+        const [{ data: profile }, { data: known }] = await Promise.all([
+          supabase.from('profiles').select('default_translation_language, danish_level').single(),
+          supabase.from('vocabulary_entries').select('danish').in('learning_status', ['learning', 'mastered']).not('danish', 'eq', danish).limit(30),
+        ])
+
+        const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
+        const level = profile?.danish_level || 'A1'
+        const knownWords = (known || []).map((x) => x.danish).join(', ')
+
         const parsed = await groqCompletion({
           model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
           reasoning_effort: 'low',
@@ -157,7 +274,7 @@ Do not translate the text and do not explain anything.`
 - ${includeExample ? `Generate a simple natural Danish example at ${level} and its ${targetLanguage} translation.` : 'A separate example is disabled: return empty strings for example_sentence and example_translation.'}
 - Preserve the meaning of the exact Danish text supplied.
 - Prefer known words when natural: ${knownWords || 'none yet'}.
-- Do not return pronunciation or commentary.`
+- Do not return pronunciation or commentary.`,
             },
             {
               role: 'user',
@@ -183,7 +300,7 @@ Do not translate the text and do not explain anything.`
   await Promise.all(jobs)
 
   if (!Object.keys(result).length) {
-    return NextResponse.json({ error: 'AI could not enrich this text. Please try again.' }, { status: 502 })
+    return NextResponse.json({ error: 'Could not enrich this text. Please try again.' }, { status: 502 })
   }
 
   return NextResponse.json({
