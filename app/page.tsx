@@ -42,7 +42,11 @@ export default async function HomePage() {
       <div className="page-wrap dashboard-page">
         <header className="top-header">
           <div><span className="eyebrow">GOD FORMIDDAG</span><h1>Your Danish, one word at a time.</h1></div>
-          <div className="streak-pill"><Flame size={17} /><strong>{profile?.current_streak || 0}</strong><span>day streak</span></div>
+          <div className="streak-pill">
+            <span className="streak-fire" aria-hidden="true"><Flame className="streak-flame" size={17} /></span>
+            <strong>{profile?.current_streak || 0}</strong>
+            <span>day streak</span>
+          </div>
         </header>
 
         <section className="hero-grid">
