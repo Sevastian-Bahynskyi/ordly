@@ -19,6 +19,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
   const [answer, setAnswer] = useState('')
   const [revealed, setRevealed] = useState(false)
   const [result, setResult] = useState<AnswerResult | null>(null)
+  const [revealedWithoutAnswer, setRevealedWithoutAnswer] = useState(false)
   const [completed, setCompleted] = useState(0)
   const [freshSentence, setFreshSentence] = useState<{ sentence: string; translation: string } | null>(null)
   const [ratingLoading, setRatingLoading] = useState(false)
@@ -54,8 +55,17 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
 
   function submitAnswer(e: React.FormEvent) {
     e.preventDefault()
-    if (!answer.trim()) return
-    setResult(checkAnswer(answer, expected))
+    const typedAnswer = answer.trim()
+
+    if (!typedAnswer) {
+      setResult('incorrect')
+      setRevealedWithoutAnswer(true)
+      setRevealed(true)
+      return
+    }
+
+    setResult(checkAnswer(typedAnswer, expected))
+    setRevealedWithoutAnswer(false)
     setRevealed(true)
   }
 
@@ -74,6 +84,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       setAnswer('')
       setRevealed(false)
       setResult(null)
+      setRevealedWithoutAnswer(false)
       setFreshSentence(null)
     }
     setRatingLoading(false)
@@ -118,13 +129,15 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
           />
           {revealed && (result === 'incorrect' ? <X size={20}/> : <Check size={20}/>)}
         </div>
-        {!revealed && <button className="primary-button answer-submit">Check answer <ArrowRight size={17}/></button>}
+        {!revealed && <button className="primary-button answer-submit">{answer.trim() ? 'Check answer' : 'Show answer'} <ArrowRight size={17}/></button>}
       </form>
 
       {revealed && <div className="answer-reveal">
         <div className={`answer-verdict ${result}`}>
-          <strong>{result === 'correct' ? 'Correct' : result === 'mostly' ? 'Almost right' : 'Not quite'}</strong>
-          {result === 'mostly' && <span>Close enough for recognition, but notice the difference.</span>}
+          <strong>{revealedWithoutAnswer ? "Didn't know" : result === 'correct' ? 'Correct' : result === 'mostly' ? 'Almost right' : 'Not quite'}</strong>
+          {revealedWithoutAnswer
+            ? <span>The answer is shown below. “Again” is recommended.</span>
+            : result === 'mostly' && <span>Close enough for recognition, but notice the difference.</span>}
         </div>
 
         <div className="correct-answer">
