@@ -90,17 +90,30 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }, [draft.danish])
 
   function patch(key: keyof Draft, value: string) {
-    setDraft((d) => ({ ...d, [key]: value }))
-
     if (key === 'danish') {
       const nextKind = inferEntryKind(value)
+      setDraft((current) => nextKind === 'sentence'
+        ? { ...current, danish: value, example_sentence: '', example_translation: '' }
+        : { ...current, danish: value })
       setEntryKind(nextKind)
-      if (!examplePreferenceTouched) {
-        setIncludeExample(nextKind !== 'sentence')
+
+      if (nextKind === 'sentence') {
+        exampleSentenceDirty.current = false
+        setIncludeExample(false)
+        setAiSources((current) => {
+          const next = { ...current }
+          delete next.example_sentence
+          delete next.example_translation
+          return next
+        })
+      } else if (!examplePreferenceTouched) {
+        setIncludeExample(true)
       }
+
       setDuplicate(null)
       setAllowDuplicate(false)
     } else {
+      setDraft((current) => ({ ...current, [key]: value }))
       setAiSources((current) => {
         if (!current[key]) return current
         const next = { ...current }
@@ -113,6 +126,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }
 
   function setExampleEnabled(enabled: boolean) {
+    if (entryKind === 'sentence') return
+
     setIncludeExample(enabled)
     setExamplePreferenceTouched(true)
 
@@ -167,12 +182,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       if (body.is_correct || result === original) {
         setNotice(mode === 'word' ? 'Already in base form.' : mode === 'phrase' ? 'Phrase looks good.' : 'Sentence looks correct.')
       } else {
-        setDraft((current) => ({ ...current, danish: result }))
-        const nextKind = inferEntryKind(result)
-        setEntryKind(nextKind)
-        if (!examplePreferenceTouched) setIncludeExample(nextKind !== 'sentence')
-        setDuplicate(null)
-        setAllowDuplicate(false)
+        patch('danish', result)
         setUsedAI(true)
         setNotice(mode === 'word' ? `Base form: ${result}` : mode === 'phrase' ? `Normalized phrase: ${result}` : `Corrected sentence: ${result}`)
       }
@@ -190,9 +200,12 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       return
     }
 
-    const activeFields = includeExample
-      ? allEnrichableFields
-      : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+    const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
+    const activeFields: EnrichableField[] = entryKind === 'sentence'
+      ? ['pronunciation', 'translation']
+      : effectiveIncludeExample
+        ? allEnrichableFields
+        : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
 
     const fullFill = !fields
     const requestedFields = fields ?? activeFields.filter((key) => {
@@ -217,7 +230,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
           draft,
           fields: requestedFields,
           entryKind,
-          includeExample,
+          includeExample: effectiveIncludeExample,
         }),
       })
       const body = await res.json()
@@ -228,7 +241,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         for (const key of requestedFields) {
           if (typeof body[key] === 'string') next[key] = body[key]
         }
-        if (!includeExample) {
+        if (!effectiveIncludeExample) {
           next.example_sentence = ''
           next.example_translation = ''
         }
@@ -276,12 +289,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       }
     }
 
+    const storeExample = entryKind !== 'sentence' && includeExample
     const { error } = await supabase.from('vocabulary_entries').insert({
       danish: draft.danish.trim(),
       pronunciation: draft.pronunciation.trim() || null,
       translation: draft.translation.trim(),
-      example_sentence: includeExample ? draft.example_sentence.trim() || null : null,
-      example_translation: includeExample ? draft.example_translation.trim() || null : null,
+      example_sentence: storeExample ? draft.example_sentence.trim() || null : null,
+      example_translation: storeExample ? draft.example_translation.trim() || null : null,
       entry_kind: entryKind,
       ai_enriched: usedAI,
       familiarity: 0,
@@ -327,9 +341,12 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     )
   }
 
-  const activeFields = includeExample
-    ? allEnrichableFields
-    : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+  const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
+  const activeFields: EnrichableField[] = entryKind === 'sentence'
+    ? ['pronunciation', 'translation']
+    : effectiveIncludeExample
+      ? allEnrichableFields
+      : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
 
   const hasStaleAiFields = activeFields.some((key) => {
     const source = aiSources[key]
@@ -340,6 +357,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const inputKind = inferDanishInputKind(draft.danish)
   const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Normalize phrase' : 'Check sentence'
   const inputKindLabel = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence detected'
+  const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'
+  const translationLabel = entryKind === 'sentence' ? 'Sentence translation' : `${languageLabel} translation`
+  const translationPlaceholder = entryKind === 'sentence'
+    ? translationLanguage === 'ru' ? 'Как дела?' : translationLanguage === 'uk' ? 'Як справи?' : 'How are you?'
+    : translationLanguage === 'ru' ? 'думать, считать' : translationLanguage === 'uk' ? 'думати, вважати' : 'think'
 
   return (
     <section className="composer-card" onKeyDown={keyDown}>
@@ -381,61 +403,65 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         </label>
 
         <label className="field">
-          <span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'} translation <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
-          <input value={draft.translation} onChange={(e) => patch('translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'думать, считать' : translationLanguage === 'uk' ? 'думати, вважати' : 'think'} />
+          <span>{translationLabel} <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
+          <input value={draft.translation} onChange={(e) => patch('translation', e.target.value)} placeholder={translationPlaceholder} />
         </label>
 
-        <div className="field field-wide">
-          <span>
-            <span>Separate example sentence</span>
-            <button
-              type="button"
-              onClick={() => setExampleEnabled(!includeExample)}
-              style={{
-                border: 0,
-                borderRadius: 999,
-                padding: '4px 9px',
-                background: includeExample ? '#eee9ff' : '#f1eff3',
-                color: includeExample ? '#684dc7' : '#8d8793',
-                fontSize: 10,
-                fontWeight: 720,
-                cursor: 'pointer',
-              }}
-            >
-              {includeExample ? 'On' : 'Off'}
-            </button>
-          </span>
-          {!includeExample && (
-            <small style={{ color: '#9a92a3', fontSize: 10.5, lineHeight: 1.4 }}>
-              Off — the saved Danish text is reviewed directly. Translation stays required.
-            </small>
-          )}
-        </div>
-
-        {includeExample && (
+        {entryKind !== 'sentence' && (
           <>
-            <label className="field field-wide">
-              <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
-              <textarea
-                rows={2}
-                value={draft.example_sentence}
-                onChange={(e) => {
-                  exampleSentenceDirty.current = true
-                  patch('example_sentence', e.target.value)
-                }}
-                onBlur={(e) => {
-                  const nextTarget = e.relatedTarget as HTMLElement | null
-                  if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini')) return
-                  exampleSentenceDirty.current = false
-                  void enrich(['example_translation'])
-                }}
-                placeholder="Jeg synes, det er godt."
-              />
-            </label>
-            <label className="field field-wide">
-              <span>Sentence translation</span>
-              <input value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
-            </label>
+            <div className="field field-wide">
+              <span>
+                <span>Separate example sentence</span>
+                <button
+                  type="button"
+                  onClick={() => setExampleEnabled(!includeExample)}
+                  style={{
+                    border: 0,
+                    borderRadius: 999,
+                    padding: '4px 9px',
+                    background: includeExample ? '#eee9ff' : '#f1eff3',
+                    color: includeExample ? '#684dc7' : '#8d8793',
+                    fontSize: 10,
+                    fontWeight: 720,
+                    cursor: 'pointer',
+                  }}
+                >
+                  {includeExample ? 'On' : 'Off'}
+                </button>
+              </span>
+              {!includeExample && (
+                <small style={{ color: '#9a92a3', fontSize: 10.5, lineHeight: 1.4 }}>
+                  Off — the saved Danish text is reviewed directly. Translation stays required.
+                </small>
+              )}
+            </div>
+
+            {includeExample && (
+              <>
+                <label className="field field-wide">
+                  <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
+                  <textarea
+                    rows={2}
+                    value={draft.example_sentence}
+                    onChange={(e) => {
+                      exampleSentenceDirty.current = true
+                      patch('example_sentence', e.target.value)
+                    }}
+                    onBlur={(e) => {
+                      const nextTarget = e.relatedTarget as HTMLElement | null
+                      if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini')) return
+                      exampleSentenceDirty.current = false
+                      void enrich(['example_translation'])
+                    }}
+                    placeholder="Jeg synes, det er godt."
+                  />
+                </label>
+                <label className="field field-wide">
+                  <span>Sentence translation</span>
+                  <input value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
+                </label>
+              </>
+            )}
           </>
         )}
       </div>
