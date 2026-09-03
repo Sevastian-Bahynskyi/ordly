@@ -1,10 +1,25 @@
 .save-wrap {
+  position: relative;
   flex-direction: row;
   align-items: center;
-  gap: 9px;
+  gap: 0;
+}
+
+.save-wrap .primary-button {
+  position: relative;
+  z-index: 1;
 }
 
 .save-wrap .keyboard-hint {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
   align-self: auto;
   white-space: nowrap;
+  padding: 2px 7px 3px;
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  background: #f7f5f9;
 }
