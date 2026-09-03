@@ -1,9 +1,10 @@
 .save-wrap {
-  flex-direction: column-reverse;
-  align-items: flex-end;
-  gap: 6px;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
 }
 
 .save-wrap .keyboard-hint {
-  align-self: center;
+  align-self: auto;
+  white-space: nowrap;
 }
