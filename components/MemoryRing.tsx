@@ -3,6 +3,8 @@ import type { ReviewCard } from '@/lib/types'
 
 const scheduler = fsrs()
 
+type MemoryTier = 'new' | 'fragile' | 'building' | 'growing' | 'strong'
+
 function toFsrsCard(item: ReviewCard): Card {
   return {
     due: new Date(item.due),
@@ -37,15 +39,69 @@ function stabilityLabel(days: number) {
   return `${(days / 365).toFixed(1)}y`
 }
 
+function memoryTier(item: ReviewCard): MemoryTier {
+  if (item.state === 0 || !item.last_review) return 'new'
+  if (item.stability < 1) return 'fragile'
+  if (item.stability < 7) return 'building'
+  if (item.stability < 30) return 'growing'
+  return 'strong'
+}
+
+function tierLabel(tier: MemoryTier) {
+  if (tier === 'new') return 'New'
+  if (tier === 'fragile') return 'Fragile'
+  if (tier === 'building') return 'Building'
+  if (tier === 'growing') return 'Growing'
+  return 'Strong'
+}
+
+function nextReviewLabel(dueValue: string) {
+  const due = new Date(dueValue)
+  if (Number.isNaN(due.getTime())) return 'Not scheduled'
+
+  const deltaMs = due.getTime() - Date.now()
+  let relative = 'Due now'
+
+  if (deltaMs > 0) {
+    const minutes = Math.ceil(deltaMs / 60_000)
+    if (minutes < 90) relative = `in ${minutes}m`
+    else {
+      const hours = Math.ceil(deltaMs / 3_600_000)
+      if (hours < 48) relative = `in ${hours}h`
+      else {
+        const days = Math.ceil(deltaMs / 86_400_000)
+        relative = days < 14 ? `in ${days}d` : ''
+      }
+    }
+  }
+
+  const exact = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Copenhagen',
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(due)
+
+  return relative ? `${relative} · ${exact}` : exact
+}
+
 export function MemoryRing({ item, compact = false }: { item: ReviewCard; compact?: boolean }) {
   const isNew = item.state === 0 || !item.last_review
   const recall = recallPercent(item)
-  const title = isNew
-    ? 'New memory · not reviewed yet'
-    : `Estimated recall ${recall}% · stability ${stabilityLabel(item.stability)}`
+  const tier = memoryTier(item)
+  const tierName = tierLabel(tier)
+  const nextReview = nextReviewLabel(item.due)
+  const aria = isNew
+    ? `New memory. Next review ${nextReview}.`
+    : `Estimated recall ${recall} percent. ${tierName} memory with stability ${stabilityLabel(item.stability)}. Next review ${nextReview}.`
 
   return (
-    <span className={`memory-stat${compact ? ' compact' : ''}`} title={title} aria-label={title}>
+    <span
+      className={`memory-stat tier-${tier}${compact ? ' compact' : ''}`}
+      tabIndex={0}
+      aria-label={aria}
+    >
       <span className="memory-ring-wrap" aria-hidden="true">
         <svg viewBox="0 0 36 36" className="memory-ring-svg">
           <circle className="memory-ring-track" cx="18" cy="18" r="14" />
@@ -62,6 +118,11 @@ export function MemoryRing({ item, compact = false }: { item: ReviewCard; compac
       <span className="memory-stat-copy">
         <strong>{isNew ? 'New' : `${recall}%`}</strong>
         <small>{isNew ? 'memory' : 'recall'}</small>
+      </span>
+      <span className="memory-tooltip" role="tooltip">
+        <strong>{isNew ? 'New memory' : `${recall}% recall now`}</strong>
+        <span><i className="memory-tier-dot" />{tierName} · stability {stabilityLabel(item.stability)}</span>
+        <span>Next review <b>{nextReview}</b></span>
       </span>
     </span>
   )
