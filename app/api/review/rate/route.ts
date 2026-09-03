@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { cardId, rating, answerResult } = await request.json()
+  const { cardId, rating, answerResult, answerText } = await request.json()
   if (!cardId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: 'Invalid rating' }, { status: 400 })
 
   const { data: row, error } = await supabase.from('review_cards').select('*').eq('id', cardId).single()
@@ -22,6 +22,12 @@ export async function POST(request: Request) {
     scheduled_days: row.scheduled_days, reps: row.reps, lapses: row.lapses, learning_steps: row.learning_steps, state: row.state,
     last_review: row.last_review ? new Date(row.last_review) : undefined,
   }
+  const previousCard = {
+    due: card.due.toISOString(), stability: card.stability, difficulty: card.difficulty, elapsed_days: card.elapsed_days,
+    scheduled_days: card.scheduled_days, reps: card.reps, lapses: card.lapses, learning_steps: card.learning_steps,
+    state: card.state, last_review: card.last_review?.toISOString() || null,
+  }
+
   const now = new Date()
   const scheduler = fsrs({ request_retention: 0.9, maximum_interval: 36500, enable_fuzz: true, enable_short_term: true, learning_steps: ['1m', '10m'], relearning_steps: ['10m'] })
   const grade = rating as Grade
@@ -38,10 +44,12 @@ export async function POST(request: Request) {
   const learningStatus = next.reps === 0 ? 'new' : next.reps >= 5 && next.stability >= 21 ? 'mastered' : 'learning'
   await supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', row.entry_id)
   const studyDate = copenhagenDate(now)
-  await supabase.from('review_logs').insert({
-    card_id: cardId, entry_id: row.entry_id, rating, answer_result: answerResult || null, previous_state: card.state,
+  const { data: log, error: logError } = await supabase.from('review_logs').insert({
+    card_id: cardId, entry_id: row.entry_id, rating, answer_result: answerResult || null, answer_text: answerText || null,
+    previous_state: card.state, previous_card: previousCard,
     stability: next.stability, difficulty: next.difficulty, scheduled_days: next.scheduled_days, reviewed_at: now.toISOString(), study_date: studyDate,
-  })
+  }).select('id').single()
+  if (logError) return NextResponse.json({ error: logError.message }, { status: 500 })
 
   const { data: profile } = await supabase.from('profiles').select('current_streak, longest_streak, last_study_date').single()
   if (profile?.last_study_date !== studyDate) {
@@ -50,5 +58,5 @@ export async function POST(request: Request) {
     await supabase.from('profiles').update({ current_streak: current, longest_streak: Math.max(current, profile?.longest_streak || 0), last_study_date: studyDate }).eq('id', user.id)
   }
 
-  return NextResponse.json({ due: next.due.toISOString(), status: learningStatus })
+  return NextResponse.json({ due: next.due.toISOString(), status: learningStatus, logId: log.id })
 }
