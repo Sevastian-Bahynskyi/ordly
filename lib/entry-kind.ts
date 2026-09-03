@@ -1,4 +1,5 @@
 export type EntryKind = 'word' | 'sentence'
+export type DanishInputKind = 'word' | 'phrase' | 'sentence'
 
 const sentenceStarters = new Set([
   'jeg', 'du', 'han', 'hun', 'den', 'det', 'vi', 'i', 'de', 'der',
@@ -7,7 +8,7 @@ const sentenceStarters = new Set([
   'kan', 'skal', 'vil', 'må', 'er', 'har', 'gør', 'kommer', 'går', 'ved',
 ])
 
-export function inferEntryKind(value: string): EntryKind {
+export function inferDanishInputKind(value: string): DanishInputKind {
   const text = value.trim()
   if (!text) return 'word'
 
@@ -21,6 +22,11 @@ export function inferEntryKind(value: string): EntryKind {
 
   const first = words[0]?.toLocaleLowerCase('da-DK') || ''
   if (words.length >= 4 && sentenceStarters.has(first)) return 'sentence'
+  if (words.length > 1) return 'phrase'
 
   return 'word'
+}
+
+export function inferEntryKind(value: string): EntryKind {
+  return inferDanishInputKind(value) === 'sentence' ? 'sentence' : 'word'
 }
