@@ -60,5 +60,20 @@ export async function POST(request: Request) {
   }).eq('id', logId)
   if (logError) return NextResponse.json({ error: logError.message }, { status: 500 })
 
-  return NextResponse.json({ due: next.due.toISOString(), status: learningStatus })
+  return NextResponse.json({
+    due: next.due.toISOString(),
+    status: learningStatus,
+    card: {
+      due: next.due.toISOString(),
+      stability: next.stability,
+      difficulty: next.difficulty,
+      elapsed_days: next.elapsed_days,
+      scheduled_days: next.scheduled_days,
+      reps: next.reps,
+      lapses: next.lapses,
+      learning_steps: next.learning_steps,
+      state: next.state,
+      last_review: next.last_review?.toISOString() || reviewedAt.toISOString(),
+    },
+  })
 }
