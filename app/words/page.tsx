@@ -12,5 +12,6 @@ export default async function WordsPage({ searchParams }: { searchParams: Promis
     supabase.from('review_cards').select('*'),
     supabase.from('profiles').select('default_translation_language').single(),
   ])
-  return <AppShell><div className="page-wrap"><WordsClient initialWords={words || []} initialCards={cards || []} initialQuery={params.q || ''} translationLanguage={profile?.default_translation_language || 'ru'} /></div></AppShell>
+  const wordEntries = (words || []).filter((entry) => entry.entry_kind !== 'sentence')
+  return <AppShell><div className="page-wrap"><WordsClient initialWords={wordEntries} initialCards={cards || []} initialQuery={params.q || ''} translationLanguage={profile?.default_translation_language || 'ru'} /></div></AppShell>
 }

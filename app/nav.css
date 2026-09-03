@@ -3,6 +3,7 @@
   isolation: isolate;
   overflow: hidden;
   touch-action: manipulation;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .mobile-nav-indicator {
@@ -10,7 +11,7 @@
   z-index: 0;
   top: 5px;
   left: 7px;
-  width: calc((100% - 14px) / 4);
+  width: calc((100% - 14px) / 5);
   height: 48px;
   border-radius: 12px;
   pointer-events: none;
@@ -58,6 +59,12 @@
 .mobile-nav a:active .mobile-nav-icon {
   transform: translate3d(0, 0, 0) scale(.88);
   transition-duration: 70ms;
+}
+
+@media (max-width: 760px) {
+  .mobile-nav {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
