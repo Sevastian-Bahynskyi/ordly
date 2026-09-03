@@ -1,3 +1,7 @@
+.word-table-card {
+  overflow: visible;
+}
+
 .word-table-head,
 .word-row {
   grid-template-columns: minmax(170px, 1.1fr) minmax(130px, .8fr) minmax(200px, 1.5fr) 132px 76px;
