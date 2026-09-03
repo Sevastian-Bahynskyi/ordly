@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check, Flame, RotateCcw, Sparkles, Target, X } f
 import type { LearningStatus, ReviewItem } from '@/lib/types'
 import { checkAnswer, type AnswerResult } from '@/lib/answer'
 import { clozeSentence, reviewMode } from '@/lib/review'
+import { MemoryRing } from '@/components/MemoryRing'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -212,7 +213,10 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
               ? `${languageLabel} → Danish`
               : 'Fill the Danish word'}
         </span>
-        <span className="card-status">{entryKind === 'sentence' ? 'sentence' : entry.learning_status}</span>
+        <span className="card-meta">
+          <MemoryRing item={current} />
+          <span className="card-status">{entryKind === 'sentence' ? 'sentence' : entry.learning_status}</span>
+        </span>
       </div>
 
       <div className="flash-prompt">
