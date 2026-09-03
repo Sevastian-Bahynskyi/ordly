@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Bot, Check, CircleAlert, Loader2, Plus, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
-import { inferEntryKind } from '@/lib/entry-kind'
+import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
 import type { EntryKind } from '@/lib/types'
 
 interface Draft {
@@ -140,38 +140,41 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     window.setTimeout(() => firstInput.current?.focus(), 0)
   }
 
-  async function normalizeBaseForm() {
+  async function checkDanishForm() {
     const original = draft.danish.trim()
     if (!original) {
       setNotice('Type Danish text first.')
       return
     }
 
-    setAiLoading('base-form')
+    const mode = inferDanishInputKind(original)
+    setAiLoading('danish-check')
     try {
       const res = await fetch('/api/ai/base-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ danish: original }),
+        body: JSON.stringify({ danish: original, mode }),
       })
       const body = await res.json()
-      if (!res.ok) throw new Error(body.error || 'Could not find the base form')
+      if (!res.ok) throw new Error(body.error || 'Could not check this Danish text')
 
-      const baseForm = String(body.base_form || '').trim()
-      if (!baseForm) throw new Error('AI returned an empty base form')
+      const result = String(body.result || '').trim()
+      if (!result) throw new Error('AI returned empty Danish text')
 
-      if (baseForm === original) {
-        setNotice('Already in base form.')
+      if (body.is_correct || result === original) {
+        setNotice(mode === 'word' ? 'Already in base form.' : mode === 'phrase' ? 'Phrase looks good.' : 'Sentence looks correct.')
       } else {
-        setDraft((current) => ({ ...current, danish: baseForm }))
-        setEntryKind(inferEntryKind(baseForm))
+        setDraft((current) => ({ ...current, danish: result }))
+        const nextKind = inferEntryKind(result)
+        setEntryKind(nextKind)
+        if (!examplePreferenceTouched) setIncludeExample(nextKind !== 'sentence')
         setDuplicate(null)
         setAllowDuplicate(false)
         setUsedAI(true)
-        setNotice(`Base form: ${baseForm}`)
+        setNotice(mode === 'word' ? `Base form: ${result}` : mode === 'phrase' ? `Normalized phrase: ${result}` : `Corrected sentence: ${result}`)
       }
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'Could not find the base form')
+      setNotice(error instanceof Error ? error.message : 'Could not check this Danish text')
     } finally {
       setAiLoading(null)
     }
@@ -327,6 +330,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   })
 
   const duplicateMeanings = [...new Set(liveDuplicate.map((item) => item.translation?.trim() || 'No translation'))]
+  const inputKind = inferDanishInputKind(draft.danish)
+  const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Normalize phrase' : 'Check sentence'
+  const inputKindLabel = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence detected'
 
   return (
     <section className="composer-card" onKeyDown={keyDown}>
@@ -343,13 +349,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         <label className="field field-wide">
           <span>
             <span>Danish word, phrase, or sentence</span>
-            {entryKind === 'word' && <AiMini label="Base form" loading={aiLoading === 'base-form'} onClick={normalizeBaseForm} />}
+            {draft.danish.trim() && <AiMini label={danishActionLabel} loading={aiLoading === 'danish-check'} onClick={checkDanishForm} />}
           </span>
-          <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="synes · Hvad kan du godt lide?" />
+          <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="synes · helt sikker · Hvad kan du godt lide?" />
           <span style={{ minHeight: 16, justifyContent: 'flex-start', gap: 8 }}>
             {draft.danish.trim() && (
-              <small style={{ color: entryKind === 'sentence' ? '#7557b5' : '#9a92a3', fontSize: 10, fontWeight: 650 }}>
-                {entryKind === 'sentence' ? 'Sentence detected' : 'Word / phrase'}
+              <small style={{ color: inputKind === 'sentence' ? '#7557b5' : '#9a92a3', fontSize: 10, fontWeight: 650 }}>
+                {inputKindLabel}
               </small>
             )}
             {liveDuplicate.length > 0 && (
@@ -437,7 +443,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
           <span className="keyboard-hint">⌘ Enter</span>
           <button className="primary-button" disabled={saving} onClick={save}>
             {saving ? <Loader2 className="spin" size={17} /> : <Plus size={17} />}
-            {entryKind === 'sentence' ? 'Save sentence' : 'Save word'}
+            {entryKind === 'sentence' ? 'Save sentence' : inputKind === 'phrase' ? 'Save phrase' : 'Save word'}
           </button>
         </div>
       </div>
