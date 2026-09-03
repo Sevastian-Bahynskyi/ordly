@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     reps: Number(prev.reps),
     lapses: Number(prev.lapses),
     learning_steps: Number(prev.learning_steps),
-    state: Number(prev.state),
+    state: Number(prev.state) as Card['state'],
     last_review: prev.last_review ? new Date(String(prev.last_review)) : undefined,
   }
 
