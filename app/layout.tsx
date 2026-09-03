@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { ComposerKeyboardNavigation } from '@/components/ComposerKeyboardNavigation'
 import { PwaRegistration } from '@/components/PwaRegistration'
 import './globals.css'
 import './nav.css'
@@ -8,6 +9,7 @@ import './memory.css'
 import './words-enhancements.css'
 import './notifications.css'
 import './composer-shortcuts.css'
+import './streak.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
@@ -41,7 +43,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}<PwaRegistration /></body>
+      <body>{children}<ComposerKeyboardNavigation /><PwaRegistration /></body>
     </html>
   )
 }
