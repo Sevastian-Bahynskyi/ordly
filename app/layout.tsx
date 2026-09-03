@@ -7,6 +7,7 @@ import './responsive.css'
 import './memory.css'
 import './words-enhancements.css'
 import './notifications.css'
+import './composer-shortcuts.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
