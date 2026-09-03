@@ -1,0 +1,232 @@
+.notification-settings {
+  margin: 18px 22px 0;
+  padding: 18px;
+  border: 1px solid #e8e2ef;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fcfbfe, #f8f5fc);
+}
+
+.notification-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.notification-heading h3 {
+  margin: 6px 0 3px;
+  font-size: 16px;
+  letter-spacing: -.025em;
+}
+
+.notification-heading p,
+.mandatory-title p {
+  margin: 0;
+  color: #918a98;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.notification-enabled {
+  border-color: #c7e3d4;
+  background: #eff9f4;
+  color: #39745a;
+}
+
+.notification-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.notification-option {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid #e8e3eb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.notification-option input,
+.schedule-row input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: #7557db;
+}
+
+.notification-option span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.notification-option strong {
+  color: #56505a;
+  font-size: 11px;
+}
+
+.notification-option small {
+  color: #99929f;
+  font-size: 9.5px;
+  line-height: 1.4;
+}
+
+.mandatory-schedule {
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid #e6dfef;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.mandatory-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.mandatory-title strong {
+  color: #514a56;
+  font-size: 12px;
+}
+
+.mandatory-title > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  color: #978f9c;
+  font-size: 9px;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.schedule-row {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 1px solid #ece7ef;
+  border-radius: 10px;
+  background: #faf9fb;
+  transition: .15s ease;
+}
+
+.schedule-row.enabled {
+  border-color: #d5c9f4;
+  background: #f8f5ff;
+}
+
+.schedule-row label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #726b77;
+  font-size: 10px;
+  font-weight: 620;
+}
+
+.schedule-row input[type='time'] {
+  width: 88px;
+  height: 30px;
+  padding: 0 6px;
+  border: 1px solid #ddd7e2;
+  border-radius: 8px;
+  background: #fff;
+  color: #57505c;
+  font-size: 10px;
+}
+
+.schedule-row input[type='time']:disabled {
+  opacity: .4;
+}
+
+.notification-preview {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  margin-top: 10px;
+  padding: 10px 11px;
+  border-radius: 10px;
+  background: #28232e;
+  color: #fff;
+}
+
+.notification-preview strong {
+  grid-row: 1 / 3;
+  align-self: center;
+  color: #b9afc4;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.notification-preview span {
+  font-size: 10px;
+  font-weight: 760;
+}
+
+.notification-preview small {
+  color: #c9c1d0;
+  font-size: 8.5px;
+}
+
+.notification-message {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: #edf8f2;
+  color: #39745a;
+  font-size: 9.5px;
+}
+
+.notification-message.warning {
+  background: #fff6e7;
+  color: #93652c;
+}
+
+@media (max-width: 680px) {
+  .notification-settings {
+    margin: 14px 18px 0;
+    padding: 14px;
+  }
+
+  .notification-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .notification-heading > button {
+    width: 100%;
+  }
+
+  .notification-options,
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mandatory-title {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .schedule-row input[type='time'] {
+    width: 105px;
+    min-height: 34px;
+  }
+}
