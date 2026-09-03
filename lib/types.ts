@@ -1,6 +1,8 @@
 export type TranslationLanguage = 'ru' | 'en' | 'uk'
 export type LearningStatus = 'new' | 'learning' | 'mastered'
 export type EntryKind = 'word' | 'sentence'
+export type NotificationDay = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
+export type NotificationSchedule = Record<NotificationDay, string | null>
 
 export interface Profile {
   id: string
@@ -8,6 +10,12 @@ export interface Profile {
   default_translation_language: TranslationLanguage
   danish_level: string
   daily_new_limit: number
+  due_notifications_enabled: boolean
+  word_challenge_notifications_enabled: boolean
+  notification_timezone: string
+  notification_schedule: NotificationSchedule
+  last_due_notification_at: string | null
+  last_word_challenge_at: string | null
   created_at: string
 }
 
