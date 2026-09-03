@@ -30,9 +30,7 @@ export async function POST(request: Request) {
 
   const now = new Date()
   const scheduler = fsrs({ request_retention: 0.9, maximum_interval: 36500, enable_fuzz: true, enable_short_term: true, learning_steps: ['1m', '10m'], relearning_steps: ['10m'] })
-  const grade = rating as Grade
-  const result = scheduler.next(card, now, grade)
-  const next = result.card
+  const next = scheduler.next(card, now, rating as Grade).card
 
   const { error: updateError } = await supabase.from('review_cards').update({
     due: next.due.toISOString(), stability: next.stability, difficulty: next.difficulty, elapsed_days: next.elapsed_days,
@@ -58,5 +56,21 @@ export async function POST(request: Request) {
     await supabase.from('profiles').update({ current_streak: current, longest_streak: Math.max(current, profile?.longest_streak || 0), last_study_date: studyDate }).eq('id', user.id)
   }
 
-  return NextResponse.json({ due: next.due.toISOString(), status: learningStatus, logId: log.id })
+  return NextResponse.json({
+    due: next.due.toISOString(),
+    status: learningStatus,
+    logId: log.id,
+    card: {
+      due: next.due.toISOString(),
+      stability: next.stability,
+      difficulty: next.difficulty,
+      elapsed_days: next.elapsed_days,
+      scheduled_days: next.scheduled_days,
+      reps: next.reps,
+      lapses: next.lapses,
+      learning_steps: next.learning_steps,
+      state: next.state,
+      last_review: next.last_review?.toISOString() || now.toISOString(),
+    },
+  })
 }
