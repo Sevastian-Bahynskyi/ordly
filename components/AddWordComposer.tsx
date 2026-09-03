@@ -320,8 +320,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setNotice('Saved. It is ready for review.')
     setSaving(false)
 
-    if (compact) setOpen(false)
     router.refresh()
+    window.setTimeout(() => firstInput.current?.focus(), 0)
   }
 
   function keyDown(event: React.KeyboardEvent) {
