@@ -11,7 +11,7 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
-const PIPELINE_VERSION = 1
+const PIPELINE_VERSION = 2
 
 const contentSchema = {
   type: 'object',
@@ -24,12 +24,22 @@ const contentSchema = {
   additionalProperties: false,
 }
 
-const ipaSchema = {
+const cyrillicSchema = {
+  type: 'object',
+  properties: {
+    pronunciation: { type: 'string' },
+  },
+  required: ['pronunciation'],
+  additionalProperties: false,
+}
+
+const fallbackPronunciationSchema = {
   type: 'object',
   properties: {
     pronunciation_ipa: { type: 'string' },
+    pronunciation: { type: 'string' },
   },
-  required: ['pronunciation_ipa'],
+  required: ['pronunciation_ipa', 'pronunciation'],
   additionalProperties: false,
 }
 
@@ -70,7 +80,58 @@ async function groqCompletion(body: Record<string, unknown>, label: string) {
   throw new Error(`${label}: Groq request failed (${lastStatus}) ${lastDetails.slice(0, 240)}`)
 }
 
-async function chooseLowConfidenceCandidate(danish: string, candidates: PronunciationCandidate[]) {
+function cleanCyrillic(value: unknown, fallback: string) {
+  const text = String(value || '').trim()
+  if (!text || /[A-Za-z]/.test(text)) return fallback
+  return text
+}
+
+function pronunciationEditorSystemPrompt() {
+  return `You are a Danish phonetics editor for a Russian-speaking learner.
+
+The supplied IPA is authoritative. Your job is NOT to transliterate Danish spelling. Your job is to write a practical Russian-Cyrillic pronunciation hint so that a native Russian speaker who reads it naturally will reproduce the IPA as closely as Russian spelling allows.
+
+Rules:
+- Judge the result only against the supplied IPA, never against Danish orthography.
+- You may substantially rewrite the deterministic draft when Russian reading rules would make it sound wrong.
+- Preserve the important consonants, vowel quality, syllable count, stress, reductions and long vowels represented by the IPA.
+- Do not add consonants merely because they exist in the Danish spelling.
+- Prefer an intuitive Russian-readable approximation over a mechanical one-to-one phoneme substitution.
+- Use Russian Cyrillic only, plus spaces, hyphens, apostrophes and optional combining stress marks.
+- Return one pronunciation only and no explanation.
+
+Quality anchors:
+- stadig with IPA around [ˈsdæːði] should be close to сдэ́эди, never стаади or штадик.
+- synes with IPA around [ˈsynəs] should be close to сю́нес.
+- selvfølgelig with a reduced IPA around [sɛˈføli] should be close to сэфё́ли.
+
+Mentally read your final Cyrillic as a Russian speaker before returning it and correct anything that would produce a materially different sound from the IPA.`
+}
+
+async function validateCyrillicPronunciation(danish: string, ipa: string, deterministicDraft: string) {
+  if (!process.env.GROQ_API_KEY) return deterministicDraft
+
+  const parsed = await groqCompletion({
+    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    reasoning_effort: 'low',
+    temperature: 0.03,
+    messages: [
+      { role: 'system', content: pronunciationEditorSystemPrompt() },
+      {
+        role: 'user',
+        content: `Danish text: ${danish}\nAuthoritative IPA: ${ipa}\nDeterministic Cyrillic draft: ${deterministicDraft}\nValidate and correct the Cyrillic draft against the IPA.`,
+      },
+    ],
+    response_format: {
+      type: 'json_schema',
+      json_schema: { name: 'cyrillic_pronunciation_validation', strict: true, schema: cyrillicSchema },
+    },
+  }, 'Cyrillic pronunciation validation')
+
+  return cleanCyrillic(parsed.pronunciation, deterministicDraft)
+}
+
+async function chooseLowConfidenceCandidateAndPronunciation(danish: string, candidates: PronunciationCandidate[]) {
   if (!process.env.GROQ_API_KEY || candidates.length < 2) return null
 
   const ids = candidates.map((candidate) => candidate.id)
@@ -78,12 +139,16 @@ async function chooseLowConfidenceCandidate(danish: string, candidates: Pronunci
     type: 'object',
     properties: {
       candidate_id: { type: 'string', enum: ids },
+      pronunciation: { type: 'string' },
     },
-    required: ['candidate_id'],
+    required: ['candidate_id', 'pronunciation'],
     additionalProperties: false,
   }
 
-  const choices = candidates.map((candidate) => `${candidate.id}: ${candidate.source} ${candidate.ipa}`).join('\n')
+  const choices = candidates
+    .map((candidate) => `${candidate.id}: ${candidate.source} ${candidate.ipa} | deterministic Cyrillic: ${ipaToCyrillic(candidate.ipa)}`)
+    .join('\n')
+
   const parsed = await groqCompletion({
     model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
     reasoning_effort: 'low',
@@ -91,20 +156,26 @@ async function chooseLowConfidenceCandidate(danish: string, candidates: Pronunci
     messages: [
       {
         role: 'system',
-        content: `You are resolving a disagreement between phonetic dictionary sources for a Danish learner. Select exactly one supplied IPA candidate that best represents ordinary contemporary Standard Danish pronunciation of the exact word. Do not invent or rewrite IPA. Prefer the normal spoken lexical pronunciation over spelling-driven, dialectal, compound-fragment, or clearly less complete variants. Return only the candidate id through the required JSON schema.`,
+        content: `${pronunciationEditorSystemPrompt()}\n\nThere is also a disagreement between dictionary IPA candidates. First select exactly one supplied IPA candidate that best represents ordinary contemporary Standard Danish pronunciation. Prefer a complete normal lexical pronunciation over a spelling-driven, dialectal or incomplete compound fragment. Then return a corrected Russian-Cyrillic pronunciation for that selected IPA. Do not invent or rewrite the IPA candidate itself.`,
       },
       { role: 'user', content: `Danish word: ${danish}\nCandidates:\n${choices}` },
     ],
     response_format: {
       type: 'json_schema',
-      json_schema: { name: 'pronunciation_source_choice', strict: true, schema },
+      json_schema: { name: 'pronunciation_source_and_cyrillic', strict: true, schema },
     },
-  }, 'pronunciation tie-break')
+  }, 'pronunciation tie-break and validation')
 
-  return candidates.find((candidate) => candidate.id === parsed.candidate_id) || null
+  const selected = candidates.find((candidate) => candidate.id === parsed.candidate_id)
+  if (!selected) return null
+  const deterministicDraft = ipaToCyrillic(selected.ipa)
+  return {
+    selected,
+    pronunciation: cleanCyrillic(parsed.pronunciation, deterministicDraft),
+  }
 }
 
-async function generateIpaFallback(danish: string, entryKind: EntryKind) {
+async function generatePronunciationFallback(danish: string, entryKind: EntryKind) {
   const parsed = await groqCompletion({
     model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
     reasoning_effort: entryKind === 'sentence' ? 'medium' : 'low',
@@ -112,17 +183,22 @@ async function generateIpaFallback(danish: string, entryKind: EntryKind) {
     messages: [
       {
         role: 'system',
-        content: `Return only the actual contemporary Standard Danish IPA pronunciation of the supplied ${entryKind === 'sentence' ? 'sentence/expression' : 'word or phrase'}. Use natural spoken pronunciation, including silent letters and normal reductions. For a sentence or phrase, use connected speech. Do not transliterate, translate, explain, or return Cyrillic.`,
+        content: `No dictionary IPA was available. Determine the actual contemporary Standard Danish IPA pronunciation of the supplied ${entryKind === 'sentence' ? 'sentence/expression' : 'word or phrase'}, using natural spoken pronunciation, silent letters and normal reductions. For a sentence or phrase, use connected speech. Then produce a Russian-Cyrillic pronunciation hint using these rules:\n\n${pronunciationEditorSystemPrompt()}\n\nReturn only pronunciation_ipa and pronunciation through the required JSON schema.`,
       },
       { role: 'user', content: danish },
     ],
     response_format: {
       type: 'json_schema',
-      json_schema: { name: 'danish_ipa_fallback', strict: true, schema: ipaSchema },
+      json_schema: { name: 'danish_pronunciation_fallback', strict: true, schema: fallbackPronunciationSchema },
     },
-  }, 'IPA fallback')
+  }, 'pronunciation fallback')
 
-  return String(parsed.pronunciation_ipa || '').trim()
+  const ipa = String(parsed.pronunciation_ipa || '').trim()
+  const deterministicDraft = ipaToCyrillic(ipa)
+  return {
+    ipa,
+    pronunciation: cleanCyrillic(parsed.pronunciation, deterministicDraft),
+  }
 }
 
 async function resolvePronunciation(
@@ -152,6 +228,7 @@ async function resolvePronunciation(
   }
 
   let ipa = ''
+  let pronunciation = ''
   let source: 'ddo' | 'wiktionary' | 'groq' = 'groq'
   let confidence = 0.45
   let ddoIpa: string[] = []
@@ -171,29 +248,42 @@ async function resolvePronunciation(
 
       if (resolution.needsTieBreak) {
         try {
-          const selected = await chooseLowConfidenceCandidate(danish, resolution.candidates)
-          if (selected) {
-            ipa = selected.ipa
-            source = selected.source
+          const resolved = await chooseLowConfidenceCandidateAndPronunciation(danish, resolution.candidates)
+          if (resolved) {
+            ipa = resolved.selected.ipa
+            source = resolved.selected.source
             confidence = 0.84
+            pronunciation = resolved.pronunciation
           }
         } catch (error) {
-          console.warn('Groq pronunciation tie-break failed; keeping DDO preference', error)
+          console.warn('Groq pronunciation tie-break failed; keeping dictionary preference', error)
         }
       }
     }
   }
 
   if (!ipa) {
-    ipa = await generateIpaFallback(danish, entryKind)
+    const fallback = await generatePronunciationFallback(danish, entryKind)
+    ipa = fallback.ipa
+    pronunciation = fallback.pronunciation
     source = 'groq'
     confidence = entryKind === 'sentence' ? 0.55 : 0.6
   }
 
-  const pronunciation = ipaToCyrillic(ipa)
-  if (!pronunciation) throw new Error('Could not convert IPA to Cyrillic')
+  if (!ipa) throw new Error('Could not determine pronunciation IPA')
 
-  // Persist the final result so the same text becomes a single nearby Supabase read next time.
+  if (!pronunciation) {
+    const deterministicDraft = ipaToCyrillic(ipa)
+    if (!deterministicDraft) throw new Error('Could not convert IPA to Cyrillic')
+
+    try {
+      pronunciation = await validateCyrillicPronunciation(danish, ipa, deterministicDraft)
+    } catch (error) {
+      console.warn('Groq Cyrillic validation failed; keeping deterministic pronunciation', error)
+      pronunciation = deterministicDraft
+    }
+  }
+
   const { error: cacheError } = await supabase.from('pronunciation_cache').upsert({
     user_id: userId,
     normalized_text: normalizedText,
