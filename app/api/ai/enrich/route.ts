@@ -11,7 +11,7 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
-const PIPELINE_VERSION = 2
+const PIPELINE_VERSION = 3
 
 const contentSchema = {
   type: 'object',
@@ -82,30 +82,34 @@ async function groqCompletion(body: Record<string, unknown>, label: string) {
 
 function cleanCyrillic(value: unknown, fallback: string) {
   const text = String(value || '').trim()
-  if (!text || /[A-Za-z]/.test(text)) return fallback
-  return text
+  if (!text || !/^[А-Яа-яЁё\u0301\s-]+$/u.test(text)) return fallback
+  return text.replace(/\s+/g, ' ')
 }
 
 function pronunciationEditorSystemPrompt() {
-  return `You are a Danish phonetics editor for a Russian-speaking learner.
+  return `You are a Danish pronunciation editor for one Russian-speaking learner.
 
-The supplied IPA is authoritative. Your job is NOT to transliterate Danish spelling. Your job is to write a practical Russian-Cyrillic pronunciation hint so that a native Russian speaker who reads it naturally will reproduce the IPA as closely as Russian spelling allows.
+The supplied IPA is authoritative, but the OUTPUT IS NOT IPA and is NOT transliteration. It is a practical Russian respelling: the learner must be able to look at the Cyrillic, read it with ordinary Russian reading habits, and immediately say something close to the real Danish pronunciation without knowing phonetics.
 
 Rules:
-- Judge the result only against the supplied IPA, never against Danish orthography.
-- You may substantially rewrite the deterministic draft when Russian reading rules would make it sound wrong.
-- Preserve the important consonants, vowel quality, syllable count, stress, reductions and long vowels represented by the IPA.
-- Do not add consonants merely because they exist in the Danish spelling.
-- Prefer an intuitive Russian-readable approximation over a mechanical one-to-one phoneme substitution.
-- Use Russian Cyrillic only, plus spaces, hyphens, apostrophes and optional combining stress marks.
-- Return one pronunciation only and no explanation.
+- Judge the sound against the supplied IPA, never against Danish spelling.
+- Optimize for what a native Russian speaker will actually SAY when reading the hint aloud, not for one-to-one symbol correspondence.
+- Use ONLY ordinary Russian alphabet letters А-Я/а-я/Ё/ё, spaces, hyphens, and an optional combining acute accent for stress. Never output Latin letters, IPA symbols, special phonetic characters, apostrophes, colons, or explanatory notation.
+- Choose the closest readable Russian letter or letter sequence for each Danish sound. If Danish has no exact Russian equivalent, choose the approximation that makes the learner's spoken result closest, even when it is not the conventional transliteration.
+- Danish soft d [ð] / [ð̞] is an approximant, NOT Russian з and usually should not be written as з. Depending on the surrounding sounds, a Russian-readable soft д-like or л-like approximation can be better. Decide by mentally pronouncing the whole Russian hint. In lyder [ˈlyːðə], the useful learner approximation is лю́ле, not лю́зэ and not лю́дэ.
+- Do not blindly reuse the same Russian letter for [ð] in every word. Context matters. For stadig around [ˈsdæːði], the established learner-friendly result is still close to сдэ́эди.
+- Preserve the useful syllable count, stress, reductions, and vowel quality. Represent vowel length only when it actually helps a Russian reader reproduce the sound; never make the spelling awkward merely to encode IPA length mechanically.
+- Do not add consonants just because they exist in Danish orthography.
+- Prefer a familiar, pronounceable Russian-looking hint over a mechanically precise but confusing string.
+- Return exactly one pronunciation and no explanation.
 
 Quality anchors:
-- stadig with IPA around [ˈsdæːði] should be close to сдэ́эди, never стаади or штадик.
-- synes with IPA around [ˈsynəs] should be close to сю́нес.
-- selvfølgelig with a reduced IPA around [sɛˈføli] should be close to сэфё́ли.
+- lyder [ˈlyːðə] → лю́ле, never лю́зэ.
+- stadig around [ˈsdæːði] → close to сдэ́эди, never стаади or штадик.
+- synes around [ˈsynəs] → close to сю́нес.
+- selvfølgelig with reduced pronunciation around [sɛˈføli] → close to сэфё́ли.
 
-Mentally read your final Cyrillic as a Russian speaker before returning it and correct anything that would produce a materially different sound from the IPA.`
+Final check before answering: hide the Danish spelling and IPA, read only your Russian output as an ordinary Russian speaker, and ask what sound would come out. If that spoken result is materially wrong, rewrite the hint.`
 }
 
 async function validateCyrillicPronunciation(danish: string, ipa: string, deterministicDraft: string) {
