@@ -11,7 +11,7 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
-const PIPELINE_VERSION = 3
+const PIPELINE_VERSION = 4
 
 const contentSchema = {
   type: 'object',
@@ -82,8 +82,16 @@ async function groqCompletion(body: Record<string, unknown>, label: string) {
 
 function cleanCyrillic(value: unknown, fallback: string) {
   const text = String(value || '').trim()
-  if (!text || !/^[А-Яа-яЁё\u0301\s-]+$/u.test(text)) return fallback
-  return text.replace(/\s+/g, ' ')
+  if (!text || /[A-Za-z]/.test(text)) return fallback
+
+  const cleaned = text
+    .replace(/[^А-Яа-яЁё\u0301\s.,!?…-]/gu, '')
+    .replace(/\s+([.,!?…])/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  if (!cleaned || !/[А-Яа-яЁё]/u.test(cleaned)) return fallback
+  return cleaned
 }
 
 function pronunciationEditorSystemPrompt() {
@@ -94,7 +102,8 @@ The supplied IPA is authoritative, but the OUTPUT IS NOT IPA and is NOT translit
 Rules:
 - Judge the sound against the supplied IPA, never against Danish spelling.
 - Optimize for what a native Russian speaker will actually SAY when reading the hint aloud, not for one-to-one symbol correspondence.
-- Use ONLY ordinary Russian alphabet letters А-Я/а-я/Ё/ё, spaces, hyphens, and an optional combining acute accent for stress. Never output Latin letters, IPA symbols, special phonetic characters, apostrophes, colons, or explanatory notation.
+- Use ONLY ordinary Russian alphabet letters А-Я/а-я/Ё/ё, spaces, hyphens, normal sentence punctuation, and an optional combining acute accent for stress. Never output Latin letters, IPA symbols, special phonetic characters, apostrophes, colons, or explanatory notation.
+- For a full sentence, write a readable pronunciation for the ENTIRE sentence. Preserve natural word boundaries, connected speech, weak forms and reductions. Do not return only one prominent word.
 - Choose the closest readable Russian letter or letter sequence for each Danish sound. If Danish has no exact Russian equivalent, choose the approximation that makes the learner's spoken result closest, even when it is not the conventional transliteration.
 - Danish soft d [ð] / [ð̞] is an approximant, NOT Russian з and usually should not be written as з. Depending on the surrounding sounds, a Russian-readable soft д-like or л-like approximation can be better. Decide by mentally pronouncing the whole Russian hint. In lyder [ˈlyːðə], the useful learner approximation is лю́ле, not лю́зэ and not лю́дэ.
 - Do not blindly reuse the same Russian letter for [ð] in every word. Context matters. For stadig around [ˈsdæːði], the established learner-friendly result is still close to сдэ́эди.
@@ -180,14 +189,15 @@ async function chooseLowConfidenceCandidateAndPronunciation(danish: string, cand
 }
 
 async function generatePronunciationFallback(danish: string, entryKind: EntryKind) {
+  const isSentence = entryKind === 'sentence'
   const parsed = await groqCompletion({
     model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
-    reasoning_effort: entryKind === 'sentence' ? 'medium' : 'low',
+    reasoning_effort: isSentence ? 'medium' : 'low',
     temperature: 0.02,
     messages: [
       {
         role: 'system',
-        content: `No dictionary IPA was available. Determine the actual contemporary Standard Danish IPA pronunciation of the supplied ${entryKind === 'sentence' ? 'sentence/expression' : 'word or phrase'}, using natural spoken pronunciation, silent letters and normal reductions. For a sentence or phrase, use connected speech. Then produce a Russian-Cyrillic pronunciation hint using these rules:\n\n${pronunciationEditorSystemPrompt()}\n\nReturn only pronunciation_ipa and pronunciation through the required JSON schema.`,
+        content: `No dictionary IPA was available. Determine the actual contemporary Standard Danish IPA pronunciation of the supplied ${isSentence ? 'complete sentence/expression' : 'word or phrase'}, using natural spoken pronunciation, silent letters and normal reductions. ${isSentence ? 'The IPA and Cyrillic must both cover the complete sentence from beginning to end. Use ordinary connected speech and weak forms rather than pronouncing every written word in isolation.' : 'For a phrase, use natural connected speech.'} Then produce a Russian-Cyrillic pronunciation hint using these rules:\n\n${pronunciationEditorSystemPrompt()}\n\nReturn only pronunciation_ipa and pronunciation through the required JSON schema.`,
       },
       { role: 'user', content: danish },
     ],
@@ -271,7 +281,7 @@ async function resolvePronunciation(
     ipa = fallback.ipa
     pronunciation = fallback.pronunciation
     source = 'groq'
-    confidence = entryKind === 'sentence' ? 0.55 : 0.6
+    confidence = entryKind === 'sentence' ? 0.62 : 0.6
   }
 
   if (!ipa) throw new Error('Could not determine pronunciation IPA')
@@ -315,7 +325,7 @@ export async function POST(request: Request) {
   const danish = String(draft.danish || '').trim()
   const fields: string[] = Array.isArray(body.fields) ? body.fields.map(String) : []
   const entryKind: EntryKind = body.entryKind === 'sentence' ? 'sentence' : 'word'
-  const includeExample = body.includeExample !== false
+  const includeExample = entryKind !== 'sentence' && body.includeExample !== false
 
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
