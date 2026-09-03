@@ -4,8 +4,7 @@ import './globals.css'
 import './nav.css'
 import './pwa.css'
 import './responsive.css'
-
-const pwaIcon = '/api/pwa-icon'
+import './memory.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
@@ -14,10 +13,13 @@ export const metadata: Metadata = {
   applicationName: 'Ordly',
   manifest: '/manifest.webmanifest',
   icons: {
-    icon: [{ url: `${pwaIcon}?size=192&v=8`, type: 'image/png', sizes: '192x192' }],
-    shortcut: [{ url: `${pwaIcon}?size=192&v=8`, type: 'image/png', sizes: '192x192' }],
-    apple: [{ url: `${pwaIcon}?size=180&v=8`, type: 'image/png', sizes: '180x180' }],
-    other: [{ rel: 'apple-touch-icon-precomposed', url: `${pwaIcon}?size=180&v=8` }],
+    icon: [
+      { url: '/api/pwa-icon?size=192&v=6', type: 'image/png', sizes: '192x192' },
+      { url: '/ordly-icon.svg?v=5', type: 'image/svg+xml' },
+    ],
+    shortcut: [{ url: '/api/pwa-icon?size=192&v=6', type: 'image/png', sizes: '192x192' }],
+    apple: [{ url: '/api/pwa-icon?size=180&v=6', type: 'image/png', sizes: '180x180' }],
+    other: [{ rel: 'apple-touch-icon-precomposed', url: '/api/pwa-icon?size=180&v=6' }],
   },
   appleWebApp: {
     capable: true,
