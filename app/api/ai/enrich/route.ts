@@ -13,14 +13,22 @@ import {
 
 const PIPELINE_VERSION = 5
 
-const contentSchema = {
+const translationSchema = {
   type: 'object',
   properties: {
     translation: { type: 'string' },
+  },
+  required: ['translation'],
+  additionalProperties: false,
+}
+
+const exampleSchema = {
+  type: 'object',
+  properties: {
     example_sentence: { type: 'string' },
     example_translation: { type: 'string' },
   },
-  required: ['translation', 'example_sentence', 'example_translation'],
+  required: ['example_sentence', 'example_translation'],
   additionalProperties: false,
 }
 
@@ -44,6 +52,8 @@ const fallbackPronunciationSchema = {
 }
 
 const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
+
+type TranslationLanguage = 'ru' | 'en' | 'uk'
 
 async function groqCompletion(body: Record<string, unknown>, label: string) {
   if (!process.env.GROQ_API_KEY) throw new Error(`${label}: Groq is not configured`)
@@ -92,6 +102,96 @@ function cleanCyrillic(value: unknown, fallback = '') {
 
   if (!cleaned || !/[А-Яа-яЁё]/u.test(cleaned)) return fallback
   return cleaned
+}
+
+function comparableText(value: string) {
+  return value
+    .normalize('NFKC')
+    .toLocaleLowerCase('da-DK')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+}
+
+function translationLooksValid(danish: string, translation: string, language: TranslationLanguage) {
+  const value = translation.trim()
+  if (!value || value.length > 500) return false
+
+  if (comparableText(value) === comparableText(danish)) return false
+
+  if (language === 'ru') {
+    if (!/[А-Яа-яЁё]/u.test(value)) return false
+    if (/[A-Za-zÆØÅæøå]/u.test(value)) return false
+  }
+
+  if (language === 'uk') {
+    if (!/[А-Яа-яЁёІіЇїЄєҐґ]/u.test(value)) return false
+    if (/[A-Za-zÆØÅæøå]/u.test(value)) return false
+  }
+
+  return true
+}
+
+async function generateTranslation(danish: string, entryKind: EntryKind, language: TranslationLanguage) {
+  const targetLanguage = languageNames[language]
+  const outputRules = entryKind === 'sentence'
+    ? `Translate the complete Danish sentence/expression naturally into ${targetLanguage}. Return one natural translation. Do not give alternatives unless the sentence genuinely has two equally necessary readings.`
+    : `Translate the Danish word or phrase into ${targetLanguage}. Return its direct lexical meaning. One meaning is completely fine. If it has several common meanings that are genuinely useful to a learner, return 2-3 concise meanings separated only by comma + space.`
+
+  for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
+    const parsed = await groqCompletion({
+      model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+      reasoning_effort: 'low',
+      temperature: semanticAttempt === 0 ? 0.04 : 0,
+      messages: [
+        {
+          role: 'system',
+          content: `You are a strict Danish-to-${targetLanguage} translator for a vocabulary app. This task is TRANSLATION ONLY.
+
+${outputRules}
+
+Hard output rules:
+- The translation field MUST contain only the ${targetLanguage} meaning that belongs in a flashcard answer field.
+- Never copy or echo the Danish source as the answer.
+- Never include the Danish source word alongside the translation.
+- Never include pronunciation, IPA, transliteration, stress hints, grammar notes, part-of-speech labels, explanations, examples, arrows, labels, or commentary.
+- Do not write things like "noun", "verb", "adjective", "translation", "means", or their ${targetLanguage} equivalents.
+- Do not pad a single clear meaning with invented synonyms. One correct meaning is preferred over several weak meanings.
+- When several meanings are appropriate for a word/phrase, use only a short comma-separated list of actual ${targetLanguage} translations.
+- Preserve the meaning of the exact Danish source. Do not translate a similar-looking word instead.
+${language === 'ru' ? '- Write the answer in normal Russian Cyrillic. Do not output Latin-script Danish or transliteration.' : ''}
+${language === 'uk' ? '- Write the answer in normal Ukrainian Cyrillic. Do not output Latin-script Danish or transliteration.' : ''}
+
+Examples of the required shape for Russian word translations:
+Danish: hele -> весь, целый
+Danish: spise -> есть
+Danish: hurtigt -> быстро
+The JSON must contain exactly one field: translation.`,
+        },
+        {
+          role: 'user',
+          content: semanticAttempt === 0
+            ? `Translate this exact Danish ${entryKind}: ${danish}`
+            : `The previous result failed validation. Translate this exact Danish ${entryKind} again and obey every output rule: ${danish}`,
+        },
+      ],
+      response_format: {
+        type: 'json_schema',
+        json_schema: { name: 'strict_danish_translation', strict: true, schema: translationSchema },
+      },
+    }, semanticAttempt === 0 ? 'translation' : 'translation retry')
+
+    const translation = String(parsed.translation || '').trim()
+    if (translationLooksValid(danish, translation, language)) return translation
+
+    console.warn('Rejected invalid translation output', {
+      danish,
+      language,
+      output: translation.slice(0, 160),
+      semanticAttempt,
+    })
+  }
+
+  throw new Error('Translation output failed validation twice')
 }
 
 function pronunciationEditorSystemPrompt() {
@@ -404,11 +504,16 @@ export async function POST(request: Request) {
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
   const needsPronunciation = fields.includes('pronunciation')
-  const needsContent = fields.some((field: string) => field === 'translation' || field === 'example_sentence' || field === 'example_translation')
+  const needsTranslation = fields.includes('translation')
+  const needsExamples = includeExample && fields.some((field: string) => field === 'example_sentence' || field === 'example_translation')
 
   const result: Record<string, string | number | boolean> = {}
   const failures: string[] = []
   const jobs: Promise<void>[] = []
+
+  const profilePromise = needsTranslation || needsExamples
+    ? supabase.from('profiles').select('default_translation_language, danish_level').single()
+    : null
 
   if (needsPronunciation) {
     jobs.push((async () => {
@@ -426,51 +531,65 @@ export async function POST(request: Request) {
     })())
   }
 
-  if (needsContent) {
+  if (needsTranslation) {
+    jobs.push((async () => {
+      try {
+        const { data: profile } = await profilePromise!
+        const language = (profile?.default_translation_language || 'ru') as TranslationLanguage
+        result.translation = await generateTranslation(danish, entryKind, language)
+      } catch (error) {
+        console.error('Translation enrichment failed', error)
+        failures.push('translation')
+      }
+    })())
+  }
+
+  if (needsExamples) {
     jobs.push((async () => {
       try {
         const [{ data: profile }, { data: known }] = await Promise.all([
-          supabase.from('profiles').select('default_translation_language, danish_level').single(),
+          profilePromise!,
           supabase.from('vocabulary_entries').select('danish').in('learning_status', ['learning', 'mastered']).not('danish', 'eq', danish).limit(30),
         ])
 
         const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
         const level = profile?.danish_level || 'A1'
         const knownWords = (known || []).map((x) => x.danish).join(', ')
+        const existingExample = String(draft.example_sentence || '').trim()
 
         const parsed = await groqCompletion({
           model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
           reasoning_effort: 'low',
-          temperature: 0.15,
+          temperature: 0.12,
           messages: [
             {
               role: 'system',
-              content: `You create Danish study cards for one ${level} learner. The target translation language is ${targetLanguage}. The saved item is a ${entryKind}.
-
-- If this is a sentence, translation is the natural translation of the whole Danish sentence/expression.
-- If this is a word/phrase, translation is its concise lexical meaning.
-- ${includeExample ? `Generate a simple natural Danish example at ${level} and its ${targetLanguage} translation.` : 'A separate example is disabled: return empty strings for example_sentence and example_translation.'}
-- Preserve the meaning of the exact Danish text supplied.
+              content: `You create a simple natural Danish example sentence for one ${level} learner and translate that example into ${targetLanguage}.
+- The source vocabulary item is: ${danish}
+- If an existing example sentence is supplied, KEEP that Danish sentence exactly and only translate it.
+- Otherwise generate a short natural Danish example at ${level} that demonstrates the source item clearly.
 - Prefer known words when natural: ${knownWords || 'none yet'}.
-- Do not return pronunciation or commentary.`,
+- example_translation must translate example_sentence, not the isolated source word.
+- Return no pronunciation, grammar labels, explanations, or commentary.`,
             },
             {
               role: 'user',
-              content: `Danish: ${danish}\nExisting ${targetLanguage} translation: ${draft.translation || '(missing)'}\nExisting example: ${draft.example_sentence || '(missing)'}\nExisting example translation: ${draft.example_translation || '(missing)'}`,
+              content: existingExample
+                ? `Existing Danish example sentence: ${existingExample}`
+                : `Create an example for Danish: ${danish}`,
             },
           ],
           response_format: {
             type: 'json_schema',
-            json_schema: { name: 'danish_study_content', strict: true, schema: contentSchema },
+            json_schema: { name: 'danish_example_sentence', strict: true, schema: exampleSchema },
           },
-        }, 'content')
+        }, 'example content')
 
-        result.translation = String(parsed.translation || '').trim()
-        result.example_sentence = includeExample ? String(parsed.example_sentence || '').trim() : ''
-        result.example_translation = includeExample ? String(parsed.example_translation || '').trim() : ''
+        result.example_sentence = existingExample || String(parsed.example_sentence || '').trim()
+        result.example_translation = String(parsed.example_translation || '').trim()
       } catch (error) {
-        console.error('Content enrichment failed', error)
-        failures.push('content')
+        console.error('Example enrichment failed', error)
+        failures.push('examples')
       }
     })())
   }
@@ -480,7 +599,9 @@ export async function POST(request: Request) {
   if (!Object.keys(result).length) {
     const message = failures.length === 1 && failures[0] === 'pronunciation'
       ? 'Could not generate pronunciation. Please try again.'
-      : 'Could not enrich this text. Please try again.'
+      : failures.length === 1 && failures[0] === 'translation'
+        ? 'Could not generate a valid translation. Please try again.'
+        : 'Could not enrich this text. Please try again.'
     return NextResponse.json({ error: message }, { status: 502 })
   }
 
