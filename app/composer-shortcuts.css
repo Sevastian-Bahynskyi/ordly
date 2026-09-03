@@ -1,0 +1,9 @@
+.save-wrap {
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.save-wrap .keyboard-hint {
+  align-self: center;
+}
