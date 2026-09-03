@@ -1,9 +1,9 @@
 import { fsrs, type Card } from 'ts-fsrs'
-import type { ReviewItem } from '@/lib/types'
+import type { ReviewCard } from '@/lib/types'
 
 const scheduler = fsrs()
 
-function toFsrsCard(item: ReviewItem): Card {
+function toFsrsCard(item: ReviewCard): Card {
   return {
     due: new Date(item.due),
     stability: item.stability,
@@ -18,7 +18,7 @@ function toFsrsCard(item: ReviewItem): Card {
   }
 }
 
-function recallPercent(item: ReviewItem) {
+function recallPercent(item: ReviewCard) {
   if (item.state === 0 || !item.last_review) return 0
 
   try {
@@ -37,7 +37,7 @@ function stabilityLabel(days: number) {
   return `${(days / 365).toFixed(1)}y`
 }
 
-export function MemoryRing({ item }: { item: ReviewItem }) {
+export function MemoryRing({ item, compact = false }: { item: ReviewCard; compact?: boolean }) {
   const isNew = item.state === 0 || !item.last_review
   const recall = recallPercent(item)
   const title = isNew
@@ -45,7 +45,7 @@ export function MemoryRing({ item }: { item: ReviewItem }) {
     : `Estimated recall ${recall}% · stability ${stabilityLabel(item.stability)}`
 
   return (
-    <span className="memory-stat" title={title} aria-label={title}>
+    <span className={`memory-stat${compact ? ' compact' : ''}`} title={title} aria-label={title}>
       <span className="memory-ring-wrap" aria-hidden="true">
         <svg viewBox="0 0 36 36" className="memory-ring-svg">
           <circle className="memory-ring-track" cx="18" cy="18" r="14" />
