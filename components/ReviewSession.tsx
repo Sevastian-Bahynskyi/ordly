@@ -357,7 +357,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
           disabled={loading}
           key={rating.value}
           onClick={() => reviseRating(rating.value)}
-          className={`rating-button ${rating.cls}`
+          className={`rating-button ${rating.cls}`}
           style={reviewed.rating === rating.value ? { boxShadow: '0 0 0 2px #7657d6 inset' } : undefined}
         ><strong>{rating.label}</strong><span>{rating.hint}</span></button>)}</div>
         {notice && <small style={{ display: 'block', marginTop: 10, color: '#7c7485' }}>{notice}</small>}
