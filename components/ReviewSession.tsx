@@ -185,11 +185,11 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
 
   if (!current || !entry) {
     return <section className="review-complete">
-      <div className="success-burst"><Sparkles size={38}/></div>
+      <div className="success-burst review-success-burst"><Sparkles size={38}/></div>
       <span className="eyebrow">SESSION COMPLETE</span>
       <h1>Nothing else is due.</h1>
       <p>{completed ? `You cleared ${completed} ${completed === 1 ? 'review' : 'reviews'}.` : 'Your memory queue is clear.'} Come back when FSRS asks for you again.</p>
-      <div className="complete-stats"><span><Check size={18}/><strong>{completed}</strong> reviewed</span><span><Target size={18}/><strong>100%</strong> queue cleared</span><span><Flame size={18}/><strong>+1</strong> study day</span></div>
+      <div className="complete-stats"><span><Check size={18}/><strong>{completed}</strong> reviewed</span><span><Target size={18}/><strong>100%</strong> queue cleared</span><span><span className="review-fire-wrap"><Flame className="review-fire" size={18}/></span><strong>+1</strong> study day</span></div>
       {history.length > 0 && <button className="soft-button" style={{ marginTop: 18 }} onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={16}/> Review previous</button>}
     </section>
   }
@@ -201,10 +201,10 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
         <h1>Review session</h1>
         {history.length > 0 && <button className="soft-button" style={{ marginTop: 8, padding: '7px 10px' }} onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={14}/> Previous answer</button>}
       </div>
-      <div className="review-progress-wrap"><span>{completed} / {total}</span><div className="review-progress"><i style={{ width: `${progress}%` }}/></div></div>
+      <div className="review-progress-wrap"><span>{completed} / {total}</span><div className="review-progress review-progress-live"><i style={{ width: `${progress}%` }}/></div></div>
     </header>
 
-    <section className={`flash-card ${revealed ? 'revealed' : ''}`}>
+    <section key={current.id} className={`flash-card review-card-live ${revealed ? 'revealed' : ''}`}>
       <div className="card-topline">
         <span className="prompt-type">
           {mode === 'recognition'
@@ -221,7 +221,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
 
       <div className="flash-prompt">
         {mode === 'cloze' && sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
-        {mode === 'recognition' && entry.pronunciation && <span className="pronunciation">{entry.pronunciation}</span>}
+        {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
         {mode === 'cloze' && sentenceTranslation && <small>{sentenceTranslation}</small>}
       </div>
 
@@ -255,7 +255,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
         </div>
 
         <div className="rating-title"><span>How well did you remember it?</span><small>You decide. This controls FSRS.</small></div>
-        <div className="rating-grid">{ratings.map((r) => <button disabled={ratingLoading} key={r.value} onClick={() => rate(r.value)} className={`rating-button ${r.cls} ${suggestedRating(result) === r.value ? 'suggested' : ''}`}><strong>{r.label}</strong><span>{r.hint}</span></button>)}</div>
+        <div className="rating-grid review-rating-grid">{ratings.map((r) => <button disabled={ratingLoading} key={r.value} onClick={() => rate(r.value)} className={`rating-button ${r.cls} ${suggestedRating(result) === r.value ? 'suggested' : ''}`}><strong>{r.label}</strong><span>{r.hint}</span></button>)}</div>
       </div>}
     </section>
 
@@ -328,7 +328,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
 
       <div className="flash-prompt">
         {mode === 'cloze' && reviewed.sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
-        {mode === 'recognition' && entry.pronunciation && <span className="pronunciation">{entry.pronunciation}</span>}
+        {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
       </div>
 
       <div className="answer-form">
