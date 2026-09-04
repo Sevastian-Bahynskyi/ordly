@@ -15,7 +15,9 @@ export type PronunciationResolution = {
 }
 
 const LOOKUP_TIMEOUT_MS = 2200
+const WIKIPRON_TIMEOUT_MS = 4000
 const REVALIDATE_SECONDS = 60 * 60 * 24 * 30
+const WIKIPRON_DATASET_BASE = 'https://huggingface.co/datasets/StephanAkkerman/wikipron-words-ipa/resolve/main'
 
 export function normalizePronunciationText(value: string) {
   return value.trim().toLocaleLowerCase('da-DK').replace(/\s+/g, ' ')
@@ -53,8 +55,8 @@ function isCompleteIpa(value: string) {
   return true
 }
 
-function withTimeout() {
-  return AbortSignal.timeout(LOOKUP_TIMEOUT_MS)
+function withTimeout(timeout = LOOKUP_TIMEOUT_MS) {
+  return AbortSignal.timeout(timeout)
 }
 
 export async function fetchDdoPronunciations(word: string): Promise<string[]> {
@@ -92,7 +94,7 @@ export async function fetchDdoPronunciations(word: string): Promise<string[]> {
   }
 }
 
-export async function fetchWiktionaryPronunciations(word: string): Promise<string[]> {
+async function fetchLiveWiktionaryPronunciations(word: string): Promise<string[]> {
   try {
     const params = new URLSearchParams({
       action: 'parse',
@@ -131,12 +133,74 @@ export async function fetchWiktionaryPronunciations(word: string): Promise<strin
       .map((match) => stripHtml(match[1]))
       .filter(isCompleteIpa)
 
-    const ordered = [...ipaSpans.filter((ipa) => ipa.startsWith('[')), ...ipaSpans.filter((ipa) => !ipa.startsWith('['))]
-    return unique(ordered).slice(0, 8)
+    return unique([
+      ...ipaSpans.filter((ipa) => ipa.startsWith('[')),
+      ...ipaSpans.filter((ipa) => !ipa.startsWith('[')),
+    ]).slice(0, 8)
   } catch (error) {
     console.warn('Wiktionary pronunciation lookup failed', error)
     return []
   }
+}
+
+function normalizeWikiPronIpa(value: string) {
+  // WikiPron stores IPA phonemes separated by spaces. This is a single-word
+  // lookup, so remove those separator spaces before comparing or converting.
+  return value.trim().replace(/\s+/g, '')
+}
+
+async function fetchWikiPronFile(word: string, filename: string): Promise<string[]> {
+  try {
+    const response = await fetch(`${WIKIPRON_DATASET_BASE}/${filename}`, {
+      headers: {
+        Accept: 'text/tab-separated-values,text/plain;q=0.9,*/*;q=0.5',
+        'User-Agent': 'Ordly/1.0 (personal Danish study app; WikiPron lookup)',
+      },
+      signal: withTimeout(WIKIPRON_TIMEOUT_MS),
+      next: { revalidate: REVALIDATE_SECONDS },
+    })
+    if (!response.ok) return []
+
+    const normalizedWord = normalizePronunciationText(word)
+    const body = await response.text()
+    const matches: string[] = []
+
+    for (const line of body.split('\n')) {
+      const tab = line.indexOf('\t')
+      if (tab <= 0) continue
+      const orthography = normalizePronunciationText(line.slice(0, tab))
+      if (orthography !== normalizedWord) continue
+
+      const ipa = normalizeWikiPronIpa(line.slice(tab + 1))
+      if (isCompleteIpa(ipa)) matches.push(ipa)
+    }
+
+    return unique(matches).slice(0, 8)
+  } catch (error) {
+    console.warn(`WikiPron lookup failed for ${filename}`, error)
+    return []
+  }
+}
+
+export async function fetchWikiPronPronunciations(word: string): Promise<string[]> {
+  const [narrow, broad] = await Promise.all([
+    fetchWikiPronFile(word, 'dan_latn_narrow.tsv'),
+    fetchWikiPronFile(word, 'dan_latn_broad.tsv'),
+  ])
+  return unique([...narrow, ...broad]).slice(0, 12)
+}
+
+export async function fetchWiktionaryPronunciations(word: string): Promise<string[]> {
+  // Keep the existing public function so the rest of the pipeline does not need
+  // a schema change. The candidate pool now contains both live Wiktionary and
+  // the Danish WikiPron snapshot hosted on Hugging Face. DDO remains the
+  // preferred authority; this larger pool gives it an independent sound-level
+  // cross-check and provides a dictionary fallback when the live API is sparse.
+  const [live, wikiPron] = await Promise.all([
+    fetchLiveWiktionaryPronunciations(word),
+    fetchWikiPronPronunciations(word),
+  ])
+  return unique([...live, ...wikiPron]).slice(0, 16)
 }
 
 function comparableIpa(value: string) {
@@ -195,7 +259,7 @@ export function resolveDictionaryPronunciation(ddoIpa: string[], wiktionaryIpa: 
     return { ipa: ddo[0], source: 'ddo', confidence: 0.88, needsTieBreak: false, candidates, ddoIpa: ddo, wiktionaryIpa: wiki }
   }
   if (!ddo.length && wiki.length) {
-    return { ipa: wiki[0], source: 'wiktionary', confidence: 0.78, needsTieBreak: false, candidates, ddoIpa: ddo, wiktionaryIpa: wiki }
+    return { ipa: wiki[0], source: 'wiktionary', confidence: 0.8, needsTieBreak: false, candidates, ddoIpa: ddo, wiktionaryIpa: wiki }
   }
 
   let best = { ddo: ddo[0], wiki: wiki[0], score: -1 }
@@ -206,12 +270,13 @@ export function resolveDictionaryPronunciation(ddoIpa: string[], wiktionaryIpa: 
     }
   }
 
-  // DDO is the preferred authority when both sources substantially agree.
+  // DDO is the preferred authority when it substantially agrees with either
+  // live Wiktionary or the Hugging Face WikiPron snapshot.
   if (best.score >= 0.72) {
     return {
       ipa: best.ddo,
       source: 'ddo',
-      confidence: Math.min(0.99, 0.72 + best.score * 0.27),
+      confidence: Math.min(0.99, 0.74 + best.score * 0.25),
       needsTieBreak: false,
       candidates,
       ddoIpa: ddo,
@@ -243,6 +308,8 @@ const IPA_MAP: Array<[string, string]> = [
   ['y', 'ю'], ['ʏ', 'ю'], ['ø', 'ё'], ['œ', 'ё'], ['ɶ', 'ё'],
   ['u', 'у'], ['ʊ', 'у'], ['o', 'о'], ['ɔ', 'о'], ['ɞ', 'ё'],
 ]
+
+const IPA_VOWEL = /[iɪeɛεæaɑɒɐəʌɜyʏøœɶuʊoɔɞ]/u
 
 function isCyrillicVowel(value: string) {
   return /[аеёиоуыэюя]/i.test(value)
@@ -282,6 +349,9 @@ export function ipaToCyrillic(ipa: string) {
       let rendered = cyrillic
       const nextIndex = index + phoneme.length
       const isLong = input[nextIndex] === 'ː'
+      const nextSound = isLong ? input[nextIndex + 1] || '' : input[nextIndex] || ''
+      const vowelImmediatelyFollows = isLong && IPA_VOWEL.test(nextSound)
+
       if (stressNextVowel && [...rendered].some(isCyrillicVowel)) {
         const chars = [...rendered]
         const vowelIndex = chars.findIndex(isCyrillicVowel)
@@ -289,11 +359,18 @@ export function ipaToCyrillic(ipa: string) {
         rendered = chars.join('')
         stressNextVowel = false
       }
+
       output += rendered
-      if (isLong && [...rendered].some(isCyrillicVowel)) {
+
+      // Doubling is useful for an isolated long vowel, but it overstates words
+      // such as bare [ˈbɑːɑ]: the next vowel already gives the Russian reader
+      // the audible continuation. Without this guard the deterministic draft
+      // becomes бааа instead of the much more useful баа.
+      if (isLong && !vowelImmediatelyFollows && [...rendered].some(isCyrillicVowel)) {
         const lastVowel = [...rendered].reverse().find(isCyrillicVowel)
         if (lastVowel) output += lastVowel
       }
+
       index = nextIndex + (isLong ? 1 : 0)
       matched = true
       break
