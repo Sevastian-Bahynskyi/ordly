@@ -42,6 +42,58 @@
 .review-rating-grid .rating-button:nth-child(3) { animation-delay: 110ms; }
 .review-rating-grid .rating-button:nth-child(4) { animation-delay: 155ms; }
 
+/* The rating request normally takes only a fraction of a second, but the old
+   card used to look frozen during it. ratingLoading disables every rating
+   button, so :has() gives us an immediate transition without another state or
+   another network step. */
+.review-card-live:has(.review-rating-grid .rating-button:disabled)::after {
+  content: 'Loading next review…';
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding-top: 92px;
+  box-sizing: border-box;
+  color: #6f5aab;
+  font-size: 12px;
+  font-weight: 760;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  background:
+    linear-gradient(110deg, transparent 25%, rgba(255,255,255,.76) 43%, transparent 61%) -150% 0 / 230% 100% no-repeat,
+    radial-gradient(circle at 50% 44%, rgba(132,95,224,.13), transparent 22%),
+    rgba(253,252,254,.91);
+  backdrop-filter: blur(9px) saturate(1.08);
+  -webkit-backdrop-filter: blur(9px) saturate(1.08);
+  animation:
+    review-next-overlay-in 150ms ease-out both,
+    review-next-shimmer 1.1s ease-in-out 120ms infinite;
+  pointer-events: none;
+}
+
+.review-card-live:has(.review-rating-grid .rating-button:disabled)::before {
+  width: 58px;
+  height: 58px;
+  left: 50%;
+  top: 50%;
+  z-index: 41;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(117,87,219,.08),
+    rgba(117,87,219,.88),
+    rgba(184,139,222,.82),
+    rgba(240,178,111,.72),
+    rgba(117,87,219,.08)
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 0);
+  filter: drop-shadow(0 4px 9px rgba(117,87,219,.18));
+  animation: review-next-spin .8s linear infinite;
+  pointer-events: none;
+}
+
 .review-fire-wrap {
   position: relative;
   width: 22px;
@@ -123,6 +175,22 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes review-next-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes review-next-shimmer {
+  0% { background-position: -150% 0, center, center; }
+  100% { background-position: 185% 0, center, center; }
+}
+
+@keyframes review-next-spin {
+  from { transform: translate(-50%, -72%) rotate(0deg) scale(.96); }
+  50% { transform: translate(-50%, -72%) rotate(180deg) scale(1.04); }
+  to { transform: translate(-50%, -72%) rotate(360deg) scale(.96); }
+}
+
 @keyframes review-fire-dance {
   0%, 100% { transform: translateY(0) rotate(-3deg) scale(1, .97); }
   22% { transform: translateY(-1.2px) rotate(4deg) scale(.94, 1.08); }
@@ -151,6 +219,7 @@
 @media (prefers-reduced-motion: reduce) {
   .review-card-live,
   .review-card-live::before,
+  .review-card-live::after,
   .review-pronunciation,
   .review-progress-live::after,
   .review-rating-grid .rating-button,
