@@ -17,6 +17,7 @@ interface Draft {
 
 type EnrichableField = Exclude<keyof Draft, 'danish'>
 type DuplicateEntry = { id: string; translation: string | null }
+type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
 const allEnrichableFields: EnrichableField[] = [
   'pronunciation',
@@ -48,8 +49,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const [allowDuplicate, setAllowDuplicate] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
   const [usedAI, setUsedAI] = useState(false)
+  const [exampleSuggestion, setExampleSuggestion] = useState<string | null>(null)
+  const [exampleCheckStatus, setExampleCheckStatus] = useState<ExampleCheckStatus>('idle')
   const firstInput = useRef<HTMLInputElement>(null)
   const exampleSentenceDirty = useRef(false)
+  const latestExampleSentence = useRef('')
 
   useEffect(() => {
     if (open) setTimeout(() => firstInput.current?.focus(), 50)
@@ -89,6 +93,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     }
   }, [draft.danish])
 
+  function resetExampleCheck() {
+    setExampleSuggestion(null)
+    setExampleCheckStatus('idle')
+  }
+
   function patch(key: keyof Draft, value: string) {
     if (key === 'danish') {
       const nextKind = inferEntryKind(value)
@@ -99,6 +108,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
       if (nextKind === 'sentence') {
         exampleSentenceDirty.current = false
+        latestExampleSentence.current = ''
+        resetExampleCheck()
         setIncludeExample(false)
         setAiSources((current) => {
           const next = { ...current }
@@ -113,6 +124,10 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       setDuplicate(null)
       setAllowDuplicate(false)
     } else {
+      if (key === 'example_sentence') {
+        latestExampleSentence.current = value
+        resetExampleCheck()
+      }
       setDraft((current) => ({ ...current, [key]: value }))
       setAiSources((current) => {
         if (!current[key]) return current
@@ -133,6 +148,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
     if (!enabled) {
       exampleSentenceDirty.current = false
+      latestExampleSentence.current = ''
+      resetExampleCheck()
       setDraft((current) => ({ ...current, example_sentence: '', example_translation: '' }))
       setAiSources((current) => {
         const next = { ...current }
@@ -145,6 +162,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
   function clearDraft() {
     exampleSentenceDirty.current = false
+    latestExampleSentence.current = ''
+    resetExampleCheck()
     setDraft(emptyDraft)
     setEntryKind('word')
     setIncludeExample(true)
@@ -191,6 +210,63 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     } finally {
       setAiLoading(null)
     }
+  }
+
+  async function checkExampleSentence() {
+    const sourceSentence = draft.example_sentence.trim()
+    if (!sourceSentence) return
+
+    setAiLoading('example-check')
+    try {
+      const res = await fetch('/api/ai/check-example', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sentence: sourceSentence }),
+      })
+      const body = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(body.error || 'Could not check this example sentence')
+
+      if (latestExampleSentence.current.trim() !== sourceSentence) return
+
+      const corrected = String(body.corrected_sentence || '').trim()
+      const translation = String(body.translation || '').trim()
+
+      if (translation) {
+        setDraft((current) => current.example_sentence.trim() === sourceSentence
+          ? { ...current, example_translation: translation }
+          : current)
+      }
+
+      if (!body.is_correct && corrected && corrected !== sourceSentence) {
+        setExampleSuggestion(corrected)
+        setExampleCheckStatus('suggestion')
+      } else {
+        setExampleSuggestion(null)
+        setExampleCheckStatus('correct')
+      }
+
+      setAiSources((current) => ({ ...current, example_translation: draft.danish.trim() }))
+      setUsedAI(true)
+      setNotice(null)
+    } catch (error) {
+      if (latestExampleSentence.current.trim() === sourceSentence) {
+        setNotice(error instanceof Error ? error.message : 'Could not check this example sentence')
+      }
+    } finally {
+      setAiLoading((current) => current === 'example-check' ? null : current)
+    }
+  }
+
+  function applyExampleSuggestion() {
+    if (!exampleSuggestion) return
+    const corrected = exampleSuggestion
+    latestExampleSentence.current = corrected
+    exampleSentenceDirty.current = false
+    setDraft((current) => ({ ...current, example_sentence: corrected }))
+    setExampleSuggestion(null)
+    setExampleCheckStatus('correct')
+    setAiSources((current) => ({ ...current, example_sentence: draft.danish.trim() }))
+    setUsedAI(true)
   }
 
   async function enrich(fields?: EnrichableField[]) {
@@ -248,6 +324,11 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         return next
       })
 
+      if (requestedFields.includes('example_sentence') && typeof body.example_sentence === 'string') {
+        latestExampleSentence.current = body.example_sentence
+        resetExampleCheck()
+      }
+
       setAiSources((current) => {
         const next = { ...current }
         for (const key of requestedFields) {
@@ -269,6 +350,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }
 
   async function save() {
+    if (aiLoading) return setNotice('Wait for the AI check to finish.')
     if (!draft.danish.trim()) return setNotice('Danish text is required.')
     if (!draft.translation.trim()) return setNotice('Add a translation or use AI to fill it.')
 
@@ -290,7 +372,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     }
 
     const storeExample = entryKind !== 'sentence' && includeExample
-    const { error } = await supabase.from('vocabulary_entries').insert({
+    const { data: savedEntry, error } = await supabase.from('vocabulary_entries').insert({
       danish: draft.danish.trim(),
       pronunciation: draft.pronunciation.trim() || null,
       translation: draft.translation.trim(),
@@ -299,7 +381,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       entry_kind: entryKind,
       ai_enriched: usedAI,
       familiarity: 0,
-    })
+    }).select('id, entry_kind').single()
 
     if (error) {
       setNotice(error.message)
@@ -307,7 +389,17 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       return
     }
 
+    if (savedEntry?.id && savedEntry.entry_kind !== 'sentence') {
+      void fetch('/api/ai/icon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ entryId: savedEntry.id }),
+      }).catch(() => {})
+    }
+
     exampleSentenceDirty.current = false
+    latestExampleSentence.current = ''
+    resetExampleCheck()
     setDraft(emptyDraft)
     setEntryKind('word')
     setIncludeExample(true)
@@ -439,7 +531,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
             {includeExample && (
               <>
                 <label className="field field-wide">
-                  <span>Example sentence <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} /></span>
+                  <span>
+                    <span>Example sentence</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      {aiLoading === 'example-check' && <small style={{ color: '#8e86a0', display: 'flex', alignItems: 'center', gap: 4 }}><Loader2 className="spin" size={11} /> Checking Danish…</small>}
+                      <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} />
+                    </span>
+                  </span>
                   <textarea
                     rows={2}
                     value={draft.example_sentence}
@@ -449,12 +547,27 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
                     }}
                     onBlur={(e) => {
                       const nextTarget = e.relatedTarget as HTMLElement | null
-                      if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini')) return
+                      if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini') || nextTarget?.closest('.example-correction-action')) return
                       exampleSentenceDirty.current = false
-                      void enrich(['example_translation'])
+                      void checkExampleSentence()
                     }}
                     placeholder="Jeg synes, det er godt."
                   />
+                  {exampleCheckStatus === 'correct' && !exampleSuggestion && (
+                    <small style={{ color: '#4f8a68', display: 'flex', alignItems: 'center', gap: 5, fontSize: 10.5, fontWeight: 650 }}>
+                      <Check size={12} /> Grammar and spelling look good.
+                    </small>
+                  )}
+                  {exampleSuggestion && (
+                    <div style={{ border: '1px solid #e5def8', background: '#faf8ff', borderRadius: 12, padding: '9px 10px', display: 'flex', flexDirection: 'column', gap: 7 }}>
+                      <small style={{ color: '#8b8394', fontSize: 9.5, fontWeight: 750, letterSpacing: '.06em', textTransform: 'uppercase' }}>Suggested correction</small>
+                      <strong style={{ color: '#3c3545', fontSize: 12.5, lineHeight: 1.45 }}>{exampleSuggestion}</strong>
+                      <div style={{ display: 'flex', gap: 7 }}>
+                        <button type="button" className="soft-button strong example-correction-action" style={{ padding: '6px 9px', fontSize: 10.5 }} onClick={(e) => { e.preventDefault(); applyExampleSuggestion() }}><Check size={13} /> Use correction</button>
+                        <button type="button" className="soft-button example-correction-action" style={{ padding: '6px 9px', fontSize: 10.5 }} onClick={(e) => { e.preventDefault(); setExampleSuggestion(null); setExampleCheckStatus('idle') }}>Keep mine</button>
+                      </div>
+                    </div>
+                  )}
                 </label>
                 <label className="field field-wide">
                   <span>Sentence translation</span>
@@ -488,7 +601,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         </div>
         <div className="save-wrap">
           <span className="keyboard-hint">⌘ Enter</span>
-          <button className="primary-button" disabled={saving} onClick={save}>
+          <button className="primary-button" disabled={saving || !!aiLoading} onClick={save}>
             {saving ? <Loader2 className="spin" size={17} /> : <Plus size={17} />}
             {entryKind === 'sentence' ? 'Save sentence' : inputKind === 'phrase' ? 'Save phrase' : 'Save word'}
           </button>
