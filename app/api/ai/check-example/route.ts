@@ -84,7 +84,7 @@ async function groqJson(schemaName: string, schema: Record<string, unknown>, mes
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+          model: process.env.GROQ_DANISH_CHECK_MODEL || 'openai/gpt-oss-120b',
           reasoning_effort: 'medium',
           temperature: 0,
           messages,
