@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     method: 'POST',
     headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b', reasoning_effort: 'low', temperature: 0.55,
+      model: 'openai/gpt-oss-120b', reasoning_effort: 'low', temperature: 0.55,
       messages: [
         { role: 'system', content: `Write one short, natural Danish sentence for a ${profile?.danish_level || 'A1'} learner. It must use the exact target word or phrase naturally and clearly demonstrate its supplied meaning. Prefer familiar words from this list when useful: ${(known || []).map(x => x.danish).join(', ') || 'none'}. Also translate the sentence into ${target}.` },
         { role: 'user', content: `Target: ${entry.danish}\nMeaning: ${entry.translation}` },
