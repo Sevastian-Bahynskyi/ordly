@@ -11,7 +11,8 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
-const PIPELINE_VERSION = 5
+const PIPELINE_VERSION = 6
+const PRONUNCIATION_MODEL = process.env.GROQ_PRONUNCIATION_MODEL || 'openai/gpt-oss-120b'
 
 const translationSchema = {
   type: 'object',
@@ -224,7 +225,7 @@ async function validateCyrillicPronunciation(danish: string, ipa: string, determ
   if (!process.env.GROQ_API_KEY) return deterministicDraft
 
   const parsed = await groqCompletion({
-    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.03,
     messages: [
@@ -262,7 +263,7 @@ async function chooseLowConfidenceCandidateAndPronunciation(danish: string, cand
     .join('\n')
 
   const parsed = await groqCompletion({
-    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0,
     messages: [
@@ -290,7 +291,7 @@ async function chooseLowConfidenceCandidateAndPronunciation(danish: string, cand
 async function generateSentencePronunciation(danish: string) {
   try {
     const parsed = await groqCompletion({
-      model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+      model: PRONUNCIATION_MODEL,
       reasoning_effort: 'low',
       temperature: 0.02,
       messages: [
@@ -314,7 +315,7 @@ async function generateSentencePronunciation(danish: string) {
   }
 
   const parsed = await groqCompletion({
-    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.02,
     messages: [
@@ -337,7 +338,7 @@ async function generateSentencePronunciation(danish: string) {
 
 async function generatePronunciationFallback(danish: string) {
   const parsed = await groqCompletion({
-    model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+    model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.02,
     messages: [
