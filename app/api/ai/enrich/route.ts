@@ -11,8 +11,9 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
+const GROQ_MODEL = 'openai/gpt-oss-120b'
 const PIPELINE_VERSION = 6
-const PRONUNCIATION_MODEL = process.env.GROQ_PRONUNCIATION_MODEL || 'openai/gpt-oss-120b'
+const PRONUNCIATION_MODEL = GROQ_MODEL
 
 const translationSchema = {
   type: 'object',
@@ -140,7 +141,7 @@ async function generateTranslation(danish: string, entryKind: EntryKind, languag
 
   for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
     const parsed = await groqCompletion({
-      model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+      model: GROQ_MODEL,
       reasoning_effort: 'low',
       temperature: semanticAttempt === 0 ? 0.04 : 0,
       messages: [
@@ -559,7 +560,7 @@ export async function POST(request: Request) {
         const existingExample = String(draft.example_sentence || '').trim()
 
         const parsed = await groqCompletion({
-          model: process.env.GROQ_MODEL || 'openai/gpt-oss-20b',
+          model: GROQ_MODEL,
           reasoning_effort: 'low',
           temperature: 0.12,
           messages: [
