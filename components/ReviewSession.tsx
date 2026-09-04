@@ -6,6 +6,7 @@ import type { LearningStatus, ReviewItem } from '@/lib/types'
 import { checkAnswer, type AnswerResult } from '@/lib/answer'
 import { clozeSentence, reviewMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
+import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -220,7 +221,11 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       </div>
 
       <div className="flash-prompt">
-        {mode === 'cloze' && sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
+        <ReviewPromptReveal
+          key={`${current.id}:${current.reps}:${mode}:${prompt}`}
+          text={prompt}
+          cloze={mode === 'cloze' && !!sentence}
+        />
         {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
         {mode === 'cloze' && sentenceTranslation && <small>{sentenceTranslation}</small>}
       </div>
