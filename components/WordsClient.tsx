@@ -1,11 +1,12 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
+import { VocabularyIcon } from './VocabularyIcon'
 
 type EnrichField = 'pronunciation' | 'translation' | 'example_sentence' | 'example_translation'
 type PreviewState = {
@@ -54,6 +55,23 @@ export function WordsClient({
     return matchesQ && matchesStatus
   }), [words, query, status])
 
+  useEffect(() => {
+    let cancelled = false
+    const missing = initialWords.filter((word) => word.entry_kind !== 'sentence' && !word.icon_name)
+    if (!missing.length) return
+
+    void (async () => {
+      for (const word of missing) {
+        if (cancelled) return
+        await resolveIcon(word, (id, iconName) => {
+          if (!cancelled) setWords((current) => current.map((item) => item.id === id ? { ...item, icon_name: iconName } : item))
+        })
+      }
+    })()
+
+    return () => { cancelled = true }
+  }, [initialWords])
+
   async function bulkImport() {
     const items = bulkText.split(/\n|,/).map((x) => x.trim()).filter(Boolean)
     if (!items.length) return
@@ -67,6 +85,11 @@ export function WordsClient({
         setWords((current) => [...data, ...current])
         const { data: newCards } = await supabase.from('review_cards').select('*').in('entry_id', data.map((word) => word.id))
         if (newCards?.length) setCards((current) => [...newCards, ...current])
+        void (async () => {
+          for (const word of data as VocabularyEntry[]) {
+            await resolveIcon(word, (id, iconName) => setWords((current) => current.map((item) => item.id === id ? { ...item, icon_name: iconName } : item)))
+          }
+        })()
       }
     }
     setBulkLoading(false)
@@ -207,7 +230,7 @@ export function WordsClient({
       {visible.map((word) => {
         const card = cardsByEntry.get(word.id)
         return <div className="word-row" key={word.id}>
-          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0,1).toUpperCase()}</span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small></div></div>
+          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>
@@ -252,6 +275,22 @@ export function WordsClient({
 
     {bulkOpen && <div className="modal-backdrop" onMouseDown={() => setBulkOpen(false)}><section className="modal-card" onMouseDown={(e) => e.stopPropagation()}><div className="modal-title"><div><span className="eyebrow"><Plus size={14}/> BULK CAPTURE</span><h2>Paste words. Enrich later.</h2></div><button className="icon-button" onClick={() => setBulkOpen(false)}><X size={18}/></button></div><p>One Danish word or phrase per line. Existing words are skipped.</p><textarea className="bulk-textarea" autoFocus rows={10} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'fortryde\nhyggelig\nat tage sig af'} /><div className="modal-footer"><span><Bot size={15}/> Raw import keeps this instant.</span><button className="primary-button" disabled={bulkLoading} onClick={bulkImport}>{bulkLoading ? <Loader2 className="spin" size={17}/> : <Plus size={17}/>}Import raw</button></div></section></div>}
   </>
+}
+
+async function resolveIcon(word: VocabularyEntry, apply: (id: string, iconName: string) => void) {
+  if (word.entry_kind === 'sentence' || word.icon_name) return
+  try {
+    const response = await fetch('/api/ai/icon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ entryId: word.id }),
+    })
+    if (!response.ok) return
+    const body = await response.json()
+    if (typeof body.icon_name === 'string' && body.icon_name) apply(word.id, body.icon_name)
+  } catch {
+    // Icon enrichment is intentionally best-effort and must never block vocabulary work.
+  }
 }
 
 function currentFieldValue(word: VocabularyEntry, field: EnrichField) {
