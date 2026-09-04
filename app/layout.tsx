@@ -11,6 +11,7 @@ import './sentences.css'
 import './notifications.css'
 import './composer-shortcuts.css'
 import './streak.css'
+import './review-motion.css'
 import './mobile-form-controls.css'
 
 export const metadata: Metadata = {
