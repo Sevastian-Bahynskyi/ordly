@@ -42,6 +42,26 @@
 .review-rating-grid .rating-button:nth-child(3) { animation-delay: 110ms; }
 .review-rating-grid .rating-button:nth-child(4) { animation-delay: 155ms; }
 
+/* React Bits-inspired split/stagger reveal. Short prompts reveal from their
+   center outward by character; longer prompts reveal naturally by word. */
+.review-prompt-reveal {
+  perspective: 760px;
+  transform-style: preserve-3d;
+}
+
+.review-prompt-segment {
+  display: inline-block;
+  opacity: 0;
+  transform-origin: 50% 72%;
+  will-change: transform, filter, opacity;
+  animation: review-prompt-word-reveal 540ms cubic-bezier(.18, .84, .2, 1) both;
+}
+
+.review-prompt-characters .review-prompt-segment {
+  animation-name: review-prompt-character-reveal;
+  animation-duration: 590ms;
+}
+
 /* The rating request normally takes only a fraction of a second, but the old
    card used to look frozen during it. ratingLoading disables every rating
    button, so :has() gives us an immediate transition without another state or
@@ -175,6 +195,45 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes review-prompt-word-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(15px) rotateX(-54deg) scale(.93);
+  }
+  68% {
+    opacity: 1;
+    filter: blur(.45px);
+    transform: translateY(-1.5px) rotateX(4deg) scale(1.018);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes review-prompt-character-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(16px) rotateX(-62deg) rotateY(-18deg) scale(.8);
+    text-shadow: 0 8px 20px rgba(117,87,219,.18);
+  }
+  62% {
+    opacity: 1;
+    filter: blur(.6px);
+    transform: translateY(-2px) rotateX(5deg) rotateY(2deg) scale(1.055);
+    text-shadow: 0 3px 12px rgba(117,87,219,.12);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) rotateX(0) rotateY(0) scale(1);
+    text-shadow: none;
+  }
+}
+
 @keyframes review-next-overlay-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -223,10 +282,14 @@
   .review-pronunciation,
   .review-progress-live::after,
   .review-rating-grid .rating-button,
+  .review-prompt-segment,
   .review-fire-wrap::before,
   .review-fire,
   .review-success-burst::before,
   .review-success-burst::after {
     animation: none !important;
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
 }
