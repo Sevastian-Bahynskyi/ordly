@@ -27,6 +27,7 @@ export interface VocabularyEntry {
   translation: string | null
   example_sentence: string | null
   example_translation: string | null
+  icon_name: string | null
   entry_kind: EntryKind
   learning_status: LearningStatus
   familiarity: number
