@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
+import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
 import {
   fetchDdoPronunciations,
   fetchWiktionaryPronunciations,
@@ -11,9 +12,9 @@ import {
   type PronunciationCandidate,
 } from '@/lib/pronunciation'
 
-const GROQ_MODEL = 'openai/gpt-oss-120b'
-const PIPELINE_VERSION = 6
-const PRONUNCIATION_MODEL = GROQ_MODEL
+const AI_MODEL = 'z-ai/glm-5.2:free'
+const PIPELINE_VERSION = 7
+const PRONUNCIATION_MODEL = AI_MODEL
 
 const translationSchema = {
   type: 'object',
@@ -57,39 +58,8 @@ const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk
 
 type TranslationLanguage = 'ru' | 'en' | 'uk'
 
-async function groqCompletion(body: Record<string, unknown>, label: string) {
-  if (!process.env.GROQ_API_KEY) throw new Error(`${label}: Groq is not configured`)
-
-  let lastStatus = 0
-  let lastDetails = ''
-
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
-
-    if (response.ok) {
-      const payload = await response.json()
-      const content = payload.choices?.[0]?.message?.content
-      if (!content) throw new Error(`${label}: Groq returned an empty response`)
-      return JSON.parse(content)
-    }
-
-    lastStatus = response.status
-    lastDetails = await response.text()
-    console.error(`Groq ${label} failed`, response.status, lastDetails)
-
-    const retryable = response.status === 429 || response.status >= 500
-    if (!retryable || attempt === 1) break
-    await new Promise((resolve) => setTimeout(resolve, 250))
-  }
-
-  throw new Error(`${label}: Groq request failed (${lastStatus}) ${lastDetails.slice(0, 240)}`)
+async function aiCompletion(body: Record<string, unknown>, label: string) {
+  return openRouterJson(body, label, { timeoutMs: 12000 })
 }
 
 function cleanCyrillic(value: unknown, fallback = '') {
@@ -140,8 +110,8 @@ async function generateTranslation(danish: string, entryKind: EntryKind, languag
     : `Translate the Danish word or phrase into ${targetLanguage}. Return its direct lexical meaning. One meaning is completely fine. If it has several common meanings that are genuinely useful to a learner, return 2-3 concise meanings separated only by comma + space.`
 
   for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
-    const parsed = await groqCompletion({
-      model: GROQ_MODEL,
+    const parsed = await aiCompletion({
+      model: AI_MODEL,
       reasoning_effort: 'low',
       temperature: semanticAttempt === 0 ? 0.04 : 0,
       messages: [
@@ -223,9 +193,9 @@ Final check before answering: hide the Danish spelling and any IPA, read only yo
 }
 
 async function validateCyrillicPronunciation(danish: string, ipa: string, deterministicDraft: string) {
-  if (!process.env.GROQ_API_KEY) return deterministicDraft
+  if (!hasOpenRouterKey()) return deterministicDraft
 
-  const parsed = await groqCompletion({
+  const parsed = await aiCompletion({
     model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.03,
@@ -246,7 +216,7 @@ async function validateCyrillicPronunciation(danish: string, ipa: string, determ
 }
 
 async function chooseLowConfidenceCandidateAndPronunciation(danish: string, candidates: PronunciationCandidate[]) {
-  if (!process.env.GROQ_API_KEY || candidates.length < 2) return null
+  if (!hasOpenRouterKey() || candidates.length < 2) return null
 
   const ids = candidates.map((candidate) => candidate.id)
   const schema = {
@@ -263,7 +233,7 @@ async function chooseLowConfidenceCandidateAndPronunciation(danish: string, cand
     .map((candidate) => `${candidate.id}: ${candidate.source} ${candidate.ipa} | deterministic Cyrillic: ${ipaToCyrillic(candidate.ipa)}`)
     .join('\n')
 
-  const parsed = await groqCompletion({
+  const parsed = await aiCompletion({
     model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0,
@@ -291,7 +261,7 @@ async function chooseLowConfidenceCandidateAndPronunciation(danish: string, cand
 
 async function generateSentencePronunciation(danish: string) {
   try {
-    const parsed = await groqCompletion({
+    const parsed = await aiCompletion({
       model: PRONUNCIATION_MODEL,
       reasoning_effort: 'low',
       temperature: 0.02,
@@ -315,7 +285,7 @@ async function generateSentencePronunciation(danish: string) {
     console.warn('Structured sentence pronunciation failed; retrying Cyrillic-only', error)
   }
 
-  const parsed = await groqCompletion({
+  const parsed = await aiCompletion({
     model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.02,
@@ -338,7 +308,7 @@ async function generateSentencePronunciation(danish: string) {
 }
 
 async function generatePronunciationFallback(danish: string) {
-  const parsed = await groqCompletion({
+  const parsed = await aiCompletion({
     model: PRONUNCIATION_MODEL,
     reasoning_effort: 'low',
     temperature: 0.02,
@@ -446,7 +416,7 @@ async function resolvePronunciation(
             pronunciation = resolved.pronunciation
           }
         } catch (error) {
-          console.warn('Groq pronunciation tie-break failed; keeping dictionary preference', error)
+          console.warn('OpenRouter pronunciation tie-break failed; keeping dictionary preference', error)
         }
       }
     }
@@ -469,7 +439,7 @@ async function resolvePronunciation(
     try {
       pronunciation = await validateCyrillicPronunciation(danish, ipa, deterministicDraft)
     } catch (error) {
-      console.warn('Groq Cyrillic validation failed; keeping deterministic pronunciation', error)
+      console.warn('OpenRouter Cyrillic validation failed; keeping deterministic pronunciation', error)
       pronunciation = deterministicDraft
     }
   }
@@ -559,8 +529,8 @@ export async function POST(request: Request) {
         const knownWords = (known || []).map((x) => x.danish).join(', ')
         const existingExample = String(draft.example_sentence || '').trim()
 
-        const parsed = await groqCompletion({
-          model: GROQ_MODEL,
+        const parsed = await aiCompletion({
+          model: AI_MODEL,
           reasoning_effort: 'low',
           temperature: 0.12,
           messages: [
