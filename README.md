@@ -8,8 +8,9 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 
 - Manual-first Danish word, phrase, and sentence capture
 - Phrase-aware base/normalization and sentence correctness checking
-- Optional Groq AI enrichment for pronunciation, translation, example sentence, and sentence translation
-- DDO + Wiktionary IPA pronunciation pipeline with deterministic Cyrillic conversion and Groq validation
+- OpenRouter AI enrichment for pronunciation, translation, example sentence, sentence translation, review checking, and icon concepts
+- Deterministic model routing: GLM 5.2 Free first, Gemma 4 31B Free second, Nemotron 3 Super Free third
+- DDO + Wiktionary IPA pronunciation pipeline with deterministic Cyrillic conversion and AI validation
 - Russian, English, or Ukrainian translations
 - FSRS scheduling with typed recall and `Again / Hard / Good / Easy` ratings
 - AI semantic fallback for valid synonyms during review
@@ -25,7 +26,7 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 
 ## Stack
 
-Next.js, TypeScript, Supabase, Groq, `ts-fsrs`, Vercel, and Web Push.
+Next.js, TypeScript, Supabase, OpenRouter, `ts-fsrs`, Vercel, and Web Push.
 
 ## Deployment
 
@@ -37,10 +38,9 @@ Copy `.env.example` to `.env.local` and provide:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
-- `GROQ_API_KEY`
-- optionally `GROQ_MODEL`
+- `OPENROUTER_API_KEY`
 
-The Groq key and all other private server credentials must remain server-side.
+The OpenRouter key and all other private server credentials must remain server-side.
 
 ## Database
 
