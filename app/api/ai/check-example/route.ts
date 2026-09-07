@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
 
 const intentSchema = {
   type: 'object',
@@ -71,43 +72,15 @@ function comparable(value: string) {
     .trim()
 }
 
-async function groqJson(schemaName: string, schema: Record<string, unknown>, messages: Array<{ role: 'system' | 'user'; content: string }>, label: string) {
-  if (!process.env.GROQ_API_KEY) throw new Error('Groq is not configured')
-
-  let lastError: unknown
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    try {
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'openai/gpt-oss-120b',
-          reasoning_effort: 'medium',
-          temperature: 0,
-          messages,
-          response_format: {
-            type: 'json_schema',
-            json_schema: { name: schemaName, strict: true, schema },
-          },
-        }),
-        signal: AbortSignal.timeout(9000),
-      })
-
-      if (!response.ok) throw new Error(`${label}: Groq returned ${response.status}`)
-      const payload = await response.json()
-      const content = payload.choices?.[0]?.message?.content
-      if (!content) throw new Error(`${label}: empty AI response`)
-      return JSON.parse(content)
-    } catch (error) {
-      lastError = error
-      if (attempt === 0) await new Promise((resolve) => setTimeout(resolve, 180))
-    }
-  }
-
-  throw lastError instanceof Error ? lastError : new Error(`${label} failed`)
+async function aiJson(schemaName: string, schema: Record<string, unknown>, messages: Array<{ role: 'system' | 'user'; content: string }>, label: string) {
+  return openRouterJson({
+    temperature: 0,
+    messages,
+    response_format: {
+      type: 'json_schema',
+      json_schema: { name: schemaName, strict: true, schema },
+    },
+  }, label, { timeoutMs: 12000 })
 }
 
 async function languageToolHints(sentence: string): Promise<LanguageToolHint[]> {
@@ -158,7 +131,7 @@ function formatLanguageToolHints(hints: LanguageToolHint[]) {
 }
 
 async function inferIntent(sentence: string) {
-  return groqJson(
+  return aiJson(
     'danish_learner_intent',
     intentSchema,
     [
@@ -195,7 +168,7 @@ async function createCorrection(sentence: string, intent: Record<string, unknown
     ? `\nA previous proposed correction was rejected by a critic. Fix this specific problem without changing the learner's intended meaning:\n${retryFeedback}\n`
     : ''
 
-  return groqJson(
+  return aiJson(
     'danish_conservative_correction',
     correctionSchema,
     [
@@ -240,7 +213,7 @@ ${retryInstruction}`,
 }
 
 async function verifyCorrection(sentence: string, intent: Record<string, unknown>, candidate: Record<string, unknown>, targetLanguage: string) {
-  return groqJson(
+  return aiJson(
     'danish_correction_verification',
     verificationSchema,
     [
@@ -298,7 +271,7 @@ export async function POST(request: Request) {
   const sentence = String(body.sentence || '').trim()
   if (!sentence) return NextResponse.json({ error: 'Example sentence is required.' }, { status: 400 })
   if (sentence.length > 700) return NextResponse.json({ error: 'Example sentence is too long.' }, { status: 400 })
-  if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'AI is not configured.' }, { status: 503 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured.' }, { status: 503 })
 
   const { data: profile } = await supabase
     .from('profiles')
