@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
 
 const FALLBACK_ICON = 'ph:bookmark-simple'
 const ICON_PREFIXES = ['ph', 'tabler', 'material-symbols', 'solar']
@@ -19,17 +20,10 @@ function validIconName(value: unknown) {
 }
 
 async function generateConceptQuery(danish: string, translation: string) {
-  if (!process.env.GROQ_API_KEY) return ''
+  if (!hasOpenRouterKey()) return ''
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'openai/gpt-oss-120b',
-      reasoning_effort: 'low',
+  try {
+    const parsed = await openRouterJson({
       temperature: 0,
       messages: [
         {
@@ -49,17 +43,8 @@ Do not return an icon library name, explanation, punctuation, translation, or al
         type: 'json_schema',
         json_schema: { name: 'vocabulary_icon_concept', strict: true, schema: conceptSchema },
       },
-    }),
-    signal: AbortSignal.timeout(4000),
-  })
+    }, 'icon concept', { timeoutMs: 5000 })
 
-  if (!response.ok) return ''
-  const payload = await response.json()
-  const content = payload.choices?.[0]?.message?.content
-  if (!content) return ''
-
-  try {
-    const parsed = JSON.parse(content)
     return String(parsed.query || '')
       .toLowerCase()
       .replace(/[^a-z0-9 -]/g, ' ')
