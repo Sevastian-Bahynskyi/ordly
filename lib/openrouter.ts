@@ -9,6 +9,7 @@ const APP_URL = 'https://ordly-sevastian-bahynskyis-projects.vercel.app'
 
 type OpenRouterOptions = {
   timeoutMs?: number
+  validate?: (value: Record<string, unknown>) => boolean
 }
 
 function responseFormatForModel(body: Record<string, unknown>, model: string) {
@@ -68,11 +69,18 @@ export async function openRouterJson(
       const content = payload.choices?.[0]?.message?.content
       if (!content || typeof content !== 'string') throw new Error(`${model} returned an empty response`)
 
+      let parsed: Record<string, unknown>
       try {
-        return JSON.parse(content) as Record<string, unknown>
+        parsed = JSON.parse(content) as Record<string, unknown>
       } catch {
         throw new Error(`${model} returned invalid JSON`)
       }
+
+      if (options.validate && !options.validate(parsed)) {
+        throw new Error(`${model} returned an invalid ${label} result`)
+      }
+
+      return parsed
     } catch (error) {
       lastError = error
       console.warn(`OpenRouter ${label} failed on ${model}; trying fallback`, error)
