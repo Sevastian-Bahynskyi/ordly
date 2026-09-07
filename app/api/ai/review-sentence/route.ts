@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+
+const reviewSentenceSchema = {
+  type: 'object',
+  properties: {
+    sentence: { type: 'string' },
+    translation: { type: 'string' },
+  },
+  required: ['sentence', 'translation'],
+  additionalProperties: false,
+}
 
 export async function POST(request: Request) {
   const supabase = await createClient()
@@ -10,7 +21,7 @@ export async function POST(request: Request) {
 
   const { data: cached } = await supabase.from('review_sentence_cache').select('sentence, translation').eq('entry_id', entryId).eq('cycle', cycle).maybeSingle()
   if (cached) return NextResponse.json(cached)
-  if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'Groq is not configured' }, { status: 503 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'OpenRouter is not configured' }, { status: 503 })
 
   const [{ data: entry }, { data: profile }, { data: known }] = await Promise.all([
     supabase.from('vocabulary_entries').select('danish, translation').eq('id', entryId).single(),
@@ -20,22 +31,25 @@ export async function POST(request: Request) {
   if (!entry) return NextResponse.json({ error: 'Word not found' }, { status: 404 })
 
   const target = ({ ru: 'Russian', en: 'English', uk: 'Ukrainian' } as Record<string,string>)[profile?.default_translation_language || 'ru']
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'openai/gpt-oss-120b', reasoning_effort: 'low', temperature: 0.55,
+
+  try {
+    const result = await openRouterJson({
+      temperature: 0.55,
       messages: [
         { role: 'system', content: `Write one short, natural Danish sentence for a ${profile?.danish_level || 'A1'} learner. It must use the exact target word or phrase naturally and clearly demonstrate its supplied meaning. Prefer familiar words from this list when useful: ${(known || []).map(x => x.danish).join(', ') || 'none'}. Also translate the sentence into ${target}.` },
         { role: 'user', content: `Target: ${entry.danish}\nMeaning: ${entry.translation}` },
       ],
-      response_format: { type: 'json_schema', json_schema: { name: 'review_sentence', strict: true, schema: { type: 'object', properties: { sentence: { type: 'string' }, translation: { type: 'string' } }, required: ['sentence','translation'], additionalProperties: false } } },
-    }),
-  })
-  if (!response.ok) return NextResponse.json({ error: 'Could not generate sentence' }, { status: 502 })
-  const payload = await response.json()
-  const result = JSON.parse(payload.choices?.[0]?.message?.content || '{}')
-  if (!result.sentence) return NextResponse.json({ error: 'Empty sentence' }, { status: 502 })
-  await supabase.from('review_sentence_cache').insert({ entry_id: entryId, cycle, sentence: result.sentence, translation: result.translation })
-  return NextResponse.json(result)
+      response_format: { type: 'json_schema', json_schema: { name: 'review_sentence', strict: true, schema: reviewSentenceSchema } },
+    }, 'review sentence')
+
+    const sentence = String(result.sentence || '').trim()
+    const translation = String(result.translation || '').trim()
+    if (!sentence || !translation) return NextResponse.json({ error: 'Empty sentence' }, { status: 502 })
+
+    await supabase.from('review_sentence_cache').insert({ entry_id: entryId, cycle, sentence, translation })
+    return NextResponse.json({ sentence, translation })
+  } catch (error) {
+    console.error('OpenRouter review sentence generation failed', error)
+    return NextResponse.json({ error: 'Could not generate sentence' }, { status: 502 })
+  }
 }
