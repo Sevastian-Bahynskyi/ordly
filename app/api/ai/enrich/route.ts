@@ -2,19 +2,10 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
 import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
-import {
-  fetchDdoPronunciations,
-  fetchWiktionaryPronunciations,
-  ipaToCyrillic,
-  isSingleDictionaryWord,
-  normalizePronunciationText,
-  resolveDictionaryPronunciation,
-  type PronunciationCandidate,
-} from '@/lib/pronunciation'
+import { normalizePronunciationText } from '@/lib/pronunciation'
 
 const AI_MODEL = 'z-ai/glm-5.2:free'
-const PIPELINE_VERSION = 7
-const PRONUNCIATION_MODEL = AI_MODEL
+const PIPELINE_VERSION = 8
 
 const translationSchema = {
   type: 'object',
@@ -35,22 +26,12 @@ const exampleSchema = {
   additionalProperties: false,
 }
 
-const cyrillicSchema = {
+const pronunciationSchema = {
   type: 'object',
   properties: {
     pronunciation: { type: 'string' },
   },
   required: ['pronunciation'],
-  additionalProperties: false,
-}
-
-const fallbackPronunciationSchema = {
-  type: 'object',
-  properties: {
-    pronunciation_ipa: { type: 'string' },
-    pronunciation: { type: 'string' },
-  },
-  required: ['pronunciation_ipa', 'pronunciation'],
   additionalProperties: false,
 }
 
@@ -62,9 +43,9 @@ async function aiCompletion(body: Record<string, unknown>, label: string) {
   return openRouterJson(body, label, { timeoutMs: 12000 })
 }
 
-function cleanCyrillic(value: unknown, fallback = '') {
+function cleanCyrillic(value: unknown) {
   const text = String(value || '').trim()
-  if (!text || /[A-Za-z]/.test(text)) return fallback
+  if (!text || /[A-Za-z]/.test(text)) return ''
 
   const cleaned = text
     .replace(/[^А-Яа-яЁё\u0301\s.,!?…-]/gu, '')
@@ -72,7 +53,7 @@ function cleanCyrillic(value: unknown, fallback = '') {
     .replace(/\s+/g, ' ')
     .trim()
 
-  if (!cleaned || !/[А-Яа-яЁё]/u.test(cleaned)) return fallback
+  if (!cleaned || !/[А-Яа-яЁё]/u.test(cleaned)) return ''
   return cleaned
 }
 
@@ -112,7 +93,6 @@ async function generateTranslation(danish: string, entryKind: EntryKind, languag
   for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
     const parsed = await aiCompletion({
       model: AI_MODEL,
-      reasoning_effort: 'low',
       temperature: semanticAttempt === 0 ? 0.04 : 0,
       messages: [
         {
@@ -166,171 +146,59 @@ The JSON must contain exactly one field: translation.`,
   throw new Error('Translation output failed validation twice')
 }
 
-function pronunciationEditorSystemPrompt() {
-  return `You are a Danish pronunciation editor for one Russian-speaking learner.
+function pronunciationPrompt(entryKind: EntryKind) {
+  const scope = entryKind === 'sentence'
+    ? 'the entire Danish sentence in natural connected speech, including ordinary reductions and weak forms'
+    : 'the complete Danish word or phrase as it is normally pronounced in contemporary Standard Danish'
 
-The OUTPUT IS NOT IPA and is NOT transliteration. It is a practical Russian respelling: the learner must be able to look at the Cyrillic, read it with ordinary Russian reading habits, and immediately say something close to the real Danish pronunciation without knowing phonetics.
+  return `You are the pronunciation engine for a Danish vocabulary app used by a native Russian speaker.
+
+Your only job is to write a SIMPLE RUSSIAN-CYRILLIC READING HINT for ${scope}.
+
+This is not a linguistic transliteration and you must not output IPA. Work out the real Danish sound internally, then write how a Russian speaker should approximately read it aloud.
 
 Rules:
-- When IPA is supplied, treat it as authoritative and judge the sound against IPA rather than Danish spelling.
-- Optimize for what a native Russian speaker will actually SAY when reading the hint aloud, not for one-to-one symbol correspondence.
-- Use ONLY ordinary Russian alphabet letters А-Я/а-я/Ё/ё, spaces, hyphens, normal sentence punctuation, and an optional combining acute accent for stress. Never output Latin letters, IPA symbols, special phonetic characters, apostrophes, colons, slashes, brackets, or explanations.
-- For a full sentence, write a readable pronunciation for the ENTIRE sentence from beginning to end. Preserve natural word boundaries, connected speech, weak forms and reductions. Do not return only one prominent word.
-- Choose the closest readable Russian letter or letter sequence for each Danish sound. If Danish has no exact Russian equivalent, choose the approximation that makes the learner's spoken result closest.
-- Danish soft d [ð] / [ð̞] is an approximant, NOT Russian з and usually should not be written as з. Depending on the surrounding sounds, a Russian-readable soft д-like or л-like approximation can be better. In lyder [ˈlyːðə], the useful learner approximation is лю́ле, not лю́зэ and not лю́дэ.
-- Do not blindly reuse the same Russian letter for [ð] in every word. Context matters. For stadig around [ˈsdæːði], the established learner-friendly result is still close to сдэ́эди.
-- Preserve useful syllable count, stress, reductions and vowel quality. Represent vowel length only when it actually helps a Russian reader reproduce the sound.
-- Do not add consonants just because they exist in Danish orthography.
-- Prefer a familiar, pronounceable Russian-looking hint over a mechanically precise but confusing string.
+- Output only normal Russian Cyrillic letters, spaces, hyphens, normal punctuation, and optional combining acute accents for stress.
+- Never output Latin letters, Danish spelling, IPA symbols, slashes, brackets, labels, explanations, alternatives, or translations.
+- Base the result on actual spoken Danish, not spelling. Respect silent letters, reductions, vowel quality and natural word boundaries.
+- Make it immediately readable by an ordinary Russian speaker with no phonetics knowledge.
+- Prefer a useful, pronounceable approximation over a mechanically exact transcription.
+- Danish soft d must not automatically become Russian з. Choose the sound that makes a Russian reader come closest in context.
+- For phrases and sentences, return the pronunciation for the WHOLE input, not just one word.
 
 Quality anchors:
-- lyder [ˈlyːðə] → лю́ле, never лю́зэ.
-- stadig around [ˈsdæːði] → close to сдэ́эди, never стаади or штадик.
-- synes around [ˈsynəs] → close to сю́нес.
-- selvfølgelig with reduced pronunciation around [sɛˈføli] → close to сэфё́ли.
+- lyder -> лю́ле
+- stadig -> close to сдэ́эди
+- synes -> close to сю́нес
+- selvfølgelig -> close to сэфё́ли
 
-Final check before answering: hide the Danish spelling and any IPA, read only your Russian output as an ordinary Russian speaker, and ask what sound would come out. If that spoken result is materially wrong, rewrite the hint.`
+Before answering, mentally read only your Cyrillic result as a Russian speaker. If it would sound materially unlike the Danish input, fix it.
+
+Return JSON with exactly one field: pronunciation.`
 }
 
-async function validateCyrillicPronunciation(danish: string, ipa: string, deterministicDraft: string) {
-  if (!hasOpenRouterKey()) return deterministicDraft
+async function generatePronunciation(danish: string, entryKind: EntryKind) {
+  if (!hasOpenRouterKey()) throw new Error('Pronunciation AI is not configured')
 
-  const parsed = await aiCompletion({
-    model: PRONUNCIATION_MODEL,
-    reasoning_effort: 'low',
-    temperature: 0.03,
-    messages: [
-      { role: 'system', content: pronunciationEditorSystemPrompt() },
-      {
-        role: 'user',
-        content: `Danish text: ${danish}\nAuthoritative IPA: ${ipa}\nDeterministic Cyrillic draft: ${deterministicDraft}\nReturn a corrected Cyrillic pronunciation for the complete supplied text.`,
-      },
-    ],
-    response_format: {
-      type: 'json_schema',
-      json_schema: { name: 'cyrillic_pronunciation_validation', strict: true, schema: cyrillicSchema },
-    },
-  }, 'Cyrillic pronunciation validation')
-
-  return cleanCyrillic(parsed.pronunciation, deterministicDraft)
-}
-
-async function chooseLowConfidenceCandidateAndPronunciation(danish: string, candidates: PronunciationCandidate[]) {
-  if (!hasOpenRouterKey() || candidates.length < 2) return null
-
-  const ids = candidates.map((candidate) => candidate.id)
-  const schema = {
-    type: 'object',
-    properties: {
-      candidate_id: { type: 'string', enum: ids },
-      pronunciation: { type: 'string' },
-    },
-    required: ['candidate_id', 'pronunciation'],
-    additionalProperties: false,
-  }
-
-  const choices = candidates
-    .map((candidate) => `${candidate.id}: ${candidate.source} ${candidate.ipa} | deterministic Cyrillic: ${ipaToCyrillic(candidate.ipa)}`)
-    .join('\n')
-
-  const parsed = await aiCompletion({
-    model: PRONUNCIATION_MODEL,
-    reasoning_effort: 'low',
-    temperature: 0,
-    messages: [
-      {
-        role: 'system',
-        content: `${pronunciationEditorSystemPrompt()}\n\nThere is also a disagreement between dictionary IPA candidates. Select exactly one supplied IPA candidate that best represents ordinary contemporary Standard Danish, then return a corrected Russian-Cyrillic pronunciation for that selected IPA.`,
-      },
-      { role: 'user', content: `Danish word: ${danish}\nCandidates:\n${choices}` },
-    ],
-    response_format: {
-      type: 'json_schema',
-      json_schema: { name: 'pronunciation_source_and_cyrillic', strict: true, schema },
-    },
-  }, 'pronunciation tie-break and validation')
-
-  const selected = candidates.find((candidate) => candidate.id === parsed.candidate_id)
-  if (!selected) return null
-  const deterministicDraft = ipaToCyrillic(selected.ipa)
-  return {
-    selected,
-    pronunciation: cleanCyrillic(parsed.pronunciation, deterministicDraft),
-  }
-}
-
-async function generateSentencePronunciation(danish: string) {
-  try {
-    const parsed = await aiCompletion({
-      model: PRONUNCIATION_MODEL,
-      reasoning_effort: 'low',
-      temperature: 0.02,
-      messages: [
-        {
-          role: 'system',
-          content: `You pronounce complete Danish sentences for a Russian-speaking learner. Determine the natural contemporary Standard Danish connected-speech pronunciation of the ENTIRE supplied sentence, including reductions and weak forms. Return both IPA for the whole sentence and a practical Russian-Cyrillic reading hint for the whole sentence.\n\n${pronunciationEditorSystemPrompt()}\n\nThe required JSON has exactly two fields: pronunciation_ipa and pronunciation.`,
-        },
-        { role: 'user', content: danish },
-      ],
-      response_format: {
-        type: 'json_schema',
-        json_schema: { name: 'danish_sentence_pronunciation', strict: true, schema: fallbackPronunciationSchema },
-      },
-    }, 'sentence pronunciation')
-
-    const ipa = String(parsed.pronunciation_ipa || '').trim()
-    const pronunciation = cleanCyrillic(parsed.pronunciation)
-    if (pronunciation) return { ipa, pronunciation }
-  } catch (error) {
-    console.warn('Structured sentence pronunciation failed; retrying Cyrillic-only', error)
-  }
-
-  const parsed = await aiCompletion({
-    model: PRONUNCIATION_MODEL,
-    reasoning_effort: 'low',
+  const parsed = await openRouterJson({
+    model: AI_MODEL,
     temperature: 0.02,
     messages: [
-      {
-        role: 'system',
-        content: `Produce only a practical Russian-Cyrillic pronunciation hint for the ENTIRE supplied Danish sentence in natural contemporary Standard Danish connected speech. Do not translate it. Do not omit words.\n\n${pronunciationEditorSystemPrompt()}`,
-      },
+      { role: 'system', content: pronunciationPrompt(entryKind) },
       { role: 'user', content: danish },
     ],
     response_format: {
       type: 'json_schema',
-      json_schema: { name: 'danish_sentence_cyrillic', strict: true, schema: cyrillicSchema },
+      json_schema: { name: 'danish_cyrillic_pronunciation', strict: true, schema: pronunciationSchema },
     },
-  }, 'sentence Cyrillic pronunciation')
+  }, 'pronunciation', {
+    timeoutMs: 7000,
+    validate: (value) => Boolean(cleanCyrillic(value.pronunciation)),
+  })
 
   const pronunciation = cleanCyrillic(parsed.pronunciation)
-  if (!pronunciation) throw new Error('Sentence pronunciation was not valid Cyrillic')
-  return { ipa: '', pronunciation }
-}
-
-async function generatePronunciationFallback(danish: string) {
-  const parsed = await aiCompletion({
-    model: PRONUNCIATION_MODEL,
-    reasoning_effort: 'low',
-    temperature: 0.02,
-    messages: [
-      {
-        role: 'system',
-        content: `No dictionary IPA was available. Determine the actual contemporary Standard Danish pronunciation of the supplied word or phrase, using natural spoken pronunciation, silent letters and normal reductions. Return IPA and a Russian-Cyrillic learner pronunciation.\n\n${pronunciationEditorSystemPrompt()}\n\nThe required JSON has exactly two fields: pronunciation_ipa and pronunciation.`,
-      },
-      { role: 'user', content: danish },
-    ],
-    response_format: {
-      type: 'json_schema',
-      json_schema: { name: 'danish_pronunciation_fallback', strict: true, schema: fallbackPronunciationSchema },
-    },
-  }, 'pronunciation fallback')
-
-  const ipa = String(parsed.pronunciation_ipa || '').trim()
-  const deterministicDraft = ipaToCyrillic(ipa)
-  return {
-    ipa,
-    pronunciation: cleanCyrillic(parsed.pronunciation, deterministicDraft),
-  }
+  if (!pronunciation) throw new Error('Pronunciation model did not return readable Cyrillic')
+  return pronunciation
 }
 
 async function resolvePronunciation(
@@ -343,7 +211,7 @@ async function resolvePronunciation(
 
   const { data: cached } = await supabase
     .from('pronunciation_cache')
-    .select('pronunciation, ipa, source, confidence, ddo_ipa, wiktionary_ipa')
+    .select('pronunciation')
     .eq('user_id', userId)
     .eq('normalized_text', normalizedText)
     .eq('pipeline_version', PIPELINE_VERSION)
@@ -352,113 +220,29 @@ async function resolvePronunciation(
   if (cached?.pronunciation) {
     return {
       pronunciation: String(cached.pronunciation),
-      ipa: String(cached.ipa || ''),
-      source: String(cached.source),
-      confidence: Number(cached.confidence),
       cached: true,
     }
   }
 
-  if (entryKind === 'sentence') {
-    const sentence = await generateSentencePronunciation(danish)
+  const pronunciation = await generatePronunciation(danish, entryKind)
 
-    if (sentence.ipa) {
-      const { error: cacheError } = await supabase.from('pronunciation_cache').upsert({
-        user_id: userId,
-        normalized_text: normalizedText,
-        pipeline_version: PIPELINE_VERSION,
-        pronunciation: sentence.pronunciation,
-        ipa: sentence.ipa,
-        source: 'groq',
-        confidence: 0.65,
-        ddo_ipa: [],
-        wiktionary_ipa: [],
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'user_id,normalized_text,pipeline_version' })
-      if (cacheError) console.warn('Could not cache sentence pronunciation', cacheError.message)
-    }
-
-    return {
-      pronunciation: sentence.pronunciation,
-      ipa: sentence.ipa,
-      source: 'groq',
-      confidence: 0.65,
-      cached: false,
-    }
-  }
-
-  let ipa = ''
-  let pronunciation = ''
-  let source: 'ddo' | 'wiktionary' | 'groq' = 'groq'
-  let confidence = 0.45
-  let ddoIpa: string[] = []
-  let wiktionaryIpa: string[] = []
-
-  if (isSingleDictionaryWord(normalizedText)) {
-    ;[ddoIpa, wiktionaryIpa] = await Promise.all([
-      fetchDdoPronunciations(normalizedText),
-      fetchWiktionaryPronunciations(normalizedText),
-    ])
-
-    const resolution = resolveDictionaryPronunciation(ddoIpa, wiktionaryIpa)
-    if (resolution) {
-      ipa = resolution.ipa
-      source = resolution.source
-      confidence = resolution.confidence
-
-      if (resolution.needsTieBreak) {
-        try {
-          const resolved = await chooseLowConfidenceCandidateAndPronunciation(danish, resolution.candidates)
-          if (resolved) {
-            ipa = resolved.selected.ipa
-            source = resolved.selected.source
-            confidence = 0.84
-            pronunciation = resolved.pronunciation
-          }
-        } catch (error) {
-          console.warn('OpenRouter pronunciation tie-break failed; keeping dictionary preference', error)
-        }
-      }
-    }
-  }
-
-  if (!ipa) {
-    const fallback = await generatePronunciationFallback(danish)
-    ipa = fallback.ipa
-    pronunciation = fallback.pronunciation
-    source = 'groq'
-    confidence = 0.6
-  }
-
-  if (!ipa) throw new Error('Could not determine pronunciation IPA')
-
-  if (!pronunciation) {
-    const deterministicDraft = ipaToCyrillic(ipa)
-    if (!deterministicDraft) throw new Error('Could not convert IPA to Cyrillic')
-
-    try {
-      pronunciation = await validateCyrillicPronunciation(danish, ipa, deterministicDraft)
-    } catch (error) {
-      console.warn('OpenRouter Cyrillic validation failed; keeping deterministic pronunciation', error)
-      pronunciation = deterministicDraft
-    }
-  }
-
+  // pronunciation_cache.source still has a legacy enum from the old Groq-era pipeline.
+  // Keep the compatible value until the schema is eventually cleaned up; no Groq request is made here.
   const { error: cacheError } = await supabase.from('pronunciation_cache').upsert({
     user_id: userId,
     normalized_text: normalizedText,
     pipeline_version: PIPELINE_VERSION,
     pronunciation,
-    ipa,
-    source,
-    confidence,
-    ddo_ipa: ddoIpa,
-    wiktionary_ipa: wiktionaryIpa,
+    ipa: '',
+    source: 'groq',
+    confidence: 0.72,
+    ddo_ipa: [],
+    wiktionary_ipa: [],
     updated_at: new Date().toISOString(),
   }, { onConflict: 'user_id,normalized_text,pipeline_version' })
-  if (cacheError) console.warn('Could not cache pronunciation', cacheError.message)
+  if (cacheError) console.warn('Could not cache direct AI pronunciation', cacheError.message)
 
-  return { pronunciation, ipa, source, confidence, cached: false }
+  return { pronunciation, cached: false }
 }
 
 export async function POST(request: Request) {
@@ -492,9 +276,9 @@ export async function POST(request: Request) {
       try {
         const pronunciation = await resolvePronunciation(supabase, user.id, danish, entryKind)
         result.pronunciation = pronunciation.pronunciation
-        result.pronunciation_ipa = pronunciation.ipa
-        result.pronunciation_source = pronunciation.source
-        result.pronunciation_confidence = pronunciation.confidence
+        result.pronunciation_ipa = ''
+        result.pronunciation_source = 'ai'
+        result.pronunciation_confidence = 0.72
         result.pronunciation_cached = pronunciation.cached
       } catch (error) {
         console.error('Pronunciation enrichment failed', error)
@@ -531,7 +315,6 @@ export async function POST(request: Request) {
 
         const parsed = await aiCompletion({
           model: AI_MODEL,
-          reasoning_effort: 'low',
           temperature: 0.12,
           messages: [
             {
