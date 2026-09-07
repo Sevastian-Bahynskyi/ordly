@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
 
 const schema = {
   type: 'object',
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  if (!process.env.GROQ_API_KEY) return NextResponse.json({ error: 'AI checking is unavailable.' }, { status: 503 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI checking is unavailable.' }, { status: 503 })
 
   const body = await request.json()
   const danish = String(body.danish || '').trim()
@@ -27,12 +28,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing answer context.' }, { status: 400 })
   }
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'openai/gpt-oss-120b',
-      reasoning_effort: 'low',
+  try {
+    const parsed = await openRouterJson({
       temperature: 0,
       messages: [
         {
@@ -45,14 +42,16 @@ export async function POST(request: Request) {
         },
       ],
       response_format: { type: 'json_schema', json_schema: { name: 'answer_grade', strict: true, schema } },
-    }),
-  })
+    }, 'answer checking')
 
-  if (!response.ok) return NextResponse.json({ error: 'AI checking failed.' }, { status: 502 })
-  const payload = await response.json()
-  const content = payload.choices?.[0]?.message?.content
-  if (!content) return NextResponse.json({ error: 'AI returned an empty result.' }, { status: 502 })
+    const result = String(parsed.result || '')
+    if (!['correct', 'mostly', 'incorrect'].includes(result)) {
+      return NextResponse.json({ error: 'AI returned an invalid result.' }, { status: 502 })
+    }
 
-  const parsed = JSON.parse(content)
-  return NextResponse.json({ result: parsed.result })
+    return NextResponse.json({ result })
+  } catch (error) {
+    console.error('OpenRouter answer checking failed', error)
+    return NextResponse.json({ error: 'AI checking failed.' }, { status: 502 })
+  }
 }
