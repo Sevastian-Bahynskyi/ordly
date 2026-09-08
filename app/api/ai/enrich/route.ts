@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, openRouterJson, openRouterText } from '@/lib/openrouter'
 import { normalizePronunciationText } from '@/lib/pronunciation'
 
-const AI_MODEL = 'z-ai/glm-5.2:free'
-const PIPELINE_VERSION = 8
+const AI_MODEL = 'z-ai/glm-5.3-flash:free'
+const PIPELINE_VERSION = 9
 
 const translationSchema = {
   type: 'object',
@@ -26,15 +26,6 @@ const exampleSchema = {
   additionalProperties: false,
 }
 
-const pronunciationSchema = {
-  type: 'object',
-  properties: {
-    pronunciation: { type: 'string' },
-  },
-  required: ['pronunciation'],
-  additionalProperties: false,
-}
-
 const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
 
 type TranslationLanguage = 'ru' | 'en' | 'uk'
@@ -44,7 +35,14 @@ async function aiCompletion(body: Record<string, unknown>, label: string) {
 }
 
 function cleanCyrillic(value: unknown) {
-  const text = String(value || '').trim()
+  const text = String(value || '')
+    .trim()
+    .replace(/^```(?:text)?\s*/i, '')
+    .replace(/\s*```$/i, '')
+    .replace(/^["“”]+|["“”]+$/g, '')
+    .replace(/^(?:произношение|транскрипция)\s*[:—-]?\s*/iu, '')
+    .trim()
+
   if (!text || /[A-Za-z]/.test(text)) return ''
 
   const cleaned = text
@@ -159,7 +157,7 @@ This is not a linguistic transliteration and you must not output IPA. Work out t
 
 Rules:
 - Output only normal Russian Cyrillic letters, spaces, hyphens, normal punctuation, and optional combining acute accents for stress.
-- Never output Latin letters, Danish spelling, IPA symbols, slashes, brackets, labels, explanations, alternatives, or translations.
+- Never output Latin letters, Danish spelling, IPA symbols, slashes, brackets, labels, explanations, alternatives, translations, JSON, or Markdown.
 - Base the result on actual spoken Danish, not spelling. Respect silent letters, reductions, vowel quality and natural word boundaries.
 - Make it immediately readable by an ordinary Russian speaker with no phonetics knowledge.
 - Prefer a useful, pronounceable approximation over a mechanically exact transcription.
@@ -174,29 +172,27 @@ Quality anchors:
 
 Before answering, mentally read only your Cyrillic result as a Russian speaker. If it would sound materially unlike the Danish input, fix it.
 
-Return JSON with exactly one field: pronunciation.`
+Return ONLY the final Cyrillic reading hint itself.`
 }
 
 async function generatePronunciation(danish: string, entryKind: EntryKind) {
   if (!hasOpenRouterKey()) throw new Error('Pronunciation AI is not configured')
 
-  const parsed = await openRouterJson({
+  const raw = await openRouterText({
     model: AI_MODEL,
     temperature: 0.02,
+    max_tokens: 256,
     messages: [
       { role: 'system', content: pronunciationPrompt(entryKind) },
       { role: 'user', content: danish },
     ],
-    response_format: {
-      type: 'json_schema',
-      json_schema: { name: 'danish_cyrillic_pronunciation', strict: true, schema: pronunciationSchema },
-    },
   }, 'pronunciation', {
-    timeoutMs: 7000,
-    validate: (value) => Boolean(cleanCyrillic(value.pronunciation)),
+    primaryTimeoutMs: 10000,
+    fallbackTimeoutMs: 16000,
+    validate: (value) => Boolean(cleanCyrillic(value)),
   })
 
-  const pronunciation = cleanCyrillic(parsed.pronunciation)
+  const pronunciation = cleanCyrillic(raw)
   if (!pronunciation) throw new Error('Pronunciation model did not return readable Cyrillic')
   return pronunciation
 }
