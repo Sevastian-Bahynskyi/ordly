@@ -6,6 +6,7 @@ if (!process.env.VERCEL) {
 }
 if (!apiKey) throw new Error('OPENROUTER_API_KEY missing')
 
+const model = 'google/gemma-4-31b-it:free'
 const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
   method: 'POST',
   headers: {
@@ -15,7 +16,7 @@ const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     'X-Title': 'Ordly pronunciation smoke',
   },
   body: JSON.stringify({
-    model: 'z-ai/glm-5.3-flash:free',
+    model,
     temperature: 0.02,
     max_tokens: 256,
     messages: [
@@ -26,18 +27,18 @@ const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       { role: 'user', content: 'til rådighed' },
     ],
   }),
-  signal: AbortSignal.timeout(20000),
+  signal: AbortSignal.timeout(30000),
 })
 
-if (!response.ok) throw new Error(`GLM smoke HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`)
+if (!response.ok) throw new Error(`Gemma smoke HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`)
 const payload = await response.json()
 const content = payload?.choices?.[0]?.message?.content
 const text = Array.isArray(content)
   ? content.map((part) => typeof part === 'string' ? part : String(part?.text || '')).join('').trim()
   : String(content || '').trim()
 
-if (!text) throw new Error('GLM smoke returned empty content')
+if (!text) throw new Error('Gemma smoke returned empty content')
 if (!/[А-Яа-яЁё]/u.test(text) || /[A-Za-z]/.test(text)) {
-  throw new Error(`GLM smoke returned non-Cyrillic content: ${text.slice(0, 200)}`)
+  throw new Error(`Gemma smoke returned non-Cyrillic content: ${text.slice(0, 200)}`)
 }
-console.log(`GLM pronunciation smoke OK: til rådighed -> ${text}`)
+console.log(`Gemma pronunciation smoke OK: til rådighed -> ${text}`)
