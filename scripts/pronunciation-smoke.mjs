@@ -6,7 +6,7 @@ if (!process.env.VERCEL) {
 }
 if (!apiKey) throw new Error('OPENROUTER_API_KEY missing')
 
-const model = 'google/gemma-4-31b-it:free'
+const model = 'nvidia/nemotron-3-super-120b-a12b:free'
 const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
   method: 'POST',
   headers: {
@@ -30,15 +30,15 @@ const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
   signal: AbortSignal.timeout(30000),
 })
 
-if (!response.ok) throw new Error(`Gemma smoke HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`)
+if (!response.ok) throw new Error(`Nemotron smoke HTTP ${response.status}: ${(await response.text()).slice(0, 300)}`)
 const payload = await response.json()
 const content = payload?.choices?.[0]?.message?.content
 const text = Array.isArray(content)
   ? content.map((part) => typeof part === 'string' ? part : String(part?.text || '')).join('').trim()
   : String(content || '').trim()
 
-if (!text) throw new Error('Gemma smoke returned empty content')
+if (!text) throw new Error('Nemotron smoke returned empty content')
 if (!/[А-Яа-яЁё]/u.test(text) || /[A-Za-z]/.test(text)) {
-  throw new Error(`Gemma smoke returned non-Cyrillic content: ${text.slice(0, 200)}`)
+  throw new Error(`Nemotron smoke returned non-Cyrillic content: ${text.slice(0, 200)}`)
 }
-console.log(`Gemma pronunciation smoke OK: til rådighed -> ${text}`)
+console.log(`Nemotron pronunciation smoke OK: til rådighed -> ${text}`)
