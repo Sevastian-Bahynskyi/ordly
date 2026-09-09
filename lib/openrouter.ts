@@ -32,6 +32,28 @@ export function buildOpenRouterRequestBody(
   }
 }
 
+export function normalizeOpenRouterBody(body: Record<string, unknown>): Record<string, unknown> {
+  const { model: _model, models: _models, reasoning_effort: _reasoningEffort, ...baseBody } = body
+  const responseFormat = baseBody.response_format as Record<string, unknown> | undefined
+  const jsonSchema = responseFormat?.json_schema as Record<string, unknown> | undefined
+  const schema = jsonSchema?.schema as Record<string, unknown> | undefined
+  const messages = Array.isArray(baseBody.messages) ? baseBody.messages : []
+  const jsonInstruction = schema
+    ? `Return only valid JSON matching this exact JSON Schema. Include every required field and no additional fields: ${JSON.stringify(schema)}`
+    : 'Return only a valid JSON object with the requested fields and no surrounding text.'
+
+  return {
+    ...baseBody,
+    max_tokens: baseBody.max_tokens ?? 300,
+    ...(responseFormat
+      ? {
+          messages: [{ role: 'system', content: jsonInstruction }, ...messages],
+          response_format: { type: 'json_object' },
+        }
+      : {}),
+  }
+}
+
 export class OpenRouterHttpError extends Error {
   readonly status: number
 
@@ -102,13 +124,12 @@ export async function openRouterJson(
   const apiKey = process.env.OPENROUTER_API_KEY
   if (!apiKey) throw new Error(`${label}: OpenRouter is not configured`)
 
-  const { model: _model, models: _models, reasoning_effort: _reasoningEffort, ...baseBody } = body
-  const responseFormat = baseBody.response_format as Record<string, unknown> | undefined
-  const payload = await requestModels(apiKey, {
-    ...baseBody,
-    max_tokens: baseBody.max_tokens ?? 300,
-    ...(responseFormat ? { response_format: { type: 'json_object' } } : {}),
-  }, options.models ?? OPENROUTER_MODEL_ROUTES.default, options.timeoutMs ?? 10000)
+  const payload = await requestModels(
+    apiKey,
+    normalizeOpenRouterBody(body),
+    options.models ?? OPENROUTER_MODEL_ROUTES.default,
+    options.timeoutMs ?? 10000,
+  )
   const content = extractTextContent(payload)
   if (!content) throw new Error(`${label}: OpenRouter returned an empty response`)
 
