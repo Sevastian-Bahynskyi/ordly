@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
-import { hasOpenRouterKey, openRouterJson, openRouterText } from '@/lib/openrouter'
+import { hasOpenRouterKey, isOpenRouterRateLimitError, openRouterJson } from '@/lib/openrouter'
 import { normalizePronunciationText } from '@/lib/pronunciation'
 
-const AI_MODEL = 'z-ai/glm-5.3-flash:free'
-const PIPELINE_VERSION = 9
+const PIPELINE_VERSION = 10
 
 const translationSchema = {
   type: 'object',
@@ -26,12 +25,21 @@ const exampleSchema = {
   additionalProperties: false,
 }
 
+const pronunciationSchema = {
+  type: 'object',
+  properties: {
+    pronunciation: { type: 'string' },
+  },
+  required: ['pronunciation'],
+  additionalProperties: false,
+}
+
 const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
 
 type TranslationLanguage = 'ru' | 'en' | 'uk'
 
 async function aiCompletion(body: Record<string, unknown>, label: string) {
-  return openRouterJson(body, label, { timeoutMs: 12000 })
+  return openRouterJson(body, label, { timeoutMs: 10000 })
 }
 
 function cleanCyrillic(value: unknown) {
@@ -90,8 +98,8 @@ async function generateTranslation(danish: string, entryKind: EntryKind, languag
 
   for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
     const parsed = await aiCompletion({
-      model: AI_MODEL,
       temperature: semanticAttempt === 0 ? 0.04 : 0,
+      max_tokens: 160,
       messages: [
         {
           role: 'system',
@@ -172,27 +180,29 @@ Quality anchors:
 
 Before answering, mentally read only your Cyrillic result as a Russian speaker. If it would sound materially unlike the Danish input, fix it.
 
-Return ONLY the final Cyrillic reading hint itself.`
+Return JSON with exactly one field named pronunciation.`
 }
 
 async function generatePronunciation(danish: string, entryKind: EntryKind) {
   if (!hasOpenRouterKey()) throw new Error('Pronunciation AI is not configured')
 
-  const raw = await openRouterText({
-    model: AI_MODEL,
+  const parsed = await openRouterJson({
     temperature: 0.02,
-    max_tokens: 256,
+    max_tokens: 96,
     messages: [
       { role: 'system', content: pronunciationPrompt(entryKind) },
       { role: 'user', content: danish },
     ],
+    response_format: {
+      type: 'json_schema',
+      json_schema: { name: 'danish_cyrillic_pronunciation', strict: true, schema: pronunciationSchema },
+    },
   }, 'pronunciation', {
-    primaryTimeoutMs: 10000,
-    fallbackTimeoutMs: 16000,
-    validate: (value) => Boolean(cleanCyrillic(value)),
+    timeoutMs: 10000,
+    validate: (value) => Boolean(cleanCyrillic(value.pronunciation)),
   })
 
-  const pronunciation = cleanCyrillic(raw)
+  const pronunciation = cleanCyrillic(parsed.pronunciation)
   if (!pronunciation) throw new Error('Pronunciation model did not return readable Cyrillic')
   return pronunciation
 }
@@ -262,6 +272,7 @@ export async function POST(request: Request) {
   const result: Record<string, string | number | boolean> = {}
   const failures: string[] = []
   const jobs: Promise<void>[] = []
+  let rateLimited = false
 
   const profilePromise = needsTranslation || needsExamples
     ? supabase.from('profiles').select('default_translation_language, danish_level').single()
@@ -278,6 +289,7 @@ export async function POST(request: Request) {
         result.pronunciation_cached = pronunciation.cached
       } catch (error) {
         console.error('Pronunciation enrichment failed', error)
+        rateLimited ||= isOpenRouterRateLimitError(error)
         failures.push('pronunciation')
       }
     })())
@@ -291,6 +303,7 @@ export async function POST(request: Request) {
         result.translation = await generateTranslation(danish, entryKind, language)
       } catch (error) {
         console.error('Translation enrichment failed', error)
+        rateLimited ||= isOpenRouterRateLimitError(error)
         failures.push('translation')
       }
     })())
@@ -310,8 +323,8 @@ export async function POST(request: Request) {
         const existingExample = String(draft.example_sentence || '').trim()
 
         const parsed = await aiCompletion({
-          model: AI_MODEL,
           temperature: 0.12,
+          max_tokens: 240,
           messages: [
             {
               role: 'system',
@@ -340,6 +353,7 @@ export async function POST(request: Request) {
         result.example_translation = String(parsed.example_translation || '').trim()
       } catch (error) {
         console.error('Example enrichment failed', error)
+        rateLimited ||= isOpenRouterRateLimitError(error)
         failures.push('examples')
       }
     })())
@@ -348,12 +362,14 @@ export async function POST(request: Request) {
   await Promise.all(jobs)
 
   if (!Object.keys(result).length) {
-    const message = failures.length === 1 && failures[0] === 'pronunciation'
-      ? 'Could not generate pronunciation. Please try again.'
-      : failures.length === 1 && failures[0] === 'translation'
-        ? 'Could not generate a valid translation. Please try again.'
-        : 'Could not enrich this text. Please try again.'
-    return NextResponse.json({ error: message }, { status: 502 })
+    const message = rateLimited
+      ? 'Free AI models are temporarily busy. Please try again shortly.'
+      : failures.length === 1 && failures[0] === 'pronunciation'
+        ? 'Could not generate pronunciation. Please try again.'
+        : failures.length === 1 && failures[0] === 'translation'
+          ? 'Could not generate a valid translation. Please try again.'
+          : 'Could not enrich this text. Please try again.'
+    return NextResponse.json({ error: message }, { status: rateLimited ? 429 : 502 })
   }
 
   return NextResponse.json({

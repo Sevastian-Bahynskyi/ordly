@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.15.0",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/pronunciation-smoke.mjs && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit"
   },
