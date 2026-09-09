@@ -17,6 +17,21 @@ type OpenRouterOptions = {
   validate?: (value: Record<string, unknown>) => boolean
 }
 
+export function buildOpenRouterRequestBody(
+  body: Record<string, unknown>,
+  models: readonly string[],
+): Record<string, unknown> {
+  const [model, ...fallbackModels] = models
+  if (!model) throw new Error('OpenRouter model route is empty')
+
+  return {
+    ...body,
+    reasoning: body.reasoning ?? { enabled: false },
+    model,
+    ...(fallbackModels.length ? { models: fallbackModels } : {}),
+  }
+}
+
 export class OpenRouterHttpError extends Error {
   readonly status: number
 
@@ -55,9 +70,6 @@ async function requestModels(
   models: readonly string[],
   timeoutMs: number,
 ): Promise<Record<string, unknown>> {
-  const [model, ...fallbackModels] = models
-  if (!model) throw new Error('OpenRouter model route is empty')
-
   const response = await fetch(OPENROUTER_URL, {
     method: 'POST',
     headers: {
@@ -66,11 +78,7 @@ async function requestModels(
       'HTTP-Referer': APP_URL,
       'X-Title': 'Ordly',
     },
-    body: JSON.stringify({
-      ...body,
-      model,
-      ...(fallbackModels.length ? { models: fallbackModels } : {}),
-    }),
+    body: JSON.stringify(buildOpenRouterRequestBody(body, models)),
     signal: AbortSignal.timeout(timeoutMs),
   })
 
