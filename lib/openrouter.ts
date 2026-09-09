@@ -1,13 +1,18 @@
-export const OPENROUTER_MODELS = [
-  'nvidia/nemotron-3-super-120b-a12b:free',
-  'google/gemma-4-31b-it:free',
-  'openrouter/free',
-] as const
+export const OPENROUTER_MODEL_ROUTES = {
+  pronunciation: ['google/gemini-3.1-flash-lite', 'qwen/qwen3.7-flash'],
+  translation: ['qwen/qwen3.7-flash'],
+  danishCorrection: ['qwen/qwen3.7-flash'],
+  semanticGrading: ['qwen/qwen3.7-flash'],
+  examples: ['qwen/qwen3.7-flash'],
+  iconConcept: ['qwen/qwen3.7-flash'],
+  default: ['qwen/qwen3.7-flash'],
+} as const
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const APP_URL = 'https://ordly-sevastian-bahynskyis-projects.vercel.app'
 
 type OpenRouterOptions = {
+  models?: readonly string[]
   timeoutMs?: number
   validate?: (value: Record<string, unknown>) => boolean
 }
@@ -47,9 +52,12 @@ function extractTextContent(payload: Record<string, unknown>): string {
 async function requestModels(
   apiKey: string,
   body: Record<string, unknown>,
+  models: readonly string[],
   timeoutMs: number,
 ): Promise<Record<string, unknown>> {
-  const [model, ...models] = OPENROUTER_MODELS
+  const [model, ...fallbackModels] = models
+  if (!model) throw new Error('OpenRouter model route is empty')
+
   const response = await fetch(OPENROUTER_URL, {
     method: 'POST',
     headers: {
@@ -58,7 +66,11 @@ async function requestModels(
       'HTTP-Referer': APP_URL,
       'X-Title': 'Ordly',
     },
-    body: JSON.stringify({ ...body, model, models }),
+    body: JSON.stringify({
+      ...body,
+      model,
+      ...(fallbackModels.length ? { models: fallbackModels } : {}),
+    }),
     signal: AbortSignal.timeout(timeoutMs),
   })
 
@@ -88,7 +100,7 @@ export async function openRouterJson(
     ...baseBody,
     max_tokens: baseBody.max_tokens ?? 300,
     ...(responseFormat ? { response_format: { type: 'json_object' } } : {}),
-  }, options.timeoutMs ?? 10000)
+  }, options.models ?? OPENROUTER_MODEL_ROUTES.default, options.timeoutMs ?? 10000)
   const content = extractTextContent(payload)
   if (!content) throw new Error(`${label}: OpenRouter returned an empty response`)
 

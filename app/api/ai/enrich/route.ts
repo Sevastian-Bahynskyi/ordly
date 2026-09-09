@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind } from '@/lib/types'
-import { hasOpenRouterKey, isOpenRouterRateLimitError, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 import { normalizePronunciationText } from '@/lib/pronunciation'
 
-const PIPELINE_VERSION = 10
+const PIPELINE_VERSION = 11
 
 const translationSchema = {
   type: 'object',
@@ -38,8 +38,8 @@ const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk
 
 type TranslationLanguage = 'ru' | 'en' | 'uk'
 
-async function aiCompletion(body: Record<string, unknown>, label: string) {
-  return openRouterJson(body, label, { timeoutMs: 10000 })
+async function aiCompletion(body: Record<string, unknown>, label: string, models: readonly string[]) {
+  return openRouterJson(body, label, { models, timeoutMs: 10000 })
 }
 
 function cleanCyrillic(value: unknown) {
@@ -136,7 +136,7 @@ The JSON must contain exactly one field: translation.`,
         type: 'json_schema',
         json_schema: { name: 'strict_danish_translation', strict: true, schema: translationSchema },
       },
-    }, semanticAttempt === 0 ? 'translation' : 'translation retry')
+    }, semanticAttempt === 0 ? 'translation' : 'translation retry', OPENROUTER_MODEL_ROUTES.translation)
 
     const translation = String(parsed.translation || '').trim()
     if (translationLooksValid(danish, translation, language)) return translation
@@ -198,6 +198,7 @@ async function generatePronunciation(danish: string, entryKind: EntryKind) {
       json_schema: { name: 'danish_cyrillic_pronunciation', strict: true, schema: pronunciationSchema },
     },
   }, 'pronunciation', {
+    models: OPENROUTER_MODEL_ROUTES.pronunciation,
     timeoutMs: 10000,
     validate: (value) => Boolean(cleanCyrillic(value.pronunciation)),
   })
@@ -347,7 +348,7 @@ export async function POST(request: Request) {
             type: 'json_schema',
             json_schema: { name: 'danish_example_sentence', strict: true, schema: exampleSchema },
           },
-        }, 'example content')
+        }, 'example content', OPENROUTER_MODEL_ROUTES.examples)
 
         result.example_sentence = existingExample || String(parsed.example_sentence || '').trim()
         result.example_translation = String(parsed.example_translation || '').trim()
@@ -363,7 +364,7 @@ export async function POST(request: Request) {
 
   if (!Object.keys(result).length) {
     const message = rateLimited
-      ? 'Free AI models are temporarily busy. Please try again shortly.'
+      ? 'AI is temporarily busy. Please try again shortly.'
       : failures.length === 1 && failures[0] === 'pronunciation'
         ? 'Could not generate pronunciation. Please try again.'
         : failures.length === 1 && failures[0] === 'translation'

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 
 const schema = {
   type: 'object',
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         },
       ],
       response_format: { type: 'json_schema', json_schema: { name: 'answer_grade', strict: true, schema } },
-    }, 'answer checking')
+    }, 'answer checking', { models: OPENROUTER_MODEL_ROUTES.semanticGrading })
 
     const result = String(parsed.result || '')
     if (!['correct', 'mostly', 'incorrect'].includes(result)) {

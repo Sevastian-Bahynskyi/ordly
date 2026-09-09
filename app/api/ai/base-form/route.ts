@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 
 const schema = {
   type: 'object',
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
         },
       ],
       response_format: { type: 'json_schema', json_schema: { name: 'danish_normalization', strict: true, schema } },
-    }, 'Danish normalization')
+    }, 'Danish normalization', { models: OPENROUTER_MODEL_ROUTES.danishCorrection })
 
     const result = String(parsed.result || '').trim()
     if (!result) return NextResponse.json({ error: 'AI returned empty Danish text.' }, { status: 502 })

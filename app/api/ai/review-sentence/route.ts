@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 
 const reviewSentenceSchema = {
   type: 'object',
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
         { role: 'user', content: `Target: ${entry.danish}\nMeaning: ${entry.translation}` },
       ],
       response_format: { type: 'json_schema', json_schema: { name: 'review_sentence', strict: true, schema: reviewSentenceSchema } },
-    }, 'review sentence')
+    }, 'review sentence', { models: OPENROUTER_MODEL_ROUTES.examples })
 
     const sentence = String(result.sentence || '').trim()
     const translation = String(result.translation || '').trim()

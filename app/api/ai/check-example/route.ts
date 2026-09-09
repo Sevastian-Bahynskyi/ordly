@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 
 const intentSchema = {
   type: 'object',
@@ -80,7 +80,7 @@ async function aiJson(schemaName: string, schema: Record<string, unknown>, messa
       type: 'json_schema',
       json_schema: { name: schemaName, strict: true, schema },
     },
-  }, label, { timeoutMs: 12000 })
+  }, label, { models: OPENROUTER_MODEL_ROUTES.danishCorrection, timeoutMs: 12000 })
 }
 
 async function languageToolHints(sentence: string): Promise<LanguageToolHint[]> {

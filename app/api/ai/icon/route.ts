@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, openRouterJson } from '@/lib/openrouter'
+import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 
 const FALLBACK_ICON = 'ph:bookmark-simple'
 const ICON_PREFIXES = ['ph', 'tabler', 'material-symbols', 'solar']
@@ -43,7 +43,7 @@ Do not return an icon library name, explanation, punctuation, translation, or al
         type: 'json_schema',
         json_schema: { name: 'vocabulary_icon_concept', strict: true, schema: conceptSchema },
       },
-    }, 'icon concept', { timeoutMs: 5000 })
+    }, 'icon concept', { models: OPENROUTER_MODEL_ROUTES.iconConcept, timeoutMs: 5000 })
 
     return String(parsed.query || '')
       .toLowerCase()
