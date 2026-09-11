@@ -96,7 +96,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     if (!response.revealed || !session.aiEnabled || session.aiCalls >= 12) throw new PracticeConflict()
     const { data: profile } = await supabase.from('profiles').select('default_translation_language').eq('id', userId).single()
     const language = String(profile?.default_translation_language || 'ru')
-    const cacheKey = `memory-v1:${task.targetKey}:${task.contentVersion}:${language}`
+    const cacheKey = `memory-v2:${task.targetKey}:${task.contentVersion}:${language}`
     const { data: cached } = await supabase.from('practice_packs').select('payload').eq('user_id', userId).eq('cache_key', cacheKey).maybeSingle()
     let pack = parseMemoryPack(cached?.payload, task.danish)
     if (!pack) {
@@ -108,7 +108,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
       if (pack) await supabase.from('practice_packs').insert({ user_id: userId, cache_key: cacheKey, payload: pack })
     }
     if (!pack) throw new Error('Memory aid unavailable')
-    const queue = [{ ...task, source: 'ai' as const, hint: pack.hint, example: `${pack.example}\n${pack.translation}` }, ...nextSession.queue.slice(1)]
+    const queue = [{ ...task, source: 'ai' as const, hint: pack.hint, example: `${pack.example}\n${pack.translation}\n\n${pack.secondExample}\n${pack.secondTranslation}` }, ...nextSession.queue.slice(1)]
     await commit(supabase, store, { ...store, session: { ...nextSession, queue } })
     return
   }
@@ -122,8 +122,8 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     if (response.revealed) return
     const answer = input.answer?.trim() || ''
     const spoken = input.modality === 'spoken'
-    const result = answer && !spoken ? checkAnswer(answer, task.answer, { sentence: task.kind !== 'recall' || task.answerIsSentence }) : 'incorrect'
-    let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? 'Needs checking. Compare your meaning with the example and choose your own rating.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
+    const result = answer && !spoken ? checkAnswer(answer, task.answer, { sentence: task.kind !== 'recall' || task.answerIsSentence, meaning: task.kind === 'recall' }) : 'incorrect'
+    let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? 'Needs checking. Compare your meaning with the example and choose your own rating.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
     if (answer && !spoken && result === 'incorrect') {
       feedback.result = 'ungraded'
       if (session.aiEnabled && session.aiCalls < 12) {

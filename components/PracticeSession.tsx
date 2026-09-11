@@ -157,12 +157,12 @@ export function PracticeSession(): JSX.Element {
         {revealed && response && <div className="practice-feedback" aria-live="polite">
           <span className={`practice-verdict ${response.result}`}>{response.result === 'correct' ? 'Meaning recalled' : response.result === 'mostly' ? 'Close — one adjustment' : response.result === 'incorrect' ? 'Let’s repair this' : 'Compare & self-check'}</span>
           <p>{response.feedback}</p>
-          {response.communication === 'yes' && response.target === 'no' && <p>Your reply works, but it did not retrieve this target expression. We’ll practise the target again.</p>}
+          {task.objective === 'production' && response.communication === 'yes' && response.target === 'no' && <p>Your reply works, but it did not retrieve this target expression. We’ll practise the target again.</p>}
           <div className="correct-answer"><span>{['listen', 'dialogue'].includes(task.kind) ? 'One possible reply' : 'Answer to recall'}</span><strong lang={task.kind === 'recall' ? undefined : 'da'}>{task.answer}</strong></div>
           {response.answer && <p className="practice-your-answer"><small>Your answer</small>{response.answer}</p>}
           {task.kind !== 'recall' && <PracticeAudio text={task.answer} onReplay={() => {}} />}
-          {(response.result === 'incorrect' || help || task.source === 'ai') && <div className="practice-repair"><Lightbulb size={18} /><div><strong>Give it a useful connection</strong><p>{task.hint}</p>{task.example !== task.danish && <p className="practice-example">{task.example}</p>}<p>Think of a moment you would use it. Then try again after another exercise.</p></div></div>}
-          {session.aiEnabled && session.aiCalls < 12 && <button className="practice-text-button" disabled={busy} onClick={() => void send('repair')}><Sparkles size={15} />Create an AI memory example</button>}
+          {(response.result === 'incorrect' || help || task.source === 'ai') && <div className="practice-repair"><Lightbulb size={18} /><div><strong>Give it a useful connection</strong><p>{task.hint}</p>{task.example !== task.danish && task.example.trim() !== task.hint.trim() && <p className="practice-example">{task.example}</p>}<p>Think of a moment you would use it. Then try again after another exercise.</p></div></div>}
+          {session.aiEnabled && session.aiCalls < 12 && <button className="practice-text-button" disabled={busy} onClick={() => void send('repair')}><Sparkles size={15} />Create two AI memory examples</button>}
           <div className="rating-title"><span>How did recall feel?</span><small>{help ? 'Helped answers return for an unaided retry.' : task.objective ? 'You decide the FSRS rating.' : 'Rate this practice; your word schedules stay separate.'}</small></div>
           <div className="rating-grid practice-rating-grid">{ratings.map((rating) => <button key={rating.value} className={`rating-button ${rating.cls} ${suggested === rating.value ? 'suggested' : ''}`} disabled={busy} onClick={() => void send('rate', { rating: rating.value, replays })}><strong>{rating.label}</strong><span>{rating.detail}</span></button>)}</div>
         </div>}
