@@ -89,7 +89,7 @@ export function vocabularyTask(item: ReviewItem, objective: 'meaning' | 'product
     hint: objective === 'meaning' ? entry.example_sentence || 'Try recalling the situation where you saved this.' : `${entry.danish.slice(0, 1)}…`,
     example: entry.example_sentence || entry.danish, audioText: null,
     source: 'saved', newTarget: item.reps === 0, retry: 0,
-    cardId: objective === 'meaning' ? item.id : undefined, contentVersion: entryContentVersion(entry),
+    answerIsSentence: entry.entry_kind === 'sentence', cardId: objective === 'meaning' ? item.id : undefined, contentVersion: entryContentVersion(entry),
   }
 }
 

@@ -1,4 +1,5 @@
 import type { PracticeAttempt, PracticeResponse, PracticeStore, PracticeTask } from './practice'
+import type { ReviewItem } from './types'
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
@@ -6,6 +7,23 @@ export function isRecord(value: unknown): value is Record<string, unknown> {
 
 function text(value: unknown, max = 2000): value is string {
   return typeof value === 'string' && value.length <= max
+}
+
+export function isReviewSource(value: unknown): value is ReviewItem {
+  if (!isRecord(value) || !isRecord(value.vocabulary_entries)) return false
+  const entry = value.vocabulary_entries
+  const date = (input: unknown): boolean => typeof input === 'string' && Number.isFinite(Date.parse(input))
+  const nullableText = (input: unknown): boolean => input === null || text(input)
+  const uuid = (input: unknown): boolean => typeof input === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input)
+  return ['id', 'user_id', 'entry_id'].every((key) => uuid(value[key]))
+    && ['id', 'user_id'].every((key) => uuid(entry[key])) && value.entry_id === entry.id && value.user_id === entry.user_id
+    && text(entry.danish, 200) && entry.danish.trim().length > 0 && text(entry.translation) && entry.translation.trim().length > 0
+    && ['pronunciation', 'example_sentence', 'example_translation', 'icon_name'].every((key) => nullableText(entry[key]))
+    && ['word', 'sentence'].includes(String(entry.entry_kind)) && ['new', 'learning', 'mastered'].includes(String(entry.learning_status))
+    && Number.isInteger(entry.familiarity) && Number(entry.familiarity) >= 0 && Number(entry.familiarity) <= 2 && typeof entry.ai_enriched === 'boolean'
+    && date(entry.created_at) && date(entry.updated_at) && date(value.due) && (value.last_review === null || date(value.last_review))
+    && ['stability', 'difficulty', 'elapsed_days', 'scheduled_days', 'reps', 'lapses', 'learning_steps', 'state'].every((key) => typeof value[key] === 'number' && Number.isFinite(value[key]) && Number(value[key]) >= 0)
+    && Number(value.state) <= 3
 }
 
 export function isPracticeTask(value: unknown): value is PracticeTask {
@@ -18,6 +36,7 @@ export function isPracticeTask(value: unknown): value is PracticeTask {
     && (value.audioText === null || text(value.audioText))
     && ['saved', 'frame', 'ai'].includes(String(value.source))
     && typeof value.newTarget === 'boolean' && Number.isInteger(value.retry) && Number(value.retry) >= 0
+    && (value.answerIsSentence === undefined || typeof value.answerIsSentence === 'boolean')
     && (value.cardId === undefined || text(value.cardId, 100))
     && (value.contentVersion === undefined || text(value.contentVersion, 100))
 }
@@ -46,6 +65,7 @@ export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0
     && Number.isInteger(value.replays) && Number(value.replays) >= 0
     && typeof value.at === 'string' && Number.isFinite(Date.parse(value.at))
+    && (value.exposedAt === undefined || (typeof value.exposedAt === 'string' && Number.isFinite(Date.parse(value.exposedAt))))
     && (value.lastExposureAt === null || (typeof value.lastExposureAt === 'string' && Number.isFinite(Date.parse(value.lastExposureAt))))
     && (value.newTarget === undefined || typeof value.newTarget === 'boolean')
 }

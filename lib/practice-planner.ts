@@ -30,7 +30,8 @@ export function planPractice(input: {
   if (frame) {
     const tasks = frameTasks(frame.frame, input.language, frame.introduction, day)
     // Scheduled production above already tested this frame without first exposing it.
-    queue.push(...tasks.filter((task) => task.kind !== 'produce' || !used.has(task.targetKey)))
+    queue.push(...tasks.filter((task) => task.kind !== 'produce' || (!used.has(task.targetKey)
+      && (!store.objectives[task.targetKey] || Date.parse(store.objectives[task.targetKey].card.due) <= now.getTime()))))
   }
   const active = known.find((item) => !used.has(item.entry_id) && (!store.objectives[item.entry_id] || store.objectives[item.entry_id].task.contentVersion !== entryContentVersion(item.vocabulary_entries)))
   if (active && !diagnostics.length) queue.push({ ...vocabularyTask(active, 'production'), stage: 'return', newTarget: false })

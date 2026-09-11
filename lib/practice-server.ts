@@ -2,12 +2,11 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { checkAnswer } from './answer'
 import { planPractice, introducedPracticeTargets } from './practice-planner'
 import { countsForSchedule, finishPracticeTask, practiceStudyDate, summarizePractice, type PracticeAttempt, type PracticeRating, type PracticeResponse, type PracticeStore } from './practice'
-import { isPracticeAttempt, isPracticeStore } from './practice-validation'
+import { isPracticeAttempt, isPracticeStore, isReviewSource } from './practice-validation'
 import { schedulePractice } from './practice-schedule'
 import { gradePractice } from './practice-ai'
 import { generateMemoryPack, parseMemoryPack } from './practice-pack'
 import { entryContentVersion } from './practice-content'
-import type { ReviewItem, TranslationLanguage } from './types'
 
 export class PracticeConflict extends Error {}
 
@@ -29,6 +28,7 @@ export async function practiceView(supabase: SupabaseClient, userId: string): Pr
 }
 
 async function commit(supabase: SupabaseClient, previous: PracticeStore, next: PracticeStore, attempt: Record<string, unknown> | null = null, legacyChange: Record<string, unknown> | null = null): Promise<PracticeStore> {
+  if (!isPracticeStore(next)) throw new Error('Invalid practice state')
   const { data, error } = await supabase.rpc('commit_practice', { expected_revision: previous.revision, next_session: next.session, next_objectives: next.objectives, attempt, legacy_change: legacyChange })
   if (error?.code === '40001') throw new PracticeConflict()
   if (error || !isPracticeStore(data)) throw new Error('Could not save practice')
@@ -47,8 +47,12 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   if (cards.error || profile.error || newLogs.error) throw new Error('Could not prepare practice')
   const introduced = introducedPracticeTargets(attempts, now)
   for (const log of newLogs.data || []) introduced.add(log.entry_id)
-  const items = (cards.data || []) as ReviewItem[]
-  const session = planPractice({ items, store, attempts, introducedToday: introduced.size, dailyLimit: profile.data.daily_new_limit, language: profile.data.default_translation_language as TranslationLanguage, aiEnabled, now })
+  const items = (cards.data || []).filter(isReviewSource)
+  const language: unknown = profile.data.default_translation_language
+  if (language !== 'ru' && language !== 'en' && language !== 'uk') throw new Error('Invalid practice language')
+  const dailyLimit: unknown = profile.data.daily_new_limit
+  if (typeof dailyLimit !== 'number' || !Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 50) throw new Error('Invalid practice limit')
+  const session = planPractice({ items, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled, now })
   await commit(supabase, store, { ...store, session })
 }
 
@@ -118,7 +122,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     if (response.revealed) return
     const answer = input.answer?.trim() || ''
     const spoken = input.modality === 'spoken'
-    const result = answer && !spoken ? checkAnswer(answer, task.answer, { sentence: task.kind !== 'recall' }) : 'incorrect'
+    const result = answer && !spoken ? checkAnswer(answer, task.answer, { sentence: task.kind !== 'recall' || task.answerIsSentence }) : 'incorrect'
     let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? 'Needs checking. Compare your meaning with the example and choose your own rating.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
     if (answer && !spoken && result === 'incorrect') {
       feedback.result = 'ungraded'
@@ -139,21 +143,25 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   if (input.action !== 'rate' || (!response.revealed && task.kind !== 'teach')) throw new PracticeConflict()
   const rating = task.kind === 'teach' ? null : input.rating ?? null
   const finalResponse: PracticeResponse = task.kind === 'teach' ? { ...response, assistance: 'model', revealed: true } : response
-  let lastExposureAt = [...attempts].reverse().find((a) => a.targetKey === task.targetKey)?.at || null
+  const previousAttempt = [...attempts].reverse().find((a) => a.targetKey === task.targetKey)
+  let lastExposureAt = previousAttempt?.exposedAt || previousAttempt?.at || null
   if (task.entryId) {
     const { data: legacy, error } = await supabase.from('review_cards').select('last_review').eq('entry_id', task.entryId).eq('user_id', userId).maybeSingle()
     if (error) throw new Error('Could not read review evidence')
     if (legacy?.last_review && (!lastExposureAt || Date.parse(legacy.last_review) > Date.parse(lastExposureAt))) lastExposureAt = legacy.last_review
   }
   const answeredAt = finalResponse.answeredAt || now.toISOString()
-  const attempt: PracticeAttempt = { id: crypto.randomUUID(), taskId: task.id, targetKey: task.targetKey, objective: task.objective, kind: task.kind, result: finalResponse.result, rating, assistance: finalResponse.assistance, modality: finalResponse.modality, responseMs: finalResponse.responseMs, at: answeredAt, lastExposureAt, replays: finalResponse.replays, newTarget: task.newTarget, promptVersion: 1, contentVersion: task.contentVersion, communication: finalResponse.communication, targetUse: finalResponse.target }
+  const attempt: PracticeAttempt = { id: crypto.randomUUID(), taskId: task.id, targetKey: task.targetKey, objective: task.objective, kind: task.kind, result: finalResponse.result, rating, assistance: finalResponse.assistance, modality: finalResponse.modality, responseMs: finalResponse.responseMs, at: answeredAt, exposedAt: now.toISOString(), lastExposureAt, replays: finalResponse.replays, newTarget: task.newTarget, promptVersion: 1, contentVersion: task.contentVersion, communication: finalResponse.communication, targetUse: finalResponse.target }
   const objectives = { ...store.objectives }
   let legacyChange: Record<string, unknown> | null = null
   if (countsForSchedule(task, finalResponse, rating) && rating !== null) {
     if (task.cardId) {
       const { data: card, error } = await supabase.from('review_cards').select('*').eq('id', task.cardId).eq('user_id', userId).single()
       if (error || !card) throw new PracticeConflict()
-      if (card.last_review && Date.parse(card.last_review) > Date.parse(answeredAt)) throw new PracticeConflict()
+      if (card.last_review && Date.parse(card.last_review) > Date.parse(answeredAt)) {
+        await commit(supabase, store, { ...store, session: { ...nextSession, current: null, queue: nextSession.queue.filter((item) => item.cardId !== task.cardId) } })
+        return
+      }
       const scheduled = schedulePractice({ ...card, last_review: card.last_review || undefined }, rating, new Date(answeredAt))
       legacyChange = { id: card.id, expectedReps: card.reps, expectedLastReview: card.last_review, card: scheduled }
     } else if (task.objective === 'production') {

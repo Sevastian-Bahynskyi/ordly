@@ -6,7 +6,7 @@ Implementation of stages 0–1 and basic listening/dialogue from `learning-resea
 
 Home → **Practice for 10 minutes**. The first session includes up to three cold production checks on previously reviewed vocabulary. Sessions then combine due retrieval, repair, a small bank of sentence transformations, short everyday exchanges, and retries. AI feedback is explicitly opt-in at the start; memory examples require a separate button. Ordinary Review remains available.
 
-A ten-minute timer offers a stopping point. The active queue is saved on each answer/help/rating and every 15 seconds while practising. Pause, tab hiding, and reloading preserve the queue; unsent text is not saved. A rating updates the queue and its schedule in one transaction. Do not present unfinished steps as cleared reviews.
+A ten-minute timer offers a stopping point. The active queue is saved on each answer/help/rating and every 15 seconds while practising. Pause, tab hiding, and reloading preserve the queue; unsent text is not saved. A rating updates the queue and its schedule in one transaction. If ordinary Review has already advanced the same card after a guided answer, the stale guided task is removed without overwriting that newer schedule. Do not present unfinished steps as cleared reviews.
 
 ## Scheduling and evidence
 
@@ -14,7 +14,7 @@ A ten-minute timer offers a stopping point. The active queue is saved on each an
 - Production objectives start conservatively with their own FSRS state and are admitted only to a small active repertoire. The entire vocabulary backlog is not doubled.
 - Again preserves the original objective and requeues in the same session, including the last remaining item. Assisted success is a practice event and schedules an unaided retry. Explicit Again can record a failure. A response that communicates successfully without retrieving the production target earns no production success.
 - Exact answer checking precedes optional semantic feedback. Different short words are not accepted by edit distance. Uncertain/provider-failed checks remain ungraded and permit the learner's own rating.
-- Events store direction, prompt version, source-content version, assistance, modality, response duration, replay count, and the initial answer timestamp. Delayed evidence excludes teaching, assistance, same-day exposure, and ungraded/spoken self-checks. Existing review timestamps are considered when checking whether an entry was recently exposed.
+- Events store direction, prompt version, source-content version, assistance, modality, response duration, replay count, the initial answer timestamp, and the latest model-exposure timestamp (including rating after an overnight pause). Delayed evidence excludes teaching, assistance, same-day exposure, and ungraded/spoken self-checks. Existing review timestamps are considered when checking whether an entry was recently exposed.
 - New targets are capped at two per guided study day, including new frames. Recent weak recall or a large due queue reduces intake to zero. Ordinary review retains its configured intake limit; opening that separate mode can introduce additional material.
 - The timer and task counts are provisional operating rules, not research-derived optimal values or a guarantee of ten minutes for every learner.
 

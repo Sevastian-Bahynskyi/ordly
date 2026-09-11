@@ -21,6 +21,7 @@ export interface PracticeTask {
   source: 'saved' | 'frame' | 'ai'
   newTarget: boolean
   retry: number
+  answerIsSentence?: boolean
   cardId?: string
   contentVersion?: string
 }
@@ -37,6 +38,7 @@ export interface PracticeAttempt {
   modality: 'typed' | 'spoken'
   responseMs: number
   at: string
+  exposedAt?: string
   lastExposureAt: string | null
   replays: number
   newTarget?: boolean

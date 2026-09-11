@@ -35,3 +35,62 @@ await actOnPractice(supabase, userId, action({ action: 'pause', elapsedSeconds: 
 state = (await readPractice(supabase, userId)).store
 assert.equal(state.session.elapsedSeconds, 38)
 console.log('Practice service passed: real SQL persistence, exact grading, duplicate rejection, Again requeue, and resume.')
+
+// A newer ordinary review must reconcile the old guided answer, not deadlock resume.
+const { vocabularyTask } = await import('../../lib/practice-content.ts')
+const { data: source } = await supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).limit(1).single()
+assert.ok(source)
+let meaningTask = vocabularyTask(source, 'meaning')
+state = (await readPractice(supabase, userId)).store
+let prepared = { ...state.session, queue: [meaningTask], current: null }
+let write = await supabase.from('practice_state').update({ session: prepared }).eq('user_id', userId)
+assert.equal(write.error, null)
+state = (await readPractice(supabase, userId)).store
+await actOnPractice(supabase, userId, action({ action: 'answer', answer: meaningTask.answer.split(',')[0], modality: 'typed' }))
+state = (await readPractice(supabase, userId)).store
+const newerReview = new Date(Date.now() + 1000).toISOString()
+write = await supabase.from('review_cards').update({ last_review: newerReview }).eq('id', source.id)
+assert.equal(write.error, null)
+await actOnPractice(supabase, userId, action({ action: 'rate', rating: 3 }))
+state = (await readPractice(supabase, userId)).store
+assert.equal(state.session.queue.length, 0)
+const { data: unchanged } = await supabase.from('review_cards').select('last_review').eq('id', source.id).single()
+assert.equal(Date.parse(unchanged.last_review), Date.parse(newerReview))
+
+// The original answer time and the latest visible-model exposure are separate evidence.
+write = await supabase.from('review_cards').update({ last_review: new Date(Date.now() - 3 * 86400000).toISOString() }).eq('id', source.id)
+assert.equal(write.error, null)
+let productionTask = vocabularyTask(source, 'production')
+prepared = { ...state.session, queue: [productionTask], current: null }
+write = await supabase.from('practice_state').update({ session: prepared, objectives: {} }).eq('user_id', userId)
+assert.equal(write.error, null)
+state = (await readPractice(supabase, userId)).store
+await actOnPractice(supabase, userId, action({ action: 'answer', answer: '', modality: 'typed' }))
+state = (await readPractice(supabase, userId)).store
+const yesterday = new Date(Date.now() - 2 * 86400000).toISOString()
+prepared = { ...state.session, current: { ...state.session.current, answeredAt: yesterday } }
+write = await supabase.from('practice_state').update({ session: prepared }).eq('user_id', userId)
+assert.equal(write.error, null)
+state = (await readPractice(supabase, userId)).store
+await actOnPractice(supabase, userId, action({ action: 'rate', rating: 1 }))
+state = (await readPractice(supabase, userId)).store
+await actOnPractice(supabase, userId, action({ action: 'answer', answer: productionTask.answer, modality: 'typed' }))
+state = (await readPractice(supabase, userId)).store
+await actOnPractice(supabase, userId, action({ action: 'rate', rating: 3 }))
+state = (await readPractice(supabase, userId)).store
+const retry = state.session.attempts.at(-1)
+assert.ok(Date.parse(retry.at) - Date.parse(retry.lastExposureAt) >= 0)
+assert.ok(Date.parse(retry.at) - Date.parse(retry.lastExposureAt) < 60000)
+console.log('Regression checks passed: stale ordinary review reconciles and resumed model exposure prevents false delayed recall.')
+
+const { isReviewSource } = await import('../../lib/practice-validation.ts')
+assert.equal(isReviewSource(source), true)
+assert.equal(isReviewSource({ ...source, vocabulary_entries: { ...source.vocabulary_entries, translation: 'x'.repeat(5000) } }), false)
+write = await supabase.from('vocabulary_entries').update({ translation: 'x'.repeat(5000) }).eq('id', source.entry_id)
+assert.equal(write.error, null)
+await startPractice(supabase, userId, false)
+state = (await readPractice(supabase, userId)).store
+assert.equal(state.session.queue.some(task => task.entryId === source.entry_id), false)
+write = await supabase.from('vocabulary_entries').update({ translation: source.vocabulary_entries.translation }).eq('id', source.entry_id)
+assert.equal(write.error, null)
+console.log('Source validation passed: oversized source content is excluded before saving a readable session.')
