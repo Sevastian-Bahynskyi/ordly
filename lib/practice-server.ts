@@ -52,12 +52,14 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   if (language !== 'ru' && language !== 'en' && language !== 'uk') throw new Error('Invalid practice language')
   const dailyLimit: unknown = profile.data.daily_new_limit
   if (typeof dailyLimit !== 'number' || !Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 50) throw new Error('Invalid practice limit')
-  const session = planPractice({ items, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled, now })
+  const previous = store.session && !store.session.finished ? store.session : null
+  const planned = planPractice({ items, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled: previous?.aiEnabled ?? aiEnabled, now })
+  const session = previous ? { ...previous, queue: planned.queue, current: null } : planned
   await commit(supabase, store, { ...store, session })
 }
 
 export interface PracticeAction {
-  action: 'answer' | 'help' | 'rate' | 'pause' | 'repair'
+  action: 'answer' | 'help' | 'rate' | 'pause' | 'repair' | 'finish'
   revision: number
   taskId: string
   answer?: string
@@ -74,7 +76,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   if (store.revision !== input.revision) throw new PracticeConflict()
   const session = store.session
   const task = session?.queue[0]
-  if (!session || !task || task.id !== input.taskId) throw new PracticeConflict()
+  if (!session || session.finished || (task?.id || '') !== input.taskId) throw new PracticeConflict()
   const now = new Date()
   const elapsedSeconds = Math.max(session.elapsedSeconds, Math.min(input.elapsedSeconds, session.elapsedSeconds + 3600))
   const response: PracticeResponse = session.current || { answer: '', result: 'ungraded', assistance: 'none', feedback: '', communication: 'uncertain', target: 'uncertain', modality: 'typed', responseMs: 0, replays: 0, revealed: false, answeredAt: null }
@@ -83,6 +85,11 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     await commit(supabase, store, { ...store, session: nextSession })
     return
   }
+  if (input.action === 'finish') {
+    await commit(supabase, store, { ...store, session: { ...nextSession, finished: true, queue: [], current: null } })
+    return
+  }
+  if (!task) throw new PracticeConflict()
   if (task.entryId) {
     const { data: entry, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
     if (error) throw new Error('Could not check this entry')

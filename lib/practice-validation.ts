@@ -82,6 +82,8 @@ export function isPracticeStore(value: unknown): value is PracticeStore {
   })) return false
   const session = value.session
   return session === null || (isRecord(session) && session.version === 1 && text(session.id, 100)
+    && (session.finished === undefined || typeof session.finished === 'boolean')
+    && (!session.finished || (Array.isArray(session.queue) && session.queue.length === 0 && session.current === null))
     && Array.isArray(session.queue) && session.queue.length <= 100 && session.queue.every(isPracticeTask)
     && Array.isArray(session.attempts) && session.attempts.length <= 500 && session.attempts.every(isPracticeAttempt)
     && Number.isInteger(session.completed) && Number(session.completed) >= 0

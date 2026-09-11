@@ -90,3 +90,10 @@
   .practice-time { padding: 9px 11px; }
 }
 .practice-example { white-space: pre-line; }
+.practice-session-actions { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+.practice-session-controls .soft-button, .practice-session-actions .soft-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; white-space: nowrap; }
+.practice-welcome .practice-evidence-grid { margin-bottom: 24px; }
+@media (max-width: 600px) {
+  .practice-header-active { flex-wrap: wrap; }
+  .practice-session-controls { width: 100%; justify-content: flex-end; }
+}

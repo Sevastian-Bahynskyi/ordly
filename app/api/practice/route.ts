@@ -32,7 +32,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (body.action === 'start' && typeof body.aiEnabled === 'boolean') {
       await startPractice(supabase, user.id, body.aiEnabled)
     } else {
-      if (!['answer', 'help', 'rate', 'pause', 'repair'].includes(String(body.action))
+      if (!['answer', 'help', 'rate', 'pause', 'repair', 'finish'].includes(String(body.action))
         || !Number.isInteger(body.revision) || Number(body.revision) < 0
         || typeof body.taskId !== 'string' || body.taskId.length > 2000
         || (body.answer !== undefined && (typeof body.answer !== 'string' || body.answer.length > 2000))

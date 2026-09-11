@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
-import { ArrowRight, Check, Clock3, Lightbulb, MessageCircle, Pause, RotateCcw, Sparkles } from 'lucide-react'
+import { ArrowRight, Check, Lightbulb, MessageCircle, Pause, RotateCcw, Sparkles } from 'lucide-react'
 import { PracticeAudio } from './PracticeAudio'
 import type { PracticeSessionState, PracticeSummary } from '@/lib/practice'
 import { isPracticeStore, isRecord } from '@/lib/practice-validation'
@@ -16,10 +16,6 @@ function isView(value: unknown): value is PracticeView {
     && ['meaning', 'production', 'listening'].every((key) => isRecord(value.summary) && isRecord(value.summary[key]) && Number.isFinite(value.summary[key].total) && Number.isFinite(value.summary[key].correct))
 }
 
-function timeLabel(seconds: number): string {
-  return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`
-}
-
 export function PracticeSession(): JSX.Element {
   const [view, setView] = useState<PracticeView | null>(null)
   const [running, setRunning] = useState(false)
@@ -27,15 +23,12 @@ export function PracticeSession(): JSX.Element {
   const [busy, setBusy] = useState(false)
   const [notice, setNotice] = useState('')
   const [answer, setAnswer] = useState('')
-  const [elapsed, setElapsed] = useState(0)
   const [replays, setReplays] = useState(0)
   const [modality, setModality] = useState<'typed' | 'spoken'>('typed')
   const busyRef = useRef(false)
   const startedAt = useRef(0)
   const currentView = useRef(view)
-  const currentElapsed = useRef(elapsed)
   currentView.current = view
-  currentElapsed.current = elapsed
   const session = view?.session
   const task = session?.queue[0]
   const response = session?.current
@@ -47,7 +40,6 @@ export function PracticeSession(): JSX.Element {
       const data: unknown = await res.json()
       if (!res.ok || !isView(data)) throw new Error()
       setView(data)
-      setElapsed(data.session?.elapsedSeconds || 0)
     } catch { setNotice('Practice could not be loaded. Please retry, or open ordinary review.') }
   }, [])
   useEffect(() => { void load() }, [load])
@@ -65,7 +57,7 @@ export function PracticeSession(): JSX.Element {
     setNotice('')
     const latest = currentView.current
     try {
-      const res = await fetch('/api/practice', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, revision: latest?.revision, taskId: latest?.session?.queue[0]?.id, elapsedSeconds: currentElapsed.current, responseMs: Math.min(3600000, Math.max(0, performance.now() - startedAt.current)), replays: 0, ...extra }) })
+      const res = await fetch('/api/practice', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, revision: latest?.revision, taskId: latest?.session?.queue[0]?.id || '', elapsedSeconds: latest?.session?.elapsedSeconds || 0, responseMs: Math.min(3600000, Math.max(0, performance.now() - startedAt.current)), replays: 0, ...extra }) })
       const data: unknown = await res.json()
       if (!res.ok || !isView(data)) {
         setNotice(res.status === 409 ? 'This session changed on another screen. Reload the saved session to continue.' : 'Could not save this step. Retry to continue; your saved progress is safe.')
@@ -82,9 +74,6 @@ export function PracticeSession(): JSX.Element {
 
   useEffect(() => {
     if (!running || !task) return
-    const timer = window.setInterval(() => {
-      if (document.visibilityState === 'visible') setElapsed((value) => value + 1)
-    }, 1000)
     const save = window.setInterval(() => { void send('pause') }, 15000)
     function hide(): void {
       if (document.visibilityState === 'hidden') {
@@ -94,13 +83,16 @@ export function PracticeSession(): JSX.Element {
       }
     }
     document.addEventListener('visibilitychange', hide)
-    return () => { window.clearInterval(timer); window.clearInterval(save); document.removeEventListener('visibilitychange', hide) }
+    return () => { window.clearInterval(save); document.removeEventListener('visibilitychange', hide) }
   }, [running, task?.id, send])
 
   async function start(): Promise<void> {
     if (!session?.queue.length) {
       if (!await send('start', { aiEnabled })) return
-      setElapsed(0)
+      if (!currentView.current?.session?.queue.length) {
+        setNotice('No more exercises are available right now. You can finish and see your results.')
+        return
+      }
     }
     startedAt.current = performance.now()
     setRunning(true)
@@ -108,21 +100,30 @@ export function PracticeSession(): JSX.Element {
   async function pause(): Promise<void> {
     if (await send('pause')) setRunning(false)
   }
+  async function finish(): Promise<void> {
+    if (await send('finish')) setRunning(false)
+  }
   const error = notice && <div className="practice-notice" role="alert">{notice}<button className="soft-button" disabled={busy} onClick={() => { setRunning(false); void load() }}>Reload saved session</button></div>
 
   if (!view) return <section className="section-card practice-welcome"><span className="eyebrow">DAILY PRACTICE</span><h1>{notice ? 'Let’s reconnect.' : 'Preparing your practice…'}</h1>{error}<Link href="/review">Open ordinary review →</Link></section>
 
   if (!running || !task) return <>
-    <header className="practice-header"><div><span className="eyebrow">SMALL SESSIONS · USEFUL DANISH</span><h1>{session && !task ? 'A little more Danish, ready to use.' : 'Make it easier to remember.'}</h1><p>Recall it. Build with it. Use it in a conversation.</p></div><span className="practice-time"><Clock3 size={17} />10 minutes</span></header>
+    <header className="practice-header"><div><span className="eyebrow">USEFUL DANISH · AT YOUR PACE</span><h1>{session?.finished ? 'A little more Danish, ready to use.' : 'Make it easier to remember.'}</h1><p>Suggested: 15–20 minutes. Stay longer or finish whenever you feel done.</p></div></header>
     {error}
     <section className="section-card practice-welcome">
       <div className="practice-mark"><MessageCircle size={30} /></div>
-      <span className="eyebrow">{task ? 'YOUR PLACE IS SAVED' : 'ONE GUIDED SESSION'}</span>
-      <h2>{task ? 'Pick up where you left off.' : session ? `${session.completed} practice steps finished.` : 'Move from knowing a word to using it.'}</h2>
-      <p>{task ? `${task.retry ? 'A retry is waiting. ' : ''}${session?.queue.length} steps remain. Take the time you need.` : 'A small mix of due words, sentence patterns, and short exchanges. Difficult items come back after a little space.'}</p>
-      <div className="practice-outline">{stages.map((stage, i) => <div key={stage.id}><span>{i + 1}</span>{stage.label}</div>)}</div>
-      {!task && <label className="practice-ai-option"><input type="checkbox" checked={aiEnabled} onChange={(e) => setAiEnabled(e.target.checked)} /><span><strong>Use AI feedback</strong><small>Send exercise text and typed answers to our AI provider when checking needs more than an exact match.</small></span></label>}
-      <button className="primary-button practice-start" disabled={busy} onClick={() => void start()}>{busy ? 'Preparing…' : task ? 'Resume practice' : 'Practice for 10 minutes'}<ArrowRight size={18} /></button>
+      <span className="eyebrow">{session?.finished ? 'SESSION RESULTS' : session ? 'YOUR PLACE IS SAVED' : 'GUIDED PRACTICE'}</span>
+      <h2>{session?.finished ? `${session.completed} practice steps finished.` : task ? 'Pick up where you left off.' : session ? 'Ready for more?' : 'Move from knowing a word to using it.'}</h2>
+      <p>{session?.finished ? 'Your rated answers are saved. Unfinished exercises were not marked as completed.' : task ? `${task.retry ? 'A retry is waiting. ' : ''}${session.queue.length} steps in this batch. Pause to return later, or finish to see your results.` : session ? 'This batch is complete. Load more practice, pause, or finish your session.' : 'Recall words, build sentences, and practise short exchanges. Difficult items come back after a little space.'}</p>
+      {session?.finished && <div className="practice-evidence-grid">
+        <div><span>Targets practised</span><strong>{new Set(session.attempts.map((attempt) => attempt.targetKey)).size}</strong></div>
+        <div><span>Unaided recalls</span><strong>{session.attempts.filter((attempt) => attempt.assistance === 'none' && attempt.modality === 'typed' && attempt.rating !== 1 && ['correct', 'mostly'].includes(attempt.result)).length}</strong></div>
+        <div><span>Retry ratings</span><strong>{session.attempts.filter((attempt) => attempt.rating === 1).length}</strong></div>
+      </div>}
+      {!session && <div className="practice-outline">{stages.map((stage) => <div key={stage.id}>{stage.label}</div>)}</div>}
+      {(!session || session.finished) && <label className="practice-ai-option"><input type="checkbox" checked={aiEnabled} onChange={(e) => setAiEnabled(e.target.checked)} /><span><strong>Use AI feedback</strong><small>Send exercise text and typed answers to our AI provider when checking needs more than an exact match.</small></span></label>}
+      <button className="primary-button practice-start" disabled={busy} onClick={() => void start()}>{busy ? 'Preparing…' : task ? 'Resume practice' : session && !session.finished ? 'Keep practising' : 'Start practice'}<ArrowRight size={18} /></button>
+      {session && !session.finished && <div className="practice-session-actions">{running && <button className="soft-button" disabled={busy} onClick={() => void pause()}><Pause size={16} />Pause</button>}<button className="soft-button" disabled={busy} onClick={() => void finish()}><Check size={16} />Finish session</button></div>}
       <Link className="practice-review-link" href="/review">Ordinary FSRS review →</Link>
     </section>
     <PracticeProgress summary={view.summary} />
@@ -136,9 +137,8 @@ export function PracticeSession(): JSX.Element {
   const suggested = response?.assistance !== 'none' || response?.result === 'incorrect' ? 1 : response?.result === 'mostly' ? 2 : 3
   const phase = stages.find((stage) => stage.id === task.stage)
   return <>
-    <header className="practice-header practice-header-active"><div><span className="eyebrow">DAILY PRACTICE</span><h1>{phase?.label}</h1></div><div className="practice-session-controls"><span className="practice-time"><Clock3 size={17} />{timeLabel(elapsed)}</span><button className="soft-button" disabled={busy} onClick={() => void pause()} aria-label="Pause and save"><Pause size={17} /></button></div></header>
+    <header className="practice-header practice-header-active"><div><span className="eyebrow">DAILY PRACTICE</span><h1>{phase?.label}</h1></div><div className="practice-session-controls"><button className="soft-button" disabled={busy} onClick={() => void pause()}><Pause size={16} />Pause</button><button className="soft-button" disabled={busy} onClick={() => void finish()}><Check size={16} />Finish session</button></div></header>
     <nav className="practice-stages" aria-label="Practice stages">{stages.map((stage) => <span key={stage.id} className={stage.id === task.stage ? 'active' : ''} aria-current={stage.id === task.stage ? 'step' : undefined}>{stage.label}</span>)}</nav>
-    {elapsed >= 600 && <div className="practice-time-notice"><Check size={17} /><span>Ten minutes done. Finish this step or pause here.</span><button disabled={busy} onClick={() => void pause()}>Save & finish</button></div>}
     {error}
     <section className="flash-card practice-card" key={task.id}>
       <div className="card-topline"><span className="prompt-type">{teaching ? 'Connect sound, meaning & situation' : task.kind === 'recall' ? 'Danish → meaning' : task.kind === 'produce' ? 'Meaning → Danish' : task.kind === 'build' ? 'Change the sentence' : listening ? 'Listen, then respond' : 'Keep the exchange going'}</span>{task.retry > 0 && <span className="status-chip learning"><RotateCcw size={12} />Retry</span>}</div>

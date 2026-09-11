@@ -50,6 +50,7 @@ export interface PracticeAttempt {
 
 export interface PracticeSessionState {
   version: 1
+  finished?: boolean
   id: string
   queue: PracticeTask[]
   attempts: PracticeAttempt[]

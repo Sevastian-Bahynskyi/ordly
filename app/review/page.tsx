@@ -32,5 +32,5 @@ export default async function ReviewPage() {
     return true
   })
 
-  return <AppShell><div className="page-wrap review-page">{guidedPracticeEnabled && <Link href="/review/practice" className="review-practice-link"><span><strong>Practice for 10 minutes</strong><small>Recall, build sentences, and use your Danish.</small></span><span>→</span></Link>}<ReviewSession initialItems={items} translationLanguage={profile?.default_translation_language || 'ru'} /></div></AppShell>
+  return <AppShell><div className="page-wrap review-page">{guidedPracticeEnabled && <Link href="/review/practice" className="review-practice-link"><span><strong>Start guided practice</strong><small>Recall, build sentences, and use your Danish.</small></span><span>→</span></Link>}<ReviewSession initialItems={items} translationLanguage={profile?.default_translation_language || 'ru'} /></div></AppShell>
 }
