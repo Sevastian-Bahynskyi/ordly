@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { guidedPracticeEnabled } from '@/lib/practice-config'
 import { BookOpenCheck, Flame, Layers3, Sparkles, Target } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { AddWordComposer } from '@/components/AddWordComposer'
@@ -62,7 +63,8 @@ export default async function HomePage() {
             <div className="review-number">{due}</div>
             <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
             <p>A short session now is worth more than a long one later.</p>
-            <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
+            <Link href={guidedPracticeEnabled ? "/review/practice" : "/review"} className="review-start">{guidedPracticeEnabled ? "Practice for 10 minutes" : "Start review"} <BookOpenCheck size={18} /></Link>
+            <Link href="/review" className="ordinary-review-link">Ordinary FSRS review →</Link>
             <div className="mini-progress"><span style={{ width: `${Math.min(100, due ? 34 : 100)}%` }} /></div>
           </aside>
         </section>

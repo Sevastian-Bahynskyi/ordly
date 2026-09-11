@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Flame, RotateCcw, Sparkles, Target, X } from 'lucide-react'
 import type { LearningStatus, ReviewItem } from '@/lib/types'
 import { checkAnswer, type AnswerResult } from '@/lib/answer'
-import { clozeSentence, reviewMode } from '@/lib/review'
+import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
 import { VocabularyIcon } from '@/components/VocabularyIcon'
@@ -20,6 +20,7 @@ type CardPatch = Pick<ReviewItem, 'due' | 'stability' | 'difficulty' | 'elapsed_
 
 type ReviewedItem = {
   item: ReviewItem
+  mode: PromptMode
   answer: string
   result: AnswerResult | null
   revealedWithoutAnswer: boolean
@@ -46,23 +47,28 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
   const current = items[0]
   const entry = current?.vocabulary_entries
   const entryKind = entry?.entry_kind || 'word'
-  const mode = current ? reviewMode(current.reps, entryKind) : 'recognition'
+  const [sessionModes] = useState(() => new Map(initialItems.map((item) => [item.id, reviewMode(item.reps, item.vocabulary_entries.entry_kind)])))
+  const mode = current ? sessionModes.get(current.id) || reviewMode(current.reps, entryKind) : 'recognition'
 
   useEffect(() => {
     setFreshSentence(null)
-    if (!current || entryKind === 'sentence' || mode !== 'cloze' || current.reps < 5 || current.reps % 5 !== 0) return
+    if (!current || entryKind === 'sentence' || mode !== 'cloze' || current.reps < 5) return
 
+    const controller = new AbortController()
     fetch('/api/ai/review-sentence', {
+      signal: controller.signal,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ entryId: current.entry_id, cycle: Math.floor(current.reps / 5) }),
     })
       .then((r) => r.ok ? r.json() : null)
-      .then((d) => d?.sentence && setFreshSentence(d))
+      .then((d) => !controller.signal.aborted && d?.sentence && setFreshSentence(d))
       .catch(() => {})
+    return () => controller.abort()
   }, [current?.id, current?.reps, current?.entry_id, mode, entryKind])
 
-  const sentence = freshSentence?.sentence || entry?.example_sentence || ''
+  const candidateSentence = freshSentence?.sentence || entry?.example_sentence || ''
+  const sentence = mode === 'cloze' && !clozeSentence(candidateSentence, entry?.danish || '') ? '' : candidateSentence
   const sentenceTranslation = freshSentence?.translation || entry?.example_translation || ''
   const expected = mode === 'recognition' ? entry?.translation || '' : entry?.danish || ''
 
@@ -70,7 +76,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
     if (!entry) return ''
     if (mode === 'recognition') return entry.danish
     if (mode === 'production') return entry.translation || ''
-    return sentence ? clozeSentence(sentence, entry.danish) : entry.translation || ''
+    return clozeSentence(sentence, entry.danish) || entry.translation || ''
   }, [entry, mode, sentence])
 
   async function submitAnswer(e: React.FormEvent) {
@@ -84,7 +90,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       return
     }
 
-    const quickResult = checkAnswer(typedAnswer, expected)
+    const quickResult = checkAnswer(typedAnswer, expected, { sentence: entryKind === 'sentence' })
     if (quickResult !== 'incorrect') {
       setResult(quickResult)
       setRevealedWithoutAnswer(false)
@@ -132,6 +138,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
     if (res.ok && body.logId) {
       setHistory((previous) => [...previous, {
         item: current,
+        mode,
         answer,
         result,
         revealedWithoutAnswer,
@@ -288,7 +295,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
   const [notice, setNotice] = useState<string | null>(null)
   const entry = reviewed.item.vocabulary_entries
   const entryKind = entry.entry_kind || 'word'
-  const mode = reviewMode(reviewed.item.reps, entryKind)
+  const mode = reviewed.mode
   const expected = mode === 'recognition' ? entry.translation || '' : entry.danish
   const prompt = mode === 'recognition'
     ? entry.danish

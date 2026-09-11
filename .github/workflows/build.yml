@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 22
       - run: pnpm install --frozen-lockfile
+      - run: pnpm test
       - run: pnpm build
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://pxnudtcqlmyaelfrdyfp.supabase.co

@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "test:openrouter": "node --experimental-strip-types --test lib/openrouter.test.mjs"
+    "test:openrouter": "node --experimental-strip-types --test lib/openrouter.test.mjs",
+    "test": "tsx --test lib/*.test.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.5",
@@ -23,9 +24,11 @@
     "@types/node": "^22.15.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "tsx": "4.20.6",
     "typescript": "^5.9.0"
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "type": "module"
 }

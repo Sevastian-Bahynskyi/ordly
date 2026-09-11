@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { fsrs, type Card } from 'ts-fsrs'
 import type { ReviewCard } from '@/lib/types'
 
@@ -86,7 +87,7 @@ function nextReviewLabel(dueValue: string) {
   return relative ? `${relative} · ${exact}` : exact
 }
 
-export function MemoryRing({ item, compact = false }: { item: ReviewCard; compact?: boolean }) {
+export function MemoryRing({ item, compact = false }: { item: ReviewCard; compact?: boolean }): JSX.Element {
   const isNew = item.state === 0 || !item.last_review
   const recall = recallPercent(item)
   const tier = memoryTier(item)
@@ -121,6 +122,7 @@ export function MemoryRing({ item, compact = false }: { item: ReviewCard; compac
       </span>
       <span className="memory-tooltip" role="tooltip">
         <strong>{isNew ? 'New memory' : `${recall}% recall now`}</strong>
+        <span>Review recall · mixed exercise history</span>
         <span><i className="memory-tier-dot" />{tierName} · stability {stabilityLabel(item.stability)}</span>
         <span>Next review <b>{nextReview}</b></span>
       </span>

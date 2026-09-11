@@ -16,8 +16,9 @@ export function reviewMode(reps: number, entryKind: EntryKind = 'word'): PromptM
   return 'recognition'
 }
 
-export function clozeSentence(sentence: string, danish: string) {
+export function clozeSentence(sentence: string, danish: string): string {
+  if (!danish.trim()) return ''
   const escaped = danish.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const regex = new RegExp(escaped, 'iu')
-  return sentence.replace(regex, '_____')
+  const regex = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'giu')
+  return regex.test(sentence) ? sentence.replace(regex, '_____') : ''
 }

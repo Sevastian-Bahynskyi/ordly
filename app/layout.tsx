@@ -14,6 +14,7 @@ import './composer-toggle.css'
 import './streak.css'
 import './review-motion.css'
 import './mobile-form-controls.css'
+import './practice.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
