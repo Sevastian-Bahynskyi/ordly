@@ -1,11 +1,22 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
-import type { ReviewCard, VocabularyEntry } from '@/lib/types'
+import {
+  neighboursByEntry,
+  withConfirmedLink,
+  withoutLink,
+  type EntryLinkRow,
+  type LinkedEntryLabel,
+} from '@/lib/entry-links'
+import { mergeSenses } from '@/lib/sense-merge'
+import { parseSenses } from '@/lib/senses'
+import type { EntrySense, ReviewCard, VocabularyEntry } from '@/lib/types'
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
+import { SynonymChips } from './SynonymChips'
 import { VocabularyIcon } from './VocabularyIcon'
 
 type EnrichField = 'pronunciation' | 'translation' | 'example_sentence' | 'example_translation'
@@ -13,6 +24,8 @@ type PreviewState = {
   word: VocabularyEntry
   proposal: Partial<Record<EnrichField, string>>
   selected: Record<EnrichField, boolean>
+  /** The sense objects behind `proposal.translation`, kept so applying preserves sense ids. */
+  senses: EntrySense[]
 }
 
 const fieldLabels: Record<EnrichField, string> = {
@@ -27,16 +40,19 @@ const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example
 export function WordsClient({
   initialWords,
   initialCards,
+  initialLinks = [],
   initialQuery = '',
   translationLanguage = 'ru',
 }: {
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
+  initialLinks?: EntryLinkRow[]
   initialQuery?: string
   translationLanguage?: 'ru' | 'en' | 'uk'
 }) {
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
+  const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
   const [status, setStatus] = useState<'all' | 'new' | 'learning' | 'mastered'>('all')
   const [bulkOpen, setBulkOpen] = useState(false)
@@ -48,6 +64,19 @@ export function WordsClient({
   const [applyingPreview, setApplyingPreview] = useState(false)
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
+
+  // Every word is already in memory, so a chip costs one map lookup rather than a join — the
+  // same reason `senses` lives on the entry row (plan §7, AGENTS.md §16).
+  const neighbours = useMemo(
+    () => neighboursByEntry(links, new Map<string, LinkedEntryLabel>(
+      words.map((word) => [word.id, { id: word.id, danish: word.danish, translation: word.translation }]),
+    )),
+    [links, words],
+  )
+
+  function resolveLink(link: EntryLinkRow, action: 'confirm' | 'dismiss') {
+    setLinks((current) => action === 'dismiss' ? withoutLink(current, link) : withConfirmedLink(current, link))
+  }
 
   const visible = useMemo(() => words.filter((word) => {
     const matchesQ = !query || word.danish.toLocaleLowerCase('da-DK').includes(query.toLocaleLowerCase('da-DK')) || (word.translation || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())
@@ -122,7 +151,17 @@ export function WordsClient({
     })
     const body = await res.json().catch(() => ({}))
     if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
-    return body as Partial<Record<EnrichField, string>>
+    return body as Partial<Record<EnrichField, string>> & { senses?: unknown }
+  }
+
+  /**
+   * Writing only `translation` lets the DB trigger re-derive `senses` from the string, which
+   * mints a fresh id for every meaning and strands whatever FSRS state was keyed to the old
+   * ones. Merging here keeps the ids the entry already had (D15).
+   */
+  function mergedSensesFor(word: VocabularyEntry, generated: EntrySense[]): EntrySense[] | null {
+    if (!generated.length) return null
+    return mergeSenses(parseSenses(word.senses), generated)
   }
 
   async function previewEnrichWord(word: VocabularyEntry) {
@@ -146,7 +185,7 @@ export function WordsClient({
       }
 
       if (!Object.keys(proposal).length) throw new Error('AI returned no enrichment suggestions.')
-      setPreview({ word, proposal, selected })
+      setPreview({ word, proposal, selected, senses: parseSenses(body.senses) })
     } catch (error) {
       window.alert(error instanceof Error ? error.message : 'AI enrichment failed')
     } finally {
@@ -163,8 +202,15 @@ export function WordsClient({
     }
 
     setApplyingPreview(true)
-    const patch: Record<string, string | boolean | null> = { ai_enriched: true }
+    const patch: Record<string, string | boolean | null | EntrySense[]> = { ai_enriched: true }
     for (const field of selectedFields) patch[field] = preview.proposal[field] || null
+
+    if (selectedFields.includes('translation')) {
+      // Applying the translation also applies the part of speech and gender that came with it,
+      // and keeps every sense id the entry already had.
+      const merged = mergedSensesFor(preview.word, preview.senses)
+      if (merged) patch.senses = merged
+    }
 
     const { data, error } = await createClient()
       .from('vocabulary_entries')
@@ -195,10 +241,14 @@ export function WordsClient({
         const fields = enrichFieldsFor(word).filter((field) => !currentFieldValue(word, field))
         if (!fields.length) continue
         const body = await requestEnrichment(word, fields)
-        const patch: Record<string, string | boolean> = { ai_enriched: true }
+        const patch: Record<string, string | boolean | EntrySense[]> = { ai_enriched: true }
         for (const field of fields) {
           const value = typeof body[field] === 'string' ? body[field]!.trim() : ''
           if (value) patch[field] = value
+        }
+        if (fields.includes('translation')) {
+          const merged = mergedSensesFor(word, parseSenses(body.senses))
+          if (merged) patch.senses = merged
         }
         const { data } = await createClient().from('vocabulary_entries').update(patch).eq('id', word.id).select('*').single()
         if (data) setWords((current) => current.map((item) => item.id === data.id ? data : item))
@@ -214,6 +264,9 @@ export function WordsClient({
     if (!error) {
       setWords((current) => current.filter((word) => word.id !== id))
       setCards((current) => current.filter((card) => card.entry_id !== id))
+      // The database cascades the edges; the local copy has to follow or a chip would point at
+      // a word that is gone.
+      setLinks((current) => current.filter((link) => link.a_id !== id && link.b_id !== id))
     }
   }
 
@@ -230,11 +283,16 @@ export function WordsClient({
       {visible.map((word) => {
         const card = cardsByEntry.get(word.id)
         return <div className="word-row" key={word.id}>
-          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small></div></div>
+          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>
           <div className="row-menu"><button className="icon-button" title="Preview AI enrichment" disabled={enriching === word.id} onClick={() => previewEnrichWord(word)}>{enriching === word.id ? <Loader2 className="spin" size={16}/> : <Sparkles size={16}/>}</button><button className="icon-button danger" title="Delete" onClick={() => removeWord(word.id)}><X size={16}/></button></div>
+          {/* A real link rather than an onClick, so the row prefetches, middle-clicks, and
+              triggers the app's route-loading feedback (AGENTS.md §5, §16). It is appended
+              last and absolutely positioned: the mobile grid in globals.css places the other
+              cells with :nth-child, and an extra leading child would shift every one of them. */}
+          <Link className="word-row-link" href={`/words/${word.id}`} aria-label={`Open ${word.danish}`} />
         </div>
       })}
       {!visible.length && <div className="empty-state tall">No words match this view.</div>}

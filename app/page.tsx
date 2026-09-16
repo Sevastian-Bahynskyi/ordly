@@ -5,8 +5,10 @@ import { AppShell } from '@/components/AppShell'
 import { AddWordComposer } from '@/components/AddWordComposer'
 import { StatCard } from '@/components/StatCard'
 import { VocabularyIcon } from '@/components/VocabularyIcon'
+import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
 import { VocabularyIconBackfill } from '@/components/VocabularyIconBackfill'
 import { requireUser } from '@/lib/auth'
+import { needsRefinement } from '@/lib/sense-refinement'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,7 +21,7 @@ export default async function HomePage() {
     supabase.from('review_cards').select('id, reps, vocabulary_entries!inner(translation)').lte('due', now),
     supabase.from('vocabulary_entries').select('learning_status'),
     supabase.from('profiles').select('*').single(),
-    supabase.from('vocabulary_entries').select('id, danish, translation, pronunciation, learning_status, entry_kind, icon_name').order('created_at', { ascending: false }).limit(4),
+    supabase.from('vocabulary_entries').select('id, danish, translation, pronunciation, learning_status, entry_kind, icon_name, senses').order('created_at', { ascending: false }).limit(4),
     supabase.from('review_logs').select('id', { count: 'exact', head: true }).eq('study_date', today).eq('previous_state', 0),
   ])
 
@@ -41,10 +43,12 @@ export default async function HomePage() {
   const todayProgress = Math.min(newReviewedToday, dailyLimit)
   const recentWords = recentResult.data || []
   const missingRecentIcons = recentWords.filter((word) => word.entry_kind !== 'sentence' && !word.icon_name).map((word) => word.id)
+  const unrefinedRecent = recentWords.filter((word) => word.entry_kind !== 'sentence' && needsRefinement(word.senses)).map((word) => word.id)
 
   return (
     <AppShell>
       <VocabularyIconBackfill entryIds={missingRecentIcons} />
+      <SenseRefinementBackfill entryIds={unrefinedRecent} />
       <div className="page-wrap dashboard-page">
         <header className="top-header">
           <div><span className="eyebrow">GOD FORMIDDAG</span><h1>Your Danish, one word at a time.</h1></div>

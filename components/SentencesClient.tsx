@@ -4,9 +4,17 @@ import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { BookOpenText, PenLine, Search, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import {
+  neighboursByEntry,
+  withConfirmedLink,
+  withoutLink,
+  type EntryLinkRow,
+  type LinkedEntryLabel,
+} from '@/lib/entry-links'
 import type { LearningStatus, ReviewCard, VocabularyEntry } from '@/lib/types'
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
+import { SynonymChips } from './SynonymChips'
 
 type SentenceFilter = 'all' | 'manual' | 'examples'
 type SentenceRow = {
@@ -24,23 +32,40 @@ type SentenceRow = {
 export function SentencesClient({
   initialEntries,
   initialCards,
+  initialLinks = [],
   initialQuery = '',
   translationLanguage = 'ru',
 }: {
   initialEntries: VocabularyEntry[]
   initialCards: ReviewCard[]
+  initialLinks?: EntryLinkRow[]
   initialQuery?: string
   translationLanguage?: 'ru' | 'en' | 'uk'
 }) {
   const [entries, setEntries] = useState(initialEntries)
   const [cards, setCards] = useState(initialCards)
+  const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
   const [filter, setFilter] = useState<SentenceFilter>('all')
 
   useEffect(() => setEntries(initialEntries), [initialEntries])
   useEffect(() => setCards(initialCards), [initialCards])
+  useEffect(() => setLinks(initialLinks), [initialLinks])
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
+
+  // Chips describe the entry the row opens: its own links for a sentence written by hand, the
+  // owning word's links for a derived example, which has no entry of its own.
+  const neighbours = useMemo(
+    () => neighboursByEntry(links, new Map<string, LinkedEntryLabel>(
+      entries.map((entry) => [entry.id, { id: entry.id, danish: entry.danish, translation: entry.translation }]),
+    )),
+    [links, entries],
+  )
+
+  function resolveLink(link: EntryLinkRow, action: 'confirm' | 'dismiss') {
+    setLinks((current) => action === 'dismiss' ? withoutLink(current, link) : withConfirmedLink(current, link))
+  }
 
   const rows = useMemo<SentenceRow[]>(() => {
     const manual = entries
@@ -92,6 +117,7 @@ export function SentencesClient({
     if (!error) {
       setEntries((current) => current.filter((entry) => entry.id !== entryId))
       setCards((current) => current.filter((card) => card.entry_id !== entryId))
+      setLinks((current) => current.filter((link) => link.a_id !== entryId && link.b_id !== entryId))
     }
   }
 
@@ -128,13 +154,14 @@ export function SentencesClient({
             <div>
               <strong>{row.danish}</strong>
               <small>{row.source === 'manual' ? row.pronunciation || 'No pronunciation' : `Example from ${row.parentDanish}`}</small>
+              <SynonymChips neighbours={neighbours.get(row.sourceEntryId) || []} limit={2} onResolved={resolveLink} />
             </div>
           </div>
           <span>{row.translation || <em className="muted">Not added</em>}</span>
           <span className="sentence-source-cell">
             {row.source === 'manual'
               ? <span className="sentence-source manual"><PenLine size={13}/> Added directly</span>
-              : <Link className="sentence-source" href={`/words?q=${encodeURIComponent(row.parentDanish || '')}`}><BookOpenText size={13}/> From “{row.parentDanish}”</Link>}
+              : <Link className="sentence-source" href={`/words/${row.sourceEntryId}`}><BookOpenText size={13}/> From “{row.parentDanish}”</Link>}
           </span>
           <div className="word-memory-cell">
             {row.source === 'manual' ? <>{card && <MemoryRing item={card} compact />}<span className={`status-chip ${row.learningStatus || 'new'}`}>{row.learningStatus || 'new'}</span></> : <span className="status-chip sentence-reference-chip">example</span>}
@@ -142,8 +169,15 @@ export function SentencesClient({
           <div className="row-menu">
             {row.source === 'manual'
               ? <button className="icon-button danger" title="Delete" onClick={() => removeSentence(row.sourceEntryId)}><X size={16}/></button>
-              : <Link className="icon-button" title="Open source word" href={`/words?q=${encodeURIComponent(row.parentDanish || '')}`}><BookOpenText size={16}/></Link>}
+              : <Link className="icon-button" title="Open source word" href={`/words/${row.sourceEntryId}`}><BookOpenText size={16}/></Link>}
           </div>
+          {/* Both row kinds open the same editor (D7). An example sentence has no entry of its
+              own, so it opens the word that owns it — which is where its example is edited. */}
+          <Link
+            className="word-row-link"
+            href={`/words/${row.sourceEntryId}`}
+            aria-label={row.source === 'manual' ? `Open ${row.danish}` : `Open ${row.parentDanish}`}
+          />
         </div>
       })}
       {!visible.length && <div className="empty-state tall">No sentences match this view.</div>}

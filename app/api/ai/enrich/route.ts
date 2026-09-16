@@ -1,17 +1,37 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import type { EntryKind } from '@/lib/types'
+import type { EntryKind, EntrySense } from '@/lib/types'
+import type { EnrichResult } from '@/lib/ai-responses'
 import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 import { normalizePronunciationText } from '@/lib/pronunciation'
+import { createSense, isNounGender, isPartOfSpeech, PARTS_OF_SPEECH, translationFromSenses } from '@/lib/senses'
 
 const PIPELINE_VERSION = 11
 
+/**
+ * Senses, part of speech and gender all ride inside this one schema (D16). Splitting them
+ * into a second AI round-trip would double the latency of the composer's main action.
+ * `translation` is still returned alongside `senses` — WordsClient's preview/apply flow
+ * consumes the flat string.
+ */
 const translationSchema = {
   type: 'object',
   properties: {
-    translation: { type: 'string' },
+    senses: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          text: { type: 'string' },
+          pos: { type: 'string', enum: [...PARTS_OF_SPEECH, ''] },
+          gender: { type: 'string', enum: ['en', 'et', ''] },
+        },
+        required: ['text', 'pos', 'gender'],
+        additionalProperties: false,
+      },
+    },
   },
-  required: ['translation'],
+  required: ['senses'],
   additionalProperties: false,
 }
 
@@ -90,11 +110,59 @@ function translationLooksValid(danish: string, translation: string, language: Tr
   return true
 }
 
+/** AI sense objects -> EntrySense[]. Ids are minted here, app-side, and are permanent (D15). */
+function sensesFromModel(value: unknown, entryKind: EntryKind): EntrySense[] {
+  if (!Array.isArray(value)) return []
+
+  const senses: EntrySense[] = []
+  const seen = new Set<string>()
+
+  for (const item of value) {
+    if (typeof item !== 'object' || item === null) continue
+    const record = item as Record<string, unknown>
+    const text = String(record.text || '').trim()
+    if (!text) continue
+    const key = text.toLocaleLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+
+    const pos = isPartOfSpeech(record.pos) ? record.pos : null
+    senses.push(createSense(text, {
+      source: 'ai',
+      pos,
+      gender: pos === 'noun' && isNounGender(record.gender) ? record.gender : null,
+    }))
+  }
+
+  // A sentence has exactly one meaning. Never let the model shard it into several.
+  if (entryKind === 'sentence' && senses.length > 1) {
+    return [createSense(senses.map((sense) => sense.text).join(', '), { source: 'ai' })]
+  }
+  return senses
+}
+
+interface SenseContext {
+  text: string
+  pos: string | null
+}
+
+/**
+ * The meaning an example sentence must demonstrate (D10). Only the sense text and its part of
+ * speech are read; nothing else from the request body reaches the prompt.
+ */
+function readSenseContext(value: unknown): SenseContext | null {
+  if (typeof value !== 'object' || value === null) return null
+  const record = value as Record<string, unknown>
+  const text = String(record.text || '').trim().slice(0, 120)
+  if (!text) return null
+  return { text, pos: isPartOfSpeech(record.pos) ? record.pos : null }
+}
+
 async function generateTranslation(danish: string, entryKind: EntryKind, language: TranslationLanguage) {
   const targetLanguage = languageNames[language]
   const outputRules = entryKind === 'sentence'
-    ? `Translate the complete Danish sentence/expression naturally into ${targetLanguage}. Return one natural translation. Do not give alternatives unless the sentence genuinely has two equally necessary readings.`
-    : `Translate the Danish word or phrase into ${targetLanguage}. Return its direct lexical meaning. One meaning is completely fine. If it has several common meanings that are genuinely useful to a learner, return 2-3 concise meanings separated only by comma + space.`
+    ? `Translate the complete Danish sentence/expression naturally into ${targetLanguage}. Return exactly ONE sense object holding the whole natural translation. Never split a sentence translation into several senses.`
+    : `Translate the Danish word or phrase into ${targetLanguage}. Return one sense object per genuinely distinct meaning. One meaning is completely fine. Return at most 3 senses, and only when each is genuinely useful to a learner.`
 
   for (let semanticAttempt = 0; semanticAttempt < 2; semanticAttempt += 1) {
     const parsed = await aiCompletion({
@@ -108,22 +176,27 @@ async function generateTranslation(danish: string, entryKind: EntryKind, languag
 ${outputRules}
 
 Hard output rules:
-- The translation field MUST contain only the ${targetLanguage} meaning that belongs in a flashcard answer field.
+- Each sense.text MUST contain only the ${targetLanguage} meaning that belongs in a flashcard answer field.
 - Never copy or echo the Danish source as the answer.
 - Never include the Danish source word alongside the translation.
-- Never include pronunciation, IPA, transliteration, stress hints, grammar notes, part-of-speech labels, explanations, examples, arrows, labels, or commentary.
-- Do not write things like "noun", "verb", "adjective", "translation", "means", or their ${targetLanguage} equivalents.
-- Do not pad a single clear meaning with invented synonyms. One correct meaning is preferred over several weak meanings.
-- When several meanings are appropriate for a word/phrase, use only a short comma-separated list of actual ${targetLanguage} translations.
+- Never include pronunciation, IPA, transliteration, stress hints, grammar notes, explanations, examples, arrows, labels, or commentary inside sense.text.
+- Do not write words like "noun", "verb", "adjective", "translation", "means", or their ${targetLanguage} equivalents inside sense.text. Grammar belongs in the pos field only.
+- Never put several meanings inside one sense.text. One meaning per sense object.
+- Do not pad a single clear meaning with invented synonyms. One correct sense is preferred over several weak ones.
 - Preserve the meaning of the exact Danish source. Do not translate a similar-looking word instead.
 ${language === 'ru' ? '- Write the answer in normal Russian Cyrillic. Do not output Latin-script Danish or transliteration.' : ''}
 ${language === 'uk' ? '- Write the answer in normal Ukrainian Cyrillic. Do not output Latin-script Danish or transliteration.' : ''}
 
-Examples of the required shape for Russian word translations:
-Danish: hele -> весь, целый
-Danish: spise -> есть
-Danish: hurtigt -> быстро
-The JSON must contain exactly one field: translation.`,
+Grammar fields, judged for the Danish source in that sense, not for the ${targetLanguage} word:
+- pos must be one of: ${PARTS_OF_SPEECH.join(', ')}. Use "phrase" for a multi-word expression with no single head word. Use "" only when you genuinely cannot tell.
+- gender is the Danish common/neuter article and applies ONLY when pos is "noun": "en" or "et". For everything else return "".
+
+Examples of the required shape for Russian:
+Danish: hele -> senses: [{text: "весь", pos: "adjective", gender: ""}, {text: "целый", pos: "adjective", gender: ""}]
+Danish: spise -> senses: [{text: "есть", pos: "verb", gender: ""}]
+Danish: hus -> senses: [{text: "дом", pos: "noun", gender: "et"}]
+Danish: bil -> senses: [{text: "машина", pos: "noun", gender: "en"}]
+The JSON must contain exactly one field: senses.`,
         },
         {
           role: 'user',
@@ -138,8 +211,9 @@ The JSON must contain exactly one field: translation.`,
       },
     }, semanticAttempt === 0 ? 'translation' : 'translation retry', OPENROUTER_MODEL_ROUTES.translation)
 
-    const translation = String(parsed.translation || '').trim()
-    if (translationLooksValid(danish, translation, language)) return translation
+    const senses = sensesFromModel(parsed.senses, entryKind)
+    const translation = translationFromSenses(senses)
+    if (senses.length && translationLooksValid(danish, translation, language)) return { translation, senses }
 
     console.warn('Rejected invalid translation output', {
       danish,
@@ -252,7 +326,7 @@ async function resolvePronunciation(
   return { pronunciation, cached: false }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -263,6 +337,12 @@ export async function POST(request: Request) {
   const fields: string[] = Array.isArray(body.fields) ? body.fields.map(String) : []
   const entryKind: EntryKind = body.entryKind === 'sentence' ? 'sentence' : 'word'
   const includeExample = entryKind !== 'sentence' && body.includeExample !== false
+  // Optional per-sense context (D10). When present the example must demonstrate this one
+  // meaning; a word with several meanings otherwise gets the same sentence for all of them.
+  const senseContext = readSenseContext(body.sense)
+  // Without this the route keeps whatever example sentence the draft already holds and only
+  // re-translates it, so `Regenerate all` could never actually replace an example (D3).
+  const regenerate = body.regenerate === true
 
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
@@ -270,7 +350,7 @@ export async function POST(request: Request) {
   const needsTranslation = fields.includes('translation')
   const needsExamples = includeExample && fields.some((field: string) => field === 'example_sentence' || field === 'example_translation')
 
-  const result: Record<string, string | number | boolean> = {}
+  const result: EnrichResult = {}
   const failures: string[] = []
   const jobs: Promise<void>[] = []
   let rateLimited = false
@@ -301,7 +381,11 @@ export async function POST(request: Request) {
       try {
         const { data: profile } = await profilePromise!
         const language = (profile?.default_translation_language || 'ru') as TranslationLanguage
-        result.translation = await generateTranslation(danish, entryKind, language)
+        const { translation, senses } = await generateTranslation(danish, entryKind, language)
+        // Both shapes are part of the contract: the composer reads `senses`, while the
+        // Words-page preview/apply flow reads the flat `translation` string.
+        result.translation = translation
+        result.senses = senses
       } catch (error) {
         console.error('Translation enrichment failed', error)
         rateLimited ||= isOpenRouterRateLimitError(error)
@@ -321,7 +405,7 @@ export async function POST(request: Request) {
         const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
         const level = profile?.danish_level || 'A1'
         const knownWords = (known || []).map((x) => x.danish).join(', ')
-        const existingExample = String(draft.example_sentence || '').trim()
+        const existingExample = regenerate ? '' : String(draft.example_sentence || '').trim()
 
         const parsed = await aiCompletion({
           temperature: 0.12,
@@ -333,6 +417,7 @@ export async function POST(request: Request) {
 - The source vocabulary item is: ${danish}
 - If an existing example sentence is supplied, KEEP that Danish sentence exactly and only translate it.
 - Otherwise generate a short natural Danish example at ${level} that demonstrates the source item clearly.
+${senseContext ? `- The example must show this exact meaning of the source item: "${senseContext.text}"${senseContext.pos ? ` (${senseContext.pos})` : ''}. Another meaning of the same Danish word is wrong here, however natural it sounds.` : ''}
 - Prefer known words when natural: ${knownWords || 'none yet'}.
 - example_translation must translate example_sentence, not the isolated source word.
 - Return no pronunciation, grammar labels, explanations, or commentary.`,
@@ -341,7 +426,9 @@ export async function POST(request: Request) {
               role: 'user',
               content: existingExample
                 ? `Existing Danish example sentence: ${existingExample}`
-                : `Create an example for Danish: ${danish}`,
+                : senseContext
+                  ? `Create an example for Danish "${danish}" used in the meaning "${senseContext.text}".`
+                  : `Create an example for Danish: ${danish}`,
             },
           ],
           response_format: {

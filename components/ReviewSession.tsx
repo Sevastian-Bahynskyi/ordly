@@ -1,9 +1,19 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, Flame, RotateCcw, Sparkles, Target, X } from 'lucide-react'
-import type { LearningStatus, ReviewItem } from '@/lib/types'
+import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
+import type { EntrySense, LearningStatus, ReviewItem } from '@/lib/types'
 import { checkAnswer, type AnswerResult } from '@/lib/answer'
+import {
+  activeSenses,
+  createSense,
+  entrySenses,
+  normalizeSenseText,
+  parseSenses,
+  splitTranslationIntoSenses,
+  translationFromSenses,
+} from '@/lib/senses'
 import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
@@ -30,7 +40,12 @@ type ReviewedItem = {
   sentenceTranslation: string
 }
 
-export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { initialItems: ReviewItem[]; translationLanguage?: 'ru' | 'en' | 'uk' }) {
+export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru' }: {
+  initialItems: ReviewItem[]
+  /** Senses of each entry's synonym neighbours, keyed by entry id (D5). */
+  linkedSenses?: Record<string, EntrySense[]>
+  translationLanguage?: 'ru' | 'en' | 'uk'
+}): React.JSX.Element {
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'
   const [items, setItems] = useState(initialItems)
   const [answer, setAnswer] = useState('')
@@ -41,6 +56,7 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
   const [freshSentence, setFreshSentence] = useState<{ sentence: string; translation: string } | null>(null)
   const [ratingLoading, setRatingLoading] = useState(false)
   const [checkingMeaning, setCheckingMeaning] = useState(false)
+  const [acceptingAnswer, setAcceptingAnswer] = useState(false)
   const [history, setHistory] = useState<ReviewedItem[]>([])
   const [historyIndex, setHistoryIndex] = useState<number | null>(null)
 
@@ -90,7 +106,14 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       return
     }
 
-    const quickResult = checkAnswer(typedAnswer, expected, { sentence: entryKind === 'sentence' })
+    // Recognition asks for the meaning, so every stored sense — and every sense of a synonym-linked
+    // entry (D5) — is a valid answer. Production asks for the Danish, where senses say nothing.
+    const recognition = mode === 'recognition'
+    const quickResult = checkAnswer(typedAnswer, expected, {
+      sentence: entryKind === 'sentence',
+      senses: recognition ? entrySenses(entry) : null,
+      linkedSenses: recognition && current ? linkedSenses[current.entry_id] || null : null,
+    })
     if (quickResult !== 'incorrect') {
       setResult(quickResult)
       setRevealedWithoutAnswer(false)
@@ -123,6 +146,50 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
     setResult(finalResult)
     setRevealedWithoutAnswer(false)
     setRevealed(true)
+  }
+
+  /**
+   * `My answer was right` (D5). Neither grader knows every way a meaning can be phrased, so the
+   * learner gets the last word: the verdict flips to correct — which is what the rating call
+   * records and what the suggested FSRS rating is derived from — and the typed answer is stored
+   * as a `source: 'user'` sense, so the deterministic checker accepts it from now on instead of
+   * asking the AI again.
+   *
+   * The learner still picks the FSRS rating themselves (AGENTS.md §11); this never rates for them.
+   */
+  async function acceptTypedAnswer() {
+    const typed = answer.trim()
+    if (!current || !entry || !typed || acceptingAnswer) return
+
+    setAcceptingAnswer(true)
+    // A row written before the senses migration has an empty array; deriving the base from its
+    // translation first is what stops the update from replacing every meaning with this one.
+    const stored = parseSenses(entry.senses)
+    const base: EntrySense[] = stored.length
+      ? stored
+      : splitTranslationIntoSenses(entry.translation, entryKind === 'sentence' ? 'sentence' : 'word')
+    const typedKey = normalizeSenseText(typed)
+    const known = activeSenses(base).some((sense) => normalizeSenseText(sense.text) === typedKey)
+
+    // A sentence keeps exactly one sense (plan §3.2): for a sentence only the verdict flips.
+    if (!known && typedKey && entryKind !== 'sentence') {
+      const nextSenses = [...base, createSense(typed, { source: 'user' })]
+      const { error } = await createClient()
+        .from('vocabulary_entries')
+        .update({ senses: nextSenses })
+        .eq('id', entry.id)
+
+      if (!error) {
+        const nextTranslation = translationFromSenses(nextSenses)
+        setItems((queue) => queue.map((queued) => queued.entry_id === entry.id
+          ? { ...queued, vocabulary_entries: { ...queued.vocabulary_entries, senses: nextSenses, translation: nextTranslation } }
+          : queued))
+      }
+    }
+
+    // The verdict flips either way: an answer the checker already knew is simply right.
+    setResult('correct')
+    setAcceptingAnswer(false)
   }
 
   async function rate(rating: number) {
@@ -267,6 +334,20 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
           <strong>{expected}</strong>
           {entryKind !== 'sentence' && mode !== 'cloze' && entry.example_sentence && <p>{entry.example_sentence}<small>{entry.example_translation}</small></p>}
         </div>
+
+        {/* Only in recognition: there the typed answer is a meaning, which is what a sense is.
+            In production the answer is Danish, and storing it as a meaning would be wrong. */}
+        {mode === 'recognition' && !revealedWithoutAnswer && answer.trim() && result !== 'correct' && (
+          <button
+            type="button"
+            className="soft-button accept-answer-button"
+            disabled={acceptingAnswer || ratingLoading}
+            onClick={() => void acceptTypedAnswer()}
+          >
+            {acceptingAnswer ? <Loader2 className="spin" size={15} /> : <ThumbsUp size={15} />}
+            My answer was right
+          </button>
+        )}
 
         <div className="rating-title"><span>How well did you remember it?</span><small>You decide. This controls FSRS.</small></div>
         <div className="rating-grid review-rating-grid">{ratings.map((r) => <button disabled={ratingLoading} key={r.value} onClick={() => rate(r.value)} className={`rating-button ${r.cls} ${suggestedRating(result) === r.value ? 'suggested' : ''}`}><strong>{r.label}</strong><span>{r.hint}</span></button>)}</div>

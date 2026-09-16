@@ -1,0 +1,71 @@
+/* Composer AI action row: Fill missing with AI / Regenerate all / Clear.
+   Mobile-first, because three actions on one line used to overflow a narrow
+   iPhone (AGENTS.md §17). Phones get a two-column grid with the primary fill
+   action on its own full-width row; desktop relaxes back into a single flex
+   row so the Save button keeps its place on the right. */
+.composer-ai-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.composer-ai-actions > button {
+  width: 100%;
+  min-width: 0;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.composer-ai-actions > .ai-fill-button {
+  grid-column: 1 / -1;
+}
+
+/* The single Undo offered after a regenerate. Reuses .notice so it matches the
+   existing composer messages instead of introducing another surface. */
+.composer-undo {
+  gap: 9px;
+}
+
+.composer-undo > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.composer-undo .composer-undo-action {
+  flex: 0 0 auto;
+  height: 30px;
+  padding: 0 11px;
+  font-size: 11px;
+}
+
+@media (min-width: 761px) {
+  .composer-ai-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .composer-ai-actions > .ai-fill-button {
+    flex: 1 1 auto;
+  }
+
+  .composer-ai-actions > .soft-button {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+/* Smallest phones (iPhone SE class): one action per row. At this width two
+   columns leave ~128px per button, which is not enough for `Regenerate all`
+   plus its icon without clipping. */
+@media (max-width: 360px) {
+  .composer-ai-actions {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .composer-undo {
+    flex-wrap: wrap;
+  }
+}
