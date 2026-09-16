@@ -1,14 +1,32 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { checkAnswer } from './answer'
-import { planPractice, introducedPracticeTargets } from './practice-planner'
-import { countsForSchedule, finishPracticeTask, practiceStudyDate, summarizePractice, type PracticeAttempt, type PracticeRating, type PracticeResponse, type PracticeStore } from './practice'
+import { planPractice, introducedPracticeTargets, newSenseObjectives } from './practice-planner'
+import { countsForSchedule, finishPracticeTask, isChoiceKind, legacyEvidence, practiceStudyDate, summarizePractice, type PracticeAttempt, type PracticeRating, type PracticeResponse, type PracticeSessionState, type PracticeStore, type PracticeTask } from './practice'
 import { isPracticeAttempt, isPracticeStore, isReviewSource } from './practice-validation'
 import { schedulePractice } from './practice-schedule'
 import { gradePractice } from './practice-ai'
-import { generateMemoryPack, parseMemoryPack } from './practice-pack'
+import { generateMemoryPack, generateSenseExample, parseMemoryPack, parseSenseExample } from './practice-pack'
 import { entryContentVersion } from './practice-content'
+import { isSenseTargetKey, itemSenses } from './practice-senses'
+import { sentenceTiles } from './practice-exercises'
+import { entrySenses, parseSenses } from './senses'
+import { linkedSensesFor, synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
+import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
 
 export class PracticeConflict extends Error {}
+
+/**
+ * Shared per-session ceiling on provider calls. Grading and coaching both spend from it, but only
+ * coaching is gated by the learner's AI toggle (D5) — see the `'answer'` handler.
+ */
+export const PRACTICE_AI_CALL_BUDGET = 12
+
+/** The learner's `synonym` edges. Read once per action; degrades to none rather than failing. */
+async function readSynonymLinks(supabase: SupabaseClient, userId: string): Promise<SynonymLinkRow[]> {
+  const { data, error } = await supabase.from('entry_links').select('a_id, b_id, kind, confirmed').eq('user_id', userId).eq('kind', 'synonym').limit(2000)
+  if (error || !Array.isArray(data)) return []
+  return data as SynonymLinkRow[]
+}
 
 export async function readPractice(supabase: SupabaseClient, userId: string): Promise<{ store: PracticeStore; attempts: PracticeAttempt[] }> {
   const [state, history] = await Promise.all([
@@ -39,10 +57,11 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   const { store, attempts } = await readPractice(supabase, userId)
   if (store.session?.queue.length) return
   const now = new Date()
-  const [cards, profile, newLogs] = await Promise.all([
+  const [cards, profile, newLogs, links] = await Promise.all([
     supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).order('due').limit(1000),
     supabase.from('profiles').select('daily_new_limit, default_translation_language').eq('id', userId).single(),
     supabase.from('review_logs').select('entry_id').eq('user_id', userId).eq('study_date', practiceStudyDate(now)).eq('previous_state', 0),
+    readSynonymLinks(supabase, userId),
   ])
   if (cards.error || profile.error || newLogs.error) throw new Error('Could not prepare practice')
   const introduced = introducedPracticeTargets(attempts, now)
@@ -53,9 +72,105 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   const dailyLimit: unknown = profile.data.daily_new_limit
   if (typeof dailyLimit !== 'number' || !Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 50) throw new Error('Invalid practice limit')
   const previous = store.session && !store.session.finished ? store.session : null
-  const planned = planPractice({ items, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled: previous?.aiEnabled ?? aiEnabled, now })
+  const plan = (source: ReviewItem[]): PracticeSessionState =>
+    planPractice({ items: source, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled: previous?.aiEnabled ?? aiEnabled, now, links })
+  let planned = plan(items)
+  // D10: a meaning gets its example sentence the moment it first becomes an objective. Replanning
+  // with the filled-in example lets the newly promoted sense start on a real interactive board
+  // instead of the bare typed fallback.
+  if (await fillSenseExamples(supabase, userId, planned, items, language)) planned = plan(items)
   const session = previous ? { ...previous, queue: planned.queue, current: null } : planned
   await commit(supabase, store, { ...store, session })
+}
+
+/**
+ * Generate the missing example for each sense this plan is newly admitting, and store it on the
+ * sense itself (D10). Returns whether anything changed.
+ *
+ * Three deliberate restraints: the primary sense is skipped because it reads the entry's own
+ * `example_sentence` columns; an existing example is never overwritten, only a null one filled, so
+ * the "generated aids never overwrite vocabulary fields" rule still holds; and the write is
+ * conditional on `updated_at`, so an edit made in the entry editor between the read and the write
+ * simply wins. Promotion is capped at one sense per session, so this is at most one provider call.
+ */
+async function fillSenseExamples(supabase: SupabaseClient, userId: string, session: PracticeSessionState, items: ReviewItem[], language: TranslationLanguage): Promise<boolean> {
+  let changed = false
+  for (const task of newSenseObjectives(session)) {
+    const item = items.find((candidate) => candidate.entry_id === task.entryId)
+    if (!item) continue
+    const senses = itemSenses(item)
+    const index = senses.findIndex((sense) => sense.id === task.senseId)
+    if (index <= 0 || senses[index].example) continue
+    const sense = senses[index]
+    const entry = item.vocabulary_entries
+    const cacheKey = `sense-example-v1:${task.targetKey}:${task.contentVersion}:${language}`
+    const { data: cached } = await supabase.from('practice_packs').select('payload').eq('user_id', userId).eq('cache_key', cacheKey).maybeSingle()
+    let pack = parseSenseExample(cached?.payload, entry.danish)
+    if (!pack) {
+      pack = await generateSenseExample(entry.danish, { text: sense.text, pos: sense.pos }, language)
+      if (pack) await supabase.from('practice_packs').insert({ user_id: userId, cache_key: cacheKey, payload: pack })
+    }
+    if (!pack) continue
+    // Patch only this sense, on the row as we read it, leaving every text untouched so the sync
+    // trigger recomputes an identical `translation` and no in-flight task is invalidated.
+    const stored = parseSenses(entry.senses)
+    const next = stored.map((candidate) => candidate.id === sense.id && !candidate.example
+      ? { ...candidate, example: pack.example, example_translation: pack.translation }
+      : candidate)
+    const { error } = await supabase.from('vocabulary_entries').update({ senses: next }).eq('id', entry.id).eq('user_id', userId).eq('updated_at', entry.updated_at)
+    if (error) continue
+    entry.senses = next
+    changed = true
+  }
+  return changed
+}
+
+/**
+ * The senses of the entries a `synonym` edge joins this one to (D5, §4).
+ *
+ * Grading reads the whole synonym graph, confirmed or not: accepting a meaning the learner
+ * genuinely knows is forgiving, and being too generous here costs far less than marking a right
+ * answer wrong. Distractors are the opposite case and pass `confirmedOnly: true` — see the planner.
+ *
+ * Called only after the entry's own senses have already failed to match, so the two queries never
+ * land on the answers that were going to be accepted anyway.
+ */
+async function linkedGradingSenses(supabase: SupabaseClient, userId: string, entry: Record<string, unknown> | null): Promise<EntrySense[]> {
+  const entryId = entry ? String(entry.id || '') : ''
+  if (!entryId) return []
+  const links = await readSynonymLinks(supabase, userId)
+  const neighbours = synonymNeighbourIds(entryId, links)
+  if (!neighbours.length) return []
+  const { data } = await supabase.from('vocabulary_entries').select('id, danish, translation, senses, entry_kind').eq('user_id', userId).in('id', neighbours).limit(50)
+  return linkedSensesFor(entryId, links, data || [])
+}
+
+/**
+ * The assistance a revealed answer carries. A tapped board is `'choices'`, but an already
+ * escalated hint or model reveal stays as it is: those are stricter, because they stop the
+ * objective advancing at all.
+ */
+function choiceAssistance(task: PracticeTask, response: PracticeResponse, answer: string, spoken: boolean): PracticeResponse['assistance'] {
+  if (!answer && !spoken) return 'model'
+  if (response.assistance !== 'none') return response.assistance
+  return isChoiceKind(task.kind) ? 'choices' : 'none'
+}
+
+/**
+ * A tapped answer has to be one of the offered options. Without this the client could post free
+ * text and collect `'choices'` assistance for it, which is a grading claim the board never made.
+ */
+function isOfferedChoice(task: PracticeTask, answer: string): boolean {
+  const choices = task.choices || []
+  if (!choices.length) return false
+  if (task.kind !== 'assemble') return choices.includes(answer)
+  const bank = [...choices]
+  for (const tile of sentenceTiles(answer)) {
+    const at = bank.indexOf(tile)
+    if (at < 0) return false
+    bank.splice(at, 1)
+  }
+  return true
 }
 
 export interface PracticeAction {
@@ -90,17 +205,19 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     return
   }
   if (!task) throw new PracticeConflict()
+  let entry: Record<string, unknown> | null = null
   if (task.entryId) {
-    const { data: entry, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
+    const { data, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
     if (error) throw new Error('Could not check this entry')
-    if (!entry || entryContentVersion(entry) !== task.contentVersion) {
+    if (!data || entryContentVersion(data) !== task.contentVersion) {
       const queue = session.queue.filter((item) => item.entryId !== task.entryId)
       await commit(supabase, store, { ...store, session: { ...nextSession, queue, current: null } })
       return
     }
+    entry = data
   }
   if (input.action === 'repair') {
-    if (!response.revealed || !session.aiEnabled || session.aiCalls >= 12) throw new PracticeConflict()
+    if (!response.revealed || !session.aiEnabled || session.aiCalls >= PRACTICE_AI_CALL_BUDGET) throw new PracticeConflict()
     const { data: profile } = await supabase.from('profiles').select('default_translation_language').eq('id', userId).single()
     const language = String(profile?.default_translation_language || 'ru')
     const cacheKey = `memory-v2:${task.targetKey}:${task.contentVersion}:${language}`
@@ -128,22 +245,38 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   if (input.action === 'answer') {
     if (response.revealed) return
     const answer = input.answer?.trim() || ''
-    const spoken = input.modality === 'spoken'
-    const result = answer && !spoken ? checkAnswer(answer, task.answer, { sentence: task.kind !== 'recall' || task.answerIsSentence, meaning: task.kind === 'recall' }) : 'incorrect'
-    let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? 'Needs checking. Compare your meaning with the example and choose your own rating.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
-    if (answer && !spoken && result === 'incorrect') {
+    const choiceKind = isChoiceKind(task.kind)
+    const spoken = input.modality === 'spoken' && !choiceKind
+    // A tapped board is graded by construction: the option either is the answer or is not, so no
+    // provider call is ever needed, and the client may only submit options the board offered.
+    if (choiceKind && answer && !isOfferedChoice(task, answer)) throw new PracticeConflict()
+    // Only meaning recall may accept another sense: for a production task the expected answer is
+    // the Danish, and a meaning in the learner's own language must never satisfy it (D5).
+    const recall = !choiceKind && task.kind === 'recall'
+    const options = { sentence: choiceKind || task.kind !== 'recall' || task.answerIsSentence, meaning: task.kind === 'recall', senses: recall ? entrySenses(entry || {}) : null }
+    let result = answer && !spoken ? checkAnswer(answer, task.answer, options) : 'incorrect'
+    // Deterministic-first, then one hop across the synonym graph, and only then the provider.
+    if (result === 'incorrect' && answer && !spoken && recall) {
+      const linkedSenses = await linkedGradingSenses(supabase, userId, entry)
+      if (linkedSenses.length) result = checkAnswer(answer, task.answer, { ...options, linkedSenses })
+    }
+    let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? (choiceKind ? 'Not this one. Read the answer and the contrast below.' : 'Needs checking. Compare your meaning with the example and choose your own rating.') : choiceKind ? 'Correct. You picked it from the options, so this counts as supported practice.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
+    if (answer && !spoken && !choiceKind && result === 'incorrect') {
       feedback.result = 'ungraded'
-      if (session.aiEnabled && session.aiCalls < 12) {
+      // D5: grading is not coaching. A learner who turned AI feedback off still deserves to have
+      // a correct synonym recognised, so the call is permitted either way — the toggle now only
+      // decides whether the model's prose is shown. The shared call budget still applies.
+      if (session.aiCalls < PRACTICE_AI_CALL_BUDGET) {
         // Reserve the call before contacting the provider, preventing concurrent retries from overspending.
         const reserved = await commit(supabase, store, { ...store, session: { ...nextSession, aiCalls: session.aiCalls + 1 } })
         const { data: profile } = await supabase.from('profiles').select('default_translation_language').eq('id', userId).single()
         const checked = await gradePractice(task, answer, String(profile?.default_translation_language || 'ru'))
-        if (checked) feedback = checked
+        if (checked) feedback = session.aiEnabled ? checked : { ...checked, feedback: feedback.feedback }
         Object.assign(store, reserved)
         nextSession = { ...reserved.session!, elapsedSeconds }
       }
     }
-    nextSession.current = { ...response, ...feedback, answer, modality: spoken ? 'spoken' : 'typed', responseMs: input.responseMs, replays: input.replays, revealed: true, answeredAt: now.toISOString(), assistance: !answer && !spoken ? 'model' : response.assistance }
+    nextSession.current = { ...response, ...feedback, answer, modality: spoken ? 'spoken' : 'typed', responseMs: input.responseMs, replays: input.replays, revealed: true, answeredAt: now.toISOString(), assistance: choiceAssistance(task, response, answer, spoken) }
     await commit(supabase, store, { ...store, session: nextSession })
     return
   }
@@ -162,7 +295,9 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   const objectives = { ...store.objectives }
   let legacyChange: Record<string, unknown> | null = null
   if (countsForSchedule(task, finalResponse, rating) && rating !== null) {
-    if (task.cardId) {
+    // D14: `legacyEvidence` is the only door to `review_cards` / `review_logs` / mastery, and a
+    // `'choices'` answer never gets through it — not even on Again.
+    if (legacyEvidence(task, finalResponse) && task.cardId) {
       const { data: card, error } = await supabase.from('review_cards').select('*').eq('id', task.cardId).eq('user_id', userId).single()
       if (error || !card) throw new PracticeConflict()
       if (card.last_review && Date.parse(card.last_review) > Date.parse(answeredAt)) {
@@ -171,7 +306,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
       }
       const scheduled = schedulePractice({ ...card, last_review: card.last_review || undefined }, rating, new Date(answeredAt))
       legacyChange = { id: card.id, expectedReps: card.reps, expectedLastReview: card.last_review, card: scheduled }
-    } else if (task.objective === 'production') {
+    } else if (task.objective === 'production' || isSenseTargetKey(task.targetKey)) {
       const previous = objectives[task.targetKey]
       const card = previous?.task.contentVersion === task.contentVersion ? previous.card : null
       objectives[task.targetKey] = { task: { ...task, newTarget: false, retry: 0 }, card: schedulePractice(card, rating, new Date(answeredAt)) }

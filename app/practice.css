@@ -97,3 +97,26 @@
   .practice-header-active { flex-wrap: wrap; }
   .practice-session-controls { width: 100%; justify-content: flex-end; }
 }
+
+/* Interactive boards (D13). Every tap target clears 44px so it stays comfortable on a phone. */
+.practice-sense-lead { text-align: center; max-width: 560px; margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.practice-sense-lead strong { color: var(--purple); }
+.practice-contrast { max-width: 560px; margin: 0 auto 24px; padding: 15px 17px; border: 1px dashed var(--line); border-radius: 15px; background: #fbfaff; }
+.practice-contrast span { display: block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted-2); }
+.practice-contrast p { margin: 7px 0 0; font-size: 16px; line-height: 1.55; }
+.practice-bank { margin-bottom: 8px; }
+.practice-bank-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 64px; padding: 12px; border: 1px solid var(--line); border-radius: 16px; background: #fcfbfe; }
+.practice-bank-tiles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 52px; margin-top: 14px; }
+.practice-bank-empty { color: var(--muted-2); font-size: 13px; padding: 0 4px; }
+.practice-tile { min-height: 44px; padding: 10px 15px; font: inherit; font-size: 15px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 13px; cursor: pointer; }
+.practice-tile:disabled { opacity: .55; cursor: default; }
+.practice-tile.placed { color: var(--purple); background: var(--purple-soft); border-color: #d9cdfa; }
+.practice-choices { display: grid; gap: 9px; }
+.practice-choice { min-height: 52px; padding: 14px 17px; font: inherit; font-size: 16px; line-height: 1.45; text-align: left; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 15px; cursor: pointer; overflow-wrap: anywhere; }
+.practice-choice:disabled { opacity: .55; cursor: default; }
+.practice-choice.chosen { color: var(--purple); background: var(--purple-soft); border-color: var(--purple-2); box-shadow: 0 0 0 1px var(--purple-2) inset; }
+@media (max-width: 600px) {
+  .practice-contrast { margin-bottom: 20px; }
+  .practice-tile { font-size: 16px; }
+  .practice-choice { font-size: 16px; padding: 14px 15px; }
+}
