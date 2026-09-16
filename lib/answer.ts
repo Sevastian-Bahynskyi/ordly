@@ -1,3 +1,5 @@
+import type { EntrySense } from './types'
+
 export type AnswerResult = 'correct' | 'mostly' | 'incorrect'
 
 function base(value: string) {
@@ -15,8 +17,21 @@ function relaxed(value: string) {
     .replaceAll('å', 'a')
 }
 
-export function checkAnswer(input: string, expected: string, options: { sentence?: boolean; meaning?: boolean } = {}): AnswerResult {
-  const candidates = (options.sentence ? [expected] : expected.split(/[;,/]/)).map(base).filter(Boolean)
+export interface CheckAnswerOptions {
+  sentence?: boolean
+  meaning?: boolean
+  /**
+   * The entry's senses. Every non-removed sense text is accepted as correct on its own.
+   * Sense texts are already one meaning each, so they are never split further — that is
+   * what keeps a sentence entry's single sense intact.
+   */
+  senses?: readonly EntrySense[] | null
+}
+
+export function checkAnswer(input: string, expected: string, options: CheckAnswerOptions = {}): AnswerResult {
+  const fromExpected = options.sentence ? [expected] : expected.split(/[;,/]/)
+  const fromSenses = (options.senses || []).filter((sense) => !sense.removed_at).map((sense) => sense.text)
+  const candidates = [...new Set([...fromExpected, ...fromSenses].map(base).filter(Boolean))]
   const actual = base(input)
   if (!actual) return 'incorrect'
   if (candidates.includes(actual)) return 'correct'

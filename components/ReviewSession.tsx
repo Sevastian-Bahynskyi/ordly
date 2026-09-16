@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Flame, RotateCcw, Sparkles, Target, X } from 'lucide-react'
 import type { LearningStatus, ReviewItem } from '@/lib/types'
 import { checkAnswer, type AnswerResult } from '@/lib/answer'
+import { entrySenses } from '@/lib/senses'
 import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
@@ -90,7 +91,12 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       return
     }
 
-    const quickResult = checkAnswer(typedAnswer, expected, { sentence: entryKind === 'sentence' })
+    // Recognition asks for the meaning, so every stored sense is a valid answer.
+    // Production asks for the Danish, where senses say nothing.
+    const quickResult = checkAnswer(typedAnswer, expected, {
+      sentence: entryKind === 'sentence',
+      senses: mode === 'recognition' ? entrySenses(entry) : null,
+    })
     if (quickResult !== 'incorrect') {
       setResult(quickResult)
       setRevealedWithoutAnswer(false)

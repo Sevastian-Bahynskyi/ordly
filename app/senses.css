@@ -1,0 +1,162 @@
+/* Sense rows in the composer: one row per meaning, with a colored part-of-speech chip
+   and the Danish en/et gender chip for nouns. */
+
+.sense-field {
+  gap: 8px;
+}
+
+.sense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sense-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 9px;
+  border: 1px solid #ece7f4;
+  border-radius: 13px;
+  background: #fcfbff;
+}
+
+.sense-row.primary {
+  border-color: #ded3f6;
+  background: #faf8ff;
+}
+
+.sense-row-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sense-row-main .sense-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sense-row-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+
+.sense-row-tools .icon-button {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  color: #a39cad;
+}
+
+.sense-row-tools .icon-button:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.sense-row-grammar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sense-primary-chip {
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: #eee9ff;
+  color: #684dc7;
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* The chip is a real <select> so part of speech stays keyboard- and touch-editable. */
+.pos-chip {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.5;
+  cursor: pointer;
+  background: var(--pos-bg, #f1eff3);
+  color: var(--pos-fg, #8d8793);
+  border-color: var(--pos-border, #e7e3ec);
+}
+
+.pos-chip:focus-visible {
+  outline: 2px solid #b9a6f0;
+  outline-offset: 1px;
+}
+
+.pos-none { --pos-bg: #f1eff3; --pos-fg: #8d8793; --pos-border: #e7e3ec; }
+.pos-noun { --pos-bg: #eaf1ff; --pos-fg: #3c63b8; --pos-border: #d6e2fb; }
+.pos-verb { --pos-bg: #eafaf0; --pos-fg: #2f7d52; --pos-border: #d3f0df; }
+.pos-adjective { --pos-bg: #fff2e3; --pos-fg: #a8641d; --pos-border: #fae0c4; }
+.pos-adverb { --pos-bg: #fdeef6; --pos-fg: #a94279; --pos-border: #f7d8e8; }
+.pos-pronoun { --pos-bg: #eee9ff; --pos-fg: #684dc7; --pos-border: #ded3f6; }
+.pos-preposition { --pos-bg: #e6f6f7; --pos-fg: #2c7a80; --pos-border: #cfeaec; }
+.pos-conjunction { --pos-bg: #f3f1e4; --pos-fg: #7a7333; --pos-border: #e6e2cb; }
+.pos-numeral { --pos-bg: #eef3ea; --pos-fg: #557040; --pos-border: #dde7d5; }
+.pos-interjection { --pos-bg: #ffeeee; --pos-fg: #b04545; --pos-border: #fad8d8; }
+.pos-phrase { --pos-bg: #f0eef8; --pos-fg: #5f5a86; --pos-border: #e0dcef; }
+
+.gender-chip-group {
+  display: inline-flex;
+  gap: 3px;
+  padding: 2px;
+  border-radius: 999px;
+  background: #f1eff3;
+}
+
+.gender-chip {
+  border: 0;
+  border-radius: 999px;
+  padding: 2px 9px;
+  background: transparent;
+  color: #8d8793;
+  font-size: 10.5px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.gender-chip.active {
+  background: #fff;
+  color: #3c63b8;
+  box-shadow: 0 1px 2px rgba(60, 53, 69, 0.12);
+}
+
+.sense-add {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px dashed #ded3f6;
+  border-radius: 999px;
+  padding: 5px 11px;
+  background: transparent;
+  color: #684dc7;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sense-add:hover {
+  background: #faf8ff;
+}
+
+@media (max-width: 520px) {
+  .sense-row {
+    padding: 7px 8px;
+  }
+
+  .sense-row-tools .icon-button {
+    width: 30px;
+    height: 30px;
+  }
+}

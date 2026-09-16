@@ -2,20 +2,35 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkles, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Trash2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
-import type { EntryKind } from '@/lib/types'
+import {
+  activeSenses,
+  createSense,
+  parseSenses,
+  PART_OF_SPEECH_LABELS,
+  PARTS_OF_SPEECH,
+  splitTranslationIntoSenses,
+  translationFromSenses,
+} from '@/lib/senses'
+import type { EntryKind, EntrySense, NounGender, PartOfSpeech } from '@/lib/types'
 
 interface Draft {
   danish: string
   pronunciation: string
+  /**
+   * Derived from `senses` and never edited directly. It stays on the draft so the existing
+   * enrich field plumbing (`EnrichableField`, per-field mini buttons, fill-missing) is
+   * unchanged, and so the insert keeps writing the denormalized column the DB expects.
+   */
   translation: string
+  senses: EntrySense[]
   example_sentence: string
   example_translation: string
 }
 
-type EnrichableField = Exclude<keyof Draft, 'danish'>
+type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses'>
 type DuplicateEntry = { id: string; translation: string | null }
 type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
@@ -41,17 +56,26 @@ function enrichableFieldsFor(entryKind: EntryKind, includeExample: boolean): Enr
   return allEnrichableFields
 }
 
-const emptyDraft: Draft = {
-  danish: '',
-  pronunciation: '',
-  translation: '',
-  example_sentence: '',
-  example_translation: '',
+function blankDraft(): Draft {
+  return {
+    danish: '',
+    pronunciation: '',
+    translation: '',
+    senses: [createSense('')],
+    example_sentence: '',
+    example_translation: '',
+  }
+}
+
+/** senses are the source of truth; translation is recomputed from them on every change. */
+function withSenses(draft: Draft, senses: EntrySense[]): Draft {
+  const next = senses.length ? senses : [createSense('')]
+  return { ...draft, senses: next, translation: translationFromSenses(next) }
 }
 
 export function AddWordComposer({ compact = false, translationLanguage = 'ru' }: { compact?: boolean; translationLanguage?: 'ru' | 'en' | 'uk' }) {
   const router = useRouter()
-  const [draft, setDraft] = useState<Draft>(emptyDraft)
+  const [draft, setDraft] = useState<Draft>(blankDraft)
   const [entryKind, setEntryKind] = useState<EntryKind>('word')
   const [includeExample, setIncludeExample] = useState(true)
   const [examplePreferenceTouched, setExamplePreferenceTouched] = useState(false)
@@ -113,12 +137,19 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setExampleCheckStatus('idle')
   }
 
-  function patch(key: keyof Draft, value: string) {
+  function patch(key: 'danish' | EnrichableField, value: string) {
     if (key === 'danish') {
       const nextKind = inferEntryKind(value)
-      setDraft((current) => nextKind === 'sentence'
-        ? { ...current, danish: value, example_sentence: '', example_translation: '' }
-        : { ...current, danish: value })
+      setDraft((current) => {
+        if (nextKind !== 'sentence') return { ...current, danish: value }
+        // A sentence has exactly one meaning. Fold any extra sense rows back into one
+        // rather than leaving a comma-split sentence translation behind.
+        const active = activeSenses(current.senses)
+        const collapsed = active.length > 1
+          ? [createSense(translationFromSenses(active), { source: active[0].source })]
+          : current.senses
+        return withSenses({ ...current, danish: value, example_sentence: '', example_translation: '' }, collapsed)
+      })
       setEntryKind(nextKind)
 
       if (nextKind === 'sentence') {
@@ -146,6 +177,43 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setNotice(null)
   }
 
+  function applySenses(next: EntrySense[]) {
+    setDraft((current) => withSenses(current, next))
+    setNotice(null)
+  }
+
+  function updateSense(id: string, patchSense: Partial<EntrySense>) {
+    applySenses(draft.senses.map((sense) => sense.id === id ? { ...sense, ...patchSense } : sense))
+  }
+
+  function setSensePos(id: string, pos: PartOfSpeech | null) {
+    // Gender only means anything on a noun; drop it as soon as the sense stops being one.
+    updateSense(id, { pos, gender: pos === 'noun' ? draft.senses.find((sense) => sense.id === id)?.gender ?? null : null })
+  }
+
+  function setSenseGender(id: string, gender: NounGender | null) {
+    updateSense(id, { gender })
+  }
+
+  function addSense() {
+    applySenses([...draft.senses, createSense('')])
+  }
+
+  /** The draft entry does not exist yet, so an unsaved sense is dropped outright. */
+  function removeSense(id: string) {
+    applySenses(draft.senses.filter((sense) => sense.id !== id))
+  }
+
+  function moveSense(id: string, delta: -1 | 1) {
+    const index = draft.senses.findIndex((sense) => sense.id === id)
+    const target = index + delta
+    if (index < 0 || target < 0 || target >= draft.senses.length) return
+    const next = [...draft.senses]
+    const [moved] = next.splice(index, 1)
+    next.splice(target, 0, moved)
+    applySenses(next)
+  }
+
   function setExampleEnabled(enabled: boolean) {
     if (entryKind === 'sentence') return
 
@@ -164,7 +232,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''
     resetExampleCheck()
-    setDraft(emptyDraft)
+    setDraft(blankDraft())
     setEntryKind('word')
     setIncludeExample(true)
     setExamplePreferenceTouched(false)
@@ -278,7 +346,9 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
   /** Only the fields that are still empty right now. */
   async function fillMissingWithAI() {
-    const missing = activeEnrichableFields().filter((key) => !draft[key].trim())
+    const missing = activeEnrichableFields().filter((key) => key === 'translation'
+      ? !translationFromSenses(draft.senses).trim()
+      : !draft[key].trim())
     if (!missing.length) {
       setNotice('Nothing is empty. Use Regenerate all to replace what is there.')
       return
@@ -324,9 +394,16 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
 
       setDraft((current) => {
-        const next = { ...current }
+        let next = { ...current }
         for (const key of requestedFields) {
           if (typeof body[key] === 'string') next[key] = body[key]
+        }
+        if (requestedFields.includes('translation')) {
+          // `senses` is the real payload (D16 puts pos and gender in this same response);
+          // the flat `translation` string is the fallback for an older/partial response.
+          const returned = parseSenses(body.senses)
+          const senses = returned.length ? returned : splitTranslationIntoSenses(next.translation, entryKind)
+          if (senses.length) next = withSenses(next, senses)
         }
         if (!effectiveIncludeExample) {
           next.example_sentence = ''
@@ -369,7 +446,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   async function save() {
     if (aiLoading) return setNotice('Wait for the AI check to finish.')
     if (!draft.danish.trim()) return setNotice('Danish text is required.')
-    if (!draft.translation.trim()) return setNotice('Add a translation or use AI to fill it.')
+    const senses = activeSenses(draft.senses).map((sense) => ({ ...sense, text: sense.text.trim() }))
+    if (!senses.length) return setNotice('Add a translation or use AI to fill it.')
 
     setSaving(true)
     const supabase = createClient()
@@ -392,7 +470,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     const { data: savedEntry, error } = await supabase.from('vocabulary_entries').insert({
       danish: draft.danish.trim(),
       pronunciation: draft.pronunciation.trim() || null,
-      translation: draft.translation.trim(),
+      translation: translationFromSenses(senses),
+      senses,
       example_sentence: storeExample ? draft.example_sentence.trim() || null : null,
       example_translation: storeExample ? draft.example_translation.trim() || null : null,
       entry_kind: entryKind,
@@ -417,7 +496,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''
     resetExampleCheck()
-    setDraft(emptyDraft)
+    setDraft(blankDraft())
     setEntryKind('word')
     setIncludeExample(true)
     setExamplePreferenceTouched(false)
@@ -451,6 +530,8 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   }
 
   const duplicateMeanings = [...new Set(liveDuplicate.map((item) => item.translation?.trim() || 'No translation'))]
+  // The primary sense is the first non-removed one: it owns the entry's example columns.
+  const primaryId = activeSenses(draft.senses)[0]?.id ?? draft.senses[0]?.id ?? ''
   const inputKind = inferDanishInputKind(draft.danish)
   const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Normalize phrase' : 'Check sentence'
   const inputKindLabel = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence detected'
@@ -499,10 +580,38 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
           <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="сюнес" />
         </label>
 
-        <label className="field">
-          <span>{translationLabel} <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} /></span>
-          <input value={draft.translation} onChange={(e) => patch('translation', e.target.value)} placeholder={translationPlaceholder} />
-        </label>
+        <div className="field field-wide sense-field">
+          <span>
+            <span>{translationLabel}</span>
+            <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} />
+          </span>
+
+          <div className="sense-list">
+            {draft.senses.map((sense, index) => (
+              <SenseRow
+                key={sense.id}
+                sense={sense}
+                index={index}
+                total={draft.senses.length}
+                isPrimary={sense.id === primaryId}
+                showGrammar={entryKind !== 'sentence'}
+                allowRemove={draft.senses.length > 1}
+                placeholder={index === 0 ? translationPlaceholder : 'another meaning'}
+                onText={(value) => updateSense(sense.id, { text: value })}
+                onPos={(value) => setSensePos(sense.id, value)}
+                onGender={(value) => setSenseGender(sense.id, value)}
+                onMove={(delta) => moveSense(sense.id, delta)}
+                onRemove={() => removeSense(sense.id)}
+              />
+            ))}
+          </div>
+
+          {entryKind !== 'sentence' && (
+            <button type="button" className="sense-add" onClick={addSense}>
+              <Plus size={13} /> Add meaning
+            </button>
+          )}
+        </div>
 
         {entryKind !== 'sentence' && (
           <>
@@ -625,6 +734,73 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         </div>
       </div>
     </section>
+  )
+}
+
+function SenseRow({
+  sense, index, total, isPrimary, showGrammar, allowRemove, placeholder,
+  onText, onPos, onGender, onMove, onRemove,
+}: {
+  sense: EntrySense
+  index: number
+  total: number
+  isPrimary: boolean
+  showGrammar: boolean
+  allowRemove: boolean
+  placeholder: string
+  onText: (value: string) => void
+  onPos: (value: PartOfSpeech | null) => void
+  onGender: (value: NounGender | null) => void
+  onMove: (delta: -1 | 1) => void
+  onRemove: () => void
+}) {
+  return (
+    <div className={`sense-row${isPrimary ? ' primary' : ''}`}>
+      <div className="sense-row-main">
+        <input
+          className="sense-text"
+          value={sense.text}
+          onChange={(e) => onText(e.target.value)}
+          placeholder={placeholder}
+          aria-label={`Meaning ${index + 1}`}
+        />
+        <div className="sense-row-tools">
+          <button type="button" className="icon-button sense-move" onClick={() => onMove(-1)} disabled={index === 0} aria-label="Move meaning up"><ArrowUp size={13} /></button>
+          <button type="button" className="icon-button sense-move" onClick={() => onMove(1)} disabled={index === total - 1} aria-label="Move meaning down"><ArrowDown size={13} /></button>
+          <button type="button" className="icon-button danger sense-remove" onClick={onRemove} disabled={!allowRemove} aria-label="Remove meaning"><Trash2 size={13} /></button>
+        </div>
+      </div>
+
+      {showGrammar && (
+        <div className="sense-row-grammar">
+          {isPrimary && <span className="sense-primary-chip">Primary</span>}
+          <select
+            className={`pos-chip pos-${sense.pos || 'none'}`}
+            value={sense.pos || ''}
+            onChange={(e) => onPos(e.target.value ? (e.target.value as PartOfSpeech) : null)}
+            aria-label={`Part of speech for meaning ${index + 1}`}
+          >
+            <option value="">part of speech</option>
+            {PARTS_OF_SPEECH.map((pos) => <option key={pos} value={pos}>{PART_OF_SPEECH_LABELS[pos]}</option>)}
+          </select>
+
+          {sense.pos === 'noun' && (
+            <span className="gender-chip-group" role="group" aria-label={`Gender for meaning ${index + 1}`}>
+              {(['en', 'et'] as const).map((gender) => (
+                <button
+                  key={gender}
+                  type="button"
+                  className={`gender-chip${sense.gender === gender ? ' active' : ''}`}
+                  onClick={() => onGender(sense.gender === gender ? null : gender)}
+                >
+                  {gender}
+                </button>
+              ))}
+            </span>
+          )}
+        </div>
+      )}
+    </div>
   )
 }
 
