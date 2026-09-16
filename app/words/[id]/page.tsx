@@ -4,12 +4,16 @@ import { ArrowLeft } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
+import { SynonymGraph } from '@/components/SynonymGraph'
 import { VocabularyIcon } from '@/components/VocabularyIcon'
 import { requireUser } from '@/lib/auth'
+import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
 import { activeSenses, parseSenses } from '@/lib/senses'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
 
 export const dynamic = 'force-dynamic'
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 /**
  * Inspect and edit one entry (D7). This is a real route rather than a modal, so it is
@@ -19,10 +23,19 @@ export const dynamic = 'force-dynamic'
 export default async function EntryPage({ params }: { params: Promise<{ id: string }> }): Promise<React.JSX.Element> {
   const { supabase } = await requireUser()
   const { id } = await params
+  // The id is interpolated into a PostgREST `or` filter below, so it is validated as a uuid
+  // before it goes anywhere near the query rather than trusted from the URL.
+  if (!UUID_PATTERN.test(id)) notFound()
 
-  const [{ data: entry }, { data: profile }] = await Promise.all([
+  const [{ data: entry }, { data: profile }, { data: links }] = await Promise.all([
     supabase.from('vocabulary_entries').select('*').eq('id', id).maybeSingle(),
     supabase.from('profiles').select('default_translation_language').single(),
+    // Either end of the edge can be this entry: symmetric kinds are stored once, in canonical
+    // order, so a filter on a_id alone would show half the graph.
+    supabase
+      .from('entry_links')
+      .select('a_id, b_id, kind, source, confidence, confirmed')
+      .or(`a_id.eq.${id},b_id.eq.${id}`),
   ])
 
   // RLS already scopes this to the signed-in user, so a missing row and someone else's row are
@@ -30,11 +43,17 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   if (!entry) notFound()
 
   const typedEntry = entry as VocabularyEntry
-  const { data: card } = await supabase
-    .from('review_cards')
-    .select('*')
-    .eq('entry_id', typedEntry.id)
-    .maybeSingle()
+  const linkRows = (links || []) as EntryLinkRow[]
+  const neighbourIds = [...new Set(linkRows.map((link) => link.a_id === id ? link.b_id : link.a_id))]
+
+  // Second and last round-trip. The neighbour labels ride along with the review card rather
+  // than after it, so the graph costs the page no extra depth (AGENTS.md §16).
+  const [{ data: card }, { data: neighbours }] = await Promise.all([
+    supabase.from('review_cards').select('*').eq('entry_id', typedEntry.id).maybeSingle(),
+    neighbourIds.length
+      ? supabase.from('vocabulary_entries').select('id, danish, translation').in('id', neighbourIds)
+      : Promise.resolve({ data: [] as LinkedEntryLabel[] }),
+  ])
 
   const senses = activeSenses(parseSenses(typedEntry.senses))
   const backHref = typedEntry.entry_kind === 'sentence' ? '/sentences' : '/words'
@@ -68,6 +87,14 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
           mode="edit"
           entry={typedEntry}
           translationLanguage={profile?.default_translation_language || 'ru'}
+        />
+
+        <SynonymGraph
+          entryId={typedEntry.id}
+          entryDanish={typedEntry.danish}
+          entryKind={typedEntry.entry_kind || 'word'}
+          initialLinks={linkRows}
+          neighbourEntries={(neighbours || []) as LinkedEntryLabel[]}
         />
       </div>
     </AppShell>

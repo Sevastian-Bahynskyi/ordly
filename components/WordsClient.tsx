@@ -4,11 +4,19 @@ import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import {
+  neighboursByEntry,
+  withConfirmedLink,
+  withoutLink,
+  type EntryLinkRow,
+  type LinkedEntryLabel,
+} from '@/lib/entry-links'
 import { mergeSenses } from '@/lib/sense-merge'
 import { parseSenses } from '@/lib/senses'
 import type { EntrySense, ReviewCard, VocabularyEntry } from '@/lib/types'
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
+import { SynonymChips } from './SynonymChips'
 import { VocabularyIcon } from './VocabularyIcon'
 
 type EnrichField = 'pronunciation' | 'translation' | 'example_sentence' | 'example_translation'
@@ -32,16 +40,19 @@ const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example
 export function WordsClient({
   initialWords,
   initialCards,
+  initialLinks = [],
   initialQuery = '',
   translationLanguage = 'ru',
 }: {
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
+  initialLinks?: EntryLinkRow[]
   initialQuery?: string
   translationLanguage?: 'ru' | 'en' | 'uk'
 }) {
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
+  const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
   const [status, setStatus] = useState<'all' | 'new' | 'learning' | 'mastered'>('all')
   const [bulkOpen, setBulkOpen] = useState(false)
@@ -53,6 +64,19 @@ export function WordsClient({
   const [applyingPreview, setApplyingPreview] = useState(false)
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
+
+  // Every word is already in memory, so a chip costs one map lookup rather than a join — the
+  // same reason `senses` lives on the entry row (plan §7, AGENTS.md §16).
+  const neighbours = useMemo(
+    () => neighboursByEntry(links, new Map<string, LinkedEntryLabel>(
+      words.map((word) => [word.id, { id: word.id, danish: word.danish, translation: word.translation }]),
+    )),
+    [links, words],
+  )
+
+  function resolveLink(link: EntryLinkRow, action: 'confirm' | 'dismiss') {
+    setLinks((current) => action === 'dismiss' ? withoutLink(current, link) : withConfirmedLink(current, link))
+  }
 
   const visible = useMemo(() => words.filter((word) => {
     const matchesQ = !query || word.danish.toLocaleLowerCase('da-DK').includes(query.toLocaleLowerCase('da-DK')) || (word.translation || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())
@@ -240,6 +264,9 @@ export function WordsClient({
     if (!error) {
       setWords((current) => current.filter((word) => word.id !== id))
       setCards((current) => current.filter((card) => card.entry_id !== id))
+      // The database cascades the edges; the local copy has to follow or a chip would point at
+      // a word that is gone.
+      setLinks((current) => current.filter((link) => link.a_id !== id && link.b_id !== id))
     }
   }
 
@@ -256,7 +283,7 @@ export function WordsClient({
       {visible.map((word) => {
         const card = cardsByEntry.get(word.id)
         return <div className="word-row" key={word.id}>
-          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small></div></div>
+          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowDown, ArrowUp, Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Trash2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import {
@@ -720,6 +721,24 @@ export function EntryEditor({
     setNotice('Restored the text you had before regenerating.')
   }
 
+  /**
+   * Look for synonyms of the entry that was just written (D16, step 4).
+   *
+   * Deliberately not awaited, and deliberately after the write: the row is already committed
+   * and the composer is already reset by the time this runs, so a slow, rate-limited or absent
+   * model costs the learner nothing. `discoverSynonyms` swallows every failure, and the only
+   * visible effect of success is that the chips and the ego-graph appear on the next render.
+   */
+  function runSynonymDiscovery(entryId: string, kind: EntryKind | null | undefined): void {
+    // Synonymy between whole sentences is not a claim worth an AI call. The route refuses it
+    // anyway; this only saves the round-trip.
+    if (!entryId || kind === 'sentence') return
+    void discoverSynonyms(entryId).then((found) => {
+      // Only a run that actually stored an edge is worth re-rendering the route for.
+      if (found > 0) router.refresh()
+    })
+  }
+
   async function save() {
     if (aiLoading) return setNotice('Wait for the AI check to finish.')
     const current = draftRef.current
@@ -790,6 +809,7 @@ export function EntryEditor({
       setNotice('Saved. Your changes are live.')
       setSaving(false)
       router.refresh()
+      runSynonymDiscovery(saved.id, saved.entry_kind)
       return
     }
 
@@ -812,6 +832,8 @@ export function EntryEditor({
         body: JSON.stringify({ entryId: savedEntry.id }),
       }).catch(() => {})
     }
+
+    if (savedEntry?.id) runSynonymDiscovery(savedEntry.id, savedEntry.entry_kind)
 
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''
