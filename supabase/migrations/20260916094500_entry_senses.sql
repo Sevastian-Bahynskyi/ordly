@@ -96,6 +96,7 @@ revoke all on function private.translation_from_senses(jsonb) from public, anon,
 create or replace function private.sync_entry_senses()
 returns trigger
 language plpgsql
+security definer
 set search_path = ''
 as $$
 begin
