@@ -73,7 +73,10 @@ Important tables/functions currently include:
 - `pronunciation_cache`
 - `push_subscriptions`
 - `notification_deliveries`
+- `practice_state`, `practice_attempts`, `practice_packs` (guided practice)
+- `entry_links` (synonym graph, see §20)
 - private first-account claim / review-card creation / timestamp helpers
+- `private.sync_entry_senses` trigger and `public.record_sense_coverage` RPC (senses, see §20)
 
 RLS is owner-scoped. The app is intentionally personal-only: the first registered account gets access; later accounts are DB-blocked.
 
@@ -85,7 +88,9 @@ Repo migrations currently start at:
 - `0004_pronunciation_cache.sql`
 - notification migration added after those (check `supabase/migrations/` before modifying schema)
 
-Production migrations have already been applied. Keep repo migrations synchronized with production.
+Keep repo migrations synchronized with production. The meaning-model migrations (`20260916094500_entry_senses.sql`, `20260916143000_entry_links.sql`, `20260916190000_sense_coverage_and_dismissals.sql`) must be applied in order before that code deploys. Verify against production rather than assuming.
+
+SQL tests live in `supabase/tests/`. `meaning_model.sql` covers the senses trigger, coverage writes and link tombstones. Run it against a disposable `ghcr.io/supabase/postgres` container with every migration applied, never against production.
 
 ## 4. Authentication
 
@@ -112,7 +117,7 @@ Bottom nav is heavily used on iPhone and must remain responsive, animated, and s
 
 ## 6. Add Danish / composer
 
-Main implementation: `components/AddWordComposer.tsx`.
+Main implementation: `components/EntryEditor.tsx`, shared by `components/AddWordComposer.tsx` (create) and `/words/[id]` (edit). Meaning rows live in `components/SenseRow.tsx`. Add an AI action to `EntryEditor` and both surfaces get it.
 
 Required fields/behaviors:
 
@@ -121,8 +126,8 @@ Required fields/behaviors:
 - translation
 - optional separate example sentence + translated example
 - all fields remain manually editable
-- mini AI buttons per field
-- `Fill missing with AI`
+- mini AI buttons per field, plus per-meaning `Grammar` (part of speech/gender) and `Example for this meaning`
+- `Fill missing with AI` (empty fields only) and `Regenerate all` (every field, with a single Undo)
 - `Clear`
 - Cmd/Ctrl+Enter saves
 - duplicate lookup while typing: minimal but noticeable `Already saved · <meaning>` hint
@@ -232,6 +237,8 @@ Features:
 
 Bulk raw/untranslated entries are excluded from review until sufficiently enriched/translated.
 
+Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
+
 ## 10. FSRS / memory rings
 
 Scheduling uses `ts-fsrs` 5.4.2.
@@ -272,7 +279,8 @@ Key behaviors that must remain:
 - due cards first, then new cards subject to daily new limit
 - untranslated/raw entries excluded
 - typed answers
-- deterministic answer checker first
+- deterministic answer checker first; recognition accepts every stored sense and every sense of a synonym-linked entry (loaded with the cards in one parallel query)
+- `My answer was right` flips the verdict and stores the typed meaning as a `source: 'user'` sense (never for sentences, which keep exactly one sense)
 - if deterministic checker rejects a non-empty answer, AI semantic checking can decide whether it is a valid synonym/close meaning
   - example: Russian `тяжело` should be accepted for Danish `svært` when stored answer is `трудно, сложно`
 - user always selects final FSRS rating: Again / Hard / Good / Easy
@@ -463,3 +471,15 @@ At the start of the next session, do this before assuming anything:
 - Do not expose private keys/secrets.
 
 If the next agent follows this file plus the current code, it should be able to continue without needing the user to reconstruct the previous session.
+
+## 20. Meaning model (senses, synonyms, interactive practice)
+
+The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before touching senses, links or practice planning. The load-bearing rules:
+
+- `vocabulary_entries.senses` is the source of meaning. `translation` is a denormalized join maintained by the BEFORE trigger `vocabulary_sync_senses`. Legacy writers may still write `translation` alone, and the trigger re-derives senses from it. Sentence translations are never comma-split.
+- Sense ids are permanent. Regeneration goes through `mergeSenses` (`lib/sense-merge.ts`), and vanished senses are soft-deleted with `removed_at`. Practice objectives are keyed `entry:<id>:sense:<sid>`, so a new id silently strands FSRS state.
+- A sense objective's version (`senseContentVersion`) covers only the Danish, the sense id and that sense's text. `entryContentVersion` ignores `source: 'user'` senses. Do not widen either, or unrelated edits will reset schedules.
+- Coverage (`recognized`, `produced`, `last_seen`) is written only through `record_sense_coverage`, after review and practice ratings. The trigger carries coverage forward monotonically, so a stale editor save cannot roll it back.
+- Choice-based practice answers (`assistance: 'choices'`) never write `legacy_change`, so they never reach `review_cards` or mastery.
+- `entry_links`: symmetric kinds are stored once with `a_id < b_id`. Discovery runs after save, never blocking. Dismissing a suggestion writes a tombstone (`dismissed_at`, `source: 'user'`). Every reader that shows, grades or teaches must filter `dismissed_at is null`. Distractors use confirmed edges only.
+- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string.

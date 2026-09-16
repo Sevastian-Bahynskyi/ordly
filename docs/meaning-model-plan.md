@@ -154,3 +154,14 @@ Steps 2 and 4 are the only ones touching production data; land them alone so a b
 - **Cost.** Synonym discovery is one call per save. Keep candidate pre-filtering deterministic so the AI never sees the whole vocabulary.
 - **Graph honesty.** Auto-linked, unconfirmed edges must be visually distinct from confirmed ones, and must not be used to generate distractors until confirmed.
 - **Performance.** Every added read path is on the phone's critical path. `senses` is on the entry row precisely to avoid a join; do not introduce one.
+
+## 8. Implementation notes (decisions refined during review)
+
+Recorded here because §2 says no decision is re-opened silently.
+
+- **D6 distractors.** Direct confirmed synonyms are *excluded* from distractors, because in a gap they may genuinely be right. Their own confirmed neighbours (second hop) are preferred instead.
+- **D18 pace.** On top of the shared two-new-targets-per-day cap, at most one sense is promoted per session, so a vocabulary of multi-sense words cannot crowd out new words. Every eligible primary sense sorts ahead of every secondary one, with coldest coverage inside each group.
+- **D15 versions.** A sense objective is versioned on the Danish, its own id and its own normalized text, not on the whole entry. `source: 'user'` senses are excluded from the entry version, so `My answer was right` resets nothing.
+- **D4 dismissals.** Dismissing a suggested edge keeps the row as a tombstone (`dismissed_at`, `source: 'user'`) so discovery does not propose it again. High-confidence AI edges (≥ 0.85) are still stored confirmed, as D4 and D17 describe.
+- **D11 refinement.** Refinement only fills part of speech and gender on `'split'` senses and re-joins adjacent comma fragments. It leaves the `translation` string byte-for-byte unchanged, so it can run without a preview.
+- **§5 caching.** Interactive boards are rebuilt deterministically from stored senses and examples. Only generated sense examples are cached in `practice_packs`.
