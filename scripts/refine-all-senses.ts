@@ -18,12 +18,15 @@ import { execFile } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { promisify } from 'node:util'
-import { applyRefinement, needsRefinement } from '../lib/sense-refinement'
+import { isOpenRouterRateLimitError } from '../lib/openrouter'
+import { applyRefinement, needsRefinement, type RefinedMeaning } from '../lib/sense-refinement'
 import { classifySenses, MAX_REFINED_SENSE_LENGTH, MAX_REFINED_SENSES } from '../lib/sense-refinement-ai'
 import { activeSenses, parseSenses, translationFromSenses } from '../lib/senses'
 
 const run = promisify(execFile)
-const CONCURRENCY = 4
+/** One call at a time: four in parallel hit the provider's rate limit on about half the words. */
+const CONCURRENCY = 1
+const RETRIES = 4
 
 interface Row {
   id: string
@@ -57,13 +60,24 @@ function literal(value: string): string {
   return `$${tag}$${value}$${tag}$`
 }
 
+async function classifyWithRetry(danish: string, texts: string[]): Promise<RefinedMeaning[]> {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      return await classifySenses(danish, texts)
+    } catch (error) {
+      if (attempt >= RETRIES || !isOpenRouterRateLimitError(error)) throw error
+      await new Promise((resolve) => setTimeout(resolve, 4000 * attempt))
+    }
+  }
+}
+
 async function refine(row: Row, dryRun: boolean): Promise<string> {
   const stored = parseSenses(row.senses)
   const live = activeSenses(stored)
   if (!needsRefinement(stored)) return 'skip (already refined)'
   if (live.length > MAX_REFINED_SENSES) return `skip (${live.length} senses)`
 
-  const meanings = await classifySenses(row.danish, live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH)))
+  const meanings = await classifyWithRetry(row.danish, live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH)))
   const next = applyRefinement(stored, meanings)
   if (translationFromSenses(next) !== translationFromSenses(stored)) return 'skip (translation would change)'
 

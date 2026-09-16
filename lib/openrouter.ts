@@ -1,6 +1,8 @@
 export const OPENROUTER_MODEL_ROUTES = {
   pronunciation: ['google/gemini-3.1-flash-lite', 'qwen/qwen3.7-flash'],
   translation: ['qwen/qwen3.7-flash'],
+  // Grammatical gender needs real Danish knowledge; measured 9-10/10 here against 0/10 for qwen.
+  senseRefinement: ['google/gemini-3.1-flash-lite'],
   danishCorrection: ['qwen/qwen3.7-flash'],
   semanticGrading: ['qwen/qwen3.7-flash'],
   examples: ['qwen/qwen3.7-flash'],
