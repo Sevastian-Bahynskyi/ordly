@@ -38,6 +38,30 @@ export interface EntrySense {
   removed_at: string | null
 }
 
+/** `inflection_of` is the only directional kind: a_id is the inflected form, b_id the base. */
+export type EntryLinkKind = 'synonym' | 'antonym' | 'related' | 'inflection_of'
+
+export type EntryLinkSource = 'ai' | 'user'
+
+/**
+ * One edge of the meaning graph, in `public.entry_links`. Symmetric kinds are stored once in
+ * canonical order (`a_id < b_id`); use `canonicalLinkPair` in lib/synonyms.ts to build one.
+ *
+ * `confirmed` is the honesty flag: false means discovery proposed the edge and nobody has
+ * accepted it yet, or a material edit to one end demoted it (D17). Unconfirmed edges may be
+ * shown as dismissible chips but must never seed practice distractors.
+ */
+export interface EntryLink {
+  user_id: string
+  a_id: string
+  b_id: string
+  kind: EntryLinkKind
+  source: EntryLinkSource
+  confidence: number | null
+  confirmed: boolean
+  created_at: string
+}
+
 export interface Profile {
   id: string
   email: string | null

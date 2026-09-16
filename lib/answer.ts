@@ -26,12 +26,22 @@ export interface CheckAnswerOptions {
    * what keeps a sentence entry's single sense intact.
    */
   senses?: readonly EntrySense[] | null
+  /**
+   * Senses of entries joined to this one by a `synonym` edge (§4). Build them with
+   * `linkedSensesFor` in lib/synonyms.ts, which keeps the a_id/b_id direction straight.
+   *
+   * Opt-in, exactly like `senses`: with nothing passed the candidate set is unchanged. Grading
+   * stays deterministic and offline — resolving the edges is the caller's job, not a network
+   * call from here.
+   */
+  linkedSenses?: readonly EntrySense[] | null
 }
 
 export function checkAnswer(input: string, expected: string, options: CheckAnswerOptions = {}): AnswerResult {
   const fromExpected = options.sentence ? [expected] : expected.split(/[;,/]/)
   const fromSenses = (options.senses || []).filter((sense) => !sense.removed_at).map((sense) => sense.text)
-  const candidates = [...new Set([...fromExpected, ...fromSenses].map(base).filter(Boolean))]
+  const fromLinked = (options.linkedSenses || []).filter((sense) => !sense.removed_at).map((sense) => sense.text)
+  const candidates = [...new Set([...fromExpected, ...fromSenses, ...fromLinked].map(base).filter(Boolean))]
   const actual = base(input)
   if (!actual) return 'incorrect'
   if (candidates.includes(actual)) return 'correct'
