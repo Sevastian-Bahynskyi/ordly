@@ -56,3 +56,23 @@ export function checkAnswer(input: string, expected: string, options: CheckAnswe
   }
   return 'incorrect'
 }
+
+/**
+ * The ids of the senses a typed meaning actually named, for coverage (D9, D18).
+ *
+ * Uses the same equivalences `checkAnswer` accepts for a meaning — exact after normalization,
+ * Russian ё/ъ spelling, and the æøå-relaxed form — so a sense is credited exactly when grading
+ * would have accepted the answer on that sense's text alone. Removed senses are never credited.
+ */
+export function matchingSenseIds(input: string, senses: readonly EntrySense[] | null | undefined): string[] {
+  const actual = base(input)
+  if (!actual) return []
+  const spelling = (value: string): string => value.replaceAll('ё', 'е').replaceAll('ъ', '')
+  return (senses || [])
+    .filter((sense) => !sense.removed_at)
+    .filter((sense) => {
+      const candidate = base(sense.text)
+      return Boolean(candidate) && (candidate === actual || spelling(candidate) === spelling(actual) || relaxed(candidate) === relaxed(actual))
+    })
+    .map((sense) => sense.id)
+}

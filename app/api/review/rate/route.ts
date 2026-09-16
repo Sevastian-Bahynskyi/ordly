@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server'
 import { fsrs, type Card, type Grade } from 'ts-fsrs'
 import { createClient } from '@/lib/supabase/server'
+import { matchingSenseIds } from '@/lib/answer'
+import { activeSenses, parseSenses } from '@/lib/senses'
 
 function copenhagenDate(date = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date)
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -14,7 +16,7 @@ export async function POST(request: Request) {
   const { cardId, rating, answerResult, answerText } = await request.json()
   if (!cardId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: 'Invalid rating' }, { status: 400 })
 
-  const { data: row, error } = await supabase.from('review_cards').select('*').eq('id', cardId).single()
+  const { data: row, error } = await supabase.from('review_cards').select('*, vocabulary_entries(senses)').eq('id', cardId).single()
   if (error || !row) return NextResponse.json({ error: 'Card not found' }, { status: 404 })
 
   const card: Card = {
@@ -40,7 +42,16 @@ export async function POST(request: Request) {
   if (updateError) return NextResponse.json({ error: updateError.message }, { status: 500 })
 
   const learningStatus = next.reps === 0 ? 'new' : next.reps >= 5 && next.stability >= 21 ? 'mastered' : 'learning'
-  await supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', row.entry_id)
+  // Coverage (D9, D18): credit the senses a successful typed meaning named. Only a recognition
+  // answer is a meaning; a Danish production answer never matches a translation sense. It runs
+  // alongside the status write rather than after it, so rating gains no round-trip depth.
+  const senseIds = rating > 1 && (answerResult === 'correct' || answerResult === 'mostly') && typeof answerText === 'string'
+    ? matchingSenseIds(answerText, activeSenses(parseSenses(row.vocabulary_entries?.senses)))
+    : []
+  await Promise.all([
+    supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', row.entry_id),
+    senseIds.length ? supabase.rpc('record_sense_coverage', { target_entry_id: row.entry_id, sense_ids: senseIds, outcome: 'recognized' }) : null,
+  ])
   const studyDate = copenhagenDate(now)
   const { data: log, error: logError } = await supabase.from('review_logs').insert({
     card_id: cardId, entry_id: row.entry_id, rating, answer_result: answerResult || null, answer_text: answerText || null,

@@ -2,18 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowDown, ArrowUp, Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Trash2, WandSparkles, X } from 'lucide-react'
+import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { SenseRow } from '@/components/SenseRow'
+import { errorMessage, readJsonRecord, requestEnrichment, stringField } from '@/lib/ai-responses'
 import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
+import { parseRefinedMeanings } from '@/lib/sense-refinement'
 import {
   activeSenses,
   createSense,
   entrySenses,
   parseSenses,
-  PART_OF_SPEECH_LABELS,
-  PARTS_OF_SPEECH,
   splitTranslationIntoSenses,
   translationFromSenses,
 } from '@/lib/senses'
@@ -399,13 +400,13 @@ export function EntryEditor({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ danish: original, mode: kind }),
       })
-      const body = await res.json()
-      if (!res.ok) throw new Error(body.error || 'Could not check this Danish text')
+      const body = await readJsonRecord(res)
+      if (!res.ok) throw new Error(errorMessage(body, 'Could not check this Danish text'))
 
-      const result = String(body.result || '').trim()
+      const result = (stringField(body, 'result') || '').trim()
       if (!result) throw new Error('AI returned empty Danish text')
 
-      if (body.is_correct || result === original) {
+      if (body.is_correct === true || result === original) {
         setNotice(kind === 'word' ? 'Already in base form.' : kind === 'phrase' ? 'Phrase looks good.' : 'Sentence looks correct.')
       } else {
         patch('danish', result)
@@ -430,13 +431,13 @@ export function EntryEditor({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sentence: sourceSentence }),
       })
-      const body = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(body.error || 'Could not check this example sentence')
+      const body = await readJsonRecord(res)
+      if (!res.ok) throw new Error(errorMessage(body, 'Could not check this example sentence'))
 
       if (latestExampleSentence.current.trim() !== sourceSentence) return
 
-      const corrected = String(body.corrected_sentence || '').trim()
-      const translation = String(body.translation || '').trim()
+      const corrected = (stringField(body, 'corrected_sentence') || '').trim()
+      const translation = (stringField(body, 'translation') || '').trim()
 
       if (translation) {
         commitDraft((current) => current.example_sentence.trim() === sourceSentence
@@ -444,7 +445,7 @@ export function EntryEditor({
           : current)
       }
 
-      if (!body.is_correct && corrected && corrected !== sourceSentence) {
+      if (body.is_correct !== true && corrected && corrected !== sourceSentence) {
         setExampleSuggestion(corrected)
         setExampleCheckStatus('suggestion')
       } else {
@@ -546,35 +547,30 @@ export function EntryEditor({
     setAiLoading(loadingKey)
 
     try {
-      const res = await fetch('/api/ai/enrich', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          draft: {
-            danish: sourceDanish,
-            pronunciation: current.pronunciation,
-            translation: current.translation,
-            example_sentence: current.example_sentence,
-            example_translation: current.example_translation,
-          },
-          fields: requestedFields,
-          entryKind,
-          includeExample: effectiveIncludeExample,
-          regenerate,
-        }),
+      const body = await requestEnrichment({
+        draft: {
+          danish: sourceDanish,
+          pronunciation: current.pronunciation,
+          translation: current.translation,
+          example_sentence: current.example_sentence,
+          example_translation: current.example_translation,
+        },
+        fields: requestedFields,
+        entryKind,
+        includeExample: effectiveIncludeExample,
+        regenerate,
       })
-      const body = await res.json()
-      if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
 
       commitDraft((latest) => {
         let next = { ...latest }
         for (const key of requestedFields) {
-          if (typeof body[key] === 'string') next[key] = body[key]
+          const value = body[key]
+          if (typeof value === 'string') next[key] = value
         }
         if (requestedFields.includes('translation')) {
           // `senses` is the real payload (D16 puts pos and gender in this same response);
           // the flat `translation` string is the fallback for an older/partial response.
-          const returned = parseSenses(body.senses)
+          const returned = body.senses || []
           const generated = returned.length ? returned : splitTranslationIntoSenses(next.translation, entryKind)
           if (generated.length) next = applyGeneratedSenses(next, generated)
         }
@@ -669,27 +665,21 @@ export function EntryEditor({
     if (clearUndo) setUndoSnapshot(null)
     setAiLoading(`sense-example:${senseId}`)
     try {
-      const res = await fetch('/api/ai/enrich', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          draft: {
-            danish: sourceDanish,
-            example_sentence: regenerate ? '' : sense.example || '',
-            example_translation: '',
-          },
-          fields: ['example_sentence', 'example_translation'],
-          entryKind: 'word',
-          includeExample: true,
-          regenerate,
-          sense: { text: sense.text.trim(), pos: sense.pos },
-        }),
+      const body = await requestEnrichment({
+        draft: {
+          danish: sourceDanish,
+          example_sentence: regenerate ? '' : sense.example || '',
+          example_translation: '',
+        },
+        fields: ['example_sentence', 'example_translation'],
+        entryKind: 'word',
+        includeExample: true,
+        regenerate,
+        sense: { text: sense.text.trim(), pos: sense.pos },
       })
-      const body = await res.json()
-      if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
 
-      const example = typeof body.example_sentence === 'string' ? body.example_sentence.trim() : ''
-      const exampleTranslation = typeof body.example_translation === 'string' ? body.example_translation.trim() : ''
+      const example = (body.example_sentence || '').trim()
+      const exampleTranslation = (body.example_translation || '').trim()
       if (!example) throw new Error('AI returned no example sentence')
 
       commitDraft((latest) => withSenses(latest, latest.senses.map((item) => item.id === senseId
@@ -699,6 +689,41 @@ export function EntryEditor({
       setNotice(null)
     } catch (error) {
       setNotice(error instanceof Error ? error.message : 'AI enrichment failed')
+    } finally {
+      setAiLoading(null)
+    }
+  }
+
+  /**
+   * Per-sense AI action: part of speech and gender for one meaning (D11's refinement, on demand).
+   * The other meanings ride along as context so the model can tell which sense this one is, but
+   * only this row is changed, and its text never is.
+   */
+  async function classifySenseGrammar(senseId: string) {
+    const current = draftRef.current
+    const live = activeSenses(current.senses)
+    const index = live.findIndex((sense) => sense.id === senseId)
+    const sourceDanish = current.danish.trim()
+    if (index < 0 || !live[index].text.trim()) return setNotice('Write this meaning first.')
+    if (!sourceDanish) return setNotice('Type Danish text first.')
+
+    setUndoSnapshot(null)
+    setAiLoading(`sense-grammar:${senseId}`)
+    try {
+      const res = await fetch('/api/ai/refine-senses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ draft: { danish: sourceDanish, senses: live.map((sense) => sense.text.trim()) } }),
+      })
+      const body = await readJsonRecord(res)
+      if (!res.ok) throw new Error(errorMessage(body, 'Could not classify this meaning'))
+      const meaning = parseRefinedMeanings(body, live.length).find((item) => item.indices.includes(index + 1))
+      if (!meaning?.pos) throw new Error('AI could not tell the part of speech for this meaning.')
+      updateSense(senseId, { pos: meaning.pos, gender: meaning.pos === 'noun' ? meaning.gender : null })
+      setUsedAI(true)
+      setNotice(null)
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Could not classify this meaning')
     } finally {
       setAiLoading(null)
     }
@@ -957,6 +982,11 @@ export function EntryEditor({
                   onChange: (patchSense) => setSenseExample(sense.id, patchSense),
                   onClear: () => setSenseExample(sense.id, { example: null, example_translation: null }),
                 } : null}
+                grammarState={entryKind !== 'sentence' ? {
+                  loading: aiLoading === `sense-grammar:${sense.id}`,
+                  disabled: !!aiLoading || !sense.text.trim() || !draft.danish.trim(),
+                  onClassify: () => void classifySenseGrammar(sense.id),
+                } : null}
                 onText={(value) => updateSense(sense.id, { text: value })}
                 onPos={(value) => setSensePos(sense.id, value)}
                 onGender={(value) => setSenseGender(sense.id, value)}
@@ -1096,150 +1126,6 @@ export function EntryEditor({
         </div>
       </div>
     </section>
-  )
-}
-
-interface SenseExampleState {
-  loading: boolean
-  disabled: boolean
-  onGenerate: () => void
-  onRegenerate: () => void
-  onChange: (patch: Pick<Partial<EntrySense>, 'example' | 'example_translation'>) => void
-  onClear: () => void
-}
-
-function SenseRow({
-  sense, index, total, isPrimary, showGrammar, allowRemove, placeholder, translationLanguage, exampleState,
-  onText, onPos, onGender, onMove, onRemove,
-}: {
-  sense: EntrySense
-  index: number
-  total: number
-  isPrimary: boolean
-  showGrammar: boolean
-  allowRemove: boolean
-  placeholder: string
-  translationLanguage: TranslationLanguage
-  exampleState: SenseExampleState | null
-  onText: (value: string) => void
-  onPos: (value: PartOfSpeech | null) => void
-  onGender: (value: NounGender | null) => void
-  onMove: (delta: -1 | 1) => void
-  onRemove: () => void
-}) {
-  return (
-    <div className={`sense-row${isPrimary ? ' primary' : ''}`}>
-      <div className="sense-row-main">
-        <input
-          className="sense-text"
-          value={sense.text}
-          onChange={(e) => onText(e.target.value)}
-          placeholder={placeholder}
-          aria-label={`Meaning ${index + 1}`}
-        />
-        <div className="sense-row-tools">
-          <button type="button" className="icon-button sense-move" onClick={() => onMove(-1)} disabled={index === 0} aria-label="Move meaning up"><ArrowUp size={13} /></button>
-          <button type="button" className="icon-button sense-move" onClick={() => onMove(1)} disabled={index === total - 1} aria-label="Move meaning down"><ArrowDown size={13} /></button>
-          <button type="button" className="icon-button danger sense-remove" onClick={onRemove} disabled={!allowRemove} aria-label="Remove meaning"><Trash2 size={13} /></button>
-        </div>
-      </div>
-
-      {showGrammar && (
-        <div className="sense-row-grammar">
-          {isPrimary && <span className="sense-primary-chip">Primary</span>}
-          <select
-            className={`pos-chip pos-${sense.pos || 'none'}`}
-            value={sense.pos || ''}
-            onChange={(e) => onPos(e.target.value ? (e.target.value as PartOfSpeech) : null)}
-            aria-label={`Part of speech for meaning ${index + 1}`}
-          >
-            <option value="">part of speech</option>
-            {PARTS_OF_SPEECH.map((pos) => <option key={pos} value={pos}>{PART_OF_SPEECH_LABELS[pos]}</option>)}
-          </select>
-
-          {sense.pos === 'noun' && (
-            <span className="gender-chip-group" role="group" aria-label={`Gender for meaning ${index + 1}`}>
-              {(['en', 'et'] as const).map((gender) => (
-                <button
-                  key={gender}
-                  type="button"
-                  className={`gender-chip${sense.gender === gender ? ' active' : ''}`}
-                  onClick={() => onGender(sense.gender === gender ? null : gender)}
-                >
-                  {gender}
-                </button>
-              ))}
-            </span>
-          )}
-        </div>
-      )}
-
-      {exampleState && (
-        <SenseExample
-          sense={sense}
-          index={index}
-          translationLanguage={translationLanguage}
-          state={exampleState}
-        />
-      )}
-    </div>
-  )
-}
-
-/**
- * A non-primary sense's own example (D10). It is generated only when asked for, never
- * eagerly: a word with four meanings would otherwise cost four example calls at save time.
- */
-function SenseExample({ sense, index, translationLanguage, state }: {
-  sense: EntrySense
-  index: number
-  translationLanguage: TranslationLanguage
-  state: SenseExampleState
-}) {
-  if (!sense.example) {
-    return (
-      <div className="sense-example">
-        <button
-          type="button"
-          className="sense-example-add"
-          disabled={state.disabled || !sense.text.trim()}
-          onClick={state.onGenerate}
-        >
-          {state.loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} Example for this meaning
-        </button>
-      </div>
-    )
-  }
-
-  return (
-    <div className="sense-example filled">
-      <div className="sense-example-head">
-        <small>Example for this meaning</small>
-        <span className="sense-example-actions">
-          <button type="button" className="ai-mini" disabled={state.disabled} onClick={state.onRegenerate} aria-label={`Regenerate the example for meaning ${index + 1}`}>
-            {state.loading ? <Loader2 className="spin" size={12} /> : <RotateCcw size={12} />} Regenerate
-          </button>
-          <button type="button" className="icon-button danger" disabled={state.disabled} onClick={state.onClear} aria-label={`Remove the example for meaning ${index + 1}`}>
-            <Trash2 size={13} />
-          </button>
-        </span>
-      </div>
-      <textarea
-        rows={2}
-        className="sense-example-text"
-        value={sense.example}
-        onChange={(e) => state.onChange({ example: e.target.value })}
-        aria-label={`Example sentence for meaning ${index + 1}`}
-        placeholder="Jeg synes, det er godt."
-      />
-      <input
-        className="sense-example-translation"
-        value={sense.example_translation || ''}
-        onChange={(e) => state.onChange({ example_translation: e.target.value })}
-        aria-label={`Example translation for meaning ${index + 1}`}
-        placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'}
-      />
-    </div>
   )
 }
 

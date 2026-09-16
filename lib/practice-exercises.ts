@@ -1,6 +1,6 @@
 import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
-import { entryContentVersion } from './practice-content'
+import { senseContentVersion } from './practice-content'
 import { senseExample, senseTargetKey, type SenseCandidate } from './practice-senses'
 import type { PracticeTask } from './practice'
 import type { EntrySense, PartOfSpeech, ReviewItem } from './types'
@@ -141,7 +141,7 @@ function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTas
     newTarget: false,
     retry: 0,
     senseId: candidate.sense.id,
-    contentVersion: entryContentVersion(entry),
+    contentVersion: senseContentVersion(entry, candidate.sense),
   }
 }
 

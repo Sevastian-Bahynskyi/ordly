@@ -17,6 +17,8 @@ import {
   type SynonymCandidate,
   type SynonymEntry,
 } from '@/lib/synonyms'
+import type { EntryLinkKind, EntryLinkSource } from '@/lib/types'
+import { isUuid } from '@/lib/uuid'
 
 /**
  * Synonym discovery (D4, D16). Runs AFTER the entry is saved, never inside the composer save
@@ -34,8 +36,6 @@ const AUTO_LINK_CONFIDENCE = 0.85
 
 /** Below this the model is guessing and the edge is not worth showing at all. */
 const SUGGEST_CONFIDENCE = 0.5
-
-const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 const ENTRY_COLUMNS = 'id, danish, translation, senses, entry_kind'
 
@@ -59,17 +59,17 @@ const scoreSchema = {
   additionalProperties: false,
 }
 
-type DiscoveredLink = {
+interface DiscoveredLink {
   entry_id: string
   danish: string
   translation: string | null
-  kind: 'synonym'
-  source: 'ai'
+  kind: Extract<EntryLinkKind, 'synonym'>
+  source: Extract<EntryLinkSource, 'ai'>
   confidence: number
   confirmed: boolean
 }
 
-function empty(entryId: string, skipped: string | null, considered = 0) {
+function empty(entryId: string, skipped: string | null, considered = 0): NextResponse {
   return NextResponse.json({ entry_id: entryId, links: [], considered, skipped })
 }
 
@@ -79,7 +79,7 @@ function senseLines(entry: SynonymEntry): string {
     .join('; ')
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -87,9 +87,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Synonym discovery is unavailable.' }, { status: 503 })
   }
 
-  const body = await request.json().catch(() => ({}))
-  const entryId = String(body.entryId || '').trim().toLowerCase()
-  if (!UUID_PATTERN.test(entryId)) {
+  const body: unknown = await request.json().catch(() => null)
+  const rawId = body && typeof body === 'object' ? (body as { entryId?: unknown }).entryId : null
+  const entryId = typeof rawId === 'string' ? rawId.trim().toLowerCase() : ''
+  if (!isUuid(entryId)) {
     return NextResponse.json({ error: 'Vocabulary entry is required.' }, { status: 400 })
   }
 
@@ -134,7 +135,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Synonym discovery failed.' }, { status: 502 })
   }
 
-  // A pair the learner has already ruled on stays ruled on. AI edges are left in the running so
+  // A pair the learner has already ruled on stays ruled on — confirmed, or dismissed (a tombstone
+  // written with `source: 'user'`, so it is never proposed again). AI edges are left in the running so
   // that re-running discovery after an edit can re-score an edge D17 demoted.
   const settled = new Set<string>()
   for (const link of existingLinks || []) {
@@ -174,7 +176,8 @@ Return one object per candidate you consider a synonym, with its 1-based index a
       response_format: { type: 'json_schema', json_schema: { name: 'synonym_links', strict: true, schema: scoreSchema } },
     }, 'synonym discovery', { models: OPENROUTER_MODEL_ROUTES.semanticGrading, timeoutMs: 12000 })
   } catch (error) {
-    console.error('OpenRouter synonym discovery failed', error)
+    // The message only: the error object can carry the request, which holds the learner's words.
+    console.error('OpenRouter synonym discovery failed', error instanceof Error ? error.message : 'unknown error')
     if (isOpenRouterRateLimitError(error)) {
       return NextResponse.json({ error: 'AI is rate limited. Try again shortly.' }, { status: 429 })
     }
@@ -206,8 +209,8 @@ Return one object per candidate you consider a synonym, with its 1-based index a
 
   const rows = [...accepted.values()].map((link) => ({
     ...canonicalLinkPair(entryId, link.entry_id),
-    kind: 'synonym',
-    source: 'ai',
+    kind: link.kind,
+    source: link.source,
     confidence: link.confidence,
     confirmed: link.confirmed,
   }))

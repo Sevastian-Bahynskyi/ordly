@@ -77,6 +77,8 @@ export interface SynonymLinkRow {
   b_id: string
   kind: EntryLinkKind
   confirmed?: boolean
+  /** A dismissed suggestion's tombstone. Readers normally filter these in the query already. */
+  dismissed_at?: string | null
 }
 
 /**
@@ -255,7 +257,7 @@ export function synonymNeighbourIds(
   const id = entryId.toLowerCase()
   const neighbours = new Set<string>()
   for (const link of links || []) {
-    if (!link || link.kind !== 'synonym') continue
+    if (!link || link.kind !== 'synonym' || link.dismissed_at) continue
     if (options.confirmedOnly && !link.confirmed) continue
     const a = String(link.a_id || '').toLowerCase()
     const b = String(link.b_id || '').toLowerCase()

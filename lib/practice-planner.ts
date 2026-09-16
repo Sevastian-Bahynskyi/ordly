@@ -1,4 +1,4 @@
-import { entryContentVersion, frameTasks, selectFrame, vocabularyTask } from './practice-content'
+import { currentTaskContentVersion, entryContentVersion, frameTasks, selectFrame, vocabularyTask } from './practice-content'
 import { newTargetBudget, practiceStudyDate, type PracticeAttempt, type PracticeSessionState, type PracticeStore, type PracticeTask } from './practice'
 import { CLOZE_DISTRACTOR_COUNT, selectDistractors, senseExerciseTask, WORD_BANK_DISTRACTOR_COUNT, type DistractorEntry } from './practice-exercises'
 import { itemSenses, parseSenseTargetKey, senseCandidates, SENSE_PROMOTIONS_PER_SESSION, type SenseCandidate } from './practice-senses'
@@ -74,7 +74,7 @@ export function planPractice(input: {
   let budget = newTargetBudget({ dailyLimit: input.dailyLimit, introducedToday: input.introducedToday, dueCount: due.length, recent })
   const pool: DistractorEntry[] = known.map((item) => ({ id: item.entry_id, danish: item.vocabulary_entries.danish, senses: itemSenses(item) }))
   const production = Object.values(store.objectives).filter((objective) => Date.parse(objective.card.due) <= now.getTime())
-    .filter((objective) => !objective.task.entryId || known.some((item) => item.entry_id === objective.task.entryId && entryContentVersion(item.vocabulary_entries) === objective.task.contentVersion))
+    .filter((objective) => !objective.task.entryId || known.some((item) => item.entry_id === objective.task.entryId && currentTaskContentVersion(item.vocabulary_entries, objective.task) === objective.task.contentVersion))
     .sort((a, b) => Date.parse(a.card.due) - Date.parse(b.card.due)).slice(0, 3)
   // A due sense objective gets a freshly built board rather than its stored one, so the exercise
   // rotates with its reps instead of serving the same tiles forever.

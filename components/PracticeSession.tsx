@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
-import { ArrowRight, Check, Lightbulb, MessageCircle, Pause, RotateCcw, Sparkles } from 'lucide-react'
+import { ArrowRight, Check, Lightbulb, MessageCircle, Pause, RotateCcw, Sparkles, ThumbsUp } from 'lucide-react'
 import { PracticeAudio } from './PracticeAudio'
 import { isChoiceKind, type PracticeSessionState, type PracticeSummary, type PracticeTask } from '@/lib/practice'
 import { isPracticeStore, isRecord } from '@/lib/practice-validation'
@@ -171,6 +171,8 @@ export function PracticeSession(): JSX.Element {
           {task.objective === 'production' && response.communication === 'yes' && response.target === 'no' && <p>Your reply works, but it did not retrieve this target expression. We’ll practise the target again.</p>}
           <div className="correct-answer"><span>{['listen', 'dialogue'].includes(task.kind) ? 'One possible reply' : task.kind === 'sense' ? 'The meaning in this sentence' : 'Answer to recall'}</span><strong lang={task.kind === 'recall' || task.kind === 'sense' ? undefined : 'da'}>{task.answer}</strong></div>
           {response.answer && <p className="practice-your-answer"><small>Your answer</small>{response.answer}</p>}
+          {/* D5: only a typed meaning can become a sense. The learner still picks the rating below. */}
+          {task.kind === 'recall' && response.modality === 'typed' && response.answer.trim() && response.result !== 'correct' && <button className="soft-button accept-answer-button" disabled={busy} onClick={() => void send('accept')}><ThumbsUp size={15} />My answer was right</button>}
           {!['recall', 'sense'].includes(task.kind) && <PracticeAudio text={task.answer} onReplay={() => {}} />}
           {(response.result === 'incorrect' || help || task.source === 'ai') && <div className="practice-repair"><Lightbulb size={18} /><div><strong>Give it a useful connection</strong><p>{task.hint}</p>{task.example !== task.danish && task.example.trim() !== task.hint.trim() && <p className="practice-example">{task.example}</p>}<p>Think of a moment you would use it. Then try again after another exercise.</p></div></div>}
           {session.aiEnabled && session.aiCalls < 12 && <button className="practice-text-button" disabled={busy} onClick={() => void send('repair')}><Sparkles size={15} />Create two AI memory examples</button>}

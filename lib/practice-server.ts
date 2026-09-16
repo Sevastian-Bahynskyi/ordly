@@ -1,15 +1,15 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { checkAnswer } from './answer'
+import { checkAnswer, matchingSenseIds } from './answer'
 import { planPractice, introducedPracticeTargets, newSenseObjectives } from './practice-planner'
 import { countsForSchedule, finishPracticeTask, isChoiceKind, legacyEvidence, practiceStudyDate, summarizePractice, type PracticeAttempt, type PracticeRating, type PracticeResponse, type PracticeSessionState, type PracticeStore, type PracticeTask } from './practice'
 import { isPracticeAttempt, isPracticeStore, isReviewSource } from './practice-validation'
 import { schedulePractice } from './practice-schedule'
 import { gradePractice } from './practice-ai'
 import { generateMemoryPack, generateSenseExample, parseMemoryPack, parseSenseExample } from './practice-pack'
-import { entryContentVersion } from './practice-content'
+import { currentTaskContentVersion } from './practice-content'
 import { isSenseTargetKey, itemSenses } from './practice-senses'
 import { sentenceTiles } from './practice-exercises'
-import { entrySenses, parseSenses } from './senses'
+import { activeSenses, createSense, entrySenses, normalizeSenseText, parseSenses, splitTranslationIntoSenses } from './senses'
 import { linkedSensesFor, synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
 import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
 
@@ -21,9 +21,9 @@ export class PracticeConflict extends Error {}
  */
 export const PRACTICE_AI_CALL_BUDGET = 12
 
-/** The learner's `synonym` edges. Read once per action; degrades to none rather than failing. */
+/** The learner's live `synonym` edges — dismissed tombstones excluded. Degrades to none rather than failing. */
 async function readSynonymLinks(supabase: SupabaseClient, userId: string): Promise<SynonymLinkRow[]> {
-  const { data, error } = await supabase.from('entry_links').select('a_id, b_id, kind, confirmed').eq('user_id', userId).eq('kind', 'synonym').limit(2000)
+  const { data, error } = await supabase.from('entry_links').select('a_id, b_id, kind, confirmed').eq('user_id', userId).eq('kind', 'synonym').is('dismissed_at', null).limit(2000)
   if (error || !Array.isArray(data)) return []
   return data as SynonymLinkRow[]
 }
@@ -173,8 +173,56 @@ function isOfferedChoice(task: PracticeTask, answer: string): boolean {
   return true
 }
 
+/**
+ * Coverage for one rated exposure (D9, D18), written atomically by `record_sense_coverage`.
+ *
+ * A sense task always stamps `last_seen` on its own sense; a success counts as `recognized` when it
+ * was tapped and `produced` only when it was unaided. A typed meaning recall credits exactly the
+ * senses the answer named. Coverage is bookkeeping for the planner, so a failed write is dropped
+ * rather than failing a rating the learner has already committed.
+ */
+async function recordCoverage(supabase: SupabaseClient, task: PracticeTask, response: PracticeResponse, rating: PracticeRating | null, entry: Record<string, unknown> | null): Promise<void> {
+  if (!task.entryId || !entry || rating === null) return
+  const success = rating > 1 && (response.result === 'correct' || response.result === 'mostly')
+  let senseIds: string[] = []
+  let outcome: 'seen' | 'recognized' | 'produced' = 'seen'
+  if (task.senseId) {
+    senseIds = [task.senseId]
+    if (success && response.assistance === 'choices') outcome = 'recognized'
+    else if (success && response.assistance === 'none') outcome = 'produced'
+  } else if (task.kind === 'recall' && success) {
+    senseIds = matchingSenseIds(response.answer, activeSenses(parseSenses(entry.senses)))
+    outcome = 'recognized'
+  }
+  if (!senseIds.length) return
+  await supabase.rpc('record_sense_coverage', { target_entry_id: task.entryId, sense_ids: senseIds, outcome })
+}
+
+/**
+ * `My answer was right` in practice (D5, §4). Only a typed meaning recall qualifies: there the
+ * answer is a meaning, which is what a sense is. The verdict flips to correct and the answer is
+ * appended as a `source: 'user'` sense, so the deterministic checker accepts it next time. The
+ * learner still chooses the FSRS rating.
+ *
+ * A sentence keeps exactly one sense (plan §3.2), so for a sentence only the verdict flips.
+ * The write is conditional on `updated_at`: an edit made meanwhile in the entry editor wins.
+ */
+async function acceptAnswer(supabase: SupabaseClient, userId: string, task: PracticeTask, response: PracticeResponse, entry: Record<string, unknown>): Promise<void> {
+  const typed = response.answer.trim()
+  const typedKey = normalizeSenseText(typed)
+  if (!typedKey || entry.entry_kind === 'sentence') return
+  const stored = parseSenses(entry.senses)
+  const base = stored.length ? stored : splitTranslationIntoSenses(typeof entry.translation === 'string' ? entry.translation : null, 'word')
+  if (activeSenses(base).some((sense) => normalizeSenseText(sense.text) === typedKey)) return
+  const { data, error } = await supabase.from('vocabulary_entries')
+    .update({ senses: [...base, createSense(typed, { source: 'user' })] })
+    .eq('id', task.entryId).eq('user_id', userId).eq('updated_at', String(entry.updated_at))
+    .select('id')
+  if (error || !data?.length) throw new PracticeConflict()
+}
+
 export interface PracticeAction {
-  action: 'answer' | 'help' | 'rate' | 'pause' | 'repair' | 'finish'
+  action: 'answer' | 'help' | 'rate' | 'accept' | 'pause' | 'repair' | 'finish'
   revision: number
   taskId: string
   answer?: string
@@ -209,7 +257,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   if (task.entryId) {
     const { data, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
     if (error) throw new Error('Could not check this entry')
-    if (!data || entryContentVersion(data) !== task.contentVersion) {
+    if (!data || currentTaskContentVersion(data, task) !== task.contentVersion) {
       const queue = session.queue.filter((item) => item.entryId !== task.entryId)
       await commit(supabase, store, { ...store, session: { ...nextSession, queue, current: null } })
       return
@@ -234,6 +282,13 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     if (!pack) throw new Error('Memory aid unavailable')
     const queue = [{ ...task, source: 'ai' as const, hint: pack.hint, example: `${pack.example}\n${pack.translation}\n\n${pack.secondExample}\n${pack.secondTranslation}` }, ...nextSession.queue.slice(1)]
     await commit(supabase, store, { ...store, session: { ...nextSession, queue } })
+    return
+  }
+  if (input.action === 'accept') {
+    if (!response.revealed || task.kind !== 'recall' || !entry || response.modality !== 'typed' || !response.answer.trim() || response.result === 'correct') throw new PracticeConflict()
+    await acceptAnswer(supabase, userId, task, response, entry)
+    nextSession.current = { ...response, result: 'correct', communication: 'yes', target: 'yes', feedback: 'Accepted. This meaning now counts as correct for this word.' }
+    await commit(supabase, store, { ...store, session: nextSession })
     return
   }
   if (input.action === 'help') {
@@ -316,4 +371,5 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   const queue = finishPracticeTask(session.queue, needsTargetRetry ? 1 : rating, finalResponse.assistance)
   nextSession = { ...nextSession, queue, current: null, attempts: [...session.attempts, attempt].slice(-500), completed: session.completed + (queue.some((item) => item.targetKey === task.targetKey && item.kind === task.kind && item.retry > task.retry) ? 0 : 1) }
   await commit(supabase, store, { ...store, session: nextSession, objectives }, { ...attempt, sessionId: session.id, entryId: task.entryId }, legacyChange)
+  await recordCoverage(supabase, task, finalResponse, rating, entry)
 }

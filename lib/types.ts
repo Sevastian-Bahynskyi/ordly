@@ -59,6 +59,8 @@ export interface EntryLink {
   source: EntryLinkSource
   confidence: number | null
   confirmed: boolean
+  /** Set when the learner dismissed a suggestion. The row is a tombstone: never shown, graded or taught from. */
+  dismissed_at: string | null
   created_at: string
 }
 

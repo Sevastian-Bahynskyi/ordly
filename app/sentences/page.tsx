@@ -12,7 +12,7 @@ export default async function SentencesPage({ searchParams }: { searchParams: Pr
     supabase.from('vocabulary_entries').select('*').order('created_at', { ascending: false }),
     supabase.from('review_cards').select('*'),
     supabase.from('profiles').select('default_translation_language').single(),
-    supabase.from('entry_links').select('a_id, b_id, kind, source, confidence, confirmed'),
+    supabase.from('entry_links').select('a_id, b_id, kind, source, confidence, confirmed').is('dismissed_at', null),
   ])
 
   return (

@@ -66,7 +66,9 @@ export function SynonymChips({
     const match = { a_id: link.a_id, b_id: link.b_id, kind: link.kind }
     const table = createClient().from('entry_links')
     const { error } = action === 'dismiss'
-      ? await table.delete().match(match)
+      // A tombstone, not a delete: a deleted row would be proposed again by the next discovery
+      // run. `source: 'user'` marks the pair as ruled on, which discovery and D17 both respect.
+      ? await table.update({ dismissed_at: new Date().toISOString(), confirmed: false, source: 'user' }).match(match)
       // `source: 'user'` is the load-bearing half: it is what a later edit to the entry's
       // Danish leaves alone when it demotes the AI's own edges (D17).
       : await table.update({ confirmed: true, source: 'user' }).match(match)

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind, EntrySense } from '@/lib/types'
+import type { EnrichResult } from '@/lib/ai-responses'
 import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 import { normalizePronunciationText } from '@/lib/pronunciation'
 import { createSense, isNounGender, isPartOfSpeech, PARTS_OF_SPEECH, translationFromSenses } from '@/lib/senses'
@@ -325,7 +326,7 @@ async function resolvePronunciation(
   return { pronunciation, cached: false }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -349,7 +350,7 @@ export async function POST(request: Request) {
   const needsTranslation = fields.includes('translation')
   const needsExamples = includeExample && fields.some((field: string) => field === 'example_sentence' || field === 'example_translation')
 
-  const result: Record<string, string | number | boolean | EntrySense[]> = {}
+  const result: EnrichResult = {}
   const failures: string[] = []
   const jobs: Promise<void>[] = []
   let rateLimited = false

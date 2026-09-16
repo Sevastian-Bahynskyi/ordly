@@ -9,11 +9,10 @@ import { VocabularyIcon } from '@/components/VocabularyIcon'
 import { requireUser } from '@/lib/auth'
 import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
 import { activeSenses, parseSenses } from '@/lib/senses'
+import { isUuid } from '@/lib/uuid'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
 
 export const dynamic = 'force-dynamic'
-
-const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 /**
  * Inspect and edit one entry (D7). This is a real route rather than a modal, so it is
@@ -25,7 +24,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   const { id } = await params
   // The id is interpolated into a PostgREST `or` filter below, so it is validated as a uuid
   // before it goes anywhere near the query rather than trusted from the URL.
-  if (!UUID_PATTERN.test(id)) notFound()
+  if (!isUuid(id)) notFound()
 
   const [{ data: entry }, { data: profile }, { data: links }] = await Promise.all([
     supabase.from('vocabulary_entries').select('*').eq('id', id).maybeSingle(),
@@ -35,7 +34,8 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
     supabase
       .from('entry_links')
       .select('a_id, b_id, kind, source, confidence, confirmed')
-      .or(`a_id.eq.${id},b_id.eq.${id}`),
+      .or(`a_id.eq.${id},b_id.eq.${id}`)
+      .is('dismissed_at', null),
   ])
 
   // RLS already scopes this to the signed-in user, so a missing row and someone else's row are

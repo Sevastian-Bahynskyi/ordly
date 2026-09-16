@@ -82,10 +82,11 @@ function coldness(sense: EntrySense): number {
  * 1. **Eligibility** — the entry's recognition card must have `reps >= 3`. Producing a meaning
  *    of a word you have barely met is not practice, it is guessing.
  * 2. **The primary sense leads** — a secondary sense is only eligible once the primary one is
- *    already an objective. An entry-keyed production objective left over from before this step
- *    counts as the primary sense's, so existing learners migrate without a data change.
- * 3. **Coldest coverage wins** — never-seen senses first, then oldest `coverage.last_seen`.
- *    Ties break on the primary flag and then on ids, so planning is deterministic.
+ *    already an objective, and across entries every eligible primary sense sorts ahead of every
+ *    secondary one. An entry-keyed production objective left over from before this step counts
+ *    as the primary sense's, so existing learners migrate without a data change.
+ * 3. **Coldest coverage wins** — within each of those two groups, never-seen senses first, then
+ *    oldest `coverage.last_seen`. Ties break on ids, so planning is deterministic.
  */
 export function senseCandidates(items: readonly ReviewItem[], objectives: Record<string, ProductionObjective>): SenseCandidate[] {
   const candidates: SenseCandidate[] = []
@@ -107,8 +108,8 @@ export function senseCandidates(items: readonly ReviewItem[], objectives: Record
     }
   }
   return candidates.sort((a, b) =>
-    coldness(a.sense) - coldness(b.sense)
-    || Number(b.primary) - Number(a.primary)
+    Number(b.primary) - Number(a.primary)
+    || coldness(a.sense) - coldness(b.sense)
     || a.entryId.localeCompare(b.entryId)
     || a.sense.id.localeCompare(b.sense.id))
 }

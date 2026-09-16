@@ -40,7 +40,12 @@ type ReviewedItem = {
   sentenceTranslation: string
 }
 
-export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { initialItems: ReviewItem[]; translationLanguage?: 'ru' | 'en' | 'uk' }) {
+export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru' }: {
+  initialItems: ReviewItem[]
+  /** Senses of each entry's synonym neighbours, keyed by entry id (D5). */
+  linkedSenses?: Record<string, EntrySense[]>
+  translationLanguage?: 'ru' | 'en' | 'uk'
+}): React.JSX.Element {
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'
   const [items, setItems] = useState(initialItems)
   const [answer, setAnswer] = useState('')
@@ -101,11 +106,13 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
       return
     }
 
-    // Recognition asks for the meaning, so every stored sense is a valid answer.
-    // Production asks for the Danish, where senses say nothing.
+    // Recognition asks for the meaning, so every stored sense — and every sense of a synonym-linked
+    // entry (D5) — is a valid answer. Production asks for the Danish, where senses say nothing.
+    const recognition = mode === 'recognition'
     const quickResult = checkAnswer(typedAnswer, expected, {
       sentence: entryKind === 'sentence',
-      senses: mode === 'recognition' ? entrySenses(entry) : null,
+      senses: recognition ? entrySenses(entry) : null,
+      linkedSenses: recognition && current ? linkedSenses[current.entry_id] || null : null,
     })
     if (quickResult !== 'incorrect') {
       setResult(quickResult)
@@ -164,7 +171,8 @@ export function ReviewSession({ initialItems, translationLanguage = 'ru' }: { in
     const typedKey = normalizeSenseText(typed)
     const known = activeSenses(base).some((sense) => normalizeSenseText(sense.text) === typedKey)
 
-    if (!known && typedKey) {
+    // A sentence keeps exactly one sense (plan §3.2): for a sentence only the verdict flips.
+    if (!known && typedKey && entryKind !== 'sentence') {
       const nextSenses = [...base, createSense(typed, { source: 'user' })]
       const { error } = await createClient()
         .from('vocabulary_entries')
