@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
-import { applyRefinement, needsRefinement, parseRefinedMeanings, refinementSchema, type RefinedMeaning } from '@/lib/sense-refinement'
-import { activeSenses, parseSenses, PARTS_OF_SPEECH } from '@/lib/senses'
+import { hasOpenRouterKey, isOpenRouterRateLimitError } from '@/lib/openrouter'
+import { applyRefinement, needsRefinement } from '@/lib/sense-refinement'
+import { classifySenses, MAX_REFINED_SENSES, MAX_REFINED_SENSE_LENGTH } from '@/lib/sense-refinement-ai'
+import { activeSenses, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
 
 /**
@@ -18,43 +19,14 @@ import { isUuid } from '@/lib/uuid'
  *   editor's per-sense grammar action uses it.
  */
 
-const MAX_SENSES = 8
-const MAX_SENSE_LENGTH = 120
-
-async function classify(danish: string, texts: readonly string[]): Promise<RefinedMeaning[]> {
-  const parsed = await openRouterJson({
-    temperature: 0,
-    max_tokens: 240,
-    messages: [
-      {
-        role: 'system',
-        content: `You classify the meanings of a Danish vocabulary entry for a learner's flashcards.
-You receive the Danish entry and a numbered list of its meanings in the learner's language. Some meanings were produced by splitting on commas, so one real meaning may have been broken into adjacent fragments.
-
-Return one object per real meaning:
-- indices: the 1-based numbers of the listed items that form this meaning. Usually a single number. Use several ONLY when adjacent items are fragments of one meaning that a comma split apart. Never group two genuinely different meanings, and never group synonyms that each stand on their own.
-- pos: the part of speech of the DANISH entry in that meaning, one of: ${PARTS_OF_SPEECH.join(', ')}. Use "phrase" for a multi-word expression with no single head word. Use "" only when you genuinely cannot tell.
-- gender: for a noun only, the Danish article "en" or "et". Otherwise "".
-Cover every listed item exactly once. Do not translate, rewrite or add meanings.`,
-      },
-      {
-        role: 'user',
-        content: `Danish: ${danish}\nMeanings:\n${texts.map((text, index) => `${index + 1}. ${text}`).join('\n')}`,
-      },
-    ],
-    response_format: { type: 'json_schema', json_schema: { name: 'sense_refinement', strict: true, schema: refinementSchema } },
-  }, 'sense refinement', { models: OPENROUTER_MODEL_ROUTES.translation, timeoutMs: 10000 })
-  return parseRefinedMeanings(parsed, texts.length)
-}
-
 function readDraft(value: unknown): { danish: string; senses: string[] } | null {
   if (!value || typeof value !== 'object') return null
   const record = value as Record<string, unknown>
   const danish = typeof record.danish === 'string' ? record.danish.trim() : ''
   const senses = Array.isArray(record.senses)
-    ? record.senses.filter((text): text is string => typeof text === 'string').map((text) => text.trim().slice(0, MAX_SENSE_LENGTH))
+    ? record.senses.filter((text): text is string => typeof text === 'string').map((text) => text.trim().slice(0, MAX_REFINED_SENSE_LENGTH))
     : []
-  if (!danish || danish.length > 300 || !senses.length || senses.length > MAX_SENSES || senses.some((text) => !text)) return null
+  if (!danish || danish.length > 300 || !senses.length || senses.length > MAX_REFINED_SENSES || senses.some((text) => !text)) return null
   return { danish, senses }
 }
 
@@ -71,7 +43,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (record.draft !== undefined) {
       const draft = readDraft(record.draft)
       if (!draft) return NextResponse.json({ error: 'Add the Danish text and a meaning first.' }, { status: 400 })
-      return NextResponse.json({ meanings: await classify(draft.danish, draft.senses) })
+      return NextResponse.json({ meanings: await classifySenses(draft.danish, draft.senses) })
     }
 
     if (!isUuid(record.entryId)) return NextResponse.json({ error: 'Vocabulary entry is required.' }, { status: 400 })
@@ -88,9 +60,9 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const stored = parseSenses(entry.senses)
     const live = activeSenses(stored)
-    if (live.length > MAX_SENSES) return NextResponse.json({ refined: false })
+    if (live.length > MAX_REFINED_SENSES) return NextResponse.json({ refined: false })
 
-    const meanings = await classify(String(entry.danish), live.map((sense) => sense.text.trim().slice(0, MAX_SENSE_LENGTH)))
+    const meanings = await classifySenses(String(entry.danish), live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH)))
     const { data: written, error } = await supabase
       .from('vocabulary_entries')
       .update({ senses: applyRefinement(stored, meanings) })
