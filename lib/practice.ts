@@ -1,6 +1,23 @@
-export type PracticeKind = 'recall' | 'produce' | 'teach' | 'build' | 'listen' | 'dialogue'
+/**
+ * `assemble`, `choose` and `sense` are the interactive kinds from D13. They are answered by
+ * tapping, so they always carry `assistance: 'choices'` and can never become unaided evidence.
+ * Match-pairs and odd-one-out were explicitly cut.
+ */
+export type PracticeKind = 'recall' | 'produce' | 'teach' | 'build' | 'listen' | 'dialogue' | 'assemble' | 'choose' | 'sense'
 export type PracticeObjective = 'meaning' | 'production'
-export type PracticeAssistance = 'none' | 'hint' | 'model' | 'transcript'
+/**
+ * `'choices'` (D14) marks an answer the learner selected rather than produced. It is the flag the
+ * whole choice-based redesign hangs on: see `legacyEvidence` below.
+ */
+export type PracticeAssistance = 'none' | 'hint' | 'model' | 'transcript' | 'choices'
+
+/** The kinds answered by tapping. Their assistance is decided by the kind, not by the client. */
+export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense']
+
+export function isChoiceKind(kind: PracticeKind): boolean {
+  return CHOICE_KINDS.includes(kind)
+}
+
 export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'ungraded'
 export type PracticeRating = 1 | 2 | 3 | 4
 
@@ -24,6 +41,16 @@ export interface PracticeTask {
   answerIsSentence?: boolean
   cardId?: string
   contentVersion?: string
+  /**
+   * Tap targets for `assemble` (word-bank tiles), `choose` (cloze options) and `sense`
+   * (candidate meanings). Already shuffled at build time so a reload re-renders the identical
+   * board — the queue is persisted, so the order must not be recomputed on the client.
+   */
+  choices?: string[]
+  /** The sense this task trains, for an `entry:<id>:sense:<sid>` objective (D8/D18). */
+  senseId?: string
+  /** A second sentence using a *different* sense of the same word (D13 discrimination). */
+  contrast?: string
 }
 
 export interface PracticeAttempt {
@@ -129,8 +156,43 @@ export function practiceStudyDate(date = new Date()): string {
 export function countsForSchedule(task: PracticeTask, response: PracticeResponse, rating: PracticeRating | null): boolean {
   if (task.kind === 'teach' || task.objective === null || rating === null) return false
   if (rating === 1) return true
+  // D14: a tapped answer may still move the sense objective's own FSRS state forward. What it
+  // must never do is reach the legacy card, and that is `legacyEvidence`'s job, not this one.
+  if (response.assistance === 'choices') return true
   if (response.assistance !== 'none') return false
   return task.objective !== 'production' || response.target !== 'no'
+}
+
+/**
+ * D14, the single rule that keeps choice-based recognition out of the legacy review system.
+ *
+ * `legacy_change` is the only argument of `commit_practice` that writes `review_cards`, appends
+ * to `review_logs` and re-evaluates `vocabulary_entries.learning_status`. Returning false here
+ * makes the caller commit `legacy_change = null`, so all three are untouched — no SQL change and
+ * no new column needed. Tapping the right tile with the answer on screen is recognition, not
+ * unaided production, and must not be able to mark a word mastered.
+ *
+ * The `cardId` half is belt and braces: choice tasks are built without one, so a future builder
+ * that wrongly attached a card would still be caught by the assistance half.
+ */
+export function legacyEvidence(task: PracticeTask, response: PracticeResponse): boolean {
+  return Boolean(task.cardId) && response.assistance !== 'choices'
+}
+
+/**
+ * The unaided form of a task, used for the retry that supported success schedules.
+ *
+ * Re-serving the identical board would not be an unaided retry, so a choice task comes back as
+ * typed production with its tiles removed. Sense discrimination has no unaided form — the choice
+ * *is* the exercise — so it returns null and is simply not requeued after a success. An explicit
+ * Again still requeues the original task untouched, preserving the objective as guided practice
+ * requires.
+ */
+export function unaidedForm(task: PracticeTask): PracticeTask | null {
+  if (task.kind === 'sense') return null
+  if (task.kind !== 'assemble' && task.kind !== 'choose') return task
+  const { choices: _choices, contrast: _contrast, ...rest } = task
+  return { ...rest, kind: 'produce' }
 }
 
 export function newTargetBudget(input: { dailyLimit: number; introducedToday: number; dueCount: number; recent: boolean[] }): number {
@@ -143,7 +205,11 @@ export function finishPracticeTask(queue: PracticeTask[], rating: PracticeRating
   const [task, ...remaining] = queue
   if (!task) return []
   if (task.kind === 'teach' || rating === null || (rating !== 1 && assistance === 'none')) return remaining
-  const retry: PracticeTask = { ...task, id: `${task.id}:retry`, newTarget: false, retry: task.retry + 1, stage: 'return' }
+  // Again keeps the original objective and the original board; a supported success comes back
+  // in whatever form actually tests unaided recall.
+  const source = rating === 1 ? task : unaidedForm(task)
+  if (!source) return remaining
+  const retry: PracticeTask = { ...source, id: `${source.id}:retry`, newTarget: false, retry: task.retry + 1, stage: 'return' }
   const next = [...remaining]
   next.splice(Math.min(next.length, 2 + Math.floor(Math.random() * 3)), 0, retry)
   return next

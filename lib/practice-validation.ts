@@ -1,3 +1,4 @@
+import { TARGET_KEY_MAX_LENGTH } from './practice-senses'
 import type { PracticeAttempt, PracticeResponse, PracticeStore, PracticeTask } from './practice'
 import type { ReviewItem } from './types'
 
@@ -26,10 +27,21 @@ export function isReviewSource(value: unknown): value is ReviewItem {
     && Number(value.state) <= 3
 }
 
+const PRACTICE_KINDS = ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue', 'assemble', 'choose', 'sense']
+const PRACTICE_ASSISTANCE = ['none', 'hint', 'model', 'transcript', 'choices']
+
+/** No board is bigger than this. A longer list is corrupt state, not an exercise. */
+const MAX_CHOICES = 16
+
+function isChoiceList(value: unknown): boolean {
+  return value === undefined || (Array.isArray(value) && value.length <= MAX_CHOICES && value.every((choice) => text(choice, 200)))
+}
+
 export function isPracticeTask(value: unknown): value is PracticeTask {
   if (!isRecord(value)) return false
   return ['id', 'targetKey', 'prompt', 'answer', 'danish', 'translation', 'hint', 'example'].every((key) => text(value[key]))
-    && ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue'].includes(String(value.kind))
+    && text(value.targetKey, TARGET_KEY_MAX_LENGTH)
+    && PRACTICE_KINDS.includes(String(value.kind))
     && ['remember', 'learn', 'build', 'speak', 'return'].includes(String(value.stage))
     && [null, 'meaning', 'production'].includes(value.objective as string | null)
     && (value.entryId === null || text(value.entryId, 100))
@@ -39,6 +51,9 @@ export function isPracticeTask(value: unknown): value is PracticeTask {
     && (value.answerIsSentence === undefined || typeof value.answerIsSentence === 'boolean')
     && (value.cardId === undefined || text(value.cardId, 100))
     && (value.contentVersion === undefined || text(value.contentVersion, 100))
+    && isChoiceList(value.choices)
+    && (value.senseId === undefined || text(value.senseId, 100))
+    && (value.contrast === undefined || text(value.contrast))
 }
 
 export function isPracticeResponse(value: unknown): value is PracticeResponse {
@@ -46,7 +61,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
   return text(value.answer) && text(value.feedback) && typeof value.revealed === 'boolean'
     && (value.answeredAt === null || (typeof value.answeredAt === 'string' && Number.isFinite(Date.parse(value.answeredAt))))
     && ['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result))
-    && ['none', 'hint', 'model', 'transcript'].includes(String(value.assistance))
+    && PRACTICE_ASSISTANCE.includes(String(value.assistance))
     && ['typed', 'spoken'].includes(String(value.modality))
     && ['yes', 'no', 'uncertain'].includes(String(value.communication)) && ['yes', 'no', 'uncertain'].includes(String(value.target))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= 3600000
@@ -56,10 +71,12 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
 export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
   if (!isRecord(value)) return false
   return ['id', 'taskId', 'targetKey'].every((key) => text(value[key]))
+    // The database caps `practice_attempts.target_key` at 100 characters; fail here, not there.
+    && text(value.targetKey, TARGET_KEY_MAX_LENGTH)
     && [null, 'meaning', 'production'].includes(value.objective as string | null)
-    && ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue'].includes(String(value.kind))
+    && PRACTICE_KINDS.includes(String(value.kind))
     && ['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result))
-    && ['none', 'hint', 'model', 'transcript'].includes(String(value.assistance))
+    && PRACTICE_ASSISTANCE.includes(String(value.assistance))
     && ['typed', 'spoken'].includes(String(value.modality))
     && [null, 1, 2, 3, 4].includes(value.rating as number | null)
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0
