@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bot, Check, CircleAlert, Loader2, Plus, Sparkles, WandSparkles, X } from 'lucide-react'
+import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
 import type { EntryKind } from '@/lib/types'
@@ -19,12 +19,27 @@ type EnrichableField = Exclude<keyof Draft, 'danish'>
 type DuplicateEntry = { id: string; translation: string | null }
 type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
+/** Everything a regenerate overwrites, kept so a single Undo can put it back. */
+interface DraftSnapshot {
+  draft: Draft
+  exampleSuggestion: string | null
+  exampleCheckStatus: ExampleCheckStatus
+  usedAI: boolean
+}
+
 const allEnrichableFields: EnrichableField[] = [
   'pronunciation',
   'translation',
   'example_sentence',
   'example_translation',
 ]
+
+/** Fields the AI may fill for this entry kind. Sentences never gain example fields. */
+function enrichableFieldsFor(entryKind: EntryKind, includeExample: boolean): EnrichableField[] {
+  if (entryKind === 'sentence') return ['pronunciation', 'translation']
+  if (!includeExample) return allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+  return allEnrichableFields
+}
 
 const emptyDraft: Draft = {
   danish: '',
@@ -43,7 +58,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [aiLoading, setAiLoading] = useState<string | null>(null)
-  const [aiSources, setAiSources] = useState<Partial<Record<EnrichableField, string>>>({})
+  const [undoSnapshot, setUndoSnapshot] = useState<DraftSnapshot | null>(null)
   const [duplicate, setDuplicate] = useState<DuplicateEntry[] | null>(null)
   const [liveDuplicate, setLiveDuplicate] = useState<DuplicateEntry[]>([])
   const [allowDuplicate, setAllowDuplicate] = useState(false)
@@ -111,16 +126,13 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         latestExampleSentence.current = ''
         resetExampleCheck()
         setIncludeExample(false)
-        setAiSources((current) => {
-          const next = { ...current }
-          delete next.example_sentence
-          delete next.example_translation
-          return next
-        })
       } else if (!examplePreferenceTouched) {
         setIncludeExample(true)
       }
 
+      // The snapshot belongs to the previous Danish text; restoring it here would
+      // silently revert what the user just typed.
+      setUndoSnapshot(null)
       setDuplicate(null)
       setAllowDuplicate(false)
     } else {
@@ -129,12 +141,6 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         resetExampleCheck()
       }
       setDraft((current) => ({ ...current, [key]: value }))
-      setAiSources((current) => {
-        if (!current[key]) return current
-        const next = { ...current }
-        delete next[key]
-        return next
-      })
     }
 
     setNotice(null)
@@ -151,12 +157,6 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       latestExampleSentence.current = ''
       resetExampleCheck()
       setDraft((current) => ({ ...current, example_sentence: '', example_translation: '' }))
-      setAiSources((current) => {
-        const next = { ...current }
-        delete next.example_sentence
-        delete next.example_translation
-        return next
-      })
     }
   }
 
@@ -168,7 +168,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setEntryKind('word')
     setIncludeExample(true)
     setExamplePreferenceTouched(false)
-    setAiSources({})
+    setUndoSnapshot(null)
     setDuplicate(null)
     setLiveDuplicate([])
     setAllowDuplicate(false)
@@ -245,7 +245,6 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         setExampleCheckStatus('correct')
       }
 
-      setAiSources((current) => ({ ...current, example_translation: draft.danish.trim() }))
       setUsedAI(true)
       setNotice(null)
     } catch (error) {
@@ -265,37 +264,49 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setDraft((current) => ({ ...current, example_sentence: corrected }))
     setExampleSuggestion(null)
     setExampleCheckStatus('correct')
-    setAiSources((current) => ({ ...current, example_sentence: draft.danish.trim() }))
     setUsedAI(true)
   }
 
-  async function enrich(fields?: EnrichableField[]) {
+  function activeEnrichableFields(): EnrichableField[] {
+    return enrichableFieldsFor(entryKind, entryKind !== 'sentence' && includeExample)
+  }
+
+  /** Per-field mini AI buttons. */
+  async function enrich(fields: EnrichableField[]) {
+    await runEnrich(fields, fields.join(','), false)
+  }
+
+  /** Only the fields that are still empty right now. */
+  async function fillMissingWithAI() {
+    const missing = activeEnrichableFields().filter((key) => !draft[key].trim())
+    if (!missing.length) {
+      setNotice('Nothing is empty. Use Regenerate all to replace what is there.')
+      return
+    }
+    await runEnrich(missing, 'fill-missing', false)
+  }
+
+  /**
+   * Every active field, unconditionally — including a hand-typed example sentence.
+   * Origin is deliberately not consulted: a manually typed field has no AI origin,
+   * so any origin check would silently skip exactly the field the user wants redone.
+   */
+  async function regenerateAll() {
+    await runEnrich(activeEnrichableFields(), 'regenerate-all', true)
+  }
+
+  async function runEnrich(requestedFields: EnrichableField[], loadingKey: string, offerUndo: boolean) {
     const sourceDanish = draft.danish.trim()
     if (!sourceDanish) {
       setNotice('Type Danish text first.')
       return
     }
+    if (!requestedFields.length) return
 
     const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
-    const activeFields: EnrichableField[] = entryKind === 'sentence'
-      ? ['pronunciation', 'translation']
-      : effectiveIncludeExample
-        ? allEnrichableFields
-        : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
+    const snapshot: DraftSnapshot = { draft, exampleSuggestion, exampleCheckStatus, usedAI }
 
-    const fullFill = !fields
-    const requestedFields = fields ?? activeFields.filter((key) => {
-      if (!draft[key].trim()) return true
-      const source = aiSources[key]
-      return !!source && source !== sourceDanish
-    })
-
-    if (!requestedFields.length) {
-      setNotice('Everything is already up to date for this text.')
-      return
-    }
-
-    const loadingKey = fullFill ? 'all' : requestedFields.join(',')
+    setUndoSnapshot(null)
     setAiLoading(loadingKey)
 
     try {
@@ -329,24 +340,30 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
         resetExampleCheck()
       }
 
-      setAiSources((current) => {
-        const next = { ...current }
-        for (const key of requestedFields) {
-          if (typeof body[key] === 'string') next[key] = sourceDanish
-        }
-        return next
-      })
-
       if (requestedFields.includes('example_sentence') || requestedFields.includes('example_translation')) {
         exampleSentenceDirty.current = false
       }
       setUsedAI(true)
       setNotice(null)
+      if (offerUndo) setUndoSnapshot(snapshot)
     } catch (error) {
       setNotice(error instanceof Error ? error.message : 'AI enrichment failed')
     } finally {
       setAiLoading(null)
     }
+  }
+
+  function undoRegenerate() {
+    if (!undoSnapshot) return
+
+    exampleSentenceDirty.current = false
+    latestExampleSentence.current = undoSnapshot.draft.example_sentence
+    setDraft(undoSnapshot.draft)
+    setExampleSuggestion(undoSnapshot.exampleSuggestion)
+    setExampleCheckStatus(undoSnapshot.exampleCheckStatus)
+    setUsedAI(undoSnapshot.usedAI)
+    setUndoSnapshot(null)
+    setNotice('Restored the text you had before regenerating.')
   }
 
   async function save() {
@@ -404,7 +421,7 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
     setEntryKind('word')
     setIncludeExample(true)
     setExamplePreferenceTouched(false)
-    setAiSources({})
+    setUndoSnapshot(null)
     setDuplicate(null)
     setLiveDuplicate([])
     setAllowDuplicate(false)
@@ -432,18 +449,6 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
       </button>
     )
   }
-
-  const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
-  const activeFields: EnrichableField[] = entryKind === 'sentence'
-    ? ['pronunciation', 'translation']
-    : effectiveIncludeExample
-      ? allEnrichableFields
-      : allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
-
-  const hasStaleAiFields = activeFields.some((key) => {
-    const source = aiSources[key]
-    return !!source && source !== draft.danish.trim()
-  })
 
   const duplicateMeanings = [...new Set(liveDuplicate.map((item) => item.translation?.trim() || 'No translation'))]
   const inputKind = inferDanishInputKind(draft.danish)
@@ -591,11 +596,23 @@ export function AddWordComposer({ compact = false, translationLanguage = 'ru' }:
 
       {notice && <div className={`notice ${notice.startsWith('Saved') ? 'success' : ''}`}>{notice.startsWith('Saved') ? <Check size={16} /> : <Bot size={16} />}{notice}</div>}
 
+      {undoSnapshot && (
+        <div className="notice composer-undo">
+          <Bot size={16} />
+          <span>Regenerated every field for this text.</span>
+          <button type="button" className="soft-button composer-undo-action" disabled={!!aiLoading} onClick={undoRegenerate}>Undo</button>
+        </div>
+      )}
+
       <div className="composer-actions">
-        <div style={{ display: 'flex', gap: 8, flex: '1 1 auto' }}>
-          <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => enrich()} style={{ flex: '1 1 auto' }}>
-            {aiLoading === 'all' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
-            {hasStaleAiFields ? 'Regenerate for this text' : 'Fill missing with AI'}
+        <div className="composer-ai-actions">
+          <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => void fillMissingWithAI()}>
+            {aiLoading === 'fill-missing' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
+            Fill missing with AI
+          </button>
+          <button className="soft-button strong" disabled={!!aiLoading} onClick={() => void regenerateAll()}>
+            {aiLoading === 'regenerate-all' ? <Loader2 className="spin" size={15} /> : <RotateCcw size={15} />}
+            Regenerate all
           </button>
           <button className="soft-button" disabled={saving || !!aiLoading} onClick={clearDraft}>Clear</button>
         </div>
