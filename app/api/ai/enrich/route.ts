@@ -140,6 +140,23 @@ function sensesFromModel(value: unknown, entryKind: EntryKind): EntrySense[] {
   return senses
 }
 
+interface SenseContext {
+  text: string
+  pos: string | null
+}
+
+/**
+ * The meaning an example sentence must demonstrate (D10). Only the sense text and its part of
+ * speech are read; nothing else from the request body reaches the prompt.
+ */
+function readSenseContext(value: unknown): SenseContext | null {
+  if (typeof value !== 'object' || value === null) return null
+  const record = value as Record<string, unknown>
+  const text = String(record.text || '').trim().slice(0, 120)
+  if (!text) return null
+  return { text, pos: isPartOfSpeech(record.pos) ? record.pos : null }
+}
+
 async function generateTranslation(danish: string, entryKind: EntryKind, language: TranslationLanguage) {
   const targetLanguage = languageNames[language]
   const outputRules = entryKind === 'sentence'
@@ -319,6 +336,12 @@ export async function POST(request: Request) {
   const fields: string[] = Array.isArray(body.fields) ? body.fields.map(String) : []
   const entryKind: EntryKind = body.entryKind === 'sentence' ? 'sentence' : 'word'
   const includeExample = entryKind !== 'sentence' && body.includeExample !== false
+  // Optional per-sense context (D10). When present the example must demonstrate this one
+  // meaning; a word with several meanings otherwise gets the same sentence for all of them.
+  const senseContext = readSenseContext(body.sense)
+  // Without this the route keeps whatever example sentence the draft already holds and only
+  // re-translates it, so `Regenerate all` could never actually replace an example (D3).
+  const regenerate = body.regenerate === true
 
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
 
@@ -381,7 +404,7 @@ export async function POST(request: Request) {
         const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
         const level = profile?.danish_level || 'A1'
         const knownWords = (known || []).map((x) => x.danish).join(', ')
-        const existingExample = String(draft.example_sentence || '').trim()
+        const existingExample = regenerate ? '' : String(draft.example_sentence || '').trim()
 
         const parsed = await aiCompletion({
           temperature: 0.12,
@@ -393,6 +416,7 @@ export async function POST(request: Request) {
 - The source vocabulary item is: ${danish}
 - If an existing example sentence is supplied, KEEP that Danish sentence exactly and only translate it.
 - Otherwise generate a short natural Danish example at ${level} that demonstrates the source item clearly.
+${senseContext ? `- The example must show this exact meaning of the source item: "${senseContext.text}"${senseContext.pos ? ` (${senseContext.pos})` : ''}. Another meaning of the same Danish word is wrong here, however natural it sounds.` : ''}
 - Prefer known words when natural: ${knownWords || 'none yet'}.
 - example_translation must translate example_sentence, not the isolated source word.
 - Return no pronunciation, grammar labels, explanations, or commentary.`,
@@ -401,7 +425,9 @@ export async function POST(request: Request) {
               role: 'user',
               content: existingExample
                 ? `Existing Danish example sentence: ${existingExample}`
-                : `Create an example for Danish: ${danish}`,
+                : senseContext
+                  ? `Create an example for Danish "${danish}" used in the meaning "${senseContext.text}".`
+                  : `Create an example for Danish: ${danish}`,
             },
           ],
           response_format: {

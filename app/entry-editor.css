@@ -1,0 +1,212 @@
+/* The dedicated entry route (`/words/[id]`), the row links that reach it, and the per-sense
+   example blocks inside the shared editor. Mobile-first: everything here is checked at
+   narrow-iPhone width first and only relaxed upwards (AGENTS.md §17). */
+
+/* ---- Row links into the entry editor -------------------------------------------------- */
+
+/* A full-row overlay anchor rather than an onClick handler, so the row prefetches, supports
+   middle-click and cmd-click, and lights up the global route-loading feedback. It sits above
+   the plain text cells and below every control, which is the only thing keeping the delete
+   and AI buttons reachable. */
+.word-row {
+  position: relative;
+}
+
+.word-row-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.word-row-link:focus-visible {
+  outline: 2px solid #9b85e4;
+  outline-offset: -3px;
+}
+
+.word-row:has(.word-row-link:hover),
+.word-row:has(.word-row-link:focus-visible) {
+  background: #fcfbfe;
+}
+
+.word-row > .row-menu,
+.word-row > .word-memory-cell,
+.word-row > .sentence-source-cell {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Entry page header ---------------------------------------------------------------- */
+
+.entry-page-header h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.entry-page-bubble {
+  flex: 0 0 auto;
+}
+
+.entry-page-header p {
+  margin-top: 8px;
+  font-size: 12.5px;
+}
+
+.entry-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #7d718c;
+  font-size: 11px;
+  font-weight: 620;
+}
+
+.entry-back:hover {
+  color: #5f5570;
+}
+
+.entry-page-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 760px) {
+  .entry-page-header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .entry-page-meta {
+    align-self: flex-start;
+  }
+}
+
+/* ---- Per-sense examples (D10) ---------------------------------------------------------- */
+
+.sense-example {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sense-example.filled {
+  padding-top: 7px;
+  border-top: 1px dashed #ece7f4;
+}
+
+.sense-example-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sense-example-head small {
+  color: #9a92a3;
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sense-example-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+
+.sense-example-actions .icon-button {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+}
+
+/* An absent example is one dashed affordance, not an empty field: a sense example is only
+   ever generated on request, so there is nothing to show until it exists. */
+.sense-example-add {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px dashed #e6e1ee;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: transparent;
+  color: #8b8394;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sense-example-add:hover:not(:disabled) {
+  border-color: #ded3f6;
+  background: #faf8ff;
+  color: #684dc7;
+}
+
+.sense-example-add:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* These live inside `.field`, so they inherit the composer input styling; only the
+   proportions are dialled back so a sense row stays compact. */
+.sense-row .sense-example-text {
+  min-height: 52px;
+  font-size: 12px;
+}
+
+.sense-row .sense-example-translation {
+  height: 36px;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .sense-row .sense-example-text {
+    min-height: 58px;
+  }
+
+  .sense-row .sense-example-translation {
+    height: 40px;
+  }
+}
+
+/* ---- Review: My answer was right (D5) -------------------------------------------------- */
+
+.accept-answer-button {
+  width: 100%;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+/* ---- Entry route loading skeleton ------------------------------------------------------ */
+
+.entry-skeleton {
+  display: block;
+  border-radius: 9px;
+  background: linear-gradient(90deg, #f2effa 25%, #f8f6fc 37%, #f2effa 63%);
+  background-size: 400% 100%;
+  animation: entry-skeleton-shimmer 1.3s ease infinite;
+}
+
+.entry-skeleton-back { width: 92px; height: 12px; }
+.entry-skeleton-title { width: min(260px, 70vw); height: 30px; margin-top: 11px; }
+.entry-skeleton-line { width: min(180px, 50vw); height: 13px; margin-top: 12px; }
+.entry-skeleton-field { height: 58px; margin-bottom: 13px; border-radius: 12px; }
+
+@keyframes entry-skeleton-shimmer {
+  from { background-position: 100% 50%; }
+  to { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-skeleton {
+    animation: none;
+  }
+}

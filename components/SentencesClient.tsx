@@ -134,7 +134,7 @@ export function SentencesClient({
           <span className="sentence-source-cell">
             {row.source === 'manual'
               ? <span className="sentence-source manual"><PenLine size={13}/> Added directly</span>
-              : <Link className="sentence-source" href={`/words?q=${encodeURIComponent(row.parentDanish || '')}`}><BookOpenText size={13}/> From “{row.parentDanish}”</Link>}
+              : <Link className="sentence-source" href={`/words/${row.sourceEntryId}`}><BookOpenText size={13}/> From “{row.parentDanish}”</Link>}
           </span>
           <div className="word-memory-cell">
             {row.source === 'manual' ? <>{card && <MemoryRing item={card} compact />}<span className={`status-chip ${row.learningStatus || 'new'}`}>{row.learningStatus || 'new'}</span></> : <span className="status-chip sentence-reference-chip">example</span>}
@@ -142,8 +142,15 @@ export function SentencesClient({
           <div className="row-menu">
             {row.source === 'manual'
               ? <button className="icon-button danger" title="Delete" onClick={() => removeSentence(row.sourceEntryId)}><X size={16}/></button>
-              : <Link className="icon-button" title="Open source word" href={`/words?q=${encodeURIComponent(row.parentDanish || '')}`}><BookOpenText size={16}/></Link>}
+              : <Link className="icon-button" title="Open source word" href={`/words/${row.sourceEntryId}`}><BookOpenText size={16}/></Link>}
           </div>
+          {/* Both row kinds open the same editor (D7). An example sentence has no entry of its
+              own, so it opens the word that owns it — which is where its example is edited. */}
+          <Link
+            className="word-row-link"
+            href={`/words/${row.sourceEntryId}`}
+            aria-label={row.source === 'manual' ? `Open ${row.danish}` : `Open ${row.parentDanish}`}
+          />
         </div>
       })}
       {!visible.length && <div className="empty-state tall">No sentences match this view.</div>}
