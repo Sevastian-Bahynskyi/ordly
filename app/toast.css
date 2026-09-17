@@ -1,0 +1,68 @@
+/* Transient status messages. One dark surface for every tone, because a toast is read once and
+   then gone — the icon carries the tone, so three tinted surfaces would only add noise. */
+
+/* Anchored to the top on every size, because the primary action is pinned to the bottom on a
+   phone (the tab bar, and the editor's sticky AI/Save bar above it). A transient message must
+   never sit on top of Save. */
+.toast-stack {
+  position: fixed;
+  left: 50%;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(420px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  /* Only the toasts themselves take taps; the gaps between them must not block the page. */
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 9px 9px 9px 14px;
+  border-radius: 14px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13.5px;
+  box-shadow: 0 10px 34px rgba(31, 24, 43, .28);
+  pointer-events: auto;
+  animation: toast-in .22s cubic-bezier(.22, .8, .2, 1) both;
+}
+
+.toast > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.toast > svg { flex: 0 0 auto; }
+.toast-info > svg { color: var(--purple-2); }
+.toast-success > svg { color: #6ed1a4; }
+.toast-error > svg { color: #f09a97; }
+
+.toast-action {
+  flex: 0 0 auto;
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .13);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.toast-action:hover:not(:disabled) { background: rgba(255, 255, 255, .22); }
+.toast-action:disabled { opacity: .45; cursor: default; }
+
+@keyframes toast-in { from { opacity: .001; transform: translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+
+@media (max-width: 760px) {
+  .toast-stack { width: calc(100vw - 24px); }
+}

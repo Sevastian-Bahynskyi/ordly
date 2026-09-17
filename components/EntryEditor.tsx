@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkles, X } from 'lucide-react'
+import { Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Undo2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { SenseRow } from '@/components/SenseRow'
+import { Toast, type ToastTone } from '@/components/Toast'
 import { errorMessage, readJsonRecord, requestEnrichment, stringField } from '@/lib/ai-responses'
 import { diffAnswer } from '@/lib/answer-diff'
 import { discoverSynonyms } from '@/lib/entry-links'
@@ -137,7 +138,9 @@ export function EntryEditor({
   const [duplicate, setDuplicate] = useState<DuplicateEntry[] | null>(null)
   const [liveDuplicate, setLiveDuplicate] = useState<DuplicateEntry[]>([])
   const [allowDuplicate, setAllowDuplicate] = useState(false)
-  const [notice, setNotice] = useState<string | null>(null)
+  const [notice, setNotice] = useState<{ text: string; tone: ToastTone } | null>(null)
+  /** The undo toast is transient; `undoSnapshot` outlives it and keeps Undo in the AI sheet. */
+  const [undoToastOpen, setUndoToastOpen] = useState(false)
   const [usedAI, setUsedAI] = useState(false)
   const [exampleSuggestion, setExampleSuggestion] = useState<string | null>(null)
   /**
@@ -166,6 +169,14 @@ export function EntryEditor({
    * would just be noise. Refreshed on every successful save.
    */
   const savedSenseIds = useRef<Set<string>>(new Set(parseSenses(entry?.senses).map((sense) => sense.id)))
+
+  function notify(text: string, tone: ToastTone = 'info'): void {
+    setNotice({ text, tone })
+  }
+
+  function notifyError(error: unknown, fallback: string): void {
+    setNotice({ text: error instanceof Error ? error.message : fallback, tone: 'error' })
+  }
 
   function commitDraft(updater: (current: Draft) => Draft): Draft {
     const next = updater(draftRef.current)
@@ -206,6 +217,12 @@ export function EntryEditor({
   useEffect(() => {
     if (open) setTimeout(() => firstInput.current?.focus(), 50)
   }, [open])
+
+  // Every path that offers an undo goes through `undoSnapshot`, so opening the toast here covers
+  // all of them, and re-opens it when a second regenerate replaces the first snapshot.
+  useEffect(() => {
+    if (undoSnapshot) setUndoToastOpen(true)
+  }, [undoSnapshot])
 
   useEffect(() => {
     if (!compact) return
@@ -383,7 +400,7 @@ export function EntryEditor({
       setIncludeExample(entry.entry_kind !== 'sentence' && Boolean(entry.example_sentence || entry.example_translation))
       latestExampleSentence.current = entry.example_sentence || ''
       setUsedAI(false)
-      setNotice('Reverted to the saved version.')
+      notify('Reverted to the saved version.', 'success')
       return
     }
 
@@ -410,7 +427,7 @@ export function EntryEditor({
   async function checkDanishForm(options: { quiet?: boolean } = {}): Promise<string | null> {
     const original = draftRef.current.danish.trim()
     if (!original) {
-      if (!options.quiet) setNotice('Type Danish text first.')
+      if (!options.quiet) notify('Type Danish text first.')
       return null
     }
     const previous = danishCheckRef.current
@@ -446,7 +463,7 @@ export function EntryEditor({
       setUsedAI(true)
       return original
     } catch (error) {
-      if (!options.quiet) setNotice(error instanceof Error ? error.message : 'Could not check this Danish text')
+      if (!options.quiet) notifyError(error, 'Could not check this Danish text')
       return original
     } finally {
       if (!options.quiet) setAiLoading((current) => current === 'danish-check' ? null : current)
@@ -498,7 +515,7 @@ export function EntryEditor({
       setNotice(null)
     } catch (error) {
       if (latestExampleSentence.current.trim() === sourceSentence) {
-        setNotice(error instanceof Error ? error.message : 'Could not check this example sentence')
+        notifyError(error, 'Could not check this example sentence')
       }
     } finally {
       setAiLoading((current) => current === 'example-check' ? null : current)
@@ -536,7 +553,7 @@ export function EntryEditor({
     if (!missing.length) {
       await snapshot.pending
       setAiLoading(null)
-      setNotice('Nothing is empty. Use Regenerate all to replace what is there.')
+      notify('Nothing is empty. Use Regenerate all to replace what is there.')
       return
     }
     await Promise.all([runEnrich(missing, 'fill-missing', false, false), snapshot.pending])
@@ -550,7 +567,7 @@ export function EntryEditor({
   async function verifyBeforeEnrich(loadingKey: string): Promise<{ pending: Promise<unknown>; snapshot: DraftSnapshot } | null> {
     const current = draftRef.current
     if (!current.danish.trim()) {
-      setNotice('Type Danish text first.')
+      notify('Type Danish text first.')
       return null
     }
     const snapshot: DraftSnapshot = { draft: current, archived: archivedRef.current, exampleSuggestion, exampleCheckStatus, usedAI }
@@ -598,7 +615,7 @@ export function EntryEditor({
     const current = draftRef.current
     const sourceDanish = current.danish.trim()
     if (!sourceDanish) {
-      setNotice('Type Danish text first.')
+      notify('Type Danish text first.')
       return false
     }
     if (!requestedFields.length) return false
@@ -663,7 +680,7 @@ export function EntryEditor({
       if (offerUndo) setUndoSnapshot(snapshot)
       return true
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'AI enrichment failed')
+      notifyError(error, 'AI enrichment failed')
       return false
     } finally {
       setAiLoading(null)
@@ -723,11 +740,11 @@ export function EntryEditor({
     const sense = current.senses.find((item) => item.id === senseId)
     const sourceDanish = current.danish.trim()
     if (!sense || !sense.text.trim()) {
-      setNotice('Write this meaning first.')
+      notify('Write this meaning first.')
       return
     }
     if (!sourceDanish) {
-      setNotice('Type Danish text first.')
+      notify('Type Danish text first.')
       return
     }
 
@@ -757,7 +774,7 @@ export function EntryEditor({
       setUsedAI(true)
       setNotice(null)
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'AI enrichment failed')
+      notifyError(error, 'AI enrichment failed')
     } finally {
       setAiLoading(null)
     }
@@ -773,8 +790,8 @@ export function EntryEditor({
     const live = activeSenses(current.senses)
     const index = live.findIndex((sense) => sense.id === senseId)
     const sourceDanish = current.danish.trim()
-    if (index < 0 || !live[index].text.trim()) return setNotice('Write this meaning first.')
-    if (!sourceDanish) return setNotice('Type Danish text first.')
+    if (index < 0 || !live[index].text.trim()) return notify('Write this meaning first.')
+    if (!sourceDanish) return notify('Type Danish text first.')
 
     setUndoSnapshot(null)
     setAiLoading(`sense-grammar:${senseId}`)
@@ -792,7 +809,7 @@ export function EntryEditor({
       setUsedAI(true)
       setNotice(null)
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'Could not classify this meaning')
+      notifyError(error, 'Could not classify this meaning')
     } finally {
       setAiLoading(null)
     }
@@ -812,7 +829,7 @@ export function EntryEditor({
     setExampleCheckStatus(undoSnapshot.exampleCheckStatus)
     setUsedAI(undoSnapshot.usedAI)
     setUndoSnapshot(null)
-    setNotice('Restored the text you had before regenerating.')
+    notify('Restored the text you had before regenerating.', 'success')
   }
 
   /**
@@ -834,11 +851,11 @@ export function EntryEditor({
   }
 
   async function save() {
-    if (aiLoading) return setNotice('Wait for the AI check to finish.')
+    if (aiLoading) return notify('Wait for the AI check to finish.')
     const current = draftRef.current
-    if (!current.danish.trim()) return setNotice('Danish text is required.')
+    if (!current.danish.trim()) return notify('Danish text is required.')
     const senses = activeSenses(current.senses).map((sense) => ({ ...sense, text: sense.text.trim() }))
-    if (!senses.length) return setNotice('Add a translation or use AI to fill it.')
+    if (!senses.length) return notify('Add a translation or use AI to fill it.')
 
     setSaving(true)
     const supabase = createClient()
@@ -887,7 +904,7 @@ export function EntryEditor({
         .single()
 
       if (error || !updated) {
-        setNotice('Could not save this entry. Please try again.')
+        notify('Could not save this entry. Please try again.', 'error')
         setSaving(false)
         return
       }
@@ -900,7 +917,7 @@ export function EntryEditor({
       resetDraft(draftFromEntry(saved), archivedFromEntry(saved))
       setUndoSnapshot(null)
       setUsedAI(false)
-      setNotice('Saved. Your changes are live.')
+      notify('Saved. Your changes are live.', 'success')
       setSaving(false)
       router.refresh()
       runSynonymDiscovery(saved.id, saved.entry_kind)
@@ -914,7 +931,7 @@ export function EntryEditor({
       .single()
 
     if (error) {
-      setNotice('Could not save this entry. Please try again.')
+      notify('Could not save this entry. Please try again.', 'error')
       setSaving(false)
       return
     }
@@ -933,7 +950,7 @@ export function EntryEditor({
     setLiveDuplicate([])
     setAllowDuplicate(false)
     setUsedAI(false)
-    setNotice('Saved. It is ready for review.')
+    notify('Saved. It is ready for review.', 'success')
     setSaving(false)
 
     router.refresh()
@@ -1167,16 +1184,6 @@ export function EntryEditor({
         </div>
       )}
 
-      {notice && <div className={`notice ${notice.startsWith('Saved') ? 'success' : ''}`}>{notice.startsWith('Saved') ? <Check size={16} /> : <Bot size={16} />}{notice}</div>}
-
-      {undoSnapshot && (
-        <div className="notice composer-undo">
-          <Bot size={16} />
-          <span>Regenerated every field for this text.</span>
-          <button type="button" className="soft-button composer-undo-action" disabled={aiBusy} onClick={undoRegenerate}>Undo</button>
-        </div>
-      )}
-
       {/* One quiet AI button and one prominent Save (HIG: one or two prominent buttons per view).
           On a phone the bar sticks above the tab bar while the form scrolls. */}
       <div className="capture-actions">
@@ -1199,6 +1206,8 @@ export function EntryEditor({
                 <small>AI for this entry</small>
                 <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(fillMissingWithAI)}><WandSparkles size={17} />Fill missing fields</button>
                 <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(regenerateAll)}><RotateCcw size={17} />Regenerate everything</button>
+                {/* The undo toast is gone within seconds; the way back has to outlive it. */}
+                {undoSnapshot && <button type="button" role="menuitem" disabled={aiBusy} onClick={() => { setAiMenuOpen(false); undoRegenerate() }}><Undo2 size={17} />Undo regenerate</button>}
                 <hr />
                 <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(checkDanishForm)}><Check size={17} />{danishActionLabel}</button>
                 <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['pronunciation']))}><Sparkles size={17} />Pronunciation only</button>
@@ -1218,6 +1227,19 @@ export function EntryEditor({
           </button>
         </div>
       </div>
+
+      {(notice || (undoSnapshot && undoToastOpen)) && (
+        <div className="toast-stack">
+          {undoSnapshot && undoToastOpen && (
+            <Toast
+              message="Regenerated every field."
+              action={{ label: 'Undo', onAct: undoRegenerate, disabled: aiBusy }}
+              onDismiss={() => setUndoToastOpen(false)}
+            />
+          )}
+          {notice && <Toast message={notice.text} tone={notice.tone} onDismiss={() => setNotice(null)} />}
+        </div>
+      )}
     </section>
   )
 }

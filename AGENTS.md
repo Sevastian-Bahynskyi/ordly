@@ -423,6 +423,8 @@ Maintain this performance-first approach.
 
 ## 17. Styling / responsive expectations
 
+**Visual identity — `docs/visual-identity.md`.** Read it before writing CSS, adding or restyling a component, or choosing a colour, size, radius or motion value. It is the single source of truth for how Ordly should look; this section only records history.
+
 Mobile screenshots drive a lot of changes. Check narrow iPhone layouts after UI work.
 
 Known past issues:
@@ -433,18 +435,6 @@ Known past issues:
 - low-quality PWA icon edges
 - browser-native tooltip styling
 - duplicate Review/Words nav icons
-
-Prefer dedicated CSS files for focused enhancements rather than destabilizing large global styles when possible.
-
-Current focused styles include files such as:
-
-- `nav.css`
-- `pwa.css`
-- `responsive.css`
-- `memory.css`
-- `words-enhancements.css`
-- `notifications.css`
-- `composer-shortcuts.css`
 
 ## 18. Current handoff state (2026-09-03)
 
