@@ -371,9 +371,11 @@ Ordly is installable on iOS and desktop.
 The installed app icon is intentionally separate from the in-app logo.
 
 - In-app Brand icon should remain as it is unless explicitly requested.
-- PWA/Home Screen icon is generated at high resolution through the PWA icon route for crisp edges.
-- Current visual: premium purple gradient rounded-square + white/lavender open book.
+- Current visual: premium purple gradient, full-bleed square (iOS and Android apply their own rounded mask), with a filled white/lavender open book inside the maskable safe zone.
 - The Danish flag was explicitly removed. Do not re-add it.
+- Single source: `branding/ordly-icon.svg`. `node scripts/render-icons.mjs` renders every PNG in `public/` (180, 192, 512, 1024) at 4× and downsamples, so edges are anti-aliased. Never hand-export or aliased-rasterize an icon again. That is what made the Home Screen icon look pixelated.
+- URLs come from `lib/app-icon.ts`. After re-rendering, bump `APP_ICON_VERSION` there and the matching `?v=` in `public/sw.js`.
+- `/api/pwa-icon` only 308-redirects old installs to the static PNGs.
 
 On iOS, Home Screen icons are aggressively cached. To verify icon changes, deleting Ordly from Home Screen and re-adding it may be required.
 

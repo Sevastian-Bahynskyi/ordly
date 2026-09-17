@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { ComposerKeyboardNavigation } from '@/components/ComposerKeyboardNavigation'
 import { PwaRegistration } from '@/components/PwaRegistration'
+import { APP_ICON_VERSION, appIconUrl } from '@/lib/app-icon'
 import './globals.css'
 import './nav.css'
 import './pwa.css'
@@ -28,12 +29,13 @@ export const metadata: Metadata = {
   manifest: '/manifest.webmanifest',
   icons: {
     icon: [
-      { url: '/api/pwa-icon?size=192&v=6', type: 'image/png', sizes: '192x192' },
-      { url: '/ordly-icon.svg?v=5', type: 'image/svg+xml' },
+      { url: appIconUrl(192), type: 'image/png', sizes: '192x192' },
+      { url: appIconUrl(512), type: 'image/png', sizes: '512x512' },
+      { url: `/ordly-icon.svg?v=${APP_ICON_VERSION}`, type: 'image/svg+xml' },
     ],
-    shortcut: [{ url: '/api/pwa-icon?size=192&v=6', type: 'image/png', sizes: '192x192' }],
-    apple: [{ url: '/api/pwa-icon?size=180&v=6', type: 'image/png', sizes: '180x180' }],
-    other: [{ rel: 'apple-touch-icon-precomposed', url: '/api/pwa-icon?size=180&v=6' }],
+    shortcut: [{ url: appIconUrl(192), type: 'image/png', sizes: '192x192' }],
+    apple: [{ url: appIconUrl(180), type: 'image/png', sizes: '180x180' }],
+    other: [{ rel: 'apple-touch-icon-precomposed', url: appIconUrl(180) }],
   },
   appleWebApp: {
     capable: true,
