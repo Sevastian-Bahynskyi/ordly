@@ -124,9 +124,11 @@ export function EntryEditor({
   const [draft, setDraft] = useState<Draft>(() => entry ? draftFromEntry(entry) : blankDraft())
   const [archived, setArchived] = useState<EntrySense[]>(() => archivedFromEntry(entry))
   const [entryKind, setEntryKind] = useState<EntryKind>(() => entry?.entry_kind || 'word')
+  // A new entry starts without an example: it is one tap away, and an empty form should show
+  // only what the learner has to fill in. An existing entry keeps whatever it was saved with.
   const [includeExample, setIncludeExample] = useState(() => entry
     ? entry.entry_kind !== 'sentence' && Boolean(entry.example_sentence || entry.example_translation)
-    : true)
+    : false)
   const [examplePreferenceTouched, setExamplePreferenceTouched] = useState(editing)
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -143,9 +145,10 @@ export function EntryEditor({
    * which is also what stops Fill missing / Regenerate all from checking the same text twice.
    */
   const [danishCheck, setDanishCheck] = useState<DanishCheck | null>(null)
+  const [aiMenuOpen, setAiMenuOpen] = useState(false)
   const danishCheckRef = useRef<DanishCheck | null>(null)
   const [exampleCheckStatus, setExampleCheckStatus] = useState<ExampleCheckStatus>('idle')
-  const firstInput = useRef<HTMLInputElement>(null)
+  const firstInput = useRef<HTMLTextAreaElement>(null)
   const exampleSentenceDirty = useRef(false)
   const latestExampleSentence = useRef(entry?.example_sentence || '')
 
@@ -284,7 +287,7 @@ export function EntryEditor({
         }
         setIncludeExample(false)
       } else if (!examplePreferenceTouched) {
-        setIncludeExample(true)
+        setIncludeExample(false)
       }
 
       // The snapshot belongs to the previous Danish text; restoring it here would
@@ -387,7 +390,7 @@ export function EntryEditor({
     latestExampleSentence.current = ''
     resetDraft(blankDraft(), [])
     setEntryKind('word')
-    setIncludeExample(true)
+    setIncludeExample(false)
     setExamplePreferenceTouched(false)
     setUsedAI(false)
     window.setTimeout(() => firstInput.current?.focus(), 0)
@@ -923,7 +926,7 @@ export function EntryEditor({
     resetExampleCheck()
     resetDraft(blankDraft(), [])
     setEntryKind('word')
-    setIncludeExample(true)
+    setIncludeExample(false)
     setExamplePreferenceTouched(false)
     setUndoSnapshot(null)
     setDuplicate(null)
@@ -958,200 +961,199 @@ export function EntryEditor({
   // The primary sense is the first non-removed one: it owns the entry's example columns.
   const primaryId = activeSenses(draft.senses)[0]?.id ?? draft.senses[0]?.id ?? ''
   const inputKind = inferDanishInputKind(draft.danish)
+  const hasDanish = Boolean(draft.danish.trim())
   const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Verify phrase' : 'Verify sentence'
   const currentCheck = danishCheck && danishCheck.text === draft.danish.trim() ? danishCheck : null
-  const inputKindLabel = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence detected'
+  const verified = currentCheck && ['correct', 'applied', 'changed'].includes(currentCheck.status)
+  const kindName = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence'
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'
-  const translationLabel = entryKind === 'sentence' ? 'Sentence translation' : `${languageLabel} translation`
+  const translationLabel = entryKind === 'sentence' ? 'Translation' : `${languageLabel} meanings`
   const translationPlaceholder = entryKind === 'sentence'
     ? translationLanguage === 'ru' ? 'Как дела?' : translationLanguage === 'uk' ? 'Як справи?' : 'How are you?'
     : translationLanguage === 'ru' ? 'думать, считать' : translationLanguage === 'uk' ? 'думати, вважати' : 'think'
   const liveSenses = activeSenses(draft.senses)
-  const exampleFieldLabel = editing && liveSenses.length > 1 ? 'Example sentence · primary meaning' : 'Example sentence'
+  const exampleFieldLabel = editing && liveSenses.length > 1 ? 'Example · primary meaning' : 'Example'
   const saveLabel = editing
     ? 'Save changes'
     : entryKind === 'sentence' ? 'Save sentence' : inputKind === 'phrase' ? 'Save phrase' : 'Save word'
+  // Details appear once there is something to describe (progressive disclosure). Anything already
+  // filled in stays visible even if the Danish is cleared, so nothing typed is ever hidden.
+  const showDetails = editing || hasDanish || Boolean(draft.pronunciation.trim() || translationFromSenses(draft.senses).trim() || draft.example_sentence.trim() || draft.example_translation.trim())
+  const aiBusy = Boolean(aiLoading)
+  const exampleOn = entryKind !== 'sentence' && includeExample
+
+  function runAi(action: () => unknown): void {
+    setAiMenuOpen(false)
+    void action()
+  }
 
   return (
-    <section className={`composer-card${editing ? ' entry-editor-card' : ''}`} onKeyDown={keyDown}>
+    <section className={`composer-card capture-focus${editing ? ' entry-editor-card' : ''}`} onKeyDown={keyDown}>
       <div className="composer-heading">
         <div>
           <span className="eyebrow"><Sparkles size={14} /> {editing ? 'EDIT ENTRY' : 'QUICK CAPTURE'}</span>
           <h2>{editing ? 'Edit this entry' : 'Add Danish'}</h2>
-          <p>{editing
-            ? 'Every meaning, its grammar, and its own example. The same AI actions as capture.'
-            : 'Word, phrase, or whole sentence. AI only when you want it.'}</p>
         </div>
         {compact && <button className="icon-button" onClick={() => setOpen(false)} aria-label="Close"><X size={18} /></button>}
       </div>
 
-      <div className="field-grid">
-        <label className="field field-wide">
-          <span>
-            <span>Danish word, phrase, or sentence</span>
-            {draft.danish.trim() && <AiMini label={danishActionLabel} loading={aiLoading === 'danish-check'} onClick={() => void checkDanishForm()} />}
-          </span>
-          <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="synes · helt sikker · Hvad kan du godt lide?" />
-          <span style={{ minHeight: 16, justifyContent: 'flex-start', gap: 8 }}>
-            {draft.danish.trim() && (
-              <small style={{ color: inputKind === 'sentence' ? '#7557b5' : '#9a92a3', fontSize: 10, fontWeight: 650 }}>
-                {inputKindLabel}
-              </small>
-            )}
+      <div className="capture-hero">
+        <AutoGrowTextarea
+          inputRef={firstInput}
+          className="capture-danish"
+          value={draft.danish}
+          onChange={(e) => patch('danish', e.target.value)}
+          placeholder="Type Danish…"
+          aria-label="Danish word, phrase, or sentence"
+          lang="da"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+        />
+        {showDetails && (
+          <AutoGrowTextarea
+            className="capture-pron"
+            value={draft.pronunciation}
+            onChange={(e) => patch('pronunciation', e.target.value)}
+            placeholder="pronunciation · сюнес"
+            aria-label="Simplified pronunciation (Cyrillic)"
+          />
+        )}
+        {hasDanish && (
+          <div className="capture-meta">
+            <button
+              type="button"
+              className={`capture-kind${verified ? ' ok' : ''}`}
+              disabled={aiBusy}
+              onClick={() => void checkDanishForm()}
+              aria-label={danishActionLabel}
+            >
+              {aiLoading === 'danish-check' ? <Loader2 className="spin" size={13} /> : verified ? <Check size={13} /> : <Sparkles size={13} />}
+              <span className="capture-kind-name">{kindName} ·</span>
+              {verified ? (inputKind === 'word' ? 'Base form' : 'Correct') : danishActionLabel}
+            </button>
             {liveDuplicate.length > 0 && (
-              <small style={{ display: 'flex', alignItems: 'center', gap: 5, color: '#7557b5', fontSize: 10.5, fontWeight: 620, minWidth: 0 }}>
-                <CircleAlert size={12} style={{ flex: '0 0 auto' }} />
-                <span style={{ whiteSpace: 'nowrap' }}>Already saved</span>
-                <span style={{ color: '#9a92a3', fontWeight: 520, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>· {duplicateMeanings.join(' · ')}</span>
+              <small className="capture-duplicate">
+                <CircleAlert size={12} />
+                <span>Already saved</span>
+                <span className="capture-duplicate-meanings">· {duplicateMeanings.join(' · ')}</span>
               </small>
             )}
-          </span>
-        </label>
-
+          </div>
+        )}
         {currentCheck && <DanishCheckNotice check={currentCheck} onApply={applyDanishSuggestion} onDismiss={() => recordDanishCheck({ ...currentCheck, status: 'dismissed' })} />}
+      </div>
 
-        <label className="field">
-          <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
-          <input value={draft.pronunciation} onChange={(e) => patch('pronunciation', e.target.value)} placeholder="сюнес" />
-        </label>
+      {!showDetails && <p className="capture-empty-note">Type a word, phrase or sentence. Its pronunciation, meaning and an example appear here.</p>}
 
-        <div className="field field-wide sense-field">
-          <span>
-            <span>{translationLabel}</span>
-            <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} />
-          </span>
+      {showDetails && (
+        <div className="capture-section capture-reveal">
+          <div className="capture-section-head"><span>{translationLabel}</span></div>
 
           {/* A sentence has exactly one meaning (plan §3.2): a plain field, no meaning card. */}
           {entryKind === 'sentence' && draft.senses[0] ? (
             <AutoGrowTextarea
-              className="sentence-translation"
+              className="sentence-translation capture-bare"
               value={draft.senses[0].text}
               onChange={(e) => updateSense(draft.senses[0].id, { text: e.target.value })}
               placeholder={translationPlaceholder}
-              aria-label={translationLabel}
+              aria-label="Sentence translation"
             />
-          ) : <div className="sense-list">
-            {draft.senses.map((sense, index) => (
-              <SenseRow
-                key={sense.id}
-                sense={sense}
-                index={index}
-                total={draft.senses.length}
-                isPrimary={sense.id === primaryId}
-                showGrammar={entryKind !== 'sentence'}
-                allowRemove={draft.senses.length > 1}
-                placeholder={index === 0 ? translationPlaceholder : 'another meaning'}
-                translationLanguage={translationLanguage}
-                // Own examples only exist once the entry does, and never on the primary sense,
-                // which reads the entry's example columns instead (D10).
-                exampleState={editing && entryKind !== 'sentence' && sense.id !== primaryId ? {
-                  loading: aiLoading === `sense-example:${sense.id}`,
-                  disabled: !!aiLoading,
-                  onGenerate: () => void generateSenseExample(sense.id, false),
-                  onRegenerate: () => void generateSenseExample(sense.id, true),
-                  onChange: (patchSense) => setSenseExample(sense.id, patchSense),
-                  onClear: () => setSenseExample(sense.id, { example: null, example_translation: null }),
-                } : null}
-                grammarState={entryKind !== 'sentence' ? {
-                  loading: aiLoading === `sense-grammar:${sense.id}`,
-                  disabled: !!aiLoading || !sense.text.trim() || !draft.danish.trim(),
-                  onClassify: () => void classifySenseGrammar(sense.id),
-                } : null}
-                onText={(value) => updateSense(sense.id, { text: value })}
-                onPos={(value) => setSensePos(sense.id, value)}
-                onGender={(value) => setSenseGender(sense.id, value)}
-                onMove={(delta) => moveSense(sense.id, delta)}
-                onRemove={() => removeSense(sense.id)}
-              />
-            ))}
-          </div>}
-
-          {entryKind !== 'sentence' && (
+          ) : <>
+            <div className="sense-list">
+              {draft.senses.map((sense, index) => (
+                <SenseRow
+                  key={sense.id}
+                  sense={sense}
+                  index={index}
+                  total={draft.senses.length}
+                  isPrimary={sense.id === primaryId}
+                  showGrammar
+                  allowRemove={draft.senses.length > 1}
+                  placeholder={index === 0 ? translationPlaceholder : 'another meaning'}
+                  translationLanguage={translationLanguage}
+                  // Own examples only exist once the entry does, and never on the primary sense,
+                  // which reads the entry's example columns instead (D10).
+                  exampleState={editing && sense.id !== primaryId ? {
+                    loading: aiLoading === `sense-example:${sense.id}`,
+                    disabled: aiBusy,
+                    onGenerate: () => void generateSenseExample(sense.id, false),
+                    onRegenerate: () => void generateSenseExample(sense.id, true),
+                    onChange: (patchSense) => setSenseExample(sense.id, patchSense),
+                    onClear: () => setSenseExample(sense.id, { example: null, example_translation: null }),
+                  } : null}
+                  grammarState={{
+                    loading: aiLoading === `sense-grammar:${sense.id}`,
+                    disabled: aiBusy || !sense.text.trim() || !hasDanish,
+                    onClassify: () => void classifySenseGrammar(sense.id),
+                  }}
+                  onText={(value) => updateSense(sense.id, { text: value })}
+                  onPos={(value) => setSensePos(sense.id, value)}
+                  onGender={(value) => setSenseGender(sense.id, value)}
+                  onMove={(delta) => moveSense(sense.id, delta)}
+                  onRemove={() => removeSense(sense.id)}
+                />
+              ))}
+            </div>
             <button type="button" className="sense-add" onClick={addSense}>
-              <Plus size={13} /> Add meaning
+              <Plus size={15} /> Add meaning
             </button>
+          </>}
+        </div>
+      )}
+
+      {showDetails && entryKind !== 'sentence' && (exampleOn ? (
+        <div className="capture-section capture-reveal">
+          <div className="capture-section-head">
+            <span>{exampleFieldLabel}</span>
+            <span className="capture-section-tools">
+              {aiLoading === 'example-check' && <small><Loader2 className="spin" size={11} /> Checking…</small>}
+              <button type="button" className="capture-link danger" onClick={() => setExampleEnabled(false)}>Remove</button>
+            </span>
+          </div>
+          <AutoGrowTextarea
+            className="capture-bare"
+            lang="da"
+            value={draft.example_sentence}
+            onChange={(e) => {
+              exampleSentenceDirty.current = true
+              patch('example_sentence', e.target.value)
+            }}
+            onBlur={(e) => {
+              const nextTarget = e.relatedTarget as HTMLElement | null
+              if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.capture-ai') || nextTarget?.closest('.example-correction-action')) return
+              exampleSentenceDirty.current = false
+              void checkExampleSentence()
+            }}
+            placeholder="Jeg synes, det er godt."
+            aria-label="Example sentence"
+          />
+          <AutoGrowTextarea
+            className="capture-bare sub"
+            value={draft.example_translation}
+            onChange={(e) => patch('example_translation', e.target.value)}
+            placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'}
+            aria-label="Example translation"
+          />
+          {exampleCheckStatus === 'correct' && !exampleSuggestion && (
+            <small className="danish-check correct"><Check size={12} /> Grammar and spelling look good.</small>
+          )}
+          {exampleSuggestion && (
+            <div className="danish-check suggestion">
+              <small>Suggested correction</small>
+              <p lang="da">{exampleSuggestion}</p>
+              <div>
+                <button type="button" className="soft-button strong example-correction-action" onClick={(e) => { e.preventDefault(); applyExampleSuggestion() }}><Check size={13} /> Use correction</button>
+                <button type="button" className="soft-button example-correction-action" onClick={(e) => { e.preventDefault(); setExampleSuggestion(null); setExampleCheckStatus('idle') }}>Keep mine</button>
+              </div>
+            </div>
           )}
         </div>
-
-        {entryKind !== 'sentence' && (
-          <>
-            <div className="field field-wide">
-              <span>
-                <span>Separate example sentence</span>
-                <button
-                  type="button"
-                  onClick={() => setExampleEnabled(!includeExample)}
-                  style={{
-                    border: 0,
-                    borderRadius: 999,
-                    padding: '4px 9px',
-                    background: includeExample ? '#eee9ff' : '#f1eff3',
-                    color: includeExample ? '#684dc7' : '#8d8793',
-                    fontSize: 10,
-                    fontWeight: 720,
-                    cursor: 'pointer',
-                  }}
-                >
-                  {includeExample ? 'On' : 'Off'}
-                </button>
-              </span>
-              {!includeExample && (
-                <small style={{ color: '#9a92a3', fontSize: 10.5, lineHeight: 1.4 }}>
-                  Off — the saved Danish text is reviewed directly. Translation stays required.
-                </small>
-              )}
-            </div>
-
-            {includeExample && (
-              <>
-                <label className="field field-wide">
-                  <span>
-                    <span>{exampleFieldLabel}</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                      {aiLoading === 'example-check' && <small style={{ color: '#8e86a0', display: 'flex', alignItems: 'center', gap: 4 }}><Loader2 className="spin" size={11} /> Checking Danish…</small>}
-                      <AiMini loading={aiLoading === 'example_sentence,example_translation'} onClick={() => enrich(['example_sentence', 'example_translation'])} />
-                    </span>
-                  </span>
-                  <textarea
-                    rows={2}
-                    value={draft.example_sentence}
-                    onChange={(e) => {
-                      exampleSentenceDirty.current = true
-                      patch('example_sentence', e.target.value)
-                    }}
-                    onBlur={(e) => {
-                      const nextTarget = e.relatedTarget as HTMLElement | null
-                      if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.ai-mini') || nextTarget?.closest('.example-correction-action')) return
-                      exampleSentenceDirty.current = false
-                      void checkExampleSentence()
-                    }}
-                    placeholder="Jeg synes, det er godt."
-                  />
-                  {exampleCheckStatus === 'correct' && !exampleSuggestion && (
-                    <small style={{ color: '#4f8a68', display: 'flex', alignItems: 'center', gap: 5, fontSize: 10.5, fontWeight: 650 }}>
-                      <Check size={12} /> Grammar and spelling look good.
-                    </small>
-                  )}
-                  {exampleSuggestion && (
-                    <div style={{ border: '1px solid #e5def8', background: '#faf8ff', borderRadius: 12, padding: '9px 10px', display: 'flex', flexDirection: 'column', gap: 7 }}>
-                      <small style={{ color: '#8b8394', fontSize: 9.5, fontWeight: 750, letterSpacing: '.06em', textTransform: 'uppercase' }}>Suggested correction</small>
-                      <strong style={{ color: '#3c3545', fontSize: 12.5, lineHeight: 1.45 }}>{exampleSuggestion}</strong>
-                      <div style={{ display: 'flex', gap: 7 }}>
-                        <button type="button" className="soft-button strong example-correction-action" style={{ padding: '6px 9px', fontSize: 10.5 }} onClick={(e) => { e.preventDefault(); applyExampleSuggestion() }}><Check size={13} /> Use correction</button>
-                        <button type="button" className="soft-button example-correction-action" style={{ padding: '6px 9px', fontSize: 10.5 }} onClick={(e) => { e.preventDefault(); setExampleSuggestion(null); setExampleCheckStatus('idle') }}>Keep mine</button>
-                      </div>
-                    </div>
-                  )}
-                </label>
-                <label className="field field-wide">
-                  <span>Sentence translation</span>
-                  <AutoGrowTextarea value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
-                </label>
-              </>
-            )}
-          </>
-        )}
-      </div>
+      ) : (
+        <button type="button" className="capture-disclose capture-reveal" onClick={() => setExampleEnabled(true)}>
+          <Plus size={16} /> Add example sentence
+        </button>
+      ))}
 
       {duplicate && (
         <div className="duplicate-box">
@@ -1171,39 +1173,52 @@ export function EntryEditor({
         <div className="notice composer-undo">
           <Bot size={16} />
           <span>Regenerated every field for this text.</span>
-          <button type="button" className="soft-button composer-undo-action" disabled={!!aiLoading} onClick={undoRegenerate}>Undo</button>
+          <button type="button" className="soft-button composer-undo-action" disabled={aiBusy} onClick={undoRegenerate}>Undo</button>
         </div>
       )}
 
-      <div className="composer-actions">
-        <div className="composer-ai-actions">
-          <button className="ai-fill-button" disabled={!!aiLoading} onClick={() => void fillMissingWithAI()}>
-            {aiLoading === 'fill-missing' ? <Loader2 className="spin" size={17} /> : <WandSparkles size={17} />}
-            Fill missing with AI
+      {/* One quiet AI button and one prominent Save (HIG: one or two prominent buttons per view).
+          On a phone the bar sticks above the tab bar while the form scrolls. */}
+      <div className="capture-actions">
+        <div className="capture-ai">
+          <button
+            type="button"
+            className="capture-ai-button"
+            aria-haspopup="menu"
+            aria-expanded={aiMenuOpen}
+            onClick={() => setAiMenuOpen((value) => !value)}
+          >
+            {aiBusy && aiLoading !== 'example-check' ? <Loader2 className="spin" size={17} /> : <Sparkles size={17} />}
+            AI
           </button>
-          <button className="soft-button strong" disabled={!!aiLoading} onClick={() => void regenerateAll()}>
-            {aiLoading === 'regenerate-all' ? <Loader2 className="spin" size={15} /> : <RotateCcw size={15} />}
-            Regenerate all
-          </button>
-          <button className="soft-button" disabled={saving || !!aiLoading} onClick={clearDraft}>{editing ? 'Revert' : 'Clear'}</button>
+          {aiMenuOpen && (
+            <>
+              <button type="button" className="capture-ai-backdrop" aria-label="Close AI actions" onClick={() => setAiMenuOpen(false)} />
+              <div className="capture-ai-sheet" role="menu" aria-label="AI for this entry" onKeyDown={(e) => { if (e.key === 'Escape') setAiMenuOpen(false) }}>
+                <span className="capture-ai-grab" aria-hidden="true" />
+                <small>AI for this entry</small>
+                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(fillMissingWithAI)}><WandSparkles size={17} />Fill missing fields</button>
+                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(regenerateAll)}><RotateCcw size={17} />Regenerate everything</button>
+                <hr />
+                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(checkDanishForm)}><Check size={17} />{danishActionLabel}</button>
+                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['pronunciation']))}><Sparkles size={17} />Pronunciation only</button>
+                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['translation']))}><Sparkles size={17} />{entryKind === 'sentence' ? 'Translation only' : 'Meanings only'}</button>
+                {exampleOn && <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['example_sentence', 'example_translation']))}><Sparkles size={17} />Example only</button>}
+                <hr />
+                <button type="button" role="menuitem" className="danger" disabled={saving || aiBusy} onClick={() => { setAiMenuOpen(false); clearDraft() }}><X size={17} />{editing ? 'Revert changes' : 'Clear form'}</button>
+              </div>
+            </>
+          )}
         </div>
         <div className="save-wrap">
           <span className="keyboard-hint">⌘ Enter</span>
-          <button className="primary-button" disabled={saving || !!aiLoading} onClick={save}>
+          <button className="primary-button" disabled={saving || aiBusy} onClick={save}>
             {saving ? <Loader2 className="spin" size={17} /> : <Plus size={17} />}
             {saveLabel}
           </button>
         </div>
       </div>
     </section>
-  )
-}
-
-function AiMini({ loading, onClick, label = 'AI' }: { loading: boolean; onClick: () => void; label?: string }) {
-  return (
-    <button type="button" className="ai-mini" onClick={(e) => { e.preventDefault(); onClick() }} aria-label={label === 'AI' ? 'Fill with AI' : label}>
-      {loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} {label}
-    </button>
   )
 }
 
@@ -1236,8 +1251,8 @@ function DanishCheckNotice({ check, onApply, onDismiss }: { check: DanishCheck; 
       </div>
     )
   }
-  const message = check.status === 'changed' ? `Brought to base form (was “${check.suggestion}”).`
-    : check.status === 'applied' ? `${noun} corrected.`
-      : check.kind === 'word' ? 'Already in base form.' : `${noun} is correct.`
+  // A plain "correct" verdict is shown by the kind chip itself; only a change needs a sentence.
+  if (check.status === 'correct') return null
+  const message = check.status === 'changed' ? `Brought to base form (was “${check.suggestion}”).` : `${noun} corrected.`
   return <small className="field-wide danish-check correct" role="status"><Check size={12} /> {message}</small>
 }

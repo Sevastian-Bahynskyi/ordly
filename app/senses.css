@@ -1,5 +1,5 @@
-/* Sense rows in the composer: one row per meaning, with a colored part-of-speech chip
-   and the Danish en/et gender chip for nouns. */
+/* Meaning rows in the entry editor (Focus layout): the meaning text, a ⋯ menu, and one row of
+   quiet pills — Primary, part of speech, en/et for nouns, and Grammar on the right. */
 
 .sense-field {
   gap: 8px;
@@ -8,90 +8,134 @@
 .sense-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .sense-row {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 8px 9px;
-  border: 1px solid #ece7f4;
-  border-radius: 13px;
-  background: #fcfbff;
+  padding: 4px 0 10px;
 }
 
-.sense-row.primary {
-  border-color: #ded3f6;
-  background: #faf8ff;
+.sense-row + .sense-row {
+  padding-top: 10px;
+  border-top: 1px solid #efedf2;
 }
 
 .sense-row-main {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 2px;
 }
 
-.sense-row-main .sense-text {
+.capture-focus .sense-row-main textarea.sense-text {
   flex: 1 1 auto;
   min-width: 0;
+  padding: 9px 6px;
+  font-size: 16px;
 }
 
-.sense-row-tools {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  flex: 0 0 auto;
+.sense-more {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 42px;
+  border: 0;
+  border-radius: 11px;
+  background: none;
+  color: #8f8898;
+  cursor: pointer;
 }
 
-.sense-row-tools .icon-button {
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  color: #a39cad;
-}
-
-.sense-row-tools .icon-button:disabled {
-  opacity: 0.32;
-  cursor: default;
+.sense-more:hover,
+.sense-more[aria-expanded="true"] {
+  background: #f4f2f7;
 }
 
 .sense-row-grammar {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 6px 8px;
+  padding: 0 4px;
 }
 
-.sense-primary-chip {
+/* Quiet pills: one height, one type size. Colour carries the part of speech; only the AI
+   action gets a tinted background, so the one pill that does something stands out. */
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid transparent;
   border-radius: 999px;
-  padding: 3px 8px;
-  background: #eee9ff;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pill-primary {
+  padding: 0 9px;
+  border-color: #ded3f6;
   color: #684dc7;
-  font-size: 9.5px;
-  font-weight: 750;
-  letter-spacing: 0.05em;
+  font-size: 11px;
+  letter-spacing: .04em;
   text-transform: uppercase;
 }
 
-/* The chip is a real <select> so part of speech stays keyboard- and touch-editable. */
-.pos-chip {
-  appearance: none;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 3px 9px;
-  font-size: 10.5px;
-  font-weight: 700;
-  line-height: 1.5;
-  cursor: pointer;
-  background: var(--pos-bg, #f1eff3);
+.pill-pos {
   color: var(--pos-fg, #8d8793);
-  border-color: var(--pos-border, #e7e3ec);
+  cursor: pointer;
 }
 
-.pos-chip:focus-visible {
+.pill-pos::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pill-pos svg {
+  opacity: .7;
+}
+
+.pill-pos:focus-within {
   outline: 2px solid #b9a6f0;
   outline-offset: 1px;
+}
+
+/* The native picker, invisible over the pill: the real iOS wheel, at 16px so Safari never zooms. */
+.pill-pos select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  font-size: 16px !important;
+  cursor: pointer;
+  appearance: none;
+}
+
+.pill-grammar {
+  margin-left: auto;
+  padding: 0 11px;
+  background: #f3effe;
+  color: #684dc7;
+  cursor: pointer;
+}
+
+.pill-grammar:hover:not(:disabled) {
+  background: #e9e1fd;
+}
+
+.pill-grammar:disabled {
+  opacity: .45;
+  cursor: default;
 }
 
 .pos-none { --pos-bg: #f1eff3; --pos-fg: #8d8793; --pos-border: #e7e3ec; }
@@ -108,6 +152,7 @@
 
 .gender-chip-group {
   display: inline-flex;
+  height: 28px;
   gap: 3px;
   padding: 2px;
   border-radius: 999px;
@@ -117,11 +162,11 @@
 .gender-chip {
   border: 0;
   border-radius: 999px;
-  padding: 2px 9px;
+  padding: 0 10px;
   background: transparent;
   color: #8d8793;
-  font-size: 10.5px;
-  font-weight: 750;
+  font-size: 12px;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -135,54 +180,32 @@
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  border: 1px dashed #ded3f6;
-  border-radius: 999px;
-  padding: 5px 11px;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 2px;
+  padding: 0 6px;
+  border: 0;
   background: transparent;
   color: #684dc7;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 650;
   cursor: pointer;
 }
 
-.sense-add:hover {
-  background: #faf8ff;
-}
-
-@media (max-width: 520px) {
-  .sense-row {
-    padding: 7px 8px;
-  }
-
-  .sense-row-tools .icon-button {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-/* Translations always show in full: the fields grow instead of clipping (AutoGrowTextarea). */
-.field textarea.auto-grow {
-  min-height: 42px;
-  padding: 10px 12px;
+/* A meaning's own example, inside the row (edit only). */
+.capture-focus .sense-example textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ece8f1;
+  border-radius: 10px;
+  background: #fbfafc;
+  font-size: 14px;
   line-height: 1.4;
   resize: none;
-  overflow: hidden;
-  overflow-wrap: anywhere;
 }
 
-/* Bottom row of a meaning: Primary, part of speech, gender, then Grammar on the right. */
-.sense-row-grammar .pos-chip {
-  width: auto;
-  flex: 0 0 auto;
-}
-
-.sense-row-grammar .sense-grammar-ai {
-  margin-left: auto;
-}
-
-@media (max-width: 760px) {
-  .field textarea.auto-grow {
-    min-height: 44px;
-  }
+.capture-focus .sense-example textarea:focus {
+  border-color: #cdbff2;
+  background: #fff;
+  outline: none;
 }

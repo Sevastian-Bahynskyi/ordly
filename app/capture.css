@@ -1,0 +1,348 @@
+/* Add / edit entry, "Focus" layout: one big Danish field, details revealed once there is
+   something to describe, quiet pills, and a single AI entry point next to Save. */
+
+.capture-focus .composer-heading { margin-bottom: 12px; }
+
+.capture-focus textarea.auto-grow {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+  transition: background-color .16s ease;
+}
+
+.capture-focus textarea.auto-grow::placeholder { color: #b8b3bf; }
+.capture-focus textarea.auto-grow:focus { background: #f7f5fb; }
+
+/* ---- Danish ---- */
+.capture-hero {
+  padding: 12px 12px 10px;
+  border: 1px solid #ece8f1;
+  border-radius: 18px;
+  background: #fcfbfe;
+}
+
+.capture-hero:focus-within { border-color: #d9cdf6; background: #fff; }
+
+.capture-focus textarea.capture-danish {
+  padding: 4px 6px;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -.02em;
+}
+
+.capture-focus textarea.capture-pron {
+  padding: 4px 6px;
+  font-size: 15px;
+  color: #6c6674;
+}
+
+.capture-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+.capture-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--purple-soft);
+  color: #684dc7;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.capture-kind:disabled { opacity: .6; cursor: default; }
+.capture-kind .capture-kind-name { color: #9d90c9; font-weight: 600; }
+.capture-kind.ok { background: #e3f4ea; color: #2f7d52; }
+.capture-kind.ok .capture-kind-name { color: #6fa888; }
+
+.capture-duplicate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  color: #7557b5;
+  font-size: 12px;
+  font-weight: 620;
+}
+
+.capture-duplicate svg { flex: 0 0 auto; }
+.capture-duplicate > span { white-space: nowrap; }
+.capture-duplicate .capture-duplicate-meanings { color: #9a92a3; font-weight: 520; overflow: hidden; text-overflow: ellipsis; }
+
+.capture-hero .danish-check { margin: 8px 4px 0; }
+
+.capture-empty-note {
+  margin: 14px 8px 4px;
+  color: #a39dab;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ---- Sections ---- */
+.capture-section {
+  margin-top: 12px;
+  padding: 10px 10px 6px;
+  border: 1px solid #ece8f1;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.capture-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0 6px;
+  color: #8a8492;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.capture-section-tools { display: inline-flex; align-items: center; gap: 8px; text-transform: none; letter-spacing: 0; }
+.capture-section-tools small { display: inline-flex; align-items: center; gap: 4px; color: #8e86a0; font-size: 11px; font-weight: 600; }
+
+.capture-link {
+  min-height: 32px;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: #684dc7;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.capture-link.danger { color: #a0516a; }
+
+.capture-focus textarea.capture-bare { padding: 8px 6px; font-size: 16px; }
+.capture-focus textarea.capture-bare.sub { padding-top: 2px; font-size: 14.5px; color: #6c6674; }
+.capture-section .danish-check { margin: 6px 6px 6px; }
+
+.capture-disclose {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  padding: 0 16px;
+  border: 1px dashed #d9d1ea;
+  border-radius: 16px;
+  background: transparent;
+  color: #684dc7;
+  font-size: 14.5px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.capture-disclose:hover { background: #faf8ff; }
+
+.capture-reveal { animation: capture-rise .26s cubic-bezier(.22, .8, .2, 1) both; }
+@keyframes capture-rise { from { opacity: .001; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .capture-reveal { animation: none; } }
+
+/* ---- Actions ---- */
+.capture-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.capture-ai { position: relative; flex: 0 0 auto; }
+
+.capture-ai-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 96px;
+  height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--purple-soft);
+  color: #684dc7;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.capture-ai-button:hover { background: #e7defe; }
+
+.capture-actions .save-wrap { flex: 1 1 auto; justify-content: flex-end; }
+.capture-actions .save-wrap .primary-button { height: 44px; min-width: 160px; border-radius: 13px; font-size: 15px; }
+
+.capture-ai-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.capture-ai-sheet {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 61;
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  padding: 6px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 16px 44px rgba(31, 24, 43, .18), 0 0 0 1px rgba(31, 24, 43, .05);
+}
+
+.capture-ai-sheet > small {
+  padding: 6px 12px 4px;
+  color: #8a8492;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.capture-ai-grab { display: none; }
+
+.capture-ai-sheet hr, .overflow-menu-list hr {
+  height: 1px;
+  margin: 4px 8px;
+  border: 0;
+  background: #efedf2;
+}
+
+.capture-ai-sheet button, .overflow-menu-list button {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--text);
+  font-size: 15px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.capture-ai-sheet button svg, .overflow-menu-list button svg { flex: 0 0 auto; color: #7b7485; }
+.capture-ai-sheet button:hover:not(:disabled), .overflow-menu-list button:hover:not(:disabled) { background: #f4f2f7; }
+.capture-ai-sheet button:disabled, .overflow-menu-list button:disabled { opacity: .4; cursor: default; }
+.capture-ai-sheet button.danger, .overflow-menu-list button.danger,
+.capture-ai-sheet button.danger svg, .overflow-menu-list button.danger svg { color: #b0453f; }
+
+/* ---- ⋯ menu ---- */
+.overflow-menu { position: relative; display: inline-flex; flex: 0 0 auto; }
+
+.overflow-menu-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 5px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(31, 24, 43, .18), 0 0 0 1px rgba(31, 24, 43, .05);
+}
+
+.overflow-menu-list.end { right: 0; }
+.overflow-menu-list.start { left: 0; }
+
+@media (max-width: 760px) {
+  .capture-focus textarea.capture-danish { font-size: 24px; }
+
+  /* The bar rides above the floating tab bar while the form scrolls, and rests at the end. */
+  /* Above the tab bar's z-index: sticky positioning makes this bar a stacking context, so the
+     AI sheet and its backdrop can never rise past whatever this is set to. */
+  .capture-actions {
+    position: sticky;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+    z-index: 60;
+    margin: 14px -8px -8px;
+    padding: 8px;
+    border-radius: 18px;
+    box-shadow: 0 -1px 0 rgba(31, 24, 43, .04), 0 8px 24px rgba(31, 24, 43, .08);
+  }
+
+  /* The frosting lives on a pseudo-element: `backdrop-filter` on the bar itself would make it
+     the containing block for the fixed-position AI sheet, which then hangs off the bar's
+     bottom edge instead of the screen's. */
+  .capture-actions::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .capture-actions .save-wrap { flex: 1 1 auto; width: auto; }
+  .capture-actions .save-wrap .primary-button { width: 100%; min-width: 0; }
+
+  /* A bottom sheet on phones, over the tab bar. */
+  .capture-ai-backdrop { background: rgba(28, 27, 34, .3); }
+
+  .capture-ai-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 0;
+    padding: 6px 12px calc(14px + env(safe-area-inset-bottom, 0px));
+    border-radius: 22px 22px 0 0;
+    animation: capture-sheet .24s cubic-bezier(.22, .8, .2, 1) both;
+  }
+
+  .capture-ai-grab {
+    display: block;
+    width: 38px;
+    height: 5px;
+    margin: 4px auto 6px;
+    border-radius: 3px;
+    background: #dcd8e1;
+  }
+
+  .capture-ai-sheet button { min-height: 48px; font-size: 16px; }
+
+  @keyframes capture-sheet { from { transform: translateY(100%); } }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .capture-ai-sheet { animation: none; }
+}

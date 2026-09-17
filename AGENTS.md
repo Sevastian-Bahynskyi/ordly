@@ -501,3 +501,13 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - The canned coffee/dialogue frames were removed. `teach`, `build`, `listen`, `dialogue` remain valid only so older saved sessions load.
 - `checkAnswer` accepts Danish typos by edit distance (≤4 chars: none, ≤8: 1, longer: 2; sentences very few) as `mostly`. A typed cloze is never sent to the provider.
 - Wrong typed answers show a word-then-letter diff (`lib/answer-diff.ts`): red in the learner's answer, green in the correction. The semantic check returns `corrected` (the learner's own answer minimally fixed), stored as `PracticeResponse.correction`, so valid alternative replies are not painted red against the model answer.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

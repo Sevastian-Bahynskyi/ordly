@@ -122,8 +122,8 @@
 }
 
 .sense-example-actions .icon-button {
-  width: 26px;
-  height: 26px;
+  width: 36px;
+  height: 36px;
   padding: 0;
 }
 
@@ -136,10 +136,11 @@
   gap: 5px;
   border: 1px dashed #e6e1ee;
   border-radius: 999px;
-  padding: 4px 10px;
+  min-height: 32px;
+  padding: 0 12px;
   background: transparent;
   color: #8b8394;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -153,28 +154,6 @@
 .sense-example-add:disabled {
   opacity: 0.45;
   cursor: default;
-}
-
-/* These live inside `.field`, so they inherit the composer input styling; only the
-   proportions are dialled back so a sense row stays compact. */
-.sense-row .sense-example-text {
-  min-height: 52px;
-  font-size: 12px;
-}
-
-.sense-row textarea.sense-example-translation {
-  min-height: 36px;
-  font-size: 12px;
-}
-
-@media (max-width: 760px) {
-  .sense-row .sense-example-text {
-    min-height: 58px;
-  }
-
-  .sense-row textarea.sense-example-translation {
-    min-height: 40px;
-  }
 }
 
 /* ---- Review: My answer was right (D5) -------------------------------------------------- */

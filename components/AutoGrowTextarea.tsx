@@ -1,14 +1,15 @@
 'use client'
 
-import { useLayoutEffect, useRef, type TextareaHTMLAttributes } from 'react'
+import { useLayoutEffect, useRef, type RefObject, type TextareaHTMLAttributes } from 'react'
 
 /**
  * A single-value text field that grows to show its whole content. Translations are often longer
  * than one line on a phone, and a clipped `<input>` hid the end of them. Enter does not insert a
  * line break, so it still behaves like a one-line field; Cmd/Ctrl+Enter still reaches the form.
  */
-export function AutoGrowTextarea({ value, onKeyDown, className = '', ...props }: Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'rows'> & { value: string }): React.JSX.Element {
-  const ref = useRef<HTMLTextAreaElement>(null)
+export function AutoGrowTextarea({ value, onKeyDown, className = '', inputRef, ...props }: Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'rows'> & { value: string; inputRef?: RefObject<HTMLTextAreaElement | null> }): React.JSX.Element {
+  const ownRef = useRef<HTMLTextAreaElement>(null)
+  const ref = inputRef || ownRef
 
   useLayoutEffect(() => {
     const element = ref.current

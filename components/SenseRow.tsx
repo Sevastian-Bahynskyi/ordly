@@ -1,7 +1,8 @@
 'use client'
 
-import { ArrowDown, ArrowUp, Loader2, RotateCcw, Sparkles, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, ChevronDown, Ellipsis, Loader2, RotateCcw, Sparkles, Trash2 } from 'lucide-react'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
+import { OverflowMenu, type OverflowMenuItem } from '@/components/OverflowMenu'
 import { PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
 import type { EntrySense, NounGender, PartOfSpeech, TranslationLanguage } from '@/lib/types'
 
@@ -45,6 +46,14 @@ export function SenseRow({
   onMove: (delta: -1 | 1) => void
   onRemove: () => void
 }): React.JSX.Element {
+  // Reordering and removal are rare, so they live behind ⋯ and the meaning text gets the width.
+  const menuItems: (OverflowMenuItem | 'separator')[] = [
+    ...(index > 0 ? [{ label: 'Move up', icon: <ArrowUp size={16} />, onSelect: () => onMove(-1) }] : []),
+    ...(index < total - 1 ? [{ label: 'Move down', icon: <ArrowDown size={16} />, onSelect: () => onMove(1) }] : []),
+    ...(grammarState ? [{ label: 'Detect grammar with AI', icon: <Sparkles size={16} />, onSelect: grammarState.onClassify, disabled: grammarState.disabled }] : []),
+    ...(allowRemove ? ['separator' as const, { label: 'Remove meaning', icon: <Trash2 size={16} />, onSelect: onRemove, danger: true }] : []),
+  ]
+
   return (
     <div className={`sense-row${isPrimary ? ' primary' : ''}`}>
       <div className="sense-row-main">
@@ -55,25 +64,34 @@ export function SenseRow({
           placeholder={placeholder}
           aria-label={`Meaning ${index + 1}`}
         />
-        <div className="sense-row-tools">
-          <button type="button" className="icon-button sense-move" onClick={() => onMove(-1)} disabled={index === 0} aria-label="Move meaning up"><ArrowUp size={13} /></button>
-          <button type="button" className="icon-button sense-move" onClick={() => onMove(1)} disabled={index === total - 1} aria-label="Move meaning down"><ArrowDown size={13} /></button>
-          <button type="button" className="icon-button danger sense-remove" onClick={onRemove} disabled={!allowRemove} aria-label="Remove meaning"><Trash2 size={13} /></button>
-        </div>
+        {menuItems.length > 0 && (
+          <OverflowMenu
+            items={menuItems}
+            label={`More for meaning ${index + 1}`}
+            className="sense-more"
+            trigger={<Ellipsis size={18} />}
+          />
+        )}
       </div>
 
       {showGrammar && (
         <div className="sense-row-grammar">
-          {isPrimary && <span className="sense-primary-chip">Primary</span>}
-          <select
-            className={`pos-chip pos-${sense.pos || 'none'}`}
-            value={sense.pos || ''}
-            onChange={(e) => onPos(e.target.value ? (e.target.value as PartOfSpeech) : null)}
-            aria-label={`Part of speech for meaning ${index + 1}`}
-          >
-            <option value="">part of speech</option>
-            {PARTS_OF_SPEECH.map((pos) => <option key={pos} value={pos}>{PART_OF_SPEECH_LABELS[pos]}</option>)}
-          </select>
+          {/* Primary only means something when there is more than one meaning. */}
+          {isPrimary && total > 1 && <span className="pill pill-primary">Primary</span>}
+          <label className={`pill pill-pos pos-${sense.pos || 'none'}`}>
+            {sense.pos ? PART_OF_SPEECH_LABELS[sense.pos] : 'part of speech'}
+            <ChevronDown size={11} aria-hidden="true" />
+            {/* The native picker sits invisibly on top: the real iOS wheel, at 16px so the page
+                never zooms, while the pill keeps the same size as its neighbours. */}
+            <select
+              value={sense.pos || ''}
+              onChange={(e) => onPos(e.target.value ? (e.target.value as PartOfSpeech) : null)}
+              aria-label={`Part of speech for meaning ${index + 1}`}
+            >
+              <option value="">part of speech</option>
+              {PARTS_OF_SPEECH.map((pos) => <option key={pos} value={pos}>{PART_OF_SPEECH_LABELS[pos]}</option>)}
+            </select>
+          </label>
 
           {sense.pos === 'noun' && (
             <span className="gender-chip-group" role="group" aria-label={`Gender for meaning ${index + 1}`}>
@@ -93,7 +111,7 @@ export function SenseRow({
           {grammarState && (
             <button
               type="button"
-              className="ai-mini sense-grammar-ai"
+              className="pill pill-grammar"
               disabled={grammarState.disabled}
               onClick={grammarState.onClassify}
               aria-label={`Detect the part of speech for meaning ${index + 1} with AI`}
