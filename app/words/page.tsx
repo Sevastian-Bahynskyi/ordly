@@ -18,7 +18,7 @@ export default async function MaterialPage({ searchParams }: { searchParams: Pro
     supabase.from('vocabulary_entries').select('*').order('created_at', { ascending: false }),
     supabase.from('review_cards').select('*'),
     supabase.from('profiles').select('default_translation_language').single(),
-    supabase.from('entry_links').select('a_id, b_id, kind, source, confidence, confirmed').is('dismissed_at', null),
+    supabase.from('entry_links').select('a_id, b_id, kind, source, confidence, confirmed, concept').is('dismissed_at', null),
   ])
   const all = entries || []
   // D11 phase 2, on demand: only the newest few still-unclassified words per visit.

@@ -58,8 +58,15 @@ export interface SynonymCandidate {
   translation: string | null
   /** 0..1, deterministic. Feeds the ordering only — the AI assigns the stored confidence. */
   score: number
-  /** The sense texts that actually matched, for the prompt and for debugging. */
-  shared: string[]
+  /**
+   * The one sense pair that scored best, kept apart rather than merged into a set.
+   *
+   * This is what the model is asked to rule on. Handing it both entries' full meaning lists
+   * invites a yes because *something* overlapped, which is how a third meaning of `lige` made
+   * the whole entry a synonym of `kun`.
+   */
+  sourceSense: string
+  candidateSense: string
   /** Parts of speech seen on the candidate's evidence senses. */
   pos: PartOfSpeech[]
 }
@@ -97,12 +104,30 @@ function normalizedDanish(value: string): string {
   return normalizeSenseText(value)
 }
 
-function tokenize(text: string): Set<string> {
+/**
+ * Tokens for the database pre-filter. Stop words are dropped here because searching for them
+ * would drag back half the vocabulary.
+ */
+function searchTokens(text: string): Set<string> {
   const normalized = normalizeSenseText(text)
   if (!normalized) return new Set()
   const tokens = normalized.split(' ').filter((token) => token.length > 1 && !STOP_WORDS.has(token))
-  // A single short meaning ("дом") must still be comparable, so fall back to the whole string.
+  // A single short meaning ("дом") must still be searchable, so fall back to the whole string.
   return new Set(tokens.length ? tokens : [normalized].filter(Boolean))
+}
+
+/**
+ * Tokens for comparing two meanings. Every word counts, including the ones `STOP_WORDS` hides
+ * from the search.
+ *
+ * A stop word is noise when deciding what to *fetch* and meaning when deciding what *matches*:
+ * "только" and "только что" are two different meanings, and `что` is the entire difference
+ * between them. Stripping it made them identical and joined `kun` to `lige`.
+ */
+function compareTokens(text: string): Set<string> {
+  const normalized = normalizeSenseText(text)
+  if (!normalized) return new Set()
+  return new Set(normalized.split(' ').filter(Boolean))
 }
 
 /** Sørensen-Dice over token sets: symmetric, and forgiving of one side being wordier. */
@@ -119,7 +144,7 @@ function senseSimilarity(left: string, right: string): number {
   const b = normalizeSenseText(right)
   if (!a || !b) return 0
   if (a === b) return 1
-  return dice(tokenize(a), tokenize(b))
+  return dice(compareTokens(a), compareTokens(b))
 }
 
 function partsOfSpeech(senses: readonly EntrySense[]): PartOfSpeech[] {
@@ -153,7 +178,7 @@ export function synonymSearchTerms(
   for (const sense of discoverySenses(entry)) {
     const whole = normalizeSenseText(sense.text)
     if (whole) terms.add(whole)
-    for (const token of tokenize(sense.text)) terms.add(token)
+    for (const token of searchTokens(sense.text)) terms.add(token)
   }
 
   return [...terms]
@@ -200,13 +225,15 @@ export function rankSynonymCandidates(
     if (!entrySensesForEntry.length) continue
 
     let best = 0
-    let shared: string[] = []
+    let sourceSense = ''
+    let candidateSense = ''
     for (const left of sourceSenses) {
       for (const right of entrySensesForEntry) {
         const similarity = senseSimilarity(left.text, right.text)
         if (similarity > best) {
           best = similarity
-          shared = [left.text.trim(), right.text.trim()]
+          sourceSense = left.text.trim()
+          candidateSense = right.text.trim()
         }
       }
     }
@@ -221,7 +248,8 @@ export function rankSynonymCandidates(
       danish: entry.danish,
       translation: entry.translation ?? null,
       score,
-      shared: [...new Set(shared)],
+      sourceSense,
+      candidateSense,
       pos,
     })
   }

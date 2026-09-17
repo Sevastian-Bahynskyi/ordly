@@ -21,6 +21,18 @@
   --shadow-soft: 0 6px 24px rgba(31,24,43,.055);
   --radius: 20px;
   --radius-sm: 13px;
+  /* One colour per island in the meaning graph, picked by cluster index. Muted enough to sit
+     beside the purple identity, and separated in hue so neighbouring islands stay tellable
+     apart. Eight is plenty: past that the graph repeats them, which is honest — a ninth barely
+     distinguishable hue would claim a difference the eye cannot see. */
+  --cluster-0: #7557db;
+  --cluster-1: #3d9b8f;
+  --cluster-2: #c08432;
+  --cluster-3: #cc6f8e;
+  --cluster-4: #4a72c4;
+  --cluster-5: #4c9b79;
+  --cluster-6: #9560b8;
+  --cluster-7: #b5705a;
 }
 
 * { box-sizing: border-box; }

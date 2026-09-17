@@ -32,7 +32,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
     // order, so a filter on a_id alone would show half the graph.
     supabase
       .from('entry_links')
-      .select('a_id, b_id, kind, source, confidence, confirmed')
+      .select('a_id, b_id, kind, source, confidence, confirmed, concept')
       .or(`a_id.eq.${id},b_id.eq.${id}`)
       .is('dismissed_at', null),
   ])

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpenText, Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
+import { BookOpenText, Bot, Check, Loader2, Plus, Rows3, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import {
   neighboursByEntry,
@@ -19,8 +19,10 @@ import type { EntrySense, LearningStatus, ReviewCard, VocabularyEntry } from '@/
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
 import { SynonymChips } from './SynonymChips'
+import { VocabularyGraph } from './VocabularyGraph'
 
 export type MaterialKind = 'all' | 'words' | 'phrases' | 'sentences'
+type MaterialView = 'list' | 'graph'
 type StatusFilter = 'all' | LearningStatus
 
 const kindFilters: [MaterialKind, string][] = [['all', 'All'], ['words', 'Words'], ['phrases', 'Phrases'], ['sentences', 'Sentences']]
@@ -79,6 +81,7 @@ export function MaterialClient({
   const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
+  const [view, setView] = useState<MaterialView>('list')
   const [status, setStatus] = useState<StatusFilter>('all')
   const [bulkOpen, setBulkOpen] = useState(false)
   const [bulkText, setBulkText] = useState('')
@@ -312,6 +315,13 @@ export function MaterialClient({
   return <>
     <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1><p>Words, phrases and sentences in one place. No folders, no taxonomy.</p></div><div className="header-actions"><button className="soft-button" disabled={enrichingAll} onClick={enrichMissing}>{enrichingAll ? <Loader2 className="spin" size={15}/> : <Sparkles size={15}/>} Enrich missing</button><button className="soft-button" onClick={() => setBulkOpen(true)}>Bulk add</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
 
+    <div className="material-views segmented" role="tablist" aria-label="View">
+      <button role="tab" aria-selected={view === 'list'} className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}><Rows3 size={14} /> List</button>
+      <button role="tab" aria-selected={view === 'graph'} className={view === 'graph' ? 'active' : ''} onClick={() => setView('graph')}><Waypoints size={14} /> Graph</button>
+    </div>
+
+    {view === 'graph' ? <VocabularyGraph entries={words} links={links} /> : <>
+
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
     </div>
@@ -352,6 +362,8 @@ export function MaterialClient({
       })}
       {!visible.length && <div className="empty-state tall">Nothing matches this view.</div>}
     </section>
+
+    </>}
 
     {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>
       <section className="modal-card enrich-preview-card" onMouseDown={(event) => event.stopPropagation()}>

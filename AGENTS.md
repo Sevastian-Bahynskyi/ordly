@@ -243,6 +243,8 @@ Bulk raw/untranslated entries are excluded from review until sufficiently enrich
 
 Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
 
+A List / Graph toggle switches the page to the whole meaning graph (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node.
+
 ## 10. FSRS / memory rings
 
 Scheduling uses `ts-fsrs` 5.4.2.
@@ -480,6 +482,7 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - Coverage (`recognized`, `produced`, `last_seen`) is written only through `record_sense_coverage`, after review and practice ratings. The trigger carries coverage forward monotonically, so a stale editor save cannot roll it back.
 - Choice-based practice answers (`assistance: 'choices'`) never write `legacy_change`, so they never reach `review_cards` or mastery.
 - `entry_links`: symmetric kinds are stored once with `a_id < b_id`. Discovery runs after save, never blocking. Dismissing a suggestion writes a tombstone (`dismissed_at`, `source: 'user'`). Every reader that shows, grades or teaches must filter `dismissed_at is null`. Distractors use confirmed edges only.
+- An edge is about **one meaning**, and `entry_links.concept` names it. Discovery ranks sense *pairs* and asks the model to rule on the single pair that matched, not on two entries' full meaning lists; an edge whose concept the model will not name is dropped. Keep both halves — judging entries as bags of meanings made `kun` ("только") a synonym of `lige`, whose third sense is "только что". `STOP_WORDS` in `lib/synonyms.ts` is a search-selectivity tool only: stripping it when *comparing* meanings is what made those two identical, so comparison keeps every word.
 - Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string.
 
 ## 21. Local practice engine

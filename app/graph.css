@@ -1,0 +1,182 @@
+/* The whole meaning graph in the Material tab. Colour comes from the --cluster-* tokens, one
+   per island; everything else stays quiet so the islands are the only thing carrying hue. */
+
+.graph-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.graph-frame {
+  position: relative;
+  height: min(62vh, 560px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 1px 1px, #e7e3ee 1px, transparent 0) 0 0 / 22px 22px,
+    var(--surface);
+  overflow: hidden;
+  /* The camera owns every gesture inside the frame; the browser must not also scroll or zoom. */
+  touch-action: none;
+  cursor: grab;
+}
+
+.graph-frame:active { cursor: grabbing; }
+
+.graph-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.graph-node { cursor: pointer; }
+
+.graph-node text {
+  font-size: 12px;
+  font-weight: 650;
+  fill: var(--text);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.graph-node.dimmed { opacity: .22; }
+.graph-node.selected text { font-weight: 700; }
+.graph-node:focus-visible rect { outline: 2px solid #b9a6f0; outline-offset: 2px; }
+
+.graph-concept {
+  font-size: 9.5px;
+  font-weight: 620;
+  fill: var(--muted);
+  text-anchor: middle;
+  dominant-baseline: central;
+  paint-order: stroke;
+  /* The label sits on top of its own edge, so it is knocked out of the line behind it. */
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.graph-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 4px 16px rgba(31, 24, 43, .1), 0 0 0 1px rgba(31, 24, 43, .05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.graph-zoom button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: #6c6674;
+  cursor: pointer;
+}
+
+.graph-zoom button:hover { background: var(--surface-2); color: var(--text); }
+
+.graph-hint {
+  margin: 0;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* ---- Selected node ---- */
+.graph-detail {
+  padding: 12px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.graph-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.graph-detail-head strong { display: block; font-size: 16px; }
+.graph-detail-head small { display: block; margin-top: 1px; color: var(--muted); font-size: 12.5px; }
+
+.graph-detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.graph-detail-links li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  border-top: 1px solid var(--line);
+}
+
+.graph-detail-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  min-height: 44px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 620;
+}
+
+.graph-detail-links a svg { color: var(--purple); }
+.graph-detail-links a:hover { color: var(--purple); }
+
+.graph-concept-tag {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.graph-concept-tag.suggested { color: var(--amber); }
+
+/* ---- Nothing to draw ---- */
+.graph-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 44px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: center;
+}
+
+.graph-empty svg { color: var(--muted-2); }
+.graph-empty h2 { margin: 4px 0 0; font-size: 17px; }
+.graph-empty p { margin: 0; max-width: 42ch; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+@media (max-width: 760px) {
+  .graph-frame { height: min(58vh, 460px); }
+  .graph-detail-links li { flex-wrap: wrap; gap: 2px 8px; min-height: 0; padding: 6px 0; }
+  .graph-concept-tag { flex-basis: 100%; text-align: left; white-space: normal; }
+}

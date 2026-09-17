@@ -20,6 +20,8 @@ export interface EntryLinkRow {
   source: EntryLinkSource
   confidence: number | null
   confirmed: boolean
+  /** The shared meaning the edge is about. Null on hand-made edges and pre-concept rows. */
+  concept?: string | null
 }
 
 /** The minimum an entry has to expose to be drawn as a neighbour. */
@@ -45,6 +47,8 @@ export interface LinkNeighbour {
   confirmed: boolean
   source: EntryLinkSource
   confidence: number | null
+  /** The meaning this edge claims the two entries share, for display next to the claim. */
+  concept: string | null
   role: LinkRole
   /** The edge itself, so a confirm or a dismiss can address the exact primary-key row. */
   link: EntryLinkRow
@@ -128,6 +132,7 @@ function toNeighbour(link: EntryLinkRow, entryIsA: boolean, other: LinkedEntryLa
     confirmed: Boolean(link.confirmed),
     source: link.source,
     confidence: typeof link.confidence === 'number' ? link.confidence : null,
+    concept: (link.concept || '').trim() || null,
     role: roleFor(link.kind, entryIsA),
     link,
   }

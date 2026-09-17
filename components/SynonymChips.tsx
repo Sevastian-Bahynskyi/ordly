@@ -93,7 +93,7 @@ export function SynonymChips({
         >
           <Link2 size={11} aria-hidden="true" />
           <span className="synonym-chip-text">{neighbour.danish}</span>
-          {variant === 'page' && <em>{describe(neighbour)}</em>}
+          {variant === 'page' && <em>{describeLink(neighbour)}</em>}
         </Link>
       ))}
 
@@ -115,7 +115,7 @@ export function SynonymChips({
             >
               <span className="synonym-chip-mark" aria-hidden="true">?</span>
               <span className="synonym-chip-text">{neighbour.danish}</span>
-              {variant === 'page' && <em>{describe(neighbour)}</em>}
+              {variant === 'page' && <em>{describeLink(neighbour)}</em>}
             </Link>
             <button
               type="button"
@@ -147,6 +147,16 @@ export function SynonymChips({
 
 function chipKey(neighbour: LinkNeighbour): string {
   return `${neighbour.id}:${neighbour.kind}`
+}
+
+/**
+ * What this neighbour is, plus the meaning the link rests on. The concept is the whole claim:
+ * without it "kun — Synonym" on `lige` looks reasonable, and with it the reader can see that the
+ * meaning being claimed is not one the two words share.
+ */
+export function describeLink(neighbour: LinkNeighbour): string {
+  const kind = describe(neighbour)
+  return neighbour.concept ? `${kind} · ${neighbour.concept}` : kind
 }
 
 /** What this neighbour is, in words — the only cue that survives being read aloud. */

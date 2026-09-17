@@ -37,6 +37,9 @@ const AUTO_LINK_CONFIDENCE = 0.85
 /** Below this the model is guessing and the edge is not worth showing at all. */
 const SUGGEST_CONFIDENCE = 0.5
 
+/** A concept is a phrase, not a sentence; the chip and the graph label have to hold it. */
+const CONCEPT_MAX = 48
+
 const ENTRY_COLUMNS = 'id, danish, translation, senses, entry_kind'
 
 const scoreSchema = {
@@ -49,8 +52,9 @@ const scoreSchema = {
         properties: {
           index: { type: 'integer' },
           confidence: { type: 'number' },
+          concept: { type: 'string' },
         },
-        required: ['index', 'confidence'],
+        required: ['index', 'confidence', 'concept'],
         additionalProperties: false,
       },
     },
@@ -67,6 +71,8 @@ interface DiscoveredLink {
   source: Extract<EntryLinkSource, 'ai'>
   confidence: number
   confirmed: boolean
+  /** The shared meaning the model named. An edge without one is never stored. */
+  concept: string
 }
 
 function empty(entryId: string, skipped: string | null, considered = 0): NextResponse {
@@ -151,8 +157,10 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (!candidates.length) return empty(entryId, 'no_candidates')
 
   const byIndex = new Map<number, SynonymCandidate>(candidates.map((candidate, index) => [index + 1, candidate]))
+  // One line per sense pair, not per entry: the model rules on the meaning that actually matched.
   const candidateLines = candidates
-    .map((candidate, index) => `${index + 1}. ${candidate.danish} — ${senseLines(candidate) || candidate.translation || ''}`)
+    .map((candidate, index) => `${index + 1}. "${source.danish}" meaning "${candidate.sourceSense}"`
+      + ` vs "${candidate.danish}" meaning "${candidate.candidateSense}"`)
     .join('\n')
 
   let parsed: Record<string, unknown>
@@ -162,15 +170,18 @@ export async function POST(request: Request): Promise<NextResponse> {
       messages: [
         {
           role: 'system',
-          content: `You decide which Danish vocabulary entries are true synonyms of a target entry.
+          content: `You decide whether two Danish words are synonyms in one specific meaning.
 
-Two entries are synonyms when they can replace each other in normal Danish without changing what the sentence means. Near-synonyms with a clear register or intensity difference still count, but only if a learner could safely use either.
-Do NOT call them synonyms when the words are merely related, share a topic, are antonyms, are different inflections of the same word, or are a broader/narrower term.
-Return one object per candidate you consider a synonym, with its 1-based index and a confidence between 0 and 1. Use a confidence above 0.85 only when you are certain. Omit every candidate that is not a synonym; returning an empty list is the correct answer when none of them are.`,
+Each candidate is a pair of meanings: one meaning of the target word, and one meaning of the candidate word. Judge that pair alone. The words often have other meanings; those are irrelevant and must not make the pair a synonym.
+
+Two words are synonyms in a meaning when they can replace each other in normal Danish without changing what the sentence means. Near-synonyms with a clear register or intensity difference still count, but only if a learner could safely use either.
+Treat as NOT synonyms: words that are merely related or share a topic, antonyms, inflections of the same word, a broader or narrower term, and meanings that only look alike because one phrase contains the other. "only" and "just now" are different meanings, as are "in front of" and "before".
+
+For each pair you accept, return its 1-based index, a confidence between 0 and 1, and \`concept\`: the shared meaning itself, written as the learner's translation language phrase both words express, at most three words. Use a confidence above 0.85 only when you are certain. Omit every pair that is not a synonym; an empty list is the correct answer when none of them are.`,
         },
         {
           role: 'user',
-          content: `Target entry: ${source.danish}\nTarget meanings: ${senseLines(source) || source.translation || ''}\n\nCandidates:\n${candidateLines}`,
+          content: `Target word: ${source.danish}\nAll its meanings, for context only: ${senseLines(source) || source.translation || ''}\n\nPairs to judge:\n${candidateLines}`,
         },
       ],
       response_format: { type: 'json_schema', json_schema: { name: 'synonym_links', strict: true, schema: scoreSchema } },
@@ -193,6 +204,10 @@ Return one object per candidate you consider a synonym, with its 1-based index a
     if (!candidate) continue
     const confidence = Number(record.confidence)
     if (!Number.isFinite(confidence) || confidence < SUGGEST_CONFIDENCE) continue
+    // An edge nobody can explain is the bug this route had. A model that will not name the
+    // shared meaning has not made a claim worth storing.
+    const concept = typeof record.concept === 'string' ? record.concept.trim().slice(0, CONCEPT_MAX) : ''
+    if (!concept) continue
     const clamped = Math.min(1, Math.max(0, confidence))
     accepted.set(candidate.id, {
       entry_id: candidate.id,
@@ -202,6 +217,7 @@ Return one object per candidate you consider a synonym, with its 1-based index a
       source: 'ai',
       confidence: clamped,
       confirmed: clamped >= AUTO_LINK_CONFIDENCE,
+      concept,
     })
   }
 
@@ -213,6 +229,7 @@ Return one object per candidate you consider a synonym, with its 1-based index a
     source: link.source,
     confidence: link.confidence,
     confirmed: link.confirmed,
+    concept: link.concept,
   }))
 
   // user_id comes from the column default (auth.uid()); the insert policy then verifies that
