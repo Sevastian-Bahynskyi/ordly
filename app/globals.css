@@ -73,12 +73,10 @@ button { color: inherit; }
 .ai-mini { display: inline-flex; align-items: center; gap: 3px; border: 0; padding: 2px 6px; border-radius: 6px; color: #7157c9; background: #f1ecff; font-size: 9.5px; font-weight: 720; cursor: pointer; }
 .ai-mini:hover { background: #e8e0ff; }
 .composer-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
-.primary-button, .ai-fill-button, .soft-button, .review-start { border: 0; border-radius: 11px; height: 39px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; font-size: 12.5px; font-weight: 650; transition: transform .14s ease, box-shadow .14s ease, background .14s ease, opacity .14s; }
+.primary-button, .soft-button, .review-start { border: 0; border-radius: 11px; height: 39px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; font-size: 12.5px; font-weight: 650; transition: transform .14s ease, box-shadow .14s ease, background .14s ease, opacity .14s; }
 .primary-button { background: var(--ink); color: #fff; box-shadow: 0 4px 12px rgba(39,35,47,.16); }
 .primary-button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(39,35,47,.2); }
-.primary-button:disabled, .ai-fill-button:disabled { cursor: default; opacity: .6; transform: none; }
-.ai-fill-button { background: var(--purple-soft); color: #6549c7; }
-.ai-fill-button:hover { background: #e7dfff; }
+.primary-button:disabled { cursor: default; opacity: .6; transform: none; }
 .soft-button { height: 36px; color: #625c69; background: #f4f2f6; border: 1px solid #e7e3eb; }
 .soft-button:hover { background: #eeebf2; }
 .soft-button.strong { background: #ede8ff; color: #654ac4; border-color: #e0d7ff; }
@@ -286,7 +284,7 @@ button { color: inherit; }
   .field input { height: 45px; }
   .field textarea { min-height: 72px; }
   .composer-actions { align-items: stretch; flex-direction: column; }
-  .ai-fill-button, .save-wrap, .save-wrap .primary-button { width: 100%; }
+  .save-wrap, .save-wrap .primary-button { width: 100%; }
   .save-wrap .keyboard-hint { display: none; }
   .review-hero { padding: 22px; min-height: 250px; }
   .review-number { font-size: 52px; }

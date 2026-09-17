@@ -1,10 +1,6 @@
 /* Meaning rows in the entry editor (Focus layout): the meaning text, a ⋯ menu, and one row of
    quiet pills — Primary, part of speech, en/et for nouns, and Grammar on the right. */
 
-.sense-field {
-  gap: 8px;
-}
-
 .sense-list {
   display: flex;
   flex-direction: column;
