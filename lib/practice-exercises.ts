@@ -26,6 +26,8 @@ export interface DistractorEntry {
   id: string
   danish: string
   senses: readonly EntrySense[]
+  /** Sentences only compete with sentences, words and phrases with each other. */
+  sentence?: boolean
 }
 
 export interface DistractorInput {
@@ -120,6 +122,8 @@ export interface ExerciseInput {
   /** Every non-removed sense of the entry, in stored order. The first one is the primary. */
   senses: readonly EntrySense[]
   distractors: readonly string[]
+  /** Wrong meanings for `pick`, in the learner's language. Built by `selectMeaningDistractors`. */
+  meaningDistractors?: readonly string[]
   newTarget: boolean
   /** Reps on the sense objective, used to rotate the exercise kind. */
   reps: number
@@ -178,7 +182,8 @@ export function chooseTask(input: ExerciseInput): PracticeTask | null {
   const gapped = clozeSentence(example.sentence, entry.danish)
   if (!gapped) return null
   const options = input.distractors.slice(0, CLOZE_DISTRACTOR_COUNT)
-  if (!options.length) return null
+  // A gap with one wrong option is a coin toss, not a choice.
+  if (options.length < 2) return null
   const base = baseTask(candidate, item)
   return {
     ...base,
@@ -250,6 +255,177 @@ export function produceSenseTask(input: ExerciseInput): PracticeTask {
     answerIsSentence: entry.entry_kind === 'sentence',
     hint: `${entry.danish.slice(0, 1)}…`,
     example: example.sentence || entry.danish,
+    newTarget: input.newTarget,
+  }
+}
+
+/** How many wrong meanings a `pick` board shows next to the right one. */
+export const MEANING_DISTRACTOR_COUNT = 3
+
+export interface MeaningDistractorInput {
+  /** Every live meaning of the target. None of them may appear as a wrong option. */
+  answers: readonly string[]
+  pos: PartOfSpeech | null
+  sentence: boolean
+  pool: readonly DistractorEntry[]
+  excludeIds?: readonly string[]
+  count: number
+  seed: string
+}
+
+/**
+ * Wrong meanings for a `pick` board, from the learner's own vocabulary.
+ *
+ * An option that equals or contains one of the target's meanings would be a right answer marked
+ * wrong, so it is dropped. Same part of speech and a similar length rank first: a verb among
+ * nouns, or one word among long phrases, is eliminated on sight and teaches nothing.
+ */
+export function selectMeaningDistractors(input: MeaningDistractorInput): string[] {
+  const answers = input.answers.map(normalized).filter(Boolean)
+  const excluded = new Set(input.excludeIds || [])
+  const reference = input.answers[0] || ''
+  const seen = new Set<string>(answers)
+  const scored: { text: string; score: number }[] = []
+  for (const entry of input.pool) {
+    if (!entry || excluded.has(entry.id) || Boolean(entry.sentence) !== input.sentence) continue
+    const meaning = activeSenseList(entry.senses)[0]
+    const text = (meaning?.text || '').trim()
+    const key = normalized(text)
+    if (!key || seen.has(key) || answers.some((answer) => key.includes(answer) || answer.includes(key))) continue
+    seen.add(key)
+    const lengthRatio = Math.min(text.length, reference.length) / Math.max(text.length, reference.length, 1)
+    const samePos = Boolean(input.pos) && meaning?.pos === input.pos
+    scored.push({ text, score: (samePos ? 2 : 0) + (lengthRatio >= 0.6 ? 1 : 0) })
+  }
+  return seededShuffle(scored, input.seed)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, Math.max(0, input.count))
+    .map((candidate) => candidate.text)
+}
+
+function activeSenseList(senses: readonly EntrySense[]): EntrySense[] {
+  return (senses || []).filter((sense) => !sense.removed_at && sense.text?.trim())
+}
+
+/**
+ * Where a saved word appears in a sentence, allowing for an inflected form.
+ *
+ * An exact match wins. Otherwise a single word may match a token that starts with its stem and
+ * adds a short ending (`spise` → `spiste`, `hyggelig` → `hyggelige`, `bil` → `bilen`). Phrases and
+ * irregular forms (`gå` → `gik`) must match exactly, so a gap is never placed on a guess.
+ */
+export function findInSentence(sentence: string, danish: string): { gapped: string; surface: string } | null {
+  const target = danish.trim().replace(/^at\s+/iu, '')
+  if (!target || !sentence.trim()) return null
+  const escaped = target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+')
+  const exact = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'iu').exec(sentence)
+  if (exact) return { surface: exact[0], gapped: `${sentence.slice(0, exact.index)}_____${sentence.slice(exact.index + exact[0].length)}` }
+  if (/\s/u.test(target)) return null
+  const lower = target.toLocaleLowerCase('da-DK')
+  const stem = lower.length > 4 && lower.endsWith('e') ? lower.slice(0, -1) : lower
+  if (stem.length < 3) return null
+  for (const match of sentence.matchAll(/[\p{L}\p{N}]+/gu)) {
+    const token = match[0].toLocaleLowerCase('da-DK')
+    if (token.startsWith(stem) && token.length - stem.length <= 4) {
+      const at = match.index ?? 0
+      return { surface: match[0], gapped: `${sentence.slice(0, at)}_____${sentence.slice(at + match[0].length)}` }
+    }
+  }
+  return null
+}
+
+/** See the Danish, tap its meaning among four. The warm-up for an item met for the first time. */
+export function pickMeaningTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate } = input
+  const item = candidate.item
+  const entry = item.vocabulary_entries
+  const options = (input.meaningDistractors || []).slice(0, MEANING_DISTRACTOR_COUNT)
+  if (options.length < 2) return null
+  const answer = candidate.sense.text.trim()
+  const example = senseExample(item, candidate.sense, candidate.primary)
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:pick`,
+    kind: 'pick',
+    objective: 'meaning',
+    stage: 'remember',
+    prompt: entry.danish,
+    answer,
+    answerIsSentence: false,
+    hint: example.sentence && example.sentence !== entry.danish ? example.sentence : `${answer.slice(0, 1)}…`,
+    choices: seededShuffle([answer, ...options], `${candidate.targetKey}:pick`),
+    newTarget: input.newTarget,
+  }
+}
+
+/** Type the missing word into its example sentence, with the sentence's meaning shown (Clozemaster). */
+export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate } = input
+  const item = candidate.item
+  const entry = item.vocabulary_entries
+  if (entry.entry_kind === 'sentence') return sentenceClozeTask(input)
+  const example = senseExample(item, candidate.sense, candidate.primary)
+  const found = findInSentence(example.sentence, entry.danish)
+  if (!found) return null
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:cloze`,
+    kind: 'cloze',
+    prompt: found.gapped,
+    answer: found.surface,
+    answerIsSentence: false,
+    context: example.translation || undefined,
+    hint: `Starts with “${found.surface.slice(0, 1)}” · ${[...found.surface].length} letters`,
+    newTarget: input.newTarget,
+  }
+}
+
+/**
+ * The longest content word of a saved sentence, gapped. Deterministic, so a reload re-serves the
+ * same gap. Short function words are never chosen: a missing `er` is a guessing game.
+ */
+export function sentenceClozeTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate } = input
+  const item = candidate.item
+  const sentence = item.vocabulary_entries.danish.trim()
+  const words = [...sentence.matchAll(/[\p{L}]+/gu)].filter((match) => [...match[0]].length >= 4)
+  if (words.length < 2) return null
+  const chosen = words.reduce((best, match) => [...match[0]].length > [...best[0]].length ? match : best)
+  const at = chosen.index ?? 0
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:cloze`,
+    kind: 'cloze',
+    prompt: `${sentence.slice(0, at)}_____${sentence.slice(at + chosen[0].length)}`,
+    answer: chosen[0],
+    answerIsSentence: false,
+    example: sentence,
+    context: candidate.sense.text,
+    hint: `Starts with “${chosen[0].slice(0, 1)}” · ${[...chosen[0]].length} letters`,
+    newTarget: input.newTarget,
+  }
+}
+
+/** Build a saved sentence from its own words, shown its meaning. */
+export function sentenceAssembleTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate } = input
+  const item = candidate.item
+  const sentence = item.vocabulary_entries.danish.trim()
+  const tiles = sentenceTiles(sentence)
+  if (tiles.length < 3 || tiles.length > WORD_BANK_MAX_TILES) return null
+  const extras = input.distractors
+    .filter((word) => !word.includes(' ') && !tiles.some((tile) => normalized(tile) === normalized(word)))
+    .slice(0, WORD_BANK_DISTRACTOR_COUNT)
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:assemble`,
+    kind: 'assemble',
+    prompt: candidate.sense.text,
+    answer: sentence,
+    answerIsSentence: true,
+    example: sentence,
+    hint: `Starts with “${tiles[0]}”.`,
+    choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:assemble`),
     newTarget: input.newTarget,
   }
 }

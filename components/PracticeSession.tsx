@@ -1,14 +1,23 @@
 'use client'
 
 import Link from 'next/link'
-import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
+import { useCallback, useEffect, useRef, useState, type JSX, type KeyboardEvent } from 'react'
 import { ArrowRight, Check, Lightbulb, MessageCircle, Pause, RotateCcw, Sparkles, ThumbsUp } from 'lucide-react'
-import { PracticeAudio } from './PracticeAudio'
-import { isChoiceKind, type PracticeSessionState, type PracticeSummary, type PracticeTask } from '@/lib/practice'
+import { diffAnswer } from '@/lib/answer-diff'
+import { isChoiceKind, type PracticeKind, type PracticeResponse, type PracticeSessionState, type PracticeSummary, type PracticeTask } from '@/lib/practice'
 import { isPracticeStore, isRecord } from '@/lib/practice-validation'
 
 type PracticeView = { revision: number; session: PracticeSessionState | null; summary: PracticeSummary }
-const stages = [{ id: 'remember', label: 'Remember' }, { id: 'learn', label: 'Repair & learn' }, { id: 'build', label: 'Build' }, { id: 'speak', label: 'Use it' }, { id: 'return', label: 'Return' }]
+const exerciseKinds = ['Pick the meaning', 'Fill the gap', 'Build the sentence', 'Type the missing word', 'Say it in Danish']
+const kindLabels: Record<PracticeKind, string> = {
+  pick: 'Pick the meaning', choose: 'Fill the gap', assemble: 'Build the sentence', cloze: 'Type the missing word',
+  produce: 'Say it in Danish', recall: 'What does it mean?', sense: 'Which meaning is this?',
+  build: 'Change the sentence', dialogue: 'Keep the exchange going', listen: 'Reply in Danish', teach: 'Connect meaning & situation',
+}
+/** Kinds whose answer is typed Danish, so a wrong answer can be compared letter by letter. */
+const typedDanishKinds: readonly PracticeKind[] = ['produce', 'cloze', 'build', 'dialogue', 'listen']
+/** Open replies: the model answer is one of many, so only an actual correction is diffed. */
+const openKinds: readonly PracticeKind[] = ['build', 'dialogue', 'listen']
 const ratings = [{ value: 1, label: 'Again', detail: 'Forgot or needed help', cls: 'again' }, { value: 2, label: 'Hard', detail: 'Recalled with effort', cls: 'hard' }, { value: 3, label: 'Good', detail: 'Recalled on my own', cls: 'good' }, { value: 4, label: 'Easy', detail: 'Immediate recall', cls: 'easy' }]
 
 function isView(value: unknown): value is PracticeView {
@@ -23,9 +32,7 @@ export function PracticeSession(): JSX.Element {
   const [busy, setBusy] = useState(false)
   const [notice, setNotice] = useState('')
   const [answer, setAnswer] = useState('')
-  const [replays, setReplays] = useState(0)
   const [picked, setPicked] = useState<number[]>([])
-  const [modality, setModality] = useState<'typed' | 'spoken'>('typed')
   const busyRef = useRef(false)
   const startedAt = useRef(0)
   const currentView = useRef(view)
@@ -46,9 +53,7 @@ export function PracticeSession(): JSX.Element {
   useEffect(() => { void load() }, [load])
   useEffect(() => {
     setAnswer('')
-    setReplays(0)
     setPicked([])
-    setModality('typed')
     startedAt.current = performance.now()
   }, [task?.id])
 
@@ -74,18 +79,19 @@ export function PracticeSession(): JSX.Element {
     } finally { busyRef.current = false; setBusy(false) }
   }, [])
 
+  // Every answer, hint and rating is already saved as it happens. There is deliberately no timed
+  // autosave: it used to flip `busy` every 15 seconds, which disabled the answer field mid-word,
+  // dropped its focus and greyed out Check answer.
   useEffect(() => {
     if (!running || !task) return
-    const save = window.setInterval(() => { void send('pause') }, 15000)
     function hide(): void {
       if (document.visibilityState === 'hidden') {
         setRunning(false)
-        if ('speechSynthesis' in window) window.speechSynthesis.cancel()
         void send('pause')
       }
     }
     document.addEventListener('visibilitychange', hide)
-    return () => { window.clearInterval(save); document.removeEventListener('visibilitychange', hide) }
+    return () => document.removeEventListener('visibilitychange', hide)
   }, [running, task?.id, send])
 
   async function start(): Promise<void> {
@@ -110,30 +116,29 @@ export function PracticeSession(): JSX.Element {
   if (!view) return <section className="section-card practice-welcome"><span className="eyebrow">DAILY PRACTICE</span><h1>{notice ? 'Let’s reconnect.' : 'Preparing your practice…'}</h1>{error}<Link href="/review">Open ordinary review →</Link></section>
 
   if (!running || !task) return <>
-    <header className="practice-header"><div><span className="eyebrow">USEFUL DANISH · AT YOUR PACE</span><h1>{session?.finished ? 'A little more Danish, ready to use.' : 'Make it easier to remember.'}</h1><p>Suggested: 15–20 minutes. Stay longer or finish whenever you feel done.</p></div></header>
+    <header className="practice-header"><div><span className="eyebrow">USEFUL DANISH · AT YOUR PACE</span><h1>{session?.finished ? 'A little more Danish, ready to use.' : 'Your new words and your weakest ones.'}</h1><p>About 10 items, two exercises each, from easy to hard. Stay longer or finish whenever you feel done.</p></div></header>
     {error}
     <section className="section-card practice-welcome">
       <div className="practice-mark"><MessageCircle size={30} /></div>
       <span className="eyebrow">{session?.finished ? 'SESSION RESULTS' : session ? 'YOUR PLACE IS SAVED' : 'GUIDED PRACTICE'}</span>
       <h2>{session?.finished ? `${session.completed} practice steps finished.` : task ? 'Pick up where you left off.' : session ? 'Ready for more?' : 'Move from knowing a word to using it.'}</h2>
-      <p>{session?.finished ? 'Your rated answers are saved. Unfinished exercises were not marked as completed.' : task ? `${task.retry ? 'A retry is waiting. ' : ''}${session.queue.length} steps in this batch. Pause to return later, or finish to see your results.` : session ? 'This batch is complete. Load more practice, pause, or finish your session.' : 'Recall words, build sentences, and practise short exchanges. Difficult items come back after a little space.'}</p>
+      <p>{session?.finished ? 'Your rated answers are saved. Unfinished exercises were not marked as completed.' : task ? `${task.retry ? 'A retry is waiting. ' : ''}${session.queue.length} steps in this batch. Pause to return later, or finish to see your results.` : session ? 'This batch is complete. Load more practice, pause, or finish your session.' : 'Built from what you saved: new items first, then the ones you miss most. Missed answers come back a few steps later.'}</p>
       {session?.finished && <div className="practice-evidence-grid">
         <div><span>Targets practised</span><strong>{new Set(session.attempts.map((attempt) => attempt.targetKey)).size}</strong></div>
         <div><span>Unaided recalls</span><strong>{session.attempts.filter((attempt) => attempt.assistance === 'none' && attempt.modality === 'typed' && attempt.rating !== 1 && ['correct', 'mostly'].includes(attempt.result)).length}</strong></div>
         <div><span>Retry ratings</span><strong>{session.attempts.filter((attempt) => attempt.rating === 1).length}</strong></div>
       </div>}
-      {!session && <div className="practice-outline">{stages.map((stage) => <div key={stage.id}>{stage.label}</div>)}</div>}
-      {(!session || session.finished) && <label className="practice-ai-option"><input type="checkbox" checked={aiEnabled} onChange={(e) => setAiEnabled(e.target.checked)} /><span><strong>Use AI coaching notes</strong><small>Shows written coaching on a typed answer, and unlocks generated memory examples. Either way, a typed answer an exact match rejects is still sent to our AI provider to be checked for a valid synonym, so a correct answer is not marked wrong. Tapped options are checked on our own servers and never sent.</small></span></label>}
+      {!session && <div className="practice-outline">{exerciseKinds.map((kind) => <div key={kind}>{kind}</div>)}</div>}
+      {(!session || session.finished) && <label className="practice-ai-option"><input type="checkbox" checked={aiEnabled} onChange={(e) => setAiEnabled(e.target.checked)} /><span><strong>Use AI coaching notes</strong><small>Shows written coaching on a typed answer, and unlocks generated memory examples. Either way, a typed answer that the local check cannot accept is still sent to our AI provider to check for a valid alternative, so a correct answer is not marked wrong. Tapped options and missing words are checked on our own servers and never sent.</small></span></label>}
       <button className="primary-button practice-start" disabled={busy} onClick={() => void start()}>{busy ? 'Preparing…' : task ? 'Resume practice' : session && !session.finished ? 'Keep practising' : 'Start practice'}<ArrowRight size={18} /></button>
       {session && !session.finished && <div className="practice-session-actions">{running && <button className="soft-button" disabled={busy} onClick={() => void pause()}><Pause size={16} />Pause</button>}<button className="soft-button" disabled={busy} onClick={() => void finish()}><Check size={16} />Finish session</button></div>}
       <Link className="practice-review-link" href="/review">Ordinary FSRS review →</Link>
     </section>
     <PracticeProgress summary={view.summary} />
-    <p className="practice-footnote">Practice is saved to your account. Speaking is self-checked; device audio is a guide. These observations measure recall, not a CEFR level.</p>
+    <p className="practice-footnote">Practice is saved to your account. These observations measure recall, not a CEFR level.</p>
   </>
 
   const teaching = task.kind === 'teach'
-  const listening = task.kind === 'listen'
   const choiceKind = isChoiceKind(task.kind)
   const tiles = task.choices || []
   const chosen = response?.assistance === 'choices'
@@ -141,48 +146,95 @@ export function PracticeSession(): JSX.Element {
   const revealed = response?.revealed
   // A correct tap is still a success worth a Good; only genuine help suggests Again.
   const suggested = (help && !chosen) || response?.result === 'incorrect' ? 1 : response?.result === 'mostly' ? 2 : 3
-  const phase = stages.find((stage) => stage.id === task.stage)
+  const done = session.completed
+  const total = done + session.queue.length
+  const prompt = ['listen', 'dialogue'].includes(task.kind) && task.audioText ? task.audioText : task.prompt
+  const promptIsDanish = !['recall', 'produce', 'assemble', 'teach', 'build'].includes(task.kind)
+  const submit = (): void => { if (!busy) void send('answer', { answer, modality: 'typed', replays: 0 }) }
+  const enterSubmits = (event: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault()
+      submit()
+    }
+  }
   return <>
-    <header className="practice-header practice-header-active"><div><span className="eyebrow">DAILY PRACTICE</span><h1>{phase?.label}</h1></div><div className="practice-session-controls"><button className="soft-button" disabled={busy} onClick={() => void pause()}><Pause size={16} />Pause</button><button className="soft-button" disabled={busy} onClick={() => void finish()}><Check size={16} />Finish session</button></div></header>
-    <nav className="practice-stages" aria-label="Practice stages">{stages.map((stage) => <span key={stage.id} className={stage.id === task.stage ? 'active' : ''} aria-current={stage.id === task.stage ? 'step' : undefined}>{stage.label}</span>)}</nav>
+    <header className="practice-header practice-header-active"><div><span className="eyebrow">DAILY PRACTICE</span><h1>{kindLabels[task.kind]}</h1></div><div className="practice-session-controls"><button className="soft-button" disabled={busy} onClick={() => void pause()}><Pause size={16} />Pause</button><button className="soft-button" disabled={busy} onClick={() => void finish()}><Check size={16} />Finish session</button></div></header>
+    <div className="practice-progress" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={done} aria-label="Session progress"><span style={{ width: `${total ? Math.round(done / total * 100) : 0}%` }} /></div>
     {error}
     <section className="flash-card practice-card" key={task.id}>
-      <div className="card-topline"><span className="prompt-type">{teaching ? 'Connect sound, meaning & situation' : task.kind === 'recall' ? 'Danish → meaning' : task.kind === 'produce' ? 'Meaning → Danish' : task.kind === 'build' ? 'Change the sentence' : task.kind === 'assemble' ? 'Build the sentence' : task.kind === 'choose' ? 'Fill the gap' : task.kind === 'sense' ? 'Which meaning is this?' : listening ? 'Listen, then respond' : 'Keep the exchange going'}</span>{task.retry > 0 && <span className="status-chip learning"><RotateCcw size={12} />Retry</span>}</div>
+      <div className="card-topline"><span className="prompt-type">{kindLabels[task.kind]}</span><span className="practice-step">{Math.min(done + 1, total)} / {total}</span>{task.retry > 0 && <span className="status-chip learning"><RotateCcw size={12} />Retry</span>}</div>
       {task.kind === 'sense' && <p className="practice-sense-lead">Two sentences, one word — <strong lang="da">{task.danish}</strong> — two different meanings. Which meaning does the first sentence use?</p>}
-      <div className="practice-prompt"><h2 lang={task.kind === 'sense' || task.kind === 'choose' ? 'da' : undefined}>{task.prompt}</h2>{teaching && <><strong lang="da">{task.danish}</strong><p>{task.translation}</p><p className="practice-explanation">{task.hint}</p>{task.example !== task.danish && <p lang="da">{task.example}</p>}</>}</div>
+      <div className="practice-prompt">
+        <h2 lang={promptIsDanish ? 'da' : undefined}>{prompt}</h2>
+        {task.kind === 'cloze' && (task.context || task.translation) && <p className="practice-context">{task.context || task.translation}</p>}
+        {task.kind === 'produce' && task.answerIsSentence && <p className="practice-context">Write the whole sentence in Danish.</p>}
+        {teaching && <><strong lang="da">{task.danish}</strong><p>{task.translation}</p><p className="practice-explanation">{task.hint}</p>{task.example !== task.danish && <p lang="da">{task.example}</p>}</>}
+      </div>
       {task.kind === 'sense' && task.contrast && <div className="practice-contrast"><span>The other meaning appears here</span><p lang="da">{task.contrast}</p></div>}
-      {(task.audioText || teaching) && <PracticeAudio text={task.audioText || task.danish} disabled={busy} onReplay={() => setReplays((count) => Math.min(100, count + 1))} />}
-      {listening && !revealed && <button className="practice-text-button" disabled={busy} onClick={() => void send('help', { help: 'transcript', replays })}>Show transcript</button>}
-      {listening && (response?.assistance === 'transcript' || revealed) && <p className="practice-transcript" lang="da">{task.audioText}</p>}
-      {teaching ? <div className="practice-teach-action"><p>Picture one real situation where you would say this. Say it once, then recall it with the answer hidden.</p><button className="primary-button" disabled={busy} onClick={() => void send('rate', { rating: null, replays })}>Hide it & keep practising<ArrowRight size={17} /></button></div> : <>
-        {!revealed && <form className="answer-form" onSubmit={(event) => { event.preventDefault(); void send('answer', { answer, modality, replays }) }}>
-          {!choiceKind && task.kind !== 'recall' && <div className="practice-modality" aria-label="Answer method"><button type="button" className={modality === 'typed' ? 'active' : ''} onClick={() => setModality('typed')}>Type it</button><button type="button" className={modality === 'spoken' ? 'active' : ''} onClick={() => setModality('spoken')}>Say it aloud</button></div>}
+      {teaching ? <div className="practice-teach-action"><p>Picture one real situation where you would say this, then recall it with the answer hidden.</p><button className="primary-button" disabled={busy} onClick={() => void send('rate', { rating: null, replays: 0 })}>Hide it & keep practising<ArrowRight size={17} /></button></div> : <>
+        {!revealed && <form className="answer-form" onSubmit={(event) => { event.preventDefault(); submit() }}>
           {choiceKind ? (task.kind === 'assemble'
             ? <WordBank tiles={tiles} picked={picked} disabled={busy} onChange={(next) => { setPicked(next); setAnswer(next.map((index) => tiles[index]).join(' ')) }} />
             : <ChoiceList task={task} tiles={tiles} chosen={answer} disabled={busy} onChoose={setAnswer} />)
-            : modality === 'typed' ? <><label htmlFor="practice-answer">{task.kind === 'recall' ? 'What does it mean?' : 'Your Danish answer'}</label><textarea id="practice-answer" value={answer} onChange={(event) => setAnswer(event.target.value)} disabled={busy} maxLength={2000} rows={2} placeholder={task.kind === 'recall' ? 'Recall the meaning…' : 'Form your own answer…'} autoCapitalize="sentences" autoCorrect="off" spellCheck={false} /></> : <p className="practice-spoken-prompt">Say your answer before revealing the example. Your microphone is not recorded.</p>}
-          <button className="primary-button answer-submit" disabled={busy || (choiceKind && !answer.trim()) || (listening && !replays && response?.assistance !== 'transcript')}>{busy ? 'Saving & checking…' : choiceKind ? 'Check this' : modality === 'spoken' ? 'I said it — compare' : answer.trim() ? 'Check answer' : 'I don’t know — show me'}<ArrowRight size={17} /></button>
-          {!listening && <button className="practice-text-button" type="button" disabled={busy} onClick={() => void send('help', { help: 'hint', replays })}><Lightbulb size={15} />Help me remember</button>}
+            : task.kind === 'cloze'
+              ? <><label htmlFor="practice-answer">The missing word</label><input id="practice-answer" className="practice-cloze-input" value={answer} onChange={(event) => setAnswer(event.target.value)} onKeyDown={enterSubmits} readOnly={busy} maxLength={200} placeholder="Type the word…" autoFocus autoCapitalize="none" autoCorrect="off" autoComplete="off" spellCheck={false} lang="da" /></>
+              : <><label htmlFor="practice-answer">{task.kind === 'recall' ? 'What does it mean?' : 'Your Danish answer'}</label><textarea id="practice-answer" value={answer} onChange={(event) => setAnswer(event.target.value)} onKeyDown={enterSubmits} readOnly={busy} maxLength={2000} rows={2} placeholder={task.kind === 'recall' ? 'Recall the meaning…' : 'Form your own answer…'} autoFocus autoCapitalize="sentences" autoCorrect="off" spellCheck={false} lang={task.kind === 'recall' ? undefined : 'da'} /></>}
+          <button className="primary-button answer-submit" disabled={busy || (choiceKind && !answer.trim())}>{busy ? 'Checking…' : choiceKind ? 'Check this' : answer.trim() ? 'Check answer' : 'I don’t know — show me'}<ArrowRight size={17} /></button>
+          <button className="practice-text-button" type="button" disabled={busy} onClick={() => void send('help', { help: 'hint', replays: 0 })}><Lightbulb size={15} />Help me remember</button>
           {help && <div className="practice-hint">{task.hint}<small>This is supported practice. You’ll try again with the answer hidden.</small></div>}
         </form>}
         {revealed && response && <div className="practice-feedback" aria-live="polite">
-          <span className={`practice-verdict ${response.result}`}>{response.result === 'correct' ? (chosen ? 'That’s the one' : 'Meaning recalled') : response.result === 'mostly' ? 'Close — one adjustment' : response.result === 'incorrect' ? 'Let’s repair this' : 'Compare & self-check'}</span>
+          <span className={`practice-verdict ${response.result}`}>{response.result === 'correct' ? (chosen ? 'That’s the one' : 'Correct') : response.result === 'mostly' ? 'Close — one adjustment' : response.result === 'incorrect' ? 'Let’s repair this' : 'Compare & self-check'}</span>
           <p>{response.feedback}</p>
           {task.objective === 'production' && response.communication === 'yes' && response.target === 'no' && <p>Your reply works, but it did not retrieve this target expression. We’ll practise the target again.</p>}
-          <div className="correct-answer"><span>{['listen', 'dialogue'].includes(task.kind) ? 'One possible reply' : task.kind === 'sense' ? 'The meaning in this sentence' : 'Answer to recall'}</span><strong lang={task.kind === 'recall' || task.kind === 'sense' ? undefined : 'da'}>{task.answer}</strong></div>
-          {response.answer && <p className="practice-your-answer"><small>Your answer</small>{response.answer}</p>}
+          <FeedbackAnswers task={task} response={response} />
           {/* D5: only a typed meaning can become a sense. The learner still picks the rating below. */}
           {task.kind === 'recall' && response.modality === 'typed' && response.answer.trim() && response.result !== 'correct' && <button className="soft-button accept-answer-button" disabled={busy} onClick={() => void send('accept')}><ThumbsUp size={15} />My answer was right</button>}
-          {!['recall', 'sense'].includes(task.kind) && <PracticeAudio text={task.answer} onReplay={() => {}} />}
-          {(response.result === 'incorrect' || help || task.source === 'ai') && <div className="practice-repair"><Lightbulb size={18} /><div><strong>Give it a useful connection</strong><p>{task.hint}</p>{task.example !== task.danish && task.example.trim() !== task.hint.trim() && <p className="practice-example">{task.example}</p>}<p>Think of a moment you would use it. Then try again after another exercise.</p></div></div>}
+          {(response.result === 'incorrect' || help || task.source === 'ai') && <div className="practice-repair"><Lightbulb size={18} /><div><strong>Give it a useful connection</strong><p>{task.hint}</p>{task.example !== task.danish && task.example.trim() !== task.hint.trim() && <p className="practice-example" lang="da">{task.example}</p>}<p>Think of a moment you would use it. It comes back after a few more steps.</p></div></div>}
           {session.aiEnabled && session.aiCalls < 12 && <button className="practice-text-button" disabled={busy} onClick={() => void send('repair')}><Sparkles size={15} />Create two AI memory examples</button>}
-          <div className="rating-title"><span>How did recall feel?</span><small>{chosen ? (task.kind === 'sense' ? 'Telling the meanings apart trains this meaning only.' : 'You’ll meet this again with the options removed.') : help ? 'Helped answers return for an unaided retry.' : task.objective ? 'You decide the FSRS rating.' : 'Rate this practice; your word schedules stay separate.'}</small></div>
-          <div className="rating-grid practice-rating-grid">{ratings.map((rating) => <button key={rating.value} className={`rating-button ${rating.cls} ${suggested === rating.value ? 'suggested' : ''}`} disabled={busy} onClick={() => void send('rate', { rating: rating.value, replays })}><strong>{rating.label}</strong><span>{rating.detail}</span></button>)}</div>
+          <div className="rating-title"><span>How did recall feel?</span><small>{chosen ? (task.kind === 'sense' || task.kind === 'pick' ? 'Tapping trains recognition; typed steps follow.' : 'You’ll meet this again with the options removed.') : help ? 'Helped answers return for an unaided retry.' : task.objective ? 'You decide the FSRS rating.' : 'Rate this practice; your word schedules stay separate.'}</small></div>
+          <div className="rating-grid practice-rating-grid">{ratings.map((rating) => <button key={rating.value} className={`rating-button ${rating.cls} ${suggested === rating.value ? 'suggested' : ''}`} disabled={busy} onClick={() => void send('rate', { rating: rating.value, replays: 0 })}><strong>{rating.label}</strong><span>{rating.detail}</span></button>)}</div>
         </div>}
       </>}
     </section>
-    <div className="practice-bottom-note"><Sparkles size={15} /><span>{choiceKind ? 'Chosen answers train this meaning only. They never advance your word’s review schedule.' : task.objective === 'production' && !task.cardId ? 'Danish production has its own FSRS schedule.' : task.cardId ? 'Uses your existing review schedule; its older history includes mixed exercises.' : 'Practising one useful pattern, a little at a time.'}</span></div>
+    <div className="practice-bottom-note"><Sparkles size={15} /><span>{choiceKind ? 'Tapped answers train this meaning only. They never advance your word’s review schedule.' : task.cardId ? 'This answer also moves your word’s review schedule.' : 'Typed Danish has its own FSRS schedule.'}</span></div>
   </>
+}
+
+/**
+ * What the learner answered next to what was expected. A typed Danish answer that was not fully
+ * right is diffed: what they got wrong is red in their answer, what they missed is green in the
+ * correction. The correction is the semantic check's minimal fix of their own sentence when there
+ * is one, so a valid different reply is not painted red against the model answer.
+ */
+function FeedbackAnswers({ task, response }: { task: PracticeTask; response: PracticeResponse }): JSX.Element {
+  const typed = response.answer.trim()
+  const correction = response.correction?.trim() || ''
+  const reference = correction || (openKinds.includes(task.kind) ? '' : task.answer)
+  const comparable = typed && reference && response.result !== 'correct'
+    && (typedDanishKinds.includes(task.kind) || task.kind === 'assemble')
+  const diff = comparable ? diffAnswer(typed, reference) : null
+  const modelLabel = openKinds.includes(task.kind) ? 'One possible reply' : task.kind === 'sense' || task.kind === 'pick' ? 'The meaning' : 'Answer to recall'
+  const answerIsDanish = !['recall', 'sense', 'pick'].includes(task.kind)
+
+  if (diff && !diff.identical) {
+    return <>
+      <div className="practice-diff">
+        <div><small>Your answer</small><p lang="da">{diff.actual.map((part, index) => part.changed ? <mark key={index} className="diff-wrong">{part.text}</mark> : <span key={index}>{part.text}</span>)}</p></div>
+        <div><small>{correction ? 'Corrected' : modelLabel}</small><p lang="da">{diff.expected.map((part, index) => part.changed ? <mark key={index} className="diff-fixed">{part.text}</mark> : <span key={index}>{part.text}</span>)}</p></div>
+      </div>
+      {correction && openKinds.includes(task.kind) && normalized(correction) !== normalized(task.answer) && <div className="correct-answer"><span>{modelLabel}</span><strong lang="da">{task.answer}</strong></div>}
+    </>
+  }
+  const wrongTap = response.assistance === 'choices' && response.result === 'incorrect' && typed
+  return <>
+    <div className="correct-answer"><span>{modelLabel}</span><strong lang={answerIsDanish ? 'da' : undefined}>{task.answer}</strong></div>
+    {typed && <p className="practice-your-answer"><small>Your answer</small>{wrongTap ? <mark className="diff-wrong">{typed}</mark> : typed}</p>}
+  </>
+}
+
+function normalized(value: string): string {
+  return value.trim().toLocaleLowerCase('da-DK').replace(/[.,!?;:]+/g, '').replace(/\s+/g, ' ')
 }
 
 /**
@@ -214,8 +266,8 @@ function ChoiceList({ task, tiles, chosen, disabled, onChoose }: { task: Practic
 }
 
 function PracticeProgress({ summary }: { summary: PracticeSummary }): JSX.Element {
-  return <section className="section-card practice-evidence"><div><span className="eyebrow">WHAT STAYS WITH YOU</span><h2>Recall after a day away</h2><p>Unaided, typed answers after at least 24 hours without a recorded exposure. Early practice and self-checks are excluded.</p></div><div className="practice-evidence-grid">{[{ key: 'meaning', label: 'Meaning' }, { key: 'production', label: 'Danish production' }, { key: 'listening', label: 'Listening response' }].map(({ key, label }) => {
-    const score = summary[key as 'meaning' | 'production' | 'listening']
+  return <section className="section-card practice-evidence"><div><span className="eyebrow">WHAT STAYS WITH YOU</span><h2>Recall after a day away</h2><p>Unaided, typed answers after at least 24 hours without a recorded exposure. Early practice is excluded.</p></div><div className="practice-evidence-grid">{[{ key: 'meaning', label: 'Meaning' }, { key: 'production', label: 'Danish production' }].map(({ key, label }) => {
+    const score = summary[key as 'meaning' | 'production']
     return <div key={key}><span>{label}</span><strong>{score.total ? `${score.correct} / ${score.total}` : '—'}</strong><small>{score.total ? 'successful delayed attempts' : 'Building the first observations'}</small></div>
   })}</div></section>
 }

@@ -4,9 +4,7 @@ import { BookOpenCheck, Flame, Layers3, Sparkles, Target } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { AddWordComposer } from '@/components/AddWordComposer'
 import { StatCard } from '@/components/StatCard'
-import { VocabularyIcon } from '@/components/VocabularyIcon'
 import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
-import { VocabularyIconBackfill } from '@/components/VocabularyIconBackfill'
 import { requireUser } from '@/lib/auth'
 import { needsRefinement } from '@/lib/sense-refinement'
 
@@ -21,7 +19,7 @@ export default async function HomePage() {
     supabase.from('review_cards').select('id, reps, vocabulary_entries!inner(translation)').lte('due', now),
     supabase.from('vocabulary_entries').select('learning_status'),
     supabase.from('profiles').select('*').single(),
-    supabase.from('vocabulary_entries').select('id, danish, translation, pronunciation, learning_status, entry_kind, icon_name, senses').order('created_at', { ascending: false }).limit(4),
+    supabase.from('vocabulary_entries').select('id, danish, translation, pronunciation, learning_status, entry_kind, senses').order('created_at', { ascending: false }).limit(4),
     supabase.from('review_logs').select('id', { count: 'exact', head: true }).eq('study_date', today).eq('previous_state', 0),
   ])
 
@@ -42,12 +40,10 @@ export default async function HomePage() {
   const due = dueReviews + Math.min(dueNew, remainingNewSlots)
   const todayProgress = Math.min(newReviewedToday, dailyLimit)
   const recentWords = recentResult.data || []
-  const missingRecentIcons = recentWords.filter((word) => word.entry_kind !== 'sentence' && !word.icon_name).map((word) => word.id)
   const unrefinedRecent = recentWords.filter((word) => word.entry_kind !== 'sentence' && needsRefinement(word.senses)).map((word) => word.id)
 
   return (
     <AppShell>
-      <VocabularyIconBackfill entryIds={missingRecentIcons} />
       <SenseRefinementBackfill entryIds={unrefinedRecent} />
       <div className="page-wrap dashboard-page">
         <header className="top-header">
@@ -81,11 +77,11 @@ export default async function HomePage() {
         </section>
 
         <section className="section-card recent-section">
-          <div className="section-title-row"><div><span className="eyebrow">RECENTLY ADDED</span><h2>Fresh in your memory</h2></div><Link href="/words">See all words →</Link></div>
+          <div className="section-title-row"><div><span className="eyebrow">RECENTLY ADDED</span><h2>Fresh in your memory</h2></div><Link href="/words">See all material →</Link></div>
           <div className="recent-list">
             {recentWords.length ? recentWords.map((word) => (
               <div className="recent-word" key={word.id}>
-                <span className="word-bubble"><VocabularyIcon name={word.entry_kind === 'sentence' ? null : word.icon_name} fallback={word.danish.slice(0, 1).toLocaleUpperCase('da-DK')} size={20} /></span>
+                <span className="word-bubble">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span>
                 <div><strong>{word.danish}</strong><small>{word.pronunciation || 'pronunciation not added'}</small></div>
                 <span className="recent-translation">{word.translation}</span>
                 <span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span>

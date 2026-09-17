@@ -106,10 +106,10 @@ Primary tabs:
 
 - Home
 - Review
-- Words
+- Material (`/words`; words, phrases and sentences in one list)
 - Settings
 
-`components/AppNav.tsx` owns bottom navigation. Review and Words intentionally use different icons now: Review uses a repetition/rotate icon; Words keeps a book icon.
+`components/AppNav.tsx` owns bottom navigation. Review and Material intentionally use different icons: Review uses a repetition/rotate icon; Material keeps a book icon. `/sentences` only redirects to `/words?kind=sentences`.
 
 Navigation was optimized because the user reported ~1 s perceived lag. There is route transition/loading feedback and navigation prefetching. Preserve the fast-feeling behavior.
 
@@ -150,16 +150,18 @@ Stored DB `entry_kind` remains `word | sentence`; phrases are vocabulary entries
 
 The AI action beside the Danish input MUST depend on detected input kind:
 
-- one word → `Base form`
-- phrase → `Normalize phrase`
-- sentence / sentence fragment → `Check sentence`
+- one word → `Base form` (applied in place)
+- phrase → `Verify phrase` (a correction is proposed with a red/green diff; the learner accepts or keeps theirs; a correct phrase is confirmed)
+- sentence / sentence fragment → `Verify sentence` (same as phrase)
+
+`Fill missing with AI` and `Regenerate all` run the same check first. For a word it is awaited so enrichment uses the base form; for a phrase/sentence it runs alongside. The same text is never checked twice automatically.
 
 Endpoint: `app/api/ai/base-form/route.ts`.
 
 Rules:
 
 - Word mode normalizes to dictionary/base form.
-- Phrase mode preserves the complete expression and intended meaning. It may normalize an inflected verb/adjective only where appropriate. It must never collapse `helt sikker` or another multi-word phrase to one word.
+- Phrase mode verifies the complete expression and proposes the smallest correction. It must never collapse `helt sikker` or another multi-word phrase to one word.
 - There is a defensive server check that rejects a multi-word phrase result if Groq collapses it to a single word.
 - Sentence mode DOES NOT base-form words. It checks overall Danish grammar/spelling/word order/agreement/punctuation/naturalness and applies only the smallest correction required.
 
@@ -221,14 +223,16 @@ Important anchors from user feedback:
 
 The source IPA is authoritative. Groq may substantially rewrite the deterministic Cyrillic draft if a Russian reader would otherwise pronounce it incorrectly.
 
-## 9. Words page
+## 9. Material page
 
-Implementation: `components/WordsClient.tsx` + `app/words/page.tsx`.
+Implementation: `components/MaterialClient.tsx` + `app/words/page.tsx`.
 
 Features:
 
+- one-tap kind filter: All / Words / Phrases / Sentences (`?kind=`). Phrases are `entry_kind = 'word'` rows whose text `inferDanishInputKind` calls a phrase. The Sentences view lists sentences you added first, then example sentences from words.
 - search Danish + translation
 - filters: All / New / Learning / Mastered
+- no per-word icons: the Iconify/AI icon feature was removed (the `icon_name` column remains, unused)
 - raw bulk add
 - sequential/bulk enrichment
 - per-word AI preview/confirm
@@ -469,7 +473,8 @@ At the start of the next session, do this before assuming anything:
 - Do not base-form complete sentences.
 - Do not use spelling-based Danish→Cyrillic transliteration as pronunciation.
 - Do not make `Again` require leaving/re-entering Review.
-- Do not make Review and Words use the same nav icon.
+- Do not make Review and Material use the same nav icon.
+- Do not bring back per-word icons, practice audio (Listen / Slower / Say it aloud), or a timed practice autosave (it disabled the answer field mid-typing).
 - Do not re-add a Danish flag to the installed app icon.
 - Do not expose private keys/secrets.
 
@@ -486,3 +491,13 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - Choice-based practice answers (`assistance: 'choices'`) never write `legacy_change`, so they never reach `review_cards` or mastery.
 - `entry_links`: symmetric kinds are stored once with `a_id < b_id`. Discovery runs after save, never blocking. Dismissing a suggestion writes a tombstone (`dismissed_at`, `source: 'user'`). Every reader that shows, grades or teaches must filter `dismissed_at is null`. Distractors use confirmed edges only.
 - Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string.
+
+## 21. Local practice engine
+
+`/review/practice` is planned and graded locally; the provider is only used when a typed free answer fails the deterministic check.
+
+- `lib/practice-targets.ts` scores every item: FSRS retrievability, stability and lapses plus recent practice accuracy (typed answers weigh more than taps) → mastery, priority and a ladder rung (0 new, 1 fragile, 2 building, 3 solid).
+- `lib/practice-planner.ts` takes up to 4 new items (`newTargetBudget`, newest first) and fills the session to 10 targets with the highest priority. Each target gets two exercises from its rung's ladder, easy → hard: `pick` (meaning MC) → `choose` (gap MC) → `assemble` (word bank) → `cloze` (typed gap, inflection-aware via `findInSentence`) → `produce`. All first steps precede all second steps, so items are interleaved. A due card gets a typed `recall` that moves `review_cards`.
+- The canned coffee/dialogue frames were removed. `teach`, `build`, `listen`, `dialogue` remain valid only so older saved sessions load.
+- `checkAnswer` accepts Danish typos by edit distance (≤4 chars: none, ≤8: 1, longer: 2; sentences very few) as `mostly`. A typed cloze is never sent to the provider.
+- Wrong typed answers show a word-then-letter diff (`lib/answer-diff.ts`): red in the learner's answer, green in the correction. The semantic check returns `corrected` (the learner's own answer minimally fixed), stored as `PracticeResponse.correction`, so valid alternative replies are not painted red against the model answer.

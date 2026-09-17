@@ -54,7 +54,45 @@ export function checkAnswer(input: string, expected: string, options: CheckAnswe
   for (const candidate of candidates) {
     if (relaxed(candidate) === relaxed(actual)) return 'mostly'
   }
+
+  // A typing slip in Danish is close, not wrong. Meaning recall is left to the synonym graph and
+  // the semantic check: in the learner's own language one letter can be a different word.
+  if (!options.meaning) {
+    for (const candidate of candidates) {
+      const expectedText = relaxed(candidate)
+      if (editDistance(relaxed(actual), expectedText) <= typoAllowance(expectedText, Boolean(options.sentence))) return 'mostly'
+    }
+  }
   return 'incorrect'
+}
+
+/**
+ * How many edits still count as a slip. Short words get none, so `en`/`er` or `hus`/`hun` stay
+ * different words; sentences get very few, so a dropped `ikke` is never a typo.
+ */
+export function typoAllowance(expected: string, sentence: boolean): number {
+  const length = [...expected].length
+  if (sentence && expected.includes(' ')) return Math.min(2, Math.floor(length / 16))
+  if (length <= 4) return 0
+  if (length <= 8) return 1
+  return 2
+}
+
+/** Optimal string alignment distance: insertions, deletions, substitutions and adjacent swaps. */
+export function editDistance(left: string, right: string): number {
+  const a = [...left]
+  const b = [...right]
+  if (!a.length) return b.length
+  if (!b.length) return a.length
+  const rows = Array.from({ length: a.length + 1 }, (_, i) => Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0)))
+  for (let i = 1; i <= a.length; i += 1) {
+    for (let j = 1; j <= b.length; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1
+      rows[i][j] = Math.min(rows[i - 1][j] + 1, rows[i][j - 1] + 1, rows[i - 1][j - 1] + cost)
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) rows[i][j] = Math.min(rows[i][j], rows[i - 2][j - 2] + 1)
+    }
+  }
+  return rows[a.length][b.length]
 }
 
 /**

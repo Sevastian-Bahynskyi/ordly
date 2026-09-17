@@ -3,15 +3,14 @@
 import Link from 'next/link'
 import { useEffect, useState, type CSSProperties } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpen, Home, LogOut, MessageSquareText, RotateCcw, Settings } from 'lucide-react'
+import { BookOpen, Home, LogOut, RotateCcw, Settings } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { Brand } from './Brand'
 
 const items = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/review', label: 'Review', icon: RotateCcw },
-  { href: '/words', label: 'Words', icon: BookOpen },
-  { href: '/sentences', label: 'Sentences', icon: MessageSquareText },
+  { href: '/words', label: 'Material', icon: BookOpen },
   { href: '/settings', label: 'Settings', icon: Settings },
 ]
 

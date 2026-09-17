@@ -27,7 +27,7 @@ export function isReviewSource(value: unknown): value is ReviewItem {
     && Number(value.state) <= 3
 }
 
-const PRACTICE_KINDS = ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue', 'assemble', 'choose', 'sense']
+const PRACTICE_KINDS = ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue', 'assemble', 'choose', 'sense', 'pick', 'cloze']
 const PRACTICE_ASSISTANCE = ['none', 'hint', 'model', 'transcript', 'choices']
 
 /** No board is bigger than this. A longer list is corrupt state, not an exercise. */
@@ -54,6 +54,7 @@ export function isPracticeTask(value: unknown): value is PracticeTask {
     && isChoiceList(value.choices)
     && (value.senseId === undefined || text(value.senseId, 100))
     && (value.contrast === undefined || text(value.contrast))
+    && (value.context === undefined || text(value.context))
 }
 
 export function isPracticeResponse(value: unknown): value is PracticeResponse {
@@ -66,6 +67,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
     && ['yes', 'no', 'uncertain'].includes(String(value.communication)) && ['yes', 'no', 'uncertain'].includes(String(value.target))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= 3600000
     && Number.isInteger(value.replays) && Number(value.replays) >= 0 && Number(value.replays) <= 100
+    && (value.correction === undefined || text(value.correction))
 }
 
 export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
@@ -115,10 +117,14 @@ export interface PracticeFeedback {
   feedback: string
   communication: 'yes' | 'no' | 'uncertain'
   target: 'yes' | 'no' | 'uncertain'
+  correction?: string
 }
 
 export function parsePracticeFeedback(value: unknown): PracticeFeedback | null {
   if (!isRecord(value) || !['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result)) || !text(value.feedback, 400)
     || !['yes', 'no', 'uncertain'].includes(String(value.communication)) || !['yes', 'no', 'uncertain'].includes(String(value.target))) return null
-  return { result: value.result as PracticeFeedback['result'], feedback: value.feedback, communication: value.communication as PracticeFeedback['communication'], target: value.target as PracticeFeedback['target'] }
+  const feedback: PracticeFeedback = { result: value.result as PracticeFeedback['result'], feedback: value.feedback, communication: value.communication as PracticeFeedback['communication'], target: value.target as PracticeFeedback['target'] }
+  const correction = typeof value.corrected === 'string' ? value.corrected.trim() : ''
+  if (correction && correction.length <= 2000) feedback.correction = correction
+  return feedback
 }

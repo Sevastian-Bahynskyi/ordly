@@ -6,8 +6,9 @@ import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkl
 import { createClient } from '@/lib/supabase/client'
 import { SenseRow } from '@/components/SenseRow'
 import { errorMessage, readJsonRecord, requestEnrichment, stringField } from '@/lib/ai-responses'
+import { diffAnswer } from '@/lib/answer-diff'
 import { discoverSynonyms } from '@/lib/entry-links'
-import { inferDanishInputKind, inferEntryKind } from '@/lib/entry-kind'
+import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { parseRefinedMeanings } from '@/lib/sense-refinement'
 import {
@@ -136,6 +137,12 @@ export function EntryEditor({
   const [notice, setNotice] = useState<string | null>(null)
   const [usedAI, setUsedAI] = useState(false)
   const [exampleSuggestion, setExampleSuggestion] = useState<string | null>(null)
+  /**
+   * The last AI verdict on the Danish text itself. It only applies while the text is unchanged,
+   * which is also what stops Fill missing / Regenerate all from checking the same text twice.
+   */
+  const [danishCheck, setDanishCheck] = useState<DanishCheck | null>(null)
+  const danishCheckRef = useRef<DanishCheck | null>(null)
   const [exampleCheckStatus, setExampleCheckStatus] = useState<ExampleCheckStatus>('idle')
   const firstInput = useRef<HTMLInputElement>(null)
   const exampleSentenceDirty = useRef(false)
@@ -385,15 +392,29 @@ export function EntryEditor({
     window.setTimeout(() => firstInput.current?.focus(), 0)
   }
 
-  async function checkDanishForm() {
+  function recordDanishCheck(next: DanishCheck | null): void {
+    danishCheckRef.current = next
+    setDanishCheck(next)
+  }
+
+  /**
+   * Check the Danish text by what it is. A word is brought to its base form in place: the base
+   * form is what gets saved, translated and reviewed. A phrase or sentence is verified: a needed
+   * correction is proposed for the learner to accept, never applied silently, and a correct one is
+   * confirmed. Returns the text the rest of an AI action should work from.
+   */
+  async function checkDanishForm(options: { quiet?: boolean } = {}): Promise<string | null> {
     const original = draftRef.current.danish.trim()
     if (!original) {
-      setNotice('Type Danish text first.')
-      return
+      if (!options.quiet) setNotice('Type Danish text first.')
+      return null
     }
+    const previous = danishCheckRef.current
+    // An automatic check never repeats itself for the same text; an explicit tap always runs.
+    if (options.quiet && previous && (previous.text === original || previous.checked === original)) return original
 
     const kind = inferDanishInputKind(original)
-    setAiLoading('danish-check')
+    if (!options.quiet) setAiLoading('danish-check')
     try {
       const res = await fetch('/api/ai/base-form', {
         method: 'POST',
@@ -405,19 +426,35 @@ export function EntryEditor({
 
       const result = (stringField(body, 'result') || '').trim()
       if (!result) throw new Error('AI returned empty Danish text')
+      // The learner kept typing while the check ran; its verdict is about text that is gone.
+      if (draftRef.current.danish.trim() !== original) return draftRef.current.danish.trim()
 
-      if (body.is_correct === true || result === original) {
-        setNotice(kind === 'word' ? 'Already in base form.' : kind === 'phrase' ? 'Phrase looks good.' : 'Sentence looks correct.')
-      } else {
-        patch('danish', result)
-        setUsedAI(true)
-        setNotice(kind === 'word' ? `Base form: ${result}` : kind === 'phrase' ? `Normalized phrase: ${result}` : `Corrected sentence: ${result}`)
+      const correct = body.is_correct === true || result === original
+      if (kind === 'word') {
+        if (!correct) {
+          patch('danish', result)
+          setUsedAI(true)
+        }
+        recordDanishCheck({ text: result, checked: original, kind, status: correct ? 'correct' : 'changed', suggestion: correct ? null : original })
+        return result
       }
+      recordDanishCheck({ text: original, checked: original, kind, status: correct ? 'correct' : 'suggestion', suggestion: correct ? null : result })
+      setUsedAI(true)
+      return original
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'Could not check this Danish text')
+      if (!options.quiet) setNotice(error instanceof Error ? error.message : 'Could not check this Danish text')
+      return original
     } finally {
-      setAiLoading(null)
+      if (!options.quiet) setAiLoading((current) => current === 'danish-check' ? null : current)
     }
+  }
+
+  function applyDanishSuggestion() {
+    const check = danishCheckRef.current
+    if (!check?.suggestion || check.status !== 'suggestion') return
+    patch('danish', check.suggestion)
+    recordDanishCheck({ ...check, text: check.suggestion, status: 'applied' })
+    setUsedAI(true)
   }
 
   async function checkExampleSentence() {
@@ -486,15 +523,39 @@ export function EntryEditor({
 
   /** Only the fields that are still empty right now. */
   async function fillMissingWithAI() {
+    const snapshot = await verifyBeforeEnrich('fill-missing')
+    if (!snapshot) return
     const current = draftRef.current
     const missing = activeEnrichableFields().filter((key) => key === 'translation'
       ? !translationFromSenses(current.senses).trim()
       : !current[key].trim())
     if (!missing.length) {
+      await snapshot.pending
+      setAiLoading(null)
       setNotice('Nothing is empty. Use Regenerate all to replace what is there.')
       return
     }
-    await runEnrich(missing, 'fill-missing', false, false)
+    await Promise.all([runEnrich(missing, 'fill-missing', false, false), snapshot.pending])
+  }
+
+  /**
+   * Both whole-entry AI actions check the Danish first (item: base form / verify). A word's base
+   * form has to be settled before translating, so that check is awaited; a phrase or sentence
+   * check only proposes a correction, so it runs alongside enrichment instead of delaying it.
+   */
+  async function verifyBeforeEnrich(loadingKey: string): Promise<{ pending: Promise<unknown>; snapshot: DraftSnapshot } | null> {
+    const current = draftRef.current
+    if (!current.danish.trim()) {
+      setNotice('Type Danish text first.')
+      return null
+    }
+    const snapshot: DraftSnapshot = { draft: current, archived: archivedRef.current, exampleSuggestion, exampleCheckStatus, usedAI }
+    if (inferDanishInputKind(current.danish) === 'word') {
+      setAiLoading(loadingKey)
+      await checkDanishForm({ quiet: true })
+      return { pending: Promise.resolve(), snapshot }
+    }
+    return { pending: checkDanishForm({ quiet: true }), snapshot }
   }
 
   /**
@@ -507,7 +568,9 @@ export function EntryEditor({
    * every meaning of every word is exactly the cost the lazy model exists to avoid.
    */
   async function regenerateAll() {
-    const succeeded = await runEnrich(activeEnrichableFields(), 'regenerate-all', true, true)
+    const verified = await verifyBeforeEnrich('regenerate-all')
+    if (!verified) return
+    const [succeeded] = await Promise.all([runEnrich(activeEnrichableFields(), 'regenerate-all', true, true, verified.snapshot), verified.pending])
     if (!succeeded || !editing) return
 
     const targets = activeSenses(draftRef.current.senses)
@@ -525,6 +588,8 @@ export function EntryEditor({
     loadingKey: string,
     offerUndo: boolean,
     regenerate: boolean,
+    /** What Undo restores, when an earlier step of the same action already changed the draft. */
+    undoTo?: DraftSnapshot,
   ): Promise<boolean> {
     const current = draftRef.current
     const sourceDanish = current.danish.trim()
@@ -535,7 +600,7 @@ export function EntryEditor({
     if (!requestedFields.length) return false
 
     const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
-    const snapshot: DraftSnapshot = {
+    const snapshot: DraftSnapshot = undoTo || {
       draft: current,
       archived: archivedRef.current,
       exampleSuggestion,
@@ -850,14 +915,6 @@ export function EntryEditor({
       return
     }
 
-    if (savedEntry?.id && savedEntry.entry_kind !== 'sentence') {
-      void fetch('/api/ai/icon', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ entryId: savedEntry.id }),
-      }).catch(() => {})
-    }
-
     if (savedEntry?.id) runSynonymDiscovery(savedEntry.id, savedEntry.entry_kind)
 
     exampleSentenceDirty.current = false
@@ -900,7 +957,8 @@ export function EntryEditor({
   // The primary sense is the first non-removed one: it owns the entry's example columns.
   const primaryId = activeSenses(draft.senses)[0]?.id ?? draft.senses[0]?.id ?? ''
   const inputKind = inferDanishInputKind(draft.danish)
-  const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Normalize phrase' : 'Check sentence'
+  const danishActionLabel = inputKind === 'word' ? 'Base form' : inputKind === 'phrase' ? 'Verify phrase' : 'Verify sentence'
+  const currentCheck = danishCheck && danishCheck.text === draft.danish.trim() ? danishCheck : null
   const inputKindLabel = inputKind === 'word' ? 'Word' : inputKind === 'phrase' ? 'Phrase' : 'Sentence detected'
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'en' ? 'English' : 'Ukrainian'
   const translationLabel = entryKind === 'sentence' ? 'Sentence translation' : `${languageLabel} translation`
@@ -930,7 +988,7 @@ export function EntryEditor({
         <label className="field field-wide">
           <span>
             <span>Danish word, phrase, or sentence</span>
-            {draft.danish.trim() && <AiMini label={danishActionLabel} loading={aiLoading === 'danish-check'} onClick={checkDanishForm} />}
+            {draft.danish.trim() && <AiMini label={danishActionLabel} loading={aiLoading === 'danish-check'} onClick={() => void checkDanishForm()} />}
           </span>
           <input ref={firstInput} value={draft.danish} onChange={(e) => patch('danish', e.target.value)} placeholder="synes · helt sikker · Hvad kan du godt lide?" />
           <span style={{ minHeight: 16, justifyContent: 'flex-start', gap: 8 }}>
@@ -948,6 +1006,8 @@ export function EntryEditor({
             )}
           </span>
         </label>
+
+        {currentCheck && <DanishCheckNotice check={currentCheck} onApply={applyDanishSuggestion} onDismiss={() => recordDanishCheck({ ...currentCheck, status: 'dismissed' })} />}
 
         <label className="field">
           <span>Simplified pronunciation (Cyrillic) <AiMini loading={aiLoading === 'pronunciation'} onClick={() => enrich(['pronunciation'])} /></span>
@@ -1135,4 +1195,39 @@ function AiMini({ loading, onClick, label = 'AI' }: { loading: boolean; onClick:
       {loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} {label}
     </button>
   )
+}
+
+interface DanishCheck {
+  /** The Danish text this verdict applies to. */
+  text: string
+  /** The text that was actually sent to be checked. */
+  checked: string
+  kind: DanishInputKind
+  /** `changed`: a word was brought to its base form. `applied`: a proposed correction was accepted. */
+  status: 'correct' | 'suggestion' | 'changed' | 'applied' | 'dismissed'
+  /** The correction for `suggestion`; the original text for `changed`. */
+  suggestion: string | null
+}
+
+function DanishCheckNotice({ check, onApply, onDismiss }: { check: DanishCheck; onApply: () => void; onDismiss: () => void }) {
+  if (check.status === 'dismissed') return null
+  const noun = check.kind === 'word' ? 'Word' : check.kind === 'phrase' ? 'Phrase' : 'Sentence'
+  if (check.status === 'suggestion' && check.suggestion) {
+    const diff = diffAnswer(check.text, check.suggestion)
+    return (
+      <div className="field-wide danish-check suggestion" role="status">
+        <small>{noun} needs a correction</small>
+        <p lang="da">{diff.expected.map((part, index) => part.changed ? <mark key={index} className="diff-fixed">{part.text}</mark> : <span key={index}>{part.text}</span>)}</p>
+        <p className="danish-check-original" lang="da">{diff.actual.map((part, index) => part.changed ? <mark key={index} className="diff-wrong">{part.text}</mark> : <span key={index}>{part.text}</span>)}</p>
+        <div>
+          <button type="button" className="soft-button strong" onClick={(event) => { event.preventDefault(); onApply() }}><Check size={13} /> Use correction</button>
+          <button type="button" className="soft-button" onClick={(event) => { event.preventDefault(); onDismiss() }}>Keep mine</button>
+        </div>
+      </div>
+    )
+  }
+  const message = check.status === 'changed' ? `Brought to base form (was “${check.suggestion}”).`
+    : check.status === 'applied' ? `${noun} corrected.`
+      : check.kind === 'word' ? 'Already in base form.' : `${noun} is correct.`
+  return <small className="field-wide danish-check correct" role="status"><Check size={12} /> {message}</small>
 }

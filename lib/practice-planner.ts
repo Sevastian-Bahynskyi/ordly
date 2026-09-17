@@ -1,63 +1,155 @@
-import { currentTaskContentVersion, entryContentVersion, frameTasks, selectFrame, vocabularyTask } from './practice-content'
+import { senseContentVersion, vocabularyTask } from './practice-content'
 import { newTargetBudget, practiceStudyDate, type PracticeAttempt, type PracticeSessionState, type PracticeStore, type PracticeTask } from './practice'
-import { CLOZE_DISTRACTOR_COUNT, selectDistractors, senseExerciseTask, WORD_BANK_DISTRACTOR_COUNT, type DistractorEntry } from './practice-exercises'
-import { itemSenses, parseSenseTargetKey, senseCandidates, SENSE_PROMOTIONS_PER_SESSION, type SenseCandidate } from './practice-senses'
+import {
+  assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
+  selectDistractors, selectMeaningDistractors, sentenceAssembleTask, senseTask, WORD_BANK_DISTRACTOR_COUNT,
+  type DistractorEntry, type ExerciseInput,
+} from './practice-exercises'
+import { itemSenses, senseTargetKey, SENSE_PROMOTION_MIN_REPS, TARGET_KEY_MAX_LENGTH, type SenseCandidate } from './practice-senses'
+import { scoreTargets, type TargetLevel, type TargetScore } from './practice-targets'
 import { synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
 import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
+
+/**
+ * The local practice engine. No provider call is needed to plan or grade a board.
+ *
+ * A session is about up to `SESSION_TARGETS` of the learner's own items: new ones first by the
+ * daily budget, then the weakest by `scoreTargets`. Each item gets two exercises that climb its
+ * ladder, easy to hard (recognise → choose in context → build → type it). All first exercises
+ * come before any second one, so every item returns after the others have had a turn: spaced
+ * and interleaved within the session (Nakata & Suzuki 2019).
+ */
+
+export const SESSION_TARGETS = 10
 
 /** Enough wrong options for the widest board (a cloze) plus the word bank's spare tiles. */
 const DISTRACTOR_POOL_SIZE = CLOZE_DISTRACTOR_COUNT + WORD_BANK_DISTRACTOR_COUNT
 
+type Builder = (input: ExerciseInput) => PracticeTask | null
+
+/** Easy to hard, per rung. The planner takes the first that has material, then a harder one. */
+const WORD_LADDER: Record<TargetLevel, Builder[]> = {
+  0: [pickMeaningTask, chooseTask, assembleTask, clozeTypedTask, produceSenseTask],
+  1: [chooseTask, clozeTypedTask, senseTask, assembleTask, produceSenseTask],
+  2: [senseTask, assembleTask, clozeTypedTask, produceSenseTask],
+  3: [clozeTypedTask, produceSenseTask],
+}
+
+const SENTENCE_LADDER: Record<TargetLevel, Builder[]> = {
+  0: [pickMeaningTask, sentenceAssembleTask, clozeTypedTask, produceSenseTask],
+  1: [sentenceAssembleTask, clozeTypedTask, produceSenseTask],
+  2: [clozeTypedTask, sentenceAssembleTask, produceSenseTask],
+  3: [clozeTypedTask, produceSenseTask],
+}
+
+function coldness(sense: EntrySense): number {
+  const parsed = Date.parse(sense.coverage?.last_seen || '')
+  return Number.isFinite(parsed) ? parsed : Number.NEGATIVE_INFINITY
+}
+
 /**
- * Wrong options for one sense, drawn from the learner's own vocabulary (D6).
- *
- * The synonym graph is read twice, both times **confirmed only**. Direct confirmed synonyms are
- * excluded: dropped into a gap they may genuinely be right, and offering a right answer as a
- * wrong one is exactly the bug this redesign set out to kill. Their own neighbours — the same
- * semantic field, one hop further out — are preferred instead, which is what makes a distractor
- * worth thinking about rather than dismissing on sight.
+ * The meaning an item is practised on. A meaning whose own objective is due comes first, so its
+ * FSRS card is reused (D15). Otherwise a new or barely known item uses its primary meaning, and
+ * once its entry is recognised (D18) the coldest meaning takes a turn, the primary one winning ties.
  */
-function distractorsFor(input: {
-  item: ReviewItem; sense: EntrySense; pool: readonly DistractorEntry[]; links: readonly SynonymLinkRow[]; seed: string
-}): string[] {
-  const entryId = input.item.entry_id
-  const direct = synonymNeighbourIds(entryId, input.links, { confirmedOnly: true })
-  const secondHop = direct.flatMap((id) => synonymNeighbourIds(id, input.links, { confirmedOnly: true }))
+function senseFor(score: TargetScore, senses: EntrySense[], context: PlanContext): EntrySense {
+  const entry = score.item.vocabulary_entries
+  const due = senses
+    .map((sense) => ({ sense, objective: context.store.objectives[senseTargetKey(entry.id, sense.id)] }))
+    .filter(({ sense, objective }) => objective && Date.parse(objective.card.due) <= context.now.getTime() && objective.task.contentVersion === senseContentVersion(entry, sense))
+    .sort((a, b) => Date.parse(a.objective!.card.due) - Date.parse(b.objective!.card.due))
+  if (due.length) return due[0].sense
+  if (score.level === 0 || score.item.reps < SENSE_PROMOTION_MIN_REPS) return senses[0]
+  return senses.reduce((coldest, sense) => coldness(sense) < coldness(coldest) ? sense : coldest, senses[0])
+}
+
+interface PlanContext {
+  pool: readonly DistractorEntry[]
+  links: readonly SynonymLinkRow[]
+  store: PracticeStore
+  now: Date
+}
+
+/**
+ * Wrong Danish options, drawn from the learner's own vocabulary (D6). Direct confirmed synonyms
+ * are excluded because they may genuinely fit a gap; their own neighbours are preferred.
+ */
+function danishDistractors(item: ReviewItem, sense: EntrySense, context: PlanContext, seed: string): string[] {
+  const entryId = item.entry_id
+  const direct = synonymNeighbourIds(entryId, context.links, { confirmedOnly: true })
+  const secondHop = direct.flatMap((id) => synonymNeighbourIds(id, context.links, { confirmedOnly: true }))
   const exclude = new Set([entryId, ...direct.map((id) => id.toLowerCase())])
   return selectDistractors({
-    answer: input.item.vocabulary_entries.danish,
-    pos: input.sense.pos,
-    pool: input.pool,
+    answer: item.vocabulary_entries.danish,
+    pos: sense.pos,
+    pool: context.pool.filter((entry) => !entry.sentence),
     preferIds: secondHop.filter((id) => !exclude.has(id.toLowerCase())),
     excludeIds: [...exclude],
     count: DISTRACTOR_POOL_SIZE,
-    seed: input.seed,
+    seed,
   })
 }
 
-function exerciseFor(input: {
-  candidate: SenseCandidate; pool: readonly DistractorEntry[]; links: readonly SynonymLinkRow[]; reps: number; newTarget: boolean
-}): PracticeTask {
-  const { candidate } = input
-  return senseExerciseTask({
-    candidate,
-    senses: itemSenses(candidate.item),
-    distractors: distractorsFor({ item: candidate.item, sense: candidate.sense, pool: input.pool, links: input.links, seed: `${candidate.targetKey}:${input.reps}` }),
-    reps: input.reps,
-    newTarget: input.newTarget,
-  })
-}
-
-/** Rebuild a `SenseCandidate` for an objective that already exists, so its exercise can rotate. */
-function candidateForObjective(targetKey: string, items: readonly ReviewItem[]): SenseCandidate | null {
-  const parsed = parseSenseTargetKey(targetKey)
-  if (!parsed) return null
-  const item = items.find((candidate) => candidate.entry_id === parsed.entryId)
-  if (!item) return null
+function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] {
+  const item = score.item
+  const entry = item.vocabulary_entries
   const senses = itemSenses(item)
-  const index = senses.findIndex((sense) => sense.id === parsed.senseId)
-  if (index < 0) return null
-  return { item, entryId: parsed.entryId, sense: senses[index], primary: index === 0, targetKey }
+  const recall = score.due && item.reps > 0 ? { ...vocabularyTask(item, 'meaning'), stage: 'build' as const } : null
+
+  // A row without stored senses cannot key a sense objective; it keeps the entry-level pair.
+  if (!senses.length) {
+    const production = { ...vocabularyTask(item, 'production'), newTarget: score.isNew }
+    return recall ? [recall, production] : [production]
+  }
+
+  const sense = senseFor(score, senses, context)
+  const targetKey = senseTargetKey(entry.id, sense.id)
+  if (targetKey.length > TARGET_KEY_MAX_LENGTH) return recall ? [recall] : []
+  const candidate: SenseCandidate = { item, entryId: entry.id, sense, primary: sense.id === senses[0].id, targetKey }
+  const sentence = entry.entry_kind === 'sentence'
+  const seed = `${targetKey}:${item.reps}`
+  const exclude = [entry.id, ...synonymNeighbourIds(entry.id, context.links, { confirmedOnly: true })]
+  const input: ExerciseInput = {
+    candidate,
+    senses,
+    distractors: danishDistractors(item, sense, context, seed),
+    meaningDistractors: selectMeaningDistractors({
+      answers: senses.map((candidateSense) => candidateSense.text), pos: sense.pos, sentence,
+      pool: context.pool, excludeIds: exclude, count: MEANING_DISTRACTOR_COUNT, seed,
+    }),
+    newTarget: false,
+    reps: context.store.objectives[targetKey]?.card.reps || 0,
+  }
+
+  const ladder = (sentence ? SENTENCE_LADDER : WORD_LADDER)[score.level]
+  const built: PracticeTask[] = []
+  for (const build of ladder) {
+    const task = build(input)
+    if (!task || built.some((existing) => existing.kind === task.kind)) continue
+    built.push(task)
+    if (built.length === 2) break
+  }
+  const [first, second] = built
+  if (!first) return recall ? [recall] : []
+  const tasks: PracticeTask[] = [{ ...first, stage: 'remember', newTarget: score.isNew }]
+  // A due review card is also moved forward by one typed meaning recall, in place of the easier
+  // second step, so practising a weak word does not leave its ordinary review waiting.
+  const finish = score.level >= 2 && recall ? recall : second || recall
+  if (finish) tasks.push({ ...finish, stage: 'build' })
+  return tasks
+}
+
+/** New and weak items alternate so a session never opens with a block of unfamiliar words. */
+function interleave(fresh: TargetScore[], weak: TargetScore[]): TargetScore[] {
+  const order: TargetScore[] = []
+  let f = 0
+  let w = 0
+  while (f < fresh.length || w < weak.length) {
+    if (f < fresh.length) order.push(fresh[f++])
+    if (w < weak.length) order.push(weak[w++])
+    if (w < weak.length && f >= fresh.length) order.push(weak[w++])
+  }
+  return order
 }
 
 export function planPractice(input: {
@@ -66,55 +158,33 @@ export function planPractice(input: {
   /** `entry_links` rows for this learner. Only `synonym` edges are read, and only confirmed ones. */
   links?: readonly SynonymLinkRow[];
 }): PracticeSessionState {
-  const { items, store, attempts, now } = input
-  const links = input.links || []
-  const known = items.filter((item) => item.reps > 0 && item.vocabulary_entries.translation)
-  const due = known.filter((item) => Date.parse(item.due) <= now.getTime())
+  const { store, attempts, now } = input
+  const usable = input.items.filter((item) => item.vocabulary_entries.translation?.trim())
+  const scores = scoreTargets({ items: usable, store, attempts, now })
+  const dueCount = scores.filter((score) => score.due).length
   const recent = attempts.filter((a) => a.assistance === 'none' && a.result !== 'ungraded' && a.objective !== null && a.kind !== 'teach').slice(-20).map((a) => a.result !== 'incorrect' && a.rating !== 1)
-  let budget = newTargetBudget({ dailyLimit: input.dailyLimit, introducedToday: input.introducedToday, dueCount: due.length, recent })
-  const pool: DistractorEntry[] = known.map((item) => ({ id: item.entry_id, danish: item.vocabulary_entries.danish, senses: itemSenses(item) }))
-  const production = Object.values(store.objectives).filter((objective) => Date.parse(objective.card.due) <= now.getTime())
-    .filter((objective) => !objective.task.entryId || known.some((item) => item.entry_id === objective.task.entryId && currentTaskContentVersion(item.vocabulary_entries, objective.task) === objective.task.contentVersion))
-    .sort((a, b) => Date.parse(a.card.due) - Date.parse(b.card.due)).slice(0, 3)
-  // A due sense objective gets a freshly built board rather than its stored one, so the exercise
-  // rotates with its reps instead of serving the same tiles forever.
-  const dueTasks = production.map((objective) => {
-    const candidate = candidateForObjective(objective.task.targetKey, known)
-    if (!candidate) return { ...objective.task, newTarget: false, retry: 0, stage: 'remember' as const }
-    return exerciseFor({ candidate, pool, links, reps: objective.card.reps, newTarget: false })
-  })
-  const diagnostics = attempts.length === 0 ? known.filter((item) => !production.some((objective) => objective.task.targetKey === item.entry_id)).slice(0, 3).map((item) => vocabularyTask(item, 'production')) : []
-  const used = new Set([...production.map((objective) => objective.task.targetKey), ...diagnostics.map((task) => task.targetKey)])
-  const queue: PracticeTask[] = due.filter((item) => !used.has(item.entry_id)).slice(0, due.length > 16 ? 10 : 6).map((item) => vocabularyTask(item, 'meaning'))
-  queue.splice(Math.min(2, queue.length), 0, ...dueTasks)
-  queue.unshift(...diagnostics)
-  const day = Math.floor(now.getTime() / 86400000)
-  const frame = selectFrame(attempts, budget > 0, day)
-  if (frame?.introduction) budget -= 1
-  // Promotion (D18). Newly admitted senses share the two-new-targets-per-day cap with frames and
-  // new words; the per-session limit stops a learner with many meanings from ever meeting a new
-  // word. The sense itself has no objective yet, so its first board starts the rotation at reps 0.
-  const promotions: SenseCandidate[] = budget > 0
-    ? senseCandidates(known, store.objectives).filter((candidate) => !used.has(candidate.targetKey)).slice(0, Math.min(SENSE_PROMOTIONS_PER_SESSION, budget))
-    : []
-  for (const candidate of promotions) {
-    budget -= 1
-    used.add(candidate.targetKey)
-    queue.push(exerciseFor({ candidate, pool, links, reps: 0, newTarget: true }))
+  const budget = newTargetBudget({ dailyLimit: input.dailyLimit, introducedToday: input.introducedToday, dueCount, recent })
+
+  const fresh = scores.filter((score) => score.isNew)
+    .sort((a, b) => Date.parse(b.item.vocabulary_entries.created_at) - Date.parse(a.item.vocabulary_entries.created_at) || a.item.entry_id.localeCompare(b.item.entry_id))
+    .slice(0, budget)
+  const weak = scores.filter((score) => !score.isNew)
+    .sort((a, b) => b.priority - a.priority || a.item.entry_id.localeCompare(b.item.entry_id))
+    .slice(0, SESSION_TARGETS - fresh.length)
+
+  const context: PlanContext = {
+    pool: usable.map((item) => ({ id: item.entry_id, danish: item.vocabulary_entries.danish, senses: itemSenses(item), sentence: item.vocabulary_entries.entry_kind === 'sentence' })),
+    links: input.links || [],
+    store,
+    now,
   }
-  for (const item of items.filter((item) => item.reps === 0 && item.vocabulary_entries.translation).slice(0, budget)) {
-    const task = vocabularyTask(item, 'meaning')
-    queue.push({ ...task, id: `${task.id}:teach`, kind: 'teach', stage: 'learn' })
-    queue.push({ ...task, newTarget: false, stage: 'return' })
-  }
-  if (frame) {
-    const tasks = frameTasks(frame.frame, input.language, frame.introduction, day)
-    // Scheduled production above already tested this frame without first exposing it.
-    queue.push(...tasks.filter((task) => task.kind !== 'produce' || (!used.has(task.targetKey)
-      && (!store.objectives[task.targetKey] || Date.parse(store.objectives[task.targetKey].card.due) <= now.getTime()))))
-  }
-  const active = known.find((item) => !used.has(item.entry_id) && (!store.objectives[item.entry_id] || store.objectives[item.entry_id].task.contentVersion !== entryContentVersion(item.vocabulary_entries)))
-  if (active && !diagnostics.length) queue.push({ ...vocabularyTask(active, 'production'), stage: 'return', newTarget: false })
+  const plans = interleave(fresh, weak).map((score) => exercisesFor(score, context)).filter((tasks) => tasks.length)
+  const firsts = plans.map((tasks) => tasks[0])
+  // Second steps start from the middle of the order, so no item is served twice in a row.
+  const offset = Math.ceil(plans.length / 2)
+  const seconds = [...plans.slice(offset), ...plans.slice(0, offset)].flatMap((tasks) => tasks.slice(1))
+  if (seconds.length > 1 && seconds[0].targetKey === firsts.at(-1)?.targetKey) seconds.push(seconds.shift()!)
+  const queue = [...firsts, ...seconds]
   return { version: 1, id: crypto.randomUUID(), queue, attempts: [], completed: 0, elapsedSeconds: 0, createdAt: now.toISOString(), aiEnabled: input.aiEnabled, aiCalls: 0, current: null }
 }
 

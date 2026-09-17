@@ -1,9 +1,10 @@
 /**
- * `assemble`, `choose` and `sense` are the interactive kinds from D13. They are answered by
- * tapping, so they always carry `assistance: 'choices'` and can never become unaided evidence.
- * Match-pairs and odd-one-out were explicitly cut.
+ * `pick`, `assemble`, `choose` and `sense` are answered by tapping, so they always carry
+ * `assistance: 'choices'` and can never become unaided evidence. `cloze` is the typed gap.
+ * `teach`, `build`, `listen` and `dialogue` are no longer planned; they stay valid so a session
+ * saved before the local exercise engine still loads.
  */
-export type PracticeKind = 'recall' | 'produce' | 'teach' | 'build' | 'listen' | 'dialogue' | 'assemble' | 'choose' | 'sense'
+export type PracticeKind = 'recall' | 'produce' | 'teach' | 'build' | 'listen' | 'dialogue' | 'assemble' | 'choose' | 'sense' | 'pick' | 'cloze'
 export type PracticeObjective = 'meaning' | 'production'
 /**
  * `'choices'` (D14) marks an answer the learner selected rather than produced. It is the flag the
@@ -12,7 +13,7 @@ export type PracticeObjective = 'meaning' | 'production'
 export type PracticeAssistance = 'none' | 'hint' | 'model' | 'transcript' | 'choices'
 
 /** The kinds answered by tapping. Their assistance is decided by the kind, not by the client. */
-export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense']
+export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense', 'pick']
 
 export function isChoiceKind(kind: PracticeKind): boolean {
   return CHOICE_KINDS.includes(kind)
@@ -51,6 +52,8 @@ export interface PracticeTask {
   senseId?: string
   /** A second sentence using a *different* sense of the same word (D13 discrimination). */
   contrast?: string
+  /** The translation of a gapped sentence, shown under a typed cloze. */
+  context?: string
 }
 
 export interface PracticeAttempt {
@@ -101,6 +104,8 @@ export interface PracticeResponse {
   replays: number
   revealed: boolean
   answeredAt: string | null
+  /** The learner's Danish answer with the smallest correction, when the semantic check supplied one. */
+  correction?: string
 }
 
 export interface PracticeSchedule {
@@ -189,16 +194,24 @@ export function legacyEvidence(task: PracticeTask, response: PracticeResponse): 
  * requires.
  */
 export function unaidedForm(task: PracticeTask): PracticeTask | null {
-  if (task.kind === 'sense') return null
+  if (task.kind === 'sense' || task.kind === 'pick') return null
   if (task.kind !== 'assemble' && task.kind !== 'choose') return task
   const { choices: _choices, contrast: _contrast, ...rest } = task
   return { ...rest, kind: 'produce' }
 }
 
+/** The most never-practised items one session introduces. */
+export const NEW_TARGETS_PER_SESSION = 4
+
+/**
+ * New items this session may introduce. New words are the point of practising, so a backlog or a
+ * weak run slows intake to one instead of stopping it; the daily limit still caps the total.
+ */
 export function newTargetBudget(input: { dailyLimit: number; introducedToday: number; dueCount: number; recent: boolean[] }): number {
   const recent = input.recent.slice(-20)
-  if (input.dueCount > 16 || (recent.length === 20 && recent.filter(Boolean).length < 15)) return 0
-  return Math.max(0, Math.min(2, input.dailyLimit) - input.introducedToday)
+  const struggling = input.dueCount > 30 || (recent.length === 20 && recent.filter(Boolean).length < 14)
+  const room = Math.max(0, input.dailyLimit - input.introducedToday)
+  return Math.min(room, struggling ? 1 : NEW_TARGETS_PER_SESSION)
 }
 
 export function finishPracticeTask(queue: PracticeTask[], rating: PracticeRating | null, assistance: PracticeAssistance): PracticeTask[] {

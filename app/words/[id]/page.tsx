@@ -5,7 +5,6 @@ import { AppShell } from '@/components/AppShell'
 import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
 import { SynonymGraph } from '@/components/SynonymGraph'
-import { VocabularyIcon } from '@/components/VocabularyIcon'
 import { requireUser } from '@/lib/auth'
 import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
 import { activeSenses, parseSenses } from '@/lib/senses'
@@ -56,18 +55,18 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   ])
 
   const senses = activeSenses(parseSenses(typedEntry.senses))
-  const backHref = typedEntry.entry_kind === 'sentence' ? '/sentences' : '/words'
+  const backHref = typedEntry.entry_kind === 'sentence' ? '/words?kind=sentences' : '/words'
 
   return (
     <AppShell>
       <div className="page-wrap">
         <header className="page-header entry-page-header">
           <div>
-            <Link className="entry-back" href={backHref}><ArrowLeft size={14} /> {typedEntry.entry_kind === 'sentence' ? 'All sentences' : 'All words'}</Link>
+            <Link className="entry-back" href={backHref}><ArrowLeft size={14} /> {typedEntry.entry_kind === 'sentence' ? 'Sentences' : 'Material'}</Link>
             <h1>
               {typedEntry.entry_kind !== 'sentence' && (
                 <span className="word-bubble small entry-page-bubble">
-                  <VocabularyIcon name={typedEntry.icon_name} fallback={typedEntry.danish.slice(0, 1).toUpperCase()} size={18} />
+                  {typedEntry.danish.slice(0, 1).toLocaleUpperCase('da-DK')}
                 </span>
               )}
               {typedEntry.danish}

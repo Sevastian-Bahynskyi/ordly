@@ -310,13 +310,23 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     const recall = !choiceKind && task.kind === 'recall'
     const options = { sentence: choiceKind || task.kind !== 'recall' || task.answerIsSentence, meaning: task.kind === 'recall', senses: recall ? entrySenses(entry || {}) : null }
     let result = answer && !spoken ? checkAnswer(answer, task.answer, options) : 'incorrect'
+    // The saved base form typed into a gap that needs an inflected one is the right word, wrong form.
+    const baseFormInGap = task.kind === 'cloze' && result === 'incorrect' && Boolean(answer) && checkAnswer(answer, task.danish.replace(/^at\s+/iu, ''), { sentence: true }) !== 'incorrect'
+    if (baseFormInGap) result = 'mostly'
     // Deterministic-first, then one hop across the synonym graph, and only then the provider.
     if (result === 'incorrect' && answer && !spoken && recall) {
       const linkedSenses = await linkedGradingSenses(supabase, userId, entry)
       if (linkedSenses.length) result = checkAnswer(answer, task.answer, { ...options, linkedSenses })
     }
-    let feedback = { result: (spoken ? 'ungraded' : result) as PracticeResponse['result'], feedback: spoken ? 'Compare what you said with the example. Choose your own recall rating.' : !answer ? 'Read the answer, connect it to a situation, then try again later.' : result === 'incorrect' ? (choiceKind ? 'Not this one. Read the answer and the contrast below.' : 'Needs checking. Compare your meaning with the example and choose your own rating.') : choiceKind ? 'Correct. You picked it from the options, so this counts as supported practice.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Meaning recalled. Notice the Danish form.', communication: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['communication'], target: (result === 'correct' ? 'yes' : 'uncertain') as PracticeResponse['target'] }
-    if (answer && !spoken && !choiceKind && result === 'incorrect') {
+    const message = spoken ? 'Compare what you said with the example. Choose your own recall rating.'
+      : !answer ? 'Read the answer, connect it to a situation, then try again later.'
+        : baseFormInGap ? `Right word. This sentence needs the form “${task.answer}”.`
+          : result === 'incorrect' ? (choiceKind ? 'Not this one. Read the answer below.' : task.kind === 'cloze' ? 'Not this word. Compare with the missing word below.' : 'Needs checking. Compare your answer with the example and choose your own rating.')
+            : result === 'mostly' ? 'Almost. Check the highlighted letters.'
+              : choiceKind ? 'Correct. You picked it from the options, so this counts as supported practice.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Correct.'
+    let feedback: { result: PracticeResponse['result']; feedback: string; communication: PracticeResponse['communication']; target: PracticeResponse['target']; correction?: string } = { result: spoken ? 'ungraded' : result, feedback: message, communication: result === 'correct' ? 'yes' : 'uncertain', target: result === 'correct' ? 'yes' : 'uncertain' }
+    // A typed gap has one right word, so it is graded here and never sent to the provider.
+    if (answer && !spoken && !choiceKind && result === 'incorrect' && task.kind !== 'cloze') {
       feedback.result = 'ungraded'
       // D5: grading is not coaching. A learner who turned AI feedback off still deserves to have
       // a correct synonym recognised, so the call is permitted either way — the toggle now only
@@ -326,6 +336,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
         const reserved = await commit(supabase, store, { ...store, session: { ...nextSession, aiCalls: session.aiCalls + 1 } })
         const { data: profile } = await supabase.from('profiles').select('default_translation_language').eq('id', userId).single()
         const checked = await gradePractice(task, answer, String(profile?.default_translation_language || 'ru'))
+        // The correction is shown either way: it is the grading result, not coaching prose.
         if (checked) feedback = session.aiEnabled ? checked : { ...checked, feedback: feedback.feedback }
         Object.assign(store, reserved)
         nextSession = { ...reserved.session!, elapsedSeconds }

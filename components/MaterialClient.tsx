@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
-import { Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
+import { BookOpenText, Bot, Check, Loader2, Plus, Search, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import {
   neighboursByEntry,
@@ -11,13 +12,32 @@ import {
   type EntryLinkRow,
   type LinkedEntryLabel,
 } from '@/lib/entry-links'
+import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { parseSenses } from '@/lib/senses'
-import type { EntrySense, ReviewCard, VocabularyEntry } from '@/lib/types'
+import type { EntrySense, LearningStatus, ReviewCard, VocabularyEntry } from '@/lib/types'
 import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
 import { SynonymChips } from './SynonymChips'
-import { VocabularyIcon } from './VocabularyIcon'
+
+export type MaterialKind = 'all' | 'words' | 'phrases' | 'sentences'
+type StatusFilter = 'all' | LearningStatus
+
+const kindFilters: [MaterialKind, string][] = [['all', 'All'], ['words', 'Words'], ['phrases', 'Phrases'], ['sentences', 'Sentences']]
+
+/**
+ * One row of the Material list. An entry is a saved word, phrase or sentence. A derived row is
+ * the example sentence of a word: it has no entry of its own and opens the word that owns it.
+ */
+type MaterialRow =
+  | { type: 'entry'; key: string; entry: VocabularyEntry; kind: 'word' | 'phrase' | 'sentence' }
+  | { type: 'example'; key: string; entry: VocabularyEntry; danish: string; translation: string | null }
+
+/** Words and phrases share `entry_kind = 'word'` in the database; the text tells them apart. */
+function kindOf(entry: VocabularyEntry): 'word' | 'phrase' | 'sentence' {
+  if (entry.entry_kind === 'sentence') return 'sentence'
+  return inferDanishInputKind(entry.danish) === 'word' ? 'word' : 'phrase'
+}
 
 type EnrichField = 'pronunciation' | 'translation' | 'example_sentence' | 'example_translation'
 type PreviewState = {
@@ -37,24 +57,29 @@ const fieldLabels: Record<EnrichField, string> = {
 
 const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example_sentence', 'example_translation']
 
-export function WordsClient({
+export function MaterialClient({
   initialWords,
   initialCards,
   initialLinks = [],
   initialQuery = '',
+  initialKind = 'all',
   translationLanguage = 'ru',
 }: {
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
   initialLinks?: EntryLinkRow[]
   initialQuery?: string
+  initialKind?: MaterialKind
   translationLanguage?: 'ru' | 'en' | 'uk'
-}) {
+}): React.JSX.Element {
+  const router = useRouter()
+  const pathname = usePathname()
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
   const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
-  const [status, setStatus] = useState<'all' | 'new' | 'learning' | 'mastered'>('all')
+  const [kind, setKind] = useState<MaterialKind>(initialKind)
+  const [status, setStatus] = useState<StatusFilter>('all')
   const [bulkOpen, setBulkOpen] = useState(false)
   const [bulkText, setBulkText] = useState('')
   const [bulkLoading, setBulkLoading] = useState(false)
@@ -78,28 +103,47 @@ export function WordsClient({
     setLinks((current) => action === 'dismiss' ? withoutLink(current, link) : withConfirmedLink(current, link))
   }
 
-  const visible = useMemo(() => words.filter((word) => {
-    const matchesQ = !query || word.danish.toLocaleLowerCase('da-DK').includes(query.toLocaleLowerCase('da-DK')) || (word.translation || '').toLocaleLowerCase().includes(query.toLocaleLowerCase())
-    const matchesStatus = status === 'all' || word.learning_status === status
-    return matchesQ && matchesStatus
-  }), [words, query, status])
+  useEffect(() => setWords(initialWords), [initialWords])
+  useEffect(() => setCards(initialCards), [initialCards])
+  useEffect(() => setLinks(initialLinks), [initialLinks])
 
-  useEffect(() => {
-    let cancelled = false
-    const missing = initialWords.filter((word) => word.entry_kind !== 'sentence' && !word.icon_name)
-    if (!missing.length) return
+  function chooseKind(next: MaterialKind): void {
+    setKind(next)
+    // Kept in the URL so Back from an entry returns to the same filter, without a server round-trip.
+    const params = new URLSearchParams(window.location.search)
+    if (next === 'all') params.delete('kind')
+    else params.set('kind', next)
+    const search = params.toString()
+    router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false })
+  }
 
-    void (async () => {
-      for (const word of missing) {
-        if (cancelled) return
-        await resolveIcon(word, (id, iconName) => {
-          if (!cancelled) setWords((current) => current.map((item) => item.id === id ? { ...item, icon_name: iconName } : item))
-        })
-      }
-    })()
+  const counts = useMemo(() => {
+    const result = { all: words.length, words: 0, phrases: 0, sentences: 0 }
+    for (const word of words) {
+      const entryKind = kindOf(word)
+      if (entryKind === 'word') result.words += 1
+      else if (entryKind === 'phrase') result.phrases += 1
+      else result.sentences += 1
+    }
+    return result
+  }, [words])
 
-    return () => { cancelled = true }
-  }, [initialWords])
+  const visible = useMemo<MaterialRow[]>(() => {
+    const q = query.trim()
+    const matches = (...texts: (string | null | undefined)[]): boolean => !q || texts.some((text) => (text || '').toLocaleLowerCase('da-DK').includes(q.toLocaleLowerCase('da-DK')))
+    const entries: MaterialRow[] = words
+      .filter((word) => status === 'all' || word.learning_status === status)
+      .map((word) => ({ type: 'entry' as const, key: word.id, entry: word, kind: kindOf(word) }))
+      .filter((row) => kind === 'all' || `${row.kind}s` === kind)
+      .filter((row) => matches(row.entry.danish, row.entry.translation))
+    if (kind !== 'sentences') return entries
+    // Sentences you added come first; the examples that belong to your words follow them.
+    const examples: MaterialRow[] = status !== 'all' ? [] : words
+      .filter((word) => word.entry_kind !== 'sentence' && word.example_sentence?.trim())
+      .map((word) => ({ type: 'example' as const, key: `example:${word.id}`, entry: word, danish: word.example_sentence!.trim(), translation: word.example_translation?.trim() || null }))
+      .filter((row) => matches(row.danish, row.translation, row.entry.danish))
+    return [...entries, ...examples]
+  }, [words, query, status, kind])
 
   async function bulkImport() {
     const items = bulkText.split(/\n|,/).map((x) => x.trim()).filter(Boolean)
@@ -114,11 +158,6 @@ export function WordsClient({
         setWords((current) => [...data, ...current])
         const { data: newCards } = await supabase.from('review_cards').select('*').in('entry_id', data.map((word) => word.id))
         if (newCards?.length) setCards((current) => [...newCards, ...current])
-        void (async () => {
-          for (const word of data as VocabularyEntry[]) {
-            await resolveIcon(word, (id, iconName) => setWords((current) => current.map((item) => item.id === id ? { ...item, icon_name: iconName } : item)))
-          }
-        })()
       }
     }
     setBulkLoading(false)
@@ -259,7 +298,7 @@ export function WordsClient({
   }
 
   async function removeWord(id: string) {
-    if (!confirm('Delete this word and its review history?')) return
+    if (!confirm('Delete this entry and its review history?')) return
     const { error } = await createClient().from('vocabulary_entries').delete().eq('id', id)
     if (!error) {
       setWords((current) => current.filter((word) => word.id !== id))
@@ -271,7 +310,11 @@ export function WordsClient({
   }
 
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR WORDS</span><h1>Everything you are learning.</h1><p>No folders. No taxonomy. Just your Danish.</p></div><div className="header-actions"><button className="soft-button" disabled={enrichingAll} onClick={enrichMissing}>{enrichingAll ? <Loader2 className="spin" size={15}/> : <Sparkles size={15}/>} Enrich missing</button><button className="soft-button" onClick={() => setBulkOpen(true)}>Bulk add</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
+    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1><p>Words, phrases and sentences in one place. No folders, no taxonomy.</p></div><div className="header-actions"><button className="soft-button" disabled={enrichingAll} onClick={enrichMissing}>{enrichingAll ? <Loader2 className="spin" size={15}/> : <Sparkles size={15}/>} Enrich missing</button><button className="soft-button" onClick={() => setBulkOpen(true)}>Bulk add</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
+
+    <div className="material-kinds segmented" role="tablist" aria-label="Show">
+      {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
+    </div>
 
     <div className="words-toolbar">
       <label className="search-box"><Search size={17}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={`Search Danish or ${translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}…`} /></label>
@@ -280,12 +323,24 @@ export function WordsClient({
 
     <section className="word-table-card">
       <div className="word-table-head"><span>Danish</span><span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}</span><span>Example</span><span>Memory</span><span /></div>
-      {visible.map((word) => {
+      {visible.map((row, index) => {
+        if (row.type === 'example') {
+          const firstExample = index === 0 || visible[index - 1].type !== 'example'
+          return <div className="word-row sentence-row derived-sentence" key={row.key} data-first-example={firstExample || undefined}>
+            <div className="word-main"><span className="word-bubble small">{row.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{row.danish}</strong><small>Example from {row.entry.danish}</small></div></div>
+            <span>{row.translation || <em className="muted">Not added</em>}</span>
+            <span className="sentence-source-cell"><Link className="sentence-source" href={`/words/${row.entry.id}`}><BookOpenText size={13}/> From “{row.entry.danish}”</Link></span>
+            <div className="word-memory-cell"><span className="status-chip sentence-reference-chip">example</span></div>
+            <div className="row-menu"><Link className="icon-button" title="Open source word" href={`/words/${row.entry.id}`}><BookOpenText size={16}/></Link></div>
+            <Link className="word-row-link" href={`/words/${row.entry.id}`} aria-label={`Open ${row.entry.danish}`} />
+          </div>
+        }
+        const word = row.entry
         const card = cardsByEntry.get(word.id)
-        return <div className="word-row" key={word.id}>
-          <div className="word-main"><span className="word-bubble small"><VocabularyIcon name={word.icon_name} fallback={word.danish.slice(0,1).toUpperCase()} size={18} /></span><div><strong>{word.danish}</strong><small>{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={3} onResolved={resolveLink} /></div></div>
+        return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
+          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
-          <span className="example-cell">{word.example_sentence || <em className="muted">No example yet</em>}</span>
+          <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>
           <div className="row-menu"><button className="icon-button" title="Preview AI enrichment" disabled={enriching === word.id} onClick={() => previewEnrichWord(word)}>{enriching === word.id ? <Loader2 className="spin" size={16}/> : <Sparkles size={16}/>}</button><button className="icon-button danger" title="Delete" onClick={() => removeWord(word.id)}><X size={16}/></button></div>
           {/* A real link rather than an onClick, so the row prefetches, middle-clicks, and
@@ -295,7 +350,7 @@ export function WordsClient({
           <Link className="word-row-link" href={`/words/${word.id}`} aria-label={`Open ${word.danish}`} />
         </div>
       })}
-      {!visible.length && <div className="empty-state tall">No words match this view.</div>}
+      {!visible.length && <div className="empty-state tall">Nothing matches this view.</div>}
     </section>
 
     {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>
@@ -333,22 +388,6 @@ export function WordsClient({
 
     {bulkOpen && <div className="modal-backdrop" onMouseDown={() => setBulkOpen(false)}><section className="modal-card" onMouseDown={(e) => e.stopPropagation()}><div className="modal-title"><div><span className="eyebrow"><Plus size={14}/> BULK CAPTURE</span><h2>Paste words. Enrich later.</h2></div><button className="icon-button" onClick={() => setBulkOpen(false)}><X size={18}/></button></div><p>One Danish word or phrase per line. Existing words are skipped.</p><textarea className="bulk-textarea" autoFocus rows={10} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'fortryde\nhyggelig\nat tage sig af'} /><div className="modal-footer"><span><Bot size={15}/> Raw import keeps this instant.</span><button className="primary-button" disabled={bulkLoading} onClick={bulkImport}>{bulkLoading ? <Loader2 className="spin" size={17}/> : <Plus size={17}/>}Import raw</button></div></section></div>}
   </>
-}
-
-async function resolveIcon(word: VocabularyEntry, apply: (id: string, iconName: string) => void) {
-  if (word.entry_kind === 'sentence' || word.icon_name) return
-  try {
-    const response = await fetch('/api/ai/icon', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ entryId: word.id }),
-    })
-    if (!response.ok) return
-    const body = await response.json()
-    if (typeof body.icon_name === 'string' && body.icon_name) apply(word.id, body.icon_name)
-  } catch {
-    // Icon enrichment is intentionally best-effort and must never block vocabulary work.
-  }
 }
 
 function currentFieldValue(word: VocabularyEntry, field: EnrichField) {

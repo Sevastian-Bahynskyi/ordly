@@ -17,7 +17,6 @@ import {
 import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
-import { VocabularyIcon } from '@/components/VocabularyIcon'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -301,7 +300,6 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
           text={prompt}
           cloze={mode === 'cloze' && !!sentence}
         />
-        {revealed && entryKind !== 'sentence' && entry.icon_name && <span style={{ width: 42, height: 42, borderRadius: 14, background: '#f1edff', display: 'grid', placeItems: 'center', margin: '10px auto 0' }}><VocabularyIcon name={entry.icon_name} fallback={entry.danish.slice(0, 1).toUpperCase()} size={25} /></span>}
         {revealed && entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
         {mode === 'cloze' && sentenceTranslation && <small>{sentenceTranslation}</small>}
       </div>
@@ -423,7 +421,6 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
 
       <div className="flash-prompt">
         {mode === 'cloze' && reviewed.sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
-        {entryKind !== 'sentence' && entry.icon_name && <span style={{ width: 42, height: 42, borderRadius: 14, background: '#f1edff', display: 'grid', placeItems: 'center', margin: '10px auto 0' }}><VocabularyIcon name={entry.icon_name} fallback={entry.danish.slice(0, 1).toUpperCase()} size={25} /></span>}
         {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
       </div>
 

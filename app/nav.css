@@ -3,7 +3,7 @@
   isolation: isolate;
   overflow: hidden;
   touch-action: manipulation;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .mobile-nav-indicator {
@@ -11,7 +11,7 @@
   z-index: 0;
   top: 5px;
   left: 7px;
-  width: calc((100% - 14px) / 5);
+  width: calc((100% - 14px) / 4);
   height: 48px;
   border-radius: 12px;
   pointer-events: none;
@@ -63,7 +63,7 @@
 
 @media (max-width: 760px) {
   .mobile-nav {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

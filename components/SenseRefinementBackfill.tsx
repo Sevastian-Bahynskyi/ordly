@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 /**
- * On-demand AI refinement of phase-1 split senses (D11), modelled on `VocabularyIconBackfill`:
+ * On-demand AI refinement of phase-1 split senses (D11), run in the background:
  * the page passes the few entries it is already showing that still need it, they are refined one
  * at a time after render, and the route refreshes once if anything changed. Never blocks the page,
  * and never a mass backfill — an entry is only refined when the learner is looking at it.
