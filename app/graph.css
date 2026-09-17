@@ -180,3 +180,13 @@
   .graph-detail-links li { flex-wrap: wrap; gap: 2px 8px; min-height: 0; padding: 6px 0; }
   .graph-concept-tag { flex-basis: 100%; text-align: left; white-space: normal; }
 }
+
+.graph-discover {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  padding: 0 4px;
+}
+
+.graph-discover small { color: var(--amber); font-size: 12px; }

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { Link2, Maximize2, Minus, Plus, Sparkles, Waypoints, X } from 'lucide-react'
+import { Link2, Loader2, Maximize2, Minus, Plus, Sparkles, Waypoints, X } from 'lucide-react'
 import { buildVocabularyGraph, type GraphEdge, type GraphNode } from '@/lib/graph-layout'
 import { LINK_KIND_LABELS, type EntryLinkRow } from '@/lib/entry-links'
 import type { VocabularyEntry } from '@/lib/types'
@@ -34,9 +34,18 @@ function midpoint(a: GraphNode, b: GraphNode): { x: number; y: number } {
   return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
 }
 
-export function VocabularyGraph({ entries, links }: {
+export interface GraphDiscovery {
+  done: number
+  total: number
+  /** Set when the run ended early, with the reason to show the learner. */
+  stopped?: string
+}
+
+export function VocabularyGraph({ entries, links, discovery = null, onFindLinks }: {
   entries: readonly VocabularyEntry[]
   links: readonly EntryLinkRow[]
+  discovery?: GraphDiscovery | null
+  onFindLinks?: () => void
 }): React.JSX.Element {
   const graph = useMemo(
     () => buildVocabularyGraph(
@@ -167,6 +176,7 @@ export function VocabularyGraph({ entries, links }: {
           meaning, they appear here as a connected island.
           {graph.isolated > 0 && ` All ${graph.isolated} of your entries are still unlinked.`}
         </p>
+        {onFindLinks && <FindLinks discovery={discovery} onFindLinks={onFindLinks} />}
       </div>
     )
   }
@@ -297,6 +307,27 @@ export function VocabularyGraph({ entries, links }: {
           {graph.isolated > 0 && ` ${graph.isolated} unlinked ${graph.isolated === 1 ? 'entry is' : 'entries are'} not shown.`}
         </p>
       )}
+
+      {onFindLinks && !selected && <FindLinks discovery={discovery} onFindLinks={onFindLinks} />}
+    </div>
+  )
+}
+
+/**
+ * Run discovery over the whole vocabulary.
+ *
+ * Discovery normally fires only when an entry is saved, so words added before it existed — or
+ * after the edges were cleared — would otherwise never find each other.
+ */
+function FindLinks({ discovery, onFindLinks }: { discovery: GraphDiscovery | null; onFindLinks: () => void }): React.JSX.Element {
+  const running = Boolean(discovery && !discovery.stopped)
+  return (
+    <div className="graph-discover">
+      <button type="button" className="soft-button" disabled={running} onClick={onFindLinks}>
+        {running ? <Loader2 className="spin" size={15} /> : <Sparkles size={15} />}
+        {running ? `Looking for links… ${discovery?.done} / ${discovery?.total}` : 'Find links'}
+      </button>
+      {discovery?.stopped && <small>{discovery.stopped}</small>}
     </div>
   )
 }

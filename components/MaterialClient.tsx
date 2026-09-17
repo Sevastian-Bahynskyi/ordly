@@ -82,6 +82,7 @@ export function MaterialClient({
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
   const [view, setView] = useState<MaterialView>('list')
+  const [discovery, setDiscovery] = useState<{ done: number; total: number; stopped?: string } | null>(null)
   const [status, setStatus] = useState<StatusFilter>('all')
   const [bulkOpen, setBulkOpen] = useState(false)
   const [bulkText, setBulkText] = useState('')
@@ -300,6 +301,46 @@ export function MaterialClient({
     }
   }
 
+  /**
+   * Re-run synonym discovery across the whole vocabulary.
+   *
+   * Discovery normally fires once, right after an entry is saved, so a vocabulary that predates
+   * it — or one whose edges were cleared — has no links and no way to get them. One call per
+   * word, sequentially: the route is rate limited, and hammering it in parallel is the fastest
+   * way to get every remaining call rejected.
+   */
+  async function findLinks(): Promise<void> {
+    const targets = words.filter((word) => word.entry_kind !== 'sentence')
+    if (!targets.length || discovery) return
+    setDiscovery({ done: 0, total: targets.length })
+
+    for (let index = 0; index < targets.length; index += 1) {
+      let stopped: string | undefined
+      try {
+        const response = await fetch('/api/synonyms/discover', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ entryId: targets[index].id }),
+        })
+        // A rate limit ends the run rather than burning through the rest of the list failing.
+        if (response.status === 429) stopped = 'AI is rate limited. The links found so far are saved — try again later.'
+        else if (response.status === 503) stopped = 'Synonym discovery is unavailable right now.'
+      } catch {
+        stopped = 'Lost connection. The links found so far are saved.'
+      }
+
+      if (stopped) {
+        setDiscovery({ done: index, total: targets.length, stopped })
+        router.refresh()
+        return
+      }
+      setDiscovery({ done: index + 1, total: targets.length })
+    }
+
+    setDiscovery(null)
+    router.refresh()
+  }
+
   async function removeWord(id: string) {
     if (!confirm('Delete this entry and its review history?')) return
     const { error } = await createClient().from('vocabulary_entries').delete().eq('id', id)
@@ -320,7 +361,7 @@ export function MaterialClient({
       <button role="tab" aria-selected={view === 'graph'} className={view === 'graph' ? 'active' : ''} onClick={() => setView('graph')}><Waypoints size={14} /> Graph</button>
     </div>
 
-    {view === 'graph' ? <VocabularyGraph entries={words} links={links} /> : <>
+    {view === 'graph' ? <VocabularyGraph entries={words} links={links} discovery={discovery} onFindLinks={findLinks} /> : <>
 
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
