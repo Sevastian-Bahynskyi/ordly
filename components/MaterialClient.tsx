@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpenText, Bot, Check, Loader2, Plus, Rows3, Search, Sparkles, Waypoints, X } from 'lucide-react'
+import { BookOpenText, Check, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import {
   neighboursByEntry,
@@ -22,7 +22,6 @@ import { SynonymChips } from './SynonymChips'
 import { VocabularyGraph } from './VocabularyGraph'
 
 export type MaterialKind = 'all' | 'words' | 'phrases' | 'sentences'
-type MaterialView = 'list' | 'graph'
 type StatusFilter = 'all' | LearningStatus
 
 const kindFilters: [MaterialKind, string][] = [['all', 'All'], ['words', 'Words'], ['phrases', 'Phrases'], ['sentences', 'Sentences']]
@@ -81,14 +80,10 @@ export function MaterialClient({
   const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
-  const [view, setView] = useState<MaterialView>('list')
+  const [graphOpen, setGraphOpen] = useState(false)
   const [discovery, setDiscovery] = useState<{ done: number; total: number; stopped?: string } | null>(null)
   const [status, setStatus] = useState<StatusFilter>('all')
-  const [bulkOpen, setBulkOpen] = useState(false)
-  const [bulkText, setBulkText] = useState('')
-  const [bulkLoading, setBulkLoading] = useState(false)
   const [enriching, setEnriching] = useState<string | null>(null)
-  const [enrichingAll, setEnrichingAll] = useState(false)
   const [preview, setPreview] = useState<PreviewState | null>(null)
   const [applyingPreview, setApplyingPreview] = useState(false)
 
@@ -149,25 +144,6 @@ export function MaterialClient({
     return [...entries, ...examples]
   }, [words, query, status, kind])
 
-  async function bulkImport() {
-    const items = bulkText.split(/\n|,/).map((x) => x.trim()).filter(Boolean)
-    if (!items.length) return
-    setBulkLoading(true)
-    const supabase = createClient()
-    const existing = new Set(words.map((x) => x.danish.toLocaleLowerCase('da-DK')))
-    const rows = items.filter((x) => !existing.has(x.toLocaleLowerCase('da-DK'))).map((danish) => ({ danish, translation: null, familiarity: 0 }))
-    if (rows.length) {
-      const { data } = await supabase.from('vocabulary_entries').insert(rows).select('*')
-      if (data?.length) {
-        setWords((current) => [...data, ...current])
-        const { data: newCards } = await supabase.from('review_cards').select('*').in('entry_id', data.map((word) => word.id))
-        if (newCards?.length) setCards((current) => [...newCards, ...current])
-      }
-    }
-    setBulkLoading(false)
-    setBulkText('')
-    setBulkOpen(false)
-  }
 
   function enrichFieldsFor(word: VocabularyEntry) {
     const includeExample = word.entry_kind !== 'sentence' || Boolean(word.example_sentence || word.example_translation)
@@ -271,36 +247,6 @@ export function MaterialClient({
     setApplyingPreview(false)
   }
 
-  async function enrichMissing() {
-    const missing = words.filter((word) => {
-      if (!word.pronunciation || !word.translation) return true
-      return word.entry_kind !== 'sentence' && (!word.example_sentence || !word.example_translation)
-    })
-    if (!missing.length) return
-
-    setEnrichingAll(true)
-    try {
-      for (const word of missing) {
-        const fields = enrichFieldsFor(word).filter((field) => !currentFieldValue(word, field))
-        if (!fields.length) continue
-        const body = await requestEnrichment(word, fields)
-        const patch: Record<string, string | boolean | EntrySense[]> = { ai_enriched: true }
-        for (const field of fields) {
-          const value = typeof body[field] === 'string' ? body[field]!.trim() : ''
-          if (value) patch[field] = value
-        }
-        if (fields.includes('translation')) {
-          const merged = mergedSensesFor(word, parseSenses(body.senses))
-          if (merged) patch.senses = merged
-        }
-        const { data } = await createClient().from('vocabulary_entries').update(patch).eq('id', word.id).select('*').single()
-        if (data) setWords((current) => current.map((item) => item.id === data.id ? data : item))
-      }
-    } finally {
-      setEnrichingAll(false)
-    }
-  }
-
   /**
    * Re-run synonym discovery across the whole vocabulary.
    *
@@ -354,14 +300,7 @@ export function MaterialClient({
   }
 
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1><p>Words, phrases and sentences in one place. No folders, no taxonomy.</p></div><div className="header-actions"><button className="soft-button" disabled={enrichingAll} onClick={enrichMissing}>{enrichingAll ? <Loader2 className="spin" size={15}/> : <Sparkles size={15}/>} Enrich missing</button><button className="soft-button" onClick={() => setBulkOpen(true)}>Bulk add</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
-
-    <div className="material-views segmented" role="tablist" aria-label="View">
-      <button role="tab" aria-selected={view === 'list'} className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}><Rows3 size={14} /> List</button>
-      <button role="tab" aria-selected={view === 'graph'} className={view === 'graph' ? 'active' : ''} onClick={() => setView('graph')}><Waypoints size={14} /> Graph</button>
-    </div>
-
-    {view === 'graph' ? <VocabularyGraph entries={words} links={links} discovery={discovery} onFindLinks={findLinks} /> : <>
+    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="soft-button" onClick={() => setGraphOpen(true)}><Waypoints size={15}/> Show graph</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
 
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
@@ -404,7 +343,14 @@ export function MaterialClient({
       {!visible.length && <div className="empty-state tall">Nothing matches this view.</div>}
     </section>
 
-    </>}
+    {/* Near full screen: the graph is the only thing worth looking at while it is open. */}
+    {graphOpen && <div className="graph-overlay" role="dialog" aria-modal="true" aria-label="Meaning graph">
+      <div className="graph-overlay-head">
+        <span className="eyebrow"><Waypoints size={14}/> MEANING GRAPH</span>
+        <button className="icon-button" aria-label="Close the graph" onClick={() => setGraphOpen(false)}><X size={18}/></button>
+      </div>
+      <VocabularyGraph entries={words} links={links} discovery={discovery} onFindLinks={findLinks} />
+    </div>}
 
     {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>
       <section className="modal-card enrich-preview-card" onMouseDown={(event) => event.stopPropagation()}>
@@ -439,7 +385,6 @@ export function MaterialClient({
       </section>
     </div>}
 
-    {bulkOpen && <div className="modal-backdrop" onMouseDown={() => setBulkOpen(false)}><section className="modal-card" onMouseDown={(e) => e.stopPropagation()}><div className="modal-title"><div><span className="eyebrow"><Plus size={14}/> BULK CAPTURE</span><h2>Paste words. Enrich later.</h2></div><button className="icon-button" onClick={() => setBulkOpen(false)}><X size={18}/></button></div><p>One Danish word or phrase per line. Existing words are skipped.</p><textarea className="bulk-textarea" autoFocus rows={10} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'fortryde\nhyggelig\nat tage sig af'} /><div className="modal-footer"><span><Bot size={15}/> Raw import keeps this instant.</span><button className="primary-button" disabled={bulkLoading} onClick={bulkImport}>{bulkLoading ? <Loader2 className="spin" size={17}/> : <Plus size={17}/>}Import raw</button></div></section></div>}
   </>
 }
 

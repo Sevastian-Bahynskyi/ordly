@@ -56,6 +56,12 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
   )
 
   const [camera, setCamera] = useState<Camera>({ x: 0, y: 0, k: 1 })
+  /**
+   * The camera again, readable synchronously. A gesture re-baselines itself whenever a finger
+   * lands or lifts, and it has to read the camera as it is *now*, not as it was when React last
+   * rendered — otherwise the rebase snaps the view back to a stale position.
+   */
+  const cameraRef = useRef(camera)
   /** Never zoom out past the framed-everything view; there is nothing further out to see. */
   const minZoom = useRef(MIN_ZOOM)
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -75,6 +81,38 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
     [selectedEdges],
   )
 
+  function applyCamera(next: Camera): void {
+    cameraRef.current = next
+    setCamera(next)
+  }
+
+  /** Where the fingers are now, and how far apart. */
+  function readPointers(): { x: number; y: number; distance: number } {
+    const points = [...pointers.current.values()]
+    return {
+      x: points.reduce((sum, point) => sum + point.x, 0) / points.length,
+      y: points.reduce((sum, point) => sum + point.y, 0) / points.length,
+      distance: points.length > 1 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0,
+    }
+  }
+
+  /**
+   * Restart the gesture from where the view and the fingers are right now.
+   *
+   * Called whenever the number of fingers changes, which is the whole fix for the view jumping:
+   * lifting one finger after a pinch used to leave the two-finger baseline in place, so the next
+   * move measured a one-finger distance of zero against it, threw the scale away, and teleported
+   * the view back to wherever the pinch began.
+   */
+  function rebase(): void {
+    if (!pointers.current.size) {
+      gesture.current = null
+      return
+    }
+    const { x, y, distance } = readPointers()
+    gesture.current = { camera: cameraRef.current, x, y, distance, moved: gesture.current?.moved ?? 0 }
+  }
+
   /**
    * Frame the whole graph. This is the view the learner asked for, so it is also the view they
    * land on and the one Reset returns to — never an arbitrary 1:1 zoom on whichever island
@@ -85,7 +123,7 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
     if (!box || !graph.width || !graph.height) return
     const k = Math.min(MAX_ZOOM, Math.min(box.width / graph.width, box.height / graph.height) * 0.92)
     minZoom.current = Math.min(MIN_ZOOM, k)
-    setCamera({ k, x: (box.width - graph.width * k) / 2, y: (box.height - graph.height * k) / 2 })
+    applyCamera({ k, x: (box.width - graph.width * k) / 2, y: (box.height - graph.height * k) / 2 })
   }, [graph.width, graph.height])
 
   // Fits once the frame has a size, and again whenever the graph itself changes shape.
@@ -98,30 +136,30 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
   }, [fit])
 
   function zoomBy(factor: number, originX?: number, originY?: number): void {
-    setCamera((current) => {
-      const k = Math.min(MAX_ZOOM, Math.max(minZoom.current, current.k * factor))
-      const box = frame.current?.getBoundingClientRect()
-      const cx = originX ?? (box ? box.width / 2 : 0)
-      const cy = originY ?? (box ? box.height / 2 : 0)
-      const scale = k / current.k
-      // Keep whatever sits under the cursor or the pinch centre pinned in place.
-      return { k, x: cx - (cx - current.x) * scale, y: cy - (cy - current.y) * scale }
-    })
+    const current = cameraRef.current
+    const k = Math.min(MAX_ZOOM, Math.max(minZoom.current, current.k * factor))
+    if (k === current.k) return
+    const box = frame.current?.getBoundingClientRect()
+    const cx = originX ?? (box ? box.width / 2 : 0)
+    const cy = originY ?? (box ? box.height / 2 : 0)
+    const scale = k / current.k
+    // Keep whatever sits under the cursor or the button's centre pinned in place.
+    applyCamera({ k, x: cx - (cx - current.x) * scale, y: cy - (cy - current.y) * scale })
   }
 
   function onPointerDown(event: React.PointerEvent<HTMLDivElement>): void {
     // Captured on the frame, not on whatever node happened to be under the finger, so every
     // later move and release lands here even when the pointer leaves the element it started on.
-    event.currentTarget.setPointerCapture?.(event.pointerId)
-    pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
-    const points = [...pointers.current.values()]
-    gesture.current = {
-      camera,
-      x: points.reduce((sum, point) => sum + point.x, 0) / points.length,
-      y: points.reduce((sum, point) => sum + point.y, 0) / points.length,
-      distance: points.length > 1 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0,
-      moved: 0,
+    // Capture is best-effort: it throws for a pointer the browser has already released, and
+    // losing it only costs a gesture that strays outside the frame — never the gesture itself.
+    try {
+      event.currentTarget.setPointerCapture?.(event.pointerId)
+    } catch {
+      // ignored on purpose
     }
+    if (!pointers.current.size) gesture.current = null
+    pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    rebase()
   }
 
   function onPointerMove(event: React.PointerEvent<HTMLDivElement>): void {
@@ -130,35 +168,37 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
     const start = gesture.current
     if (!start) return
 
-    const points = [...pointers.current.values()]
-    const x = points.reduce((sum, point) => sum + point.x, 0) / points.length
-    const y = points.reduce((sum, point) => sum + point.y, 0) / points.length
-    const distance = points.length > 1 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0
-
+    const { x, y, distance } = readPointers()
     start.moved = Math.max(start.moved, Math.hypot(x - start.x, y - start.y))
+
+    // Only a gesture that began with two fingers and still has two is a pinch.
     const scale = start.distance > 0 && distance > 0 ? distance / start.distance : 1
     const k = Math.min(MAX_ZOOM, Math.max(minZoom.current, start.camera.k * scale))
-    const box = frame.current?.getBoundingClientRect()
-    const localX = start.x - (box?.left ?? 0)
-    const localY = start.y - (box?.top ?? 0)
     const zoom = k / start.camera.k
+    const box = frame.current?.getBoundingClientRect()
+    // Zoom about where the fingers started, then pan by how far they have travelled since.
+    const originX = start.x - (box?.left ?? 0)
+    const originY = start.y - (box?.top ?? 0)
 
-    setCamera({
+    applyCamera({
       k,
-      x: start.camera.x * zoom + (localX - localX * zoom) + (x - start.x),
-      y: start.camera.y * zoom + (localY - localY * zoom) + (y - start.y),
+      x: start.camera.x * zoom + originX * (1 - zoom) + (x - start.x),
+      y: start.camera.y * zoom + originY * (1 - zoom) + (y - start.y),
     })
   }
 
   function onPointerUp(event: React.PointerEvent<HTMLDivElement>): void {
-    pointers.current.delete(event.pointerId)
-    if (pointers.current.size === 0) {
-      // A tap on the background clears the selection; a pan leaves it alone. The target is
-      // whatever the SVG put under the finger, so "background" means "not a node".
-      const onNode = (event.target as Element).closest?.('.graph-node')
-      if (gesture.current && gesture.current.moved < TAP_SLOP && !onNode) setSelectedId(null)
-      gesture.current = null
+    if (!pointers.current.delete(event.pointerId)) return
+    if (pointers.current.size > 0) {
+      // Still touching: carry on from here rather than from a baseline the lifted finger set.
+      rebase()
+      return
     }
+    // A tap on the background clears the selection; a pan leaves it alone. The target is
+    // whatever the SVG put under the finger, so "background" means "not a node".
+    const onNode = (event.target as Element).closest?.('.graph-node')
+    if (gesture.current && gesture.current.moved < TAP_SLOP && !onNode) setSelectedId(null)
+    gesture.current = null
   }
 
   function onNodeActivate(node: GraphNode): void {
@@ -192,7 +232,13 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        onWheel={(event) => { event.preventDefault(); zoomBy(event.deltaY < 0 ? 1.12 : 1 / 1.12, event.nativeEvent.offsetX, event.nativeEvent.offsetY) }}
+        onWheel={(event) => {
+          event.preventDefault()
+          // Measured against the frame, never `offsetX`: that is relative to whichever SVG
+          // element the cursor happens to be over, which anchored the zoom somewhere random.
+          const box = event.currentTarget.getBoundingClientRect()
+          zoomBy(event.deltaY < 0 ? 1.12 : 1 / 1.12, event.clientX - box.left, event.clientY - box.top)
+        }}
       >
         <svg className="graph-svg" role="presentation">
           <g transform={`translate(${camera.x} ${camera.y}) scale(${camera.k})`}>

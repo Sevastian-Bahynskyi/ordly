@@ -190,3 +190,33 @@
 }
 
 .graph-discover small { color: var(--amber); font-size: 12px; }
+
+/* ---- Near-full-screen graph ---- */
+.graph-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  animation: graph-open .2s cubic-bezier(.22, .8, .2, 1) both;
+}
+
+.graph-overlay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
+  flex: 0 0 auto;
+}
+
+/* The frame takes whatever is left, rather than the fixed height it has inline on the page. */
+.graph-overlay .graph-view { flex: 1 1 auto; min-height: 0; }
+.graph-overlay .graph-frame { flex: 1 1 auto; height: auto; min-height: 0; }
+.graph-overlay .graph-detail { max-height: 38vh; overflow-y: auto; flex: 0 0 auto; }
+
+@keyframes graph-open { from { opacity: .001; transform: scale(.985); } }
+@media (prefers-reduced-motion: reduce) { .graph-overlay { animation: none; } }

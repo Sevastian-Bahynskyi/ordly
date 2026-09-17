@@ -259,6 +259,34 @@ export function rankSynonymCandidates(
     .slice(0, Math.max(0, limit))
 }
 
+/* ---- Concept validation ---------------------------------------------------------------- */
+
+const CYRILLIC = /\p{Script=Cyrillic}/u
+const LATIN = /\p{Script=Latin}/u
+
+/**
+ * Reject a concept the model wrote in the wrong script.
+ *
+ * The prompt asks for the shared meaning in the learner's own language, and a model that answers
+ * in English has stopped reasoning in that language — which is exactly how `bare` ("только")
+ * became a synonym of `lige` ("только что") under the concept "just now". English "just" spans
+ * *only* and *just now*; Russian keeps them apart. Once the answer drifts to English the
+ * distinction the learner's language was carrying is already gone, so the edge is not trustworthy
+ * whatever its confidence.
+ *
+ * Script, not language: telling Russian from Ukrainian needs real detection and buys nothing
+ * here, because both keep the distinction English loses. Cyrillic senses with a purely Latin
+ * concept is the whole failure mode.
+ */
+export function conceptMatchesSenseScript(concept: string, senseTexts: readonly string[]): boolean {
+  const text = (concept || '').trim()
+  if (!text) return false
+  const senses = senseTexts.filter(Boolean).join(' ')
+  // Nothing to compare against, or the learner's own language is Latin-scripted: allow it.
+  if (!CYRILLIC.test(senses)) return true
+  return CYRILLIC.test(text) || !LATIN.test(text)
+}
+
 /**
  * Canonical (a_id, b_id) for a symmetric edge, matching the `a_id < b_id` check in
  * `entry_links`. Postgres compares uuids byte-wise, which for the canonical lowercase text form

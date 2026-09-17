@@ -8,6 +8,7 @@ import {
 } from '@/lib/openrouter'
 import {
   canonicalLinkPair,
+  conceptMatchesSenseScript,
   discoverySenses,
   rankSynonymCandidates,
   SYNONYM_CANDIDATE_LIMIT,
@@ -17,7 +18,7 @@ import {
   type SynonymCandidate,
   type SynonymEntry,
 } from '@/lib/synonyms'
-import type { EntryLinkKind, EntryLinkSource } from '@/lib/types'
+import type { EntryLinkKind, EntryLinkSource, TranslationLanguage } from '@/lib/types'
 import { isUuid } from '@/lib/uuid'
 
 /**
@@ -41,6 +42,17 @@ const SUGGEST_CONFIDENCE = 0.5
 const CONCEPT_MAX = 48
 
 const ENTRY_COLUMNS = 'id, danish, translation, senses, entry_kind'
+
+/**
+ * The learner's meanings are written in one of these, and so must the model's answer be. Naming
+ * the language in the prompt is load-bearing: left to itself the model answers in English, and
+ * English merges meanings that the learner's language keeps apart.
+ */
+const LANGUAGE_NAMES: Record<TranslationLanguage, string> = {
+  ru: 'Russian',
+  en: 'English',
+  uk: 'Ukrainian',
+}
 
 const scoreSchema = {
   type: 'object',
@@ -121,7 +133,10 @@ export async function POST(request: Request): Promise<NextResponse> {
   const terms = synonymSearchTerms(source)
   if (!terms.length) return empty(entryId, 'no_evidence')
 
-  const [{ data: existingLinks }, { data: pool, error: poolError }] = await Promise.all([
+  const [{ data: profile }, { data: existingLinks }, { data: pool, error: poolError }] = await Promise.all([
+    // Read here rather than trusted from the client: the answer's language decides whether the
+    // edge is trustworthy, so it is not the caller's to choose.
+    supabase.from('profiles').select('default_translation_language').single(),
     supabase
       .from('entry_links')
       .select('a_id, b_id, kind, source, confirmed')
@@ -150,6 +165,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     settled.add(String(link.a_id) === entryId ? String(link.b_id) : String(link.a_id))
   }
 
+  const language: TranslationLanguage = profile?.default_translation_language || 'ru'
+  const languageName = LANGUAGE_NAMES[language] || LANGUAGE_NAMES.ru
+
   const candidates = rankSynonymCandidates(source, (pool || []) as SynonymEntry[], {
     excludeIds: [...settled],
     limit: SYNONYM_CANDIDATE_LIMIT,
@@ -170,14 +188,18 @@ export async function POST(request: Request): Promise<NextResponse> {
       messages: [
         {
           role: 'system',
-          content: `You decide whether two Danish words are synonyms in one specific meaning.
+          content: `You decide whether two Danish words are synonyms in one specific meaning. The learner's meanings are written in ${languageName}.
 
-Each candidate is a pair of meanings: one meaning of the target word, and one meaning of the candidate word. Judge that pair alone. The words often have other meanings; those are irrelevant and must not make the pair a synonym.
+Each candidate is a pair of meanings: one meaning of the target word and one meaning of the candidate word, both in ${languageName}. Judge that pair alone. The words usually have other meanings; those are irrelevant and must never make the pair a synonym.
+
+Work entirely in ${languageName}. Compare the two ${languageName} meanings exactly as they are written. Do not translate them into English or any other language in order to compare them, and do not think about what the Danish words translate to elsewhere. A translation can merge two meanings that ${languageName} keeps apart, and a pair that looks alike only after translating is not a synonym.
 
 Two words are synonyms in a meaning when they can replace each other in normal Danish without changing what the sentence means. Near-synonyms with a clear register or intensity difference still count, but only if a learner could safely use either.
-Treat as NOT synonyms: words that are merely related or share a topic, antonyms, inflections of the same word, a broader or narrower term, and meanings that only look alike because one phrase contains the other. "only" and "just now" are different meanings, as are "in front of" and "before".
+Reject the pair when the two meanings differ at all in what they say — including when one ${languageName} phrase merely contains the other, or adds a word that changes it. Also reject words that are merely related or share a topic, antonyms, inflections of the same word, and a broader or narrower term.
 
-For each pair you accept, return its 1-based index, a confidence between 0 and 1, and \`concept\`: the shared meaning itself, written as the learner's translation language phrase both words express, at most three words. Use a confidence above 0.85 only when you are certain. Omit every pair that is not a synonym; an empty list is the correct answer when none of them are.`,
+For each pair you accept, return its 1-based index, a confidence between 0 and 1, and \`concept\`. \`concept\` is the shared meaning written in ${languageName}: copy one of the two meanings you were given, exactly as it appears, choosing the one both words genuinely express. Never write \`concept\` in English${language === 'en' ? '' : ' — an English concept means you stopped reasoning in ' + languageName + ' and the answer will be discarded'}.
+
+Use a confidence above 0.85 only when you are certain. Omit every pair that is not a synonym; an empty list is the correct answer when none of them are.`
         },
         {
           role: 'user',
@@ -208,6 +230,9 @@ For each pair you accept, return its 1-based index, a confidence between 0 and 1
     // shared meaning has not made a claim worth storing.
     const concept = typeof record.concept === 'string' ? record.concept.trim().slice(0, CONCEPT_MAX) : ''
     if (!concept) continue
+    // An answer in the wrong script means the model reasoned in English, where the distinction
+    // the learner's language was carrying no longer exists. The confidence is meaningless then.
+    if (!conceptMatchesSenseScript(concept, [candidate.sourceSense, candidate.candidateSense])) continue
     const clamped = Math.min(1, Math.max(0, confidence))
     accepted.set(candidate.id, {
       entry_id: candidate.id,
