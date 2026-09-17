@@ -21,8 +21,9 @@ self.addEventListener('push', (event) => {
   const title = payload.title || 'Ordly'
   const options = {
     body: payload.body || 'Your Danish review is ready.',
-    icon: '/api/pwa-icon?size=192&v=6',
-    badge: '/api/pwa-icon?size=192&v=6',
+    // Keep in step with APP_ICON_VERSION in lib/app-icon.ts.
+    icon: '/icon-192.png?v=9',
+    badge: '/icon-192.png?v=9',
     tag: payload.tag || 'ordly-review',
     renotify: Boolean(payload.urgent),
     requireInteraction: Boolean(payload.urgent),
