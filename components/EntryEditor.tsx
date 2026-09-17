@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Bot, Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { SenseRow } from '@/components/SenseRow'
 import { errorMessage, readJsonRecord, requestEnrichment, stringField } from '@/lib/ai-responses'
 import { diffAnswer } from '@/lib/answer-diff'
@@ -1020,7 +1021,16 @@ export function EntryEditor({
             <AiMini loading={aiLoading === 'translation'} onClick={() => enrich(['translation'])} />
           </span>
 
-          <div className="sense-list">
+          {/* A sentence has exactly one meaning (plan §3.2): a plain field, no meaning card. */}
+          {entryKind === 'sentence' && draft.senses[0] ? (
+            <AutoGrowTextarea
+              className="sentence-translation"
+              value={draft.senses[0].text}
+              onChange={(e) => updateSense(draft.senses[0].id, { text: e.target.value })}
+              placeholder={translationPlaceholder}
+              aria-label={translationLabel}
+            />
+          ) : <div className="sense-list">
             {draft.senses.map((sense, index) => (
               <SenseRow
                 key={sense.id}
@@ -1054,7 +1064,7 @@ export function EntryEditor({
                 onRemove={() => removeSense(sense.id)}
               />
             ))}
-          </div>
+          </div>}
 
           {entryKind !== 'sentence' && (
             <button type="button" className="sense-add" onClick={addSense}>
@@ -1135,7 +1145,7 @@ export function EntryEditor({
                 </label>
                 <label className="field field-wide">
                   <span>Sentence translation</span>
-                  <input value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
+                  <AutoGrowTextarea value={draft.example_translation} onChange={(e) => patch('example_translation', e.target.value)} placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'} />
                 </label>
               </>
             )}

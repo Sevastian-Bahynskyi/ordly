@@ -162,8 +162,8 @@
   font-size: 12px;
 }
 
-.sense-row .sense-example-translation {
-  height: 36px;
+.sense-row textarea.sense-example-translation {
+  min-height: 36px;
   font-size: 12px;
 }
 
@@ -172,8 +172,8 @@
     min-height: 58px;
   }
 
-  .sense-row .sense-example-translation {
-    height: 40px;
+  .sense-row textarea.sense-example-translation {
+    min-height: 40px;
   }
 }
 

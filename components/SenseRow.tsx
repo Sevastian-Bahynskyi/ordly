@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowDown, ArrowUp, Loader2, RotateCcw, Sparkles, Trash2 } from 'lucide-react'
+import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
 import type { EntrySense, NounGender, PartOfSpeech, TranslationLanguage } from '@/lib/types'
 
@@ -47,7 +48,7 @@ export function SenseRow({
   return (
     <div className={`sense-row${isPrimary ? ' primary' : ''}`}>
       <div className="sense-row-main">
-        <input
+        <AutoGrowTextarea
           className="sense-text"
           value={sense.text}
           onChange={(e) => onText(e.target.value)}
@@ -74,18 +75,6 @@ export function SenseRow({
             {PARTS_OF_SPEECH.map((pos) => <option key={pos} value={pos}>{PART_OF_SPEECH_LABELS[pos]}</option>)}
           </select>
 
-          {grammarState && (
-            <button
-              type="button"
-              className="ai-mini sense-grammar-ai"
-              disabled={grammarState.disabled}
-              onClick={grammarState.onClassify}
-              aria-label={`Detect the part of speech for meaning ${index + 1} with AI`}
-            >
-              {grammarState.loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} Grammar
-            </button>
-          )}
-
           {sense.pos === 'noun' && (
             <span className="gender-chip-group" role="group" aria-label={`Gender for meaning ${index + 1}`}>
               {(['en', 'et'] as const).map((gender) => (
@@ -99,6 +88,18 @@ export function SenseRow({
                 </button>
               ))}
             </span>
+          )}
+
+          {grammarState && (
+            <button
+              type="button"
+              className="ai-mini sense-grammar-ai"
+              disabled={grammarState.disabled}
+              onClick={grammarState.onClassify}
+              aria-label={`Detect the part of speech for meaning ${index + 1} with AI`}
+            >
+              {grammarState.loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} Grammar
+            </button>
           )}
         </div>
       )}
@@ -161,7 +162,7 @@ function SenseExample({ sense, index, translationLanguage, state }: {
         aria-label={`Example sentence for meaning ${index + 1}`}
         placeholder="Jeg synes, det er godt."
       />
-      <input
+      <AutoGrowTextarea
         className="sense-example-translation"
         value={sense.example_translation || ''}
         onChange={(e) => state.onChange({ example_translation: e.target.value })}

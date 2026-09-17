@@ -160,3 +160,29 @@
     height: 30px;
   }
 }
+
+/* Translations always show in full: the fields grow instead of clipping (AutoGrowTextarea). */
+.field textarea.auto-grow {
+  min-height: 42px;
+  padding: 10px 12px;
+  line-height: 1.4;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Bottom row of a meaning: Primary, part of speech, gender, then Grammar on the right. */
+.sense-row-grammar .pos-chip {
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.sense-row-grammar .sense-grammar-ai {
+  margin-left: auto;
+}
+
+@media (max-width: 760px) {
+  .field textarea.auto-grow {
+    min-height: 44px;
+  }
+}

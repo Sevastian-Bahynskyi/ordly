@@ -88,13 +88,16 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
           translationLanguage={profile?.default_translation_language || 'ru'}
         />
 
-        <SynonymGraph
-          entryId={typedEntry.id}
-          entryDanish={typedEntry.danish}
-          entryKind={typedEntry.entry_kind || 'word'}
-          initialLinks={linkRows}
-          neighbourEntries={(neighbours || []) as LinkedEntryLabel[]}
-        />
+        {/* Sentences are learned whole and never get synonym links, so the graph would always be empty. */}
+        {typedEntry.entry_kind !== 'sentence' && (
+          <SynonymGraph
+            entryId={typedEntry.id}
+            entryDanish={typedEntry.danish}
+            entryKind={typedEntry.entry_kind || 'word'}
+            initialLinks={linkRows}
+            neighbourEntries={(neighbours || []) as LinkedEntryLabel[]}
+          />
+        )}
       </div>
     </AppShell>
   )
