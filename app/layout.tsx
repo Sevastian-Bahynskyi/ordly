@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   title: 'Ordly · Learn Danish',
   description: 'Fast Danish vocabulary and sentence capture with spaced repetition.',
   applicationName: 'Ordly',
-  manifest: '/manifest.webmanifest',
   icons: {
     icon: [
       { url: appIconUrl(192), type: 'image/png', sizes: '192x192' },
@@ -53,9 +52,16 @@ export const viewport: Viewport = {
   themeColor: '#7557db',
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>): React.JSX.Element {
   return (
     <html lang="en">
+      <head>
+        {/* Written by hand instead of `metadata.manifest`, for `crossOrigin`. Browsers fetch a manifest
+            without cookies by default, and the production host sits behind Vercel Deployment
+            Protection, so a cookie-less fetch is redirected to Vercel's login and install/update
+            never sees the real manifest or its icons — the installed app kept its old icon. */}
+        <link rel="manifest" href="/manifest.webmanifest" crossOrigin="use-credentials" />
+      </head>
       <body>{children}<ComposerKeyboardNavigation /><PwaRegistration /></body>
     </html>
   )

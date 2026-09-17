@@ -376,6 +376,7 @@ The installed app icon is intentionally separate from the in-app logo.
 - Single source: `branding/ordly-icon.svg`. `node scripts/render-icons.mjs` renders every PNG in `public/` (180, 192, 512, 1024) at 4× and downsamples, so edges are anti-aliased. Never hand-export or aliased-rasterize an icon again. That is what made the Home Screen icon look pixelated.
 - URLs come from `lib/app-icon.ts`. After re-rendering, bump `APP_ICON_VERSION` there and the matching `?v=` in `public/sw.js`.
 - `/api/pwa-icon` only 308-redirects old installs to the static PNGs.
+- The manifest is `app/manifest.webmanifest/route.ts`, linked by hand in `app/layout.tsx` with `crossOrigin="use-credentials"`. Production is behind Vercel Deployment Protection, and a manifest fetched without cookies is redirected to Vercel's login, which silently freezes installed-app icons and names. Do not switch back to `app/manifest.ts` or `metadata.manifest`: both emit a link without credentials.
 
 On iOS, Home Screen icons are aggressively cached. To verify icon changes, deleting Ordly from Home Screen and re-adding it may be required.
 
