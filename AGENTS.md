@@ -597,6 +597,52 @@ model as evidence. `findMisspellings` returns `null`, not `[]`, when the diction
 built — an empty list means "every word is spelled correctly", and no caller may claim that on
 behalf of a check that never ran.
 
+## 23. The word catalog (issue #6)
+
+The plan is issue #6; the runbook is `docs/catalog-build.md`. Read one of them before touching
+anything here. The shape:
+
+- **Three layers, and only the middle one is a model.** Layer 1 looks facts up (frequency rank
+  from the DSL lemma list, part of speech/gender/inflections from COR, IPA from the kaikki.org
+  Wiktionary extract). Layer 2 writes what no source can answer: Russian meanings, examples, and
+  the Cyrillic reading **of the supplied IPA**. Layer 3 rejects, deterministically, anything that
+  contradicts layer 1. The generator is therefore swappable — Claude, ChatGPT, a cheap API model —
+  and the quality does not depend on who wrote a row.
+- **A field a source cannot settle stays null, and null travels.** `ved` reaches the generator
+  with no part of speech because the register reads it two ways. A lemma with no IPA must be
+  generated with a null pronunciation; `word_catalog_pronunciation_needs_ipa` enforces it in the
+  table. This is §22's "silence beats a guess", applied to ten thousand rows at once.
+- **IPA does not come from DDO.** §8 describes a DDO/Wiktionary lookup that the code has never
+  had: `resolvePronunciation` asks a model directly and stores `ipa: ''`. Ten thousand DDO fetches
+  would be thirty thousand requests against a dictionary with no API, so the catalog uses the
+  kaikki.org extract — the same Wiktionary phonetics as one file, joined offline, part-of-speech
+  tagged. DDO stays the **audio** source, through `download_ddo_audio.py` in the repo root.
+- **Phrases are silent, by design.** DDO attaches audio to headwords only; `godt lide` lives there
+  as a fixed expression under `lide`, with no recording. Stitching word recordings is banned: the
+  citation forms are wrong (`tage`, not `tager`) and Danish reshapes phrase boundaries, so the
+  result teaches a wrong pronunciation — §8's ban in audio form. A missing recording never blocks
+  a row; the word is simply silent and the button does not render.
+- **`word_catalog` / `word_catalog_sense` are reference data**, like `cor_form`: no `user_id`,
+  read-only to the app, and **loaded by a script, never by a migration**. An environment with no
+  catalog misses every lookup and falls through to the live AI path, which is the designed
+  behaviour for the 15–25% of words the catalog will never hold.
+- **Unlocking copies; it never references.** The catalog's `sense_id` is carried into the entry
+  verbatim, because practice objectives are keyed `entry:<id>:sense:<sid>` and a fresh id strands
+  FSRS state (§20). `vocabulary_entries.catalog_lemma` is provenance only — nothing reads the
+  catalog to render or grade an entry.
+- **A tap fills the composer; it does not save.** §7's preview-before-apply rule still holds, and
+  every field stays editable.
+- **`locked` senses.** A word arrives with every meaning it has and teaches only the one the
+  learner met. `activeSenses` filters locked meanings in TypeScript and
+  `private.translation_from_senses` filters them in SQL, so one cannot leak into grading from
+  either side. A sense with no `locked` key is not locked, so every pre-catalog row is unaffected.
+- **The live AI path is not removed.** It is the miss path, and the rules in §7, §8 and §22 still
+  bind it. A miss is told to the learner rather than hidden, and a phrase miss says something
+  different from a rare-word miss.
+- **The audio button is a narrow reversal of §19.** What stays removed is the three-button
+  Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
+  is not that.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
