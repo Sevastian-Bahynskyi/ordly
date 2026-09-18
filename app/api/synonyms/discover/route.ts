@@ -9,6 +9,7 @@ import {
 import {
   canonicalLinkPair,
   conceptMatchesSenseScript,
+  conceptSharedBySenses,
   discoverySenses,
   rankSynonymCandidates,
   SYNONYM_CANDIDATE_LIMIT,
@@ -197,6 +198,8 @@ Work entirely in ${languageName}. Compare the two ${languageName} meanings exact
 Two words are synonyms in a meaning when they can replace each other in normal Danish without changing what the sentence means. Near-synonyms with a clear register or intensity difference still count, but only if a learner could safely use either.
 Reject the pair when the two meanings differ at all in what they say — including when one ${languageName} phrase merely contains the other, or adds a word that changes it. Also reject words that are merely related or share a topic, antonyms, inflections of the same word, and a broader or narrower term.
 
+The shared meaning must be one BOTH words carry. If one word's meaning adds a qualifier the other lacks — "only" against "just now", "still" against "yet" — that is a narrower meaning, not a shared one, and the pair is not a synonym.
+
 For each pair you accept, return its 1-based index, a confidence between 0 and 1, and \`concept\`. \`concept\` is the shared meaning written in ${languageName}: copy one of the two meanings you were given, exactly as it appears, choosing the one both words genuinely express. Never write \`concept\` in English${language === 'en' ? '' : ' — an English concept means you stopped reasoning in ' + languageName + ' and the answer will be discarded'}.
 
 Use a confidence above 0.85 only when you are certain. Omit every pair that is not a synonym; an empty list is the correct answer when none of them are.`
@@ -233,6 +236,12 @@ Use a confidence above 0.85 only when you are certain. Omit every pair that is n
     // An answer in the wrong script means the model reasoned in English, where the distinction
     // the learner's language was carrying no longer exists. The confidence is meaningless then.
     if (!conceptMatchesSenseScript(concept, [candidate.sourceSense, candidate.candidateSense])) continue
+
+    // The named meaning has to be one BOTH words carry. Told only to pick from the pair, the
+    // model picks whichever sense reads best — it answered "только что" for a word that only
+    // ever means "только".
+    if (!conceptSharedBySenses(concept, discoverySenses(source).map((sense) => sense.text))) continue
+    if (!conceptSharedBySenses(concept, [candidate.candidateSense])) continue
     const clamped = Math.min(1, Math.max(0, confidence))
     accepted.set(candidate.id, {
       entry_id: candidate.id,

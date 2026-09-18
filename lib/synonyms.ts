@@ -130,12 +130,73 @@ function compareTokens(text: string): Set<string> {
   return new Set(normalized.split(' ').filter(Boolean))
 }
 
+/**
+ * The separate wordings inside one sense.
+ *
+ * A sense may be written as a list — "трудно, тяжело" is two wordings of one meaning, not a
+ * two-word phrase. `normalizeSenseText` strips the comma, which makes that list indistinguishable
+ * from a phrase like "только что", so the split has to happen before normalizing.
+ */
+function senseAlternatives(text: string): string[] {
+  return (text || '').split(/[,;/]/).map((part) => part.trim()).filter(Boolean)
+}
+
+/**
+ * True when one meaning is the other plus extra words.
+ *
+ * "только" and "только что" are not two wordings of one meaning: the extra word is the whole
+ * difference between *only* and *just now*. The same shape produced every bad edge the graph has
+ * had — `bare`/`lige` on "только что", `stadig`/`endnu` on "всё ещё". A pair like this is dropped
+ * before the model is asked, which also means it is never paid for.
+ *
+ * Two genuinely synonymous words have translations that are either the same or independently
+ * worded. One nested inside the other is a narrowing, and a narrowing is a different meaning.
+ */
+function isNarrowedMeaning(left: Set<string>, right: Set<string>): boolean {
+  if (left.size === right.size || !left.size || !right.size) return false
+  const [smaller, larger] = left.size < right.size ? [left, right] : [right, left]
+  for (const token of smaller) if (!larger.has(token)) return false
+  return true
+}
+
+/**
+ * True when `concept` is a meaning this side actually carries.
+ *
+ * The model has to name the meaning the two words share, and "shared" has to hold on both sides.
+ * Left to only one, it picks whichever sense reads best — it answered "только что" for a pair
+ * whose other word only ever means "только".
+ */
+export function conceptSharedBySenses(concept: string, senseTexts: readonly string[]): boolean {
+  const wanted = compareTokens(concept)
+  if (!wanted.size) return false
+  return senseTexts.some((text) => senseAlternatives(text).some((alternative) => {
+    const tokens = compareTokens(alternative)
+    if (!tokens.size) return false
+    for (const token of wanted) if (!tokens.has(token)) return false
+    return true
+  }))
+}
+
+/**
+ * The shortest token that can carry a meaning on its own.
+ *
+ * Two meanings overlapping only on a preposition share nothing: "получать в качестве" and
+ * "иметь в виду" have "в" in common and are unrelated. A match has to rest on at least one
+ * substantive word.
+ */
+const MIN_MEANINGFUL_TOKEN = 3
+
 /** Sørensen-Dice over token sets: symmetric, and forgiving of one side being wordier. */
 function dice(left: Set<string>, right: Set<string>): number {
   if (!left.size || !right.size) return 0
   let shared = 0
-  for (const token of left) if (right.has(token)) shared += 1
-  if (!shared) return 0
+  let substantive = false
+  for (const token of left) {
+    if (!right.has(token)) continue
+    shared += 1
+    if (token.length >= MIN_MEANINGFUL_TOKEN) substantive = true
+  }
+  if (!shared || !substantive) return 0
   return (2 * shared) / (left.size + right.size)
 }
 
@@ -229,9 +290,17 @@ export function rankSynonymCandidates(
     let candidateSense = ''
     for (const left of sourceSenses) {
       for (const right of entrySensesForEntry) {
-        const similarity = senseSimilarity(left.text, right.text)
-        if (similarity > best) {
-          best = similarity
+        // Wording against wording, so a listed alternative is matched on its own merits and a
+        // narrowing ("только" against "только что") is skipped rather than scored.
+        let pairBest = 0
+        for (const leftText of senseAlternatives(left.text)) {
+          for (const rightText of senseAlternatives(right.text)) {
+            if (isNarrowedMeaning(compareTokens(leftText), compareTokens(rightText))) continue
+            pairBest = Math.max(pairBest, senseSimilarity(leftText, rightText))
+          }
+        }
+        if (pairBest > best) {
+          best = pairBest
           sourceSense = left.text.trim()
           candidateSense = right.text.trim()
         }
