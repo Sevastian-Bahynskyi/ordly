@@ -11,6 +11,13 @@ from reading its documentation. Where a claim could not be verified, it says so.
 
 Researched 2026-09-18. No AI provider was called during this research.
 
+**What was actually scoped for building** is issue #5, which is narrower than this document:
+automatic noun gender from COR, validation of AI output on write, and optionally a spelling
+pre-filter. The eSpeak pronunciation replacement was researched and then dropped — it does not
+reduce AI usage, because pronunciation is filled inside the same `/api/ai/enrich` call as
+meanings and the example sentence. The research below is kept in full so the decision can be
+revisited with the evidence rather than re-run.
+
 ## Summary
 
 | Job | Today | Verdict |
