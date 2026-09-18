@@ -229,6 +229,7 @@ Implementation: `components/MaterialClient.tsx` + `app/words/page.tsx`.
 
 Features:
 
+- the page header carries one action, **Show graph**. Adding words happens on Home; `Enrich missing` and `Bulk add` were removed as clutter.
 - one-tap kind filter: All / Words / Phrases / Sentences (`?kind=`). Phrases are `entry_kind = 'word'` rows whose text `inferDanishInputKind` calls a phrase. The Sentences view lists sentences you added first, then example sentences from words.
 - search Danish + translation
 - filters: All / New / Learning / Mastered
@@ -241,7 +242,7 @@ Bulk raw/untranslated entries are excluded from review until sufficiently enrich
 
 Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
 
-A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared.
+A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
 
 ## 10. FSRS / memory rings
 

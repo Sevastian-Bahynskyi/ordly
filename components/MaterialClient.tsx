@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { BookOpenText, Check, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
@@ -12,11 +12,11 @@ import {
   type EntryLinkRow,
   type LinkedEntryLabel,
 } from '@/lib/entry-links'
+import { canStartDiscovery, discoveryStartIndex, type DiscoveryRun } from '@/lib/discovery-run'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { parseSenses } from '@/lib/senses'
 import type { EntrySense, LearningStatus, ReviewCard, VocabularyEntry } from '@/lib/types'
-import { AddWordComposer } from './AddWordComposer'
 import { MemoryRing } from './MemoryRing'
 import { SynonymChips } from './SynonymChips'
 import { VocabularyGraph } from './VocabularyGraph'
@@ -81,7 +81,9 @@ export function MaterialClient({
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
   const [graphOpen, setGraphOpen] = useState(false)
-  const [discovery, setDiscovery] = useState<{ done: number; total: number; stopped?: string } | null>(null)
+  const [discovery, setDiscovery] = useState<DiscoveryRun | null>(null)
+  /** How far the last discovery run got, so resuming does not re-run the entries it finished. */
+  const discoveryCursor = useRef(0)
   const [status, setStatus] = useState<StatusFilter>('all')
   const [enriching, setEnriching] = useState<string | null>(null)
   const [preview, setPreview] = useState<PreviewState | null>(null)
@@ -257,22 +259,34 @@ export function MaterialClient({
    */
   async function findLinks(): Promise<void> {
     const targets = words.filter((word) => word.entry_kind !== 'sentence')
-    if (!targets.length || discovery) return
-    setDiscovery({ done: 0, total: targets.length })
+    // A stopped run is resumable — only a live one should swallow a second tap. Blocking on
+    // `discovery` alone left the button permanently dead after the first interruption.
+    if (!canStartDiscovery(discovery, targets.length)) return
 
-    for (let index = 0; index < targets.length; index += 1) {
+    // Carry on where the last run stopped rather than paying for the same entries twice.
+    const startAt = discoveryStartIndex(discovery, discoveryCursor.current, targets.length)
+    setDiscovery({ done: startAt, total: targets.length })
+
+    for (let index = startAt; index < targets.length; index += 1) {
+      discoveryCursor.current = index
       let stopped: string | undefined
-      try {
-        const response = await fetch('/api/synonyms/discover', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ entryId: targets[index].id }),
-        })
-        // A rate limit ends the run rather than burning through the rest of the list failing.
-        if (response.status === 429) stopped = 'AI is rate limited. The links found so far are saved — try again later.'
-        else if (response.status === 503) stopped = 'Synonym discovery is unavailable right now.'
-      } catch {
-        stopped = 'Lost connection. The links found so far are saved.'
+
+      // iOS suspends the page as soon as Ordly leaves the screen, so every request from here
+      // would fail one after another. Stop on purpose and keep the place.
+      if (typeof document !== 'undefined' && document.hidden) {
+        stopped = 'Paused while Ordly was in the background.'
+      } else {
+        try {
+          const response = await fetch('/api/synonyms/discover', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ entryId: targets[index].id }),
+          })
+          if (response.status === 429) stopped = 'AI is rate limited. Try again in a minute.'
+          else if (response.status === 503) stopped = 'Synonym discovery is unavailable right now.'
+        } catch {
+          stopped = 'Lost connection.'
+        }
       }
 
       if (stopped) {
@@ -283,6 +297,7 @@ export function MaterialClient({
       setDiscovery({ done: index + 1, total: targets.length })
     }
 
+    discoveryCursor.current = 0
     setDiscovery(null)
     router.refresh()
   }
@@ -300,7 +315,7 @@ export function MaterialClient({
   }
 
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="soft-button" onClick={() => setGraphOpen(true)}><Waypoints size={15}/> Show graph</button><AddWordComposer compact translationLanguage={translationLanguage} /></div></header>
+    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="graph-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show graph</button></div></header>
 
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}

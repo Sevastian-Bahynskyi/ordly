@@ -181,15 +181,58 @@
   .graph-concept-tag { flex-basis: 100%; text-align: left; white-space: normal; }
 }
 
-.graph-discover {
+/* ---- Footer: what the picture is, and the one action it offers ---- */
+.graph-footer {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 8px 10px;
+  gap: 12px;
+  flex: 0 0 auto;
   padding: 0 4px;
 }
 
-.graph-discover small { color: var(--amber); font-size: 12px; }
+.graph-footer .graph-hint { flex: 1 1 auto; padding: 0; }
+
+.graph-discover {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+/* Quiet, the way the composer's AI button is quiet: this is an offer, not the point of
+   the screen. Same height, radius and tint as `.capture-ai-button`. */
+.graph-find {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--purple-soft);
+  color: #684dc7;
+  font-size: 15px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.graph-find:hover:not(:disabled) { background: #e7defe; }
+.graph-find:disabled { opacity: .7; cursor: default; }
+.graph-discover small { color: var(--amber); font-size: 11.5px; text-align: right; }
+
+/* On the empty state it is the only thing to do, so it gets the full width. */
+.graph-empty .graph-discover { align-items: stretch; width: min(100%, 320px); margin-top: 10px; }
+.graph-empty .graph-discover small { text-align: center; }
+
+@media (max-width: 760px) {
+  .graph-footer { flex-direction: column; align-items: stretch; gap: 8px; }
+  .graph-discover { align-items: stretch; }
+  .graph-discover small { text-align: left; }
+  .graph-footer .graph-hint { order: 2; }
+}
 
 /* ---- Near-full-screen graph ---- */
 .graph-overlay {
@@ -220,3 +263,26 @@
 
 @keyframes graph-open { from { opacity: .001; transform: scale(.985); } }
 @media (prefers-reduced-motion: reduce) { .graph-overlay { animation: none; } }
+
+/* The Material page's one header action. */
+.graph-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--purple-soft);
+  color: #684dc7;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.graph-open-button:hover { background: #e7defe; }
+
+@media (max-width: 760px) {
+  .graph-open-button { width: 100%; }
+}

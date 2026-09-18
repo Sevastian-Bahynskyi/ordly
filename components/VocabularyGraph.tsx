@@ -347,14 +347,16 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
           </ul>
         </div>
       ) : (
+        <div className="graph-footer">
         <p className="graph-hint">
           {graph.nodes.length} linked {graph.nodes.length === 1 ? 'word' : 'words'} in {graph.clusters}{' '}
           {graph.clusters === 1 ? 'island' : 'islands'}. Tap one to see what it connects to and why.
           {graph.isolated > 0 && ` ${graph.isolated} unlinked ${graph.isolated === 1 ? 'entry is' : 'entries are'} not shown.`}
         </p>
+        {onFindLinks && <FindLinks discovery={discovery} onFindLinks={onFindLinks} />}
+        </div>
       )}
 
-      {onFindLinks && !selected && <FindLinks discovery={discovery} onFindLinks={onFindLinks} />}
     </div>
   )
 }
@@ -367,13 +369,19 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
  */
 function FindLinks({ discovery, onFindLinks }: { discovery: GraphDiscovery | null; onFindLinks: () => void }): React.JSX.Element {
   const running = Boolean(discovery && !discovery.stopped)
+  const paused = Boolean(discovery?.stopped)
   return (
     <div className="graph-discover">
-      <button type="button" className="soft-button" disabled={running} onClick={onFindLinks}>
-        {running ? <Loader2 className="spin" size={15} /> : <Sparkles size={15} />}
-        {running ? `Looking for links… ${discovery?.done} / ${discovery?.total}` : 'Find links'}
+      <button type="button" className="graph-find" disabled={running} onClick={onFindLinks}>
+        {running ? <Loader2 className="spin" size={16} /> : <Sparkles size={16} />}
+        {running
+          ? `Looking… ${discovery?.done} / ${discovery?.total}`
+          : paused
+            ? `Carry on · ${discovery?.done} / ${discovery?.total}`
+            : 'Find links'}
       </button>
-      {discovery?.stopped && <small>{discovery.stopped}</small>}
+      {/* Why it stopped, and that nothing found so far was lost. */}
+      {paused && <small>{discovery?.stopped} Nothing found so far is lost.</small>}
     </div>
   )
 }
