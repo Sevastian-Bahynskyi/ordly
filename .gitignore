@@ -10,3 +10,13 @@ supabase/.temp/
 .envrc
 .mcp.json
 tsconfig.tsbuildinfo
+
+# Catalog build (issue #6): derived data and audio, never the licence-gated sources
+/catalog/facts.jsonl
+/catalog/out/
+/catalog/needs_review.jsonl
+/catalog/manifest.json
+/catalog/audio/
+/catalog/audio-manifest.json
+/words.txt
+/kaikki.org-dictionary-Danish.jsonl
