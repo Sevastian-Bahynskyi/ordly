@@ -91,13 +91,17 @@ async function loadSources(path: string): Promise<CatalogValidationSources> {
 async function readExisting(path: string): Promise<ReviewLine[]> {
   try {
     const text: string = await readFile(path, 'utf8')
-    return text.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean).flatMap((line) => {
+    return text.split(/\\r?\\n/u).map((line) => line.trim()).filter(Boolean).map((line, index) => {
+      let parsed: unknown
       try {
-        const parsed: unknown = JSON.parse(line)
-        return parsed && typeof parsed === 'object' ? [parsed as ReviewLine] : []
+        parsed = JSON.parse(line)
       } catch {
-        return []
+        throw new Error(`Existing needs-review file has invalid JSON on line ${index + 1}.`)
       }
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        throw new Error(`Existing needs-review file has an invalid record on line ${index + 1}.`)
+      }
+      return parsed as ReviewLine
     })
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []

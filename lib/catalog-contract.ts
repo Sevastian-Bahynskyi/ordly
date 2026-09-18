@@ -138,8 +138,8 @@ Rules:
 4. Every sense text is a concise Russian meaning written in Cyrillic. Do not mix Latin homoglyphs into Cyrillic text.
 5. Give exactly one natural, simple, everyday Danish example per sense, roughly CEFR A2, and a natural Russian translation. The example must demonstrate that one sense. The deterministic gate must be able to locate the lemma: for a phrase, include the exact phrase contiguously; for a word, use the exact lemma or a transparent inflected form. For an irregular or very short word, prefer a sentence where the exact lemma itself appears.
 6. Return 1 to ${CATALOG_MAX_SENSES} genuinely distinct senses, ordered most common first. Ordinals must be contiguous: 1, 2, 3. Do not pad with rare or near-duplicate meanings.
-7. Do not fill facts that the input left null. Do not fetch, invent, or repair source facts.
-8. Return only the JSON array. It must have exactly ${facts.length} objects in exactly the input order.
+7. Never invent missing source facts such as gender, inflection forms, IPA, or frequency. The only allowed judgement for a null source field is the part-of-speech choice required by rule 3.
+8. Return only the JSON array. It must have exactly ${facts.length} ${facts.length === 1 ? 'object' : 'objects'} in exactly the input order.
 
 Input facts:
 ${JSON.stringify(facts)}`
