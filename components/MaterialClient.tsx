@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { BookOpenText, Check, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
 import {
   neighboursByEntry,
   withConfirmedLink,
@@ -40,7 +41,6 @@ function kindOf(entry: VocabularyEntry): 'word' | 'phrase' | 'sentence' {
   return inferDanishInputKind(entry.danish) === 'word' ? 'word' : 'phrase'
 }
 
-type EnrichField = 'pronunciation' | 'translation' | 'example_sentence' | 'example_translation'
 type PreviewState = {
   word: VocabularyEntry
   proposal: Partial<Record<EnrichField, string>>
@@ -86,6 +86,8 @@ export function MaterialClient({
   const discoveryCursor = useRef(0)
   const [status, setStatus] = useState<StatusFilter>('all')
   const [enriching, setEnriching] = useState<string | null>(null)
+  /** Entries the word register refused to enrich; a second press on the row goes ahead anyway. */
+  const enrichAnyway = useRef<Set<string>>(new Set())
   const [preview, setPreview] = useState<PreviewState | null>(null)
   const [applyingPreview, setApplyingPreview] = useState(false)
 
@@ -152,12 +154,10 @@ export function MaterialClient({
     return includeExample ? allEnrichFields : allEnrichFields.slice(0, 2)
   }
 
-  async function requestEnrichment(word: VocabularyEntry, fields: EnrichField[]) {
-    const includeExample = fields.includes('example_sentence') || fields.includes('example_translation')
-    const res = await fetch('/api/ai/enrich', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+  /** The composer's enrich call, for a row of this list. Same route, same reader, same errors. */
+  async function enrichWord(word: VocabularyEntry, fields: EnrichField[]) {
+    try {
+      return await requestEnrichment({
         draft: {
           danish: word.danish,
           pronunciation: word.pronunciation || '',
@@ -166,13 +166,17 @@ export function MaterialClient({
           example_translation: word.example_translation || '',
         },
         fields,
-        entryKind: word.entry_kind || 'word',
-        includeExample,
-      }),
-    })
-    const body = await res.json().catch(() => ({}))
-    if (!res.ok) throw new Error(body.error || 'AI enrichment failed')
-    return body as Partial<Record<EnrichField, string>> & { senses?: unknown }
+        entryKind: word.entry_kind === 'sentence' ? 'sentence' : 'word',
+        includeExample: fields.includes('example_sentence') || fields.includes('example_translation'),
+        regenerate: false,
+        allowUnknownDanish: enrichAnyway.current.has(word.id),
+      })
+    } catch (error) {
+      // The word register does not know this Danish form. Pressing enrich again goes ahead
+      // anyway, because the register really is missing a few real words (issue #5 §2).
+      if (error instanceof UnknownDanishError) enrichAnyway.current.add(word.id)
+      throw error
+    }
   }
 
   /**
@@ -189,7 +193,7 @@ export function MaterialClient({
     setEnriching(word.id)
     try {
       const fields = enrichFieldsFor(word)
-      const body = await requestEnrichment(word, fields)
+      const body = await enrichWord(word, fields)
       const proposal: Partial<Record<EnrichField, string>> = {}
       const selected: Record<EnrichField, boolean> = {
         pronunciation: false,
@@ -199,14 +203,14 @@ export function MaterialClient({
       }
 
       for (const field of fields) {
-        const value = typeof body[field] === 'string' ? body[field]!.trim() : ''
+        const value = (body[field] || '').trim()
         if (!value) continue
         proposal[field] = value
         selected[field] = value !== currentFieldValue(word, field)
       }
 
       if (!Object.keys(proposal).length) throw new Error('AI returned no enrichment suggestions.')
-      setPreview({ word, proposal, selected, senses: parseSenses(body.senses) })
+      setPreview({ word, proposal, selected, senses: body.senses || [] })
     } catch (error) {
       window.alert(error instanceof Error ? error.message : 'AI enrichment failed')
     } finally {

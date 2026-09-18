@@ -32,7 +32,12 @@ export interface EntrySense {
   /** null on the primary sense: it reads example_sentence / example_translation instead. */
   example: string | null
   example_translation: string | null
-  source: 'split' | 'ai' | 'user'
+  /**
+   * Who classified this meaning. `'split'` is phase 1's comma split, still unrefined; `'cor'`
+   * is the word register, which is a recorded fact rather than an opinion; `'user'` is the
+   * learner's own wording, which discovery and practice text deliberately ignore.
+   */
+  source: 'split' | 'ai' | 'cor' | 'user'
   coverage: SenseCoverage
   created_at: string
   removed_at: string | null

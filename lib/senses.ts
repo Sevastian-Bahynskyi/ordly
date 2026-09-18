@@ -117,7 +117,7 @@ export function parseSenses(value: unknown): EntrySense[] {
       note: nullableText(record.note),
       example: nullableText(record.example),
       example_translation: nullableText(record.example_translation),
-      source: record.source === 'split' || record.source === 'ai' || record.source === 'user' ? record.source : 'ai',
+      source: record.source === 'split' || record.source === 'ai' || record.source === 'cor' || record.source === 'user' ? record.source : 'ai',
       coverage: coverageFrom(record.coverage),
       created_at: typeof record.created_at === 'string' ? record.created_at : new Date().toISOString(),
       removed_at: typeof record.removed_at === 'string' ? record.removed_at : null,

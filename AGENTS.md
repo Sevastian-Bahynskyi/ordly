@@ -46,6 +46,7 @@ Current package baseline:
 - `@supabase/ssr` `0.12.5`
 - `ts-fsrs` `5.4.2`
 - lucide-react `1.39.0`
+- `nspell` `2.1.5` + `dictionary-da` `6.0.0` (Danish spelling, §22)
 - pnpm `10.15.0`
 - Node `>=20`
 
@@ -75,6 +76,7 @@ Important tables/functions currently include:
 - `notification_deliveries`
 - `practice_state`, `practice_attempts`, `practice_packs` (guided practice)
 - `entry_links` (synonym graph, see §20)
+- `cor_form` (Det Centrale Ordregister, reference data, see §22)
 - private first-account claim / review-card creation / timestamp helpers
 - `private.sync_entry_senses` trigger and `public.record_sense_coverage` RPC (senses, see §20)
 
@@ -89,6 +91,10 @@ Repo migrations currently start at:
 - notification migration added after those (check `supabase/migrations/` before modifying schema)
 
 Keep repo migrations synchronized with production. The meaning-model migrations (`20260916094500_entry_senses.sql`, `20260916143000_entry_links.sql`, `20260916190000_sense_coverage_and_dismissals.sql`) must be applied in order before that code deploys. Verify against production rather than assuming.
+
+`20260918091609_cor_forms.sql` creates the word register's table; the data itself is loaded by
+`scripts/import-cor.ts` and is **not** in any migration (317,102 rows). A fresh environment needs
+the script run once, or noun gender and the "is this even Danish" check simply stay quiet (§22).
 
 SQL tests live in `supabase/tests/`. `meaning_model.sql` covers the senses trigger, coverage writes and link tombstones. Run it against a disposable `ghcr.io/supabase/postgres` container with every migration applied, never against production.
 
@@ -463,6 +469,8 @@ At the start of the next session, do this before assuming anything:
 - Do not let phrase normalization collapse expressions to one word.
 - Do not base-form complete sentences.
 - Do not use spelling-based Danish→Cyrillic transliteration as pronunciation.
+- Do not write or serve a pronunciation that mixes Latin letters into Cyrillic (§22).
+- Do not ask a model for a noun's gender before asking COR (§22).
 - Do not make `Again` require leaving/re-entering Review.
 - Do not make Review and Material use the same nav icon.
 - Do not bring back per-word icons, practice audio (Listen / Slower / Say it aloud), or a timed practice autosave (it disabled the answer field mid-typing).
@@ -488,7 +496,7 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
   - an overlap resting only on tokens shorter than `MIN_MEANINGFUL_TOKEN` is noise (`получать в качестве` vs `иметь в виду` share only `в`).
 - The concept the model names must be a meaning **both** entries carry (`conceptSharedBySenses`). Requiring it to come from the pair was not enough: the model picked whichever side read better and answered `только что` for a word that only means `только`.
 - An edge is about **one meaning**, and `entry_links.concept` names it. Discovery ranks sense *pairs* and asks the model to rule on the single pair that matched, not on two entries' full meaning lists; an edge whose concept the model will not name is dropped. Keep both halves — judging entries as bags of meanings made `kun` ("только") a synonym of `lige`, whose third sense is "только что". `STOP_WORDS` in `lib/synonyms.ts` is a search-selectivity tool only: stripping it when *comparing* meanings is what made those two identical, so comparison keeps every word.
-- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string.
+- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string. The word register answers before the model does, and a sense it classified is `source: 'cor'` (§22).
 
 ## 21. Local practice engine
 
@@ -499,6 +507,68 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - The canned coffee/dialogue frames were removed. `teach`, `build`, `listen`, `dialogue` remain valid only so older saved sessions load.
 - `checkAnswer` accepts Danish typos by edit distance (≤4 chars: none, ≤8: 1, longer: 2; sentences very few) as `mostly`. A typed cloze is never sent to the provider.
 - Wrong typed answers show a word-then-letter diff (`lib/answer-diff.ts`): red in the learner's answer, green in the correction. The semantic check returns `corrected` (the learner's own answer minimally fixed), stored as `PracticeResponse.correction`, so valid alternative replies are not painted red against the model answer.
+
+## 22. Free data instead of a model (COR, spelling, write-time checks)
+
+Issue #5. The research, with every measurement and its source, is `docs/free-data-sources.md`.
+Read it before "optimising" anything here — several obvious-looking ideas were measured and
+rejected, and the reasons are in the doc.
+
+**The point is correctness, not savings.** One or two calls out of three or four per new word go
+away; the big one (`/api/ai/enrich`, which fills meanings and the example) is untouched and must
+stay. What changes is that gender stops being a guess and bad data stops entering the database.
+
+### COR — `public.cor_form`, read only through `lib/cor.ts`
+
+Det Centrale Ordregister v1.5.1.0, CC0-1.0, normering `N` only: 317,102 rows over 247,527
+inflected forms, so `gulvet` resolves to `gulv` and `dovne` to `doven` without lemmatising
+anything. Loaded by `scripts/import-cor.ts`, never bundled — 19 MB parsed per cold start is
+exactly the critical-path cost §16 warns about.
+
+The load-bearing rules:
+
+- **Filter candidates by the sense's part of speech before reading a gender.** A bare form lookup
+  silently writes wrong data: 35% of forms are ambiguous, `ved` ("knows", "near") is also the noun
+  *wood*, `tage` ("take") is also *roofs*. Only 12 of the vocabulary's 32 nouns are safe without
+  the filter; with it, 30 are, and a spot-check was 14/14 correct.
+- **Silence beats a guess.** No part of speech to filter with, or filtered candidates that
+  disagree (`plan`, `alt` are genuinely both genders), means no gender is written at all.
+- `lib/cor.ts` is the only module that knows COR's tag format. Nothing else may parse a tag.
+
+Where it is used:
+
+- `/api/ai/refine-senses` reads COR first. One unambiguous reading settles the entry and **no
+  model is called** (63% of the real vocabulary). Otherwise the model rules on the part of speech
+  only, and COR still decides the gender of whatever it called a noun. A COR-classified sense is
+  stored with `source: 'cor'`.
+- The composer fills a missing noun gender on save, so `Grammar` is not something the learner has
+  to press for a fact. That is also the only thing that revisits an **already classified** sense:
+  the refinement queue is `'split'`-only, so a noun sense left with a null gender by an earlier
+  model pass is filled the next time the entry is saved, not by a page view. Nothing is in that
+  state today — all 23 noun senses carry a gender, and all 22 COR can rule on agree with it.
+- `/api/ai/enrich` refuses to enrich a single word COR does not know — that is how `tinker`, which
+  is not Danish, acquired a confident invented Russian translation. Multi-word input is never
+  judged this way (COR holds none), and the learner overrides it by running the action again,
+  because the `N` filter really is missing a few forms (`yndlings` is one).
+
+### Write-time checks
+
+- A pronunciation that mixes Latin letters into Cyrillic is rejected on write and treated as a
+  miss on read (`isReadableCyrillic`). 13% of cached values carried an invisible homoglyph;
+  `20260918092106_repair_mixed_script_pronunciations.sql` cleaned up what was already stored.
+
+### Spelling — `lib/spelling.ts`
+
+`nspell` over `dictionary-da` (used under its **MPL-1.1** arm), built lazily once per server
+instance because construction costs ~571 ms and ~126 MB. The dictionary's Hunspell morphological
+fields are stripped first — without that it flags 12.2% of the real vocabulary, `blive` and
+`hvem` included. `dictionary-da` stays in `serverExternalPackages`, or it cannot find its own data
+files. It is a **fast path and never a gate**: it catches orthography, while the wrong form of a
+real word and correct-but-unnatural Danish stay with the model. The composer calls
+`/api/danish/spell` while the learner types; `/api/ai/check-example` passes its findings to the
+model as evidence. `findMisspellings` returns `null`, not `[]`, when the dictionary could not be
+built — an empty list means "every word is spelled correctly", and no caller may claim that on
+behalf of a check that never ran.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
