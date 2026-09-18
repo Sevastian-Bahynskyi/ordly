@@ -81,7 +81,34 @@ could not be built, and no caller may read "the check did not run" as "every wor
 
 ## Step 5 — audit
 
-Read ~200 random accepted rows. This is the step that is not automatable and not skippable.
+```
+pnpm exec tsx scripts/audit-catalog.ts --facts catalog/facts.jsonl --out catalog/out
+# read catalog/audit-sample.md, fill in `failures` in catalog/audit-verdicts.json, then:
+pnpm exec tsx scripts/audit-catalog.ts --tally catalog/audit-verdicts.json
+```
+
+The gate has already rejected everything mechanically checkable, so the audit exists for the
+residue: rows that are **well-formed and wrong**. `bare` glossed as "только что" instead of
+"только" is Cyrillic, non-empty and in the right script — it passes every validator, and it is the
+exact mistake that once linked `bare` to `lige` in the synonym graph (AGENTS.md §20). The six
+classes worth recording are listed in the report itself.
+
+**The sample is stratified, not uniform**, and the strata are the point. A uniform draw over ten
+thousand rows is mostly a draw from the comfortable middle: it returns a reassuring number while
+under-sampling the shapes that fail — the tail of the ranking, the words COR could not classify
+(so the generator chose), the rows with no IPA (where the pronunciation must be null), the
+three-sense rows, the phrases. Every batch is represented, so a batch that drifted late shows up.
+
+`--seed` is recorded in the report, so a sample can be redrawn exactly or handed to a second
+reader. The tally reports **rates per class with a margin**, never a per-row certificate: 200 rows
+measure a rate to within about ±7 points at worst, and say nothing about whether row 7,431 in
+particular is right. Below 95% clean it exits non-zero.
+
+**Pronunciation is the one class to be sceptical of when a model audits a model** — it is the same
+class of system that wrote the row, with the same blind spot. Once step 6 has run you have an
+independent signal for free: the DDO recording of the word. Checking the Cyrillic against a human
+actually saying it is a stronger test than any amount of re-reading the IPA, and it is worth doing
+as its own pass over the sample.
 
 ## Step 6 — audio
 

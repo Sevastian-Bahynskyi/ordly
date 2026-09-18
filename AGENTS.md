@@ -639,6 +639,11 @@ anything here. The shape:
 - **The live AI path is not removed.** It is the miss path, and the rules in §7, §8 and §22 still
   bind it. A miss is told to the learner rather than hidden, and a phrase miss says something
   different from a rare-word miss.
+- **The audit samples by stratum, not uniformly** (`scripts/audit-catalog.ts`). It exists for the
+  residue the gate cannot see — a translation that is plausible and wrong passes every validator.
+  It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
+  so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
+  model; the downloaded DDO recording is the independent check.
 - **The audio button is a narrow reversal of §19.** What stays removed is the three-button
   Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
   is not that.
