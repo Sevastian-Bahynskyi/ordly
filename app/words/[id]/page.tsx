@@ -6,6 +6,7 @@ import { DefiniteNoun } from '@/components/DefiniteNoun'
 import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
 import { SynonymGraph } from '@/components/SynonymGraph'
+import { WordAudio } from '@/components/WordAudio'
 import { requireUser } from '@/lib/auth'
 import { definiteFormKey, fetchCorDefiniteForms } from '@/lib/cor'
 import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
@@ -49,11 +50,17 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
 
   // Second and last round-trip. The neighbour labels ride along with the review card rather
   // than after it, so the graph costs the page no extra depth (AGENTS.md §16).
-  const [{ data: card }, { data: neighbours }] = await Promise.all([
+  // The recording belongs to the catalog row, not to the entry: the entry is a copy, and audio is
+  // reference data every account shares (issue #6 §5). One primary-key read, and null is ordinary.
+  const [{ data: card }, { data: neighbours }, { data: catalog }] = await Promise.all([
     supabase.from('review_cards').select('*').eq('entry_id', typedEntry.id).maybeSingle(),
     neighbourIds.length
       ? supabase.from('vocabulary_entries').select('id, danish, translation').in('id', neighbourIds)
       : Promise.resolve({ data: [] as LinkedEntryLabel[] }),
+    typedEntry.catalog_lemma
+      ? supabase.from('word_catalog').select('audio_path').eq('lemma', typedEntry.catalog_lemma)
+        .eq('kind', typedEntry.entry_kind === 'sentence' ? 'phrase' : 'word').maybeSingle()
+      : Promise.resolve({ data: null }),
   ])
 
   const senses = activeSenses(parseSenses(typedEntry.senses))
@@ -76,6 +83,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
                 </span>
               )}
               {typedEntry.danish}
+              <WordAudio audioPath={(catalog as { audio_path: string | null } | null)?.audio_path ?? null} label={typedEntry.danish} />
             </h1>
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}

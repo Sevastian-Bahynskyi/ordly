@@ -293,3 +293,27 @@
   font-size: 12.5px;
   font-weight: 600;
 }
+
+/* ---- Tap to hear (issue #6 §7) ---- */
+/* One button beside the word, not the old Listen / Slower / Say-it-aloud practice mode that
+   AGENTS.md §19 removed. A word with no recording renders nothing at all. */
+.word-audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 8px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--purple);
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.word-audio:hover:not(:disabled) { border-color: var(--purple-2); background: var(--purple-soft); }
+.word-audio:active:not(:disabled) { transform: translateY(1px); }
+.word-audio:disabled { color: var(--muted-2); cursor: default; }
