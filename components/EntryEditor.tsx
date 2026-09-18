@@ -9,7 +9,7 @@ import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
 import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
 import { diffAnswer } from '@/lib/answer-diff'
-import { fetchCorForms, fillCorGender } from '@/lib/cor'
+import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, type CorForm } from '@/lib/cor'
 import { replaceWordInText, type Misspelling } from '@/lib/danish-text'
 import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
@@ -179,6 +179,12 @@ export function EntryEditor({
    * typing something else arms the check again.
    */
   const enrichAnyway = useRef('')
+  /**
+   * The Danish text the register refused, held so the learner's second press saves it anyway.
+   * Every word is checked against COR before it can be saved, but the register is missing a few
+   * real forms and knows no proper nouns, so the check warns and proposes — it never traps.
+   */
+  const saveAnyway = useRef('')
 
   function notify(text: string, tone: ToastTone = 'info'): void {
     setNotice({ text, tone })
@@ -889,6 +895,63 @@ export function EntryEditor({
   }
 
   /**
+   * Check a single word against the word register before it is allowed to be saved.
+   *
+   * Two things are refused, both with a proposal the learner can take or leave: a word COR does
+   * not know at all (the local dictionary suggests the nearest real words), and a word that is
+   * not its dictionary form (`gulvet` -> `gulv`). The proposal lands in the Danish field's own
+   * correction box, where it stays until it is acted on; the toast only says why the save
+   * stopped. Pressing Save again keeps the text exactly as typed.
+   *
+   * Phrases and sentences are not judged here — COR holds no multi-word expressions, and
+   * `Verify phrase` / `Verify sentence` is what checks those.
+   */
+  async function verifyDanishBeforeSave(rows: CorForm[], danish: string, senses: EntrySense[]): Promise<boolean> {
+    if (inferDanishInputKind(danish) !== 'word' || saveAnyway.current === danish) return true
+    // Editing an entry whose Danish has not changed: this word was already ruled on when it was
+    // saved, and re-refusing it would make every later edit to the meanings cost two presses.
+    if (editing && entry?.danish.trim() === danish) return true
+
+    if (!isKnownDanishForm(rows)) {
+      const suggestion = await firstSpellingSuggestion(danish)
+      if (suggestion) {
+        recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion })
+        notify(`“${danish}” is not a Danish word. Did you mean “${suggestion}”?`, 'warning')
+      } else {
+        notify(`“${danish}” is not in the Danish word register. Save again to keep it.`, 'warning')
+      }
+      saveAnyway.current = danish
+      return false
+    }
+
+    const base = corBaseForm(rows, corLookupForm(danish), [...new Set(senses.map((sense) => sense.pos).filter((pos) => pos !== null))])
+    if (!base) return true
+
+    recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion: base })
+    notify(`“${danish}” is not the base form — the correction is under the Danish field.`, 'warning')
+    saveAnyway.current = danish
+    return false
+  }
+
+  /** The local dictionary's best correction for a word it does not know, if it offers one. */
+  async function firstSpellingSuggestion(danish: string): Promise<string | null> {
+    try {
+      const response = await fetch('/api/danish/spell', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: danish }),
+        // A suggestion is a nicety on the save path; the save must never wait on it.
+        signal: AbortSignal.timeout(2500),
+      })
+      if (!response.ok) return null
+      const [found] = readMisspellings(await readJsonRecord(response))
+      return found?.suggestions[0] || null
+    } catch {
+      return null
+    }
+  }
+
+  /**
    * Look for synonyms of the entry that was just written (D16, step 4).
    *
    * Deliberately not awaited, and deliberately after the write: the row is already committed
@@ -916,6 +979,20 @@ export function EntryEditor({
     setSaving(true)
     const supabase = createClient()
 
+    // One read of the word register, used twice: to refuse a word that is misspelled or not in
+    // its dictionary form, and to fill in a noun's gender, which is a recorded fact rather than
+    // something to press Grammar for (issue #5 §1). COR stays silent unless its candidates for
+    // this form agree, so nothing here can write a wrong `en`/`et`.
+    //
+    // It runs before the duplicate lookup on purpose: the corrected word is the one worth asking
+    // about, and a learner who typed `gulvet` should not be told twice, once per check.
+    const corForms = await fetchCorForms(supabase, current.danish.trim())
+    if (!await verifyDanishBeforeSave(corForms, current.danish.trim(), senses)) {
+      setSaving(false)
+      return
+    }
+    const graded = fillCorGender(senses, corForms)
+
     if (!allowDuplicate && !editing) {
       const { data } = await supabase
         .from('vocabulary_entries')
@@ -929,13 +1006,6 @@ export function EntryEditor({
         return
       }
     }
-
-    // Noun gender is a recorded fact, not something to press Grammar for (issue #5 §1). The
-    // lookup only happens when a meaning actually lacks one, and COR stays silent unless its
-    // candidates for this form agree, so nothing here can write a wrong `en`/`et`.
-    const graded = senses.some((sense) => sense.pos === 'noun' && !sense.gender)
-      ? fillCorGender(senses, await fetchCorForms(supabase, current.danish.trim()))
-      : senses
 
     const storeExample = entryKind !== 'sentence' && includeExample
     const primaryId = graded[0]?.id
@@ -977,6 +1047,7 @@ export function EntryEditor({
       latestExampleSentence.current = saved.example_sentence || ''
       resetExampleCheck()
       savedSenseIds.current = new Set(parseSenses(saved.senses).map((sense) => sense.id))
+      saveAnyway.current = ''
       resetDraft(draftFromEntry(saved), archivedFromEntry(saved))
       setUndoSnapshot(null)
       setUsedAI(false)
@@ -1003,6 +1074,7 @@ export function EntryEditor({
 
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''
+    saveAnyway.current = ''
     resetExampleCheck()
     resetDraft(blankDraft(), [])
     setEntryKind('word')

@@ -155,3 +155,81 @@
     flex: 1;
   }
 }
+
+/* A noun shown in its definite singular, with the article that carries the gender tinted:
+   `gulv` reads as `gulvet`. The tint is the same blue the noun pill uses, so "blue" means
+   "noun" everywhere in the app. */
+.definite-noun {
+  margin-right: 7px;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.definite-noun b {
+  color: var(--article);
+  font-weight: 750;
+}
+
+/* Part of speech, offered only while the list is showing words. */
+.pos-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 2px 0;
+}
+
+.pos-filter button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* The ink is 36px so eight chips stay a quiet row; the target is the 44px the identity asks for. */
+.pos-filter button::after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pos-filter button { transition: none; }
+}
+
+.pos-filter button:hover { background: var(--surface-2); }
+
+/* Each class carries its own colour as a dot, the way the identity asks a group of quiet
+   controls to: `--pos-fg` comes from the `.pos-*` classes the meaning pills already define, so
+   blue means noun here and on the pill. Only the selected chip is tinted. */
+.pos-filter button[class*="pos-"]::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pos-fg, var(--muted-2));
+}
+
+.pos-filter button.active {
+  border-color: var(--purple-soft);
+  background: var(--purple-soft);
+  color: var(--purple);
+}
+
+.pos-filter .material-count {
+  color: var(--muted-2);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.pos-filter button.active .material-count { color: var(--purple-2); }

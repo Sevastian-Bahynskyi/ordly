@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { BookOpenText, Check, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
+import { definiteFormKey } from '@/lib/cor'
 import {
   neighboursByEntry,
   withConfirmedLink,
@@ -16,8 +17,9 @@ import {
 import { canStartDiscovery, discoveryStartIndex, type DiscoveryRun } from '@/lib/discovery-run'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
-import { parseSenses } from '@/lib/senses'
-import type { EntrySense, LearningStatus, ReviewCard, VocabularyEntry } from '@/lib/types'
+import { activeSenses, nounGenderOf, parseSenses, PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
+import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
+import { DefiniteNoun } from './DefiniteNoun'
 import { MemoryRing } from './MemoryRing'
 import { SynonymChips } from './SynonymChips'
 import { VocabularyGraph } from './VocabularyGraph'
@@ -64,14 +66,19 @@ export function MaterialClient({
   initialLinks = [],
   initialQuery = '',
   initialKind = 'all',
+  initialPos = 'all',
   translationLanguage = 'ru',
+  definiteForms = {},
 }: {
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
   initialLinks?: EntryLinkRow[]
   initialQuery?: string
   initialKind?: MaterialKind
+  initialPos?: PartOfSpeech | 'all'
   translationLanguage?: 'ru' | 'en' | 'uk'
+  /** `definiteFormKey(lemma, gender)` -> the definite singular, from COR. */
+  definiteForms?: Record<string, string>
 }): React.JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
@@ -85,6 +92,8 @@ export function MaterialClient({
   /** How far the last discovery run got, so resuming does not re-run the entries it finished. */
   const discoveryCursor = useRef(0)
   const [status, setStatus] = useState<StatusFilter>('all')
+  /** Part of speech, offered only while the list is showing words — a sentence has none. */
+  const [pos, setPos] = useState<PartOfSpeech | 'all'>(initialPos)
   const [enriching, setEnriching] = useState<string | null>(null)
   /** Entries the word register refused to enrich; a second press on the row goes ahead anyway. */
   const enrichAnyway = useRef<Set<string>>(new Set())
@@ -111,11 +120,26 @@ export function MaterialClient({
   useEffect(() => setLinks(initialLinks), [initialLinks])
 
   function chooseKind(next: MaterialKind): void {
+    // The part-of-speech filter is only offered for words, so it must not keep hiding rows
+    // from behind a tab that cannot show it.
+    const nextPos = next === 'words' ? pos : 'all'
     setKind(next)
-    // Kept in the URL so Back from an entry returns to the same filter, without a server round-trip.
+    setPos(nextPos)
+    writeFilters(next, nextPos)
+  }
+
+  function choosePos(next: PartOfSpeech | 'all'): void {
+    setPos(next)
+    writeFilters(kind, next)
+  }
+
+  /** Kept in the URL so Back from an entry returns to the same view, without a server round-trip. */
+  function writeFilters(nextKind: MaterialKind, nextPos: PartOfSpeech | 'all'): void {
     const params = new URLSearchParams(window.location.search)
-    if (next === 'all') params.delete('kind')
-    else params.set('kind', next)
+    if (nextKind === 'all') params.delete('kind')
+    else params.set('kind', nextKind)
+    if (nextPos === 'all') params.delete('pos')
+    else params.set('pos', nextPos)
     const search = params.toString()
     router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false })
   }
@@ -131,6 +155,39 @@ export function MaterialClient({
     return result
   }, [words])
 
+  /**
+   * Every entry's grammar, parsed once per list rather than once per render per row: `senses` is
+   * a jsonb blob, and re-parsing all of them on every search keystroke is exactly the kind of
+   * work AGENTS.md §16 asks to stay off the typing path.
+   */
+  const grammar = useMemo(() => {
+    const byEntry = new Map<string, { parts: PartOfSpeech[]; gender: NounGender | null }>()
+    for (const word of words) {
+      const senses = activeSenses(parseSenses(word.senses))
+      byEntry.set(word.id, {
+        parts: [...new Set(senses.map((sense) => sense.pos).filter((part) => part !== null))],
+        gender: nounGenderOf(senses),
+      })
+    }
+    return byEntry
+  }, [words])
+
+  /** The parts of speech actually present among the words, each with how many carry it. */
+  const posCounts = useMemo(() => {
+    const counts = new Map<PartOfSpeech, number>()
+    for (const word of words) {
+      if (kindOf(word) !== 'word') continue
+      for (const part of grammar.get(word.id)?.parts || []) counts.set(part, (counts.get(part) || 0) + 1)
+    }
+    return PARTS_OF_SPEECH.filter((part) => counts.has(part)).map((part) => [part, counts.get(part) ?? 0] as const)
+  }, [words, grammar])
+
+  // A class the vocabulary no longer has cannot stay selected: deleting the last verb would
+  // otherwise unmount the filter with `verb` still hiding every row.
+  useEffect(() => {
+    if (pos !== 'all' && !posCounts.some(([part]) => part === pos)) setPos('all')
+  }, [posCounts, pos])
+
   const visible = useMemo<MaterialRow[]>(() => {
     const q = query.trim()
     const matches = (...texts: (string | null | undefined)[]): boolean => !q || texts.some((text) => (text || '').toLocaleLowerCase('da-DK').includes(q.toLocaleLowerCase('da-DK')))
@@ -138,6 +195,7 @@ export function MaterialClient({
       .filter((word) => status === 'all' || word.learning_status === status)
       .map((word) => ({ type: 'entry' as const, key: word.id, entry: word, kind: kindOf(word) }))
       .filter((row) => kind === 'all' || `${row.kind}s` === kind)
+      .filter((row) => pos === 'all' || (grammar.get(row.entry.id)?.parts || []).includes(pos))
       .filter((row) => matches(row.entry.danish, row.entry.translation))
     if (kind !== 'sentences') return entries
     // Sentences you added come first; the examples that belong to your words follow them.
@@ -146,8 +204,15 @@ export function MaterialClient({
       .map((word) => ({ type: 'example' as const, key: `example:${word.id}`, entry: word, danish: word.example_sentence!.trim(), translation: word.example_translation?.trim() || null }))
       .filter((row) => matches(row.danish, row.translation, row.entry.danish))
     return [...entries, ...examples]
-  }, [words, query, status, kind])
+  }, [words, query, status, kind, pos, grammar])
 
+
+  /** The noun's definite singular, when its meanings agree on one gender and COR holds the form. */
+  function definiteOf(word: VocabularyEntry): React.JSX.Element | null {
+    const gender = grammar.get(word.id)?.gender
+    const definite = gender && definiteForms[definiteFormKey(word.danish, gender)]
+    return gender && definite ? <DefiniteNoun definite={definite} gender={gender} /> : null
+  }
 
   function enrichFieldsFor(word: VocabularyEntry) {
     const includeExample = word.entry_kind !== 'sentence' || Boolean(word.example_sentence || word.example_translation)
@@ -330,6 +395,17 @@ export function MaterialClient({
       <div className="segmented">{(['all','new','learning','mastered'] as const).map((x) => <button key={x} className={status === x ? 'active' : ''} onClick={() => setStatus(x)}>{x[0].toUpperCase()+x.slice(1)}</button>)}</div>
     </div>
 
+    {kind === 'words' && posCounts.length > 1 && (
+      <div className="pos-filter" role="tablist" aria-label="Filter by part of speech">
+        <button role="tab" aria-selected={pos === 'all'} className={pos === 'all' ? 'active' : ''} onClick={() => choosePos('all')}>All</button>
+        {posCounts.map(([part, count]) => (
+          <button key={part} role="tab" aria-selected={pos === part} className={`${pos === part ? 'active ' : ''}pos-${part}`} onClick={() => choosePos(pos === part ? 'all' : part)}>
+            {PART_OF_SPEECH_LABELS[part]}<span className="material-count">{count}</span>
+          </button>
+        ))}
+      </div>
+    )}
+
     <section className="word-table-card">
       <div className="word-table-head"><span>Danish</span><span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}</span><span>Example</span><span>Memory</span><span /></div>
       {visible.map((row, index) => {
@@ -347,7 +423,7 @@ export function MaterialClient({
         const word = row.entry
         const card = cardsByEntry.get(word.id)
         return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
-          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
+          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>

@@ -17,6 +17,9 @@ import type { EntrySense, NounGender, PartOfSpeech } from './types'
  * The measurements behind all of this are in docs/free-data-sources.md.
  */
 
+/** Lemmas per definite-form query. Each one rides in the request URL. */
+const DEFINITE_FORM_CHUNK = 150
+
 export interface CorForm {
   /** The inflected form, lowercased — the lookup key. */
   form: string
@@ -125,6 +128,38 @@ export function corGenderForPos(rows: readonly CorForm[], pos: PartOfSpeech | nu
 }
 
 /**
+ * The word the dictionary lists for this form, or null when there is nothing to propose.
+ *
+ * **The part of speech filters first, and then the question is asked of that reading only.** The
+ * two halves of that sentence are what `dovne` and `alt` each prove: `dovne` is the plural
+ * adjective of `doven` *and* the infinitive of a verb meaning "to laze", so the card's own word
+ * class is the only thing that says which one is being inflected. Ask without filtering and the
+ * verb reading protects the adjective card from ever being corrected.
+ *
+ * Null covers four "leave it alone" cases, and they all matter:
+ *
+ * - the register does not know the form at all — that is the spell check's business, not this one;
+ * - the form is itself a lemma in the reading the card is about (`hus`, `synes` — a deponent verb
+ *   that is its own infinitive), so it is already the dictionary word;
+ * - the surviving candidates disagree, which for `ved` means the card is really two words —
+ *   "knows" and the preposition "by" — and only the learner can split it;
+ * - the lemma is multi-word (`nogensinde` -> `nogen sinde`), which is a spelling variant rather
+ *   than an inflection, and COR cannot look the result up again afterwards.
+ */
+export function corBaseForm(rows: readonly CorForm[], form: string, posHints: readonly PartOfSpeech[]): string | null {
+  if (!rows.length) return null
+  const matching = posHints.length
+    ? rows.filter((row) => corPartsOfSpeech(row.tag).some((part) => posHints.includes(part)))
+    : rows
+  const readings = matching.length ? matching : rows
+  if (readings.some((row) => row.lemma === form)) return null
+
+  const lemmas = [...new Set(readings.map((row) => row.lemma))]
+  if (lemmas.length !== 1 || /\s/.test(lemmas[0])) return null
+  return lemmas[0]
+}
+
+/**
  * Fill in the gender of every live noun sense that has none.
  *
  * A gender already on the sense stands: the learner can set one by hand with the `en`/`et` chips
@@ -137,6 +172,19 @@ export function fillCorGender(senses: EntrySense[], rows: readonly CorForm[]): E
   const needsGender = (sense: EntrySense): boolean => !sense.removed_at && sense.pos === 'noun' && sense.gender === null
   if (!senses.some(needsGender)) return senses
   return senses.map((sense) => (needsGender(sense) ? { ...sense, gender } : sense))
+}
+
+/**
+ * The definite singular of a noun, split into what to read and the article that carries the
+ * gender: `gulvet` -> `gulv` + `et`, `skulderen` -> `skulder` + `en`.
+ *
+ * Danish glues the article onto the end of the word, so this is the form that actually teaches
+ * the gender — `et` printed next to `gulv` is a label, `gulvet` is the word. Returns null when
+ * the form does not end in its own article, which some of COR's irregulars do not.
+ */
+export function splitDefiniteForm(definite: string, gender: NounGender): { stem: string; article: string } | null {
+  if (!definite.endsWith(gender) || definite.length <= gender.length) return null
+  return { stem: definite.slice(0, -gender.length), article: gender }
 }
 
 /** Tolerant reader for the query result: a row missing any of the three fields is dropped. */
@@ -167,5 +215,45 @@ export async function fetchCorForms(client: SupabaseClient, danish: string): Pro
     return parseCorForms(data)
   } catch {
     return []
+  }
+}
+
+/**
+ * The key a definite form is stored and looked up under.
+ *
+ * Keyed by gender as well as lemma, because a word that is both genders has two of them and they
+ * mean different things: `en plan` is a plan and becomes `planen`, `et plan` is a level and
+ * becomes `planet`. Keyed by lemma alone, whichever row arrived last would win.
+ */
+export function definiteFormKey(lemma: string, gender: NounGender): string {
+  return `${corLookupForm(lemma)}:${gender}`
+}
+
+/**
+ * The definite singular of each lemma: `gulv` -> `gulvet`, `menneske` -> `mennesket`. One query
+ * for a whole page's nouns, and read from the register rather than built by appending an article,
+ * because `skulder` -> `skulderen` and `menneske` -> `mennesket` are not the same rule.
+ */
+export async function fetchCorDefiniteForms(client: SupabaseClient, lemmas: readonly string[]): Promise<Map<string, string>> {
+  const wanted = [...new Set(lemmas.map((lemma) => corLookupForm(lemma)).filter(Boolean))]
+  const definite = new Map<string, string>()
+  if (!wanted.length) return definite
+  try {
+    // Chunked because every lemma goes into the request URL: one page of a large vocabulary
+    // would otherwise build a GET long enough for a proxy to refuse it.
+    for (let start = 0; start < wanted.length; start += DEFINITE_FORM_CHUNK) {
+      const { data } = await client
+        .from('cor_form')
+        .select('form, lemma, tag')
+        .in('lemma', wanted.slice(start, start + DEFINITE_FORM_CHUNK))
+        .in('tag', ['sb.fk.sg.best', 'sb.itk.sg.best'])
+      for (const row of parseCorForms(data)) {
+        const gender = corGenderFromTag(row.tag)
+        if (gender) definite.set(definiteFormKey(row.lemma, gender), row.form)
+      }
+    }
+    return definite
+  } catch {
+    return definite
   }
 }

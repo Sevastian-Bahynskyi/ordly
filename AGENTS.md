@@ -239,6 +239,9 @@ Features:
 - one-tap kind filter: All / Words / Phrases / Sentences (`?kind=`). Phrases are `entry_kind = 'word'` rows whose text `inferDanishInputKind` calls a phrase. The Sentences view lists sentences you added first, then example sentences from words.
 - search Danish + translation
 - filters: All / New / Learning / Mastered
+- while the list is showing **Words**, a part-of-speech filter appears, listing only the classes
+  the vocabulary actually has and how many carry each. It resets when the tab changes, so it can
+  never hide rows from behind a tab that does not show it.
 - no per-word icons: the Iconify/AI icon feature was removed (the `icon_name` column remains, unused)
 - per-word AI preview/confirm
 - delete
@@ -248,7 +251,7 @@ Bulk raw/untranslated entries are excluded from review until sufficiently enrich
 
 Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
 
-A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
+A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It carries the same search the list does — Danish, meanings, and the concept an edge is about. A match is brightened and the camera frames it; everything else dims rather than disappearing, so the graph never changes shape under the learner's hands, and an edge matched by its concept lights up both of its ends and explains itself at any zoom. It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
 
 ## 10. FSRS / memory rings
 
@@ -541,8 +544,32 @@ Where it is used:
   model is called** (63% of the real vocabulary). Otherwise the model rules on the part of speech
   only, and COR still decides the gender of whatever it called a noun. A COR-classified sense is
   stored with `source: 'cor'`.
+- **Every single word is checked against the register before it can be saved.** A word COR does
+  not know, and a word that is not its dictionary form, both stop the save with a proposal in the
+  Danish field's correction box and an amber toast saying why (`verifyDanishBeforeSave`). The
+  base-form half needs a part of speech to be sure: an entry whose meanings are still
+  unclassified is only corrected when the form is nowhere a lemma, because `dovne` cannot be
+  told from `dovne` without knowing which one the card is about. Pressing Save
+  again keeps the text exactly as typed — the register is missing a few real forms and knows no
+  proper nouns, so the check warns and proposes, and never traps. Phrases and sentences are not
+  judged here; `Verify phrase` / `Verify sentence` is what checks those.
+- `corBaseForm` is the rule behind it, and **the part of speech filters before the question is
+  asked**. `dovne` is the plural adjective of `doven` *and* a verb in its own right; `alt` is a
+  lemma as an adverb but an inflection of `al` as the pronoun. Only the card's own word class
+  says which reading is being judged. It proposes nothing when the form is already a lemma in
+  that reading, when the readings disagree (`ved` is really two words), or when the lemma is
+  multi-word (`nogensinde` → `nogen sinde`).
+- The vocabulary was brought to base form in one pass on 2026-09-18 (19 entries, directly in the
+  table). Meanings that described the old form moved with it — `mennesker`/"люди" became
+  `menneske`/"человек" — and a stale pronunciation was cleared rather than left describing a word
+  that is no longer there. Four entries were deliberately left: `nogle` (its lemma `nogen` is
+  already a separate card), `nogensinde`, `ved` (two words in one card — worth splitting), and
+  `yndlings` (not in the register at all).
 - The composer fills a missing noun gender on save, so `Grammar` is not something the learner has
-  to press for a fact. That is also the only thing that revisits an **already classified** sense:
+  to press for a fact. A noun's gender is **shown as the word**: `gulv` is displayed as `gulvet`
+  with the article tinted (`components/DefiniteNoun.tsx`, `--article`), on the Material list and
+  in the entry header. The definite form is read from COR, never built by appending an article —
+  `menneske` becomes `mennesket`, and `skulder` becomes `skulderen`. That is also the only thing that revisits an **already classified** sense:
   the refinement queue is `'split'`-only, so a noun sense left with a null gender by an earlier
   model pass is filled the next time the entry is saved, not by a page view. Nothing is in that
   state today — all 23 noun senses carry a gender, and all 22 COR can rule on agree with it.

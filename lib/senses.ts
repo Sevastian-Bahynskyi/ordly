@@ -135,6 +135,20 @@ export function translationFromSenses(senses: readonly EntrySense[] | null | und
   return activeSenses(senses).map((sense) => sense.text.trim()).join(', ')
 }
 
+/**
+ * The gender an entry's meanings agree on, or null.
+ *
+ * An entry whose noun senses disagree — the `plan` case, genuinely `en` and `et` — has no single
+ * definite form to show, and inventing one would teach the wrong half.
+ */
+export function nounGenderOf(senses: readonly EntrySense[] | null | undefined): NounGender | null {
+  const genders = new Set<NounGender>()
+  for (const sense of activeSenses(senses)) {
+    if (sense.pos === 'noun' && sense.gender) genders.add(sense.gender)
+  }
+  return genders.size === 1 ? [...genders][0] : null
+}
+
 /** The primary sense is the first non-removed one; it owns the entry's example columns. */
 export function primarySense(senses: readonly EntrySense[] | null | undefined): EntrySense | null {
   return activeSenses(senses)[0] || null

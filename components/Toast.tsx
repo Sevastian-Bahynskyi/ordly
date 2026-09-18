@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { Bot, Check, CircleAlert } from 'lucide-react'
 
-export type ToastTone = 'info' | 'success' | 'error'
+export type ToastTone = 'info' | 'success' | 'warning' | 'error'
 
 export interface ToastAction {
   label: string
@@ -25,7 +25,7 @@ export function Toast({ message, tone = 'info', action, onDismiss }: {
   onDismiss: () => void
 }): React.JSX.Element {
   // An action needs time to be noticed and tapped; a bare confirmation does not.
-  const duration = action ? 8000 : tone === 'error' ? 6000 : 3500
+  const duration = action ? 8000 : tone === 'error' || tone === 'warning' ? 6000 : 3500
 
   // Keyed on the message so a new one restarts the clock instead of inheriting what is left
   // of the previous message's.
@@ -34,7 +34,7 @@ export function Toast({ message, tone = 'info', action, onDismiss }: {
     return () => window.clearTimeout(timer)
   }, [message, tone, duration])
 
-  const Icon = tone === 'success' ? Check : tone === 'error' ? CircleAlert : Bot
+  const Icon = tone === 'success' ? Check : tone === 'error' || tone === 'warning' ? CircleAlert : Bot
   return (
     <div className={`toast toast-${tone}`} role={tone === 'error' ? 'alert' : 'status'}>
       <Icon size={16} />

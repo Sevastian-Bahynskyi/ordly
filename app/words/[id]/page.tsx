@@ -2,12 +2,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
+import { DefiniteNoun } from '@/components/DefiniteNoun'
 import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
 import { SynonymGraph } from '@/components/SynonymGraph'
 import { requireUser } from '@/lib/auth'
+import { definiteFormKey, fetchCorDefiniteForms } from '@/lib/cor'
 import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
-import { activeSenses, parseSenses } from '@/lib/senses'
+import { activeSenses, nounGenderOf, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
 
@@ -57,6 +59,10 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   const senses = activeSenses(parseSenses(typedEntry.senses))
   const backHref = typedEntry.entry_kind === 'sentence' ? '/words?kind=sentences' : '/words'
 
+  // A noun's gender is shown as the word itself — `gulvet`, not `et` beside `gulv`.
+  const gender = nounGenderOf(senses)
+  const definite = gender ? (await fetchCorDefiniteForms(supabase, [typedEntry.danish])).get(definiteFormKey(typedEntry.danish, gender)) : undefined
+
   return (
     <AppShell>
       <div className="page-wrap">
@@ -72,6 +78,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
               {typedEntry.danish}
             </h1>
             <p>
+              {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}
               {typedEntry.pronunciation || 'No pronunciation yet'}
               {senses.length > 1 && ` · ${senses.length} meanings`}
             </p>
