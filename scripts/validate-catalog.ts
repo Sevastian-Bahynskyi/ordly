@@ -91,7 +91,7 @@ async function loadSources(path: string): Promise<CatalogValidationSources> {
 async function readExisting(path: string): Promise<ReviewLine[]> {
   try {
     const text: string = await readFile(path, 'utf8')
-    return text.split(/\\r?\\n/u).map((line) => line.trim()).filter(Boolean).map((line, index) => {
+    return text.split(/\r?\n/u).map((line) => line.trim()).filter(Boolean).map((line, index) => {
       let parsed: unknown
       try {
         parsed = JSON.parse(line)
