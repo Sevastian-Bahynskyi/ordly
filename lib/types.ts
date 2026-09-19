@@ -32,7 +32,21 @@ export interface EntrySense {
   /** null on the primary sense: it reads example_sentence / example_translation instead. */
   example: string | null
   example_translation: string | null
-  source: 'split' | 'ai' | 'user'
+  /**
+   * Who classified this meaning. `'split'` is phase 1's comma split, still unrefined; `'cor'`
+   * is the word register, which is a recorded fact rather than an opinion; `'user'` is the
+   * learner's own wording, which discovery and practice text deliberately ignore.
+   */
+  source: 'split' | 'ai' | 'cor' | 'user'
+  /**
+   * A meaning the entry carries but is not being taught yet (issue #6 §7).
+   *
+   * A word unlocked from the catalog arrives with every meaning it has, and only the one the
+   * learner actually met is teachable. A locked meaning is stored, shown in the editor and
+   * unlockable later, but it is not in `translation`, is never graded and never scheduled — a
+   * one-tap add must not silently triple the review load.
+   */
+  locked: boolean
   coverage: SenseCoverage
   created_at: string
   removed_at: string | null
@@ -90,6 +104,8 @@ export interface VocabularyEntry {
   example_sentence: string | null
   example_translation: string | null
   icon_name: string | null
+  /** The catalog row this entry was unlocked from, for provenance only (issue #6 §5). */
+  catalog_lemma: string | null
   entry_kind: EntryKind
   learning_status: LearningStatus
   familiarity: number

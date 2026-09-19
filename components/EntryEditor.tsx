@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation'
 import { Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Undo2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
+import { CatalogMatch } from '@/components/CatalogMatch'
 import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
-import { errorMessage, readJsonRecord, requestEnrichment, stringField } from '@/lib/ai-responses'
+import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
 import { diffAnswer } from '@/lib/answer-diff'
+import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, type CorForm } from '@/lib/cor'
+import { replaceWordInText, type Misspelling } from '@/lib/danish-text'
 import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
@@ -17,6 +20,7 @@ import {
   activeSenses,
   createSense,
   entrySenses,
+  lockedSenses,
   parseSenses,
   splitTranslationIntoSenses,
   translationFromSenses,
@@ -44,9 +48,11 @@ interface Draft {
   /** The primary sense's example: it owns `example_sentence` / `example_translation` (D10). */
   example_sentence: string
   example_translation: string
+  /** The catalog row this draft was unlocked from, if any. Provenance only (issue #6 §5). */
+  catalog_lemma: string | null
 }
 
-type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses'>
+type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses' | 'catalog_lemma'>
 type DuplicateEntry = { id: string; danish: string; translation: string | null }
 type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
@@ -81,6 +87,7 @@ function blankDraft(): Draft {
     senses: [createSense('')],
     example_sentence: '',
     example_translation: '',
+    catalog_lemma: null,
   }
 }
 
@@ -94,6 +101,7 @@ function draftFromEntry(entry: VocabularyEntry): Draft {
     senses: senses.length ? senses : [createSense('')],
     example_sentence: entry.example_sentence || '',
     example_translation: entry.example_translation || '',
+    catalog_lemma: entry.catalog_lemma || null,
   }
 }
 
@@ -143,6 +151,8 @@ export function EntryEditor({
   const [undoToastOpen, setUndoToastOpen] = useState(false)
   const [usedAI, setUsedAI] = useState(false)
   const [exampleSuggestion, setExampleSuggestion] = useState<string | null>(null)
+  /** Words the Danish dictionary does not know, shown while the learner is still typing (§3). */
+  const [exampleSpelling, setExampleSpelling] = useState<Misspelling[]>([])
   /**
    * The last AI verdict on the Danish text itself. It only applies while the text is unchanged,
    * which is also what stops Fill missing / Regenerate all from checking the same text twice.
@@ -169,6 +179,18 @@ export function EntryEditor({
    * would just be noise. Refreshed on every successful save.
    */
   const savedSenseIds = useRef<Set<string>>(new Set(parseSenses(entry?.senses).map((sense) => sense.id)))
+  /**
+   * The Danish text the word register refused to enrich (issue #5 §2). Holding it here is what
+   * turns the refusal into a warning: the second press on the same text enriches anyway, and
+   * typing something else arms the check again.
+   */
+  const enrichAnyway = useRef('')
+  /**
+   * The Danish text the register refused, held so the learner's second press saves it anyway.
+   * Every word is checked against COR before it can be saved, but the register is missing a few
+   * real forms and knows no proper nouns, so the check warns and proposes — it never traps.
+   */
+  const saveAnyway = useRef('')
 
   function notify(text: string, tone: ToastTone = 'info'): void {
     setNotice({ text, tone })
@@ -261,9 +283,49 @@ export function EntryEditor({
     }
   }, [draft.danish, entryId])
 
+  /**
+   * Instant typo feedback on the example sentence (issue #5 §3).
+   *
+   * A local dictionary lookup, so it answers while the learner is still typing — no model, no key,
+   * no cost. It is never a verdict: `Checking…` on blur is what judges whether the sentence is
+   * natural Danish, and a word the dictionary does not know may still be right.
+   */
+  useEffect(() => {
+    const sentence = draft.example_sentence.trim()
+    setExampleSpelling([])
+    if (entryKind === 'sentence' || !includeExample || !sentence) return
+
+    let cancelled = false
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch('/api/danish/spell', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: sentence }),
+        })
+        const body = await readJsonRecord(response)
+        if (!cancelled && response.ok) setExampleSpelling(readMisspellings(body))
+      } catch {
+        // A hint that never arrives is not worth telling the learner about.
+      }
+    }, 600)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+    }
+  }, [draft.example_sentence, entryKind, includeExample])
+
   function resetExampleCheck() {
     setExampleSuggestion(null)
     setExampleCheckStatus('idle')
+  }
+
+  /** Apply one dictionary suggestion to the example sentence, and drop it from the hint. */
+  function applySpellingFix(word: string, replacement: string): void {
+    commitDraft((current) => ({ ...current, example_sentence: replaceWordInText(current.example_sentence, word, replacement) }))
+    exampleSentenceDirty.current = true
+    setExampleSpelling((current) => current.filter((item) => item.word !== word))
   }
 
   /**
@@ -645,6 +707,7 @@ export function EntryEditor({
         entryKind,
         includeExample: effectiveIncludeExample,
         regenerate,
+        allowUnknownDanish: enrichAnyway.current === sourceDanish,
       })
 
       commitDraft((latest) => {
@@ -680,6 +743,7 @@ export function EntryEditor({
       if (offerUndo) setUndoSnapshot(snapshot)
       return true
     } catch (error) {
+      if (error instanceof UnknownDanishError) enrichAnyway.current = sourceDanish
       notifyError(error, 'AI enrichment failed')
       return false
     } finally {
@@ -762,6 +826,7 @@ export function EntryEditor({
         includeExample: true,
         regenerate,
         sense: { text: sense.text.trim(), pos: sense.pos },
+        allowUnknownDanish: enrichAnyway.current === sourceDanish,
       })
 
       const example = (body.example_sentence || '').trim()
@@ -781,9 +846,12 @@ export function EntryEditor({
   }
 
   /**
-   * Per-sense AI action: part of speech and gender for one meaning (D11's refinement, on demand).
-   * The other meanings ride along as context so the model can tell which sense this one is, but
-   * only this row is changed, and its text never is.
+   * Per-sense grammar action: part of speech and gender for one meaning (D11's refinement, on
+   * demand). The other meanings ride along as context so a model can tell which sense this one
+   * is, but only this row is changed, and its text never is.
+   *
+   * The route answers from the word register whenever COR's candidates agree, in which case no
+   * model was called and the entry is not marked AI-enriched (issue #5 §1).
    */
   async function classifySenseGrammar(senseId: string) {
     const current = draftRef.current
@@ -804,9 +872,9 @@ export function EntryEditor({
       const body = await readJsonRecord(res)
       if (!res.ok) throw new Error(errorMessage(body, 'Could not classify this meaning'))
       const meaning = parseRefinedMeanings(body, live.length).find((item) => item.indices.includes(index + 1))
-      if (!meaning?.pos) throw new Error('AI could not tell the part of speech for this meaning.')
+      if (!meaning?.pos) throw new Error('Could not tell the part of speech for this meaning.')
       updateSense(senseId, { pos: meaning.pos, gender: meaning.pos === 'noun' ? meaning.gender : null })
-      setUsedAI(true)
+      if (stringField(body, 'source') !== 'cor') setUsedAI(true)
       setNotice(null)
     } catch (error) {
       notifyError(error, 'Could not classify this meaning')
@@ -830,6 +898,63 @@ export function EntryEditor({
     setUsedAI(undoSnapshot.usedAI)
     setUndoSnapshot(null)
     notify('Restored the text you had before regenerating.', 'success')
+  }
+
+  /**
+   * Check a single word against the word register before it is allowed to be saved.
+   *
+   * Two things are refused, both with a proposal the learner can take or leave: a word COR does
+   * not know at all (the local dictionary suggests the nearest real words), and a word that is
+   * not its dictionary form (`gulvet` -> `gulv`). The proposal lands in the Danish field's own
+   * correction box, where it stays until it is acted on; the toast only says why the save
+   * stopped. Pressing Save again keeps the text exactly as typed.
+   *
+   * Phrases and sentences are not judged here — COR holds no multi-word expressions, and
+   * `Verify phrase` / `Verify sentence` is what checks those.
+   */
+  async function verifyDanishBeforeSave(rows: CorForm[], danish: string, senses: EntrySense[]): Promise<boolean> {
+    if (inferDanishInputKind(danish) !== 'word' || saveAnyway.current === danish) return true
+    // Editing an entry whose Danish has not changed: this word was already ruled on when it was
+    // saved, and re-refusing it would make every later edit to the meanings cost two presses.
+    if (editing && entry?.danish.trim() === danish) return true
+
+    if (!isKnownDanishForm(rows)) {
+      const suggestion = await firstSpellingSuggestion(danish)
+      if (suggestion) {
+        recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion })
+        notify(`“${danish}” is not a Danish word. Did you mean “${suggestion}”?`, 'warning')
+      } else {
+        notify(`“${danish}” is not in the Danish word register. Save again to keep it.`, 'warning')
+      }
+      saveAnyway.current = danish
+      return false
+    }
+
+    const base = corBaseForm(rows, corLookupForm(danish), [...new Set(senses.map((sense) => sense.pos).filter((pos) => pos !== null))])
+    if (!base) return true
+
+    recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion: base })
+    notify(`“${danish}” is not the base form — the correction is under the Danish field.`, 'warning')
+    saveAnyway.current = danish
+    return false
+  }
+
+  /** The local dictionary's best correction for a word it does not know, if it offers one. */
+  async function firstSpellingSuggestion(danish: string): Promise<string | null> {
+    try {
+      const response = await fetch('/api/danish/spell', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: danish }),
+        // A suggestion is a nicety on the save path; the save must never wait on it.
+        signal: AbortSignal.timeout(2500),
+      })
+      if (!response.ok) return null
+      const [found] = readMisspellings(await readJsonRecord(response))
+      return found?.suggestions[0] || null
+    } catch {
+      return null
+    }
   }
 
   /**
@@ -860,6 +985,20 @@ export function EntryEditor({
     setSaving(true)
     const supabase = createClient()
 
+    // One read of the word register, used twice: to refuse a word that is misspelled or not in
+    // its dictionary form, and to fill in a noun's gender, which is a recorded fact rather than
+    // something to press Grammar for (issue #5 §1). COR stays silent unless its candidates for
+    // this form agree, so nothing here can write a wrong `en`/`et`.
+    //
+    // It runs before the duplicate lookup on purpose: the corrected word is the one worth asking
+    // about, and a learner who typed `gulvet` should not be told twice, once per check.
+    const corForms = await fetchCorForms(supabase, current.danish.trim())
+    if (!await verifyDanishBeforeSave(corForms, current.danish.trim(), senses)) {
+      setSaving(false)
+      return
+    }
+    const graded = fillCorGender(senses, corForms)
+
     if (!allowDuplicate && !editing) {
       const { data } = await supabase
         .from('vocabulary_entries')
@@ -875,24 +1014,29 @@ export function EntryEditor({
     }
 
     const storeExample = entryKind !== 'sentence' && includeExample
-    const primaryId = senses[0]?.id
+    const primaryId = graded[0]?.id
     const payload = {
       danish: current.danish.trim(),
       pronunciation: current.pronunciation.trim() || null,
-      translation: translationFromSenses(senses),
+      translation: translationFromSenses(graded),
       // Soft-deleted senses ride along so their ids stay resolvable (D15).
       senses: [
-        ...senses.map((sense) => sense.id === primaryId
+        ...graded.map((sense) => sense.id === primaryId
           // The primary sense reads the columns; storing a copy on the object too would let the
           // two drift apart (D10).
           ? { ...sense, example: null, example_translation: null }
           : sense),
+        // Meanings the catalog supplied but the learner has not unlocked. They are stored so the
+        // ids survive and they can be unlocked later, and `activeSenses` keeps them out of
+        // everything that teaches or grades (issue #6 §7).
+        ...lockedSenses(current.senses),
         ...archivedRef.current,
       ],
       example_sentence: storeExample ? current.example_sentence.trim() || null : null,
       example_translation: storeExample ? current.example_translation.trim() || null : null,
       entry_kind: entryKind,
       ai_enriched: (entry?.ai_enriched ?? false) || usedAI,
+      catalog_lemma: current.catalog_lemma,
     }
 
     if (editing && entry) {
@@ -914,6 +1058,7 @@ export function EntryEditor({
       latestExampleSentence.current = saved.example_sentence || ''
       resetExampleCheck()
       savedSenseIds.current = new Set(parseSenses(saved.senses).map((sense) => sense.id))
+      saveAnyway.current = ''
       resetDraft(draftFromEntry(saved), archivedFromEntry(saved))
       setUndoSnapshot(null)
       setUsedAI(false)
@@ -940,6 +1085,7 @@ export function EntryEditor({
 
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''
+    saveAnyway.current = ''
     resetExampleCheck()
     resetDraft(blankDraft(), [])
     setEntryKind('word')
@@ -1059,6 +1205,21 @@ export function EntryEditor({
           </div>
         )}
         {currentCheck && <DanishCheckNotice check={currentCheck} onApply={applyDanishSuggestion} onDismiss={() => recordDanishCheck({ ...currentCheck, status: 'dismissed' })} />}
+        {!editing && (
+          <CatalogMatch
+            danish={draft.danish}
+            onUnlock={(unlocked, lemma) => {
+              commitDraft((current) => ({
+                ...current,
+                ...unlocked,
+                translation: translationFromSenses(unlocked.senses),
+                catalog_lemma: lemma,
+              }))
+              setIncludeExample(Boolean(unlocked.example_sentence))
+              notify('Filled from the catalog. Check it and press Save.', 'success')
+            }}
+          />
+        )}
       </div>
 
       {!showDetails && <p className="capture-empty-note">Type a word, phrase or sentence. Its pronunciation, meaning and an example appear here.</p>}
@@ -1152,7 +1313,30 @@ export function EntryEditor({
             placeholder={translationLanguage === 'ru' ? 'Я думаю, что это хорошо.' : translationLanguage === 'uk' ? 'Я думаю, що це добре.' : 'I think it is good.'}
             aria-label="Example translation"
           />
-          {exampleCheckStatus === 'correct' && !exampleSuggestion && (
+          {exampleSpelling.length > 0 && !exampleSuggestion && (
+            <div className="danish-check spelling">
+              <small>Not in the Danish dictionary</small>
+              <ul>
+                {exampleSpelling.map((item) => (
+                  <li key={item.word}>
+                    <span lang="da">{item.word}</span>
+                    {item.suggestions.slice(0, 2).map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        type="button"
+                        lang="da"
+                        className="soft-button example-correction-action"
+                        onClick={(e) => { e.preventDefault(); applySpellingFix(item.word, suggestion) }}
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {exampleCheckStatus === 'correct' && !exampleSuggestion && !exampleSpelling.length && (
             <small className="danish-check correct"><Check size={12} /> Grammar and spelling look good.</small>
           )}
           {exampleSuggestion && (

@@ -43,6 +43,8 @@
 .toast-info > svg { color: var(--purple-2); }
 .toast-success > svg { color: #6ed1a4; }
 .toast-error > svg { color: #f09a97; }
+/* Amber cautions: a proposal the learner can accept or ignore is not a failure. */
+.toast-warning > svg { color: #e7b35f; }
 
 .toast-action {
   flex: 0 0 auto;

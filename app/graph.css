@@ -58,19 +58,24 @@
   pointer-events: none;
 }
 
-.graph-zoom {
+/* Both controls float over the same picture, so they wear the same glass. */
+.graph-zoom,
+.graph-search {
   position: absolute;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 4px 16px rgba(31, 24, 43, .1), 0 0 0 1px rgba(31, 24, 43, .05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.graph-zoom {
   right: 10px;
   bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 4px;
-  border-radius: 13px;
-  background: rgba(255, 255, 255, .9);
-  box-shadow: 0 4px 16px rgba(31, 24, 43, .1), 0 0 0 1px rgba(31, 24, 43, .05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .graph-zoom button {
@@ -286,3 +291,68 @@
 @media (max-width: 760px) {
   .graph-open-button { width: 100%; }
 }
+
+/* Search over the graph: the same three texts the Material list searches — the Danish, its
+   meanings, and the concept an edge is about. A match is brightened and framed; everything
+   else dims rather than disappearing, so the shape of the graph never changes under the
+   learner's hands. */
+.graph-search {
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 320px;
+  height: 44px;
+  padding: 0 10px;
+  color: var(--muted);
+}
+
+.graph-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  /* 16px or Safari zooms the whole page when the field takes focus. */
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.graph-search input:focus { outline: none; }
+.graph-search input::placeholder { color: var(--muted-2); font-weight: 500; }
+
+.graph-search-clear {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* 28px of ink inside the 44px target the identity asks for. */
+.graph-search-clear::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.graph-search-count {
+  min-width: 22px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--purple-soft);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 750;
+  text-align: center;
+}
+
+/* A found node keeps its colour and gains weight; the dimming of everything else does the rest. */
+.graph-node.found text { font-weight: 750; }

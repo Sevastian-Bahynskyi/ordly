@@ -66,6 +66,7 @@ export function createSense(text: string, patch: Partial<Omit<EntrySense, 'id'>>
     example: null,
     example_translation: null,
     source: 'user',
+    locked: false,
     coverage: emptyCoverage(),
     created_at: new Date().toISOString(),
     removed_at: null,
@@ -117,7 +118,8 @@ export function parseSenses(value: unknown): EntrySense[] {
       note: nullableText(record.note),
       example: nullableText(record.example),
       example_translation: nullableText(record.example_translation),
-      source: record.source === 'split' || record.source === 'ai' || record.source === 'user' ? record.source : 'ai',
+      source: record.source === 'split' || record.source === 'ai' || record.source === 'cor' || record.source === 'user' ? record.source : 'ai',
+      locked: record.locked === true,
       coverage: coverageFrom(record.coverage),
       created_at: typeof record.created_at === 'string' ? record.created_at : new Date().toISOString(),
       removed_at: typeof record.removed_at === 'string' ? record.removed_at : null,
@@ -126,13 +128,40 @@ export function parseSenses(value: unknown): EntrySense[] {
   return senses
 }
 
+/**
+ * The meanings a reader should teach, grade or show: not removed, not locked, not empty.
+ *
+ * Locked is filtered here rather than at every call site on purpose. `translation`, the review
+ * answer, the definite form, the primary sense and practice all read through this one function,
+ * and `private.translation_from_senses` applies the same rule in the database, so a locked meaning
+ * cannot leak into grading from either side.
+ */
 export function activeSenses(senses: readonly EntrySense[] | null | undefined): EntrySense[] {
-  return (senses || []).filter((sense) => !sense.removed_at && sense.text.trim())
+  return (senses || []).filter((sense) => !sense.removed_at && !sense.locked && sense.text.trim())
+}
+
+/** Meanings the entry carries but is not teaching yet. The editor offers these for unlocking. */
+export function lockedSenses(senses: readonly EntrySense[] | null | undefined): EntrySense[] {
+  return (senses || []).filter((sense) => !sense.removed_at && sense.locked && sense.text.trim())
 }
 
 /** TypeScript mirror of `private.translation_from_senses`. */
 export function translationFromSenses(senses: readonly EntrySense[] | null | undefined): string {
   return activeSenses(senses).map((sense) => sense.text.trim()).join(', ')
+}
+
+/**
+ * The gender an entry's meanings agree on, or null.
+ *
+ * An entry whose noun senses disagree — the `plan` case, genuinely `en` and `et` — has no single
+ * definite form to show, and inventing one would teach the wrong half.
+ */
+export function nounGenderOf(senses: readonly EntrySense[] | null | undefined): NounGender | null {
+  const genders = new Set<NounGender>()
+  for (const sense of activeSenses(senses)) {
+    if (sense.pos === 'noun' && sense.gender) genders.add(sense.gender)
+  }
+  return genders.size === 1 ? [...genders][0] : null
 }
 
 /** The primary sense is the first non-removed one; it owns the entry's example columns. */

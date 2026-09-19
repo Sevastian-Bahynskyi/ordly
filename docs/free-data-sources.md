@@ -13,7 +13,10 @@ Researched 2026-09-18. No AI provider was called during this research.
 
 **What was actually scoped for building** is issue #5, which is narrower than this document:
 automatic noun gender from COR, validation of AI output on write, and optionally a spelling
-pre-filter. The eSpeak pronunciation replacement was researched and then dropped — it does not
+pre-filter. All three are now built — `AGENTS.md` §22 is the description of what shipped, and the
+numbers it quotes were re-measured against the live vocabulary: 93 of 94 single words resolve in
+COR (`yndlings` is the one the `N` filter costs), 63% of them need no model call for their part of
+speech, and 22 of 23 noun senses get a gender, the exception being `plan`. The eSpeak pronunciation replacement was researched and then dropped — it does not
 reduce AI usage, because pronunciation is filled inside the same `/api/ai/enrich` call as
 meanings and the example sentence. The research below is kept in full so the decision can be
 revisited with the evidence rather than re-run.

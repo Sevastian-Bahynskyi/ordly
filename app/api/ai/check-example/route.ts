@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
+import { findMisspellings, type Misspelling } from '@/lib/spelling'
 
 const intentSchema = {
   type: 'object',
@@ -130,6 +131,21 @@ function formatLanguageToolHints(hints: LanguageToolHint[]) {
     .join('\n')
 }
 
+/**
+ * The local dictionary's verdict, as evidence for the model (issue #5 §3).
+ *
+ * Free, offline and instant, where LanguageTool's Danish is the same Hunspell dictionary over a
+ * rate-limited network. It is evidence only: a word it does not know may still be right, and a
+ * sentence it likes may still be unnatural — which is the common case and the model's job.
+ */
+function formatSpelling(misspelled: Misspelling[] | null) {
+  if (!misspelled) return 'The Danish dictionary was unavailable. Do not infer that this means the spelling is correct.'
+  if (!misspelled.length) return 'The Danish dictionary recognised every word. Spelling is not the problem here; judge grammar, word order, inflection and naturalness.'
+  return misspelled
+    .map((item, index) => `${index + 1}. ${JSON.stringify(item.word)} is not in the Danish dictionary${item.suggestions.length ? ` | Closest entries: ${item.suggestions.join(', ')}` : ''}`)
+    .join('\n')
+}
+
 async function inferIntent(sentence: string) {
   return aiJson(
     'danish_learner_intent',
@@ -162,7 +178,7 @@ Never interpret "Komså" as "kommende".`,
   )
 }
 
-async function createCorrection(sentence: string, intent: Record<string, unknown>, hints: LanguageToolHint[], targetLanguage: string, level: string, retryFeedback = '') {
+async function createCorrection(sentence: string, intent: Record<string, unknown>, hints: LanguageToolHint[], misspelled: Misspelling[] | null, targetLanguage: string, level: string, retryFeedback = '') {
   const diagnostics = formatLanguageToolHints(hints)
   const retryInstruction = retryFeedback
     ? `\nA previous proposed correction was rejected by a critic. Fix this specific problem without changing the learner's intended meaning:\n${retryFeedback}\n`
@@ -205,7 +221,7 @@ ${retryInstruction}`,
       },
       {
         role: 'user',
-        content: `Original learner sentence: ${sentence}\n\nIntent anchor: ${cleanText(intent.intent_english, 500)}\nLightly normalized reading: ${cleanText(intent.normalized_reading, 500)}\nIntent ambiguity: ${cleanText(intent.ambiguity, 20)}\n\nLanguageTool diagnostics:\n${diagnostics}`,
+        content: `Original learner sentence: ${sentence}\n\nIntent anchor: ${cleanText(intent.intent_english, 500)}\nLightly normalized reading: ${cleanText(intent.normalized_reading, 500)}\nIntent ambiguity: ${cleanText(intent.ambiguity, 20)}\n\nDanish dictionary check:\n${formatSpelling(misspelled)}\n\nLanguageTool diagnostics:\n${diagnostics}`,
       },
     ],
     'sentence correction',
@@ -282,17 +298,20 @@ export async function POST(request: Request) {
   const level = String(profile?.danish_level || 'A1')
 
   try {
-    const [intent, hints] = await Promise.all([
+    // The dictionary lookup is local and costs nothing worth parallelising around, but it starts
+    // with the others so a cold instance's one-off dictionary build overlaps the model call.
+    const [intent, hints, misspelled] = await Promise.all([
       inferIntent(sentence),
       languageToolHints(sentence),
+      findMisspellings(sentence),
     ])
 
-    let candidate = await createCorrection(sentence, intent, hints, targetLanguage, level)
+    let candidate = await createCorrection(sentence, intent, hints, misspelled, targetLanguage, level)
     let verification = await verifyCorrection(sentence, intent, candidate, targetLanguage)
 
     if (!usableResult(sentence, verification)) {
       const feedback = cleanText(verification.issue, 400) || 'The final critic was not confident that the proposal was grammatical, minimal, and meaning-preserving.'
-      candidate = await createCorrection(sentence, intent, hints, targetLanguage, level, feedback)
+      candidate = await createCorrection(sentence, intent, hints, misspelled, targetLanguage, level, feedback)
       verification = await verifyCorrection(sentence, intent, candidate, targetLanguage)
     }
 
@@ -319,7 +338,7 @@ export async function POST(request: Request) {
       translation,
       confidence,
       intent: cleanText(intent.intent_english, 500),
-      checked_with: hints.length ? ['intent', 'languagetool', 'critic'] : ['intent', 'critic'],
+      checked_with: [...(hints.length ? ['intent', 'languagetool'] : ['intent']), ...(misspelled ? ['dictionary'] : []), 'critic'],
     })
   } catch (error) {
     console.error('Example sentence correction pipeline failed', error)

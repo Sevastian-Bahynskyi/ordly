@@ -1,8 +1,9 @@
+import type { Misspelling } from './danish-text'
 import { parseSenses } from './senses'
 import type { EntrySense, PartOfSpeech } from './types'
 
 /**
- * Typed readers for the app's own AI routes. A response body is untrusted input like any other
+ * Typed readers for the app's own JSON routes. A response body is untrusted input like any other
  * (the route may be an older deployment, a proxy error page, or a partial result), so the client
  * reads it as `unknown` and narrows field by field instead of indexing into `any`.
  */
@@ -54,6 +55,39 @@ export interface EnrichRequest {
   regenerate: boolean
   /** Per-sense context: the example must demonstrate this one meaning (D10). */
   sense?: { text: string; pos: PartOfSpeech | null }
+  /**
+   * Enrich even though the word register does not know this Danish form (issue #5 §2). Sent only
+   * after the route has already refused the same text once, so the learner's second press is what
+   * overrides the check — never the first.
+   */
+  allowUnknownDanish?: boolean
+}
+
+/**
+ * The route refused to enrich because COR does not hold this Danish form. A distinct type
+ * because the caller has to offer the override; every other failure is just a message.
+ */
+export class UnknownDanishError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'UnknownDanishError'
+  }
+}
+
+/** The `/api/danish/spell` response. A malformed entry is dropped; a hint is never worth a crash. */
+export function readMisspellings(body: JsonRecord): Misspelling[] {
+  if (!Array.isArray(body.misspelled)) return []
+  const found: Misspelling[] = []
+  for (const item of body.misspelled) {
+    if (!item || typeof item !== 'object') continue
+    const record = item as Record<string, unknown>
+    if (typeof record.word !== 'string' || !record.word) continue
+    const suggestions = Array.isArray(record.suggestions)
+      ? record.suggestions.filter((value): value is string => typeof value === 'string' && Boolean(value))
+      : []
+    found.push({ word: record.word, suggestions })
+  }
+  return found
 }
 
 export function readEnrichResult(body: JsonRecord): EnrichResult {
@@ -74,6 +108,9 @@ export async function requestEnrichment(request: EnrichRequest): Promise<EnrichR
     body: JSON.stringify(request),
   })
   const body = await readJsonRecord(response)
-  if (!response.ok) throw new Error(errorMessage(body, 'AI enrichment failed'))
+  if (!response.ok) {
+    const message = errorMessage(body, 'AI enrichment failed')
+    throw body.unknownDanish === true ? new UnknownDanishError(message) : new Error(message)
+  }
   return readEnrichResult(body)
 }

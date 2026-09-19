@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind, EntrySense } from '@/lib/types'
 import type { EnrichResult } from '@/lib/ai-responses'
+import { corLookupForm, fetchCorForms, isKnownDanishForm } from '@/lib/cor'
 import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
-import { normalizePronunciationText } from '@/lib/pronunciation'
+import { isReadableCyrillic, normalizePronunciationText } from '@/lib/pronunciation'
 import { createSense, isNounGender, isPartOfSpeech, PARTS_OF_SPEECH, translationFromSenses } from '@/lib/senses'
 
 const PIPELINE_VERSION = 11
@@ -62,6 +63,14 @@ async function aiCompletion(body: Record<string, unknown>, label: string, models
   return openRouterJson(body, label, { models, timeoutMs: 10000 })
 }
 
+/**
+ * The model's pronunciation, or `''` when it is not usable.
+ *
+ * A value mixing Latin letters into Cyrillic is rejected outright rather than stripped down to
+ * its Cyrillic letters (issue #5 §2): `фоклaa` and `хoнклэл` got into the cache because a
+ * homoglyph survived the strip and the result still looked like a word. Stripping hides a
+ * defective reading; rejecting it makes the route try again.
+ */
 function cleanCyrillic(value: unknown) {
   const text = String(value || '')
     .trim()
@@ -71,7 +80,7 @@ function cleanCyrillic(value: unknown) {
     .replace(/^(?:произношение|транскрипция)\s*[:—-]?\s*/iu, '')
     .trim()
 
-  if (!text || /[A-Za-z]/.test(text)) return ''
+  if (!isReadableCyrillic(text)) return ''
 
   const cleaned = text
     .replace(/[^А-Яа-яЁё\u0301\s.,!?…-]/gu, '')
@@ -79,8 +88,7 @@ function cleanCyrillic(value: unknown) {
     .replace(/\s+/g, ' ')
     .trim()
 
-  if (!cleaned || !/[А-Яа-яЁё]/u.test(cleaned)) return ''
-  return cleaned
+  return isReadableCyrillic(cleaned) ? cleaned : ''
 }
 
 function comparableText(value: string) {
@@ -298,7 +306,9 @@ async function resolvePronunciation(
     .eq('pipeline_version', PIPELINE_VERSION)
     .maybeSingle()
 
-  if (cached?.pronunciation) {
+  // A cached row that mixes scripts is treated as a miss: 13% of them did, and serving one
+  // forever is how `хoнклэл` survived (issue #5 §2). Regenerating overwrites it below.
+  if (cached?.pronunciation && isReadableCyrillic(String(cached.pronunciation))) {
     return {
       pronunciation: String(cached.pronunciation),
       cached: true,
@@ -345,6 +355,22 @@ export async function POST(request: Request): Promise<NextResponse> {
   const regenerate = body.regenerate === true
 
   if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
+
+  // Is this even Danish? (issue #5 §2). `tinker` is not a Danish word, and the enrichment path
+  // invented a confident Russian translation for it. COR holds 247,527 normed forms, inflections
+  // included, so a single word it does not know is worth stopping for — but it holds no
+  // multi-word expressions at all, so a phrase or a sentence is never judged here.
+  //
+  // The learner has the last word: the register is missing a handful of real forms (`yndlings`
+  // among them), so pressing the same action again sends `allowUnknownDanish` and enriches.
+  if (corLookupForm(danish) && body.allowUnknownDanish !== true) {
+    if (!isKnownDanishForm(await fetchCorForms(supabase, danish))) {
+      return NextResponse.json({
+        error: `“${danish}” is not in the Danish word register. Check the spelling, or run this again to enrich it anyway.`,
+        unknownDanish: true,
+      }, { status: 422 })
+    }
+  }
 
   const needsPronunciation = fields.includes('pronunciation')
   const needsTranslation = fields.includes('translation')

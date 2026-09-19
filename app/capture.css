@@ -346,3 +346,77 @@
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
   .capture-ai-sheet { animation: none; }
 }
+
+/* ---- Catalog (issue #6 §7) ---- */
+/* The pre-built answer, offered under the Danish field. It is an offer, not a result: tapping a
+   meaning fills the composer and the learner still presses Save. */
+.catalog-match {
+  margin: 10px 4px 0;
+  padding: 10px 12px 8px;
+  border: 1px solid var(--purple-soft);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--purple-soft) 45%, var(--surface));
+}
+
+.catalog-candidate + .catalog-candidate {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--purple-soft);
+}
+
+.catalog-candidate-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.catalog-candidate-head svg { align-self: center; flex: 0 0 auto; color: var(--purple); }
+.catalog-candidate-head strong { font-weight: 640; }
+.catalog-pos { color: var(--muted-2); font-size: 12px; }
+.catalog-pron { color: var(--muted); font-size: 12px; }
+
+.catalog-senses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.catalog-sense {
+  padding: 6px 11px;
+  border: 1px solid var(--purple-soft);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 560;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.catalog-sense:hover { border-color: var(--purple-2); background: var(--purple-soft); }
+.catalog-sense:active { transform: translateY(1px); }
+
+.catalog-hint {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted-2);
+  font-size: 11.5px;
+}
+
+/* A miss is said plainly. It means the word is rarer than the catalog's depth, or is a phrase,
+   which a lemma frequency list cannot contain at all. Both fall through to the live AI path. */
+.catalog-miss {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 6px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.catalog-miss svg { flex: 0 0 auto; color: var(--muted-2); }
