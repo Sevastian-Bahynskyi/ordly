@@ -19,26 +19,48 @@ export interface RankedLemma {
   rank: number
 }
 
-/** The abbreviations Danish frequency lists use, mapped onto Ordly's parts of speech. */
+/**
+ * The DSL list's word-class codes, read off the shipped file rather than off documentation.
+ *
+ * The published description says "part of speech, lemma, frequency" and leaves the codes
+ * unexplained; the file uses one-letter codes and a frequency that is a *proportion* of the
+ * corpus, not a count. Decoded from the data itself (the six most frequent lemmas per code):
+ *
+ *   NC år dag krone · V være have kunne · A megen god stor · D ikke så også
+ *   T i på til · P en den det · C og at men · I ja nej jo · L to 1 tre
+ *
+ * This is the same lesson as COR's normering field (§22): the shipped file is what is trusted.
+ */
 const RANKING_PARTS_OF_SPEECH: Record<string, PartOfSpeech> = {
-  sb: 'noun',
-  vb: 'verb',
-  adj: 'adjective',
-  adv: 'adverb',
-  pron: 'pronoun',
-  præp: 'preposition',
-  konj: 'conjunction',
-  talord: 'numeral',
-  udråbsord: 'interjection',
-  interj: 'interjection',
-  flerord: 'phrase',
+  NC: 'noun',
+  V: 'verb',
+  A: 'adjective',
+  D: 'adverb',
+  T: 'preposition',
+  P: 'pronoun',
+  C: 'conjunction',
+  L: 'numeral',
+  I: 'interjection',
 }
 
-/** Word classes that are not vocabulary worth teaching, dropped before ranking. */
-const EXCLUDED_CLASSES = new Set(['prop', 'propr', 'forkortelse', 'fork', 'symbol', 'romertal'])
+/**
+ * Codes that are not vocabulary worth teaching.
+ *
+ * `NP` is proper nouns — `Danmark`, `København`, `EU` — which COR does not hold and a learner does
+ * not study. `M` is bound morphemes (`@erne`, `@s`). `U` is the three function words the list
+ * files separately (`at`, `der`, `som`). Every code ending in `W` is a fragment class: `NW` mixes
+ * abbreviations and compound parts (`tv`, `VM`, `Jylland`), `EW` is prefixes (`anti@`, `mini@`).
+ * None of them survive a COR lemma check anyway, so including them would only spend the
+ * generator's time on rows the gate would reject.
+ */
+const EXCLUDED_CLASSES = new Set(['NP', 'M', 'U'])
+
+function isFragmentClass(value: string): boolean {
+  return value.length > 1 && value.endsWith('W')
+}
 
 function classKey(value: string): string {
-  return value.trim().toLocaleLowerCase('da-DK').replace(/\.$/u, '')
+  return value.trim().replace(/\.$/u, '').toUpperCase()
 }
 
 export function rankingPartOfSpeech(value: string): PartOfSpeech | null {
@@ -46,7 +68,8 @@ export function rankingPartOfSpeech(value: string): PartOfSpeech | null {
 }
 
 export function isExcludedClass(value: string): boolean {
-  return EXCLUDED_CLASSES.has(classKey(value))
+  const key = classKey(value)
+  return EXCLUDED_CLASSES.has(key) || isFragmentClass(key)
 }
 
 export interface RankingOptions {
@@ -74,7 +97,9 @@ export function parseRanking(text: string, options: RankingOptions = {}): Ranked
     const fields = line.split('\t').map((field) => field.trim())
     if (fields.length < 3) continue
     const [rawClass, lemma, rawFrequency] = fields
-    if (!lemma || (excludeProperNouns && isExcludedClass(rawClass))) continue
+    // `@` marks a bound morpheme or an affix (`@erne`, `anti@`). Not a word, never a catalog row.
+    if (!lemma || lemma.includes('@')) continue
+    if (excludeProperNouns && isExcludedClass(rawClass)) continue
     const frequency = Number(rawFrequency)
     if (!Number.isFinite(frequency) || frequency <= 0) continue
     // A lemma is stored lowercased, because that is how COR and the catalog are keyed.

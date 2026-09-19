@@ -14,6 +14,7 @@
  *   pnpm exec tsx scripts/build-catalog-facts.ts \
  *     --ranking ~/Downloads/lemmas.tsv \
  *     --ipa kaikki.org-dictionary-Danish.jsonl \
+ *     --ddo-ipa catalog/ddo-ipa.json \
  *     --limit 10000 \
  *     --phrases catalog/phrases.txt \
  *     --out catalog/facts.jsonl
@@ -101,7 +102,9 @@ function summarize(facts: readonly CatalogFact[]): string {
   }
   return [
     `  part of speech : ${count((fact) => fact.pos !== null)}`,
-    `  IPA            : ${count((fact) => fact.ipa !== null)}`,
+    `  IPA            : ${count((fact) => fact.ipa !== null)}`
+      + ` — ${facts.filter((fact) => fact.ipa_source === 'ddo').length} DDO,`
+      + ` ${facts.filter((fact) => fact.ipa_source === 'wiktionary').length} Wiktionary`,
     `  nouns          : ${nouns.length} of ${words.length} words`,
     `  gender         : ${nouns.filter((fact) => fact.gender !== null).length}/${nouns.length} nouns`,
     `  definite form  : ${nouns.filter((fact) => fact.definite_singular !== null).length}/${nouns.length} nouns`,
@@ -112,6 +115,7 @@ async function main(): Promise<void> {
   const argv = process.argv.slice(2)
   const rankingPath = valueAfter(argv, '--ranking')
   const ipaPath = valueAfter(argv, '--ipa')
+  const ddoIpaPath = valueAfter(argv, '--ddo-ipa')
   if (!rankingPath || !ipaPath) throw new Error('Required: --ranking <frequency list> --ipa <kaikki jsonl>')
   const rawLimit = valueAfter(argv, '--limit')
   const limit = rawLimit === null ? 10000 : Number(rawLimit)
@@ -125,6 +129,12 @@ async function main(): Promise<void> {
   const wanted = new Set<string>([...ranking.map((entry) => entry.lemma), ...phrases])
   console.log(`Reading IPA for ${wanted.size.toLocaleString('en-US')} entries from ${ipaPath} …`)
   const ipaIndex = await readIpaIndex(ipaPath, wanted)
+  // DDO is the dictionary that defines Danish pronunciation, and its transcription came from the
+  // article the audio run had already matched by headword and part of speech. Where it has an
+  // answer it is preferred; Wiktionary fills the rest.
+  const ddoIpa: Record<string, string> = ddoIpaPath
+    ? JSON.parse(await readFile(ddoIpaPath, 'utf8')) as Record<string, string>
+    : {}
 
   const lookupForms = [...new Set(ranking.map((entry) => corLookupForm(entry.lemma)).filter(Boolean))]
   console.log(`Reading COR for ${lookupForms.length.toLocaleString('en-US')} lemmas …`)
@@ -147,12 +157,13 @@ async function main(): Promise<void> {
     })
     // The part of speech has to be settled before an IPA can be chosen, for the same reason it
     // has to be settled before a gender can be read: `ved` is two words with two pronunciations.
-    const ipa = selectIpaForPos(candidates, fact.pos)
-    facts.push({ ...fact, ipa, ipa_source: ipa ? 'wiktionary' : null })
+    const fromDdo = ddoIpa[entry.lemma]
+    const ipa = fromDdo || selectIpaForPos(candidates, fact.pos)
+    facts.push({ ...fact, ipa, ipa_source: ipa ? (fromDdo ? 'ddo' : 'wiktionary') : null })
   }
 
   for (const phrase of phrases) {
-    const ipa = selectIpaForPos(ipaIndex.get(phrase) || [], 'phrase')
+    const ipa = ddoIpa[phrase] || selectIpaForPos(ipaIndex.get(phrase) || [], 'phrase')
     facts.push(buildCatalogFact({
       lemma: phrase,
       kind: 'phrase',
@@ -161,7 +172,7 @@ async function main(): Promise<void> {
       formRows: [],
       lemmaRows: [],
       ipa,
-      ipaSource: ipa ? 'wiktionary' : null,
+      ipaSource: ipa ? (ddoIpa[phrase] ? 'ddo' : 'wiktionary') : null,
     }))
   }
 

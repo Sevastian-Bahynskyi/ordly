@@ -25,6 +25,15 @@ export interface AudioResult {
   lemma: string
   outcome: AudioOutcome
   path: string | null
+  /**
+   * The transcription from the same DDO article the recording came from.
+   *
+   * Harvested here rather than fetched separately: the run is already on the page, and the
+   * article was already matched by headword and part of speech. A bare search cannot be trusted
+   * for this — `stadig` returns `stadigvæk` first, and reading its transcription would record a
+   * different word's sounds. Null for a word whose file was skipped, because no page was fetched.
+   */
+  ipa: string | null
 }
 
 /** The script's own word-class vocabulary. Anything else is sent without a hint. */
@@ -86,9 +95,26 @@ export function parseAudioReport(value: unknown): AudioResult[] {
     const status = typeof record.status === 'string' ? record.status : ''
     const path = typeof record.path === 'string' && record.path ? record.path : null
     const outcome: AudioOutcome = !ok || !path ? 'failed' : status === 'skipped' ? 'skipped' : 'saved'
-    results.push({ lemma, outcome, path: outcome === 'failed' ? null : path })
+    const ipa = typeof record.ipa === 'string' && record.ipa.trim() ? record.ipa.trim() : null
+    results.push({ lemma, outcome, path: outcome === 'failed' ? null : path, ipa })
   }
   return results
+}
+
+/**
+ * The transcriptions this run learned, merged onto what earlier runs learned.
+ *
+ * Merged rather than replaced because `--skip-existing` returns without fetching the page, so a
+ * second run over the same words reports no transcription for them. Dropping the old value would
+ * lose an IPA that was correctly collected the first time.
+ */
+export function mergeHarvestedIpa(
+  existing: Readonly<Record<string, string>>,
+  results: readonly AudioResult[],
+): Record<string, string> {
+  const merged: Record<string, string> = { ...existing }
+  for (const result of results) if (result.ipa) merged[result.lemma] = result.ipa
+  return merged
 }
 
 export function audioSummary(results: readonly AudioResult[]): Record<AudioOutcome, number> {

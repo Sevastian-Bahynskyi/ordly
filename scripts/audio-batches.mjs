@@ -23,7 +23,7 @@ import { spawn } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
-import { AUDIO_BATCH_SIZE, audioBatches, audioSummary, parseAudioReport, wordsFileContents } from '../lib/catalog-audio.ts'
+import { AUDIO_BATCH_SIZE, audioBatches, audioSummary, mergeHarvestedIpa, parseAudioReport, wordsFileContents } from '../lib/catalog-audio.ts'
 
 const SCRIPT = 'download_ddo_audio.py'
 
@@ -49,6 +49,15 @@ async function readTerms(factsPath) {
     terms.push({ lemma: String(fact.lemma), pos: fact.pos ?? null })
   }
   return terms
+}
+
+async function readJson(path, fallback) {
+  try {
+    return JSON.parse(await readFile(path, 'utf8'))
+  } catch (error) {
+    if (error.code === 'ENOENT') return fallback
+    throw error
+  }
 }
 
 async function readManifest(path) {
@@ -92,6 +101,10 @@ async function main() {
   const outputDir = valueAfter(argv, '--output') || 'catalog/audio'
   const wordsPath = valueAfter(argv, '--words') || 'words.txt'
   const manifestPath = valueAfter(argv, '--manifest') || 'catalog/audio-manifest.json'
+  // The transcription rides along with the recording: the run is already on the DDO page, and the
+  // article has already been matched by headword and part of speech. Feed this back into
+  // build-catalog-facts with --ddo-ipa, and the catalog's pronunciations rest on real phonetics.
+  const ipaPath = valueAfter(argv, '--ipa-out') || 'catalog/ddo-ipa.json'
   const size = positiveInteger(valueAfter(argv, '--size'), AUDIO_BATCH_SIZE, '--size')
   const maxBatches = positiveInteger(valueAfter(argv, '--batches'), Infinity, '--batches')
   const dryRun = argv.includes('--dry-run')
@@ -127,6 +140,8 @@ async function main() {
     const report = await newestReport(resolve(outputDir), startedAt)
     const results = parseAudioReport(report)
     const summary = audioSummary(results)
+    const harvested = mergeHarvestedIpa(await readJson(ipaPath, {}), results)
+    await writeFile(ipaPath, `${JSON.stringify(harvested, null, 2)}\n`, 'utf8')
     manifest.batches[key] = {
       status: 'done',
       size: batch.length,
@@ -135,7 +150,8 @@ async function main() {
       files: Object.fromEntries(results.filter((result) => result.path).map((result) => [result.lemma, result.path])),
     }
     await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8')
-    console.log(`  saved ${summary.saved}, already present ${summary.skipped}, no recording ${summary.failed}`)
+    console.log(`  saved ${summary.saved}, already present ${summary.skipped}, no recording ${summary.failed}`
+      + ` · ${results.filter((result) => result.ipa).length} transcriptions harvested`)
     ran += 1
   }
 

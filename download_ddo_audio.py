@@ -110,7 +110,11 @@ def clean_headword(value: str) -> str:
 
 def headwords_from_article(article: Tag) -> tuple[str, ...]:
     values: list[str] = []
-    for heading in article.select(".modern-top-row h2.modern-match, h2.modern-match"):
+    # DDO renders the headword as `h1.modern-match` today and used `h2` before; both are accepted
+    # so a markup change on their side degrades into nothing rather than into every lookup failing.
+    for heading in article.select(
+        ".modern-top-row h1.modern-match, .modern-top-row h2.modern-match, h1.modern-match, h2.modern-match"
+    ):
         clone = BeautifulSoup(str(heading), "html.parser")
         for extra in clone.select(".super"):
             extra.decompose()
@@ -197,6 +201,29 @@ def audio_url_from_article(article: Tag, page_url: str) -> str:
     return ""
 
 
+def ipa_from_article(article: Tag) -> str:
+    """The chosen article's headword pronunciation, e.g. `[ˈgɔlˀ]`.
+
+    Taken from the article the scorer already picked, so it inherits its headword and
+    part-of-speech matching. A bare search result cannot be trusted for this: `stadig` returns
+    `stadigvæk` first, and reading its transcription would record a different word's sounds.
+
+    Only the first transcription in the Udtale row is used. The ones after it are labelled
+    (`pluralis`, `i sammensætning`) and describe an inflected or compounded form, not the lemma.
+    """
+    row = article.select_one("#id-udt") or article
+    node = row.select_one(".lydskrift")
+    if not isinstance(node, Tag):
+        return ""
+    text = normalize_text(node.get_text(" ", strip=True))
+    match = re.search(r"\[([^\]]+)\]", text)
+    if not match:
+        return ""
+    # `get_text(" ")` pads with the separator, so the brackets arrive as `[ ˈgɔl ]`. The padding is
+    # an artefact of the extraction, not part of the transcription.
+    return f"[{normalize_text(match.group(1))}]"
+
+
 def lookup_audio(term: LookupTerm) -> dict[str, object]:
     page_url = DDO_SEARCH_URL + quote(term.word)
     response = request_with_retries(page_url, timeout=20)
@@ -223,6 +250,7 @@ def lookup_audio(term: LookupTerm) -> dict[str, object]:
             "headwords": list(candidate.headwords),
             "part_of_speech": candidate.part_of_speech,
             "selection_score": candidate.score,
+            "ipa": ipa_from_article(candidate.article),
             "error": "Selected DDO article has no pronunciation MP3",
         }
 
@@ -232,6 +260,7 @@ def lookup_audio(term: LookupTerm) -> dict[str, object]:
         "ok": True,
         "status": "found",
         "audio_url": audio_url,
+        "ipa": ipa_from_article(candidate.article),
         "page_url": response.url,
         "headwords": list(candidate.headwords),
         "part_of_speech": candidate.part_of_speech,
