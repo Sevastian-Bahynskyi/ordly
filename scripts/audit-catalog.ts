@@ -62,13 +62,36 @@ async function readFacts(path: string): Promise<Map<string, CatalogFact>> {
  * A row whose shape is wrong is skipped rather than audited: the gate already sent it to
  * needs_review, and a person's attention is worth more than re-finding what a validator found.
  */
-async function readAccepted(dir: string, facts: Map<string, CatalogFact>): Promise<AuditRow[]> {
+async function readRejected(path: string): Promise<Set<string>> {
+  try {
+    const text = await readFile(path, 'utf8')
+    const rejected = new Set<string>()
+    for (const line of text.split(/\r?\n/u)) {
+      if (!line.trim()) continue
+      const record = JSON.parse(line) as { lemma?: unknown }
+      if (typeof record.lemma === 'string') rejected.add(record.lemma)
+    }
+    return rejected
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return new Set()
+    throw error
+  }
+}
+
+async function readAccepted(
+  dir: string,
+  facts: Map<string, CatalogFact>,
+  rejected: ReadonlySet<string>,
+): Promise<AuditRow[]> {
   const names = (await readdir(dir)).filter((name) => name.endsWith('.json')).sort()
   const rows: AuditRow[] = []
   for (const name of names) {
     const parsed = parseCatalogGeneratorText(await readFile(join(dir, name), 'utf8'))
     for (const value of parsed) {
       if (!isGeneratedCatalogRow(value)) continue
+      // A row the gate rejected is not going into the catalog, so reading it here would spend a
+      // person's attention on a defect a validator already found and filed.
+      if (rejected.has(value.lemma)) continue
       const fact = facts.get(factKey(value.lemma, value.kind))
       if (fact) rows.push({ fact, row: value, batch: basename(name) })
     }
@@ -183,6 +206,7 @@ async function main(): Promise<void> {
   const outDir = valueAfter(argv, '--out') || 'catalog/out'
   const reportPath = valueAfter(argv, '--report') || 'catalog/audit-sample.md'
   const verdictPath = valueAfter(argv, '--verdicts') || 'catalog/audit-verdicts.json'
+  const reviewPath = valueAfter(argv, '--needs-review') || 'catalog/needs_review.jsonl'
   const rawSize = valueAfter(argv, '--size')
   const size = rawSize === null ? AUDIT_SAMPLE_SIZE : Number(rawSize)
   const rawSeed = valueAfter(argv, '--seed')
@@ -191,7 +215,7 @@ async function main(): Promise<void> {
   if (!Number.isInteger(seed)) throw new Error('--seed must be an integer')
 
   const facts = await readFacts(factsPath)
-  const accepted = await readAccepted(outDir, facts)
+  const accepted = await readAccepted(outDir, facts, await readRejected(reviewPath))
   if (!accepted.length) throw new Error(`No accepted rows found in ${outDir}`)
 
   const sample = drawAuditSample(accepted, { size, seed })
