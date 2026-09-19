@@ -1,5 +1,5 @@
 import type { CatalogFact, CatalogIpaSource, CatalogKind } from './catalog-contract'
-import { corGenderForPos, corPartOfSpeech, corPartsOfSpeech, type CorForm } from './cor'
+import { corBaseForm, corGenderForPos, corPartOfSpeech, corPartsOfSpeech, type CorForm } from './cor'
 import type { NounGender, PartOfSpeech } from './types'
 
 /**
@@ -56,6 +56,34 @@ export function resolvePartOfSpeech(
   const rows = rowsForLemma(formRows, lemma)
   if (!rows.length) return posHint
   return corPartOfSpeech(rows)
+}
+
+/**
+ * Whether this lemma may become a catalog headword at all, and what to use instead.
+ *
+ * A frequency list built from a corpus ranks the most frequent *forms* and calls them lemmas.
+ * COR disagrees about roughly one word in sixty: `kan` is an inflection of `kunne`, `mig` of
+ * `jeg`, `glemt` of `glemme`, and `bror`, `ide` and `gymnasium` are variant spellings of
+ * `broder`, `idé` and `gymnasie`. Teaching the corpus's word would contradict the rule that the
+ * dictionary form is the only form a word can be saved in.
+ *
+ * Returns the lemma to build instead — which is the input when it is already a dictionary form —
+ * or `null` when there is nothing honest to build. Null covers the cases `corBaseForm` refuses:
+ * a register that has never heard of the word (it may still be real, so the live path keeps it),
+ * readings that disagree (`far` is both `fader` and `fare`), and a lemma that is two words
+ * (`selv om`, `nogen sinde`, `f.eks.`), which no single-word catalog row can hold.
+ */
+export function catalogHeadword(
+  formRows: readonly CorForm[],
+  lemma: string,
+  pos: PartOfSpeech | null,
+): string | null {
+  if (!formRows.length) return lemma
+  if (pos && corLemmaHasPartOfSpeech(formRows, lemma, pos)) return lemma
+  if (!pos && rowsForLemma(formRows, lemma).length) return lemma
+  const base = corBaseForm(formRows, lemma, pos ? [pos] : [])
+  if (!base || /\s/u.test(base)) return null
+  return base
 }
 
 const DEFINITE_SINGULAR_TAGS: Record<NounGender, string> = {

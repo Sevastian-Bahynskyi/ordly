@@ -29,7 +29,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { createInterface } from 'node:readline'
 import type { CatalogFact } from '../lib/catalog-contract'
-import { buildCatalogFact } from '../lib/catalog-facts'
+import { buildCatalogFact, catalogHeadword, resolvePartOfSpeech } from '../lib/catalog-facts'
 import { parseKaikkiLine, selectIpaForPos, type WiktionaryIpa } from '../lib/catalog-ipa'
 import { parseRanking, type RankedLemma } from '../lib/catalog-ranking'
 import { corLookupForm, parseCorForms, type CorForm } from '../lib/cor'
@@ -142,22 +142,42 @@ async function main(): Promise<void> {
   const lemmaRows = await readCorRows(lookupForms, 'lemma')
 
   const facts: CatalogFact[] = []
+  const seen = new Set<string>()
+  const dropped: string[] = []
+  const remapped: string[] = []
   for (const entry of ranking) {
     const key = corLookupForm(entry.lemma)
-    const candidates = ipaIndex.get(entry.lemma) || []
+    const rows = formRows.get(key) || []
+
+    // A corpus ranks the most frequent *forms* and calls them lemmas. The register disagrees
+    // about roughly one word in sixty — `kan` is `kunne`, `mig` is `jeg`, `bror` is `broder` —
+    // and building the corpus's word would contradict the rule that the dictionary form is the
+    // only form a word can be saved in.
+    const pos = resolvePartOfSpeech(rows, key, entry.pos)
+    const headword = catalogHeadword(rows, key, pos)
+    if (!headword) {
+      dropped.push(entry.lemma)
+      continue
+    }
+    if (headword !== key) remapped.push(`${entry.lemma}→${headword}`)
+    // The dictionary form is usually already in the ranking under its own rank, and the higher
+    // rank is the one worth keeping.
+    if (seen.has(headword)) continue
+    seen.add(headword)
+    const candidates = ipaIndex.get(headword) || ipaIndex.get(entry.lemma) || []
     const fact = buildCatalogFact({
-      lemma: entry.lemma,
+      lemma: headword,
       kind: 'word',
       freqRank: entry.rank,
       posHint: entry.pos,
-      formRows: formRows.get(key) || [],
-      lemmaRows: lemmaRows.get(key) || [],
+      formRows: headword === key ? rows : formRows.get(headword) || [],
+      lemmaRows: lemmaRows.get(headword) || lemmaRows.get(key) || [],
       ipa: null,
       ipaSource: null,
     })
     // The part of speech has to be settled before an IPA can be chosen, for the same reason it
     // has to be settled before a gender can be read: `ved` is two words with two pronunciations.
-    const fromDdo = ddoIpa[entry.lemma]
+    const fromDdo = ddoIpa[headword] || ddoIpa[entry.lemma]
     const ipa = fromDdo || selectIpaForPos(candidates, fact.pos)
     facts.push({ ...fact, ipa, ipa_source: ipa ? (fromDdo ? 'ddo' : 'wiktionary') : null })
   }
@@ -180,6 +200,8 @@ async function main(): Promise<void> {
   await writeFile(outPath, `${facts.map((fact) => JSON.stringify(fact)).join('\n')}\n`, 'utf8')
 
   console.log(`\nWrote ${facts.length.toLocaleString('en-US')} facts to ${outPath}`)
+  if (remapped.length) console.log(`  ${remapped.length} remapped to their dictionary form, e.g. ${remapped.slice(0, 6).join(', ')}`)
+  if (dropped.length) console.log(`  ${dropped.length} dropped — the register could not name one single-word dictionary form: ${dropped.slice(0, 8).join(', ')}`)
   console.log(summarize(facts))
   const silent = facts.filter((fact) => fact.ipa === null).length
   if (silent) console.log(`\n${silent} entries have no IPA and must be generated with a null pronunciation (§8 rule 1).`)
