@@ -22,24 +22,16 @@ For each batch, in order:
 2. Do exactly what that file says.
 3. Write the resulting JSON array to `catalog/out/batch-NNNN.json` — the bare array, nothing else.
    No Markdown, no code fence, no commentary, no wrapper object.
-4. Verify it before moving on:
-
-   ```
-   pnpm exec tsx scripts/validate-catalog.ts \
-     --facts catalog/facts.jsonl \
-     --input catalog/out/batch-NNNN.json \
-     --sources scripts/catalog-validation-sources.ts \
-     --start <start> --size 50
-   ```
-
-   The `<start>` value for each batch is in `catalog/prompts/index.json`. Batch 1 is `0`, batch 2
-   is `50`, batch 3 is `100`, and so on.
-
-5. If the validator reports below 95% clean, **regenerate that batch** and try again. Do not
-   hand-edit individual rows to make them pass — a hand-patched row hides which batch the defect
-   came from.
+4. Check only what you can check without a database: the file parses as JSON, it is an array,
+   it has exactly 50 objects, and the lemmas are the same ones in the same order as the input.
 
 Commit after every few batches so nothing is lost, and push to `feat/catalog-pipeline`.
+
+**Do not run `scripts/validate-catalog.ts`.** The real gate checks every lemma against the COR
+word register, which lives in a Supabase project this sandbox has no credentials for. The check
+fails closed on purpose — "the check did not run" must never be read as "everything passed" — so
+in this environment every row would be rejected and you would regenerate good batches forever.
+Validation happens locally, against the pushed branch, after you have generated.
 
 ## The rules that matter most
 

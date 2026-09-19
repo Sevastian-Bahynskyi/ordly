@@ -21,6 +21,10 @@ frequency list cannot contain. Do the words first.
 
 ## Then check it
 
+This runs locally only: the gate reads the COR word register out of Supabase through the linked
+`supabase` CLI, so a sandbox with no credentials fails every row by design rather than passing
+them silently.
+
 ```
 pnpm exec tsx scripts/validate-catalog.ts \
   --facts catalog/facts.jsonl \
