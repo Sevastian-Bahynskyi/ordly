@@ -10,11 +10,28 @@ which model wrote a row.
 
 ## What you need first
 
-- **A frequency ranking.** The DSL lemma list (<https://korpus.dsl.dk/resources/details/freq-lemmas.html>)
-  is licence-gated: accept the terms and download it yourself. It is never downloaded
-  automatically and never committed. Format: `pos<TAB>lemma<TAB>frequency`.
+- **A frequency ranking.** The DSL lemma list. There is no checkbox — the licence page says that
+  downloading *is* the acceptance, and the files are linked from it:
+  <https://korpus.dsl.dk/resources/licences/dsl-open.html> → `freq-lemma.zip`. It holds two
+  editions of 29,999 lemmas: `freq-30k-ex.txt` (no proper nouns or numerals — use this one) and
+  `freq-30k-in.txt`. Not committed, following the COR precedent: the source dataset stays at its
+  source and the repo keeps what was derived from it.
+
+  **The real format is not what the description implies.** Three tab-separated fields: a
+  *one-letter* word class, the lemma, and a frequency that is a **proportion** of the corpus, not
+  a count. The codes are undocumented and were decoded from the data — `NC` common noun, `V` verb,
+  `A` adjective, `D` adverb, `T` preposition, `P` pronoun, `C` conjunction, `L` numeral, `I`
+  interjection; `NP` proper nouns, `M` bound morphemes (`@erne`), `U`, and every `*W` fragment
+  class are dropped. Same lesson as COR's normering field: the shipped file is what is trusted.
+
+  **Licence:** DSL Open. Redistribution and derived works are permitted with attribution, and
+  there is one restriction worth knowing — the resources may not be used to publish a dictionary
+  or a product competing with DSL's own. Ordly is a personal single-user learning app.
+
+  *Credit: frequency data from the [Society for Danish Language and Literature](https://dsl.dk).*
 - **The Wiktionary phonetics extract**, once, ~95 MB, not committed:
   `curl -O https://kaikki.org/dictionary/Danish/kaikki.org-dictionary-Danish.jsonl`
+  It is the *fallback* for IPA, not the main source — see step 6.
 - **COR loaded** in the linked project (`scripts/import-cor.ts`). Without it every word fails the
   gate's lemma check, which is the correct behaviour and a useless run.
 - **`download_ddo_audio.py` in the repo root**, for step 6.
@@ -25,9 +42,20 @@ which model wrote a row.
 pnpm exec tsx scripts/rank-coverage.ts --ranking ~/Downloads/lemmas.tsv
 ```
 
-Prints the hit rate of the ranking against the words actually in the vocabulary, at 3k / 5k / 10k
-/ 20k. **Choose N from that curve.** Below 60% at the deepest depth the script stops: the value
-proposition has changed and the build is not worth paying for.
+Prints the hit rate of the ranking against the words actually in the vocabulary. **Choose N from
+that curve.** Below 60% at the deepest depth the script stops: the value proposition has changed
+and the build is not worth paying for.
+
+Measured against the real vocabulary on 2026-09-19 (94 single-word entries):
+
+| depth | 1,000 | 2,000 | **3,000** | 5,000 | 10,000 | 20,000 | 30,000 |
+|---|---|---|---|---|---|---|---|
+| coverage | 64.9% | 79.8% | **87.2%** | 88.3% | 92.6% | 94.7% | 94.7% |
+
+**N is 3,000.** Ten thousand costs 3.3× as much and buys 5.4 points; the curve is flat from 3k to
+5k and never passes 94.7%. The five words missing at any depth — `yndlings`, `værre`, `nogle`,
+`solbrille`, `følgende` — are mostly not lemmas at all, which the base-form check already handles
+at save time.
 
 Multi-word entries are reported separately, never counted as misses. A lemma list contains no
 phrases by construction, so scoring `godt lide` against it would measure nothing.
@@ -58,10 +86,21 @@ costs nothing; found at word 6,000 it costs the run.
 
 ## Step 3 — generate
 
-`buildCatalogGeneratorPrompt` in `lib/catalog-contract.ts` is the whole contract: 40 facts in,
-a bare JSON array of 40 rows out, same order. Any generator may write it — Claude subagents,
-ChatGPT in the browser (a **new chat per batch**; format drifts in a long conversation), or a
-cheap API model. Output goes to `catalog/out/batch-NNNN.json`.
+```
+pnpm exec tsx scripts/write-generator-batches.ts --facts catalog/facts.jsonl --size 50
+```
+
+Writes `catalog/prompts/batch-NNNN.txt`, each holding the contract from
+`lib/catalog-contract.ts` with that batch's facts already embedded, plus `index.json` (the
+`--start` offset the validator needs per batch) and a README. 3,000 words at 50 per batch is 60
+files.
+
+Any generator may write the reply — Claude subagents, ChatGPT in the browser, or a cheap API
+model. In a browser, **a new chat per batch**: a long conversation drifts, and a model that has
+answered thirty times starts shortening fields and dropping rows. Replies go to
+`catalog/out/batch-NNNN.json`, which is committed — it is the expensive artefact.
+
+`catalog/prompts/phrases.txt` asks for the phrase list, which is a separate and later pass.
 
 ## Step 4 — the gate
 
@@ -110,11 +149,36 @@ independent signal for free: the DDO recording of the word. Checking the Cyrilli
 actually saying it is a stronger test than any amount of re-reading the IPA, and it is worth doing
 as its own pass over the sample.
 
-## Step 6 — audio
+## Step 6 — audio, and the transcriptions that ride along with it
+
+**Run this before the final fact build.** It is where the IPA actually comes from.
 
 ```
 node scripts/audio-batches.mjs --facts catalog/facts.jsonl --output catalog/audio
 ```
+
+Wiktionary knows the phonetics of only **53%** of the top 3,000 lemmas, and 1,365 of the 1,410
+misses are simply absent rather than mismatched, so no amount of better matching lifts it. DDO
+knows nearly all of them — but a bare search cannot be read for this: `stadig` returns
+`stadigvæk`'s article first, and taking it would record a different word's sounds.
+
+The audio run has already solved that. It scores DDO's articles by headword and part of speech and
+downloads from the one it picked, so the transcription on that same page belongs to the right
+word, and harvesting it costs no extra request. `ved|noun` resolves to the noun's `[ˈveð]`.
+
+It also makes the §8 anchors derivable rather than hand-tuned: DDO gives `stadig` `[ˈsdæːði]`,
+`selvfølgelig` `[sεˈføli]`, `synes` `[ˈsynəs]`.
+
+Harvested transcriptions land in `catalog/ddo-ipa.json`, merged across runs (`--skip-existing`
+fetches no page, so a second run reports no IPA for words it skipped). Feed them back:
+
+```
+pnpm exec tsx scripts/build-catalog-facts.ts --ranking ... --ipa ... \
+  --ddo-ipa catalog/ddo-ipa.json --limit 3000 --out catalog/facts.jsonl
+```
+
+Measured on the real run, 3,000 words: 2,969 recordings (36 MB), **2,847 transcriptions**, and
+final IPA coverage of **95.5%** (2,847 DDO + 19 Wiktionary) against 53% without this.
 
 Drives `download_ddo_audio.py` 500 words at a time, recording each batch in
 `catalog/audio-manifest.json`; re-running continues from the first batch that is not done. Words
@@ -134,6 +198,12 @@ button does not render.
 Issue #6 §11: read the CSVs, upsert `word_catalog` / `word_catalog_sense`, upload `catalog/audio/`
 to the private bucket, write back `audio_path`, verify counts and a few signed URLs, and confirm
 the miss path still works for a word deliberately absent from the catalog.
+
+## Why the steps are not in the issue's order
+
+The issue puts audio last. It belongs before the final fact build, because the audio run is what
+collects the IPA the generator needs (step 6). The order that works: 0 → 1 (Wiktionary IPA only)
+→ 6 → 1 again (with `--ddo-ipa`) → 3 → 4 → 5.
 
 ## The one departure from the issue as written
 
