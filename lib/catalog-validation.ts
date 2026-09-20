@@ -13,6 +13,16 @@ export const CATALOG_MIN_CLEAN_RATE = 0.95
 export interface CatalogValidationSources {
   corLemmaHasPartOfSpeech(lemma: string, pos: PartOfSpeech): boolean | null | Promise<boolean | null>
   findMisspellings(text: string): string[] | null | Promise<string[] | null>
+  /**
+   * Whether any word in the sentence is a register-recorded form of the lemma.
+   *
+   * Optional, and consulted only when the deterministic matcher has already said no. That matcher
+   * cannot see through a stem change, so it rejects `Hun kan svømme` as an example of `kunne`,
+   * `Vi går i skole` for `gå`, and `Hun vandt løbet` for `vinde` — which is every irregular verb,
+   * and therefore most of the commonest words in the language. COR holds those forms, so it can
+   * answer what a string comparison cannot. Returning null means the check could not run.
+   */
+  exampleContainsLemma?(example: string, lemma: string): boolean | null | Promise<boolean | null>
 }
 
 export type CatalogFailureCode =
@@ -178,8 +188,6 @@ export async function validateCatalogBatch(
       const pos = isPartOfSpeech(rawSense.pos) ? rawSense.pos : null
       if (!pos) {
         fail(failures, 'sense_pos_invalid', 'Sense part of speech is missing or invalid.', expectedOrdinal)
-      } else if (fact.pos !== null && pos !== fact.pos) {
-        fail(failures, 'sense_pos_changed', `Sense changed source part of speech from ${fact.pos} to ${pos}.`, expectedOrdinal)
       }
 
       const gender = rawSense.gender === null ? null : isNounGender(rawSense.gender) ? rawSense.gender : undefined
@@ -197,16 +205,37 @@ export async function validateCatalogBatch(
           corCache.set(key, check)
         }
         const exists = await check
+        // A word can genuinely be two word classes — `dansk` is an adjective and a noun, `hvis`
+        // is a conjunction and a possessive, `for` is a preposition, an adverb and a conjunction —
+        // so a sense that departs from the facts' part of speech is not wrong by itself. The
+        // register decides: it may depart only where COR also lists the lemma in that class,
+        // which still leaves no room to invent one. A check that could not run decides nothing.
         if (exists === null) {
           fail(failures, 'cor_check_unavailable', 'COR lemma/part-of-speech check did not run.', expectedOrdinal)
         } else if (!exists) {
-          fail(failures, 'lemma_not_in_cor_for_pos', `COR does not contain ${JSON.stringify(fact.lemma)} as a lemma in part of speech ${pos}.`, expectedOrdinal)
+          if (fact.pos !== null && pos !== fact.pos) {
+            fail(failures, 'sense_pos_changed', `Sense changed source part of speech from ${fact.pos} to ${pos}, and COR does not list ${JSON.stringify(fact.lemma)} as a ${pos}.`, expectedOrdinal)
+          } else {
+            fail(failures, 'lemma_not_in_cor_for_pos', `COR does not contain ${JSON.stringify(fact.lemma)} as a lemma in part of speech ${pos}.`, expectedOrdinal)
+          }
         }
+      } else if (pos && fact.pos !== null && pos !== fact.pos) {
+        // A phrase has no register to appeal to, so the facts' part of speech stands.
+        fail(failures, 'sense_pos_changed', `Sense changed source part of speech from ${fact.pos} to ${pos}.`, expectedOrdinal)
       }
 
       const example = typeof rawSense.example === 'string' ? rawSense.example.trim() : ''
-      if (!example || !findInSentence(example, fact.lemma)) {
-        fail(failures, 'example_missing_lemma', 'Example does not contain a form of the lemma that the deterministic matcher can verify.', expectedOrdinal)
+      if (!example) {
+        fail(failures, 'example_missing_lemma', 'Example is empty.', expectedOrdinal)
+      } else if (!findInSentence(example, fact.lemma)) {
+        // The cheap matcher said no. Before believing it, ask the register, which knows that
+        // `kan` is a form of `kunne`. Silence from the register leaves the matcher's answer.
+        const viaRegister = sources.exampleContainsLemma
+          ? await sourceResult(() => sources.exampleContainsLemma?.(example, fact.lemma) ?? null)
+          : false
+        if (viaRegister !== true) {
+          fail(failures, 'example_missing_lemma', 'Example does not contain a form of the lemma, by the matcher or by the register.', expectedOrdinal)
+        }
       }
       if (example) {
         let spelling = spellingCache.get(example)

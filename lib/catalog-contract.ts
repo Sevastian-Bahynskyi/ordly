@@ -145,6 +145,59 @@ Input facts:
 ${JSON.stringify(facts)}`
 }
 
+/**
+ * The second pass: the meanings the first pass left out (issue #6 §8, sense coverage).
+ *
+ * 98.1% of the first run came back with exactly one sense, because rule 6 warned against padding
+ * and a generator working through fifty words reads that as "one is safest". For the frequent end
+ * of the ranking that is simply wrong — `gang` is a time and a corridor, `prøve` is a verb and a
+ * noun, `kilde` is a source and to tickle — and a catalog that teaches one of each is a catalog
+ * that will be contradicted by the first text the learner reads.
+ *
+ * So this prompt inverts the default: it says polysemy is expected, shows what the first pass
+ * wrote, and asks what is missing. The output contract is unchanged, because the same gate has to
+ * judge the result.
+ */
+export function buildSensePassPrompt(
+  facts: readonly CatalogFact[],
+  existing: ReadonlyMap<string, CatalogGeneratedRow>,
+): string {
+  if (!facts.length) throw new Error('A sense pass batch cannot be empty')
+  const rows = facts.map((fact) => {
+    const row = existing.get(fact.lemma)
+    return {
+      ...fact,
+      current_senses: row ? row.senses.map((sense) => sense.text) : [],
+      current_pronunciation: row ? row.pronunciation : null,
+    }
+  })
+  return `You are completing the meanings of common Danish words for a learner's catalog. A first pass already wrote one meaning for each; it was too conservative, and most of these words carry more than one meaning a learner will actually meet.
+
+Return exactly one bare JSON array and nothing else: no Markdown, no code fences, no explanation.
+
+For every input object, return exactly one output object in the same position. Never reorder, omit, merge, or add lemmas.
+
+Output shape (identical to the first pass):
+[{"lemma":"...","kind":"word","pronunciation":"... or null","senses":[{"ordinal":1,"text":"...","pos":"...","gender":"en|et|null","example":"...","example_translation":"..."}]}]
+
+Your job for each word:
+1. Keep the meaning in \`current_senses\` if it is correct, with its wording. Fix it only if it is wrong.
+2. Add every other meaning of this word that an intermediate learner will genuinely meet — a different part of speech counts (\`prøve\` is both "пробовать" and "проба"), and so does a clearly distinct sense (\`gang\` is both "раз" and "коридор").
+3. Stop at 3 senses. Order them most common first, ordinals 1, 2, 3 with no gaps.
+4. Do not invent rare, literary, archaic or technical meanings to reach three. One meaning is the right answer for a word that genuinely has one.
+
+Everything else is unchanged and still binding:
+- \`pronunciation\`: reuse \`current_pronunciation\` exactly. If it is null, return null.
+- Gender is a fact: copy the input \`gender\` for noun senses only; if input gender is null, every sense gender is null. Never infer it.
+- If input \`pos\` is non-null, senses of that part of speech must use exactly it. A sense of a genuinely different part of speech uses its own, chosen from: ${PARTS_OF_SPEECH.join(', ')}.
+- Sense text is concise Russian in Cyrillic only — no Latin letters anywhere in it, not even to quote the Danish.
+- One example per sense: simple everyday Danish, roughly CEFR A2, with a natural Russian translation. It must contain the exact lemma or a transparent inflected form of it, must demonstrate that sense, and must not substitute a compound for the word itself.
+- Return only the JSON array, with exactly ${facts.length} ${facts.length === 1 ? 'object' : 'objects'} in exactly the input order.
+
+Input:
+${JSON.stringify(rows)}`
+}
+
 /** Browser/manual generators must still obey the bare-array contract. */
 export function parseCatalogGeneratorText(text: string): unknown[] {
   const parsed: unknown = JSON.parse(text)

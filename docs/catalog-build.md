@@ -118,6 +118,37 @@ below 95% clean exits non-zero: **stop and diagnose, do not fix it later.**
 Both source checks fail closed. `findMisspellings` returns `null`, not `[]`, when the dictionary
 could not be built, and no caller may read "the check did not run" as "every word is correct".
 
+### The second pass: meanings the first one left out
+
+The first run returned exactly one sense for 98.1% of rows. Rule 6 warned against padding, and a
+generator working through fifty words reads that as "one is safest" — which is right for `gulv`
+and wrong for `gang`, `lige`, `prøve`, `rejse` and `kilde`, every one of which the learner's own
+vocabulary already carried two meanings for.
+
+`scripts/write-sense-pass.ts` re-asks the frequent end of the ranking with the default inverted:
+it shows the generator what it already wrote and asks what is missing. Polysemy is concentrated in
+common words, so the top 1,000 is where nearly all the missing meanings are.
+
+Measured over the top 1,000: rows with more than one meaning went from **0% to 34%** (306 with
+two, 36 with three). `lige` is now "только что · прямо · как раз", `gang` is "раз · коридор ·
+походка".
+
+It cost two rules that turned out to be written for a one-sense catalog, and both were fixed
+rather than waived:
+
+- **A sense may depart from the facts' part of speech where COR also lists the lemma in that
+  class.** `dansk` is an adjective and a noun, `hvis` a conjunction and a possessive, `for` a
+  preposition, an adverb and a conjunction. The register is what authorises the departure, so
+  there is still no room to invent a word class, and a check that could not run authorises
+  nothing.
+- **The register answers what the string matcher cannot.** `findInSentence` cannot see through a
+  stem change, so it rejected `Hun kan svømme` as an example of `kunne`, `Vi går i skole` for
+  `gå`, `Hun vandt løbet` for `vinde` — every irregular verb, and therefore most of the commonest
+  words in the language. COR holds those forms. Consulted only after the matcher says no, it
+  rescued 46 correct examples of 49.
+
+Final: **2,906 of 3,000 rows clean (96.9%)**.
+
 ## Step 5 — audit
 
 ```

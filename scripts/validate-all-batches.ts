@@ -18,11 +18,13 @@ import { corLemmaHasPartOfSpeech as lemmaHasPartOfSpeech } from '../lib/catalog-
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact } from '../lib/catalog-contract'
 import {
   CATALOG_MIN_CLEAN_RATE,
+  isGeneratedCatalogRow,
   validateCatalogBatch,
   type CatalogFailureCode,
   type CatalogValidationSources,
 } from '../lib/catalog-validation'
 import { corLookupForm, parseCorForms, type CorForm } from '../lib/cor'
+import { danishWords } from '../lib/danish-text'
 import { findMisspellings as findDanishMisspellings } from '../lib/spelling'
 import type { PartOfSpeech } from '../lib/types'
 import { literal, queryJson } from './catalog-db'
@@ -76,6 +78,30 @@ async function loadCorForms(lemmas: readonly string[]): Promise<Map<string, CorF
   return byForm
 }
 
+/**
+ * Every register row for every word used in an example, so the gate can tell that `kan` is a form
+ * of `kunne`. Read in one pass for the same reason the lemmas are: a round trip per word would
+ * cost tens of thousands of them.
+ */
+async function loadExampleForms(examples: readonly string[]): Promise<Map<string, string[]>> {
+  const tokens = [...new Set(examples.flatMap((example) => danishWords(example)).map(corLookupForm).filter(Boolean))]
+  const lemmasByForm = new Map<string, string[]>()
+  for (let start = 0; start < tokens.length; start += COR_CHUNK) {
+    const chunk = tokens.slice(start, start + COR_CHUNK)
+    const rows = await queryJson<unknown>(
+      `select distinct form, lemma, tag from cor_form where form in (${chunk.map((token) => literal(token)).join(', ')})`,
+    )
+    for (const row of parseCorForms(rows)) {
+      const existing = lemmasByForm.get(row.form)
+      if (existing) {
+        if (!existing.includes(row.lemma)) existing.push(row.lemma)
+      } else lemmasByForm.set(row.form, [row.lemma])
+    }
+    for (const token of chunk) if (!lemmasByForm.has(token)) lemmasByForm.set(token, [])
+  }
+  return lemmasByForm
+}
+
 async function main(): Promise<void> {
   const argv = process.argv.slice(2)
   const factsPath = valueAfter(argv, '--facts') || 'catalog/facts.jsonl'
@@ -89,6 +115,20 @@ async function main(): Promise<void> {
   console.log(`Reading the word register for ${facts.length.toLocaleString('en-US')} lemmas …`)
   const corByForm = await loadCorForms(facts.map((fact) => fact.lemma))
 
+  // Every example in the run, so the register can be asked about the words inside them too.
+  const examples: string[] = []
+  for (const entry of index) {
+    try {
+      for (const value of parseCatalogGeneratorText(await readFile(`${outDir}/${entry.batch}`, 'utf8'))) {
+        if (isGeneratedCatalogRow(value)) for (const sense of value.senses) examples.push(sense.example)
+      }
+    } catch {
+      // A batch that cannot be read is reported per batch below; it contributes no examples.
+    }
+  }
+  console.log(`Reading the word register for the words used in ${examples.length.toLocaleString('en-US')} examples …`)
+  const lemmasByForm = await loadExampleForms(examples)
+
   const sources: CatalogValidationSources = {
     corLemmaHasPartOfSpeech(lemma: string, pos: PartOfSpeech): boolean | null {
       const form = corLookupForm(lemma)
@@ -100,6 +140,18 @@ async function main(): Promise<void> {
     async findMisspellings(text: string): Promise<string[] | null> {
       const found = await findDanishMisspellings(text)
       return found === null ? null : found.map((misspelling) => misspelling.word)
+    },
+    exampleContainsLemma(example: string, lemma: string): boolean | null {
+      const wanted = corLookupForm(lemma)
+      for (const word of danishWords(example)) {
+        const form = corLookupForm(word)
+        const lemmas = lemmasByForm.get(form)
+        // A token this run never fetched cannot be ruled on, and a guess here would be a row
+        // accepted for no reason.
+        if (lemmas === undefined) return null
+        if (lemmas.includes(wanted)) return true
+      }
+      return false
     },
   }
 
