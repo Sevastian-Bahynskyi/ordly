@@ -27,13 +27,17 @@
     "lemma": "hjemmehold",
     "kind": "word",
     "stratum": "no_ipa",
-    "failures": []
+    "failures": [
+      "example_translation_mismatch"
+    ]
   },
   {
     "lemma": "nedsætte",
     "kind": "word",
     "stratum": "no_ipa",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "overse",
@@ -51,7 +55,9 @@
     "lemma": "slutrunde",
     "kind": "word",
     "stratum": "no_ipa",
-    "failures": []
+    "failures": [
+      "translation_wrong"
+    ]
   },
   {
     "lemma": "magtfuld",
@@ -285,7 +291,9 @@
     "lemma": "udtale",
     "kind": "word",
     "stratum": "three_senses",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "gang",
@@ -369,7 +377,9 @@
     "lemma": "bakke",
     "kind": "word",
     "stratum": "tail",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "bekæmpelse",
@@ -381,19 +391,25 @@
     "lemma": "folketingsvalg",
     "kind": "word",
     "stratum": "tail",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "omdanne",
     "kind": "word",
     "stratum": "tail",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "indspille",
     "kind": "word",
     "stratum": "tail",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "kommunistisk",
@@ -495,7 +511,10 @@
     "lemma": "fortale",
     "kind": "word",
     "stratum": "head",
-    "failures": []
+    "failures": [
+      "translation_wrong",
+      "example_wrong_sense"
+    ]
   },
   {
     "lemma": "dollar",
@@ -609,7 +628,9 @@
     "lemma": "tilføje",
     "kind": "word",
     "stratum": "head",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "løsning",
@@ -675,7 +696,9 @@
     "lemma": "flere",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "nærhed",
@@ -717,7 +740,9 @@
     "lemma": "hylde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "aflevere",
@@ -765,7 +790,9 @@
     "lemma": "salt",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "individuel",
@@ -783,7 +810,9 @@
     "lemma": "påtage",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "partner",
@@ -795,7 +824,9 @@
     "lemma": "overholde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "undlade",
@@ -807,7 +838,9 @@
     "lemma": "tiltræde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "adskille",
@@ -819,7 +852,9 @@
     "lemma": "operere",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "brand",
@@ -843,7 +878,9 @@
     "lemma": "anmelde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "adskillig",
@@ -885,13 +922,17 @@
     "lemma": "smage",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "åbenlys",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "fortælling",
@@ -915,7 +956,9 @@
     "lemma": "medføre",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "religiøs",
@@ -927,7 +970,10 @@
     "lemma": "støde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong",
+      "example_wrong_sense"
+    ]
   },
   {
     "lemma": "stabil",
@@ -945,7 +991,9 @@
     "lemma": "grundlag",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "tidsskrift",
@@ -981,7 +1029,9 @@
     "lemma": "semifinale",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "ægteskab",
@@ -993,7 +1043,9 @@
     "lemma": "skrue",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "ambassadør",
@@ -1005,13 +1057,18 @@
     "lemma": "overstå",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch",
+      "level_drift"
+    ]
   },
   {
     "lemma": "pointe",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "illustrere",
@@ -1035,7 +1092,9 @@
     "lemma": "stjerne",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "tv",
@@ -1095,7 +1154,9 @@
     "lemma": "afsløre",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "parat",
@@ -1119,7 +1180,9 @@
     "lemma": "køn",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "sense_split_wrong"
+    ]
   },
   {
     "lemma": "leg",
@@ -1137,7 +1200,9 @@
     "lemma": "afbryde",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "debut",
@@ -1191,7 +1256,9 @@
     "lemma": "forside",
     "kind": "word",
     "stratum": "general",
-    "failures": []
+    "failures": [
+      "pronunciation_mismatch"
+    ]
   },
   {
     "lemma": "liberal",

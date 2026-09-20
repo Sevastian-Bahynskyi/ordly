@@ -180,6 +180,15 @@ independent signal for free: the DDO recording of the word. Checking the Cyrilli
 actually saying it is a stronger test than any amount of re-reading the IPA, and it is worth doing
 as its own pass over the sample.
 
+Audit run 2026-09-20: **168 of 200 rows clean (84.0% ± 5.1%) — STOP.** The largest defect was not
+an ear-judgement: 16 sampled rows had a hyphenated DDO component transcription presented as if it
+were the complete word. That produced unusable hints such as `påtage` → `тэ`, `semifinale` → `сэми`
+and `forside` → `фоо`. There are **157 accepted catalog rows** with this source shape, so they must
+be rebuilt before the catalog is exposed. The next largest class was sense coverage: 13 sampled
+rows either merged distinct meanings or omitted a common homograph, showing that the second pass
+over only the top 1,000 did not reach far enough. The recorded row-level verdicts are in
+`catalog/audit-verdicts.json`.
+
 ## Step 6 — audio, and the transcriptions that ride along with it
 
 **Run this before the final fact build.** It is where the IPA actually comes from.
