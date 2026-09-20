@@ -12,19 +12,25 @@
     "failures": []
   },
   {
-    "lemma": "anden",
-    "kind": "word",
-    "stratum": "pos_unsettled",
-    "failures": []
-  },
-  {
-    "lemma": "magtfuld",
+    "lemma": "højskole",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "tredjedel",
+    "lemma": "generalsekretær",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "hjemmehold",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "nedsætte",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
@@ -36,25 +42,19 @@
     "failures": []
   },
   {
-    "lemma": "valgkamp",
+    "lemma": "overgreb",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "folkeparti",
+    "lemma": "slutrunde",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "indsætte",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "præsidentvalg",
+    "lemma": "magtfuld",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
@@ -66,55 +66,7 @@
     "failures": []
   },
   {
-    "lemma": "generalforsamling",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "opfatte",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "retssag",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "topmøde",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "topchef",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "hestekraft",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "årrække",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "statsminister",
-    "kind": "word",
-    "stratum": "no_ipa",
-    "failures": []
-  },
-  {
-    "lemma": "pressemøde",
+    "lemma": "valgkamp",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
@@ -126,205 +78,271 @@
     "failures": []
   },
   {
-    "lemma": "udspil",
+    "lemma": "sommerferie",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "halvdel",
+    "lemma": "menneskerettighed",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "hjemmebane",
+    "lemma": "hovedrolle",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "sundhedsvæsen",
+    "lemma": "indse",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "tilknytte",
+    "lemma": "kulturminister",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "højskole",
+    "lemma": "sognepræst",
     "kind": "word",
     "stratum": "no_ipa",
     "failures": []
   },
   {
-    "lemma": "annoncere",
+    "lemma": "udbetale",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "nedlægge",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "hovedperson",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "opfatte",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "overlæge",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "halvår",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "hovedpart",
+    "kind": "word",
+    "stratum": "no_ipa",
+    "failures": []
+  },
+  {
+    "lemma": "stof",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "blive",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "for",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "mod",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "lige",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "post",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "nummer",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "passe",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "så",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "tro",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "over",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "løbe",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "høre",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "optage",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "sætte",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "behandle",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "mål",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "slå",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "lys",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "rigtig",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "holde",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "udtale",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "gang",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "om",
+    "kind": "word",
+    "stratum": "three_senses",
+    "failures": []
+  },
+  {
+    "lemma": "genere",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "dimension",
+    "lemma": "urimelig",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "sårbar",
+    "lemma": "kontant",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "smør",
+    "lemma": "bage",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "udfald",
+    "lemma": "bakterie",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "røveri",
+    "lemma": "bemærkelsesværdig",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "allé",
+    "lemma": "morsom",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "sproglig",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "styrte",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "fundament",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "psykologisk",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "skandinavisk",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "appellere",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "fase",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "vaccine",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "kemisk",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "øjeblikkelig",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "eksperiment",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "forlængelse",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "frustration",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "cigaret",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "pave",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "hade",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "dødsfald",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "læsning",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "egne",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "norm",
-    "kind": "word",
-    "stratum": "tail",
-    "failures": []
-  },
-  {
-    "lemma": "vanvittig",
+    "lemma": "væsen",
     "kind": "word",
     "stratum": "tail",
     "failures": []
@@ -336,679 +354,457 @@
     "failures": []
   },
   {
+    "lemma": "pol",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "vrede",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "bakke",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "bekæmpelse",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "folketingsvalg",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "omdanne",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "indspille",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "kommunistisk",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "hastighed",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "nød",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "fremtrædende",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "sgu",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "renovering",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
     "lemma": "humør",
     "kind": "word",
     "stratum": "tail",
     "failures": []
   },
   {
-    "lemma": "betydning",
+    "lemma": "klassiker",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "protestere",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "kendsgerning",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "atmosfære",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "tyveri",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "trappe",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "dimension",
+    "kind": "word",
+    "stratum": "tail",
+    "failures": []
+  },
+  {
+    "lemma": "institution",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "bryde",
+    "lemma": "lykkes",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "gade",
+    "lemma": "fortale",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "betydelig",
+    "lemma": "dollar",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "overraske",
+    "lemma": "global",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "forsker",
+    "lemma": "socialdemokrat",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "fælles",
+    "lemma": "fuld",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "artikel",
+    "lemma": "sygdom",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "læse",
+    "lemma": "tid",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "kort",
+    "lemma": "valg",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "tradition",
+    "lemma": "udenlandsk",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "eftermiddag",
+    "lemma": "marts",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "lade",
+    "lemma": "krav",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "væk",
+    "lemma": "billede",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "næste",
+    "lemma": "opmærksom",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "selve",
+    "lemma": "eneste",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "kæmpe",
+    "lemma": "behandling",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "professionel",
+    "lemma": "minut",
     "kind": "word",
     "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "vej",
+    "lemma": "natur",
     "kind": "word",
     "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "omkring",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "endda",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "positiv",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "afvise",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "siden",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "selvfølgelig",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "syne",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "svar",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "forsøge",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "post",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "udgøre",
-    "kind": "word",
-    "stratum": "head",
-    "failures": []
-  },
-  {
-    "lemma": "verdenskrig",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "beskæftige",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "ordre",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "bund",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "kommentere",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "arrangør",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "tværs",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "dukke",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "hår",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "tusindvis",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "ligeglad",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "nyhed",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "utilfreds",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "strategi",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "villa",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "hollandsk",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "stue",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "tilværelse",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "palæstinenser",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "påstå",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "radio",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "henblik",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "forudse",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "kandidat",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "forpligtelse",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "repræsentant",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "antyde",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "aktionær",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "ansvarlig",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "passager",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "strategisk",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "jødisk",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "irakisk",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "udgivelse",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "fjende",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "mistænke",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "landskab",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "klæde",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "vægt",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "børnehave",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "resultere",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "regn",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "respektere",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "maleri",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "begrave",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "bud",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "undervejs",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "barnebarn",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "frue",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "heraf",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "gylden",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "motorvej",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "strække",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "hest",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "net",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "omegn",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "faktum",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "barndom",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "afbryde",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "gennembrud",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "foreløbig",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "landsby",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "kop",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "betaling",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "lovgivning",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "fri",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "fore",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "kunde",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "glimrende",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "øje",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "straks",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "sund",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "starte",
-    "kind": "word",
-    "stratum": "general",
-    "failures": []
-  },
-  {
-    "lemma": "sko",
-    "kind": "word",
-    "stratum": "general",
     "failures": []
   },
   {
     "lemma": "officiel",
     "kind": "word",
-    "stratum": "general",
+    "stratum": "head",
     "failures": []
   },
   {
-    "lemma": "synes",
+    "lemma": "sjælden",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "tilføje",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "løsning",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "spændende",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "situation",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "rapport",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "tage",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "skabe",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "engelsk",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "dommer",
+    "kind": "word",
+    "stratum": "head",
+    "failures": []
+  },
+  {
+    "lemma": "skjule",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "gennemsnitlig",
+    "lemma": "smil",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "indrette",
+    "lemma": "flere",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "dokument",
+    "lemma": "nærhed",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "tak",
+    "lemma": "investor",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "papir",
+    "lemma": "omsætte",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "forleden",
+    "lemma": "pædagogisk",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "rekord",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "fokusere",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "hylde",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "aflevere",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "vist",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "kant",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "undervisning",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "forstand",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "beboer",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "svække",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "salt",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "individuel",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "oversættelse",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "påtage",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "partner",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "overholde",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "undlade",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "tiltræde",
     "kind": "word",
     "stratum": "general",
     "failures": []
@@ -1020,181 +816,385 @@
     "failures": []
   },
   {
-    "lemma": "ungdom",
+    "lemma": "operere",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "professor",
+    "lemma": "brand",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "musikalsk",
+    "lemma": "satse",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "demokrati",
+    "lemma": "instruere",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "univers",
+    "lemma": "anmelde",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "længere",
+    "lemma": "adskillig",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "anledning",
+    "lemma": "grov",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "spørgsmål",
+    "lemma": "elektrisk",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "mur",
+    "lemma": "rigelig",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "turnering",
+    "lemma": "anelse",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "omsætning",
+    "lemma": "lag",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "hen",
+    "lemma": "smage",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "fornøjelse",
+    "lemma": "åbenlys",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "gammel",
+    "lemma": "fortælling",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "kontakt",
+    "lemma": "episode",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "base",
+    "lemma": "reform",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "sandhed",
+    "lemma": "medføre",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "udbytte",
+    "lemma": "religiøs",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "teknisk",
+    "lemma": "støde",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "frihed",
+    "lemma": "stabil",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "ude",
+    "lemma": "køb",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "efterlade",
+    "lemma": "grundlag",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "behandling",
+    "lemma": "tidsskrift",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "skulptur",
+    "lemma": "jøde",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "død",
+    "lemma": "fugl",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "rød",
+    "lemma": "synes",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "telefon",
+    "lemma": "video",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "udarbejde",
+    "lemma": "semifinale",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "modsætning",
+    "lemma": "ægteskab",
     "kind": "word",
     "stratum": "general",
     "failures": []
   },
   {
-    "lemma": "udstille",
+    "lemma": "skrue",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "ambassadør",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "overstå",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "pointe",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "illustrere",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "koge",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "kategori",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "stjerne",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "tv",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "tillade",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "forfærdelig",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "demonstrant",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "således",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "score",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "engagement",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "politik",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "rolig",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "afsløre",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "parat",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "rige",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "begrundelse",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "køn",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "leg",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "ansættelse",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "afbryde",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "debut",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "bekæmpe",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "system",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "kæmpe",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "forudse",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "realitet",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "effektiv",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "sige",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "forside",
+    "kind": "word",
+    "stratum": "general",
+    "failures": []
+  },
+  {
+    "lemma": "liberal",
     "kind": "word",
     "stratum": "general",
     "failures": []

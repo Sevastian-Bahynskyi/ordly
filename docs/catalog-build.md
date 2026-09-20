@@ -224,11 +224,33 @@ which is AGENTS.md §8's ban in audio form.
 A missing recording never blocks a row. The word enters the catalog silent and the tap-to-hear
 button does not render.
 
-## Step 7 — upload (a separate, short session)
+## Step 7 — upload
 
-Issue #6 §11: read the CSVs, upsert `word_catalog` / `word_catalog_sense`, upload `catalog/audio/`
-to the private bucket, write back `audio_path`, verify counts and a few signed URLs, and confirm
-the miss path still works for a word deliberately absent from the catalog.
+```
+pnpm exec tsx scripts/upload-catalog-audio.ts     # recordings into the private bucket
+pnpm exec tsx scripts/import-catalog.ts           # rows into word_catalog / word_catalog_sense
+```
+
+**Only rows the gate accepted are loaded**; everything in `needs_review.jsonl` stays out. Sense
+ids are derived from lemma, kind and ordinal rather than generated, so a second import mints the
+same id for the same meaning — `sense_id` is permanent, an unlocked entry inherits it, and
+practice objectives are keyed `entry:<id>:sense:<sid>` (AGENTS.md §20).
+
+Two things about the bucket that cost a round each:
+
+- **Storage keys are ASCII and Danish is not.** `words/adfærd.mp3` is refused outright, so
+  `audioObjectKey` transliterates — and carries a digest of the real lemma, because
+  transliteration alone puts `få` and `faa` on the same object and one word would quietly play
+  the other's recording. The uploader and the importer derive the key the same way rather than
+  passing a map between them.
+- **The CLI copies the staging directory into the destination**, so the staging directory has to
+  be named after the prefix (`words`), or every object lands under `words/.upload/…`.
+- The CLI also uploads everything as a generic binary; the uploader corrects the stored content
+  type afterwards. Direct `delete from storage.objects` is blocked by design — a mistake has to
+  be undone through the Storage API.
+
+Loaded on 2026-09-20: **2,906 entries, 3,305 meanings, 2,898 with a recording** (2,969 objects,
+29 MB). Every `audio_path` was verified to resolve to a real object.
 
 ## Why the steps are not in the issue's order
 

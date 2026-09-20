@@ -117,6 +117,31 @@ export function mergeHarvestedIpa(
   return merged
 }
 
+/**
+ * The object key a recording is stored under.
+ *
+ * Storage keys are ASCII, and Danish is not: `adfærd.mp3` is rejected outright. Transliterating
+ * alone would collide — `få` and `faa` would land on the same object, and one word would quietly
+ * play the other's recording — so the key carries a digest of the real lemma as well. The slug is
+ * there only so a human reading the bucket can tell what they are looking at.
+ */
+export function audioObjectKey(lemma: string, digest: string): string {
+  // The Danish letters are spelled out before the string is decomposed. Decomposing first turns
+  // `å` into `a` plus a combining ring, and the rule for `å` then never matches: `gå` would slug
+  // to `ga` rather than `gaa`.
+  const slug = lemma
+    .normalize('NFC')
+    .toLocaleLowerCase('da-DK')
+    .replace(/æ/gu, 'ae')
+    .replace(/ø/gu, 'oe')
+    .replace(/å/gu, 'aa')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/gu, '')
+    .replace(/[^a-z0-9]+/gu, '-')
+    .replace(/^-+|-+$/gu, '')
+  return `words/${slug || 'word'}-${digest.slice(0, 8)}.mp3`
+}
+
 export function audioSummary(results: readonly AudioResult[]): Record<AudioOutcome, number> {
   return {
     saved: results.filter((result) => result.outcome === 'saved').length,
