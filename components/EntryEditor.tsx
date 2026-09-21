@@ -37,6 +37,8 @@ export type EntryEditorMode = 'create' | 'edit'
 interface Draft {
   danish: string
   pronunciation: string
+  /** Recording copied from a catalog unlock. Manual entries receive it from the audio backfill. */
+  audio_path: string | null
   /**
    * Derived from `senses` and never edited directly. It stays on the draft so the enrich field
    * plumbing (`EnrichableField`, per-field mini buttons, fill-missing) is unchanged, and so the
@@ -52,7 +54,7 @@ interface Draft {
   catalog_lemma: string | null
 }
 
-type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses' | 'catalog_lemma'>
+type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses' | 'catalog_lemma' | 'audio_path'>
 type DuplicateEntry = { id: string; danish: string; translation: string | null }
 type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
@@ -83,6 +85,7 @@ function blankDraft(): Draft {
   return {
     danish: '',
     pronunciation: '',
+    audio_path: null,
     translation: '',
     senses: [createSense('')],
     example_sentence: '',
@@ -97,6 +100,7 @@ function draftFromEntry(entry: VocabularyEntry): Draft {
   return {
     danish: entry.danish,
     pronunciation: entry.pronunciation || '',
+    audio_path: entry.audio_path || null,
     translation: translationFromSenses(senses),
     senses: senses.length ? senses : [createSense('')],
     example_sentence: entry.example_sentence || '',
@@ -350,8 +354,10 @@ export function EntryEditor({
       const becameSentence = nextKind === 'sentence' && entryKind !== 'sentence'
 
       commitDraft((current) => {
-        if (nextKind !== 'sentence') return { ...current, danish: value }
-        const collapsed = collapseForSentence({ ...current, danish: value })
+        const sourceChanged = value.trim() !== current.danish.trim()
+        const next = sourceChanged ? { ...current, danish: value, catalog_lemma: null, audio_path: null } : { ...current, danish: value }
+        if (nextKind !== 'sentence') return next
+        const collapsed = collapseForSentence(next)
         // Only the transition clears the example fields. Typing inside an entry that was
         // already a sentence must not keep wiping something the learner can still see.
         return becameSentence ? { ...collapsed, example_sentence: '', example_translation: '' } : collapsed
@@ -1018,6 +1024,7 @@ export function EntryEditor({
     const payload = {
       danish: current.danish.trim(),
       pronunciation: current.pronunciation.trim() || null,
+      audio_path: current.audio_path,
       translation: translationFromSenses(graded),
       // Soft-deleted senses ride along so their ids stay resolvable (D15).
       senses: [

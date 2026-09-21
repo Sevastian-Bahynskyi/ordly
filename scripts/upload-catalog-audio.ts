@@ -48,6 +48,7 @@ async function main(): Promise<void> {
   const argv = process.argv.slice(2)
   const dryRun = argv.includes('--dry-run')
   const manifestPath = valueAfter(argv, '--manifest') || 'catalog/audio-manifest.json'
+  const keysPath = valueAfter(argv, '--keys-out') || join('catalog', 'audio-keys.json')
   // The CLI copies the staging directory *into* the destination, so the directory has to be
   // named after the prefix the keys use. Staging in `.upload` put every object under
   // `words/.upload/…`, which is not where anything looks for it.
@@ -96,9 +97,9 @@ async function main(): Promise<void> {
 
   const { stdout } = await run('supabase', ['db', 'query', '--linked',
     `select count(*) as objects from storage.objects where bucket_id = '${BUCKET}'`])
-  await writeFile(join('catalog', 'audio-keys.json'), `${JSON.stringify(Object.fromEntries(keys), null, 2)}\n`, 'utf8')
+  await writeFile(keysPath, `${JSON.stringify(Object.fromEntries(keys), null, 2)}\n`, 'utf8')
   console.log(stdout.slice(stdout.indexOf('{')).split('\n').filter((line) => line.includes('objects')).join(' '))
-  console.log('Keys written to catalog/audio-keys.json')
+  console.log(`Keys written to ${keysPath}`)
 }
 
 void main().catch((error: unknown) => {

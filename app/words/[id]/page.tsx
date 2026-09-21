@@ -83,7 +83,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
                 </span>
               )}
               {typedEntry.danish}
-              <WordAudio audioPath={(catalog as { audio_path: string | null } | null)?.audio_path ?? null} label={typedEntry.danish} />
+              <WordAudio audioPath={typedEntry.audio_path ?? (catalog as { audio_path: string | null } | null)?.audio_path ?? null} label={typedEntry.danish} />
             </h1>
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}

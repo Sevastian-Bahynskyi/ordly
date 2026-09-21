@@ -88,6 +88,7 @@ export interface Profile {
   word_challenge_notifications_enabled: boolean
   notification_timezone: string
   notification_schedule: NotificationSchedule
+  autoplay_audio: boolean
   last_due_notification_at: string | null
   last_word_challenge_at: string | null
   created_at: string
@@ -98,6 +99,8 @@ export interface VocabularyEntry {
   user_id: string
   danish: string
   pronunciation: string | null
+  /** Private word-audio bucket object path, when DDO supplied a recording. */
+  audio_path: string | null
   /** Denormalized join of the non-removed `senses` texts. Kept in sync by the DB trigger. */
   translation: string | null
   senses: EntrySense[]

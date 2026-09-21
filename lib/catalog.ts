@@ -156,6 +156,7 @@ export async function lookupCatalog(client: SupabaseClient, typed: string): Prom
 export interface UnlockedDraft {
   danish: string
   pronunciation: string
+  audio_path: string | null
   senses: EntrySense[]
   example_sentence: string
   example_translation: string
@@ -195,6 +196,7 @@ export function unlockedDraft(entry: CatalogEntry, pickedSenseId: string): Unloc
   return {
     danish: entry.lemma,
     pronunciation: entry.pronunciation || '',
+    audio_path: entry.audio_path,
     senses: orderedSenses,
     example_sentence: picked.example || entry.example_sentence || '',
     example_translation: picked.example_translation || entry.example_translation || '',

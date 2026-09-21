@@ -17,6 +17,7 @@ import {
 import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
+import { WordAudio } from '@/components/WordAudio'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -39,11 +40,12 @@ type ReviewedItem = {
   sentenceTranslation: string
 }
 
-export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru' }: {
+export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru', autoplayAudio = false }: {
   initialItems: ReviewItem[]
   /** Senses of each entry's synonym neighbours, keyed by entry id (D5). */
   linkedSenses?: Record<string, EntrySense[]>
   translationLanguage?: 'ru' | 'en' | 'uk'
+  autoplayAudio?: boolean
 }): React.JSX.Element {
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'
   const [items, setItems] = useState(initialItems)
@@ -252,6 +254,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
       index={historyIndex}
       count={history.length}
       languageLabel={languageLabel}
+      autoplayAudio={autoplayAudio}
       onPrevious={() => setHistoryIndex((index) => index === null ? null : Math.max(0, index - 1))}
       onNext={() => setHistoryIndex((index) => index === null || index >= history.length - 1 ? null : index + 1)}
       onRatingChanged={(oldRating, newRating, card, status) => applyRevisedRating(reviewed, oldRating, newRating, card, status)}
@@ -300,7 +303,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
           text={prompt}
           cloze={mode === 'cloze' && !!sentence}
         />
-        {revealed && entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
+        {mode === 'recognition' && <DanishAudio entry={entry} autoPlay={autoplayAudio} />}
         {mode === 'cloze' && sentenceTranslation && <small>{sentenceTranslation}</small>}
       </div>
 
@@ -330,6 +333,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
         <div className="correct-answer">
           <span>Correct answer</span>
           <strong>{expected}</strong>
+          {mode !== 'recognition' && <DanishAudio entry={entry} autoPlay={autoplayAudio} />}
           {entryKind !== 'sentence' && mode !== 'cloze' && entry.example_sentence && <p>{entry.example_sentence}<small>{entry.example_translation}</small></p>}
         </div>
 
@@ -361,11 +365,12 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
   </>
 }
 
-function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNext, onRatingChanged }: {
+function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, onPrevious, onNext, onRatingChanged }: {
   reviewed: ReviewedItem
   index: number
   count: number
   languageLabel: string
+  autoplayAudio: boolean
   onPrevious: () => void
   onNext: () => void
   onRatingChanged: (oldRating: number, newRating: number, card: CardPatch, status: LearningStatus) => void
@@ -421,7 +426,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
 
       <div className="flash-prompt">
         {mode === 'cloze' && reviewed.sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
-        {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
+        {mode === 'recognition' && <DanishAudio entry={entry} autoPlay={autoplayAudio} />}
       </div>
 
       <div className="answer-form">
@@ -436,7 +441,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
         <div className={`answer-verdict ${reviewed.result || 'incorrect'}`}>
           <strong>{reviewed.revealedWithoutAnswer ? "Didn't know" : reviewed.result === 'correct' ? 'Correct' : reviewed.result === 'mostly' ? 'Almost right' : 'Not quite'}</strong>
         </div>
-        <div className="correct-answer"><span>Correct answer</span><strong>{expected}</strong></div>
+        <div className="correct-answer"><span>Correct answer</span><strong>{expected}</strong>{mode !== 'recognition' && <DanishAudio entry={entry} autoPlay={autoplayAudio} />}</div>
         <div className="rating-title"><span>Change your rating if needed</span><small>The FSRS schedule is recalculated from the original review state.</small></div>
         <div className="rating-grid">{ratings.map((rating) => <button
           disabled={loading}
@@ -454,6 +459,13 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
       <button className="soft-button" onClick={onNext}>{index === count - 1 ? 'Back to current' : 'Newer'} <ArrowRight size={15}/></button>
     </div>
   </>
+}
+
+function DanishAudio({ entry, autoPlay }: { entry: ReviewItem['vocabulary_entries']; autoPlay: boolean }): React.JSX.Element | null {
+  return <div className="review-word-audio">
+    {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
+    <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />
+  </div>
 }
 
 function patchReviewItem(item: ReviewItem, card: CardPatch, status: LearningStatus): ReviewItem {
