@@ -269,7 +269,7 @@
 @keyframes graph-open { from { opacity: .001; transform: scale(.985); } }
 @media (prefers-reduced-motion: reduce) { .graph-overlay { animation: none; } }
 
-/* The Material page's one header action. */
+/* The Material page's header actions. */
 .graph-open-button {
   display: inline-flex;
   align-items: center;
@@ -287,6 +287,9 @@
 }
 
 .graph-open-button:hover { background: #e7defe; }
+
+.material-export-button { background: var(--surface-2); color: var(--muted); }
+.material-export-button:hover { background: var(--line); color: var(--text); }
 
 @media (max-width: 760px) {
   .graph-open-button { width: 100%; }
