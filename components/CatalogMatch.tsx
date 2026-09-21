@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { BookOpen, Sparkles } from 'lucide-react'
+import { ChevronRight, Sparkles } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { lookupCatalog, unlockedDraft, type CatalogEntry, type CatalogMiss, type UnlockedDraft } from '@/lib/catalog'
 import { inferDanishInputKind } from '@/lib/entry-kind'
@@ -74,15 +74,17 @@ export function CatalogMatch({ danish, onUnlock }: Props): React.JSX.Element | n
   }
 
   return (
-    <div className="catalog-match">
+    <div className="catalog-match" role="group" aria-label="Choose meaning">
+      <span className="catalog-title">Choose meaning</span>
       {candidates.map((entry) => (
         <div key={`${entry.lemma}:${entry.kind}`} className="catalog-candidate">
-          <div className="catalog-candidate-head">
-            <BookOpen size={12} />
-            <strong>{entry.definite_singular || entry.lemma}</strong>
-            {entry.pos && <span className="catalog-pos">{PART_OF_SPEECH_LABELS[entry.pos]}</span>}
-            {entry.pronunciation && <span className="catalog-pron">{entry.pronunciation}</span>}
-          </div>
+          {candidates.length > 1 && (
+            <div className="catalog-candidate-head">
+              <strong>{entry.lemma}</strong>
+              {entry.pos && <span className="catalog-pos">{PART_OF_SPEECH_LABELS[entry.pos]}</span>}
+              {entry.pronunciation && <span className="catalog-pron">{entry.pronunciation}</span>}
+            </div>
+          )}
           <div className="catalog-senses">
             {entry.senses.map((sense) => (
               <button
@@ -94,13 +96,13 @@ export function CatalogMatch({ danish, onUnlock }: Props): React.JSX.Element | n
                   setDismissed(text)
                 }}
               >
-                {sense.text}
+                <span>{sense.text}</span>
+                <ChevronRight size={16} aria-hidden="true" />
               </button>
             ))}
           </div>
         </div>
       ))}
-      <small className="catalog-hint">Tap the meaning you met. The others stay with the word, locked.</small>
     </div>
   )
 }
