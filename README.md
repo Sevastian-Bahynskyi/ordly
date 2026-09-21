@@ -32,6 +32,10 @@ Next.js, TypeScript, Supabase, OpenRouter, `ts-fsrs`, Vercel, and Web Push.
 
 Production is Git-connected to Vercel from the `main` branch. GitHub Actions also runs a clean build for each push.
 
+### GitHub Pages practice host
+
+The repository's GitHub Pages site is **not Ordly itself** and is not an alternative production deployment. It is a separate static host for standalone Danish practice sessions that are manually generated and replaced with ChatGPT from the user's current learning data. See [`docs/github-pages-practice.md`](./docs/github-pages-practice.md). Ordly production remains on Vercel.
+
 ## Environment
 
 Copy `.env.example` to `.env.local` and provide:
