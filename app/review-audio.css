@@ -11,7 +11,64 @@
 }
 
 .review-word-audio .word-audio {
+  position: relative;
+  width: 44px;
+  height: 44px;
   margin-left: 0;
+  border: 0;
+  background: transparent;
+  color: var(--purple);
+  transform: none;
+}
+
+.review-word-audio .word-audio::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.review-word-audio .word-audio svg {
+  position: relative;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+}
+
+.review-word-audio .word-audio:hover:not(:disabled),
+.review-word-audio .word-audio:focus:not(:focus-visible) {
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.review-word-audio .word-audio:active:not(:disabled) {
+  transform: none;
+}
+
+.review-word-audio .word-audio:active:not(:disabled)::before {
+  border-color: var(--purple-2);
+  background: var(--purple-soft);
+}
+
+.review-word-audio .word-audio:focus-visible {
+  outline: 0;
+}
+
+.review-word-audio .word-audio:focus-visible::before {
+  box-shadow: 0 0 0 3px var(--purple-soft);
+  border-color: var(--purple-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .review-word-audio .word-audio:hover:not(:disabled)::before {
+    border-color: var(--purple-2);
+    background: var(--purple-soft);
+  }
 }
 
 .correct-answer .review-word-audio {
@@ -78,6 +135,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .review-word-audio .word-audio::before,
   .setting-switch span,
   .setting-switch span::after {
     transition: none;
