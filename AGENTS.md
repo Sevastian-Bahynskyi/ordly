@@ -46,6 +46,7 @@ Current package baseline:
 - `@supabase/ssr` `0.12.5`
 - `ts-fsrs` `5.4.2`
 - lucide-react `1.39.0`
+- `nspell` `2.1.5` + `dictionary-da` `6.0.0` (Danish spelling, §22)
 - pnpm `10.15.0`
 - Node `>=20`
 
@@ -75,6 +76,7 @@ Important tables/functions currently include:
 - `notification_deliveries`
 - `practice_state`, `practice_attempts`, `practice_packs` (guided practice)
 - `entry_links` (synonym graph, see §20)
+- `cor_form` (Det Centrale Ordregister, reference data, see §22)
 - private first-account claim / review-card creation / timestamp helpers
 - `private.sync_entry_senses` trigger and `public.record_sense_coverage` RPC (senses, see §20)
 
@@ -89,6 +91,10 @@ Repo migrations currently start at:
 - notification migration added after those (check `supabase/migrations/` before modifying schema)
 
 Keep repo migrations synchronized with production. The meaning-model migrations (`20260916094500_entry_senses.sql`, `20260916143000_entry_links.sql`, `20260916190000_sense_coverage_and_dismissals.sql`) must be applied in order before that code deploys. Verify against production rather than assuming.
+
+`20260918091609_cor_forms.sql` creates the word register's table; the data itself is loaded by
+`scripts/import-cor.ts` and is **not** in any migration (317,102 rows). A fresh environment needs
+the script run once, or noun gender and the "is this even Danish" check simply stay quiet (§22).
 
 SQL tests live in `supabase/tests/`. `meaning_model.sql` covers the senses trigger, coverage writes and link tombstones. Run it against a disposable `ghcr.io/supabase/postgres` container with every migration applied, never against production.
 
@@ -233,6 +239,9 @@ Features:
 - one-tap kind filter: All / Words / Phrases / Sentences (`?kind=`). Phrases are `entry_kind = 'word'` rows whose text `inferDanishInputKind` calls a phrase. The Sentences view lists sentences you added first, then example sentences from words.
 - search Danish + translation
 - filters: All / New / Learning / Mastered
+- while the list is showing **Words**, a part-of-speech filter appears, listing only the classes
+  the vocabulary actually has and how many carry each. It resets when the tab changes, so it can
+  never hide rows from behind a tab that does not show it.
 - no per-word icons: the Iconify/AI icon feature was removed (the `icon_name` column remains, unused)
 - per-word AI preview/confirm
 - delete
@@ -242,7 +251,7 @@ Bulk raw/untranslated entries are excluded from review until sufficiently enrich
 
 Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
 
-A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
+A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It carries the same search the list does — Danish, meanings, and the concept an edge is about. A match is brightened and the camera frames it; everything else dims rather than disappearing, so the graph never changes shape under the learner's hands, and an edge matched by its concept lights up both of its ends and explains itself at any zoom. It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
 
 ## 10. FSRS / memory rings
 
@@ -463,6 +472,8 @@ At the start of the next session, do this before assuming anything:
 - Do not let phrase normalization collapse expressions to one word.
 - Do not base-form complete sentences.
 - Do not use spelling-based Danish→Cyrillic transliteration as pronunciation.
+- Do not write or serve a pronunciation that mixes Latin letters into Cyrillic (§22).
+- Do not ask a model for a noun's gender before asking COR (§22).
 - Do not make `Again` require leaving/re-entering Review.
 - Do not make Review and Material use the same nav icon.
 - Do not bring back per-word icons, practice audio (Listen / Slower / Say it aloud), or a timed practice autosave (it disabled the answer field mid-typing).
@@ -488,7 +499,7 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
   - an overlap resting only on tokens shorter than `MIN_MEANINGFUL_TOKEN` is noise (`получать в качестве` vs `иметь в виду` share only `в`).
 - The concept the model names must be a meaning **both** entries carry (`conceptSharedBySenses`). Requiring it to come from the pair was not enough: the model picked whichever side read better and answered `только что` for a word that only means `только`.
 - An edge is about **one meaning**, and `entry_links.concept` names it. Discovery ranks sense *pairs* and asks the model to rule on the single pair that matched, not on two entries' full meaning lists; an edge whose concept the model will not name is dropped. Keep both halves — judging entries as bags of meanings made `kun` ("только") a synonym of `lige`, whose third sense is "только что". `STOP_WORDS` in `lib/synonyms.ts` is a search-selectivity tool only: stripping it when *comparing* meanings is what made those two identical, so comparison keeps every word.
-- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string.
+- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string. The word register answers before the model does, and a sense it classified is `source: 'cor'` (§22).
 
 ## 21. Local practice engine
 
@@ -499,6 +510,143 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - The canned coffee/dialogue frames were removed. `teach`, `build`, `listen`, `dialogue` remain valid only so older saved sessions load.
 - `checkAnswer` accepts Danish typos by edit distance (≤4 chars: none, ≤8: 1, longer: 2; sentences very few) as `mostly`. A typed cloze is never sent to the provider.
 - Wrong typed answers show a word-then-letter diff (`lib/answer-diff.ts`): red in the learner's answer, green in the correction. The semantic check returns `corrected` (the learner's own answer minimally fixed), stored as `PracticeResponse.correction`, so valid alternative replies are not painted red against the model answer.
+
+## 22. Free data instead of a model (COR, spelling, write-time checks)
+
+Issue #5. The research, with every measurement and its source, is `docs/free-data-sources.md`.
+Read it before "optimising" anything here — several obvious-looking ideas were measured and
+rejected, and the reasons are in the doc.
+
+**The point is correctness, not savings.** One or two calls out of three or four per new word go
+away; the big one (`/api/ai/enrich`, which fills meanings and the example) is untouched and must
+stay. What changes is that gender stops being a guess and bad data stops entering the database.
+
+### COR — `public.cor_form`, read only through `lib/cor.ts`
+
+Det Centrale Ordregister v1.5.1.0, CC0-1.0, normering `N` only: 317,102 rows over 247,527
+inflected forms, so `gulvet` resolves to `gulv` and `dovne` to `doven` without lemmatising
+anything. Loaded by `scripts/import-cor.ts`, never bundled — 19 MB parsed per cold start is
+exactly the critical-path cost §16 warns about.
+
+The load-bearing rules:
+
+- **Filter candidates by the sense's part of speech before reading a gender.** A bare form lookup
+  silently writes wrong data: 35% of forms are ambiguous, `ved` ("knows", "near") is also the noun
+  *wood*, `tage` ("take") is also *roofs*. Only 12 of the vocabulary's 32 nouns are safe without
+  the filter; with it, 30 are, and a spot-check was 14/14 correct.
+- **Silence beats a guess.** No part of speech to filter with, or filtered candidates that
+  disagree (`plan`, `alt` are genuinely both genders), means no gender is written at all.
+- `lib/cor.ts` is the only module that knows COR's tag format. Nothing else may parse a tag.
+
+Where it is used:
+
+- `/api/ai/refine-senses` reads COR first. One unambiguous reading settles the entry and **no
+  model is called** (63% of the real vocabulary). Otherwise the model rules on the part of speech
+  only, and COR still decides the gender of whatever it called a noun. A COR-classified sense is
+  stored with `source: 'cor'`.
+- **Every single word is checked against the register before it can be saved.** A word COR does
+  not know, and a word that is not its dictionary form, both stop the save with a proposal in the
+  Danish field's correction box and an amber toast saying why (`verifyDanishBeforeSave`). The
+  base-form half needs a part of speech to be sure: an entry whose meanings are still
+  unclassified is only corrected when the form is nowhere a lemma, because `dovne` cannot be
+  told from `dovne` without knowing which one the card is about. Pressing Save
+  again keeps the text exactly as typed — the register is missing a few real forms and knows no
+  proper nouns, so the check warns and proposes, and never traps. Phrases and sentences are not
+  judged here; `Verify phrase` / `Verify sentence` is what checks those.
+- `corBaseForm` is the rule behind it, and **the part of speech filters before the question is
+  asked**. `dovne` is the plural adjective of `doven` *and* a verb in its own right; `alt` is a
+  lemma as an adverb but an inflection of `al` as the pronoun. Only the card's own word class
+  says which reading is being judged. It proposes nothing when the form is already a lemma in
+  that reading, when the readings disagree (`ved` is really two words), or when the lemma is
+  multi-word (`nogensinde` → `nogen sinde`).
+- The vocabulary was brought to base form in one pass on 2026-09-18 (19 entries, directly in the
+  table). Meanings that described the old form moved with it — `mennesker`/"люди" became
+  `menneske`/"человек" — and a stale pronunciation was cleared rather than left describing a word
+  that is no longer there. Four entries were deliberately left: `nogle` (its lemma `nogen` is
+  already a separate card), `nogensinde`, `ved` (two words in one card — worth splitting), and
+  `yndlings` (not in the register at all).
+- The composer fills a missing noun gender on save, so `Grammar` is not something the learner has
+  to press for a fact. A noun's gender is **shown as the word**: `gulv` is displayed as `gulvet`
+  with the article tinted (`components/DefiniteNoun.tsx`, `--article`), on the Material list and
+  in the entry header. The definite form is read from COR, never built by appending an article —
+  `menneske` becomes `mennesket`, and `skulder` becomes `skulderen`. That is also the only thing that revisits an **already classified** sense:
+  the refinement queue is `'split'`-only, so a noun sense left with a null gender by an earlier
+  model pass is filled the next time the entry is saved, not by a page view. Nothing is in that
+  state today — all 23 noun senses carry a gender, and all 22 COR can rule on agree with it.
+- `/api/ai/enrich` refuses to enrich a single word COR does not know — that is how `tinker`, which
+  is not Danish, acquired a confident invented Russian translation. Multi-word input is never
+  judged this way (COR holds none), and the learner overrides it by running the action again,
+  because the `N` filter really is missing a few forms (`yndlings` is one).
+
+### Write-time checks
+
+- A pronunciation that mixes Latin letters into Cyrillic is rejected on write and treated as a
+  miss on read (`isReadableCyrillic`). 13% of cached values carried an invisible homoglyph;
+  `20260918092106_repair_mixed_script_pronunciations.sql` cleaned up what was already stored.
+
+### Spelling — `lib/spelling.ts`
+
+`nspell` over `dictionary-da` (used under its **MPL-1.1** arm), built lazily once per server
+instance because construction costs ~571 ms and ~126 MB. The dictionary's Hunspell morphological
+fields are stripped first — without that it flags 12.2% of the real vocabulary, `blive` and
+`hvem` included. `dictionary-da` stays in `serverExternalPackages`, or it cannot find its own data
+files. It is a **fast path and never a gate**: it catches orthography, while the wrong form of a
+real word and correct-but-unnatural Danish stay with the model. The composer calls
+`/api/danish/spell` while the learner types; `/api/ai/check-example` passes its findings to the
+model as evidence. `findMisspellings` returns `null`, not `[]`, when the dictionary could not be
+built — an empty list means "every word is spelled correctly", and no caller may claim that on
+behalf of a check that never ran.
+
+## 23. The word catalog (issue #6)
+
+The plan is issue #6; the runbook is `docs/catalog-build.md`. Read one of them before touching
+anything here. The shape:
+
+- **Three layers, and only the middle one is a model.** Layer 1 looks facts up (frequency rank
+  from the DSL lemma list, part of speech/gender/inflections from COR, IPA from the kaikki.org
+  Wiktionary extract). Layer 2 writes what no source can answer: Russian meanings, examples, and
+  the Cyrillic reading **of the supplied IPA**. Layer 3 rejects, deterministically, anything that
+  contradicts layer 1. The generator is therefore swappable — Claude, ChatGPT, a cheap API model —
+  and the quality does not depend on who wrote a row.
+- **A field a source cannot settle stays null, and null travels.** `ved` reaches the generator
+  with no part of speech because the register reads it two ways. A lemma with no IPA must be
+  generated with a null pronunciation; `word_catalog_pronunciation_needs_ipa` enforces it in the
+  table. This is §22's "silence beats a guess", applied to ten thousand rows at once.
+- **IPA does not come from DDO.** §8 describes a DDO/Wiktionary lookup that the code has never
+  had: `resolvePronunciation` asks a model directly and stores `ipa: ''`. Ten thousand DDO fetches
+  would be thirty thousand requests against a dictionary with no API, so the catalog uses the
+  kaikki.org extract — the same Wiktionary phonetics as one file, joined offline, part-of-speech
+  tagged. DDO stays the **audio** source, through `download_ddo_audio.py` in the repo root.
+- **Phrases are silent, by design.** DDO attaches audio to headwords only; `godt lide` lives there
+  as a fixed expression under `lide`, with no recording. Stitching word recordings is banned: the
+  citation forms are wrong (`tage`, not `tager`) and Danish reshapes phrase boundaries, so the
+  result teaches a wrong pronunciation — §8's ban in audio form. A missing recording never blocks
+  a row; the word is simply silent and the button does not render.
+- **`word_catalog` / `word_catalog_sense` are reference data**, like `cor_form`: no `user_id`,
+  read-only to the app, and **loaded by a script, never by a migration**. An environment with no
+  catalog misses every lookup and falls through to the live AI path, which is the designed
+  behaviour for the 15–25% of words the catalog will never hold.
+- **Unlocking copies; it never references.** The catalog's `sense_id` is carried into the entry
+  verbatim, because practice objectives are keyed `entry:<id>:sense:<sid>` and a fresh id strands
+  FSRS state (§20). `vocabulary_entries.catalog_lemma` is provenance only — nothing reads the
+  catalog to render or grade an entry.
+- **A tap fills the composer; it does not save.** §7's preview-before-apply rule still holds, and
+  every field stays editable.
+- **`locked` senses.** A word arrives with every meaning it has and teaches only the one the
+  learner met. `activeSenses` filters locked meanings in TypeScript and
+  `private.translation_from_senses` filters them in SQL, so one cannot leak into grading from
+  either side. A sense with no `locked` key is not locked, so every pre-catalog row is unaffected.
+- **The live AI path is not removed.** It is the miss path, and the rules in §7, §8 and §22 still
+  bind it. A miss is told to the learner rather than hidden, and a phrase miss says something
+  different from a rare-word miss.
+- **The audit samples by stratum, not uniformly** (`scripts/audit-catalog.ts`). It exists for the
+  residue the gate cannot see — a translation that is plausible and wrong passes every validator.
+  It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
+  so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
+  model; the downloaded DDO recording is the independent check.
+- **The audio button is a narrow reversal of §19.** What stays removed is the three-button
+  Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
+  is not that.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -1,0 +1,936 @@
+[
+  {
+    "lemma": "forstand",
+    "kind": "word",
+    "pronunciation": "фосда́н",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "разум, рассудок",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han har en god forstand.",
+        "example_translation": "У него хороший разум."
+      },
+      {
+        "ordinal": 2,
+        "text": "понимание, смысл",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Jeg har ingen forstand på biler.",
+        "example_translation": "Я ничего не понимаю в машинах."
+      }
+    ]
+  },
+  {
+    "lemma": "tjeneste",
+    "kind": "word",
+    "pronunciation": "тьэ́энэстэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "услуга, одолжение",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Må jeg bede dig om en tjeneste?",
+        "example_translation": "Могу я попросить тебя об одолжении?"
+      },
+      {
+        "ordinal": 2,
+        "text": "служба, работа",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han er i militær tjeneste.",
+        "example_translation": "Он на военной службе."
+      }
+    ]
+  },
+  {
+    "lemma": "takt",
+    "kind": "word",
+    "pronunciation": "тагд",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "ритм, такт",
+        "pos": "noun",
+        "gender": "en",
+        "example": "De danser i takt til musikken.",
+        "example_translation": "Они танцуют в такт музыке."
+      },
+      {
+        "ordinal": 2,
+        "text": "такт, деликатность",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Hun har stor takt i sin opførsel.",
+        "example_translation": "Она проявляет большой такт в своем поведении."
+      }
+    ]
+  },
+  {
+    "lemma": "kriminel",
+    "kind": "word",
+    "pronunciation": "криминэ́л",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "преступный",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Det er en kriminel handling.",
+        "example_translation": "Это преступное действие."
+      }
+    ]
+  },
+  {
+    "lemma": "afsnit",
+    "kind": "word",
+    "pronunciation": null,
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "раздел, глава",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Læs det første afsnit i bogen.",
+        "example_translation": "Прочитай первый раздел в книге."
+      },
+      {
+        "ordinal": 2,
+        "text": "эпизод, серия",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Jeg så et nyt afsnit af serien.",
+        "example_translation": "Я посмотрел новую серию сериала."
+      }
+    ]
+  },
+  {
+    "lemma": "indlæg",
+    "kind": "word",
+    "pronunciation": "э́нлэг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "выступление, реплика",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Han holdt et godt indlæg til mødet.",
+        "example_translation": "Он выступил с хорошей речью на собрании."
+      },
+      {
+        "ordinal": 2,
+        "text": "публикация, пост",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Hun skrev et indlæg på bloggen.",
+        "example_translation": "Она написала пост в блоге."
+      }
+    ]
+  },
+  {
+    "lemma": "synes",
+    "kind": "word",
+    "pronunciation": "сю́нес",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "считать, полагать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg synes, det er en god idé.",
+        "example_translation": "Я считаю, что это хорошая идея."
+      },
+      {
+        "ordinal": 2,
+        "text": "казаться",
+        "pos": "verb",
+        "gender": null,
+        "example": "Det synes at være sandt.",
+        "example_translation": "Это кажется правдой."
+      }
+    ]
+  },
+  {
+    "lemma": "vidne",
+    "kind": "word",
+    "pronunciation": "ви́днэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "свидетель",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Vidnet forklarede hvad der skete.",
+        "example_translation": "Свидетель объяснил, что произошло."
+      },
+      {
+        "ordinal": 2,
+        "text": "быть свидетелем",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg vil gerne vidne i retten.",
+        "example_translation": "Я хочу дать показания в суде."
+      }
+    ]
+  },
+  {
+    "lemma": "grine",
+    "kind": "word",
+    "pronunciation": "гри́инэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "смеяться",
+        "pos": "verb",
+        "gender": null,
+        "example": "Vi griner meget sammen.",
+        "example_translation": "Мы много смеемся вместе."
+      }
+    ]
+  },
+  {
+    "lemma": "lektor",
+    "kind": "word",
+    "pronunciation": "лэ́гто",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "преподаватель вуза, доцент",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Min far er lektor på universitetet.",
+        "example_translation": "Мой отец — преподаватель в университете."
+      }
+    ]
+  },
+  {
+    "lemma": "sænke",
+    "kind": "word",
+    "pronunciation": "сэ́нгэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "опускать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Han sænkede hovedet.",
+        "example_translation": "Он опустил голову."
+      },
+      {
+        "ordinal": 2,
+        "text": "снижать",
+        "pos": "verb",
+        "gender": null,
+        "example": "De vil sænke priserne.",
+        "example_translation": "Они хотят снизить цены."
+      }
+    ]
+  },
+  {
+    "lemma": "melding",
+    "kind": "word",
+    "pronunciation": "мэ́линг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "сообщение, известие",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Vi venter på en melding fra dem.",
+        "example_translation": "Мы ждем сообщения от них."
+      }
+    ]
+  },
+  {
+    "lemma": "kreativ",
+    "kind": "word",
+    "pronunciation": "крэ́атиу",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "творческий",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Hun er en meget kreativ person.",
+        "example_translation": "Она очень творческий человек."
+      }
+    ]
+  },
+  {
+    "lemma": "henvende",
+    "kind": "word",
+    "pronunciation": null,
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "обращаться",
+        "pos": "verb",
+        "gender": null,
+        "example": "Du kan henvende dig til kontoret.",
+        "example_translation": "Вы можете обратиться в офис."
+      }
+    ]
+  },
+  {
+    "lemma": "passager",
+    "kind": "word",
+    "pronunciation": "пасашэ́а",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "пассажир",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Der var mange passagerer i toget.",
+        "example_translation": "В поезде было много пассажиров."
+      }
+    ]
+  },
+  {
+    "lemma": "sex",
+    "kind": "word",
+    "pronunciation": "сэгс",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "секс",
+        "pos": "noun",
+        "gender": "en",
+        "example": "De taler åbent om sex.",
+        "example_translation": "Они открыто говорят о сексе."
+      }
+    ]
+  },
+  {
+    "lemma": "sød",
+    "kind": "word",
+    "pronunciation": "сёд",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "милый, приятный",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Hun er en meget sød pige.",
+        "example_translation": "Она очень милая девушка."
+      },
+      {
+        "ordinal": 2,
+        "text": "сладкий",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Denne kage er meget sød.",
+        "example_translation": "Этот торт очень сладкий."
+      }
+    ]
+  },
+  {
+    "lemma": "bestille",
+    "kind": "word",
+    "pronunciation": "бэсдэ́лэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "заказывать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg vil gerne bestille en pizza.",
+        "example_translation": "Я хочу заказать пиццу."
+      },
+      {
+        "ordinal": 2,
+        "text": "делать, заниматься делом",
+        "pos": "verb",
+        "gender": null,
+        "example": "Hvad bestiller du i dag?",
+        "example_translation": "Чем ты сегодня занимаешься?"
+      }
+    ]
+  },
+  {
+    "lemma": "bidrag",
+    "kind": "word",
+    "pronunciation": "би́драу",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "вклад, взнос",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Tak for dit bidrag til projektet.",
+        "example_translation": "Спасибо за твой вклад в проект."
+      }
+    ]
+  },
+  {
+    "lemma": "begreb",
+    "kind": "word",
+    "pronunciation": "бэгрэ́б",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "понятие",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Jeg har ikke begreb om hvad det betyder.",
+        "example_translation": "Я не имею понятия, что это значит."
+      }
+    ]
+  },
+  {
+    "lemma": "profil",
+    "kind": "word",
+    "pronunciation": "профи́л",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "профиль",
+        "pos": "noun",
+        "gender": null,
+        "example": "Han har en flot profil.",
+        "example_translation": "У него красивый профиль."
+      },
+      {
+        "ordinal": 2,
+        "text": "краткая характеристика",
+        "pos": "noun",
+        "gender": null,
+        "example": "Jeg har oprettet en profil på nettet.",
+        "example_translation": "Я создал профиль в интернете."
+      }
+    ]
+  },
+  {
+    "lemma": "maskine",
+    "kind": "word",
+    "pronunciation": "масги́инэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "машина, механизм",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Maskinen virker ikke.",
+        "example_translation": "Машина не работает."
+      }
+    ]
+  },
+  {
+    "lemma": "seksuel",
+    "kind": "word",
+    "pronunciation": "сэгсуэ́л",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "сексуальный",
+        "pos": "adjective",
+        "gender": null,
+        "example": "De talte om seksuel sundhed.",
+        "example_translation": "Они говорили о сексуальном здоровье."
+      }
+    ]
+  },
+  {
+    "lemma": "udpege",
+    "kind": "word",
+    "pronunciation": null,
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "указывать, отмечать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Han udpegede fejlen i teksten.",
+        "example_translation": "Он указал на ошибку в тексте."
+      },
+      {
+        "ordinal": 2,
+        "text": "назначать на должность",
+        "pos": "verb",
+        "gender": null,
+        "example": "De udpegede en ny leder.",
+        "example_translation": "Они назначили нового руководителя."
+      }
+    ]
+  },
+  {
+    "lemma": "protest",
+    "kind": "word",
+    "pronunciation": "протэ́ст",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "протест",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Der var en stor protest i byen.",
+        "example_translation": "В городе был большой протест."
+      }
+    ]
+  },
+  {
+    "lemma": "strid",
+    "kind": "word",
+    "pronunciation": "сдрид",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "спор, конфликт",
+        "pos": "noun",
+        "gender": "en",
+        "example": "De ligger i strid med hinanden.",
+        "example_translation": "Они находятся в конфликте друг с другом."
+      },
+      {
+        "ordinal": 2,
+        "text": "борьба",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Det var en hård strid.",
+        "example_translation": "Это была тяжелая борьба."
+      }
+    ]
+  },
+  {
+    "lemma": "fremtidig",
+    "kind": "word",
+    "pronunciation": "фра́мти́ди",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "будущий",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Hvad er dine fremtidige planer?",
+        "example_translation": "Каковы твои планы на будущее?"
+      }
+    ]
+  },
+  {
+    "lemma": "hertil",
+    "kind": "word",
+    "pronunciation": "хэ́атэ́л",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "к этому, сюда",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Vi er nået hertil i arbejdet.",
+        "example_translation": "Мы дошли до этого момента в работе."
+      },
+      {
+        "ordinal": 2,
+        "text": "для этого",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Hertil kræves der en tilladelse.",
+        "example_translation": "Для этого требуется разрешение."
+      }
+    ]
+  },
+  {
+    "lemma": "gæld",
+    "kind": "word",
+    "pronunciation": "гэл",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "долг",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han har en stor gæld i banken.",
+        "example_translation": "У него большой долг в банке."
+      }
+    ]
+  },
+  {
+    "lemma": "finansiel",
+    "kind": "word",
+    "pronunciation": "финаншэ́л",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "финансовый",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Virksomheden har finansielle problemer.",
+        "example_translation": "У компании финансовые проблемы."
+      }
+    ]
+  },
+  {
+    "lemma": "uafhængig",
+    "kind": "word",
+    "pronunciation": "уаухэ́нги",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "независимый",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Hun er en uafhængig kvinde.",
+        "example_translation": "Она независимая женщина."
+      }
+    ]
+  },
+  {
+    "lemma": "anmeldelse",
+    "kind": "word",
+    "pronunciation": "а́нмэ́лэлсэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "отзыв, рецензия",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Jeg læste en god anmeldelse af filmen.",
+        "example_translation": "Я прочитал хороший отзыв о фильме."
+      },
+      {
+        "ordinal": 2,
+        "text": "заявление в полицию",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han indgav en anmeldelse om tyveri.",
+        "example_translation": "Он подал заявление о краже."
+      }
+    ]
+  },
+  {
+    "lemma": "indtægt",
+    "kind": "word",
+    "pronunciation": "э́нтэгд",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "доход",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Hvad er din månedlige indtægt?",
+        "example_translation": "Какой у тебя ежемесячный доход?"
+      }
+    ]
+  },
+  {
+    "lemma": "regning",
+    "kind": "word",
+    "pronunciation": "ра́йнинг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "счёт",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Kan jeg få regningen, tak?",
+        "example_translation": "Можно мне счёт, пожалуйста?"
+      },
+      {
+        "ordinal": 2,
+        "text": "расчёт, вычисление",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Det er en svær regning.",
+        "example_translation": "Это сложный пример на вычисление."
+      }
+    ]
+  },
+  {
+    "lemma": "blomst",
+    "kind": "word",
+    "pronunciation": "бломст",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "цветок",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Hun fik en smuk blomst.",
+        "example_translation": "Она получила красивый цветок."
+      }
+    ]
+  },
+  {
+    "lemma": "knytte",
+    "kind": "word",
+    "pronunciation": "кню́дэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "связывать, привязывать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Hun knyttede et bånd om gaven.",
+        "example_translation": "Она завязала ленточку на подарке."
+      },
+      {
+        "ordinal": 2,
+        "text": "устанавливать связь",
+        "pos": "verb",
+        "gender": null,
+        "example": "De knyttede nye kontakter.",
+        "example_translation": "Они установили новые контакты."
+      }
+    ]
+  },
+  {
+    "lemma": "musikalsk",
+    "kind": "word",
+    "pronunciation": "мусикэ́лск",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "музыкальный",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Han er meget musikalsk.",
+        "example_translation": "Он очень музыкален."
+      }
+    ]
+  },
+  {
+    "lemma": "mark",
+    "kind": "word",
+    "pronunciation": "мааг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "поле",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Køerne går på marken.",
+        "example_translation": "Коровы пасутся на поле."
+      }
+    ]
+  },
+  {
+    "lemma": "finansiere",
+    "kind": "word",
+    "pronunciation": "финаншэ́эа",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "финансировать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Hvordan vil du finansiere projektet?",
+        "example_translation": "Как ты собираешься финансировать проект?"
+      }
+    ]
+  },
+  {
+    "lemma": "ægteskab",
+    "kind": "word",
+    "pronunciation": "э́гдэсгэб",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "брак",
+        "pos": "noun",
+        "gender": "et",
+        "example": "De lever i et lykkeligt ægteskab.",
+        "example_translation": "Они живут в счастливом браке."
+      }
+    ]
+  },
+  {
+    "lemma": "bevis",
+    "kind": "word",
+    "pronunciation": "бэви́с",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "доказательство",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Hun har et bevis for sin uskyld.",
+        "example_translation": "У нее есть доказательство своей невиновности."
+      },
+      {
+        "ordinal": 2,
+        "text": "свидетельство, сертификат",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Jeg har modtaget mit bevis for bestået eksamen.",
+        "example_translation": "Я получил свой сертификат о сдаче экзамена."
+      }
+    ]
+  },
+  {
+    "lemma": "teknik",
+    "kind": "word",
+    "pronunciation": "тэгни́г",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "техника, метод",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Hun har en god teknik til at spille klaver.",
+        "example_translation": "У нее хорошая техника игры на пианино."
+      },
+      {
+        "ordinal": 2,
+        "text": "технология, оборудование",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Der er problemer med teknikken i bilen.",
+        "example_translation": "Есть проблемы с техникой в машине."
+      }
+    ]
+  },
+  {
+    "lemma": "udstille",
+    "kind": "word",
+    "pronunciation": "у́дсдэ́лэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "выставлять (на показ)",
+        "pos": "verb",
+        "gender": null,
+        "example": "Museet vil udstille nye malerier.",
+        "example_translation": "Музей будет выставлять новые картины."
+      },
+      {
+        "ordinal": 2,
+        "text": "выдавать (документ)",
+        "pos": "verb",
+        "gender": null,
+        "example": "Lægen skal udstille en recept.",
+        "example_translation": "Врач должен выписать рецепт."
+      }
+    ]
+  },
+  {
+    "lemma": "foretrække",
+    "kind": "word",
+    "pronunciation": null,
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "предпочитать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg foretrækker kaffe frem for te.",
+        "example_translation": "Я предпочитаю кофе чаю."
+      }
+    ]
+  },
+  {
+    "lemma": "påstå",
+    "kind": "word",
+    "pronunciation": "по́сдо",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "утверждать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Han påstår, at han er uskyldig.",
+        "example_translation": "Он утверждает, что невиновен."
+      }
+    ]
+  },
+  {
+    "lemma": "jøde",
+    "kind": "word",
+    "pronunciation": "йё́одэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "еврей, еврейка",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han er jøde og fejrer hanukkah.",
+        "example_translation": "Он еврей и празднует хануку."
+      }
+    ]
+  },
+  {
+    "lemma": "ophold",
+    "kind": "word",
+    "pronunciation": "о́бхол",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "пребывание",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Jeg nød mit ophold i Danmark.",
+        "example_translation": "Я наслаждался своим пребыванием в Дании."
+      },
+      {
+        "ordinal": 2,
+        "text": "пауза, перерыв",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Der var et kort ophold i regnen.",
+        "example_translation": "Был короткий перерыв в дожде."
+      }
+    ]
+  },
+  {
+    "lemma": "islamisk",
+    "kind": "word",
+    "pronunciation": "ислэ́миск",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "исламский",
+        "pos": "adjective",
+        "gender": null,
+        "example": "De studerer islamisk historie.",
+        "example_translation": "Они изучают исламскую историю."
+      }
+    ]
+  },
+  {
+    "lemma": "konkludere",
+    "kind": "word",
+    "pronunciation": "конклудэ́эа",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "делать вывод",
+        "pos": "verb",
+        "gender": null,
+        "example": "Vi kan konkludere, at planen virker.",
+        "example_translation": "Мы можем сделать вывод, что план работает."
+      }
+    ]
+  },
+  {
+    "lemma": "skille",
+    "kind": "word",
+    "pronunciation": "сгэ́лэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "разделять",
+        "pos": "verb",
+        "gender": null,
+        "example": "Man skal skille affaldet.",
+        "example_translation": "Нужно разделять мусор."
+      },
+      {
+        "ordinal": 2,
+        "text": "отличать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Det er svært at skille sandhed fra løgn.",
+        "example_translation": "Трудно отличить правду от лжи."
+      },
+      {
+        "ordinal": 3,
+        "text": "разводиться",
+        "pos": "verb",
+        "gender": null,
+        "example": "De valgte at skille sig efter mange år.",
+        "example_translation": "Они решили развестись после многих лет."
+      }
+    ]
+  }
+]

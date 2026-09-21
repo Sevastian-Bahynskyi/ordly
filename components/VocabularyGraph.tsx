@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { Link2, Loader2, Maximize2, Minus, Plus, Sparkles, Waypoints, X } from 'lucide-react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Link2, Loader2, Maximize2, Minus, Plus, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { buildVocabularyGraph, type GraphEdge, type GraphNode } from '@/lib/graph-layout'
 import { LINK_KIND_LABELS, type EntryLinkRow } from '@/lib/entry-links'
 import type { VocabularyEntry } from '@/lib/types'
@@ -23,6 +23,8 @@ const MIN_ZOOM = 0.35
 const MAX_ZOOM = 3.5
 /** A pointer that travelled further than this was a pan, not a tap. */
 const TAP_SLOP = 6
+/** Framing a single match must not fill the screen with one word; the island around it is the point. */
+const MATCH_ZOOM = 1.6
 
 interface Camera { x: number; y: number; k: number }
 
@@ -32,6 +34,14 @@ function clusterColor(cluster: number): string {
 
 function midpoint(a: GraphNode, b: GraphNode): { x: number; y: number } {
   return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }
+}
+
+function edgeKey(edge: GraphEdge): string {
+  return `${edge.a}:${edge.b}:${edge.kind}`
+}
+
+function contains(haystack: string | null | undefined, needle: string): boolean {
+  return (haystack || '').toLocaleLowerCase('da-DK').includes(needle)
 }
 
 export interface GraphDiscovery {
@@ -65,6 +75,7 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
   /** Never zoom out past the framed-everything view; there is nothing further out to see. */
   const minZoom = useRef(MIN_ZOOM)
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
   const frame = useRef<HTMLDivElement>(null)
   /** Live pointers, so one finger pans and two pinch without a gesture library. */
   const pointers = useRef(new Map<number, { x: number; y: number }>())
@@ -80,6 +91,38 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
     () => new Set(selectedEdges.flatMap((edge) => [edge.a, edge.b])),
     [selectedEdges],
   )
+
+  /**
+   * What the search matches: the same search the Material list has, over the same three texts —
+   * the Danish, its meanings, and the concept an edge is about.
+   *
+   * Null means no search is running, which is not the same as no matches: the first dims nothing,
+   * the second dims everything, and a learner who typed a word Ordly has not linked yet needs to
+   * see that difference.
+   */
+  const matches = useMemo(() => {
+    const query = search.trim().toLocaleLowerCase('da-DK')
+    if (!query) return null
+    const nodes = new Set(graph.nodes.filter((node) => contains(node.danish, query) || contains(node.translation, query)).map((node) => node.id))
+    const edges = new Set<string>()
+    for (const edge of graph.edges) {
+      // An edge is a match in its own right when the meaning it claims is what was typed, and
+      // then both of its ends light up — otherwise the match would be a line to nowhere.
+      if (contains(edge.concept, query)) {
+        edges.add(edgeKey(edge))
+        nodes.add(edge.a)
+        nodes.add(edge.b)
+      }
+    }
+    for (const edge of graph.edges) {
+      if (nodes.has(edge.a) || nodes.has(edge.b)) edges.add(edgeKey(edge))
+    }
+    return { nodes, edges }
+  }, [search, graph])
+
+  /** The match set as it is now, for the resize handler, which must not re-subscribe per keystroke. */
+  const matchesRef = useRef(matches)
+  matchesRef.current = matches
 
   function applyCamera(next: Camera): void {
     cameraRef.current = next
@@ -126,14 +169,59 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
     applyCamera({ k, x: (box.width - graph.width * k) / 2, y: (box.height - graph.height * k) / 2 })
   }, [graph.width, graph.height])
 
-  // Fits once the frame has a size, and again whenever the graph itself changes shape.
+  /** Bring a few nodes into view — what a search does once it knows where its answer is. */
+  const frameNodes = useCallback((ids: ReadonlySet<string>): void => {
+    const box = frame.current?.getBoundingClientRect()
+    const found = graph.nodes.filter((node) => ids.has(node.id))
+    if (!box || !found.length) return
+    const pad = 70
+    const left = Math.min(...found.map((node) => node.x - node.radius)) - pad
+    const right = Math.max(...found.map((node) => node.x + node.radius)) + pad
+    const top = Math.min(...found.map((node) => node.y)) - pad
+    const bottom = Math.max(...found.map((node) => node.y)) + pad
+    const k = Math.max(minZoom.current, Math.min(MATCH_ZOOM, Math.min(box.width / (right - left), box.height / (bottom - top))))
+    applyCamera({ k, x: box.width / 2 - ((left + right) / 2) * k, y: box.height / 2 - ((top + bottom) / 2) * k })
+  }, [graph.nodes])
+
+  /**
+   * A search that found something moves the camera to it, once per search text.
+   *
+   * Keyed on the text rather than on the match set: `matches` is rebuilt whenever the graph is,
+   * so `Find links` — which adds an edge at a time — would otherwise yank the camera back to the
+   * old search on every edge it discovers, including mid-gesture.
+   */
+  const framedFor = useRef<string | null>(null)
+  useEffect(() => {
+    const query = search.trim()
+    if (!query) {
+      framedFor.current = null
+      return
+    }
+    if (framedFor.current === query || !matches?.nodes.size) return
+    framedFor.current = query
+    frameNodes(matches.nodes)
+  }, [search, matches, frameNodes])
+
+  /**
+   * Fits once the frame has a size, and again whenever the graph itself changes shape.
+   *
+   * A running search keeps its framing through a resize: on a phone the resize *is* the keyboard
+   * opening under the search field, and fitting the whole graph there would throw away the
+   * answer the learner just typed.
+   */
+  const refit = useCallback((): void => {
+    const current = matchesRef.current
+    if (current?.nodes.size) frameNodes(current.nodes)
+    else fit()
+  }, [fit, frameNodes])
+
   useLayoutEffect(() => {
-    fit()
+    refit()
     if (typeof ResizeObserver === 'undefined' || !frame.current) return
-    const observer = new ResizeObserver(fit)
+    const observer = new ResizeObserver(refit)
     observer.observe(frame.current)
     return () => observer.disconnect()
-  }, [fit])
+  }, [refit])
 
   function zoomBy(factor: number, originX?: number, originY?: number): void {
     const current = cameraRef.current
@@ -246,7 +334,7 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
               const a = nodeById.get(edge.a)
               const b = nodeById.get(edge.b)
               if (!a || !b) return null
-              const active = !selected || neighbourIds.has(edge.a)
+              const active = (!selected || neighbourIds.has(edge.a)) && (!matches || matches.edges.has(edgeKey(edge)))
               return (
                 <line
                   key={`${edge.a}:${edge.b}:${edge.kind}`}
@@ -265,7 +353,10 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
               const b = nodeById.get(edge.b)
               if (!a || !b || !edge.concept) return null
               const onSelected = selected ? (edge.a === selected.id || edge.b === selected.id) : false
-              if (!onSelected && !(showEveryConcept && !selected)) return null
+              // A concept the learner just searched for explains itself at any zoom: it is the
+              // thing they were looking for.
+              const found = Boolean(matches?.edges.has(edgeKey(edge)) && contains(edge.concept, search.trim().toLocaleLowerCase('da-DK')))
+              if (!found && !onSelected && !(showEveryConcept && !selected)) return null
               const point = midpoint(a, b)
               return (
                 <text
@@ -280,12 +371,13 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
             })}
 
             {graph.nodes.map((node) => {
-              const dimmed = Boolean(selected) && !neighbourIds.has(node.id)
+              const dimmed = (Boolean(selected) && !neighbourIds.has(node.id)) || Boolean(matches && !matches.nodes.has(node.id))
               const isSelected = selected?.id === node.id
+              const found = Boolean(matches?.nodes.has(node.id))
               return (
                 <g
                   key={node.id}
-                  className={`graph-node${isSelected ? ' selected' : ''}${dimmed ? ' dimmed' : ''}`}
+                  className={`graph-node${isSelected ? ' selected' : ''}${dimmed ? ' dimmed' : ''}${found ? ' found' : ''}`}
                   role="button"
                   tabIndex={0}
                   aria-label={`${node.danish}${node.translation ? `, ${node.translation}` : ''}, ${node.degree} link${node.degree === 1 ? '' : 's'}`}
@@ -305,7 +397,7 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
                     rx={13}
                     fill={isSelected ? clusterColor(node.cluster) : 'var(--surface)'}
                     stroke={clusterColor(node.cluster)}
-                    strokeWidth={isSelected ? 0 : 1.4}
+                    strokeWidth={isSelected ? 0 : found ? 2.6 : 1.4}
                   />
                   <text x={node.x} y={node.y} fill={isSelected ? '#fff' : undefined}>{node.danish}</text>
                 </g>
@@ -313,6 +405,28 @@ export function VocabularyGraph({ entries, links, discovery = null, onFindLinks 
             })}
           </g>
         </svg>
+
+        <label className="graph-search">
+          <Search size={16} aria-hidden="true" />
+          <input
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value)
+              // Emptying the field is "show me everything again", however it was emptied.
+              if (!event.target.value.trim()) fit()
+            }}
+            placeholder="Find a word or meaning…"
+            aria-label="Search the graph"
+            // The frame owns pointer gestures; typing here must not start a pan.
+            onPointerDown={(event) => event.stopPropagation()}
+          />
+          {search && (
+            <button type="button" className="graph-search-clear" aria-label="Clear the search" onClick={() => { setSearch(''); fit() }}>
+              <X size={14} />
+            </button>
+          )}
+          {matches && <span className="graph-search-count">{matches.nodes.size}</span>}
+        </label>
 
         <div className="graph-zoom">
           <button type="button" onClick={() => zoomBy(1.25)} aria-label="Zoom in"><Plus size={16} /></button>

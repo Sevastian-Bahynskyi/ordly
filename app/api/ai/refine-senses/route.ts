@@ -1,13 +1,21 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { fetchCorForms } from '@/lib/cor'
 import { hasOpenRouterKey, isOpenRouterRateLimitError } from '@/lib/openrouter'
-import { applyRefinement, needsRefinement } from '@/lib/sense-refinement'
+import { applyRefinement, corRefinement, needsRefinement, withCorGender } from '@/lib/sense-refinement'
 import { classifySenses, MAX_REFINED_SENSES, MAX_REFINED_SENSE_LENGTH } from '@/lib/sense-refinement-ai'
 import { activeSenses, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
 
 /**
- * AI refinement of part of speech, gender and sense boundaries (D11, phase 2).
+ * Refinement of part of speech, gender and sense boundaries (D11, phase 2).
+ *
+ * The word register rules first (issue #5 §1). COR's candidates for the entry's form are read
+ * once, filtered by part of speech, and:
+ *
+ * - if they agree on one part of speech, that settles the entry and **no model is called**;
+ * - if they do not, the model is asked for the part of speech only, and COR still decides the
+ *   gender of every meaning the model called a noun.
  *
  * Two shapes, one prompt:
  *
@@ -34,7 +42,6 @@ export async function POST(request: Request): Promise<NextResponse> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured yet.' }, { status: 503 })
 
   const body: unknown = await request.json().catch(() => null)
   const record = body && typeof body === 'object' ? body as Record<string, unknown> : {}
@@ -43,7 +50,11 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (record.draft !== undefined) {
       const draft = readDraft(record.draft)
       if (!draft) return NextResponse.json({ error: 'Add the Danish text and a meaning first.' }, { status: 400 })
-      return NextResponse.json({ meanings: await classifySenses(draft.danish, draft.senses) })
+      const rows = await fetchCorForms(supabase, draft.danish)
+      const settled = corRefinement(rows, draft.senses.length)
+      if (settled) return NextResponse.json({ meanings: settled, source: 'cor' })
+      if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured yet.' }, { status: 503 })
+      return NextResponse.json({ meanings: withCorGender(await classifySenses(draft.danish, draft.senses), rows), source: 'ai' })
     }
 
     if (!isUuid(record.entryId)) return NextResponse.json({ error: 'Vocabulary entry is required.' }, { status: 400 })
@@ -62,10 +73,15 @@ export async function POST(request: Request): Promise<NextResponse> {
     const live = activeSenses(stored)
     if (live.length > MAX_REFINED_SENSES) return NextResponse.json({ refined: false })
 
-    const meanings = await classifySenses(String(entry.danish), live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH)))
+    const rows = await fetchCorForms(supabase, String(entry.danish))
+    const settled = corRefinement(rows, live.length)
+    if (!settled && !hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured yet.' }, { status: 503 })
+    const meanings = settled
+      ?? withCorGender(await classifySenses(String(entry.danish), live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH))), rows)
+
     const { data: written, error } = await supabase
       .from('vocabulary_entries')
-      .update({ senses: applyRefinement(stored, meanings) })
+      .update({ senses: applyRefinement(stored, meanings, { source: settled ? 'cor' : 'ai' }) })
       .eq('id', entry.id)
       .eq('updated_at', entry.updated_at)
       .select('id')

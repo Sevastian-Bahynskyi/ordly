@@ -1,13 +1,18 @@
+import { corGenderForPos, corPartOfSpeech, type CorForm } from './cor'
 import { activeSenses, isNounGender, isPartOfSpeech, parseSenses, PARTS_OF_SPEECH } from './senses'
 import type { EntrySense, NounGender, PartOfSpeech } from './types'
 
 /**
- * Phase 2 of the senses migration (D11): AI refinement of part of speech, gender and sense
+ * Phase 2 of the senses migration (D11): refinement of part of speech, gender and sense
  * boundaries, on demand and a few entries at a time — never a one-shot mass backfill.
  *
  * Phase 1 split every translation deterministically on `[;,/]` and left `pos` null, marking those
- * senses `source: 'split'`. Refinement is the only thing that ever turns a `'split'` sense into an
- * `'ai'` one, which is also how an entry drops out of the refinement queue.
+ * senses `source: 'split'`. Refinement is the only thing that ever turns a `'split'` sense into a
+ * `'cor'` or `'ai'` one, which is also how an entry drops out of the refinement queue.
+ *
+ * The word register answers first (issue #5 §1): where COR's candidates agree, the part of
+ * speech and the gender are facts and no model is called; where they do not, the model rules on
+ * the part of speech and COR still decides the gender of whatever it called a noun.
  *
  * It is deliberately conservative, because it runs without a preview (AGENTS.md §7, §19):
  *
@@ -74,6 +79,38 @@ export function parseRefinedMeanings(value: unknown, senseCount: number): Refine
   return result
 }
 
+/**
+ * The refinement the word register settles on its own, or null when the model still has to rule.
+ *
+ * COR answers for the *form*, so one unambiguous reading classifies every meaning of the entry
+ * at once and no model call happens at all (issue #5 §1). The cost of skipping the call is that
+ * adjacent comma fragments are not re-joined for these entries — the register has no opinion
+ * about sense boundaries — which is the trade the issue asks for.
+ *
+ * A noun whose candidates disagree about gender (`plan`, `alt`) keeps a null gender. It is
+ * genuinely both in Danish, so a model would only be guessing; the learner's `en`/`et` chips
+ * remain the way to settle it.
+ */
+export function corRefinement(rows: readonly CorForm[], senseCount: number): RefinedMeaning[] | null {
+  const pos = corPartOfSpeech(rows)
+  if (!pos || senseCount < 1) return null
+  const gender = corGenderForPos(rows, pos)
+  return Array.from({ length: senseCount }, (_, index) => ({ indices: [index + 1], pos, gender }))
+}
+
+/**
+ * Let COR decide the gender of every meaning the model classified as a noun.
+ *
+ * The model is asked for the part of speech because COR could not settle it; its gender is still
+ * only an opinion, so wherever the register is unambiguous the register wins. Where it is not,
+ * the model's answer is kept rather than dropped.
+ */
+export function withCorGender(meanings: RefinedMeaning[], rows: readonly CorForm[]): RefinedMeaning[] {
+  const gender = corGenderForPos(rows, 'noun')
+  if (!gender) return meanings
+  return meanings.map((meaning) => (meaning.pos === 'noun' ? { ...meaning, gender } : meaning))
+}
+
 function contiguous(indices: readonly number[]): boolean {
   return indices.every((index, position) => position === 0 || index === indices[position - 1] + 1)
 }
@@ -83,10 +120,23 @@ function contiguous(indices: readonly number[]): boolean {
  *
  * A group is honoured only when every member is a live `'split'` sense, the members are adjacent,
  * and no member was already claimed by an earlier group; otherwise each member is refined on its
- * own. Every live `'split'` sense leaves as `'ai'`, answered or not, so an entry the model could not
- * classify is not retried on every page view.
+ * own. Every live `'split'` sense leaves carrying `source`, answered or not, so an entry the
+ * classifier could not settle is not retried on every page view.
+ *
+ * `source` records who classified the entry: `'ai'` for the model, `'cor'` when the word register
+ * settled it without a call. Both leave the refinement queue; only the provenance differs.
  */
-export function applyRefinement(stored: readonly EntrySense[], meanings: readonly RefinedMeaning[], now: string = new Date().toISOString()): EntrySense[] {
+export interface RefinementOptions {
+  /** The soft-delete timestamp for absorbed fragments. Injected so a test can pin it. */
+  now?: string
+  source?: 'ai' | 'cor'
+}
+
+export function applyRefinement(
+  stored: readonly EntrySense[],
+  meanings: readonly RefinedMeaning[],
+  { now = new Date().toISOString(), source = 'ai' }: RefinementOptions = {},
+): EntrySense[] {
   const live = activeSenses(stored)
   const byId = new Map<string, EntrySense>()
   const claimed = new Set<number>()
@@ -111,7 +161,7 @@ export function applyRefinement(stored: readonly EntrySense[], meanings: readonl
         text: [head, ...rest].map((sense) => sense.text.trim()).join(', '),
         pos: meaning.pos,
         gender: meaning.pos === 'noun' ? meaning.gender : null,
-        source: 'ai',
+        source,
       })
     }
   }
@@ -121,6 +171,6 @@ export function applyRefinement(stored: readonly EntrySense[], meanings: readonl
     if (absorbed.has(sense.id)) return { ...sense, removed_at: now }
     const refined = byId.get(sense.id)
     if (refined) return refined
-    return sense.source === 'split' ? { ...sense, source: 'ai' as const } : sense
+    return sense.source === 'split' ? { ...sense, source } : sense
   })
 }

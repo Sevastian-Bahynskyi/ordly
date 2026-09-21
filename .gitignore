@@ -9,3 +9,12 @@ node_modules
 supabase/.temp/
 .envrc
 .mcp.json
+tsconfig.tsbuildinfo
+
+# Catalog build (issue #6): the recordings are binaries, everything else is the record.
+# facts.jsonl, ddo-ipa.json, prompts/ and out/ are all committed on purpose — out/ is the
+# expensive artefact, and the other three are what makes it reproducible and checkable.
+/catalog/audio/
+/catalog/audio-manifest.json
+/words.txt
+/kaikki.org-dictionary-Danish.jsonl

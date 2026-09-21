@@ -201,18 +201,28 @@
   font-weight: 650;
 }
 
-.danish-check.suggestion {
+/* Two boxes sit under the example sentence and never at the same time: the model's proposed
+   rewrite, and the local dictionary's list of words it does not know (issue #5 §3). They share
+   everything but their tint — purple for the model's suggestion, plain for the dictionary's. */
+.danish-check.suggestion,
+.danish-check.spelling {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   margin-top: -6px;
   padding: 10px 11px;
-  border: 1px solid #e5def8;
+  border: 1px solid var(--line);
   border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.danish-check.suggestion {
+  border-color: #e5def8;
   background: #faf8ff;
 }
 
-.danish-check.suggestion > small {
+.danish-check.suggestion > small,
+.danish-check.spelling > small {
   color: #8b8394;
   font-size: 9.5px;
   font-weight: 750;
@@ -248,3 +258,62 @@
   padding: 6px 10px;
   font-size: 11px;
 }
+
+.danish-check.spelling ul {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.danish-check.spelling li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.danish-check.spelling li > span {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-style: wavy;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+/* The one thing to tap in this box, so it carries the full 44px target the identity asks for. */
+.danish-check.spelling button {
+  min-height: 44px;
+  padding: 0 13px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* ---- Tap to hear (issue #6 §7) ---- */
+/* One button beside the word, not the old Listen / Slower / Say-it-aloud practice mode that
+   AGENTS.md §19 removed. A word with no recording renders nothing at all. */
+.word-audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 8px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--purple);
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.word-audio:hover:not(:disabled) { border-color: var(--purple-2); background: var(--purple-soft); }
+.word-audio:active:not(:disabled) { transform: translateY(1px); }
+.word-audio:disabled { color: var(--muted-2); cursor: default; }
