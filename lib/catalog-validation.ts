@@ -155,8 +155,8 @@ export async function validateCatalogBatch(
     const pronunciation = value.pronunciation
     if (pronunciation !== null && typeof pronunciation !== 'string') {
       fail(failures, 'pronunciation_invalid_script', 'Pronunciation must be Cyrillic text or null.')
-    } else if (typeof pronunciation === 'string' && !isReadableCyrillic(pronunciation)) {
-      fail(failures, 'pronunciation_invalid_script', 'Pronunciation contains a non-Cyrillic letter or no readable Cyrillic letters.')
+    } else if (typeof pronunciation === 'string' && (!isReadableCyrillic(pronunciation) || pronunciation.includes("'"))) {
+      fail(failures, 'pronunciation_invalid_script', 'Pronunciation must use Cyrillic letters and Unicode stress marks, never Latin letters or ASCII apostrophes.')
     }
     if (pronunciation !== null && pronunciation !== undefined && fact.ipa === null) {
       fail(failures, 'pronunciation_without_ipa', 'Pronunciation was supplied even though the source IPA is null.')
@@ -246,8 +246,13 @@ export async function validateCatalogBatch(
         const misspellings = await spelling
         if (misspellings === null) {
           fail(failures, 'spelling_check_unavailable', 'Spelling check did not run; null is not a clean result.', expectedOrdinal)
-        } else if (misspellings.length) {
-          fail(failures, 'example_misspelled', `Example contains misspelling(s): ${misspellings.join(', ')}.`, expectedOrdinal)
+        } else {
+          const unexpected = misspellings.filter(
+            (misspelling) => misspelling.toLocaleLowerCase('da-DK') !== fact.lemma.toLocaleLowerCase('da-DK'),
+          )
+          if (unexpected.length) {
+            fail(failures, 'example_misspelled', `Example contains misspelling(s): ${unexpected.join(', ')}.`, expectedOrdinal)
+          }
         }
       }
 

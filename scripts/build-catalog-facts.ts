@@ -30,7 +30,7 @@ import { dirname } from 'node:path'
 import { createInterface } from 'node:readline'
 import type { CatalogFact } from '../lib/catalog-contract'
 import { buildCatalogFact, catalogHeadword, resolvePartOfSpeech } from '../lib/catalog-facts'
-import { parseKaikkiLine, selectIpaForPos, type WiktionaryIpa } from '../lib/catalog-ipa'
+import { parseKaikkiLine, selectCatalogIpa, type WiktionaryIpa } from '../lib/catalog-ipa'
 import { parseRanking, type RankedLemma } from '../lib/catalog-ranking'
 import { corLookupForm, parseCorForms, type CorForm } from '../lib/cor'
 import { literal, queryJson } from './catalog-db'
@@ -177,13 +177,12 @@ async function main(): Promise<void> {
     })
     // The part of speech has to be settled before an IPA can be chosen, for the same reason it
     // has to be settled before a gender can be read: `ved` is two words with two pronunciations.
-    const fromDdo = ddoIpa[headword] || ddoIpa[entry.lemma]
-    const ipa = fromDdo || selectIpaForPos(candidates, fact.pos)
-    facts.push({ ...fact, ipa, ipa_source: ipa ? (fromDdo ? 'ddo' : 'wiktionary') : null })
+    const selectedIpa = selectCatalogIpa(ddoIpa[headword] || ddoIpa[entry.lemma], candidates, fact.pos)
+    facts.push({ ...fact, ipa: selectedIpa.ipa, ipa_source: selectedIpa.source })
   }
 
   for (const phrase of phrases) {
-    const ipa = ddoIpa[phrase] || selectIpaForPos(ipaIndex.get(phrase) || [], 'phrase')
+    const selectedIpa = selectCatalogIpa(ddoIpa[phrase], ipaIndex.get(phrase) || [], 'phrase')
     facts.push(buildCatalogFact({
       lemma: phrase,
       kind: 'phrase',
@@ -191,8 +190,8 @@ async function main(): Promise<void> {
       posHint: 'phrase',
       formRows: [],
       lemmaRows: [],
-      ipa,
-      ipaSource: ipa ? (ddoIpa[phrase] ? 'ddo' : 'wiktionary') : null,
+      ipa: selectedIpa.ipa,
+      ipaSource: selectedIpa.source,
     }))
   }
 

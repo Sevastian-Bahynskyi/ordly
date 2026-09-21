@@ -129,9 +129,11 @@ vocabulary already carried two meanings for.
 it shows the generator what it already wrote and asks what is missing. Polysemy is concentrated in
 common words, so the top 1,000 is where nearly all the missing meanings are.
 
-Measured over the top 1,000: rows with more than one meaning went from **0% to 34%** (306 with
-two, 36 with three). `lige` is now "только что · прямо · как раз", `gang` is "раз · коридор ·
-походка".
+Measured over the final run: **316 of 985** retained rows in the first 1,000 ranks (32.1%) and
+**613 of 1,954** later rows (31.4%) carry more than one meaning. `lige` is now "только что · прямо
+· как раз", `gang` is "раз · коридор · походка". The later ranks use the same second pass; rows
+that failed the deterministic gate were restored to their validated first-pass meaning instead
+of being forced through.
 
 It cost two rules that turned out to be written for a one-sense catalog, and both were fixed
 rather than waived:
@@ -147,7 +149,9 @@ rather than waived:
   words in the language. COR holds those forms. Consulted only after the matcher says no, it
   rescued 46 correct examples of 49.
 
-Final: **2,906 of 3,000 rows clean (96.9%)**.
+Final: **2,939 rows clean (100%)** across all 60 batches. Sixty source rows whose claimed lemma
+and part of speech COR could never verify, plus `årevis` whose COR adjective tag conflicts with
+DDO's adverb entry, were removed rather than loaded under a false class.
 
 ## Step 5 — audit
 
@@ -188,6 +192,16 @@ be rebuilt before the catalog is exposed. The next largest class was sense cover
 rows either merged distinct meanings or omitted a common homograph, showing that the second pass
 over only the top 1,000 did not reach far enough. The recorded row-level verdicts are in
 `catalog/audit-verdicts.json`.
+
+Repair run 2026-09-21: all **163** component-only DDO transcriptions were removed; 35 received a
+complete Wiktionary fallback and 128 became null. The second meaning pass was extended through
+all 60 batches, then every rejected rewrite was rolled back before audited corrections were
+applied. The first new sample found 13 defects and stopped at **187 of 200 clean (93.5% ± 3.4%)**.
+After those repairs, a different seeded sample passed at **192 of 200 clean (96.0% ± 2.7%)**.
+Its eight findings were also repaired: 33 ASCII stress markers were normalized corpus-wide,
+invalid examples and duplicated senses were corrected, `svenske` was restored to its actual bird
+meaning, and the audited `årevis` source conflict was pruned. The recorded second-sample verdicts
+remain in `catalog/audit-verdicts.json`; that one pruned row explains its pre-prune total of 2,940.
 
 ## Step 6 — audio, and the transcriptions that ride along with it
 
@@ -245,6 +259,10 @@ ids are derived from lemma, kind and ordinal rather than generated, so a second 
 same id for the same meaning — `sense_id` is permanent, an unlocked entry inherits it, and
 practice objectives are keyed `entry:<id>:sense:<sid>` (AGENTS.md §20).
 
+The importer synchronizes the exact validated snapshot after its upserts. Removed meanings are
+deleted by their stable ids and removed entries are deleted after that (their remaining meanings
+cascade). It refuses an empty snapshot, so a broken build cannot wipe the reference catalog.
+
 Two things about the bucket that cost a round each:
 
 - **Storage keys are ASCII and Danish is not.** `words/adfærd.mp3` is refused outright, so
@@ -258,8 +276,9 @@ Two things about the bucket that cost a round each:
   type afterwards. Direct `delete from storage.objects` is blocked by design — a mistake has to
   be undone through the Storage API.
 
-Loaded on 2026-09-20: **2,906 entries, 3,305 meanings, 2,898 with a recording** (2,969 objects,
-29 MB). Every `audio_path` was verified to resolve to a real object.
+Loaded on 2026-09-21: **2,939 entries, 3,932 meanings, 2,931 with a recording**. Production
+verification found zero partial IPA values, zero Latin or apostrophe pronunciation hints, zero
+orphan meanings, and no retained `årevis` source conflict.
 
 ## Why the steps are not in the issue's order
 

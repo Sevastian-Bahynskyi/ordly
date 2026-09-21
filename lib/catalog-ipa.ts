@@ -24,6 +24,24 @@ export interface WiktionaryIpa {
   ipa: string
 }
 
+export type CatalogIpaSelection = {
+  ipa: string | null
+  source: 'ddo' | 'wiktionary' | null
+}
+
+const COMPONENT_BOUNDARY = /^[-‐‑‒–—]|[-‐‑‒–—]$/u
+
+/** DDO sometimes prints only a compound prefix or suffix, marked by a boundary dash. */
+export function isCompleteIpa(value: unknown): value is string {
+  if (typeof value !== 'string') return false
+  const ipa = value.trim()
+  if (!ipa) return false
+  const delimited = (ipa.startsWith('[') && ipa.endsWith(']'))
+    || (ipa.startsWith('/') && ipa.endsWith('/'))
+  const transcription = delimited ? ipa.slice(1, -1).trim() : ipa
+  return Boolean(transcription) && !COMPONENT_BOUNDARY.test(transcription)
+}
+
 /** Wiktionary's word classes, mapped onto Ordly's. Anything unlisted is deliberately null. */
 const KAIKKI_PARTS_OF_SPEECH: Record<string, PartOfSpeech> = {
   noun: 'noun',
@@ -58,9 +76,8 @@ export function chooseIpa(sounds: unknown): string | null {
   for (const sound of sounds) {
     if (!sound || typeof sound !== 'object') continue
     const value = (sound as Record<string, unknown>).ipa
-    if (typeof value !== 'string') continue
+    if (!isCompleteIpa(value)) continue
     const ipa = value.trim()
-    if (!ipa) continue
     if (ipa.startsWith('[')) return ipa
     if (!phonemic) phonemic = ipa
   }
@@ -103,6 +120,18 @@ export function selectIpaForPos(
   const matching = pos ? candidates.filter((candidate) => candidate.pos === pos) : []
   const pool = matching.length ? matching : candidates.filter((candidate) => candidate.pos === null)
   const usable = pool.length ? pool : pos ? [] : candidates
-  const distinct = [...new Set(usable.map((candidate) => candidate.ipa))]
+  const distinct = [...new Set(usable.map((candidate) => candidate.ipa).filter(isCompleteIpa))]
   return distinct.length === 1 ? distinct[0] : null
+}
+
+export function selectCatalogIpa(
+  ddoIpa: unknown,
+  wiktionaryCandidates: readonly WiktionaryIpa[],
+  pos: PartOfSpeech | null,
+): CatalogIpaSelection {
+  if (isCompleteIpa(ddoIpa)) return { ipa: ddoIpa.trim(), source: 'ddo' }
+  const wiktionaryIpa = selectIpaForPos(wiktionaryCandidates, pos)
+  return wiktionaryIpa
+    ? { ipa: wiktionaryIpa, source: 'wiktionary' }
+    : { ipa: null, source: null }
 }

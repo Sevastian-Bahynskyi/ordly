@@ -1,5 +1,6 @@
 import { isNounGender, isPartOfSpeech, PARTS_OF_SPEECH } from './senses'
 import type { NounGender, PartOfSpeech } from './types'
+import { isCompleteIpa } from './catalog-ipa'
 
 export const CATALOG_BATCH_SIZE = 40
 export const CATALOG_MAX_SENSES = 3
@@ -68,6 +69,7 @@ export function parseCatalogFact(value: unknown): CatalogFact | null {
 
   if (!lemma || !kind || freqRank === undefined || pos === undefined || gender === undefined
     || definiteSingular === undefined || indefinitePlural === undefined || ipa === undefined) return null
+  if (ipa !== null && !isCompleteIpa(ipa)) return null
 
   return {
     lemma,
@@ -132,7 +134,7 @@ Output shape:
 [{"lemma":"...","kind":"word|phrase","pronunciation":"... or null","senses":[{"ordinal":1,"text":"...","pos":"...","gender":"en|et|null","example":"...","example_translation":"..."}]}]
 
 Rules:
-1. Pronunciation is a Russian-readable Cyrillic hint derived only from the supplied IPA, never from Danish spelling. Preserve the reductions implied by the IPA. Useful reading anchors from learner feedback are: synes ≈ сюнес, stadig ≈ сдэ́эди, selvfølgelig ≈ сэфёли. These are style anchors, not permission to ignore the supplied IPA. If ipa is null, pronunciation must be null. Use no Latin letters in pronunciation.
+1. Pronunciation is a Russian-readable Cyrillic hint derived only from the supplied IPA, never from Danish spelling. Preserve the reductions implied by the IPA. Useful reading anchors from learner feedback are: synes ≈ сюнес, stadig ≈ сдэ́эди, selvfølgelig ≈ сэфёли. These are style anchors, not permission to ignore the supplied IPA. If ipa is null, pronunciation must be null. Use no Latin letters in pronunciation. Mark stress with a Unicode acute accent (э́), never an ASCII apostrophe.
 2. Gender is a fact, not a guess. If input gender is en or et, copy that value only for noun senses. If input gender is null, every sense gender must be null. Never infer gender yourself.
 3. If input pos is non-null, every sense must keep exactly that part of speech. If input pos is null, choose the correct value from: ${PARTS_OF_SPEECH.join(', ')}.
 4. Every sense text is a concise Russian meaning written in Cyrillic. Do not mix Latin homoglyphs into Cyrillic text.

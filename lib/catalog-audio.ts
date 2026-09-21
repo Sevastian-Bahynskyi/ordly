@@ -1,4 +1,5 @@
 import type { PartOfSpeech } from './types'
+import { isCompleteIpa } from './catalog-ipa'
 
 /**
  * Driving the DDO audio downloader (issue #6 §6).
@@ -95,7 +96,7 @@ export function parseAudioReport(value: unknown): AudioResult[] {
     const status = typeof record.status === 'string' ? record.status : ''
     const path = typeof record.path === 'string' && record.path ? record.path : null
     const outcome: AudioOutcome = !ok || !path ? 'failed' : status === 'skipped' ? 'skipped' : 'saved'
-    const ipa = typeof record.ipa === 'string' && record.ipa.trim() ? record.ipa.trim() : null
+    const ipa = isCompleteIpa(record.ipa) ? record.ipa.trim() : null
     results.push({ lemma, outcome, path: outcome === 'failed' ? null : path, ipa })
   }
   return results
@@ -112,7 +113,9 @@ export function mergeHarvestedIpa(
   existing: Readonly<Record<string, string>>,
   results: readonly AudioResult[],
 ): Record<string, string> {
-  const merged: Record<string, string> = { ...existing }
+  const merged: Record<string, string> = Object.fromEntries(
+    Object.entries(existing).filter((entry): entry is [string, string] => isCompleteIpa(entry[1])),
+  )
   for (const result of results) if (result.ipa) merged[result.lemma] = result.ipa
   return merged
 }

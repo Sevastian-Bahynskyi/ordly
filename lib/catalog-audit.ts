@@ -24,6 +24,8 @@ export const AUDIT_FAILURE_CLASSES = [
   'pronunciation_mismatch',
   'example_wrong_sense',
   'example_translation_mismatch',
+  'example_invalid_danish',
+  'part_of_speech_wrong',
   'level_drift',
 ] as const
 
@@ -35,6 +37,8 @@ export const AUDIT_FAILURE_LABELS: Record<AuditFailureClass, string> = {
   pronunciation_mismatch: 'The Cyrillic does not read as the IPA says the word sounds',
   example_wrong_sense: 'The example contains the word but does not demonstrate that meaning',
   example_translation_mismatch: 'The Russian does not translate the Danish example',
+  example_invalid_danish: 'The Danish example is ungrammatical or not idiomatic',
+  part_of_speech_wrong: 'The recorded part of speech is not the word class used by the meaning',
   level_drift: 'The example is not simple everyday Danish',
 }
 

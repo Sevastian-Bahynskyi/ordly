@@ -22,6 +22,7 @@ import { readFile, readdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
+import { catalogCleanupSql } from '../lib/catalog-import'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
 import { literal, query } from './catalog-db'
 
@@ -214,10 +215,13 @@ async function main(): Promise<void> {
     console.log(`  meanings ${Math.min(start + BATCH_SIZE, senses.length)}/${senses.length}`)
   }
 
-  // A meaning the catalog no longer has must not linger: an entry that lost its third sense would
-  // otherwise keep teaching it.
-  await query(`delete from public.word_catalog_sense s
-    where not exists (select 1 from public.word_catalog e where e.lemma = s.lemma and e.kind = s.kind)`)
+  // Synchronize the exact validated snapshot. Upsert alone cannot remove a vanished third sense,
+  // and the old cleanup only removed orphaned senses while leaving removed entries in place.
+  await query(catalogCleanupSql(entries.map((entry) => ({
+    lemma: entry.fact.lemma,
+    kind: entry.fact.kind,
+    senseIds: entry.row.senses.map((sense) => senseId(entry.fact.lemma, entry.fact.kind, sense.ordinal)),
+  }))))
 
   const counts = await query(`select
     (select count(*) from public.word_catalog) as entries,
