@@ -78,8 +78,10 @@ export function WordAudio({ audioPath, label, autoPlay = false }: { audioPath: s
     <button
       type="button"
       className="word-audio"
-      onClick={() => void play()}
-      onPointerUp={(event) => event.currentTarget.blur()}
+      onClick={(event) => {
+        void play()
+        if (event.detail > 0) event.currentTarget.blur()
+      }}
       disabled={loading}
       aria-label={`Hear ${label}`}
       title={`Hear ${label}`}
