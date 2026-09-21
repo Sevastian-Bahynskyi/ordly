@@ -65,6 +65,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
     && PRACTICE_ASSISTANCE.includes(String(value.assistance))
     && ['typed', 'spoken'].includes(String(value.modality))
     && ['yes', 'no', 'uncertain'].includes(String(value.communication)) && ['yes', 'no', 'uncertain'].includes(String(value.target))
+    && (value.relation === undefined || ['exact', 'valid_alternative', 'grammar_adjustment', 'incorrect'].includes(String(value.relation)))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= 3600000
     && Number.isInteger(value.replays) && Number(value.replays) >= 0 && Number(value.replays) <= 100
     && (value.correction === undefined || text(value.correction))
@@ -117,13 +118,19 @@ export interface PracticeFeedback {
   feedback: string
   communication: 'yes' | 'no' | 'uncertain'
   target: 'yes' | 'no' | 'uncertain'
+  relation: 'exact' | 'valid_alternative' | 'grammar_adjustment' | 'incorrect'
   correction?: string
 }
 
 export function parsePracticeFeedback(value: unknown): PracticeFeedback | null {
   if (!isRecord(value) || !['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result)) || !text(value.feedback, 400)
-    || !['yes', 'no', 'uncertain'].includes(String(value.communication)) || !['yes', 'no', 'uncertain'].includes(String(value.target))) return null
-  const feedback: PracticeFeedback = { result: value.result as PracticeFeedback['result'], feedback: value.feedback, communication: value.communication as PracticeFeedback['communication'], target: value.target as PracticeFeedback['target'] }
+    || !['yes', 'no', 'uncertain'].includes(String(value.communication)) || !['yes', 'no', 'uncertain'].includes(String(value.target))
+    || !['exact', 'valid_alternative', 'grammar_adjustment', 'incorrect'].includes(String(value.relation))) return null
+  const consistent = (value.result === 'correct' && ['exact', 'valid_alternative'].includes(String(value.relation)))
+    || (value.result === 'mostly' && value.relation === 'grammar_adjustment')
+    || (['incorrect', 'ungraded'].includes(String(value.result)) && value.relation === 'incorrect')
+  if (!consistent) return null
+  const feedback: PracticeFeedback = { result: value.result as PracticeFeedback['result'], feedback: value.feedback, communication: value.communication as PracticeFeedback['communication'], target: value.target as PracticeFeedback['target'], relation: value.relation as PracticeFeedback['relation'] }
   const correction = typeof value.corrected === 'string' ? value.corrected.trim() : ''
   if (correction && correction.length <= 2000) feedback.correction = correction
   return feedback

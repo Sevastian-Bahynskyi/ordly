@@ -184,7 +184,7 @@ export function PracticeSession(): JSX.Element {
           {help && <div className="practice-hint">{task.hint}<small>This is supported practice. You’ll try again with the answer hidden.</small></div>}
         </form>}
         {revealed && response && <div className="practice-feedback" aria-live="polite">
-          <span className={`practice-verdict ${response.result}`}>{response.result === 'correct' ? (chosen ? 'That’s the one' : 'Correct') : response.result === 'mostly' ? 'Close — one adjustment' : response.result === 'incorrect' ? 'Let’s repair this' : 'Compare & self-check'}</span>
+          <span className={`practice-verdict ${response.result}`}>{practiceVerdict(response, chosen)}</span>
           <p>{response.feedback}</p>
           {task.objective === 'production' && response.communication === 'yes' && response.target === 'no' && <p>Your reply works, but it did not retrieve this target expression. We’ll practise the target again.</p>}
           <FeedbackAnswers task={task} response={response} />
@@ -217,6 +217,13 @@ function FeedbackAnswers({ task, response }: { task: PracticeTask; response: Pra
   const modelLabel = openKinds.includes(task.kind) ? 'One possible reply' : task.kind === 'sense' || task.kind === 'pick' ? 'The meaning' : 'Answer to recall'
   const answerIsDanish = !['recall', 'sense', 'pick'].includes(task.kind)
 
+  if (response.relation === 'grammar_adjustment' && correction) {
+    return <>
+      <div className="correct-answer practice-rephrase"><span>With “{typed}”, say</span><strong lang="da">{correction}</strong></div>
+      {normalized(correction) !== normalized(task.answer) && <div className="correct-answer"><span>Original target</span><strong lang="da">{task.answer}</strong></div>}
+    </>
+  }
+
   if (diff && !diff.identical) {
     return <>
       <div className="practice-diff">
@@ -231,6 +238,15 @@ function FeedbackAnswers({ task, response }: { task: PracticeTask; response: Pra
     <div className="correct-answer"><span>{modelLabel}</span><strong lang={answerIsDanish ? 'da' : undefined}>{task.answer}</strong></div>
     {typed && <p className="practice-your-answer"><small>Your answer</small>{wrongTap ? <mark className="diff-wrong">{typed}</mark> : typed}</p>}
   </>
+}
+
+function practiceVerdict(response: PracticeResponse, chosen: boolean): string {
+  if (response.relation === 'valid_alternative') return 'Valid alternative'
+  if (response.relation === 'grammar_adjustment') return 'Better with your word'
+  if (response.result === 'correct') return chosen ? 'That’s the one' : 'Correct'
+  if (response.result === 'mostly') return 'Close — one adjustment'
+  if (response.result === 'incorrect') return 'Let’s repair this'
+  return 'Compare & self-check'
 }
 
 function normalized(value: string): string {

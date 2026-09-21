@@ -1,0 +1,62 @@
+.review-saved-meanings {
+  padding: 14px 15px;
+}
+
+.review-sense-list {
+  margin-top: 7px;
+}
+
+.review-sense {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.review-sense:first-child {
+  padding-top: 3px;
+  border-top: 0;
+}
+
+.review-sense:last-child {
+  padding-bottom: 2px;
+}
+
+.review-sense > strong {
+  min-width: 0;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.review-pos {
+  flex: none;
+  padding: 4px 8px;
+  border: 1px solid var(--pos-border, var(--line));
+  border-radius: 999px;
+  color: var(--pos-fg, var(--muted));
+  background: var(--pos-bg, var(--surface-2));
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.practice-rephrase {
+  border: 1px solid #ead8b7;
+  background: var(--amber-soft);
+}
+
+@media (max-width: 480px) {
+  .answer-verdict {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .review-sense {
+    align-items: flex-start;
+  }
+}

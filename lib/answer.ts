@@ -1,6 +1,7 @@
 import type { EntrySense } from './types'
 
 export type AnswerResult = 'correct' | 'mostly' | 'incorrect'
+export type MeaningMatch = 'saved' | 'synonym' | null
 
 function base(value: string) {
   return value
@@ -64,6 +65,25 @@ export function checkAnswer(input: string, expected: string, options: CheckAnswe
     }
   }
   return 'incorrect'
+}
+
+/** Whether a meaning was recalled from this entry or through a confirmed synonym edge. */
+export function meaningMatch(
+  input: string,
+  senses: readonly EntrySense[] | null | undefined,
+  linkedSenses: readonly EntrySense[] | null | undefined,
+): MeaningMatch {
+  const actual = base(input)
+  if (!actual) return null
+  const matches = (sense: EntrySense): boolean => {
+    if (sense.removed_at) return false
+    const candidate = base(sense.text)
+    const spelling = (value: string): string => value.replaceAll('ё', 'е').replaceAll('ъ', '')
+    return Boolean(candidate) && (candidate === actual || spelling(candidate) === spelling(actual) || relaxed(candidate) === relaxed(actual))
+  }
+  if ((senses || []).some(matches)) return 'saved'
+  if ((linkedSenses || []).some(matches)) return 'synonym'
+  return null
 }
 
 /**

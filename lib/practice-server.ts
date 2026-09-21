@@ -324,9 +324,16 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
           : result === 'incorrect' ? (choiceKind ? 'Not this one. Read the answer below.' : task.kind === 'cloze' ? 'Not this word. Compare with the missing word below.' : 'Needs checking. Compare your answer with the example and choose your own rating.')
             : result === 'mostly' ? 'Almost. Check the highlighted letters.'
               : choiceKind ? 'Correct. You picked it from the options, so this counts as supported practice.' : task.kind === 'recall' ? 'Meaning recalled. Your wording is accepted.' : 'Correct.'
-    let feedback: { result: PracticeResponse['result']; feedback: string; communication: PracticeResponse['communication']; target: PracticeResponse['target']; correction?: string } = { result: spoken ? 'ungraded' : result, feedback: message, communication: result === 'correct' ? 'yes' : 'uncertain', target: result === 'correct' ? 'yes' : 'uncertain' }
-    // A typed gap has one right word, so it is graded here and never sent to the provider.
-    if (answer && !spoken && !choiceKind && result === 'incorrect' && task.kind !== 'cloze') {
+    let feedback: { result: PracticeResponse['result']; feedback: string; communication: PracticeResponse['communication']; target: PracticeResponse['target']; relation: NonNullable<PracticeResponse['relation']>; correction?: string } = {
+      result: spoken ? 'ungraded' : result,
+      feedback: message,
+      communication: result === 'correct' ? 'yes' : 'uncertain',
+      target: result === 'correct' ? 'yes' : 'uncertain',
+      relation: baseFormInGap ? 'grammar_adjustment' : result === 'correct' ? 'exact' : 'incorrect',
+    }
+    // A failed typed answer may be a valid contextual replacement. The semantic checker can
+    // distinguish that from a word that needs a different grammatical construction.
+    if (answer && !spoken && !choiceKind && result === 'incorrect') {
       feedback.result = 'ungraded'
       // D5: grading is not coaching. A learner who turned AI feedback off still deserves to have
       // a correct synonym recognised, so the call is permitted either way — the toggle now only

@@ -31,7 +31,12 @@ export default async function ReviewPage(): Promise<React.JSX.Element> {
   const today = copenhagenDate()
 
   const [{ data }, { data: profile }, { count: newReviewedToday }, { data: links }] = await Promise.all([
-    supabase.from('review_cards').select('*, vocabulary_entries(*)').lte('due', now).order('due', { ascending: true }).limit(120),
+    supabase.from('review_cards')
+      .select('*, vocabulary_entries!inner(*)')
+      .eq('vocabulary_entries.entry_kind', 'word')
+      .lte('due', now)
+      .order('due', { ascending: true })
+      .limit(120),
     supabase.from('profiles').select('daily_new_limit, default_translation_language, autoplay_audio').single(),
     supabase.from('review_logs').select('id', { count: 'exact', head: true }).eq('study_date', today).eq('previous_state', 0),
     // D5: both ends of each live synonym edge ride along in the same parallel batch, so grading
@@ -45,7 +50,10 @@ export default async function ReviewPage(): Promise<React.JSX.Element> {
 
   const dailyLimit = profile?.daily_new_limit || 10
   let newSlots = Math.max(0, dailyLimit - (newReviewedToday || 0))
-  const ready = ((data || []) as ReviewItem[]).filter((card) => !!card.vocabulary_entries?.translation)
+  const ready = ((data || []) as ReviewItem[]).filter((card) => (
+    card.vocabulary_entries?.entry_kind !== 'sentence'
+    && !!card.vocabulary_entries?.translation
+  ))
   const items = ready.filter((card) => {
     if (card.reps > 0) return true
     if (newSlots <= 0) return false
