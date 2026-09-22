@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpenText, Check, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
+import { BookOpenText, Check, Download, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
 import { definiteFormKey } from '@/lib/cor'
@@ -16,6 +16,7 @@ import {
 } from '@/lib/entry-links'
 import { canStartDiscovery, discoveryStartIndex, type DiscoveryRun } from '@/lib/discovery-run'
 import { inferDanishInputKind } from '@/lib/entry-kind'
+import { buildMaterialCsv, type ExportPracticeAttempt, type ExportReviewLog } from '@/lib/material-export'
 import { mergeSenses } from '@/lib/sense-merge'
 import { activeSenses, nounGenderOf, parseSenses, PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
 import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
@@ -99,6 +100,7 @@ export function MaterialClient({
   const enrichAnyway = useRef<Set<string>>(new Set())
   const [preview, setPreview] = useState<PreviewState | null>(null)
   const [applyingPreview, setApplyingPreview] = useState(false)
+  const [exporting, setExporting] = useState(false)
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
 
@@ -383,8 +385,40 @@ export function MaterialClient({
     }
   }
 
+  async function exportMaterial(): Promise<void> {
+    if (exporting) return
+    setExporting(true)
+    try {
+      const supabase = createClient()
+      const entryIds = words.filter((word) => word.entry_kind !== 'sentence').map((word) => word.id)
+      if (!entryIds.length) throw new Error('Add a word or phrase before exporting.')
+      const [logsResult, attemptsResult] = await Promise.all([
+        readAllExportRows((from, to) => supabase.from('review_logs').select('entry_id, rating, answer_result, answer_text, previous_state, stability, difficulty, scheduled_days, reviewed_at, study_date').in('entry_id', entryIds).order('id').range(from, to)),
+        readAllExportRows((from, to) => supabase.from('practice_attempts').select('entry_id, payload, created_at').in('entry_id', entryIds).order('created_at').range(from, to)),
+      ])
+
+      const reviewLogs = logsResult.flatMap(toExportReviewLog)
+      const practiceAttempts = attemptsResult.flatMap(toExportPracticeAttempt)
+      const contents = buildMaterialCsv({ entries: words, cards, reviewLogs, practiceAttempts })
+      const file = new Blob([contents], { type: 'text/csv;charset=utf-8' })
+      const url = URL.createObjectURL(file)
+      const anchor = document.createElement('a')
+      const date = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())
+      anchor.href = url
+      anchor.download = `ordly-words-and-phrases-${date}.csv`
+      document.body.append(anchor)
+      anchor.click()
+      anchor.remove()
+      window.setTimeout(() => URL.revokeObjectURL(url), 0)
+    } catch (error) {
+      window.alert(error instanceof Error ? error.message : 'Could not export your material.')
+    } finally {
+      setExporting(false)
+    }
+  }
+
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="graph-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show graph</button></div></header>
+    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="graph-open-button material-export-button" disabled={exporting} onClick={exportMaterial}>{exporting ? <Loader2 className="spin" size={16}/> : <Download size={16}/>} {exporting ? 'Preparing CSV…' : 'Export CSV'}</button><button className="graph-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show graph</button></div></header>
 
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
@@ -485,4 +519,62 @@ export function MaterialClient({
 
 function currentFieldValue(word: VocabularyEntry, field: EnrichField) {
   return String(word[field] || '').trim()
+}
+
+function record(value: unknown): Record<string, unknown> | null {
+  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : null
+}
+
+function string(value: unknown): string | null {
+  return typeof value === 'string' ? value : null
+}
+
+function number(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null
+}
+
+function rating(value: unknown): 1 | 2 | 3 | 4 | null {
+  return value === 1 || value === 2 || value === 3 || value === 4 ? value : null
+}
+
+function toExportReviewLog(value: unknown): ExportReviewLog[] {
+  const row = record(value)
+  const entryId = string(row?.entry_id)
+  const logRating = rating(row?.rating)
+  const reviewedAt = string(row?.reviewed_at)
+  const studyDate = string(row?.study_date)
+  const previousState = number(row?.previous_state)
+  const stability = number(row?.stability)
+  const difficulty = number(row?.difficulty)
+  const scheduledDays = number(row?.scheduled_days)
+  const answerResult = string(row?.answer_result)
+  if (!entryId || !logRating || !reviewedAt || !studyDate || previousState === null || stability === null || difficulty === null || scheduledDays === null || (answerResult !== null && answerResult !== 'correct' && answerResult !== 'mostly' && answerResult !== 'incorrect')) return []
+  return [{ entryId, rating: logRating, answerResult, answerText: string(row?.answer_text), previousState, stability, difficulty, scheduledDays, reviewedAt, studyDate }]
+}
+
+function toExportPracticeAttempt(value: unknown): ExportPracticeAttempt[] {
+  const row = record(value)
+  const payload = record(row?.payload)
+  const entryId = string(row?.entry_id)
+  const at = string(payload?.at) || string(row?.created_at)
+  const kind = string(payload?.kind)
+  const result = string(payload?.result)
+  const modality = string(payload?.modality)
+  const responseMs = number(payload?.responseMs)
+  const replays = number(payload?.replays)
+  const attemptRating = rating(payload?.rating)
+  if (!entryId || !at || !kind || (result !== 'correct' && result !== 'mostly' && result !== 'incorrect' && result !== 'ungraded') || (modality !== 'typed' && modality !== 'spoken') || responseMs === null || replays === null) return []
+  return [{ entryId, at, kind, objective: string(payload?.objective), result, rating: attemptRating, assistance: string(payload?.assistance) || 'none', modality, responseMs, replays }]
+}
+
+async function readAllExportRows(load: (from: number, to: number) => PromiseLike<{ data: unknown[] | null; error: { message: string } | null }>): Promise<unknown[]> {
+  const pageSize = 1_000
+  const rows: unknown[] = []
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await load(from, from + pageSize - 1)
+    if (error) throw new Error(error.message)
+    const page = Array.isArray(data) ? data : []
+    rows.push(...page)
+    if (page.length < pageSize) return rows
+  }
 }

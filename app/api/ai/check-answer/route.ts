@@ -6,8 +6,10 @@ const schema = {
   type: 'object',
   properties: {
     result: { type: 'string', enum: ['correct', 'mostly', 'incorrect'] },
+    relation: { type: 'string', enum: ['valid_alternative', 'near', 'incorrect'] },
+    note: { type: 'string' },
   },
-  required: ['result'],
+  required: ['result', 'relation', 'note'],
   additionalProperties: false,
 }
 
@@ -34,7 +36,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: 'system',
-          content: `You grade a Danish vocabulary learner's answer by MEANING, not exact wording. Be generous with genuine synonyms but strict about meaning.\n\nReturn correct when the learner's answer expresses the same relevant meaning as the expected answer in this card, even with a different natural synonym. For example Russian "тяжело" can be correct for Danish "svært" when the expected answer is "трудно, сложно".\nReturn mostly only when the meaning is substantially right but noticeably imprecise, too broad/narrow, or has a small grammatical issue that does not change the core meaning.\nReturn incorrect when it is merely related, has a different sense, reverses the meaning, or would teach the learner the wrong equivalence.\nDo not punish punctuation, capitalization, minor spelling mistakes, or a natural synonym.\nThe review direction is ${mode}. The translation language is ${language}.`,
+          content: `You grade a Danish vocabulary learner's answer by MEANING, not exact wording. Be generous with genuine synonyms and natural paraphrases but strict about meaning.\n\nReturn correct with relation valid_alternative when the learner's answer expresses the same relevant meaning through a synonym, a different part of speech, or a natural construction. For example Russian "тяжело" can be correct for Danish "svært" when the saved answer is "трудно, сложно", and "стыдно" can be a valid natural meaning for Danish "skamme" even when the saved meanings are verbs.\nReturn mostly with relation near only when the core meaning is substantially right but noticeably imprecise, too broad, or too narrow.\nReturn incorrect with relation incorrect when it is merely related, has a different sense, reverses the meaning, or would teach the wrong equivalence.\nThe note must be one short English sentence explaining the relationship without repeating the saved answer. Do not punish punctuation, capitalization, minor spelling mistakes, or natural phrasing.\nThe review direction is ${mode}. The translation language is ${language}.`,
         },
         {
           role: 'user',
@@ -45,11 +47,16 @@ export async function POST(request: Request) {
     }, 'answer checking', { models: OPENROUTER_MODEL_ROUTES.semanticGrading })
 
     const result = String(parsed.result || '')
-    if (!['correct', 'mostly', 'incorrect'].includes(result)) {
+    const relation = String(parsed.relation || '')
+    const note = String(parsed.note || '').trim().slice(0, 240)
+    const consistent = (result === 'correct' && relation === 'valid_alternative')
+      || (result === 'mostly' && relation === 'near')
+      || (result === 'incorrect' && relation === 'incorrect')
+    if (!consistent || !note) {
       return NextResponse.json({ error: 'AI returned an invalid result.' }, { status: 502 })
     }
 
-    return NextResponse.json({ result })
+    return NextResponse.json({ result, relation, note })
   } catch (error) {
     console.error('OpenRouter answer checking failed', error)
     return NextResponse.json({ error: 'AI checking failed.' }, { status: 502 })

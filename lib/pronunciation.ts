@@ -1,3 +1,6 @@
+const LETTER = /\p{Letter}/u
+const CYRILLIC_LETTER = /\p{Script_Extensions=Cyrillic}/u
+
 export function normalizePronunciationText(value: string): string {
   return value.normalize('NFKC').trim().toLocaleLowerCase('da-DK').replace(/\s+/g, ' ')
 }
@@ -7,16 +10,24 @@ export function normalizePronunciationText(value: string): string {
  *
  * 13% of the cached values had Latin letters silently mixed in — `фоклaa` with a Latin `a`,
  * `хoнклэл` with a Latin `o`, `áф-` with a Latin `á`. They are invisible on screen, they break
- * search and sort, and a Russian reader cannot tell why the word will not match. The check is
- * deliberately blunt: any Latin-script letter at all, accented ones included, disqualifies the
- * value, because a Danish reading hint has no reason to contain one.
+ * search and sort, and a Russian reader cannot tell why the word will not match.
+ *
+ * The rule is "every letter is Cyrillic", not "some letter is Cyrillic": stress marks,
+ * punctuation, spaces and digits are reading aids and stay allowed, but a single Latin or Greek
+ * homoglyph anywhere disqualifies the value. Asking only whether Cyrillic appears somewhere would
+ * pass `фоклaa`, which is the exact defect this was written for.
  *
  * Applied both to what a model returns and to what comes back out of `pronunciation_cache`, so
  * an old defective row is treated as a miss rather than served forever.
  */
 export function isReadableCyrillic(value: string): boolean {
-  const text = value.trim()
+  const text = value.normalize('NFKC').trim()
   if (!text) return false
-  if (/\p{Script=Latin}/u.test(text)) return false
-  return /\p{Script=Cyrillic}/u.test(text)
-}
+  let hasLetter = false
+  for (const character of text) {
+    if (!LETTER.test(character)) continue
+    hasLetter = true
+    if (!CYRILLIC_LETTER.test(character)) return false
+  }
+  return hasLetter
+ }

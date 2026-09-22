@@ -38,6 +38,15 @@ export interface EntrySense {
    * learner's own wording, which discovery and practice text deliberately ignore.
    */
   source: 'split' | 'ai' | 'cor' | 'user'
+   /**
+    * A meaning the entry carries but is not being taught yet (issue #6 §7).
+   *
+   * A word unlocked from the catalog arrives with every meaning it has, and only the one the
+   * learner actually met is teachable. A locked meaning is stored, shown in the editor and
+   * unlockable later, but it is not in `translation`, is never graded and never scheduled — a
+    * one-tap add must not silently triple the review load.
+    */
+   locked: boolean
   coverage: SenseCoverage
   created_at: string
   removed_at: string | null
@@ -79,6 +88,7 @@ export interface Profile {
   word_challenge_notifications_enabled: boolean
   notification_timezone: string
   notification_schedule: NotificationSchedule
+  autoplay_audio: boolean
   last_due_notification_at: string | null
   last_word_challenge_at: string | null
   created_at: string
@@ -89,12 +99,16 @@ export interface VocabularyEntry {
   user_id: string
   danish: string
   pronunciation: string | null
+  /** Private word-audio bucket object path, when DDO supplied a recording. */
+  audio_path: string | null
   /** Denormalized join of the non-removed `senses` texts. Kept in sync by the DB trigger. */
   translation: string | null
   senses: EntrySense[]
   example_sentence: string | null
   example_translation: string | null
   icon_name: string | null
+  /** The catalog row this entry was unlocked from, for provenance only (issue #6 §5). */
+  catalog_lemma: string | null
   entry_kind: EntryKind
   learning_status: LearningStatus
   familiarity: number

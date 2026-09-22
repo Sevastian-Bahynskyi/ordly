@@ -1,6 +1,6 @@
 .route-loading {
   position: fixed;
-  z-index: 45;
+  z-index: 70;
   inset: 0 0 0 224px;
   display: grid;
   place-items: center;

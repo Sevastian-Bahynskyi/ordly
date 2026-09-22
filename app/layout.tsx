@@ -19,6 +19,8 @@ import './graph.css'
 import './synonyms.css'
 import './streak.css'
 import './review-motion.css'
+import './review-audio.css'
+import './review-feedback.css'
 import './mobile-form-controls.css'
 import './practice.css'
 

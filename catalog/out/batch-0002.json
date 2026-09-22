@@ -1,0 +1,930 @@
+[
+  {
+    "lemma": "gøre",
+    "kind": "word",
+    "pronunciation": "гё́эа",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "делать, совершать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg vil gøre det i morgen.",
+        "example_translation": "Я сделаю это завтра."
+      },
+      {
+        "ordinal": 2,
+        "text": "поступать, действовать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Du gjorde det rigtige.",
+        "example_translation": "Ты поступил правильно."
+      }
+    ]
+  },
+  {
+    "lemma": "se",
+    "kind": "word",
+    "pronunciation": "сэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "видеть, смотреть",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg kan se dig.",
+        "example_translation": "Я вижу тебя."
+      }
+    ]
+  },
+  {
+    "lemma": "dansk",
+    "kind": "word",
+    "pronunciation": "да́нск",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "датский",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Hun har en dansk ven.",
+        "example_translation": "У неё есть датский друг."
+      },
+      {
+        "ordinal": 2,
+        "text": "датский язык",
+        "pos": "noun",
+        "gender": null,
+        "example": "Jeg lærer dansk hver dag.",
+        "example_translation": "Я учу датский каждый день."
+      }
+    ]
+  },
+  {
+    "lemma": "over",
+    "kind": "word",
+    "pronunciation": "о́во",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "над",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Lampen hænger over bordet.",
+        "example_translation": "Лампа висит над столом."
+      },
+      {
+        "ordinal": 2,
+        "text": "через, по ту сторону",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Vi går over broen.",
+        "example_translation": "Мы идём через мост."
+      },
+      {
+        "ordinal": 3,
+        "text": "свыше, больше чем",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Der bor over hundrede mennesker her.",
+        "example_translation": "Здесь живёт больше ста человек."
+      }
+    ]
+  },
+  {
+    "lemma": "når",
+    "kind": "word",
+    "pronunciation": "но",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "когда",
+        "pos": "conjunction",
+        "gender": null,
+        "example": "Jeg ringer, når jeg kommer hjem.",
+        "example_translation": "Я позвоню, когда приду домой."
+      }
+    ]
+  },
+  {
+    "lemma": "op",
+    "kind": "word",
+    "pronunciation": "об",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "вверх",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Han går op ad trappen.",
+        "example_translation": "Он поднимается вверх по лестнице."
+      }
+    ]
+  },
+  {
+    "lemma": "denne",
+    "kind": "word",
+    "pronunciation": "дэ́нэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "этот, эта",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Denne bog er god.",
+        "example_translation": "Эта книга хорошая."
+      }
+    ]
+  },
+  {
+    "lemma": "mangen",
+    "kind": "word",
+    "pronunciation": "ма́нгэн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "многие, не один",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Mangen en dag har hun ventet.",
+        "example_translation": "Многие дни она ждала."
+      }
+    ]
+  },
+  {
+    "lemma": "dag",
+    "kind": "word",
+    "pronunciation": "дэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "день",
+        "pos": "noun",
+        "gender": "en",
+        "example": "I dag er det mandag.",
+        "example_translation": "Сегодня понедельник."
+      }
+    ]
+  },
+  {
+    "lemma": "hvis",
+    "kind": "word",
+    "pronunciation": "вэс",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "если",
+        "pos": "conjunction",
+        "gender": null,
+        "example": "Hvis det regner, bliver jeg hjemme.",
+        "example_translation": "Если будет дождь, я останусь дома."
+      },
+      {
+        "ordinal": 2,
+        "text": "чей, чья, чьё",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Hvis bog er det?",
+        "example_translation": "Чья это книга?"
+      }
+    ]
+  },
+  {
+    "lemma": "da",
+    "kind": "word",
+    "pronunciation": "да",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "когда (в прошлом)",
+        "pos": "conjunction",
+        "gender": null,
+        "example": "Da jeg var barn, boede vi i Odense.",
+        "example_translation": "Когда я был ребёнком, мы жили в Оденсе."
+      },
+      {
+        "ordinal": 2,
+        "text": "тогда, в таком случае",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Hvis du er træt, da kan du sove.",
+        "example_translation": "Если ты устал, тогда можешь поспать."
+      }
+    ]
+  },
+  {
+    "lemma": "tage",
+    "kind": "word",
+    "pronunciation": "тэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "брать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Kan du tage min taske?",
+        "example_translation": "Можешь взять мою сумку?"
+      },
+      {
+        "ordinal": 2,
+        "text": "ехать, отправляться",
+        "pos": "verb",
+        "gender": null,
+        "example": "Vi skal tage til København i morgen.",
+        "example_translation": "Завтра мы поедем в Копенгаген."
+      }
+    ]
+  },
+  {
+    "lemma": "mange",
+    "kind": "word",
+    "pronunciation": "ма́нгэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "многие, много",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Der er mange mennesker her.",
+        "example_translation": "Здесь много людей."
+      }
+    ]
+  },
+  {
+    "lemma": "her",
+    "kind": "word",
+    "pronunciation": "хэ́а",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "здесь",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Jeg bor her.",
+        "example_translation": "Я живу здесь."
+      },
+      {
+        "ordinal": 2,
+        "text": "сюда",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Kom her!",
+        "example_translation": "Иди сюда!"
+      }
+    ]
+  },
+  {
+    "lemma": "krone",
+    "kind": "word",
+    "pronunciation": "кро́онэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "крона (датская валюта)",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Det koster tyve kroner.",
+        "example_translation": "Это стоит двадцать крон."
+      },
+      {
+        "ordinal": 2,
+        "text": "корона (королевская)",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Kongen bar en krone.",
+        "example_translation": "Король носил корону."
+      },
+      {
+        "ordinal": 3,
+        "text": "крона (дерева)",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Fuglen sad i træets krone.",
+        "example_translation": "Птица сидела в кроне дерева."
+      }
+    ]
+  },
+  {
+    "lemma": "gang",
+    "kind": "word",
+    "pronunciation": "ганг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "раз",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Jeg har set filmen to gange.",
+        "example_translation": "Я смотрел этот фильм два раза."
+      },
+      {
+        "ordinal": 2,
+        "text": "коридор",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Skoene står på gangen.",
+        "example_translation": "Обувь стоит в коридоре."
+      },
+      {
+        "ordinal": 3,
+        "text": "походка",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Han har en hurtig gang.",
+        "example_translation": "У него быстрая походка."
+      }
+    ]
+  },
+  {
+    "lemma": "tid",
+    "kind": "word",
+    "pronunciation": "тид",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "время",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Jeg har ikke tid i dag.",
+        "example_translation": "У меня нет времени сегодня."
+      },
+      {
+        "ordinal": 2,
+        "text": "приём, запись (например, к врачу)",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Jeg har en tid hos lægen klokken ti.",
+        "example_translation": "У меня запись к врачу в десять часов."
+      }
+    ]
+  },
+  {
+    "lemma": "mod",
+    "kind": "word",
+    "pronunciation": "мод",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "к, по направлению к",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Vi går mod stationen.",
+        "example_translation": "Мы идём к станции."
+      },
+      {
+        "ordinal": 2,
+        "text": "против",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Han kæmper mod sygdommen.",
+        "example_translation": "Он борется против болезни."
+      },
+      {
+        "ordinal": 3,
+        "text": "мужество",
+        "pos": "noun",
+        "gender": null,
+        "example": "Hun havde mod til at sige det.",
+        "example_translation": "У неё хватило мужества сказать это."
+      }
+    ]
+  },
+  {
+    "lemma": "give",
+    "kind": "word",
+    "pronunciation": "ги",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "давать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Kan du give mig vandet?",
+        "example_translation": "Можешь дать мне воду?"
+      },
+      {
+        "ordinal": 2,
+        "text": "угощать, платить за кого-то",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg giver kaffen i dag.",
+        "example_translation": "Сегодня я угощаю кофе."
+      }
+    ]
+  },
+  {
+    "lemma": "finde",
+    "kind": "word",
+    "pronunciation": "фэ́нэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "находить",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg kan ikke finde min telefon.",
+        "example_translation": "Я не могу найти свой телефон."
+      }
+    ]
+  },
+  {
+    "lemma": "måtte",
+    "kind": "word",
+    "pronunciation": "мо́дэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "пришлось, был вынужден",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg måtte gå tidligt.",
+        "example_translation": "Мне пришлось уйти рано."
+      },
+      {
+        "ordinal": 2,
+        "text": "мог, имел разрешение",
+        "pos": "verb",
+        "gender": null,
+        "example": "Vi måtte spise al kagen.",
+        "example_translation": "Нам разрешили съесть весь торт."
+      }
+    ]
+  },
+  {
+    "lemma": "end",
+    "kind": "word",
+    "pronunciation": "эн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "чем",
+        "pos": "conjunction",
+        "gender": null,
+        "example": "Hun er højere end mig.",
+        "example_translation": "Она выше, чем я."
+      }
+    ]
+  },
+  {
+    "lemma": "hvad",
+    "kind": "word",
+    "pronunciation": "ва",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "что",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Hvad laver du?",
+        "example_translation": "Что ты делаешь?"
+      }
+    ]
+  },
+  {
+    "lemma": "kun",
+    "kind": "word",
+    "pronunciation": "кон",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "только",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Jeg har kun to timer.",
+        "example_translation": "У меня есть только два часа."
+      }
+    ]
+  },
+  {
+    "lemma": "du",
+    "kind": "word",
+    "pronunciation": "ду",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "ты",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Du er min ven.",
+        "example_translation": "Ты мой друг."
+      }
+    ]
+  },
+  {
+    "lemma": "ind",
+    "kind": "word",
+    "pronunciation": "эн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "внутрь",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Kom ind!",
+        "example_translation": "Заходи внутрь!"
+      }
+    ]
+  },
+  {
+    "lemma": "stå",
+    "kind": "word",
+    "pronunciation": "сдо",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "стоять",
+        "pos": "verb",
+        "gender": null,
+        "example": "Han står ved døren.",
+        "example_translation": "Он стоит у двери."
+      },
+      {
+        "ordinal": 2,
+        "text": "быть написанным, значиться",
+        "pos": "verb",
+        "gender": null,
+        "example": "Der står, at butikken er lukket.",
+        "example_translation": "Там написано, что магазин закрыт."
+      }
+    ]
+  },
+  {
+    "lemma": "blandt",
+    "kind": "word",
+    "pronunciation": "бланд",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "среди",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Hun sad blandt sine venner.",
+        "example_translation": "Она сидела среди своих друзей."
+      }
+    ]
+  },
+  {
+    "lemma": "lang",
+    "kind": "word",
+    "pronunciation": "ланг",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "длинный, долгий",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Vejen er meget lang.",
+        "example_translation": "Дорога очень длинная."
+      }
+    ]
+  },
+  {
+    "lemma": "under",
+    "kind": "word",
+    "pronunciation": "о́но",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "под",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Katten sover under bordet.",
+        "example_translation": "Кошка спит под столом."
+      },
+      {
+        "ordinal": 2,
+        "text": "во время, в течение",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Vi mødtes under ferien.",
+        "example_translation": "Мы познакомились во время отпуска."
+      }
+    ]
+  },
+  {
+    "lemma": "første",
+    "kind": "word",
+    "pronunciation": "фё́астэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "первый",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Det er hendes første dag på arbejdet.",
+        "example_translation": "Это её первый день на работе."
+      }
+    ]
+  },
+  {
+    "lemma": "sted",
+    "kind": "word",
+    "pronunciation": "стэд",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "место",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Det her er et smukt sted.",
+        "example_translation": "Это красивое место."
+      }
+    ]
+  },
+  {
+    "lemma": "land",
+    "kind": "word",
+    "pronunciation": "лан",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "страна",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Danmark er et lille land.",
+        "example_translation": "Дания — маленькая страна."
+      },
+      {
+        "ordinal": 2,
+        "text": "земля, суша",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Skibet nærmede sig land.",
+        "example_translation": "Корабль приближался к суше."
+      }
+    ]
+  },
+  {
+    "lemma": "selv",
+    "kind": "word",
+    "pronunciation": "сэл",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "сам, сама, само",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Jeg gjorde det selv.",
+        "example_translation": "Я сделал это сам."
+      },
+      {
+        "ordinal": 2,
+        "text": "даже",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Selv børn kan forstå det.",
+        "example_translation": "Даже дети могут это понять."
+      }
+    ]
+  },
+  {
+    "lemma": "barn",
+    "kind": "word",
+    "pronunciation": "бан",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "ребёнок",
+        "pos": "noun",
+        "gender": "et",
+        "example": "Hun har et barn.",
+        "example_translation": "У неё есть ребёнок."
+      }
+    ]
+  },
+  {
+    "lemma": "fordi",
+    "kind": "word",
+    "pronunciation": "фоди́",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "потому что",
+        "pos": "conjunction",
+        "gender": null,
+        "example": "Jeg er glad, fordi solen skinner.",
+        "example_translation": "Я рад, потому что светит солнце."
+      }
+    ]
+  },
+  {
+    "lemma": "sen",
+    "kind": "word",
+    "pronunciation": "сэн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "поздний, опоздавший",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Vi spiste en sen middag.",
+        "example_translation": "Мы поужинали поздно."
+      }
+    ]
+  },
+  {
+    "lemma": "derfor",
+    "kind": "word",
+    "pronunciation": "дэ́афо",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "поэтому",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Det regnede, derfor blev vi hjemme.",
+        "example_translation": "Шёл дождь, поэтому мы остались дома."
+      }
+    ]
+  },
+  {
+    "lemma": "procent",
+    "kind": "word",
+    "pronunciation": "просэ́нт",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "процент",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Femogtyve procent af eleverne kom for sent.",
+        "example_translation": "Двадцать пять процентов учеников опоздали."
+      }
+    ]
+  },
+  {
+    "lemma": "sammen",
+    "kind": "word",
+    "pronunciation": "са́мэн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "вместе",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Vi spiser sammen hver søndag.",
+        "example_translation": "Мы едим вместе каждое воскресенье."
+      }
+    ]
+  },
+  {
+    "lemma": "lige",
+    "kind": "word",
+    "pronunciation": "ли́иэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "только что",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Jeg er lige kommet hjem.",
+        "example_translation": "Я только что пришёл домой."
+      },
+      {
+        "ordinal": 2,
+        "text": "прямо",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Gå lige ud ad denne vej.",
+        "example_translation": "Иди прямо по этой дороге."
+      },
+      {
+        "ordinal": 3,
+        "text": "как раз, именно",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Det var lige det, jeg mente.",
+        "example_translation": "Это как раз то, что я имел в виду."
+      }
+    ]
+  },
+  {
+    "lemma": "jo",
+    "kind": "word",
+    "pronunciation": "йо",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "ведь, же",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Du ved det jo godt.",
+        "example_translation": "Ты же это хорошо знаешь."
+      },
+      {
+        "ordinal": 2,
+        "text": "да, нет же (утвердительный ответ на отрицательный вопрос)",
+        "pos": "adverb",
+        "gender": null,
+        "example": "Er du ikke sulten? Jo, det er jeg.",
+        "example_translation": "Ты не голоден? Нет, голоден."
+      }
+    ]
+  },
+  {
+    "lemma": "mellem",
+    "kind": "word",
+    "pronunciation": "мэ́лэм",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "между",
+        "pos": "preposition",
+        "gender": null,
+        "example": "Butikken ligger mellem banken og posthuset.",
+        "example_translation": "Магазин находится между банком и почтой."
+      }
+    ]
+  },
+  {
+    "lemma": "mand",
+    "kind": "word",
+    "pronunciation": "ман",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "мужчина",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Der står en mand ved døren.",
+        "example_translation": "У двери стоит мужчина."
+      },
+      {
+        "ordinal": 2,
+        "text": "муж",
+        "pos": "noun",
+        "gender": "en",
+        "example": "Hun præsenterede mig for sin mand.",
+        "example_translation": "Она представила меня своему мужу."
+      }
+    ]
+  },
+  {
+    "lemma": "sidste",
+    "kind": "word",
+    "pronunciation": "си́стэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "последний, прошлый",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Det var min sidste dag i skolen.",
+        "example_translation": "Это был мой последний день в школе."
+      }
+    ]
+  },
+  {
+    "lemma": "ingen",
+    "kind": "word",
+    "pronunciation": "э́нгэн",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "никто, никакой",
+        "pos": "pronoun",
+        "gender": null,
+        "example": "Der var ingen hjemme.",
+        "example_translation": "Дома никого не было."
+      }
+    ]
+  },
+  {
+    "lemma": "tidlig",
+    "kind": "word",
+    "pronunciation": "ти́дли",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "ранний",
+        "pos": "adjective",
+        "gender": null,
+        "example": "Vi tog et tidligt tog.",
+        "example_translation": "Мы сели на ранний поезд."
+      }
+    ]
+  },
+  {
+    "lemma": "bruge",
+    "kind": "word",
+    "pronunciation": "бру́уэ",
+    "senses": [
+      {
+        "ordinal": 1,
+        "text": "использовать",
+        "pos": "verb",
+        "gender": null,
+        "example": "Jeg bruger telefonen hver dag.",
+        "example_translation": "Я использую телефон каждый день."
+      },
+      {
+        "ordinal": 2,
+        "text": "тратить",
+        "pos": "verb",
+        "gender": null,
+        "example": "Han bruger mange penge på tøj.",
+        "example_translation": "Он тратит много денег на одежду."
+      }
+    ]
+  }
+]

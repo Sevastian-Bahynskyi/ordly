@@ -21,6 +21,7 @@ export function isChoiceKind(kind: PracticeKind): boolean {
 
 export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'ungraded'
 export type PracticeRating = 1 | 2 | 3 | 4
+export type PracticeRelation = 'exact' | 'valid_alternative' | 'grammar_adjustment' | 'incorrect'
 
 export interface PracticeTask {
   id: string
@@ -99,6 +100,7 @@ export interface PracticeResponse {
   feedback: string
   communication: 'yes' | 'no' | 'uncertain'
   target: 'yes' | 'no' | 'uncertain'
+  relation?: PracticeRelation
   modality: 'typed' | 'spoken'
   responseMs: number
   replays: number

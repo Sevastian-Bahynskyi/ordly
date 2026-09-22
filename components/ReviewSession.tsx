@@ -1,22 +1,23 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { EntrySense, LearningStatus, ReviewItem } from '@/lib/types'
-import { checkAnswer, type AnswerResult } from '@/lib/answer'
+import { checkAnswer, meaningMatch, type AnswerResult } from '@/lib/answer'
 import {
   activeSenses,
   createSense,
   entrySenses,
   normalizeSenseText,
   parseSenses,
+  PART_OF_SPEECH_LABELS,
   splitTranslationIntoSenses,
   translationFromSenses,
 } from '@/lib/senses'
-import { clozeSentence, reviewMode, type PromptMode } from '@/lib/review'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
+import { WordAudio } from '@/components/WordAudio'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -26,33 +27,35 @@ const ratings = [
 ]
 
 type CardPatch = Pick<ReviewItem, 'due' | 'stability' | 'difficulty' | 'elapsed_days' | 'scheduled_days' | 'reps' | 'lapses' | 'learning_steps' | 'state' | 'last_review'>
+type AnswerRelation = 'exact' | 'synonym' | 'valid_alternative' | 'near' | 'incorrect'
+type AnswerFeedback = { relation: AnswerRelation; note: string }
 
 type ReviewedItem = {
   item: ReviewItem
-  mode: PromptMode
   answer: string
   result: AnswerResult | null
+  feedback: AnswerFeedback | null
   revealedWithoutAnswer: boolean
   rating: number
   logId: string | number
-  sentence: string
-  sentenceTranslation: string
 }
 
-export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru' }: {
+export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru', autoplayAudio = false }: {
   initialItems: ReviewItem[]
   /** Senses of each entry's synonym neighbours, keyed by entry id (D5). */
   linkedSenses?: Record<string, EntrySense[]>
   translationLanguage?: 'ru' | 'en' | 'uk'
+  autoplayAudio?: boolean
 }): React.JSX.Element {
   const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'
-  const [items, setItems] = useState(initialItems)
+  const reviewItems = initialItems.filter((item) => item.vocabulary_entries.entry_kind !== 'sentence')
+  const [items, setItems] = useState(reviewItems)
   const [answer, setAnswer] = useState('')
   const [revealed, setRevealed] = useState(false)
   const [result, setResult] = useState<AnswerResult | null>(null)
+  const [feedback, setFeedback] = useState<AnswerFeedback | null>(null)
   const [revealedWithoutAnswer, setRevealedWithoutAnswer] = useState(false)
   const [completed, setCompleted] = useState(0)
-  const [freshSentence, setFreshSentence] = useState<{ sentence: string; translation: string } | null>(null)
   const [ratingLoading, setRatingLoading] = useState(false)
   const [checkingMeaning, setCheckingMeaning] = useState(false)
   const [acceptingAnswer, setAcceptingAnswer] = useState(false)
@@ -61,38 +64,8 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
   const current = items[0]
   const entry = current?.vocabulary_entries
-  const entryKind = entry?.entry_kind || 'word'
-  const [sessionModes] = useState(() => new Map(initialItems.map((item) => [item.id, reviewMode(item.reps, item.vocabulary_entries.entry_kind)])))
-  const mode = current ? sessionModes.get(current.id) || reviewMode(current.reps, entryKind) : 'recognition'
-
-  useEffect(() => {
-    setFreshSentence(null)
-    if (!current || entryKind === 'sentence' || mode !== 'cloze' || current.reps < 5) return
-
-    const controller = new AbortController()
-    fetch('/api/ai/review-sentence', {
-      signal: controller.signal,
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ entryId: current.entry_id, cycle: Math.floor(current.reps / 5) }),
-    })
-      .then((r) => r.ok ? r.json() : null)
-      .then((d) => !controller.signal.aborted && d?.sentence && setFreshSentence(d))
-      .catch(() => {})
-    return () => controller.abort()
-  }, [current?.id, current?.reps, current?.entry_id, mode, entryKind])
-
-  const candidateSentence = freshSentence?.sentence || entry?.example_sentence || ''
-  const sentence = mode === 'cloze' && !clozeSentence(candidateSentence, entry?.danish || '') ? '' : candidateSentence
-  const sentenceTranslation = freshSentence?.translation || entry?.example_translation || ''
-  const expected = mode === 'recognition' ? entry?.translation || '' : entry?.danish || ''
-
-  const prompt = useMemo(() => {
-    if (!entry) return ''
-    if (mode === 'recognition') return entry.danish
-    if (mode === 'production') return entry.translation || ''
-    return clozeSentence(sentence, entry.danish) || entry.translation || ''
-  }, [entry, mode, sentence])
+  const expected = entry?.translation || ''
+  const prompt = entry?.danish || ''
 
   async function submitAnswer(e: React.FormEvent) {
     e.preventDefault()
@@ -100,21 +73,27 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
     if (!typedAnswer) {
       setResult('incorrect')
+      setFeedback(null)
       setRevealedWithoutAnswer(true)
       setRevealed(true)
       return
     }
 
-    // Recognition asks for the meaning, so every stored sense — and every sense of a synonym-linked
-    // entry (D5) — is a valid answer. Production asks for the Danish, where senses say nothing.
-    const recognition = mode === 'recognition'
+    const senses = entrySenses(entry)
+    const synonymSenses = current ? linkedSenses[current.entry_id] || null : null
     const quickResult = checkAnswer(typedAnswer, expected, {
-      sentence: entryKind === 'sentence',
-      senses: recognition ? entrySenses(entry) : null,
-      linkedSenses: recognition && current ? linkedSenses[current.entry_id] || null : null,
+      meaning: true,
+      senses,
+      linkedSenses: synonymSenses,
     })
     if (quickResult !== 'incorrect') {
+      const match = meaningMatch(typedAnswer, senses, synonymSenses)
       setResult(quickResult)
+      setFeedback(match === 'synonym'
+        ? { relation: 'synonym', note: 'This is a saved meaning of a confirmed synonym.' }
+        : quickResult === 'mostly'
+          ? { relation: 'near', note: 'The meaning is close; compare it with the saved meanings.' }
+          : { relation: 'exact', note: 'This matches one of your saved meanings.' })
       setRevealedWithoutAnswer(false)
       setRevealed(true)
       return
@@ -130,19 +109,25 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
           danish: entry?.danish,
           expected,
           answer: typedAnswer,
-          mode,
+          mode: 'recognition',
           language: languageLabel,
         }),
       })
       if (res.ok) {
         const body = await res.json()
-        if (body.result === 'correct' || body.result === 'mostly' || body.result === 'incorrect') finalResult = body.result
+        if (body.result === 'correct' || body.result === 'mostly' || body.result === 'incorrect') {
+          finalResult = body.result
+          if (['valid_alternative', 'near', 'incorrect'].includes(body.relation) && typeof body.note === 'string') {
+            setFeedback({ relation: body.relation, note: body.note })
+          }
+        }
       }
     } catch {
       // Keep the deterministic result if AI semantic checking is unavailable.
     }
     setCheckingMeaning(false)
     setResult(finalResult)
+    if (finalResult === 'incorrect') setFeedback((value) => value || { relation: 'incorrect', note: 'This does not express one of the saved meanings here.' })
     setRevealedWithoutAnswer(false)
     setRevealed(true)
   }
@@ -166,12 +151,12 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
     const stored = parseSenses(entry.senses)
     const base: EntrySense[] = stored.length
       ? stored
-      : splitTranslationIntoSenses(entry.translation, entryKind === 'sentence' ? 'sentence' : 'word')
+      : splitTranslationIntoSenses(entry.translation, 'word')
     const typedKey = normalizeSenseText(typed)
     const known = activeSenses(base).some((sense) => normalizeSenseText(sense.text) === typedKey)
+    let saved = known
 
-    // A sentence keeps exactly one sense (plan §3.2): for a sentence only the verdict flips.
-    if (!known && typedKey && entryKind !== 'sentence') {
+    if (!known && typedKey) {
       const nextSenses = [...base, createSense(typed, { source: 'user' })]
       const { error } = await createClient()
         .from('vocabulary_entries')
@@ -179,6 +164,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
         .eq('id', entry.id)
 
       if (!error) {
+        saved = true
         const nextTranslation = translationFromSenses(nextSenses)
         setItems((queue) => queue.map((queued) => queued.entry_id === entry.id
           ? { ...queued, vocabulary_entries: { ...queued.vocabulary_entries, senses: nextSenses, translation: nextTranslation } }
@@ -188,6 +174,10 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
     // The verdict flips either way: an answer the checker already knew is simply right.
     setResult('correct')
+    setFeedback({
+      relation: 'valid_alternative',
+      note: saved ? 'Accepted as another valid meaning and saved for future reviews.' : 'Accepted for this review.',
+    })
     setAcceptingAnswer(false)
   }
 
@@ -204,14 +194,12 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
     if (res.ok && body.logId) {
       setHistory((previous) => [...previous, {
         item: current,
-        mode,
         answer,
         result,
+        feedback,
         revealedWithoutAnswer,
         rating,
         logId: body.logId,
-        sentence,
-        sentenceTranslation,
       }])
 
       if (rating === 1 && body.card) {
@@ -224,8 +212,8 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
       setAnswer('')
       setRevealed(false)
       setResult(null)
+      setFeedback(null)
       setRevealedWithoutAnswer(false)
-      setFreshSentence(null)
     }
     setRatingLoading(false)
   }
@@ -242,7 +230,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
     }
   }
 
-  const total = initialItems.length
+  const total = reviewItems.length
   const progress = total ? Math.min(100, Math.round(completed / total * 100)) : 100
 
   if (historyIndex !== null && history[historyIndex]) {
@@ -252,6 +240,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
       index={historyIndex}
       count={history.length}
       languageLabel={languageLabel}
+      autoplayAudio={autoplayAudio}
       onPrevious={() => setHistoryIndex((index) => index === null ? null : Math.max(0, index - 1))}
       onNext={() => setHistoryIndex((index) => index === null || index >= history.length - 1 ? null : index + 1)}
       onRatingChanged={(oldRating, newRating, card, status) => applyRevisedRating(reviewed, oldRating, newRating, card, status)}
@@ -282,26 +271,21 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
     <section key={current.id} className={`flash-card review-card-live ${revealed ? 'revealed' : ''}`}>
       <div className="card-topline">
         <span className="prompt-type">
-          {mode === 'recognition'
-            ? `Danish ${entryKind === 'sentence' ? 'sentence' : ''} → ${languageLabel}`
-            : mode === 'production'
-              ? `${languageLabel} → Danish`
-              : 'Fill the Danish word'}
+          Danish → {languageLabel}
         </span>
         <span className="card-meta">
           <MemoryRing item={current} />
-          <span className="card-status">{entryKind === 'sentence' ? 'sentence' : entry.learning_status}</span>
+          <span className="card-status">{entry.learning_status}</span>
         </span>
       </div>
 
       <div className="flash-prompt">
         <ReviewPromptReveal
-          key={`${current.id}:${current.reps}:${mode}:${prompt}`}
+          key={`${current.id}:${current.reps}:${prompt}`}
           text={prompt}
-          cloze={mode === 'cloze' && !!sentence}
+          cloze={false}
         />
-        {revealed && entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
-        {mode === 'cloze' && sentenceTranslation && <small>{sentenceTranslation}</small>}
+        <DanishAudio entry={entry} autoPlay={autoplayAudio} />
       </div>
 
       <form onSubmit={submitAnswer} className="answer-form">
@@ -312,7 +296,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
             disabled={revealed || checkingMeaning}
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
-            placeholder={mode === 'recognition' ? `Type the ${languageLabel} meaning…` : entryKind === 'sentence' ? 'Type the Danish sentence…' : 'Type the Danish word…'}
+            placeholder={`Type the ${languageLabel} meaning…`}
           />
           {revealed && (result === 'incorrect' ? <X size={20}/> : <Check size={20}/>)}
         </div>
@@ -321,21 +305,17 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
       {revealed && <div className="answer-reveal">
         <div className={`answer-verdict ${result}`}>
-          <strong>{revealedWithoutAnswer ? "Didn't know" : result === 'correct' ? 'Correct' : result === 'mostly' ? 'Almost right' : 'Not quite'}</strong>
+          <strong>{verdictLabel(result, feedback, revealedWithoutAnswer)}</strong>
           {revealedWithoutAnswer
             ? <span>The answer is shown below. “Again” is recommended.</span>
-            : result === 'mostly' && <span>The meaning is close enough, but notice the difference.</span>}
+            : feedback?.note && <span>{feedback.note}</span>}
         </div>
 
-        <div className="correct-answer">
-          <span>Correct answer</span>
-          <strong>{expected}</strong>
-          {entryKind !== 'sentence' && mode !== 'cloze' && entry.example_sentence && <p>{entry.example_sentence}<small>{entry.example_translation}</small></p>}
-        </div>
+        <SavedMeanings entry={entry} />
 
         {/* Only in recognition: there the typed answer is a meaning, which is what a sense is.
             In production the answer is Danish, and storing it as a meaning would be wrong. */}
-        {mode === 'recognition' && !revealedWithoutAnswer && answer.trim() && result !== 'correct' && (
+        {!revealedWithoutAnswer && answer.trim() && result !== 'correct' && (
           <button
             type="button"
             className="soft-button accept-answer-button"
@@ -354,18 +334,17 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
     <div className="review-tip">
       <RotateCcw size={15}/>
-      {entryKind === 'sentence'
-        ? 'Sentences are comprehension-first, with occasional reverse recall.'
-        : 'Synonyms are checked by meaning. “Again” cards return later in this session.'}
+      Synonyms are checked by meaning. Sentence building and gap exercises live in Guided Practice.
     </div>
   </>
 }
 
-function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNext, onRatingChanged }: {
+function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, onPrevious, onNext, onRatingChanged }: {
   reviewed: ReviewedItem
   index: number
   count: number
   languageLabel: string
+  autoplayAudio: boolean
   onPrevious: () => void
   onNext: () => void
   onRatingChanged: (oldRating: number, newRating: number, card: CardPatch, status: LearningStatus) => void
@@ -373,14 +352,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
   const [loading, setLoading] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
   const entry = reviewed.item.vocabulary_entries
-  const entryKind = entry.entry_kind || 'word'
-  const mode = reviewed.mode
-  const expected = mode === 'recognition' ? entry.translation || '' : entry.danish
-  const prompt = mode === 'recognition'
-    ? entry.danish
-    : mode === 'production'
-      ? entry.translation || ''
-      : reviewed.sentence ? clozeSentence(reviewed.sentence, entry.danish) : entry.translation || ''
+  const prompt = entry.danish
 
   async function reviseRating(newRating: number) {
     if (newRating === reviewed.rating || loading) return
@@ -415,13 +387,13 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
 
     <section className="flash-card revealed">
       <div className="card-topline">
-        <span className="prompt-type">{mode === 'recognition' ? `Danish → ${languageLabel}` : mode === 'production' ? `${languageLabel} → Danish` : 'Fill the Danish word'}</span>
+        <span className="prompt-type">Danish → {languageLabel}</span>
         <span className="card-status">answered</span>
       </div>
 
       <div className="flash-prompt">
-        {mode === 'cloze' && reviewed.sentence ? <p className="cloze-prompt">{prompt}</p> : <h2>{prompt}</h2>}
-        {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
+        <h2>{prompt}</h2>
+        <DanishAudio entry={entry} autoPlay={autoplayAudio} />
       </div>
 
       <div className="answer-form">
@@ -434,9 +406,10 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
 
       <div className="answer-reveal">
         <div className={`answer-verdict ${reviewed.result || 'incorrect'}`}>
-          <strong>{reviewed.revealedWithoutAnswer ? "Didn't know" : reviewed.result === 'correct' ? 'Correct' : reviewed.result === 'mostly' ? 'Almost right' : 'Not quite'}</strong>
+          <strong>{verdictLabel(reviewed.result, reviewed.feedback, reviewed.revealedWithoutAnswer)}</strong>
+          {reviewed.feedback?.note && <span>{reviewed.feedback.note}</span>}
         </div>
-        <div className="correct-answer"><span>Correct answer</span><strong>{expected}</strong></div>
+        <SavedMeanings entry={entry} />
         <div className="rating-title"><span>Change your rating if needed</span><small>The FSRS schedule is recalculated from the original review state.</small></div>
         <div className="rating-grid">{ratings.map((rating) => <button
           disabled={loading}
@@ -454,6 +427,38 @@ function ReviewedCard({ reviewed, index, count, languageLabel, onPrevious, onNex
       <button className="soft-button" onClick={onNext}>{index === count - 1 ? 'Back to current' : 'Newer'} <ArrowRight size={15}/></button>
     </div>
   </>
+}
+
+function verdictLabel(result: AnswerResult | null, feedback: AnswerFeedback | null, revealedWithoutAnswer: boolean): string {
+  if (revealedWithoutAnswer) return "Didn't know"
+  if (feedback?.relation === 'synonym') return 'Valid synonym'
+  if (feedback?.relation === 'valid_alternative') return 'Valid alternative'
+  if (result === 'correct') return 'Correct'
+  if (result === 'mostly') return 'Almost right'
+  return 'Not quite'
+}
+
+function SavedMeanings({ entry }: { entry: ReviewItem['vocabulary_entries'] }): React.JSX.Element {
+  const senses = entrySenses(entry)
+  return <div className="correct-answer review-saved-meanings">
+    <span>Saved {senses.length === 1 ? 'meaning' : 'meanings'}</span>
+    <div className="review-sense-list">
+      {senses.map((sense, index) => <div className="review-sense" key={`${sense.id}-${index}`}>
+        <strong>{sense.text}</strong>
+        {(sense.pos || sense.gender) && <span className={`review-pos pos-${sense.pos || 'none'}`}>
+          {sense.gender ? `${sense.gender} · ` : ''}{sense.pos ? PART_OF_SPEECH_LABELS[sense.pos] : 'meaning'}
+        </span>}
+      </div>)}
+    </div>
+    {entry.example_sentence && <p lang="da">{entry.example_sentence}<small>{entry.example_translation}</small></p>}
+  </div>
+}
+
+function DanishAudio({ entry, autoPlay }: { entry: ReviewItem['vocabulary_entries']; autoPlay: boolean }): React.JSX.Element | null {
+  return <div className="review-word-audio">
+    {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
+    <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />
+  </div>
 }
 
 function patchReviewItem(item: ReviewItem, card: CardPatch, status: LearningStatus): ReviewItem {

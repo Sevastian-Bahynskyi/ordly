@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Undo2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
+import { CatalogMatch } from '@/components/CatalogMatch'
 import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
 import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
@@ -19,6 +20,7 @@ import {
   activeSenses,
   createSense,
   entrySenses,
+  lockedSenses,
   parseSenses,
   splitTranslationIntoSenses,
   translationFromSenses,
@@ -35,6 +37,8 @@ export type EntryEditorMode = 'create' | 'edit'
 interface Draft {
   danish: string
   pronunciation: string
+  /** Recording copied from a catalog unlock. Manual entries receive it from the audio backfill. */
+  audio_path: string | null
   /**
    * Derived from `senses` and never edited directly. It stays on the draft so the enrich field
    * plumbing (`EnrichableField`, per-field mini buttons, fill-missing) is unchanged, and so the
@@ -46,9 +50,11 @@ interface Draft {
   /** The primary sense's example: it owns `example_sentence` / `example_translation` (D10). */
   example_sentence: string
   example_translation: string
+  /** The catalog row this draft was unlocked from, if any. Provenance only (issue #6 §5). */
+  catalog_lemma: string | null
 }
 
-type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses'>
+type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses' | 'catalog_lemma' | 'audio_path'>
 type DuplicateEntry = { id: string; danish: string; translation: string | null }
 type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
@@ -79,10 +85,12 @@ function blankDraft(): Draft {
   return {
     danish: '',
     pronunciation: '',
+    audio_path: null,
     translation: '',
     senses: [createSense('')],
     example_sentence: '',
     example_translation: '',
+    catalog_lemma: null,
   }
 }
 
@@ -92,10 +100,12 @@ function draftFromEntry(entry: VocabularyEntry): Draft {
   return {
     danish: entry.danish,
     pronunciation: entry.pronunciation || '',
+    audio_path: entry.audio_path || null,
     translation: translationFromSenses(senses),
     senses: senses.length ? senses : [createSense('')],
     example_sentence: entry.example_sentence || '',
     example_translation: entry.example_translation || '',
+    catalog_lemma: entry.catalog_lemma || null,
   }
 }
 
@@ -344,8 +354,10 @@ export function EntryEditor({
       const becameSentence = nextKind === 'sentence' && entryKind !== 'sentence'
 
       commitDraft((current) => {
-        if (nextKind !== 'sentence') return { ...current, danish: value }
-        const collapsed = collapseForSentence({ ...current, danish: value })
+        const sourceChanged = value.trim() !== current.danish.trim()
+        const next = sourceChanged ? { ...current, danish: value, catalog_lemma: null, audio_path: null } : { ...current, danish: value }
+        if (nextKind !== 'sentence') return next
+        const collapsed = collapseForSentence(next)
         // Only the transition clears the example fields. Typing inside an entry that was
         // already a sentence must not keep wiping something the learner can still see.
         return becameSentence ? { ...collapsed, example_sentence: '', example_translation: '' } : collapsed
@@ -1012,6 +1024,7 @@ export function EntryEditor({
     const payload = {
       danish: current.danish.trim(),
       pronunciation: current.pronunciation.trim() || null,
+       audio_path: current.audio_path,
       translation: translationFromSenses(graded),
       // Soft-deleted senses ride along so their ids stay resolvable (D15).
       senses: [
@@ -1020,12 +1033,17 @@ export function EntryEditor({
           // two drift apart (D10).
           ? { ...sense, example: null, example_translation: null }
           : sense),
+        // Meanings the catalog supplied but the learner has not unlocked. They are stored so the
+        // ids survive and they can be unlocked later, and `activeSenses` keeps them out of
+        // everything that teaches or grades (issue #6 §7).
+        ...lockedSenses(current.senses),
         ...archivedRef.current,
       ],
       example_sentence: storeExample ? current.example_sentence.trim() || null : null,
       example_translation: storeExample ? current.example_translation.trim() || null : null,
       entry_kind: entryKind,
       ai_enriched: (entry?.ai_enriched ?? false) || usedAI,
+      catalog_lemma: current.catalog_lemma,
     }
 
     if (editing && entry) {
@@ -1194,6 +1212,21 @@ export function EntryEditor({
           </div>
         )}
         {currentCheck && <DanishCheckNotice check={currentCheck} onApply={applyDanishSuggestion} onDismiss={() => recordDanishCheck({ ...currentCheck, status: 'dismissed' })} />}
+        {!editing && (
+          <CatalogMatch
+            danish={draft.danish}
+            onUnlock={(unlocked, lemma) => {
+              commitDraft((current) => ({
+                ...current,
+                ...unlocked,
+                translation: translationFromSenses(unlocked.senses),
+                catalog_lemma: lemma,
+              }))
+              setIncludeExample(Boolean(unlocked.example_sentence))
+              notify('Filled from the catalog. Check it and press Save.', 'success')
+            }}
+          />
+        )}
       </div>
 
       {!showDetails && <p className="capture-empty-note">Type a word, phrase or sentence. Its pronunciation, meaning and an example appear here.</p>}

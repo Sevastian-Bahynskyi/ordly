@@ -66,6 +66,7 @@ export function createSense(text: string, patch: Partial<Omit<EntrySense, 'id'>>
     example: null,
     example_translation: null,
     source: 'user',
+    locked: false,
     coverage: emptyCoverage(),
     created_at: new Date().toISOString(),
     removed_at: null,
@@ -118,6 +119,7 @@ export function parseSenses(value: unknown): EntrySense[] {
       example: nullableText(record.example),
       example_translation: nullableText(record.example_translation),
       source: record.source === 'split' || record.source === 'ai' || record.source === 'cor' || record.source === 'user' ? record.source : 'ai',
+       locked: record.locked === true,
       coverage: coverageFrom(record.coverage),
       created_at: typeof record.created_at === 'string' ? record.created_at : new Date().toISOString(),
       removed_at: typeof record.removed_at === 'string' ? record.removed_at : null,
@@ -126,8 +128,21 @@ export function parseSenses(value: unknown): EntrySense[] {
   return senses
 }
 
+/**
+ * The meanings a reader should teach, grade or show: not removed, not locked, not empty.
+ *
+ * Locked is filtered here rather than at every call site on purpose. `translation`, the review
+ * answer, the definite form, the primary sense and practice all read through this one function,
+ * and `private.translation_from_senses` applies the same rule in the database, so a locked meaning
+ * cannot leak into grading from either side.
+ */
 export function activeSenses(senses: readonly EntrySense[] | null | undefined): EntrySense[] {
-  return (senses || []).filter((sense) => !sense.removed_at && sense.text.trim())
+  return (senses || []).filter((sense) => !sense.removed_at && !sense.locked && sense.text.trim())
+}
+
+/** Meanings the entry carries but is not teaching yet. The editor offers these for unlocking. */
+export function lockedSenses(senses: readonly EntrySense[] | null | undefined): EntrySense[] {
+  return (senses || []).filter((sense) => !sense.removed_at && sense.locked && sense.text.trim())
 }
 
 /** TypeScript mirror of `private.translation_from_senses`. */
