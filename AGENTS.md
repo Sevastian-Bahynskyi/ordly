@@ -29,10 +29,6 @@ Repository:
 - Vercel is Git-connected to `main`.
 - stable production host used in metadata: `https://ordly-sevastian-bahynskyis-projects.vercel.app`
 
-### GitHub Pages practice host — separate from Ordly
-
-The GitHub Pages site for this repository is **not the Ordly application**, not a staging environment, and not part of the Vercel deployment. It is a separate static surface used only for standalone Danish exercises that the user asks ChatGPT to generate manually from current learning/progress data. Source and operating rules are in `docs/github-pages-practice.md`; the published HTML lives under `practice/`. Future agents must preserve this boundary unless the user explicitly asks to redesign it.
-
 After every code change:
 
 1. Verify the latest GitHub Actions `Build` workflow.
