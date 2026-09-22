@@ -27,6 +27,10 @@ export interface ExportPracticeAttempt {
   modality: 'typed' | 'spoken'
   responseMs: number
   replays: number
+  source?: string | null
+  level?: string | null
+  practiceSessionId?: string | null
+  exerciseId?: string | null
 }
 
 export function exportRecord(value: unknown): Record<string, unknown> | null {
@@ -72,7 +76,22 @@ export function normalizeExportPracticeAttempt(value: unknown): ExportPracticeAt
   const replays = exportNumber(payload?.replays)
   const attemptRating = exportRating(payload?.rating)
   if (!entryId || !at || !kind || (result !== 'correct' && result !== 'mostly' && result !== 'incorrect' && result !== 'ungraded') || (modality !== 'typed' && modality !== 'spoken') || responseMs === null || replays === null) return null
-  return { entryId, at, kind, objective: exportString(payload?.objective), result, rating: attemptRating, assistance: exportString(payload?.assistance) || 'none', modality, responseMs, replays }
+  return {
+    entryId,
+    at,
+    kind,
+    objective: exportString(payload?.objective),
+    result,
+    rating: attemptRating,
+    assistance: exportString(payload?.assistance) || 'none',
+    modality,
+    responseMs,
+    replays,
+    source: exportString(payload?.source),
+    level: exportString(payload?.level),
+    practiceSessionId: exportString(payload?.practiceSessionId),
+    exerciseId: exportString(payload?.exerciseId),
+  }
 }
 
 const scheduler = fsrs()
@@ -153,6 +172,10 @@ function practiceHistory(attempts: ExportPracticeAttempt[]): string {
     modality: attempt.modality,
     response_ms: attempt.responseMs,
     replays: attempt.replays,
+    ...(attempt.source ? { source: attempt.source } : {}),
+    ...(attempt.level ? { level: attempt.level } : {}),
+    ...(attempt.practiceSessionId ? { practice_session_id: attempt.practiceSessionId } : {}),
+    ...(attempt.exerciseId ? { exercise_id: attempt.exerciseId } : {}),
   })))
 }
 
