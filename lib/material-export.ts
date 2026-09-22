@@ -29,6 +29,52 @@ export interface ExportPracticeAttempt {
   replays: number
 }
 
+export function exportRecord(value: unknown): Record<string, unknown> | null {
+  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : null
+}
+
+function exportString(value: unknown): string | null {
+  return typeof value === 'string' ? value : null
+}
+
+function exportNumber(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null
+}
+
+function exportRating(value: unknown): 1 | 2 | 3 | 4 | null {
+  return value === 1 || value === 2 || value === 3 || value === 4 ? value : null
+}
+
+export function normalizeExportReviewLog(value: unknown): ExportReviewLog | null {
+  const row = exportRecord(value)
+  const entryId = exportString(row?.entry_id)
+  const logRating = exportRating(row?.rating)
+  const reviewedAt = exportString(row?.reviewed_at)
+  const studyDate = exportString(row?.study_date)
+  const previousState = exportNumber(row?.previous_state)
+  const stability = exportNumber(row?.stability)
+  const difficulty = exportNumber(row?.difficulty)
+  const scheduledDays = exportNumber(row?.scheduled_days)
+  const answerResult = exportString(row?.answer_result)
+  if (!entryId || !logRating || !reviewedAt || !studyDate || previousState === null || stability === null || difficulty === null || scheduledDays === null || (answerResult !== null && answerResult !== 'correct' && answerResult !== 'mostly' && answerResult !== 'incorrect')) return null
+  return { entryId, rating: logRating, answerResult, answerText: exportString(row?.answer_text), previousState, stability, difficulty, scheduledDays, reviewedAt, studyDate }
+}
+
+export function normalizeExportPracticeAttempt(value: unknown): ExportPracticeAttempt | null {
+  const row = exportRecord(value)
+  const payload = exportRecord(row?.payload)
+  const entryId = exportString(row?.entry_id)
+  const at = exportString(payload?.at) || exportString(row?.created_at)
+  const kind = exportString(payload?.kind)
+  const result = exportString(payload?.result)
+  const modality = exportString(payload?.modality)
+  const responseMs = exportNumber(payload?.responseMs)
+  const replays = exportNumber(payload?.replays)
+  const attemptRating = exportRating(payload?.rating)
+  if (!entryId || !at || !kind || (result !== 'correct' && result !== 'mostly' && result !== 'incorrect' && result !== 'ungraded') || (modality !== 'typed' && modality !== 'spoken') || responseMs === null || replays === null) return null
+  return { entryId, at, kind, objective: exportString(payload?.objective), result, rating: attemptRating, assistance: exportString(payload?.assistance) || 'none', modality, responseMs, replays }
+}
+
 const scheduler = fsrs()
 
 function asFsrsCard(card: ReviewCard): Card {
