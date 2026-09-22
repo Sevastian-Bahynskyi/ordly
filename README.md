@@ -40,6 +40,10 @@ Copy `.env.example` to `.env.local` and provide:
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 - `OPENROUTER_API_KEY`
 
+GitHub learning-stat exports also require the server-only `GITHUB_APP_PRIVATE_KEY`, plus
+`GITHUB_APP_ID`, `GITHUB_APP_INSTALLATION_ID`, `GITHUB_EXPORT_REPOSITORY`, and
+`GITHUB_EXPORT_BRANCH`. Never prefix these with `NEXT_PUBLIC_` or commit the private key.
+
 The OpenRouter key and all other private server credentials must remain server-side.
 
 ## Database
