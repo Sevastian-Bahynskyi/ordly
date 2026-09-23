@@ -7,12 +7,15 @@ import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
 import { SynonymGraph } from '@/components/SynonymGraph'
 import { WordAudio } from '@/components/WordAudio'
+import { WordStructure } from '@/components/WordStructure'
 import { requireUser } from '@/lib/auth'
 import { definiteFormKey, fetchCorDefiniteForms } from '@/lib/cor'
 import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
+import { inferDanishInputKind } from '@/lib/entry-kind'
 import { activeSenses, nounGenderOf, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
+import type { WordForm } from '@/lib/word-forms'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,7 +31,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   // before it goes anywhere near the query rather than trusted from the URL.
   if (!isUuid(id)) notFound()
 
-  const [{ data: entry }, { data: profile }, { data: links }] = await Promise.all([
+  const [{ data: entry }, { data: profile }, { data: links }, { data: groupEntries }, { data: forms }] = await Promise.all([
     supabase.from('vocabulary_entries').select('*').eq('id', id).maybeSingle(),
     supabase.from('profiles').select('default_translation_language').single(),
     // Either end of the edge can be this entry: symmetric kinds are stored once, in canonical
@@ -38,6 +41,8 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
       .select('a_id, b_id, kind, source, confidence, confirmed, concept')
       .or(`a_id.eq.${id},b_id.eq.${id}`)
       .is('dismissed_at', null),
+    supabase.from('vocabulary_entries').select('id, danish, translation, entry_kind, canonical_entry_id').eq('entry_kind', 'word').order('danish'),
+    supabase.from('word_forms').select('*').eq('entry_id', id),
   ])
 
   // RLS already scopes this to the signed-in user, so a missing row and someone else's row are
@@ -102,6 +107,8 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
           entry={typedEntry}
           translationLanguage={profile?.default_translation_language || 'ru'}
         />
+
+        {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} entries={(groupEntries || []) as Pick<VocabularyEntry, 'id' | 'danish' | 'translation' | 'entry_kind' | 'canonical_entry_id'>[]} initialForms={(forms || []) as WordForm[]} />}
 
         {/* Sentences are learned whole and never get synonym links, so the graph would always be empty. */}
         {typedEntry.entry_kind !== 'sentence' && (

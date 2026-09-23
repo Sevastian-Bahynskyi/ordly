@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpenText, Check, CloudUpload, Loader2, Search, Sparkles, Waypoints, X } from 'lucide-react'
+import { BookOpenText, Check, CloudUpload, Loader2, Search, Sparkles, VolumeX, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
 import { definiteFormKey } from '@/lib/cor'
@@ -17,8 +17,10 @@ import {
 import { canStartDiscovery, discoveryStartIndex, type DiscoveryRun } from '@/lib/discovery-run'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
+import { hasWordRecording } from '@/lib/material-audio'
 import { activeSenses, nounGenderOf, parseSenses, PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
 import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
+import type { WordForm } from '@/lib/word-forms'
 import { DefiniteNoun } from './DefiniteNoun'
 import { MemoryRing } from './MemoryRing'
 import { SynonymChips } from './SynonymChips'
@@ -64,6 +66,9 @@ export function MaterialClient({
   initialWords,
   initialCards,
   initialLinks = [],
+  initialForms = [],
+  catalogAudio = {},
+  initialMissingAudio = false,
   initialQuery = '',
   initialKind = 'all',
   initialPos = 'all',
@@ -73,6 +78,9 @@ export function MaterialClient({
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
   initialLinks?: EntryLinkRow[]
+  initialForms?: WordForm[]
+  catalogAudio?: Record<string, string | null>
+  initialMissingAudio?: boolean
   initialQuery?: string
   initialKind?: MaterialKind
   initialPos?: PartOfSpeech | 'all'
@@ -85,6 +93,7 @@ export function MaterialClient({
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
   const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
+  const [missingAudio, setMissingAudio] = useState(initialMissingAudio)
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
   const [graphOpen, setGraphOpen] = useState(false)
@@ -119,6 +128,24 @@ export function MaterialClient({
   useEffect(() => setWords(initialWords), [initialWords])
   useEffect(() => setCards(initialCards), [initialCards])
   useEffect(() => setLinks(initialLinks), [initialLinks])
+  useEffect(() => setMissingAudio(initialMissingAudio), [initialMissingAudio])
+
+  function toggleMissingAudio(): void {
+    const next = !missingAudio
+    setMissingAudio(next)
+    if (next && kind !== 'words') {
+      setKind('words')
+      setPos('all')
+    }
+    const params = new URLSearchParams(window.location.search)
+    if (next) params.set('missingAudio', '1')
+    else params.delete('missingAudio')
+    if (next) {
+      params.set('kind', 'words')
+      params.delete('pos')
+    }
+    router.replace(`${pathname}${params.size ? `?${params}` : ''}`, { scroll: false })
+  }
 
   function chooseKind(next: MaterialKind): void {
     // The part-of-speech filter is only offered for words, so it must not keep hiding rows
@@ -155,6 +182,26 @@ export function MaterialClient({
     }
     return result
   }, [words])
+
+  const formsByEntry = useMemo(() => {
+    const result = new Map<string, WordForm[]>()
+    for (const form of initialForms) {
+      const existing = result.get(form.entry_id)
+      if (existing) existing.push(form)
+      else result.set(form.entry_id, [form])
+    }
+    return result
+  }, [initialForms])
+
+  const groupMembers = useMemo(() => {
+    const result = new Map<string, number>()
+    for (const word of words) {
+      if (word.canonical_entry_id) result.set(word.canonical_entry_id, (result.get(word.canonical_entry_id) || 0) + 1)
+    }
+    return result
+  }, [words])
+
+  const wordById = useMemo(() => new Map(words.map((word) => [word.id, word])), [words])
 
   /**
    * Every entry's grammar, parsed once per list rather than once per render per row: `senses` is
@@ -197,15 +244,16 @@ export function MaterialClient({
       .map((word) => ({ type: 'entry' as const, key: word.id, entry: word, kind: kindOf(word) }))
       .filter((row) => kind === 'all' || `${row.kind}s` === kind)
       .filter((row) => pos === 'all' || (grammar.get(row.entry.id)?.parts || []).includes(pos))
+      .filter((row) => !missingAudio || (row.kind === 'word' && !hasWordRecording(row.entry, catalogAudio)))
       .filter((row) => matches(row.entry.danish, row.entry.translation))
     if (kind !== 'sentences') return entries
     // Sentences you added come first; the examples that belong to your words follow them.
-    const examples: MaterialRow[] = status !== 'all' ? [] : words
+    const examples: MaterialRow[] = status !== 'all' || missingAudio ? [] : words
       .filter((word) => word.entry_kind !== 'sentence' && word.example_sentence?.trim())
       .map((word) => ({ type: 'example' as const, key: `example:${word.id}`, entry: word, danish: word.example_sentence!.trim(), translation: word.example_translation?.trim() || null }))
       .filter((row) => matches(row.danish, row.translation, row.entry.danish))
     return [...entries, ...examples]
-  }, [words, query, status, kind, pos, grammar])
+  }, [words, query, status, kind, pos, grammar, missingAudio, catalogAudio])
 
 
   /** The noun's definite singular, when its meanings agree on one gender and COR holds the form. */
@@ -426,6 +474,11 @@ export function MaterialClient({
       </div>
     )}
 
+    <div className="material-audio-filter">
+      <button type="button" className={`material-audio-toggle${missingAudio ? ' active' : ''}`} aria-pressed={missingAudio} onClick={toggleMissingAudio}><VolumeX size={16}/> Missing audio</button>
+      {missingAudio && <span>{visible.length} {visible.length === 1 ? 'word' : 'words'} · <button type="button" onClick={toggleMissingAudio}>Show all</button></span>}
+    </div>
+
     <section className="word-table-card">
       <div className="word-table-head"><span>Danish</span><span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}</span><span>Example</span><span>Memory</span><span /></div>
       {visible.map((row, index) => {
@@ -443,7 +496,7 @@ export function MaterialClient({
         const word = row.entry
         const card = cardsByEntry.get(word.id)
         return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
-          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small><SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
+          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)} linked</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{formsByEntry.get(word.id)!.map((form) => form.form_text).join(' · ')}</span>}</div>}<SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>

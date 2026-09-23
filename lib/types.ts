@@ -101,6 +101,8 @@ export interface VocabularyEntry {
   pronunciation: string | null
   /** Private word-audio bucket object path, when DDO supplied a recording. */
   audio_path: string | null
+  /** Null for a group's canonical entry or an entry that has not been grouped. */
+  canonical_entry_id: string | null
   /** Denormalized join of the non-removed `senses` texts. Kept in sync by the DB trigger. */
   translation: string | null
   senses: EntrySense[]
