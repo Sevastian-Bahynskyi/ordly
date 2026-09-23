@@ -378,6 +378,7 @@
 }
 
 .catalog-candidate-head strong { color: var(--ink); font-weight: 650; }
+.catalog-form-preview { margin: 5px 0 9px; color: var(--muted); font-size: 12px; line-height: 1.4; }
 .catalog-pos { color: var(--muted-2); font-size: 12px; }
 .catalog-pron { color: var(--muted); font-size: 12px; }
 

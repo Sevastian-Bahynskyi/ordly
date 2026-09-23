@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { EntrySense, NounGender, PartOfSpeech } from './types'
+import type { WordFormKey } from './word-forms'
 
 /**
  * COR — Det Centrale Ordregister — as Ordly reads it (issue #5 §1).
@@ -26,6 +27,69 @@ export interface CorForm {
   lemma: string
   /** COR's grammatical tag, e.g. `sb.itk.sg.ubest`. */
   tag: string
+}
+
+export interface CorParadigmForm {
+  form_key: WordFormKey
+  form_text: string
+  gender: '' | NounGender
+}
+
+/** Map only recorded, teachable inflections. Variant spellings remain separate rows. */
+export function corParadigm(rows: readonly CorForm[], posHints: readonly PartOfSpeech[], genderHints: readonly NounGender[] = []): CorParadigmForm[] {
+  if (!posHints.length) {
+    const settled = corPartOfSpeech(rows)
+    if (!settled) return []
+    posHints = [settled]
+  }
+  const result = new Map<string, CorParadigmForm>()
+  for (const row of rows) {
+    if (posHints.length && !corPartsOfSpeech(row.tag).some((part) => posHints.includes(part))) continue
+    const tag = row.tag
+    let key: WordFormKey | null = null
+    let gender: '' | NounGender = ''
+    if (tag.startsWith('sb.')) {
+      gender = corGenderFromTag(tag) || ''
+      if (genderHints.length && !genderHints.includes(gender as NounGender)) continue
+      if (/\.sg\.ubest$/.test(tag)) key = 'indefinite_singular'
+      else if (/\.sg\.best$/.test(tag)) key = 'definite_singular'
+      else if (/\.pl\.ubest$/.test(tag)) key = 'indefinite_plural'
+      else if (/\.pl\.best$/.test(tag)) key = 'definite_plural'
+    } else if (tag === 'vb.inf.akt') key = 'infinitive'
+    else if (tag === 'vb.præs.akt') key = 'present'
+    else if (tag === 'vb.præt.akt') key = 'past'
+    else if (tag === 'vb.perf.part') key = 'past_participle'
+    else if (tag === 'vb.præs.part') key = 'present_participle'
+    else if (tag === 'vb.imp') key = 'imperative'
+    else if (tag === 'adj.sg.ubest.fk') key = 'positive'
+    else if (tag === 'adj.sg.ubest.itk') key = 'neuter'
+    else if (tag === 'adj.pl') key = 'plural'
+    else if (tag === 'adj.sg.best') key = 'definite'
+    else if (tag === 'adj.kompar') key = 'comparative'
+    else if (tag === 'adj.superl.sg.ubest') key = 'superlative'
+    else if (tag === 'adj.superl.sg.best') key = 'superlative_definite'
+    else if (tag === 'pron.sg.fk') key = 'pronoun_common'
+    else if (tag === 'pron.sg.itk') key = 'pronoun_neuter'
+    else if (tag === 'pron.pl') key = 'pronoun_plural'
+    else if (tag === 'pron.nom') key = 'pronoun_subject'
+    else if (tag === 'pron.obl') key = 'pronoun_object'
+    if (!key) continue
+    const form: CorParadigmForm = { form_key: key, form_text: row.form, gender }
+    result.set(`${key}:${row.form}:${gender}`, form)
+  }
+  return [...result.values()]
+}
+
+/** Fill recorded forms for a newly saved word outside the pre-built catalog. */
+export async function syncCorParadigm(client: SupabaseClient, entryId: string, danish: string, senses: readonly EntrySense[]): Promise<void> {
+  const lemma = corLookupForm(danish)
+  if (!lemma) return
+  const hints = [...new Set(senses.filter((sense) => !sense.removed_at).map((sense) => sense.pos).filter((part): part is PartOfSpeech => part !== null))]
+  const genders = [...new Set(senses.filter((sense) => !sense.removed_at && sense.pos === 'noun').map((sense) => sense.gender).filter((gender): gender is NounGender => gender !== null))]
+  const { data } = await client.from('cor_form').select('form, lemma, tag').eq('lemma', lemma)
+  const rows = parseCorForms(data).filter((row) => row.lemma === lemma)
+  const forms = corParadigm(rows, hints, genders)
+  if (forms.length) await client.from('word_forms').upsert(forms.map((form) => ({ ...form, entry_id: entryId, source: 'cor' })), { onConflict: 'entry_id,form_key,form_text,gender', ignoreDuplicates: true })
 }
 
 /**

@@ -194,9 +194,9 @@ export function MaterialClient({
   }, [initialForms])
 
   const groupMembers = useMemo(() => {
-    const result = new Map<string, number>()
+    const result = new Map<string, VocabularyEntry[]>()
     for (const word of words) {
-      if (word.canonical_entry_id) result.set(word.canonical_entry_id, (result.get(word.canonical_entry_id) || 0) + 1)
+      if (word.canonical_entry_id) result.set(word.canonical_entry_id, [...(result.get(word.canonical_entry_id) || []), word])
     }
     return result
   }, [words])
@@ -239,13 +239,15 @@ export function MaterialClient({
   const visible = useMemo<MaterialRow[]>(() => {
     const q = query.trim()
     const matches = (...texts: (string | null | undefined)[]): boolean => !q || texts.some((text) => (text || '').toLocaleLowerCase('da-DK').includes(q.toLocaleLowerCase('da-DK')))
+    const collapseGroups = status === 'all' && pos === 'all' && !missingAudio && (kind === 'all' || kind === 'words')
     const entries: MaterialRow[] = words
       .filter((word) => status === 'all' || word.learning_status === status)
+      .filter((word) => !collapseGroups || !word.canonical_entry_id)
       .map((word) => ({ type: 'entry' as const, key: word.id, entry: word, kind: kindOf(word) }))
       .filter((row) => kind === 'all' || `${row.kind}s` === kind)
       .filter((row) => pos === 'all' || (grammar.get(row.entry.id)?.parts || []).includes(pos))
       .filter((row) => !missingAudio || (row.kind === 'word' && !hasWordRecording(row.entry, catalogAudio)))
-      .filter((row) => matches(row.entry.danish, row.entry.translation))
+      .filter((row) => matches(row.entry.danish, row.entry.translation, ...(collapseGroups ? (groupMembers.get(row.entry.id) || []).flatMap((member) => [member.danish, member.translation]) : [])))
     if (kind !== 'sentences') return entries
     // Sentences you added come first; the examples that belong to your words follow them.
     const examples: MaterialRow[] = status !== 'all' || missingAudio ? [] : words
@@ -253,7 +255,7 @@ export function MaterialClient({
       .map((word) => ({ type: 'example' as const, key: `example:${word.id}`, entry: word, danish: word.example_sentence!.trim(), translation: word.example_translation?.trim() || null }))
       .filter((row) => matches(row.danish, row.translation, row.entry.danish))
     return [...entries, ...examples]
-  }, [words, query, status, kind, pos, grammar, missingAudio, catalogAudio])
+  }, [words, query, status, kind, pos, grammar, missingAudio, catalogAudio, groupMembers])
 
 
   /** The noun's definite singular, when its meanings agree on one gender and COR holds the form. */
@@ -496,7 +498,7 @@ export function MaterialClient({
         const word = row.entry
         const card = cardsByEntry.get(word.id)
         return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
-          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)} linked</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{formsByEntry.get(word.id)!.map((form) => form.form_text).join(' · ')}</span>}</div>}<SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
+          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)!.map((member) => member.danish).join(' · ')}</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{`${formsByEntry.get(word.id)!.length} forms`}</span>}</div>}<SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>

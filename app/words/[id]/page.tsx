@@ -57,7 +57,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   // than after it, so the graph costs the page no extra depth (AGENTS.md §16).
   // The recording belongs to the catalog row, not to the entry: the entry is a copy, and audio is
   // reference data every account shares (issue #6 §5). One primary-key read, and null is ordinary.
-  const [{ data: card }, { data: neighbours }, { data: catalog }] = await Promise.all([
+  const [{ data: card }, { data: neighbours }, { data: catalog }, { data: canonicalForms }] = await Promise.all([
     supabase.from('review_cards').select('*').eq('entry_id', typedEntry.id).maybeSingle(),
     neighbourIds.length
       ? supabase.from('vocabulary_entries').select('id, danish, translation').in('id', neighbourIds)
@@ -66,6 +66,9 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
       ? supabase.from('word_catalog').select('audio_path').eq('lemma', typedEntry.catalog_lemma)
         .eq('kind', typedEntry.entry_kind === 'sentence' ? 'phrase' : 'word').maybeSingle()
       : Promise.resolve({ data: null }),
+    typedEntry.canonical_entry_id
+      ? supabase.from('word_forms').select('*').eq('entry_id', typedEntry.canonical_entry_id)
+      : Promise.resolve({ data: [] as WordForm[] }),
   ])
 
   const senses = activeSenses(parseSenses(typedEntry.senses))
@@ -93,6 +96,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}
               {typedEntry.pronunciation || 'No pronunciation yet'}
+              {typedEntry.audio_source === 'device_voice' && ' · Device voice'}
               {senses.length > 1 && ` · ${senses.length} meanings`}
             </p>
           </div>
@@ -108,7 +112,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
           translationLanguage={profile?.default_translation_language || 'ru'}
         />
 
-        {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} entries={(groupEntries || []) as Pick<VocabularyEntry, 'id' | 'danish' | 'translation' | 'entry_kind' | 'canonical_entry_id'>[]} initialForms={(forms || []) as WordForm[]} />}
+        {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} entries={(groupEntries || []) as Pick<VocabularyEntry, 'id' | 'danish' | 'translation' | 'entry_kind' | 'canonical_entry_id'>[]} initialForms={(typedEntry.canonical_entry_id ? canonicalForms || [] : forms || []) as WordForm[]} />}
 
         {/* Sentences are learned whole and never get synonym links, so the graph would always be empty. */}
         {typedEntry.entry_kind !== 'sentence' && (

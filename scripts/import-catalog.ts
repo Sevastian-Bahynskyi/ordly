@@ -18,8 +18,10 @@
  * lemma, kind and ordinal does that without a table to remember it by.
  */
 import { createHash } from 'node:crypto'
+import { execFile } from 'node:child_process'
 import { readFile, readdir } from 'node:fs/promises'
 import { join } from 'node:path'
+import { promisify } from 'node:util'
 import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
 import { catalogCleanupSql } from '../lib/catalog-import'
@@ -228,6 +230,8 @@ async function main(): Promise<void> {
     (select count(*) from public.word_catalog_sense) as senses,
     (select count(*) from public.word_catalog where audio_path is not null) as with_audio`)
   console.log(`\nLoaded: ${JSON.stringify(counts[0])}`)
+  const { stdout } = await promisify(execFile)('pnpm', ['exec', 'tsx', 'scripts/sync-word-paradigms.ts'], { maxBuffer: 4 * 1024 * 1024 })
+  process.stdout.write(stdout)
 }
 
 void main().catch((error: unknown) => {

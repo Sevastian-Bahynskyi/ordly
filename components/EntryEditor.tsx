@@ -10,7 +10,7 @@ import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
 import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
 import { diffAnswer } from '@/lib/answer-diff'
-import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, type CorForm } from '@/lib/cor'
+import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, syncCorParadigm, type CorForm } from '@/lib/cor'
 import { replaceWordInText, type Misspelling } from '@/lib/danish-text'
 import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
@@ -1061,6 +1061,7 @@ export function EntryEditor({
       }
 
       const saved = updated as VocabularyEntry
+      if (entryKind === 'word' && !current.catalog_lemma) await syncCorParadigm(supabase, saved.id, saved.danish, graded)
       exampleSentenceDirty.current = false
       latestExampleSentence.current = saved.example_sentence || ''
       resetExampleCheck()
@@ -1088,7 +1089,10 @@ export function EntryEditor({
       return
     }
 
-    if (savedEntry?.id) runSynonymDiscovery(savedEntry.id, savedEntry.entry_kind)
+    if (savedEntry?.id) {
+      if (entryKind === 'word' && !current.catalog_lemma) await syncCorParadigm(supabase, savedEntry.id, current.danish, graded)
+      runSynonymDiscovery(savedEntry.id, savedEntry.entry_kind)
+    }
 
     exampleSentenceDirty.current = false
     latestExampleSentence.current = ''

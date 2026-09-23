@@ -37,6 +37,7 @@ export interface CatalogEntry {
   example_sentence: string | null
   example_translation: string | null
   senses: CatalogSense[]
+  forms: { form_key: string; form_text: string; gender: string }[]
 }
 
 /** Why a lookup found nothing. The learner is told which, because they mean different things. */
@@ -82,6 +83,11 @@ export function parseCatalogEntry(value: unknown): CatalogEntry | null {
     : []
   if (!senses.length) return null
   const pos = isPartOfSpeech(record.pos) ? record.pos : null
+  const forms = Array.isArray(record.word_catalog_form) ? record.word_catalog_form.flatMap((value): { form_key: string; form_text: string; gender: string }[] => {
+    if (!value || typeof value !== 'object') return []
+    const form = value as Record<string, unknown>
+    return typeof form.form_key === 'string' && typeof form.form_text === 'string' ? [{ form_key: form.form_key, form_text: form.form_text, gender: typeof form.gender === 'string' ? form.gender : '' }] : []
+  }) : []
   return {
     lemma,
     kind,
@@ -94,6 +100,7 @@ export function parseCatalogEntry(value: unknown): CatalogEntry | null {
     example_sentence: text(record.example_sentence),
     example_translation: text(record.example_translation),
     senses,
+    forms,
   }
 }
 
@@ -114,7 +121,8 @@ export function candidateLemmas(typed: string, corRows: readonly { lemma: string
 
 const ENTRY_COLUMNS = 'lemma, kind, freq_rank, pos, gender, definite_singular, pronunciation, audio_path,'
   + ' example_sentence, example_translation,'
-  + ' word_catalog_sense(sense_id, ordinal, text, pos, gender, example, example_translation)'
+  + ' word_catalog_sense(sense_id, ordinal, text, pos, gender, example, example_translation),'
+  + ' word_catalog_form(form_key, form_text, gender)'
 
 /**
  * What the catalog holds for one typed text. Never throws: a catalog outage must fall through to

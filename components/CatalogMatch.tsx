@@ -85,6 +85,7 @@ export function CatalogMatch({ danish, onUnlock }: Props): React.JSX.Element | n
               {entry.pronunciation && <span className="catalog-pron">{entry.pronunciation}</span>}
             </div>
           )}
+          {entry.forms.length > 0 && <p className="catalog-form-preview">{entry.forms.length} recorded forms · {entry.forms.filter((form) => form.form_text !== entry.lemma).slice(0, 3).map((form) => form.form_text).join(' · ') || entry.lemma}</p>}
           <div className="catalog-senses">
             {entry.senses.map((sense) => (
               <button
