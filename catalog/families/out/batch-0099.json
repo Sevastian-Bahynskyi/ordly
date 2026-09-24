@@ -1,0 +1,490 @@
+[
+ {
+  "lemma": "sær",
+  "kind": "word",
+  "sense_id": "62631073-e7c6-5ffe-a590-3cf6051210cd",
+  "level": "B1",
+  "situation": "social",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} opførte sig {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Naboen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "sært",
+    "en": "He behaved strangely.",
+    "ru": "Он вёл себя странно.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "sært",
+    "en": "The neighbor behaved strangely.",
+    "ru": "Сосед вёл себя странно.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "sær",
+  "kind": "word",
+  "sense_id": "9748ca6d-ca96-5d93-96c0-8900b68ac43d",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "comparison",
+  "frame": "Denne {noun} er {target} end de andre.",
+  "slots": {
+   "noun": [
+    {
+     "da": "smag"
+    },
+    {
+     "da": "stil"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "særere",
+    "en": "This taste is more peculiar than the others.",
+    "ru": "Этот вкус более своеобразный, чем остальные.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "særere",
+    "en": "This style is more distinctive than the others.",
+    "ru": "Этот стиль более своеобразный, чем остальные.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "kjole",
+  "kind": "word",
+  "sense_id": "572234eb-b9b5-544a-9000-53536426add7",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "relative-clause",
+  "frame": "{target}, som hun havde på, var {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "rød"
+    },
+    {
+     "da": "ny"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "kjolen",
+    "en": "The dress she was wearing was red.",
+    "ru": "Платье, которое было на ней надето, было красным.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "kjolen",
+    "en": "The dress she was wearing was new.",
+    "ru": "Платье, которое было на ней надето, было новым.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "folketingsvalg",
+  "kind": "word",
+  "sense_id": "bbb41382-2078-5879-9d68-01a1b318d4cb",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "passive",
+  "frame": "{target} blev afholdt i {month}.",
+  "slots": {
+   "month": [
+    {
+     "da": "november"
+    },
+    {
+     "da": "juni"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "month": 0
+    },
+    "target": "folketingsvalget",
+    "en": "The parliamentary election was held in November.",
+    "ru": "Парламентские выборы прошли в ноябре.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "month": 1
+    },
+    "target": "folketingsvalget",
+    "en": "The parliamentary election was held in June.",
+    "ru": "Парламентские выборы прошли в июне.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "snes",
+  "kind": "word",
+  "sense_id": "7c5c651d-714c-5ea2-8723-1c80ed01f738",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "fixed-expressions",
+  "frame": "Jeg købte en {target} {product}.",
+  "slots": {
+   "product": [
+    {
+     "da": "æg"
+    },
+    {
+     "da": "æbler"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "product": 0
+    },
+    "target": "snes",
+    "en": "I bought a score of eggs.",
+    "ru": "Я купил два десятка яиц.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "product": 1
+    },
+    "target": "snes",
+    "en": "I bought a score of apples.",
+    "ru": "Я купил два десятка яблок.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "mystisk",
+  "kind": "word",
+  "sense_id": "9ffddcab-5dbc-5f31-8e1b-7ce28076fd69",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "adjective-agreement",
+  "frame": "Bogen handlede om en {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "historie"
+    },
+    {
+     "da": "begivenhed"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "mystisk",
+    "en": "The book was about a mysterious story.",
+    "ru": "Книга была о таинственной истории.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "mystisk",
+    "en": "The book was about a mysterious event.",
+    "ru": "Книга была о таинственном событии.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "mystisk",
+  "kind": "word",
+  "sense_id": "ebe5116e-07b4-56ff-b512-007fdac1e0ce",
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "adjective-agreement",
+  "frame": "Beskeden indeholdt nogle {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "tegn"
+    },
+    {
+     "da": "fejl"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "mystiske",
+    "en": "The message contained some strange symbols.",
+    "ru": "Сообщение содержало какие-то непонятные знаки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "mystiske",
+    "en": "The message contained some strange errors.",
+    "ru": "Сообщение содержало какие-то непонятные ошибки.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "markedsføring",
+  "kind": "word",
+  "sense_id": "4f67f563-0202-52ee-896d-9c9e0a9781f6",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "frame": "{subject} arbejder med {target}, fordi {reason}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    }
+   ],
+   "reason": [
+    {
+     "da": "hun er kreativ"
+    },
+    {
+     "da": "han elsker det"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "reason": 0
+    },
+    "target": "markedsføring",
+    "en": "She works in marketing because she is creative.",
+    "ru": "Она занимается маркетингом, потому что она креативная.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "reason": 1
+    },
+    "target": "markedsføring",
+    "en": "He works in marketing because he loves it.",
+    "ru": "Он занимается маркетингом, потому что он это любит.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "markedsføring",
+  "kind": "word",
+  "sense_id": "5c070122-eed5-5e0b-bdfa-af3008f84e38",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "relative-clause",
+  "frame": "{target}, som firmaet planlagde, var {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "dyr"
+    },
+    {
+     "da": "effektiv"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "markedsføringen",
+    "en": "The marketing campaign that the company planned was expensive.",
+    "ru": "Продвижение товара, которое компания запланировала, было дорогим.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "markedsføringen",
+    "en": "The marketing campaign that the company planned was effective.",
+    "ru": "Продвижение товара, которое компания запланировала, было эффективным.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "ideologisk",
+  "kind": "word",
+  "sense_id": "60b79c55-1055-50bf-b824-03c00122eb7e",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "adjective-agreement",
+  "frame": "Partiet havde en {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "forskel til de andre"
+    },
+    {
+     "da": "holdning til sagen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "ideologisk",
+    "en": "The party had an ideological difference from the others.",
+    "ru": "У партии было идеологическое отличие от остальных.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "ideologisk",
+    "en": "The party had an ideological stance on the matter.",
+    "ru": "У партии была идеологическая позиция по этому вопросу.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "kirkegård",
+  "kind": "word",
+  "sense_id": "436d651a-261e-524b-959e-d0ace042d906",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "subordinate-clause",
+  "frame": "Vi gik en tur på {target}, da vejret var {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "flot"
+    },
+    {
+     "da": "koldt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "kirkegården",
+    "en": "We took a walk in the cemetery when the weather was nice.",
+    "ru": "Мы гуляли по кладбищу, когда была хорошая погода.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "kirkegården",
+    "en": "We took a walk in the cemetery when the weather was cold.",
+    "ru": "Мы гуляли по кладбищу, когда было холодно.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "bosætte",
+  "kind": "word",
+  "sense_id": "0b0e9f9b-05c6-5fd0-ae7d-92a2ff1e0e76",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "reflexive",
+  "frame": "{subject} {target} sig i {place}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "De"
+    },
+    {
+     "da": "Familien"
+    }
+   ],
+   "place": [
+    {
+     "da": "en ny by"
+    },
+    {
+     "da": "landsbyen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "place": 0
+    },
+    "target": "bosætter",
+    "en": "They are settling in a new town.",
+    "ru": "Они поселяются в новом городе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "place": 1
+    },
+    "target": "bosætter",
+    "en": "The family is settling in the village.",
+    "ru": "Семья поселяется в деревне.",
+    "orders": []
+   }
+  ]
+ }
+]
