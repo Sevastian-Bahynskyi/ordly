@@ -1,4 +1,4 @@
-import { attemptOutcomes, PRACTICE_CONTENT_REVISION, queueSeconds, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
+import { attemptOutcomes, PRACTICE_CONTENT_REVISION, queueSeconds, seedHash, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
 import {
   assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
   selectDistractors, selectMeaningDistractors, sentenceAssembleTask, senseTask, WORD_BANK_DISTRACTOR_COUNT,
@@ -37,6 +37,9 @@ type Builder = (input: ExerciseInput) => PracticeTask | null
  * chosen by the session seed, so the same word meets different formats across sessions.
  * Recognition (choice, binary) leads; production (type) and self-rated recall (flash) follow.
  */
+/** Formats that only ask the learner to recognise a meaning, never to recall or use the word. */
+const RECOGNITION_KINDS = new Set<PracticeTask['kind']>(['pick', 'binary', 'flash'])
+
 const WORD_LADDER: Record<TargetLevel, Builder[]> = {
   0: [pickMeaningTask, binaryTask, chooseTask, assembleTask, clozeTypedTask],
   1: [chooseTask, binaryTask, clozeTypedTask, senseTask, assembleTask, flashTask, produceSenseTask],
@@ -49,15 +52,6 @@ const SENTENCE_LADDER: Record<TargetLevel, Builder[]> = {
   1: [sentenceAssembleTask, clozeTypedTask, produceSenseTask],
   2: [clozeTypedTask, sentenceAssembleTask, produceSenseTask],
   3: [clozeTypedTask, produceSenseTask],
-}
-
-function hash(value: string): number {
-  let result = 2166136261
-  for (let index = 0; index < value.length; index += 1) {
-    result ^= value.charCodeAt(index)
-    result = Math.imul(result, 16777619)
-  }
-  return result >>> 0
 }
 
 interface PlanContext {
@@ -148,7 +142,10 @@ function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] 
   }
   const [first, ...harder] = available
   if (!first) return []
-  const second = harder.length ? harder[hash(seed) % harder.length] : null
+  // The second step should ask for more than recognition when the ladder offers anything more.
+  const productive = harder.filter((task) => !RECOGNITION_KINDS.has(task.kind))
+  const options = productive.length ? productive : harder
+  const second = options.length ? options[seedHash(seed) % options.length] : null
   return [first, ...(second ? [second] : [])].map((task, index) => ({ ...task, newTarget: index === 0 && score.isNew }))
 }
 

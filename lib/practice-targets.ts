@@ -43,6 +43,8 @@ const typedKinds = new Set(['recall', 'produce', 'cloze', 'build', 'listen'])
 /** Checked unaided answers weigh most, tapped ones less, self-ratings least (spec #12 decision 6). */
 function evidenceWeight(attempt: PracticeAttempt): number {
   if (attempt.assistance === 'self') return 0.25
+  // The retired dialogue was typed and rated; its history keeps the weight it was earned with.
+  if (attempt.kind === 'dialogue' && attempt.rating != null) return 1
   return typedKinds.has(attempt.kind) ? 1 : 0.5
 }
 

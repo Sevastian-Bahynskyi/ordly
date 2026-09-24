@@ -77,7 +77,7 @@ export interface PracticeTargetOutcome {
   targetKey: string
   entryId: string
   senseId: string
-  result: 'correct' | 'incorrect'
+  result: 'correct' | 'incorrect' | 'dont_know'
 }
 
 export interface PracticeTask {
@@ -176,7 +176,7 @@ export interface PracticeAttempt {
 }
 
 /** Bumped when the planner or exercise builders change what a stored task means. */
-export const PRACTICE_CONTENT_REVISION = 'practice-v2'
+export const PRACTICE_CONTENT_REVISION = 'practice-v3'
 
 export interface PracticeSessionState {
   version: 2
@@ -271,13 +271,31 @@ export function unaidedForm(task: PracticeTask): PracticeTask | null {
     : { ...rest, kind: 'produce' }
 }
 
-function hash(value: string): number {
+/** FNV-1a. Small, dependency-free and stable: every seeded choice in Practice goes through it. */
+export function seedHash(value: string): number {
   let result = 2166136261
   for (let index = 0; index < value.length; index += 1) {
     result ^= value.charCodeAt(index)
     result = Math.imul(result, 16777619)
   }
   return result >>> 0
+}
+
+/** How a Danish word is compared: trimmed and lowercased the Danish way. */
+export function danishKey(value: string): string {
+  return value.trim().toLocaleLowerCase('da-DK')
+}
+
+/** Sort and match answer with a JSON object: item text → the category or meaning it was placed with. */
+export function parsePlacement(answer: string): Record<string, string> | null {
+  try {
+    const value: unknown = JSON.parse(answer)
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+    const entries = Object.entries(value as Record<string, unknown>)
+    return entries.every(([, placed]) => typeof placed === 'string') ? Object.fromEntries(entries) as Record<string, string> : null
+  } catch {
+    return null
+  }
 }
 
 /**
@@ -320,6 +338,6 @@ export function finishPracticeTask(queue: readonly PracticeTask[], response: Pic
   if (!source) return remaining
   const retry: PracticeTask = { ...source, id: `${task.id}:retry`, newTarget: false, retry: task.retry + 1 }
   const next = [...remaining]
-  next.splice(Math.min(next.length, 2 + hash(`${seed}:${task.id}`) % 3), 0, retry)
+  next.splice(Math.min(next.length, 2 + seedHash(`${seed}:${task.id}`) % 3), 0, retry)
   return next
 }

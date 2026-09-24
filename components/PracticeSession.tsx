@@ -5,10 +5,9 @@ import { useCallback, useEffect, useRef, useState, type JSX, type KeyboardEvent 
 import { ArrowRight, Check, Eye, Flag, Lightbulb, MessageCircle, Pause, RotateCcw, X } from 'lucide-react'
 import { diffAnswer } from '@/lib/answer-diff'
 import {
-  DEFAULT_PRACTICE_MINUTES, isChoiceKind, isPracticeMinutes, isReportable, MAX_PRACTICE_MINUTES, PRACTICE_MINUTE_PRESETS, TYPED_KINDS,
+  DEFAULT_PRACTICE_MINUTES, isChoiceKind, isGroupKind, parsePlacement, isPracticeMinutes, isReportable, MAX_PRACTICE_MINUTES, PRACTICE_MINUTE_PRESETS, TYPED_KINDS,
   type PracticeResponse, type PracticeSessionState, type PracticeTask,
 } from '@/lib/practice'
-import { parsePlacement } from '@/lib/practice-grading'
 import { isFeedbackCode, PRACTICE_COPY, practiceLocale, type PracticeCopy } from '@/lib/practice-i18n'
 import { isPracticeSession, isRecord } from '@/lib/practice-validation'
 import type { TranslationLanguage } from '@/lib/types'
@@ -166,7 +165,7 @@ export function PracticeSession({ learnerLanguage }: { learnerLanguage: Translat
   const revealed = response?.revealed
   const hinted = response?.assistance === 'hint'
   const submit = (value = answer): void => { if (!busy) void send('answer', { answer: value, responseMs: Math.max(0, performance.now() - startedAt.current) }) }
-  const ready = task.kind === 'sort' || task.kind === 'match'
+  const ready = isGroupKind(task.kind) && task.kind !== 'odd'
     ? Object.keys(parsePlacement(answer) || {}).length === (task.items || []).length
     : Boolean(answer.trim())
 
@@ -186,7 +185,7 @@ export function PracticeSession({ learnerLanguage }: { learnerLanguage: Translat
           {!typed
             ? <button className="practice-text-button" type="button" disabled={busy} onClick={() => submit('')}>{t.dontKnow}</button>
             : !hinted && <button className="practice-text-button" type="button" disabled={busy} onClick={() => void send('help')}><Lightbulb size={15} />{t.showHint}</button>}
-          {hinted && <div className="practice-hint">{task.hint}</div>}
+          {hinted && <div className="practice-hint">{task.hint.endsWith('…') ? t.startsWith(task.hint) : task.hint}</div>}
         </form>)}
       {revealed && response && <div className="practice-feedback" aria-live="polite">
         <span className={`practice-verdict ${response.result}`}>{verdictOf(t, response)}</span>
@@ -202,9 +201,12 @@ export function PracticeSession({ learnerLanguage }: { learnerLanguage: Translat
   </>
 }
 
+/** Stands in for the Danish word while the claim is worded, so the word itself can carry `lang="da"`. */
+const CLAIM_WORD = '\u0000'
+
 /** What the exercise asks, above its controls. */
 function TaskPrompt({ t, task }: { t: PracticeCopy; task: PracticeTask }): JSX.Element | null {
-  if (task.kind === 'match' || task.kind === 'sort' || task.kind === 'odd') return null
+  if (isGroupKind(task.kind)) return null
   if (task.kind === 'dialogue') {
     return <div className="practice-dialogue">
       {task.support && <p className="practice-context">{task.support}</p>}
@@ -212,7 +214,8 @@ function TaskPrompt({ t, task }: { t: PracticeCopy; task: PracticeTask }): JSX.E
     </div>
   }
   if (task.kind === 'binary') {
-    return <div className="practice-prompt"><h2>{t.claim(task.prompt, task.claim || '')}</h2></div>
+    const [before, after] = t.claim(CLAIM_WORD, task.claim || '').split(CLAIM_WORD)
+    return <div className="practice-prompt"><h2>{before}<span lang="da">{task.prompt}</span>{after}</h2></div>
   }
   const promptIsDanish = !['produce', 'assemble'].includes(task.kind)
   return <>
@@ -430,7 +433,8 @@ function FeedbackAnswers({ t, task, response }: { t: PracticeCopy; task: Practic
     </ul>
   }
   if (task.kind === 'flash') return <div className="correct-answer"><span>{t.meaning}</span><strong>{task.answer}</strong></div>
-  if (task.kind === 'binary') return null
+  // A wrong verdict on a claim shows what the word does mean.
+  if (task.kind === 'binary') return response.result === 'correct' ? null : <div className="correct-answer"><span>{t.meaning}</span><strong>{task.translation}</strong></div>
   if (response.result === 'unverified') {
     return <div className="practice-diff">
       <div><small>{t.yourSentence}</small><p lang="da">{typed}</p></div>

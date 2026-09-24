@@ -20,6 +20,7 @@ export interface PracticeCopy {
   check: string
   dontKnow: string
   showHint: string
+  startsWith: (start: string) => string
   continue: string
   pause: string
   finish: string
@@ -125,7 +126,7 @@ const en: PracticeCopy = {
     correct: 'Correct', mostly: 'Close', incorrect: 'Not quite', wrong_form: 'Wrong form', unverified: 'Compare with your saved sentence',
     dont_know: 'Here’s the answer', self_known: 'You knew it', self_unknown: 'Not yet', partial: 'Partly right',
   },
-  check: 'Check', dontKnow: 'I don’t know', showHint: 'Show a hint', continue: 'Continue', pause: 'Pause', finish: 'Finish',
+  check: 'Check', dontKnow: 'I don’t know', showHint: 'Show a hint', startsWith: (start) => `Starts with “${start}”`, continue: 'Continue', pause: 'Pause', finish: 'Finish',
   finishSession: 'Finish session', resume: 'Resume practice', start: 'Start practice', preparing: 'Preparing…', checking: 'Checking…',
   reviewInstead: 'Review instead →', openReview: 'Open Review', howLong: 'How long?', custom: 'Custom', minutesWord: 'minutes',
   minuteOption: (minutes) => `${minutes} min`,
@@ -193,7 +194,7 @@ const ru: PracticeCopy = {
     correct: 'Верно', mostly: 'Почти', incorrect: 'Не совсем', wrong_form: 'Не та форма', unverified: 'Сравните с сохранённым предложением',
     dont_know: 'Вот ответ', self_known: 'Вы знали', self_unknown: 'Пока нет', partial: 'Частично верно',
   },
-  check: 'Проверить', dontKnow: 'Не знаю', showHint: 'Подсказка', continue: 'Дальше', pause: 'Пауза', finish: 'Завершить',
+  check: 'Проверить', dontKnow: 'Не знаю', showHint: 'Подсказка', startsWith: (start) => `Начинается на «${start}»`, continue: 'Дальше', pause: 'Пауза', finish: 'Завершить',
   finishSession: 'Завершить занятие', resume: 'Продолжить', start: 'Начать практику', preparing: 'Готовим…', checking: 'Проверяем…',
   reviewInstead: 'Лучше повторение →', openReview: 'Открыть повторение', howLong: 'Сколько времени?', custom: 'Своё', minutesWord: 'минут',
   minuteOption: (minutes) => `${minutes} мин`,
@@ -232,5 +233,5 @@ const ru: PracticeCopy = {
 export const PRACTICE_COPY: Record<PracticeLocale, PracticeCopy> = { en, ru }
 
 export function isFeedbackCode(value: string): value is PracticeFeedbackCode {
-  return value in en.feedback
+  return Object.hasOwn(en.feedback, value)
 }

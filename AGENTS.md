@@ -514,13 +514,17 @@ Review is the default and the only measure of retention (`docs/adr/0002-review-o
 - **Ten formats (issue #15).** choice `pick`, drag-gap `choose`, order `assemble`, type `cloze`/`produce`, binary, odd-one-out `odd`, category-sort `sort`, match, dialogue, flash-reveal `flash`. The table and builders are in `lib/practice.ts` and `lib/practice-formats.ts`. Each builder returns null without safe content, so an ambiguous board is never offered:
   - binary's false claim is never a meaning of the word;
   - match skips meanings that contain one another;
-  - sort and odd-one-out use only nouns whose gender COR recorded;
-  - dialogue needs the headword in Material and a situation in the learner language.
+  - sort and odd-one-out use only nouns with a recorded gender (a noun without one is never placed);
+  - dialogue needs the headword in Material and a situation in the learner language;
+  - boards (match, sort, odd, dialogue) are built only from targets already met, at most 40% of the queue, spaced apart.
+- Drag-gap, order, sort and match are **tap-based**: tap a tile, then its place. There is no drag gesture to fail on a phone or with a keyboard.
 - **Grading contract** (`lib/practice-grading.ts`):
   - `accepted` lists the prepared alternatives, so a second reply or word order counts. Word order ignores the case and punctuation a tile carries.
-  - A typed gap marks any other verified form of the word (`forms`, from `word_forms`) as `wrong_form` before typo tolerance.
+  - `alternativeOrders` (`lib/practice-exercises.ts`) adds the one rule-made order: a simple main clause opened by a subject-only pronoun and ending in a known time phrase also accepts the fronted order (`Jeg arbejder i dag.` → `I dag arbejder jeg.`). Anything with a comma, a question, a conjunction or a noun subject gets no alternative.
+  - A typed gap or produced word marks any other verified form of the word (`forms`, COR/DDO rows of `word_forms`) as `wrong_form` before typo tolerance, and so does a misspelling at least as close to another form as to the expected one.
   - Sort and match grade each word and store `targets` on the attempt; `attemptOutcomes` spreads them for selection.
-  - Flash-reveal records `self_known`/`self_unknown` with `assistance: 'self'`, weighted lowest, never checked.
+  - Flash-reveal records `self_known`/`self_unknown` with `assistance: 'self'`, weighted lowest (0.25), never checked. **I don't know** on any other format, including a whole board, is `dont_know` for every word on it.
+  - Retired dialogue attempts that carry a `rating` keep their typed weight.
   - Feedback is a code (`PracticeFeedbackCode`) worded by `lib/practice-i18n.ts` in English or Russian (Ukrainian reads English). Stored English sentences from older sessions still show.
 - The dialogue pilot is `lib/practice-pilot.ts`: ten exchanges, English and Russian situations, provenance `dialogue-pilot-2026-09-25`. The session seed derives from the user and the saved revision, so a shortfall offer and its acceptance plan the same session.
 - Tests: `lib/practice-session.test.mjs` (session boundary, legacy payloads, a journey through all ten formats), `lib/practice-formats.test.mjs` (builder safety, per-format grading), `supabase/tests/guided_practice.sql` (database boundary), `supabase/tests/practice-server.mjs` (real SQL through PostgREST; see `docs/guided-practice.md`).

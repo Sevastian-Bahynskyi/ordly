@@ -3,7 +3,7 @@ import { seededShuffle, type ExerciseInput } from './practice-exercises'
 import { senseExample, type SenseCandidate } from './practice-senses'
 import { PILOT_DIALOGUES } from './practice-pilot'
 import { normalizeSenseText } from './senses'
-import type { PracticeGroupItem, PracticeTask } from './practice'
+import { danishKey, seedHash, type PracticeGroupItem, type PracticeTask } from './practice'
 import type { TranslationLanguage } from './types'
 
 /**
@@ -12,15 +12,6 @@ import type { TranslationLanguage } from './types'
  * A builder that lacks safe content returns null, so an unsupported or ambiguous board is simply
  * not offered (spec #12 decision 17).
  */
-
-function hash(value: string): number {
-  let result = 2166136261
-  for (let index = 0; index < value.length; index += 1) {
-    result ^= value.charCodeAt(index)
-    result = Math.imul(result, 16777619)
-  }
-  return result >>> 0
-}
 
 function baseFor(candidate: SenseCandidate): Omit<PracticeTask, 'id' | 'kind' | 'prompt' | 'answer' | 'hint' | 'answerIsSentence'> {
   const entry = candidate.item.vocabulary_entries
@@ -47,8 +38,10 @@ export function binaryTask(input: ExerciseInput): PracticeTask | null {
   const { candidate } = input
   const entry = candidate.item.vocabulary_entries
   if (entry.entry_kind === 'sentence') return null
+  // Without a safe wrong meaning the answer would always be “true”, which tests nothing: not offered.
   const wrong = (input.meaningDistractors || [])[0]
-  const claimTrue = !wrong || hash(candidate.targetKey) % 2 === 0
+  if (!wrong) return null
+  const claimTrue = seedHash(candidate.targetKey) % 2 === 0
   return {
     ...baseFor(candidate),
     id: `${candidate.targetKey}:binary`,
@@ -92,8 +85,8 @@ export function matchTask(candidates: readonly SenseCandidate[], seed: string): 
   const chosen: SenseCandidate[] = []
   for (const candidate of candidates) {
     if (candidate.item.vocabulary_entries.entry_kind === 'sentence') continue
-    const danish = candidate.item.vocabulary_entries.danish.trim().toLocaleLowerCase('da-DK')
-    if (chosen.some((other) => other.item.vocabulary_entries.danish.trim().toLocaleLowerCase('da-DK') === danish)) continue
+    const danish = danishKey(candidate.item.vocabulary_entries.danish)
+    if (chosen.some((other) => danishKey(other.item.vocabulary_entries.danish) === danish)) continue
     if (!distinctMeanings([...chosen.map((other) => other.sense.text), candidate.sense.text])) continue
     chosen.push(candidate)
     if (chosen.length === GROUP_SIZE) break
@@ -119,7 +112,7 @@ function nounsByGender(candidates: readonly SenseCandidate[]): Record<'en' | 'et
   const seen = new Set<string>()
   for (const candidate of candidates) {
     const { sense } = candidate
-    const danish = candidate.item.vocabulary_entries.danish.trim().toLocaleLowerCase('da-DK')
+    const danish = danishKey(candidate.item.vocabulary_entries.danish)
     if (sense.pos !== 'noun' || (sense.gender !== 'en' && sense.gender !== 'et') || /\s/u.test(danish) || seen.has(danish)) continue
     seen.add(danish)
     groups[sense.gender].push(candidate)
@@ -131,7 +124,7 @@ function nounsByGender(candidates: readonly SenseCandidate[]): Record<'en' | 'et
 export function sortTask(candidates: readonly SenseCandidate[], seed: string): PracticeTask | null {
   const { en, et } = nounsByGender(candidates)
   if (en.length < 2 || et.length < 2) return null
-  const chosen = [...en.slice(0, 3), ...et.slice(0, 3)].slice(0, 6)
+  const chosen = [...en.slice(0, 3), ...et.slice(0, 3)]
   const items = seededShuffle(chosen.map((candidate) => groupItem(candidate, candidate.sense.gender as string)), `${seed}:sort`)
   return {
     ...baseFor(chosen[0]),
@@ -149,7 +142,7 @@ export function sortTask(candidates: readonly SenseCandidate[], seed: string): P
 /** Three nouns of one gender and one of the other: tap the odd one. Its gender is the target. */
 export function oddTask(candidates: readonly SenseCandidate[], seed: string): PracticeTask | null {
   const { en, et } = nounsByGender(candidates)
-  const [many, few] = hash(seed) % 2 === 0 ? [en, et] : [et, en]
+  const [many, few] = seedHash(seed) % 2 === 0 ? [en, et] : [et, en]
   const [common, odd] = many.length >= 3 && few.length >= 1 ? [many, few] : few.length >= 3 && many.length >= 1 ? [few, many] : [[], []]
   if (!odd.length) return null
   const target = odd[0]
@@ -177,7 +170,7 @@ export function dialogueTasks(candidates: readonly SenseCandidate[], locale: Tra
   for (const dialogue of PILOT_DIALOGUES) {
     const situation = dialogue.situation[locale]
     if (!situation) continue
-    const candidate = candidates.find((option) => option.primary && option.item.vocabulary_entries.danish.trim().toLocaleLowerCase('da-DK') === dialogue.headword)
+    const candidate = candidates.find((option) => option.primary && danishKey(option.item.vocabulary_entries.danish) === dialogue.headword)
     if (!candidate) continue
     const [answer, ...accepted] = dialogue.accepted
     tasks.push({

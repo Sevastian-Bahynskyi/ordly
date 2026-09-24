@@ -56,7 +56,7 @@ function isGroupItems(value: unknown): boolean {
 function isTargetOutcomes(value: unknown): boolean {
   return value === undefined || (Array.isArray(value) && value.length <= 8 && value.every((target) => isRecord(target)
     && text(target.targetKey, TARGET_KEY_MAX_LENGTH) && text(target.entryId, 100) && text(target.senseId, 100)
-    && (target.result === 'correct' || target.result === 'incorrect')))
+    && ['correct', 'incorrect', 'dont_know'].includes(String(target.result))))
 }
 
 export function isPracticeTask(value: unknown): value is PracticeTask {

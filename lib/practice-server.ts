@@ -84,22 +84,38 @@ function isActive(session: PracticeSessionState | null): session is PracticeSess
  * replanned. When saved Material cannot fill the time, nothing is saved and the shortfall is
  * returned so the learner can take the shorter session or go to Review.
  */
+const FORM_CHUNK = 60
+
+/**
+ * Verified inflected forms of the given entries, so a form of the same word is told apart from a
+ * typo. Read per entry in chunks: one query over every form would be cut off by the row limit.
+ */
+async function verifiedForms(supabase: SupabaseClient, userId: string, entryIds: readonly string[]): Promise<Record<string, string[]>> {
+  const chunks: string[][] = []
+  for (let at = 0; at < entryIds.length; at += FORM_CHUNK) chunks.push(entryIds.slice(at, at + FORM_CHUNK))
+  const results = await Promise.all(chunks.map((ids) => supabase.from('word_forms').select('entry_id, form_text').eq('user_id', userId).in('entry_id', ids).in('source', ['cor', 'ddo'])))
+  const formsByEntry: Record<string, string[]> = {}
+  for (const { data, error } of results) {
+    if (error) throw new Error('Could not prepare practice')
+    for (const row of data || []) if (typeof row.entry_id === 'string' && typeof row.form_text === 'string') (formsByEntry[row.entry_id] ||= []).push(row.form_text)
+  }
+  return formsByEntry
+}
+
 export async function startPractice(supabase: SupabaseClient, userId: string, input: { minutes: number; acceptShorter: boolean }): Promise<{ view: PracticeView; shortfall: PracticeShortfall | null }> {
-  const [{ store, attempts, retired }, cards, profile, forms] = await Promise.all([
+  const [{ store, attempts, retired }, cards, profile] = await Promise.all([
     readPractice(supabase, userId, { history: true }),
     supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).order('due').limit(1000),
     supabase.from('profiles').select('default_translation_language').eq('id', userId).single(),
-    supabase.from('word_forms').select('entry_id, form_text').eq('user_id', userId).limit(20000),
   ])
   if (isActive(store.session)) return { view: viewOf(store, retired), shortfall: null }
-  if (cards.error || profile.error || forms.error) throw new Error('Could not prepare practice')
-  const formsByEntry: Record<string, string[]> = {}
-  for (const row of forms.data || []) if (typeof row.entry_id === 'string' && typeof row.form_text === 'string') (formsByEntry[row.entry_id] ||= []).push(row.form_text)
+  if (cards.error || profile.error) throw new Error('Could not prepare practice')
   const now = new Date()
   const locale: unknown = profile.data?.default_translation_language
   if (!isTranslationLanguage(locale)) throw new Error('Invalid practice language')
   // Only the learner's own saved Material can become a target.
   const items = (cards.data || []).filter(isReviewSource).filter((item) => item.user_id === userId)
+  const formsByEntry = await verifiedForms(supabase, userId, items.map((item) => item.vocabulary_entries.id))
   // Fixed by the saved state, so the session started after a shortfall offer is the one that was
   // measured; every save bumps the revision, so each new session still gets a new seed.
   const seed = createHash('sha256').update(`practice-seed:${userId}:${store.revision}`).digest('hex').slice(0, 32)

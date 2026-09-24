@@ -1,6 +1,6 @@
-import { checkAnswer } from './answer'
+import { checkAnswer, editDistance } from './answer'
 import { sentenceTiles } from './practice-exercises'
-import { isChoiceKind, type PracticeAssistance, type PracticeResult, type PracticeTargetOutcome, type PracticeTask } from './practice'
+import { danishKey, isChoiceKind, isGroupKind, parsePlacement, type PracticeAssistance, type PracticeResult, type PracticeTargetOutcome, type PracticeTask } from './practice'
 
 /**
  * Deterministic Practice grading. No provider is ever called: every exercise carries its prepared
@@ -22,25 +22,13 @@ export interface PracticeGrade {
   targets?: PracticeTargetOutcome[]
 }
 
-/** Sort and match answer with a JSON object: item text → the category or meaning it was placed with. */
-export function parsePlacement(answer: string): Record<string, string> | null {
-  try {
-    const value: unknown = JSON.parse(answer)
-    if (!value || typeof value !== 'object' || Array.isArray(value)) return null
-    const entries = Object.entries(value as Record<string, unknown>)
-    return entries.every(([, placed]) => typeof placed === 'string') ? Object.fromEntries(entries) as Record<string, string> : null
-  } catch {
-    return null
-  }
-}
-
 /**
  * Whether a tapped answer is one the board actually offered. Without this the client could post
  * free text and collect a choice verdict for it, which is a grading claim the board never made.
  */
 export function isOfferedChoice(task: PracticeTask, answer: string): boolean {
   if (task.kind === 'binary') return answer === 'true' || answer === 'false'
-  if (task.kind === 'sort' || task.kind === 'match') {
+  if (isGroupKind(task.kind)) {
     const placement = parsePlacement(answer)
     const items = task.items || []
     const allowed = new Set(task.kind === 'sort' ? task.categories || [] : items.map((item) => item.answer))
@@ -99,7 +87,11 @@ function groupGrade(task: PracticeTask, placement: Record<string, string>): Prac
  */
 export function gradePracticeAnswer(task: PracticeTask, rawAnswer: string, helped: PracticeAssistance = 'none'): PracticeGrade | null {
   const answer = rawAnswer.trim()
-  if (!answer) return { result: 'dont_know', assistance: 'model', feedback: 'dont_know' }
+  if (!answer) {
+    // “I don't know” on a board is each word's own outcome, not one word's miss.
+    const targets = isGroupKind(task.kind) ? (task.items || []).map((item): PracticeTargetOutcome => ({ targetKey: item.targetKey, entryId: item.entryId, senseId: item.senseId, result: 'dont_know' })) : undefined
+    return { result: 'dont_know', assistance: 'model', feedback: 'dont_know', ...(targets ? { targets } : {}) }
+  }
 
   if (task.kind === 'flash') {
     // A self-rating after a reveal: recorded as what the learner said, never as checked recall.
@@ -111,7 +103,7 @@ export function gradePracticeAnswer(task: PracticeTask, rawAnswer: string, helpe
 
   if (isChoiceKind(task.kind) && !isOfferedChoice(task, answer)) return null
 
-  if (task.kind === 'sort' || task.kind === 'match') return groupGrade(task, parsePlacement(answer)!)
+  if (isGroupKind(task.kind)) return groupGrade(task, parsePlacement(answer)!)
 
   if (isChoiceKind(task.kind)) {
     const right = task.kind === 'assemble'
@@ -123,10 +115,15 @@ export function gradePracticeAnswer(task: PracticeTask, rawAnswer: string, helpe
   }
 
   const assistance: PracticeAssistance = helped === 'hint' ? 'hint' : 'none'
-  // Another verified form of the word is the wrong form, even one letter away (huse for huset).
-  const typed = answer.toLocaleLowerCase('da-DK')
-  if (task.kind === 'cloze' && (task.forms || []).includes(typed) && !acceptedAnswers(task).some((accepted) => accepted.toLocaleLowerCase('da-DK') === typed)) {
-    return { result: 'incorrect', assistance, feedback: 'wrong_form' }
+  // Another verified form of the word is the wrong form, even one letter away (huse for huset),
+  // and so is a misspelling that lies at least as close to another form as to the right one: the
+  // form is what is being tested, so typo tolerance may not forgive it.
+  const typed = danishKey(answer)
+  const expected = acceptedAnswers(task).map(danishKey)
+  const others = (task.forms || []).filter((form) => !expected.includes(form))
+  if (others.length && !expected.includes(typed)) {
+    const toExpected = Math.min(...expected.map((form) => editDistance(typed, form)))
+    if (others.some((form) => form === typed || editDistance(typed, form) <= toExpected)) return { result: 'incorrect', assistance, feedback: 'wrong_form' }
   }
   const checks = acceptedAnswers(task).map((accepted) => checkAnswer(answer, accepted, { sentence: task.answerIsSentence }))
   let result: PracticeResult = checks.includes('correct') ? 'correct' : checks.includes('mostly') ? 'mostly' : 'incorrect'
