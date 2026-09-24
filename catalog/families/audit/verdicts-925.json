@@ -41,11 +41,17 @@
  },
  {
   "id": "1e2ebf3b-54e9-5b97-b07d-69a51f10970e",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Grammar adjective-agreement does not describe the numeral en/et; nothing adjectival is exercised (noun-indefinite would fit). Also note the numeral is often written 'én' when stressed; accept 'én' in the gap."
  },
  {
   "id": "4eebf04e-a178-5ed0-af70-b949106de039",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Grammar adjective-agreement does not describe numeral et; use noun-indefinite. Accept 'ét' as variant spelling."
  },
  {
   "id": "31ae20cf-73f4-5256-98c5-1a900d55d863",
@@ -89,19 +95,31 @@
  },
  {
   "id": "11859d43-bf33-5e15-92b8-d56bc4658237",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "til 'for (recipient)': grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "e3c68d51-36ec-5774-8e87-772c056943bd",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "til 'for (recipient)': grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "2f5c4334-afb3-53c5-8e0e-a105088c5e74",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "af 'made of' (material): grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "a8468372-14fb-59f9-b2bf-c285112a3964",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "af 'made of' (material): grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "e742a8b4-781d-5353-8f44-4aada68db5c5",
@@ -129,43 +147,77 @@
  },
  {
   "id": "2b59f1c0-9362-5091-879d-1183d489f6bb",
-  "failures": []
+  "failures": [
+   "translation_ru",
+   "level_or_cell"
+  ],
+  "note": "'Я работаю для своей семьи' is unnatural Russian; 'arbejde for' here = work for the sake of / to support: 'Я работаю ради своей семьи'. Also grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "71a12a8e-f349-5707-9e6a-8da63d29d79f",
-  "failures": []
+  "failures": [
+   "translation_ru",
+   "level_or_cell"
+  ],
+  "note": "'Она работает для своих родителей' is unnatural Russian; Danish 'arbejder for sine forældre' = is employed by her parents -> 'Она работает на своих родителей'. Also grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "bd451179-dd45-5036-a7ac-2ce19b8d26ea",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "for 'too' is a degree adverb; the matrix has adverbs (label explicitly lists 'for'); adjective-agreement is not what the target exercises."
  },
  {
   "id": "4bc41055-fa1b-508d-aabb-2f9bd2c20bf8",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "for 'too' is a degree adverb; use grammar adverbs, not adjective-agreement."
  },
  {
   "id": "74c7af65-aa23-590c-b848-a6fe54b1ea0f",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'because' shown, 'fordi' fits the gap equally well (Jeg er glad, fordi solen skinner). Coordinating 'for' vs 'fordi' cannot be separated by translation; accept both or drop the gap format for this sense."
  },
  {
   "id": "2b23d61f-d9c3-5c44-85e3-287e586d6c23",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'fordi' fits the gap equally ('Jeg er glad, fordi jeg har fri i dag'). Same problem as the other 'for = because' variant."
  },
  {
   "id": "b3ca5e1d-627a-5048-b1d6-a7a6241d5f0c",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "level_or_cell"
+  ],
+  "note": "'Jeg spiller med min bror' without a game is not idiomatic: children 'leger med', or 'spiller fodbold med min bror'. Fix: 'Jeg spiller fodbold med min bror.' Also grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "e3123b22-e5e5-5a19-b0d3-ac9fea62eb11",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "level_or_cell"
+  ],
+  "note": "'Hun spiller med sine venner' is incomplete/unidiomatic; use 'leger med' or add the game ('spiller kort med sine venner'). Also grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "bbbef201-463e-5d45-aaa3-c9450f08603d",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'coming along too' / 'тоже придёт', 'også' fits the gap ('Han kommer også'). Translate as 'He is coming along / Он пойдёт с нами' without 'too/тоже'."
  },
  {
   "id": "3e005241-33b9-5a44-8130-4bcc368e5c11",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'også' fits the gap given 'too'/'тоже' ('Vi kommer også'). Drop 'too'/'тоже': 'We're coming along' / 'Мы пойдём с вами'."
  },
  {
   "id": "394bbe73-f36e-51dc-9f18-4b797d770796",
@@ -177,11 +229,17 @@
  },
  {
   "id": "af66450b-6168-5921-8f0a-15cf3a29ff49",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Infinitive marker at is labelled conjunctions; the matrix has an 'infinitive' id that describes exactly this."
  },
  {
   "id": "83c7b17d-0d6c-5727-9d51-c09107fd845a",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Infinitive marker at is labelled conjunctions; use 'infinitive'."
  },
  {
   "id": "be89dbf2-35bd-5c0a-aa9d-0a26f4814497",
@@ -217,11 +275,18 @@
  },
  {
   "id": "f751086c-8bfb-5197-b927-78947fb5edd2",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Situation 'work' does not describe a car being repaired (transport/services)."
  },
  {
   "id": "a64e14e8-53aa-5730-bcbe-6f6d1ea4b085",
-  "failures": []
+  "failures": [
+   "translation_ru",
+   "level_or_cell"
+  ],
+  "note": "'Дом красится на этой неделе' reads as the house paints itself / is being stained; natural Russian: 'Дом красят на этой неделе'. Situation 'work' does not fit (home)."
  },
  {
   "id": "042772c7-23a2-56d3-8476-d3aaddc9a50f",
@@ -233,11 +298,17 @@
  },
  {
   "id": "821e052c-1527-5fb6-9c1a-0ec18a04ba92",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "om 'about' (topic): grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "11055aa0-ec29-51af-a1ab-2f5677886774",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "om 'about' (topic): grammar label prepositions-place is wrong: this is not place/direction; use prepositions-other (purpose/manner/fixed government)."
  },
  {
   "id": "9d5e9fae-5486-599d-b9be-a4108dd4783a",
@@ -281,7 +352,10 @@
  },
  {
   "id": "c099c741-2381-536d-ad51-20dfc283b154",
-  "failures": []
+  "failures": [
+   "translation_ru"
+  ],
+  "note": "'Поезд отправляется от станции' is unnatural; say 'Поезд отправляется со станции' (or 'с вокзала')."
  },
  {
   "id": "c3b971c4-85d4-5513-95ec-dbf5b6f5b2b3",
@@ -297,11 +371,17 @@
  },
  {
   "id": "aebeac41-d18c-5140-8a4e-6639f5f669a1",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'I have to', 'må' fits the gap equally ('Jeg må gå i skole hver dag'). Also the sense gloss 'should / должен был, следовало' does not match present obligation 'have to'. Use a context where skal is fixed (e.g. an arrangement/instruction: 'Du skal vente her') or translate as 'I'm supposed to'."
  },
  {
   "id": "189890d4-b1b1-5f16-87c5-764090878cae",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'Han må tage medicin hver dag' fits the same translation ('has to'). Choose a frame/translation where only skal works ('is supposed to', 'Lægen siger, han skal…')."
  },
  {
   "id": "0bd61a9e-056a-5b52-90e0-2e3871a8b233",
@@ -337,11 +417,21 @@
  },
  {
   "id": "02ca75e6-6666-5315-96d2-6d2a3971403e",
-  "failures": []
+  "failures": [
+   "wrong_sense",
+   "translation_en",
+   "translation_ru"
+  ],
+  "note": "'udtalelse' does not mean pronunciation (that is 'udtale'); 'Udtalelsen af dette ord' means 'the statement of this word' and is nonsense. The sense row itself looks spurious: skip it (write the family for 'udtale' instead)."
  },
  {
   "id": "4cd1a568-45fb-5ead-bb0f-f78cb04c24aa",
-  "failures": []
+  "failures": [
+   "wrong_sense",
+   "translation_en",
+   "translation_ru"
+  ],
+  "note": "Same as the other pronunciation variant: udtalelse != udtale. Skip this sense."
  },
  {
   "id": "cb6f00f0-83f6-5856-bc92-3ef9f4b8fe96",
@@ -369,19 +459,34 @@
  },
  {
   "id": "b79f4813-b64e-5f15-921d-7bce90764d8b",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "Bare 'Hustruen' as subject is odd without context, and with 'The wife'/'Жена' shown 'konen' fits the gap (far more common). Use a formal context where hustru is the natural word and possessive/ordinary form: e.g. 'Han kom til festen med sin hustru.' and translate 'spouse/wife (formal)'."
  },
  {
   "id": "537b3d76-e641-5b71-8dea-04337ccd9ee4",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "Same: 'Hustruen arbejder som lærer' is unnatural; 'konen' fits the gap equally."
  },
  {
   "id": "a6d87bb2-c1a4-5540-acf8-0bbf76da2a49",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "'have søvn' is a calque; Danish says 'få søvn': 'Vi får ikke tilstrækkelig søvn'. With 'enough' shown, 'nok' fits the gap. Translate as 'sufficient'/'достаточное количество'."
  },
  {
   "id": "724f10bc-ef5d-5742-8c85-9ee33fd77558",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'enough light', 'nok' fits the gap ('Vi har nok lys'). Use 'sufficient' in English and a formal context (e.g. 'Rummet har ikke tilstrækkeligt lys')."
  },
  {
   "id": "765e4dbe-6a59-5ea6-ada9-61b466449352",
@@ -393,11 +498,19 @@
  },
  {
   "id": "ad9e8a32-b46f-5fcd-8dfe-30668d6eaeff",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "Job training is 'oplæring' in Danish; 'fik god træning på det nye arbejde' sounds like practice/exercise. With 'training' shown, 'oplæring' fits the gap. Pick an unambiguous training context (e.g. 'Soldaterne får hård træning')."
  },
  {
   "id": "b0d2a369-1669-5c85-b5e3-ae7d20510d06",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "'fik god træning i firmaet' - natural word is 'oplæring', which also fits the gap given 'training/подготовку'."
  },
  {
   "id": "6cbbefe1-b2f1-5da6-a97e-6591a71a267b",
@@ -417,11 +530,17 @@
  },
  {
   "id": "d0ae7fec-0d9c-5834-b695-9cd720c78768",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'unfamiliar town'/'незнакомом городе', 'fremmed' fits equally (and is the more idiomatic 'en fremmed by')."
  },
  {
   "id": "100f9b5f-e72c-51bf-91e5-6c6ac4e0f69b",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'fremmed' fits the gap equally ('en fremmed bydel')."
  },
  {
   "id": "fc50ec43-f62a-5a76-b0a8-5598ea30259a",
@@ -449,11 +568,20 @@
  },
  {
   "id": "f93b4f1c-98db-5cbd-b354-d9af441d7950",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "translation_ru"
+  ],
+  "note": "'Forbruget af penge' is not idiomatic (say 'Vores forbrug var højt i denne måned' / 'pengeforbruget'); English 'the spending of money' and Russian 'Расход денег был высоким' are unnatural too ('Расходы в этом месяце были высокими')."
  },
  {
   "id": "52157bd0-8ef7-572f-a9c9-9bb237728d44",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "translation_ru",
+   "level_or_cell"
+  ],
+  "note": "Same 'forbruget af penge' problem and unnatural 'Расход денег'; 'sidste kvartal' is business language, not 'shopping'."
  },
  {
   "id": "c821310b-79ca-5c52-8d3a-ef77b6db1c66",
@@ -473,11 +601,17 @@
  },
  {
   "id": "8c3acad7-d591-5011-b2f3-55d43df14364",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "'Jagten var hård i skoven' / 'The hunt was tough in the forest': place adverbial awkwardly split off; natural: 'Jagten i skoven var hård.'"
  },
  {
   "id": "3933580c-fc33-571b-ac53-46055f9f62b4",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "'Jagten var kort i skoven' is awkward; say 'Jagten i skoven var kort.'"
  },
  {
   "id": "e5da99af-8f94-5450-9e79-0f4dac8773f4",
@@ -609,19 +743,34 @@
  },
  {
   "id": "f1036cad-8c6f-5e32-ab8e-03542f48c135",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "'indtage en ledende stilling' is formal written register, not A2; label B1/B2."
  },
  {
   "id": "18aa38c6-8f95-59c5-93b6-f2cd31211051",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "level_or_cell"
+  ],
+  "note": "'indtog en vigtig rolle' is stilted; Danes say 'spillede/fik en vigtig rolle'. Formal register is not A2."
  },
  {
   "id": "abb81b9c-c9dc-5349-a764-1f416779d2df",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "Imperative 'Indtag medicinen' is leaflet officialese; everyday Danish is 'Tag medicinen…', and with 'Take' shown, 'tag' fits the gap. Use a context where indtage is required (e.g. 'Man bør indtage mindre sukker') and translate 'consume/употреблять'."
  },
  {
   "id": "002aa2b8-2fd8-55ea-bb87-0c920c87fca9",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "ambiguous_gap"
+  ],
+  "note": "Same: 'Tag tabletterne' is what a native says and fits the gap with 'Take'."
  },
  {
   "id": "4817d14d-b4d2-563b-a33b-fb9328f3d373",
@@ -633,27 +782,46 @@
  },
  {
   "id": "30dcfa6f-15a2-536b-b3a1-6af946bab62a",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'instincts'/'инстинкты' shown, 'instinkter' fits the gap. Translate drifter as 'urges/drives' / 'влечения'."
  },
  {
   "id": "ebefe6b3-3fc3-56fe-9cda-5c01b50850ea",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'instinkter' fits the gap given 'instincts'; translate 'strong urges' / 'сильные влечения'."
  },
  {
   "id": "5ee3f9a8-9cef-5ba4-8d5d-5eea23495e15",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'strangely'/'странно', 'mærkeligt' (and 'underligt') fit equally."
  },
  {
   "id": "d6884d65-a12f-53e5-9e1b-8dd49431536f",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'mærkeligt' fits the gap equally given 'strangely'."
  },
  {
   "id": "9b9bd878-ecd2-5657-9b91-791199206914",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "Comparative 'særere' is rare and awkward; natives say 'mere speciel/mærkeligere'. Avoid the comparative for this lemma."
  },
  {
   "id": "49d3e9b8-355b-506f-8139-41a93102496a",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "translation_en"
+  ],
+  "note": "'særere' is awkward, and 'sær' is negative (odd/weird), so 'more distinctive' misrepresents it; 'Denne stil er særere' = 'this style is weirder'."
  },
  {
   "id": "2f17e102-87a1-5a31-8dee-f1fc10658583",
@@ -681,7 +849,10 @@
  },
  {
   "id": "264d33ce-9bcc-558a-be48-67f15f0836b2",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "'Bogen handlede om en mystisk historie' is tautological (a book 'about a story'); say 'Bogen fortalte en mystisk historie' or 'handlede om et mystisk mord'."
  },
  {
   "id": "a3313f90-facd-5a09-a5a8-726fba8dae09",
@@ -689,31 +860,55 @@
  },
  {
   "id": "dc3e615e-db2c-592a-bf4e-580b7af09527",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "With 'strange symbols'/'непонятные знаки', 'mærkelige'/'underlige' fit equally. Translate 'mysterious'."
  },
  {
   "id": "edf49d7b-52f9-5dfc-b1f7-8c22e1dae042",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'mærkelige' fits the gap given 'strange errors'."
  },
  {
   "id": "6458b0f5-0f1b-5443-b6b4-3635595421a7",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'marketing' is an everyday Danish word ('arbejder med marketing') and the English shows exactly it; the learner can type the loanword."
  },
  {
   "id": "210fc0ab-8d35-500c-bda1-110c3d188397",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "'marketing' fits the gap equally (common Danish loanword)."
  },
  {
   "id": "acc130ad-4496-58e2-bc84-39102796f90a",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "translation_en"
+  ],
+  "note": "'Markedsføringen, som firmaet planlagde' wants pluperfect: 'som firmaet havde planlagt'. English adds 'campaign' (that would be 'kampagnen'); Russian 'продвижение товара' adds 'товара'."
  },
  {
   "id": "c9422a67-9093-5362-ba86-a00eabb62268",
-  "failures": []
+  "failures": [
+   "unnatural",
+   "translation_en"
+  ],
+  "note": "Same: 'havde planlagt'; English 'marketing campaign' adds content not in the Danish."
  },
  {
   "id": "f8978ca8-bfd2-552f-8eb5-866678b9061f",
-  "failures": []
+  "failures": [
+   "ungrammatical",
+   "unnatural"
+  ],
+  "note": "'forskel til de andre' - wrong preposition (forskel fra/i forhold til), and 'havde en ideologisk forskel' is unidiomatic. Fix: 'Partiet adskilte sig ideologisk fra de andre' (then ideologisk is an adverb) or 'Der var en ideologisk forskel mellem partierne.'"
  },
  {
   "id": "cccb0129-fcbd-55e7-973a-a7faaf7266f5",
@@ -721,11 +916,17 @@
  },
  {
   "id": "7b3f0629-3a3d-5303-a9c2-b3c9996d4440",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Situation 'society' does not describe a walk in a cemetery (leisure)."
  },
  {
   "id": "7b9890de-ab23-5452-8333-9f0f0b598111",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "Situation 'society' does not describe a walk in a cemetery (leisure)."
  },
  {
   "id": "d0bc1995-6ef0-5db7-a04b-db30c4113600",
