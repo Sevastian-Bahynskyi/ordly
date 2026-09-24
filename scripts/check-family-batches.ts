@@ -72,31 +72,38 @@ for (const sentence of sentences) {
 }
 const checks = { matrix, benchmark, unknownWords: (sentence: string) => spelling.has(sentence) ? spelling.get(sentence) ?? null : null }
 
+// Senses are looked up across every work file, so regenerating the work files (which can shift a
+// sense into a neighbouring batch) never strands a reply that was already written.
+const works = new Map<string, FamilyWorkSense[]>()
+for (const name of names) works.set(name, JSON.parse(await readFile(join(workDir, name), 'utf8')) as FamilyWorkSense[])
+const allSenses = new Map([...works.values()].flat().map((sense) => [sense.sense_id, sense]))
+if (only) for (const name of (await readdir(workDir)).filter((file) => /^batch-\d+\.json$/.test(file))) {
+  for (const sense of JSON.parse(await readFile(join(workDir, name), 'utf8')) as FamilyWorkSense[]) allSenses.set(sense.sense_id, sense)
+}
+
 let pending = 0
 let failedBatches = 0
 const quarantined: string[] = []
 const published: string[] = []
+const covered = new Set<string>()
 const totals = { families: 0, clean: 0, variants: 0, skipped: 0, uncovered: 0 }
 for (const name of names) {
   const list = replies.get(name)
   if (!list) { pending += 1; continue }
-  const work = JSON.parse(await readFile(join(workDir, name), 'utf8')) as FamilyWorkSense[]
-  const bySense = new Map(work.map((sense) => [sense.sense_id, sense]))
-  const covered = new Set<string>()
   let clean = 0
   let families = 0
   const batchPublished: string[] = []
   const batchQuarantined: string[] = []
   for (const raw of list) {
     const record = raw as Record<string, unknown>
-    if (record && typeof record.skip === 'string' && typeof record.sense_id === 'string' && bySense.has(record.sense_id)) {
+    if (record && typeof record.skip === 'string' && typeof record.sense_id === 'string' && allSenses.has(record.sense_id)) {
       covered.add(record.sense_id)
       totals.skipped += 1
       continue
     }
     families += 1
     const family = raw as FamilyReply
-    const errors = validateFamily(raw, bySense.get(family?.sense_id), checks)
+    const errors = validateFamily(raw, allSenses.get(family?.sense_id), checks)
     if (errors.length) {
       batchQuarantined.push(JSON.stringify({ batch: name, sense_id: family?.sense_id ?? null, lemma: family?.lemma ?? null, errors, family: raw }))
       continue
@@ -107,15 +114,13 @@ for (const name of names) {
     totals.variants += row.variants.length
     batchPublished.push(JSON.stringify({ ...row, batch: name }))
   }
-  const uncovered = work.filter((sense) => !covered.has(sense.sense_id))
-  totals.uncovered += uncovered.length
   totals.families += families
   totals.clean += clean
   const rate = families ? clean / families : 0
   const ok = rate >= GATE
   if (!ok) failedBatches += 1
-  if (!ok || batchQuarantined.length || uncovered.length) {
-    console.log(`${ok ? '·' : '✗'} ${name}: ${clean}/${families} clean (${(rate * 100).toFixed(1)}%)${uncovered.length ? `, ${uncovered.length} sense(s) with no family or skip: ${uncovered.slice(0, 5).map((sense) => sense.lemma).join(', ')}` : ''}`)
+  if (!ok || batchQuarantined.length) {
+    console.log(`${ok ? '·' : '✗'} ${name}: ${clean}/${families} clean (${(rate * 100).toFixed(1)}%)`)
     for (const line of batchQuarantined.slice(0, 8)) {
       const record = JSON.parse(line) as { lemma: string; errors: string[] }
       console.log(`    ${record.lemma}: ${record.errors.slice(0, 3).join(' | ')}`)
@@ -124,6 +129,12 @@ for (const name of names) {
   quarantined.push(...batchQuarantined)
   // A batch below the gate publishes nothing: its clean rows are suspect too.
   if (ok) published.push(...batchPublished)
+}
+for (const name of names) {
+  if (!replies.has(name)) continue
+  const missing = (works.get(name) || []).filter((sense) => !covered.has(sense.sense_id))
+  totals.uncovered += missing.length
+  if (missing.length) console.log(`· ${name}: ${missing.length} sense(s) with no family or skip: ${missing.slice(0, 6).map((sense) => sense.lemma).join(', ')}`)
 }
 console.log(`${names.length - pending}/${names.length} batches answered · ${failedBatches} below the ${GATE * 100}% gate`)
 console.log(`${totals.clean}/${totals.families} families clean · ${totals.variants} sentences · ${totals.skipped} skipped · ${totals.uncovered} senses not answered · ${quarantined.length} quarantined`)

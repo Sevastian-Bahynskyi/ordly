@@ -74,6 +74,7 @@ export function isPracticeTask(value: unknown): value is PracticeTask {
     && (value.claim === undefined || text(value.claim, 300))
     && (value.support === undefined || text(value.support, 500))
     && isGroupItems(value.items)
+    && (value.source === undefined || (isRecord(value.source) && text(value.source.variantId, 100) && text(value.source.version, 100)))
 }
 
 export function isPracticeResponse(value: unknown): value is PracticeResponse {

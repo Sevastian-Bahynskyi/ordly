@@ -2,12 +2,15 @@ import { createHash } from 'node:crypto'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import {
   activeSeconds, finishPracticeTask, isReportable, queueSeconds, TYPED_KINDS, targetReached, NEAR_TARGET_SECONDS,
-  type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore,
+  type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore, type PracticeTask,
 } from './practice'
 import { isTranslationLanguage } from './learner-language'
+import type { ReviewItem, TranslationLanguage } from './types'
 import { planPractice } from './practice-planner'
 import { gradePracticeAnswer } from './practice-grading'
 import { currentTaskContentVersion } from './practice-content'
+import { contextsBySense, type CatalogContext } from './practice-contexts'
+import { itemSenses } from './practice-senses'
 import { isPracticeAttempt, isPracticeSession, isRecord, isReviewSource, type PracticeActionInput } from './practice-validation'
 
 /**
@@ -102,11 +105,36 @@ async function verifiedForms(supabase: SupabaseClient, userId: string, entryIds:
   return formsByEntry
 }
 
+/**
+ * Catalog sentences for the learner's own catalog-backed senses (issue #16). Only senses of saved
+ * entries are asked for, so a catalog row can never become a target by itself. A failed read
+ * leaves Practice on the learner's own examples rather than stopping it: the catalog is optional
+ * supporting content, and an outage must not block Practice.
+ */
+async function catalogContexts(supabase: SupabaseClient, items: readonly ReviewItem[], locale: TranslationLanguage, danishLevel: string | null): Promise<Record<string, CatalogContext[]>> {
+  const senseIds = [...new Set(items.filter((item) => item.vocabulary_entries.catalog_lemma).flatMap((item) => itemSenses(item).map((sense) => sense.id)))]
+  if (!senseIds.length || (locale !== 'en' && locale !== 'ru')) return {}
+  const chunks: string[][] = []
+  for (let at = 0; at < senseIds.length; at += FORM_CHUNK) chunks.push(senseIds.slice(at, at + FORM_CHUNK))
+  const results = await Promise.all(chunks.map((ids) => supabase.from('catalog_sentence_family')
+    .select('sense_id, level, catalog_sentence_variant(id, version, danish, target, translations, orders)').in('sense_id', ids)))
+  if (results.some((result) => result.error)) return {}
+  return contextsBySense(results.flatMap((result) => result.data || []), locale, danishLevel)
+}
+
+/** Catalog sentences a queued task was built from that no longer exist at that version. */
+async function staleSources(supabase: SupabaseClient, task: PracticeTask): Promise<boolean> {
+  if (!task.source) return false
+  const { data, error } = await supabase.from('catalog_sentence_variant').select('version').eq('id', task.source.variantId).maybeSingle()
+  if (error) throw new Error('Could not check this exercise')
+  return !data || data.version !== task.source.version
+}
+
 export async function startPractice(supabase: SupabaseClient, userId: string, input: { minutes: number; acceptShorter: boolean }): Promise<{ view: PracticeView; shortfall: PracticeShortfall | null }> {
   const [{ store, attempts, retired }, cards, profile] = await Promise.all([
     readPractice(supabase, userId, { history: true }),
     supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).order('due').limit(1000),
-    supabase.from('profiles').select('default_translation_language').eq('id', userId).single(),
+    supabase.from('profiles').select('default_translation_language, danish_level').eq('id', userId).single(),
   ])
   if (isActive(store.session)) return { view: viewOf(store, retired), shortfall: null }
   if (cards.error || profile.error) throw new Error('Could not prepare practice')
@@ -115,11 +143,14 @@ export async function startPractice(supabase: SupabaseClient, userId: string, in
   if (!isTranslationLanguage(locale)) throw new Error('Invalid practice language')
   // Only the learner's own saved Material can become a target.
   const items = (cards.data || []).filter(isReviewSource).filter((item) => item.user_id === userId)
-  const formsByEntry = await verifiedForms(supabase, userId, items.map((item) => item.vocabulary_entries.id))
+  const [formsByEntry, contexts] = await Promise.all([
+    verifiedForms(supabase, userId, items.map((item) => item.vocabulary_entries.id)),
+    catalogContexts(supabase, items, locale, typeof profile.data?.danish_level === 'string' ? profile.data.danish_level : null),
+  ])
   // Fixed by the saved state, so the session started after a shortfall offer is the one that was
   // measured; every save bumps the revision, so each new session still gets a new seed.
   const seed = createHash('sha256').update(`practice-seed:${userId}:${store.revision}`).digest('hex').slice(0, 32)
-  let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now, formsByEntry })
+  let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now, formsByEntry, contextsBySense: contexts })
   const available = queueSeconds(session.queue)
   const unchanged = viewOf(store, retired)
   if (!session.queue.length) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes: 0 } }
@@ -176,6 +207,10 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
       const entry = byId.get(target.entryId)
       return !entry || currentTaskContentVersion(entry, target) !== target.contentVersion
     }).map((target) => target.entryId)
+    // A catalog sentence corrected or withdrawn since planning is dropped the same way.
+    if (!stale.length && await staleSources(supabase, task)) {
+      return commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.id !== task.id), current: null, draft: null })
+    }
     if (stale.length) {
       return commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.id !== task.id && !stale.includes(item.entryId)), current: null, draft: null })
     }

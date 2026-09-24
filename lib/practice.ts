@@ -124,6 +124,11 @@ export interface PracticeTask {
    * harmless typo, because the form is what the gap tests.
    */
   forms?: string[]
+  /**
+   * The catalog sentence this exercise was built from, when it was not the learner's own example.
+   * A task whose sentence has since been corrected or withdrawn is dropped, never graded.
+   */
+  source?: { variantId: string; version: string }
 }
 
 export interface PracticeResponse {
