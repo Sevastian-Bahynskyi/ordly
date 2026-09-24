@@ -127,9 +127,9 @@ export function MemoryRing({ item, compact = false, placement = 'bottom' }: { it
     if (position) { setPosition(null); return }
     const rect = buttonRef.current?.getBoundingClientRect()
     if (!rect) return
-    const above = (placement === 'top' && rect.top >= 132) || rect.bottom > window.innerHeight - 130
+    const above = (placement === 'top' && rect.top >= 104) || rect.bottom > window.innerHeight - 130
     setPosition({
-      top: above ? Math.max(12, rect.top - 118) : rect.bottom + 8,
+      top: above ? Math.max(12, rect.top - 102) : rect.bottom + 8,
       right: Math.max(12, window.innerWidth - rect.right),
       above,
     })
