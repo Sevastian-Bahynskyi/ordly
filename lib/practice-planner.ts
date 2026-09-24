@@ -1,5 +1,4 @@
-import { senseContentVersion, vocabularyTask } from './practice-content'
-import { newTargetBudget, practiceStudyDate, type PracticeAttempt, type PracticeSessionState, type PracticeStore, type PracticeTask } from './practice'
+import { PRACTICE_CONTENT_REVISION, queueSeconds, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
 import {
   assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
   selectDistractors, selectMeaningDistractors, sentenceAssembleTask, senseTask, WORD_BANK_DISTRACTOR_COUNT,
@@ -11,16 +10,21 @@ import { synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
 import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
 
 /**
- * The local practice engine. No provider call is needed to plan or grade a board.
+ * The local practice planner. No provider is called to plan or grade a board, and nothing here
+ * writes anything: a plan is a persisted queue of prepared exercises (ADR 0001).
  *
- * A session is about up to `SESSION_TARGETS` of the learner's own items: new ones first by the
- * daily budget, then the weakest by `scoreTargets`. Each item gets two exercises that climb its
- * ladder, easy to hard (recognise → choose in context → build → type it). All first exercises
- * come before any second one, so every item returns after the others have had a turn: spaced
- * and interleaved within the session (Nakata & Suzuki 2019).
+ * Targets are the learner's own saved senses. New items come first up to a small per-session cap,
+ * then the weakest by `scoreTargets`. Each target gets two exercises that climb its ladder, and
+ * targets are added until the queue's estimated length reaches the chosen time. All first
+ * exercises come before any second one, so every item returns after the others have had a turn:
+ * spaced and interleaved within the session (Nakata & Suzuki 2019).
  */
 
-export const SESSION_TARGETS = 10
+/** The most never-practised items one session introduces. Review's daily new limit is not used. */
+export const NEW_TARGETS_PER_SESSION = 4
+
+/** No queue is longer than this; it also bounds the persisted session's size. */
+export const MAX_QUEUE = 90
 
 /** Enough wrong options for the widest board (a cloze) plus the word bank's spare tiles. */
 const DISTRACTOR_POOL_SIZE = CLOZE_DISTRACTOR_COUNT + WORD_BANK_DISTRACTOR_COUNT
@@ -42,32 +46,28 @@ const SENTENCE_LADDER: Record<TargetLevel, Builder[]> = {
   3: [clozeTypedTask, produceSenseTask],
 }
 
-function coldness(sense: EntrySense): number {
-  const parsed = Date.parse(sense.coverage?.last_seen || '')
-  return Number.isFinite(parsed) ? parsed : Number.NEGATIVE_INFINITY
-}
-
-/**
- * The meaning an item is practised on. A meaning whose own objective is due comes first, so its
- * FSRS card is reused (D15). Otherwise a new or barely known item uses its primary meaning, and
- * once its entry is recognised (D18) the coldest meaning takes a turn, the primary one winning ties.
- */
-function senseFor(score: TargetScore, senses: EntrySense[], context: PlanContext): EntrySense {
-  const entry = score.item.vocabulary_entries
-  const due = senses
-    .map((sense) => ({ sense, objective: context.store.objectives[senseTargetKey(entry.id, sense.id)] }))
-    .filter(({ sense, objective }) => objective && Date.parse(objective.card.due) <= context.now.getTime() && objective.task.contentVersion === senseContentVersion(entry, sense))
-    .sort((a, b) => Date.parse(a.objective!.card.due) - Date.parse(b.objective!.card.due))
-  if (due.length) return due[0].sense
-  if (score.level === 0 || score.item.reps < SENSE_PROMOTION_MIN_REPS) return senses[0]
-  return senses.reduce((coldest, sense) => coldness(sense) < coldness(coldest) ? sense : coldest, senses[0])
-}
-
 interface PlanContext {
   pool: readonly DistractorEntry[]
   links: readonly SynonymLinkRow[]
-  store: PracticeStore
-  now: Date
+  /** When each sense target was last practised, from the attempt history. */
+  practisedAt: ReadonlyMap<string, number>
+  seed: string
+}
+
+/**
+ * The meaning an item is practised on. A new or barely known item uses its primary meaning; once
+ * its entry is recognised (D18) the coldest meaning takes a turn — least recently seen in Review
+ * or practised — with the primary one winning ties.
+ */
+function senseFor(score: TargetScore, senses: EntrySense[], context: PlanContext): EntrySense {
+  if (score.level === 0 || score.item.reps < SENSE_PROMOTION_MIN_REPS) return senses[0]
+  const entryId = score.item.vocabulary_entries.id
+  const coldness = (sense: EntrySense): number => {
+    const reviewed = Date.parse(sense.coverage?.last_seen || '')
+    const practised = context.practisedAt.get(senseTargetKey(entryId, sense.id)) ?? Number.NEGATIVE_INFINITY
+    return Math.max(Number.isFinite(reviewed) ? reviewed : Number.NEGATIVE_INFINITY, practised)
+  }
+  return senses.reduce((coldest, sense) => coldness(sense) < coldness(coldest) ? sense : coldest, senses[0])
 }
 
 /**
@@ -90,24 +90,20 @@ function danishDistractors(item: ReviewItem, sense: EntrySense, context: PlanCon
   })
 }
 
+/** Up to two exercises for one saved item, easy then harder. Empty when nothing safe can be built. */
 function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] {
   const item = score.item
   const entry = item.vocabulary_entries
   const senses = itemSenses(item)
-  const recall = score.due && item.reps > 0 ? { ...vocabularyTask(item, 'meaning'), stage: 'build' as const } : null
-
-  // A row without stored senses cannot key a sense objective; it keeps the entry-level pair.
-  if (!senses.length) {
-    const production = { ...vocabularyTask(item, 'production'), newTarget: score.isNew }
-    return recall ? [recall, production] : [production]
-  }
+  // A row without stored senses cannot key a stable target; it is not practised until it has one.
+  if (!senses.length) return []
 
   const sense = senseFor(score, senses, context)
   const targetKey = senseTargetKey(entry.id, sense.id)
-  if (targetKey.length > TARGET_KEY_MAX_LENGTH) return recall ? [recall] : []
+  if (targetKey.length > TARGET_KEY_MAX_LENGTH) return []
   const candidate: SenseCandidate = { item, entryId: entry.id, sense, primary: sense.id === senses[0].id, targetKey }
   const sentence = entry.entry_kind === 'sentence'
-  const seed = `${targetKey}:${item.reps}`
+  const seed = `${context.seed}:${targetKey}`
   const exclude = [entry.id, ...synonymNeighbourIds(entry.id, context.links, { confirmedOnly: true })]
   const input: ExerciseInput = {
     candidate,
@@ -118,25 +114,16 @@ function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] 
       pool: context.pool, excludeIds: exclude, count: MEANING_DISTRACTOR_COUNT, seed,
     }),
     newTarget: false,
-    reps: context.store.objectives[targetKey]?.card.reps || 0,
   }
 
-  const ladder = (sentence ? SENTENCE_LADDER : WORD_LADDER)[score.level]
   const built: PracticeTask[] = []
-  for (const build of ladder) {
+  for (const build of (sentence ? SENTENCE_LADDER : WORD_LADDER)[score.level]) {
     const task = build(input)
     if (!task || built.some((existing) => existing.kind === task.kind)) continue
     built.push(task)
     if (built.length === 2) break
   }
-  const [first, second] = built
-  if (!first) return recall ? [recall] : []
-  const tasks: PracticeTask[] = [{ ...first, stage: 'remember', newTarget: score.isNew }]
-  // A due review card is also moved forward by one typed meaning recall, in place of the easier
-  // second step, so practising a weak word does not leave its ordinary review waiting.
-  const finish = score.level >= 2 && recall ? recall : second || recall
-  if (finish) tasks.push({ ...finish, stage: 'build' })
-  return tasks
+  return built.map((task, index) => ({ ...task, newTarget: index === 0 && score.isNew }))
 }
 
 /** New and weak items alternate so a session never opens with a block of unfamiliar words. */
@@ -152,51 +139,63 @@ function interleave(fresh: TargetScore[], weak: TargetScore[]): TargetScore[] {
   return order
 }
 
-export function planPractice(input: {
-  items: ReviewItem[]; store: PracticeStore; attempts: PracticeAttempt[]; introducedToday: number;
-  dailyLimit: number; language: TranslationLanguage; aiEnabled: boolean; now: Date;
-  /** `entry_links` rows for this learner. Only `synonym` edges are read, and only confirmed ones. */
-  links?: readonly SynonymLinkRow[];
-}): PracticeSessionState {
-  const { store, attempts, now } = input
+export interface PracticePlanInput {
+  /** Owner-scoped Review cards with their saved entries. Read, never written. */
+  items: ReviewItem[]
+  attempts: readonly PracticeAttempt[]
+  targetMinutes: number
+  seed: string
+  locale: TranslationLanguage
+  now: Date
+  /** `entry_links` rows for this learner. Only confirmed `synonym` edges are read. */
+  links?: readonly SynonymLinkRow[]
+}
+
+export function planPractice(input: PracticePlanInput): PracticeSessionState {
+  const { attempts, now } = input
   const usable = input.items.filter((item) => item.vocabulary_entries.translation?.trim())
-  const scores = scoreTargets({ items: usable, store, attempts, now })
-  const dueCount = scores.filter((score) => score.due).length
-  const recent = attempts.filter((a) => a.assistance === 'none' && a.result !== 'ungraded' && a.objective !== null && a.kind !== 'teach').slice(-20).map((a) => a.result !== 'incorrect' && a.rating !== 1)
-  const budget = newTargetBudget({ dailyLimit: input.dailyLimit, introducedToday: input.introducedToday, dueCount, recent })
+  const scores = scoreTargets({ items: usable, attempts, now })
 
   const fresh = scores.filter((score) => score.isNew)
     .sort((a, b) => Date.parse(b.item.vocabulary_entries.created_at) - Date.parse(a.item.vocabulary_entries.created_at) || a.item.entry_id.localeCompare(b.item.entry_id))
-    .slice(0, budget)
+    .slice(0, NEW_TARGETS_PER_SESSION)
   const weak = scores.filter((score) => !score.isNew)
     .sort((a, b) => b.priority - a.priority || a.item.entry_id.localeCompare(b.item.entry_id))
-    .slice(0, SESSION_TARGETS - fresh.length)
 
+  const practisedAt = new Map<string, number>()
+  for (const attempt of attempts) {
+    const at = Date.parse(attempt.at)
+    if (Number.isFinite(at) && at > (practisedAt.get(attempt.targetKey) ?? Number.NEGATIVE_INFINITY)) practisedAt.set(attempt.targetKey, at)
+  }
   const context: PlanContext = {
     pool: usable.map((item) => ({ id: item.entry_id, danish: item.vocabulary_entries.danish, senses: itemSenses(item), sentence: item.vocabulary_entries.entry_kind === 'sentence' })),
     links: input.links || [],
-    store,
-    now,
+    practisedAt,
+    seed: input.seed,
   }
-  const plans = interleave(fresh, weak).map((score) => exercisesFor(score, context)).filter((tasks) => tasks.length)
+
+  const goal = input.targetMinutes * 60
+  const plans: PracticeTask[][] = []
+  let seconds = 0
+  let count = 0
+  for (const score of interleave(fresh, weak)) {
+    if (seconds >= goal || count >= MAX_QUEUE) break
+    const tasks = exercisesFor(score, context).slice(0, MAX_QUEUE - count)
+    if (!tasks.length) continue
+    plans.push(tasks)
+    seconds += queueSeconds(tasks)
+    count += tasks.length
+  }
   const firsts = plans.map((tasks) => tasks[0])
   // Second steps start from the middle of the order, so no item is served twice in a row.
   const offset = Math.ceil(plans.length / 2)
-  const seconds = [...plans.slice(offset), ...plans.slice(0, offset)].flatMap((tasks) => tasks.slice(1))
-  if (seconds.length > 1 && seconds[0].targetKey === firsts.at(-1)?.targetKey) seconds.push(seconds.shift()!)
-  const queue = [...firsts, ...seconds]
-  return { version: 1, id: crypto.randomUUID(), queue, attempts: [], completed: 0, elapsedSeconds: 0, createdAt: now.toISOString(), aiEnabled: input.aiEnabled, aiCalls: 0, current: null }
-}
+  const secondSteps = [...plans.slice(offset), ...plans.slice(0, offset)].flatMap((tasks) => tasks.slice(1))
+  if (secondSteps.length > 1 && secondSteps[0].targetKey === firsts.at(-1)?.targetKey) secondSteps.push(secondSteps.shift()!)
 
-export function introducedPracticeTargets(attempts: PracticeAttempt[], now: Date): Set<string> {
-  return new Set(attempts.filter((a) => a.newTarget && practiceStudyDate(new Date(a.at)) === practiceStudyDate(now)).map((a) => a.targetKey))
-}
-
-/**
- * Senses this plan is admitting for the first time, so the caller can fill in a missing example
- * before the exercise is served (D10). Lazy by design: an example is generated when the meaning
- * first becomes a target, never in bulk for the whole vocabulary.
- */
-export function newSenseObjectives(session: PracticeSessionState): PracticeTask[] {
-  return session.queue.filter((task) => task.newTarget && task.senseId && task.entryId)
+  return {
+    version: 2, id: crypto.randomUUID(), seed: input.seed, targetMinutes: input.targetMinutes,
+    contentRevision: PRACTICE_CONTENT_REVISION, locale: input.locale, createdAt: now.toISOString(),
+    queue: [...firsts, ...secondSteps], attempts: [], completed: 0, elapsedSeconds: 0,
+    activeSince: now.toISOString(), current: null, draft: null, finished: false,
+  }
 }

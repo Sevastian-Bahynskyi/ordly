@@ -1,5 +1,5 @@
 import { TARGET_KEY_MAX_LENGTH } from './practice-senses'
-import type { PracticeAttempt, PracticeResponse, PracticeStore, PracticeTask } from './practice'
+import { isPracticeMinutes, isTranslationLanguage, type PracticeAttempt, type PracticeDraft, type PracticeDraftInput, type PracticeResponse, type PracticeSessionState, type PracticeTask } from './practice'
 import type { ReviewItem } from './types'
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
@@ -10,10 +10,13 @@ function text(value: unknown, max = 2000): value is string {
   return typeof value === 'string' && value.length <= max
 }
 
+function date(value: unknown): value is string {
+  return typeof value === 'string' && Number.isFinite(Date.parse(value))
+}
+
 export function isReviewSource(value: unknown): value is ReviewItem {
   if (!isRecord(value) || !isRecord(value.vocabulary_entries)) return false
   const entry = value.vocabulary_entries
-  const date = (input: unknown): boolean => typeof input === 'string' && Number.isFinite(Date.parse(input))
   const nullableText = (input: unknown): boolean => input === null || text(input)
   const uuid = (input: unknown): boolean => typeof input === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input)
   return ['id', 'user_id', 'entry_id'].every((key) => uuid(value[key]))
@@ -27,8 +30,14 @@ export function isReviewSource(value: unknown): value is ReviewItem {
     && Number(value.state) <= 3
 }
 
-const PRACTICE_KINDS = ['recall', 'produce', 'teach', 'build', 'listen', 'dialogue', 'assemble', 'choose', 'sense', 'pick', 'cloze']
-const PRACTICE_ASSISTANCE = ['none', 'hint', 'model', 'transcript', 'choices']
+const TASK_KINDS = ['pick', 'choose', 'assemble', 'cloze', 'produce', 'sense']
+/** Attempts recorded under the retired contract carry these kinds too; they stay readable history. */
+const ATTEMPT_KINDS = [...TASK_KINDS, 'recall', 'teach', 'build', 'listen', 'dialogue']
+const ASSISTANCE = ['none', 'hint', 'choices', 'model']
+const RESULTS = ['correct', 'mostly', 'incorrect', 'unverified', 'dont_know']
+
+/** An answer open longer than an hour is recorded as an hour. */
+const MAX_RESPONSE_MS = 3_600_000
 
 /** No board is bigger than this. A longer list is corrupt state, not an exercise. */
 const MAX_CHOICES = 16
@@ -39,99 +48,100 @@ function isChoiceList(value: unknown): boolean {
 
 export function isPracticeTask(value: unknown): value is PracticeTask {
   if (!isRecord(value)) return false
-  return ['id', 'targetKey', 'prompt', 'answer', 'danish', 'translation', 'hint', 'example'].every((key) => text(value[key]))
-    && text(value.targetKey, TARGET_KEY_MAX_LENGTH)
-    && PRACTICE_KINDS.includes(String(value.kind))
-    && ['remember', 'learn', 'build', 'speak', 'return'].includes(String(value.stage))
-    && [null, 'meaning', 'production'].includes(value.objective as string | null)
-    && (value.entryId === null || text(value.entryId, 100))
-    && (value.audioText === null || text(value.audioText))
-    && ['saved', 'frame', 'ai'].includes(String(value.source))
+  return ['id', 'prompt', 'answer', 'danish', 'translation', 'hint', 'example'].every((key) => text(value[key]))
+    && text(value.targetKey, TARGET_KEY_MAX_LENGTH) && value.targetKey.length > 0
+    && text(value.entryId, 100) && value.entryId.length > 0 && text(value.senseId, 100) && value.senseId.length > 0
+    && TASK_KINDS.includes(String(value.kind))
+    && typeof value.answerIsSentence === 'boolean' && text(value.contentVersion, 100)
     && typeof value.newTarget === 'boolean' && Number.isInteger(value.retry) && Number(value.retry) >= 0
-    && (value.answerIsSentence === undefined || typeof value.answerIsSentence === 'boolean')
-    && (value.cardId === undefined || text(value.cardId, 100))
-    && (value.contentVersion === undefined || text(value.contentVersion, 100))
     && isChoiceList(value.choices)
-    && (value.senseId === undefined || text(value.senseId, 100))
     && (value.contrast === undefined || text(value.contrast))
     && (value.context === undefined || text(value.context))
 }
 
 export function isPracticeResponse(value: unknown): value is PracticeResponse {
   if (!isRecord(value)) return false
-  return text(value.answer) && text(value.feedback) && typeof value.revealed === 'boolean'
-    && (value.answeredAt === null || (typeof value.answeredAt === 'string' && Number.isFinite(Date.parse(value.answeredAt))))
-    && ['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result))
-    && PRACTICE_ASSISTANCE.includes(String(value.assistance))
-    && ['typed', 'spoken'].includes(String(value.modality))
-    && ['yes', 'no', 'uncertain'].includes(String(value.communication)) && ['yes', 'no', 'uncertain'].includes(String(value.target))
-    && (value.relation === undefined || ['exact', 'valid_alternative', 'grammar_adjustment', 'incorrect'].includes(String(value.relation)))
-    && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= 3600000
-    && Number.isInteger(value.replays) && Number(value.replays) >= 0 && Number(value.replays) <= 100
-    && (value.correction === undefined || text(value.correction))
+  return text(value.answer) && text(value.feedback, 400) && typeof value.revealed === 'boolean'
+    && (value.answeredAt === null || date(value.answeredAt))
+    && (value.result === null || RESULTS.includes(String(value.result)))
+    && (value.revealed ? value.result !== null : value.result === null)
+    && ASSISTANCE.includes(String(value.assistance))
+    && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= MAX_RESPONSE_MS
+}
+
+export function isPracticeDraft(value: unknown): value is PracticeDraft {
+  return isRecord(value) && text(value.taskId) && text(value.answer)
+    && Array.isArray(value.picked) && value.picked.length <= MAX_CHOICES
+    && value.picked.every((index) => Number.isInteger(index) && index >= 0 && index < MAX_CHOICES)
+    && new Set(value.picked).size === value.picked.length
 }
 
 export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
   if (!isRecord(value)) return false
-  return ['id', 'taskId', 'targetKey'].every((key) => text(value[key]))
+  return ['id', 'taskId'].every((key) => text(value[key]))
     // The database caps `practice_attempts.target_key` at 100 characters; fail here, not there.
     && text(value.targetKey, TARGET_KEY_MAX_LENGTH)
-    && [null, 'meaning', 'production'].includes(value.objective as string | null)
-    && PRACTICE_KINDS.includes(String(value.kind))
-    && ['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result))
-    && PRACTICE_ASSISTANCE.includes(String(value.assistance))
-    && ['typed', 'spoken'].includes(String(value.modality))
-    && [null, 1, 2, 3, 4].includes(value.rating as number | null)
+    && ATTEMPT_KINDS.includes(String(value.kind))
+    && [...RESULTS, 'ungraded'].includes(String(value.result))
+    && [...ASSISTANCE, 'transcript'].includes(String(value.assistance))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0
-    && Number.isInteger(value.replays) && Number(value.replays) >= 0
-    && typeof value.at === 'string' && Number.isFinite(Date.parse(value.at))
-    && (value.exposedAt === undefined || (typeof value.exposedAt === 'string' && Number.isFinite(Date.parse(value.exposedAt))))
-    && (value.lastExposureAt === null || (typeof value.lastExposureAt === 'string' && Number.isFinite(Date.parse(value.lastExposureAt))))
+    && date(value.at)
+    && (value.entryId === undefined || value.entryId === null || text(value.entryId, 100))
+    && (value.rating === undefined || [null, 1, 2, 3, 4].includes(value.rating as number | null))
     && (value.newTarget === undefined || typeof value.newTarget === 'boolean')
 }
 
-export function isPracticeStore(value: unknown): value is PracticeStore {
-  if (!isRecord(value) || !Number.isInteger(value.revision) || Number(value.revision) < 0 || !isRecord(value.objectives)) return false
-  if (!Object.values(value.objectives).every((objective) => {
-    if (!isRecord(objective) || !isPracticeTask(objective.task) || !isRecord(objective.card)) return false
-    const card = objective.card
-    return typeof card.due === 'string' && Number.isFinite(Date.parse(card.due))
-      && (card.last_review === undefined || (typeof card.last_review === 'string' && Number.isFinite(Date.parse(card.last_review))))
-      && ['stability', 'difficulty', 'elapsed_days', 'scheduled_days', 'learning_steps', 'reps', 'lapses', 'state'].every((key) => typeof card[key] === 'number' && Number.isFinite(card[key]) && Number(card[key]) >= 0)
-      && Number(card.state) <= 3
-  })) return false
-  const session = value.session
-  return session === null || (isRecord(session) && session.version === 1 && text(session.id, 100)
-    && (session.finished === undefined || typeof session.finished === 'boolean')
-    && (!session.finished || (Array.isArray(session.queue) && session.queue.length === 0 && session.current === null))
+export function isPracticeSession(value: unknown): value is PracticeSessionState {
+  if (!isRecord(value)) return false
+  const session = value
+  return session.version === 2 && text(session.id, 100) && text(session.seed, 100) && text(session.contentRevision, 100)
+    && isPracticeMinutes(session.targetMinutes) && isTranslationLanguage(session.locale)
+    && typeof session.finished === 'boolean'
     && Array.isArray(session.queue) && session.queue.length <= 100 && session.queue.every(isPracticeTask)
+    && (!session.finished || (session.queue.length === 0 && session.current === null && session.activeSince === null))
     && Array.isArray(session.attempts) && session.attempts.length <= 500 && session.attempts.every(isPracticeAttempt)
     && Number.isInteger(session.completed) && Number(session.completed) >= 0
     && Number.isFinite(session.elapsedSeconds) && Number(session.elapsedSeconds) >= 0
-    && typeof session.createdAt === 'string' && Number.isFinite(Date.parse(session.createdAt))
-    && typeof session.aiEnabled === 'boolean' && Number.isInteger(session.aiCalls) && Number(session.aiCalls) >= 0
-    && (session.current === null || isPracticeResponse(session.current)))
+    && date(session.createdAt) && (session.activeSince === null || date(session.activeSince))
+    && (session.current === null || isPracticeResponse(session.current))
+    && (session.draft === null || isPracticeDraft(session.draft))
 }
 
-export interface PracticeFeedback {
-  result: 'correct' | 'mostly' | 'incorrect' | 'ungraded'
-  feedback: string
-  communication: 'yes' | 'no' | 'uncertain'
-  target: 'yes' | 'no' | 'uncertain'
-  relation: 'exact' | 'valid_alternative' | 'grammar_adjustment' | 'incorrect'
-  correction?: string
-}
+/** What the Practice API accepts. Anything else, including the retired Review-rating payloads, is refused. */
+export type PracticeRequest =
+  | { kind: 'start'; minutes: number; acceptShorter: boolean }
+  | { kind: 'act'; action: PracticeActionInput }
+  | { kind: 'retired' }
 
-export function parsePracticeFeedback(value: unknown): PracticeFeedback | null {
-  if (!isRecord(value) || !['correct', 'mostly', 'incorrect', 'ungraded'].includes(String(value.result)) || !text(value.feedback, 400)
-    || !['yes', 'no', 'uncertain'].includes(String(value.communication)) || !['yes', 'no', 'uncertain'].includes(String(value.target))
-    || !['exact', 'valid_alternative', 'grammar_adjustment', 'incorrect'].includes(String(value.relation))) return null
-  const consistent = (value.result === 'correct' && ['exact', 'valid_alternative'].includes(String(value.relation)))
-    || (value.result === 'mostly' && value.relation === 'grammar_adjustment')
-    || (['incorrect', 'ungraded'].includes(String(value.result)) && value.relation === 'incorrect')
-  if (!consistent) return null
-  const feedback: PracticeFeedback = { result: value.result as PracticeFeedback['result'], feedback: value.feedback, communication: value.communication as PracticeFeedback['communication'], target: value.target as PracticeFeedback['target'], relation: value.relation as PracticeFeedback['relation'] }
-  const correction = typeof value.corrected === 'string' ? value.corrected.trim() : ''
-  if (correction && correction.length <= 2000) feedback.correction = correction
-  return feedback
+export type PracticeActionInput =
+  | { action: 'resume' | 'finish' | 'help' | 'next'; revision: number; taskId: string }
+  | { action: 'pause'; revision: number; taskId: string; draft: PracticeDraftInput | null }
+  | { action: 'answer'; revision: number; taskId: string; answer: string; responseMs: number }
+
+/** Actions only an older Practice client sends. They used to reach Review; now they are refused. */
+const RETIRED_ACTIONS = ['rate', 'accept', 'repair']
+
+export function parsePracticeRequest(body: unknown): PracticeRequest | null {
+  if (!isRecord(body)) return null
+  if (RETIRED_ACTIONS.includes(String(body.action)) || 'rating' in body || 'aiEnabled' in body) return { kind: 'retired' }
+  if (body.action === 'start') {
+    if (!isPracticeMinutes(body.minutes) || (body.acceptShorter !== undefined && typeof body.acceptShorter !== 'boolean')) return null
+    return { kind: 'start', minutes: body.minutes, acceptShorter: body.acceptShorter === true }
+  }
+  if (!Number.isInteger(body.revision) || Number(body.revision) < 0 || !text(body.taskId, 2000)) return null
+  const common = { revision: Number(body.revision), taskId: body.taskId }
+  switch (body.action) {
+    case 'resume': case 'finish': case 'help': case 'next':
+      return { kind: 'act', action: { action: body.action, ...common } }
+    case 'pause': {
+      if (body.draft !== undefined && body.draft !== null && !(isRecord(body.draft) && isPracticeDraft({ ...body.draft, taskId: common.taskId }))) return null
+      const draft: PracticeDraftInput | null = isRecord(body.draft) ? { answer: String(body.draft.answer), picked: body.draft.picked as number[] } : null
+      return { kind: 'act', action: { action: 'pause', ...common, draft } }
+    }
+    case 'answer':
+      if (!text(body.answer) || typeof body.responseMs !== 'number' || !Number.isFinite(body.responseMs) || body.responseMs < 0) return null
+      return { kind: 'act', action: { action: 'answer', ...common, answer: body.answer, responseMs: Math.min(MAX_RESPONSE_MS, body.responseMs) } }
+    default:
+      return null
+  }
 }

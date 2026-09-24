@@ -1,231 +1,228 @@
-/**
- * `pick`, `assemble`, `choose` and `sense` are answered by tapping, so they always carry
- * `assistance: 'choices'` and can never become unaided evidence. `cloze` is the typed gap.
- * `teach`, `build`, `listen` and `dialogue` are no longer planned; they stay valid so a session
- * saved before the local exercise engine still loads.
- */
-export type PracticeKind = 'recall' | 'produce' | 'teach' | 'build' | 'listen' | 'dialogue' | 'assemble' | 'choose' | 'sense' | 'pick' | 'cloze'
-export type PracticeObjective = 'meaning' | 'production'
-/**
- * `'choices'` (D14) marks an answer the learner selected rather than produced. It is the flag the
- * whole choice-based redesign hangs on: see `legacyEvidence` below.
- */
-export type PracticeAssistance = 'none' | 'hint' | 'model' | 'transcript' | 'choices'
+import type { TranslationLanguage } from './types'
 
-/** The kinds answered by tapping. Their assistance is decided by the kind, not by the client. */
+/**
+ * Practice is optional, bounded and separate from Review (issue #13, ADR 0001, ADR 0002).
+ *
+ * A session is planned once from the learner's saved Material, persisted whole, and played back
+ * exercise by exercise. Nothing in it calls a model, and nothing it records reaches Review:
+ * the only thing a Practice answer writes is an internal attempt used to choose later exercises.
+ *
+ * `pick`, `choose`, `assemble` and `sense` are answered by tapping; `cloze` and `produce` are typed.
+ */
+export type PracticeKind = 'pick' | 'choose' | 'assemble' | 'cloze' | 'produce' | 'sense'
+
+/** Kinds that only appear in attempts recorded before this session contract. */
+export type LegacyPracticeKind = 'recall' | 'teach' | 'build' | 'listen' | 'dialogue'
+
+/** `'choices'` marks an answer selected rather than produced; `'model'` an answer that was shown. */
+export type PracticeAssistance = 'none' | 'hint' | 'choices' | 'model'
+
+/**
+ * `unverified` is a typed sentence that does not match the saved one: it may still be valid
+ * Danish, so it is neither marked right nor wrong. `dont_know` is an explicit “I don't know”.
+ */
+export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'unverified' | 'dont_know'
+
 export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense', 'pick']
 
 export function isChoiceKind(kind: PracticeKind): boolean {
   return CHOICE_KINDS.includes(kind)
 }
 
-export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'ungraded'
-export type PracticeRating = 1 | 2 | 3 | 4
-export type PracticeRelation = 'exact' | 'valid_alternative' | 'grammar_adjustment' | 'incorrect'
-
 export interface PracticeTask {
   id: string
+  /** `entry:<id>:sense:<sid>` — always a sense of a saved, owner-scoped Material entry. */
   targetKey: string
-  entryId: string | null
-  objective: PracticeObjective | null
+  entryId: string
+  senseId: string
   kind: PracticeKind
-  stage: 'remember' | 'learn' | 'build' | 'speak' | 'return'
   prompt: string
   answer: string
   danish: string
   translation: string
   hint: string
   example: string
-  audioText: string | null
-  source: 'saved' | 'frame' | 'ai'
+  answerIsSentence: boolean
+  contentVersion: string
   newTarget: boolean
   retry: number
-  answerIsSentence?: boolean
-  cardId?: string
-  contentVersion?: string
   /**
-   * Tap targets for `assemble` (word-bank tiles), `choose` (cloze options) and `sense`
-   * (candidate meanings). Already shuffled at build time so a reload re-renders the identical
-   * board — the queue is persisted, so the order must not be recomputed on the client.
+   * Tap targets, already shuffled at build time so a reload re-renders the identical board — the
+   * queue is persisted, so the order must never be recomputed on the client.
    */
   choices?: string[]
-  /** The sense this task trains, for an `entry:<id>:sense:<sid>` objective (D8/D18). */
-  senseId?: string
-  /** A second sentence using a *different* sense of the same word (D13 discrimination). */
+  /** A second sentence using a *different* sense of the same word (sense discrimination). */
   contrast?: string
   /** The translation of a gapped sentence, shown under a typed cloze. */
   context?: string
+}
+
+export interface PracticeResponse {
+  answer: string
+  result: PracticeResult | null
+  assistance: PracticeAssistance
+  feedback: string
+  responseMs: number
+  revealed: boolean
+  answeredAt: string | null
+}
+
+/** Unsent input on the current exercise, saved on pause so resume shows exactly what was typed. */
+export interface PracticeDraft {
+  taskId: string
+  answer: string
+  /** Word-bank tile indices, in placed order. */
+  picked: number[]
+}
+
+/** A draft as the client sends it; the server attaches it to the current exercise. */
+export type PracticeDraftInput = Omit<PracticeDraft, 'taskId'>
+
+export const TRANSLATION_LANGUAGES: readonly TranslationLanguage[] = ['ru', 'en', 'uk']
+
+export function isTranslationLanguage(value: unknown): value is TranslationLanguage {
+  return TRANSLATION_LANGUAGES.includes(value as TranslationLanguage)
 }
 
 export interface PracticeAttempt {
   id: string
   taskId: string
   targetKey: string
-  objective: PracticeObjective | null
-  kind: PracticeKind
-  result: PracticeResult
-  rating: PracticeRating | null
-  assistance: PracticeAssistance
-  modality: 'typed' | 'spoken'
+  entryId?: string
+  senseId?: string
+  kind: PracticeKind | LegacyPracticeKind
+  /** Older attempts may also carry `'ungraded'` and a Review-style `rating`; both are read-only history. */
+  result: PracticeResult | 'ungraded'
+  assistance: PracticeAssistance | 'transcript'
   responseMs: number
   at: string
-  exposedAt?: string
-  lastExposureAt: string | null
-  replays: number
-  newTarget?: boolean
-  promptVersion?: number
   contentVersion?: string
-  communication?: PracticeResponse['communication']
-  targetUse?: PracticeResponse['target']
+  locale?: TranslationLanguage
+  newTarget?: boolean
+  rating?: 1 | 2 | 3 | 4 | null
 }
+
+/** Bumped when the planner or exercise builders change what a stored task means. */
+export const PRACTICE_CONTENT_REVISION = 'practice-v2'
 
 export interface PracticeSessionState {
-  version: 1
-  finished?: boolean
+  version: 2
   id: string
-  queue: PracticeTask[]
-  attempts: PracticeAttempt[]
-  completed: number
-  elapsedSeconds: number
+  /** Every shuffle in the session derives from this, so a replan with the same seed is identical. */
+  seed: string
+  targetMinutes: number
+  contentRevision: string
+  locale: TranslationLanguage
   createdAt: string
-  aiEnabled: boolean
-  aiCalls: number
+  /** The head is the current exercise. */
+  queue: PracticeTask[]
+  /** This session's attempts, for its summary. The durable record is `practice_attempts`. */
+  attempts: PracticeAttempt[]
+  /** How many exercises were finished: the session's cursor. */
+  completed: number
+  /** Active time only. Paused time never counts toward the target. */
+  elapsedSeconds: number
+  /** When the running stretch began, or null while paused. */
+  activeSince: string | null
   current: PracticeResponse | null
-}
-
-export interface PracticeResponse {
-  answer: string
-  result: PracticeResult
-  assistance: PracticeAssistance
-  feedback: string
-  communication: 'yes' | 'no' | 'uncertain'
-  target: 'yes' | 'no' | 'uncertain'
-  relation?: PracticeRelation
-  modality: 'typed' | 'spoken'
-  responseMs: number
-  replays: number
-  revealed: boolean
-  answeredAt: string | null
-  /** The learner's Danish answer with the smallest correction, when the semantic check supplied one. */
-  correction?: string
-}
-
-export interface PracticeSchedule {
-  due: string
-  stability: number
-  difficulty: number
-  elapsed_days: number
-  scheduled_days: number
-  learning_steps: number
-  reps: number
-  lapses: number
-  state: number
-  last_review?: string
-}
-
-export interface ProductionObjective {
-  task: PracticeTask
-  card: PracticeSchedule
+  draft: PracticeDraft | null
+  finished: boolean
 }
 
 export interface PracticeStore {
   revision: number
   session: PracticeSessionState | null
-  objectives: Record<string, ProductionObjective>
+  /** The retired practice schedule. Kept as stored, never read or written. */
+  objectives: Record<string, unknown>
 }
 
-export interface PracticeSummary {
-  meaning: { correct: number; total: number }
-  production: { correct: number; total: number }
-  listening: { correct: number; total: number }
-  supported: number
-}
+/** Offered at every start. A custom target is any whole minute from 1 to `MAX_PRACTICE_MINUTES`. */
+export const PRACTICE_MINUTE_PRESETS = [5, 10, 20] as const
+export const DEFAULT_PRACTICE_MINUTES = 10
+export const MAX_PRACTICE_MINUTES = 30
 
-export function summarizePractice(attempts: PracticeAttempt[]): PracticeSummary {
-  const summary: PracticeSummary = { meaning: { correct: 0, total: 0 }, production: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, supported: 0 }
-  for (const attempt of attempts) {
-    if (attempt.assistance !== 'none') { summary.supported += 1; continue }
-    const delay = attempt.lastExposureAt ? Date.parse(attempt.at) - Date.parse(attempt.lastExposureAt) : NaN
-    if (attempt.result === 'ungraded' || attempt.modality !== 'typed' || !Number.isFinite(delay) || delay < 86_400_000) continue
-    const score = attempt.kind === 'listen' ? summary.listening : attempt.objective ? summary[attempt.objective] : null
-    if (score) {
-      score.total += 1
-      if (attempt.rating !== 1 && (attempt.result === 'correct' || attempt.result === 'mostly')) score.correct += 1
-    }
-  }
-  return summary
-}
-
-export function practiceStudyDate(date = new Date()): string {
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date)
-}
-
-export function countsForSchedule(task: PracticeTask, response: PracticeResponse, rating: PracticeRating | null): boolean {
-  if (task.kind === 'teach' || task.objective === null || rating === null) return false
-  if (rating === 1) return true
-  // D14: a tapped answer may still move the sense objective's own FSRS state forward. What it
-  // must never do is reach the legacy card, and that is `legacyEvidence`'s job, not this one.
-  if (response.assistance === 'choices') return true
-  if (response.assistance !== 'none') return false
-  return task.objective !== 'production' || response.target !== 'no'
+export function isPracticeMinutes(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= MAX_PRACTICE_MINUTES
 }
 
 /**
- * D14, the single rule that keeps choice-based recognition out of the legacy review system.
- *
- * `legacy_change` is the only argument of `commit_practice` that writes `review_cards`, appends
- * to `review_logs` and re-evaluates `vocabulary_entries.learning_status`. Returning false here
- * makes the caller commit `legacy_change = null`, so all three are untouched — no SQL change and
- * no new column needed. Tapping the right tile with the answer on screen is recognition, not
- * unaided production, and must not be able to mark a word mastered.
- *
- * The `cardId` half is belt and braces: choice tasks are built without one, so a future builder
- * that wrongly attached a card would still be caught by the assistance half.
+ * Rough seconds an exercise takes, used only to size a session to its target. Tapping is quicker
+ * than typing; building a sentence from tiles sits in between.
  */
-export function legacyEvidence(task: PracticeTask, response: PracticeResponse): boolean {
-  return Boolean(task.cardId) && response.assistance !== 'choices'
+export function estimatedSeconds(task: Pick<PracticeTask, 'kind'>): number {
+  if (task.kind === 'assemble') return 35
+  if (task.kind === 'cloze' || task.kind === 'produce') return 30
+  return 20
 }
 
+export function queueSeconds(queue: readonly Pick<PracticeTask, 'kind'>[]): number {
+  return queue.reduce((total, task) => total + estimatedSeconds(task), 0)
+}
+
+/** No new exercise starts this close to the target; the current one always finishes. */
+export const NEAR_TARGET_SECONDS = 15
+
+/** A single running stretch counts at most this long, so an abandoned open tab cannot fill the target. */
+export const MAX_STRETCH_SECONDS = 600
+
+/** Active time including the running stretch up to `now`. */
+export function activeSeconds(session: Pick<PracticeSessionState, 'elapsedSeconds' | 'activeSince'>, now: Date): number {
+  if (!session.activeSince) return session.elapsedSeconds
+  const stretch = (now.getTime() - Date.parse(session.activeSince)) / 1000
+  return session.elapsedSeconds + Math.min(MAX_STRETCH_SECONDS, Math.max(0, Number.isFinite(stretch) ? stretch : 0))
+}
+
+export function targetReached(session: Pick<PracticeSessionState, 'targetMinutes'>, elapsedSeconds: number): boolean {
+  return elapsedSeconds + NEAR_TARGET_SECONDS >= session.targetMinutes * 60
+}
+
+/** A missed or helped exercise comes back this many times at most in one session. */
+export const MAX_RETRIES = 2
+
 /**
- * The unaided form of a task, used for the retry that supported success schedules.
- *
- * Re-serving the identical board would not be an unaided retry, so a choice task comes back as
- * typed production with its tiles removed. Sense discrimination has no unaided form — the choice
- * *is* the exercise — so it returns null and is simply not requeued after a success. An explicit
- * Again still requeues the original task untouched, preserving the objective as guided practice
- * requires.
+ * The unaided form of a task, for the retry a miss schedules. Re-serving the same board would not
+ * test anything new, so a gap with options comes back as a typed gap and a word bank as the typed
+ * sentence. Meaning and sense discrimination have no unaided form here and return null.
  */
 export function unaidedForm(task: PracticeTask): PracticeTask | null {
   if (task.kind === 'sense' || task.kind === 'pick') return null
   if (task.kind !== 'assemble' && task.kind !== 'choose') return task
   const { choices: _choices, contrast: _contrast, ...rest } = task
-  return { ...rest, kind: 'produce' }
+  return task.kind === 'choose'
+    ? { ...rest, kind: 'cloze', context: task.translation }
+    : { ...rest, kind: 'produce' }
 }
 
-/** The most never-practised items one session introduces. */
-export const NEW_TARGETS_PER_SESSION = 4
+function hash(value: string): number {
+  let result = 2166136261
+  for (let index = 0; index < value.length; index += 1) {
+    result ^= value.charCodeAt(index)
+    result = Math.imul(result, 16777619)
+  }
+  return result >>> 0
+}
 
 /**
- * New items this session may introduce. New words are the point of practising, so a backlog or a
- * weak run slows intake to one instead of stopping it; the daily limit still caps the total.
+ * A miss: a wrong or unknown answer, or one that needed a hint or the answer shown. Attempts from
+ * the retired contract also count an Again rating. The one rule both requeueing and target
+ * selection use.
  */
-export function newTargetBudget(input: { dailyLimit: number; introducedToday: number; dueCount: number; recent: boolean[] }): number {
-  const recent = input.recent.slice(-20)
-  const struggling = input.dueCount > 30 || (recent.length === 20 && recent.filter(Boolean).length < 14)
-  const room = Math.max(0, input.dailyLimit - input.introducedToday)
-  return Math.min(room, struggling ? 1 : NEW_TARGETS_PER_SESSION)
+export function missed(outcome: { result: PracticeAttempt['result'] | null; assistance: PracticeAttempt['assistance']; rating?: PracticeAttempt['rating'] }): boolean {
+  return outcome.rating === 1 || outcome.result === 'incorrect' || outcome.result === 'dont_know' || outcome.assistance === 'hint' || outcome.assistance === 'model'
 }
 
-export function finishPracticeTask(queue: PracticeTask[], rating: PracticeRating | null, assistance: PracticeAssistance): PracticeTask[] {
+/**
+ * Advance past the current exercise. A miss comes back a few steps later in its unaided form,
+ * at a position fixed by the session seed so the persisted queue is reproducible.
+ */
+export function finishPracticeTask(queue: readonly PracticeTask[], response: Pick<PracticeResponse, 'result' | 'assistance'>, seed: string): PracticeTask[] {
   const [task, ...remaining] = queue
   if (!task) return []
-  if (task.kind === 'teach' || rating === null || (rating !== 1 && assistance === 'none')) return remaining
-  // Again keeps the original objective and the original board; a supported success comes back
-  // in whatever form actually tests unaided recall.
-  const source = rating === 1 ? task : unaidedForm(task)
+  if (!missed(response) || task.retry >= MAX_RETRIES) return remaining
+  const source = unaidedForm(task)
   if (!source) return remaining
-  const retry: PracticeTask = { ...source, id: `${source.id}:retry`, newTarget: false, retry: task.retry + 1, stage: 'return' }
+  const retry: PracticeTask = { ...source, id: `${task.id}:retry`, newTarget: false, retry: task.retry + 1 }
   const next = [...remaining]
-  next.splice(Math.min(next.length, 2 + Math.floor(Math.random() * 3)), 0, retry)
+  next.splice(Math.min(next.length, 2 + hash(`${seed}:${task.id}`) % 3), 0, retry)
   return next
 }

@@ -1,7 +1,7 @@
 import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
 import { senseContentVersion } from './practice-content'
-import { senseExample, senseTargetKey, type SenseCandidate } from './practice-senses'
+import { senseExample, type SenseCandidate } from './practice-senses'
 import type { PracticeTask } from './practice'
 import type { EntrySense, PartOfSpeech, ReviewItem } from './types'
 
@@ -125,23 +125,17 @@ export interface ExerciseInput {
   /** Wrong meanings for `pick`, in the learner's language. Built by `selectMeaningDistractors`. */
   meaningDistractors?: readonly string[]
   newTarget: boolean
-  /** Reps on the sense objective, used to rotate the exercise kind. */
-  reps: number
 }
 
-function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTask, 'kind' | 'prompt' | 'answer' | 'hint'> {
+function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTask, 'kind' | 'prompt' | 'answer' | 'hint' | 'answerIsSentence'> {
   const entry = item.vocabulary_entries
   return {
     id: `${candidate.targetKey}:0`,
     targetKey: candidate.targetKey,
     entryId: entry.id,
-    objective: 'production',
-    stage: 'build',
     danish: entry.danish,
     translation: candidate.sense.text,
     example: senseExample(item, candidate.sense, candidate.primary).sentence || entry.danish,
-    audioText: null,
-    source: 'saved',
     newTarget: false,
     retry: 0,
     senseId: candidate.sense.id,
@@ -226,8 +220,6 @@ export function senseTask(input: ExerciseInput): PracticeTask | null {
     ...base,
     id: `${candidate.targetKey}:sense`,
     kind: 'sense',
-    objective: 'meaning',
-    stage: 'remember',
     prompt: mine.sentence,
     contrast: contrast.example.sentence,
     answer: candidate.sense.text.trim(),
@@ -249,7 +241,6 @@ export function produceSenseTask(input: ExerciseInput): PracticeTask {
     ...base,
     id: `${candidate.targetKey}:produce`,
     kind: 'produce',
-    stage: 'remember',
     prompt: candidate.sense.text,
     answer: entry.danish,
     answerIsSentence: entry.entry_kind === 'sentence',
@@ -347,8 +338,6 @@ export function pickMeaningTask(input: ExerciseInput): PracticeTask | null {
     ...baseTask(candidate, item),
     id: `${candidate.targetKey}:pick`,
     kind: 'pick',
-    objective: 'meaning',
-    stage: 'remember',
     prompt: entry.danish,
     answer,
     answerIsSentence: false,
@@ -428,29 +417,4 @@ export function sentenceAssembleTask(input: ExerciseInput): PracticeTask | null 
     choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:assemble`),
     newTarget: input.newTarget,
   }
-}
-
-/**
- * The exercise a sense objective gets this time round.
- *
- * The rotation walks from most supported to least: recognise it among options, tell its meaning
- * apart from a sibling's, build the sentence from tiles, then produce it unaided. Only the last
- * one is unaided evidence — the other three carry `assistance: 'choices'` and can never reach
- * `review_cards`. Any kind that lacks the material it needs falls through to the next, so a
- * sense with no example sentence still gets practised.
- */
-export function senseExerciseTask(input: ExerciseInput): PracticeTask {
-  const builders: ((input: ExerciseInput) => PracticeTask | null)[] = [chooseTask, senseTask, assembleTask, produceSenseTask]
-  const start = Math.max(0, Math.trunc(input.reps)) % builders.length
-  for (let step = 0; step < builders.length; step += 1) {
-    const built = builders[(start + step) % builders.length](input)
-    if (built) return built
-  }
-  return produceSenseTask(input)
-}
-
-/** The `entry:<id>:sense:<sid>` key a stored objective belongs to, for planner bookkeeping. */
-export function taskSenseKey(task: PracticeTask): string | null {
-  if (!task.entryId || !task.senseId) return null
-  return senseTargetKey(task.entryId, task.senseId)
 }

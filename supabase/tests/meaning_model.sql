@@ -9,6 +9,7 @@ do $$
 declare
   row public.vocabulary_entries;
   sense_id text;
+  log_id bigint;
 begin
   -- Sentence guard: a sentence translation is never comma-split.
   insert into public.vocabulary_entries(id, danish, translation, entry_kind)
@@ -33,11 +34,15 @@ begin
     raise exception 'Bulk add gained senses';
   end if;
 
-  -- Coverage is recorded atomically and only on the named sense.
+  -- Coverage is recorded atomically and only on the named sense, after a Review rating.
+  insert into public.review_logs(card_id, entry_id, rating, previous_state, stability, difficulty, scheduled_days, study_date)
+  select id, entry_id, 3, 0, 1, 5, 0, current_date from public.review_cards where entry_id = '20000000-0000-4000-8000-000000000002'
+  returning id into log_id;
+  perform set_config('test.log_id', log_id::text, true);
   select senses -> 1 ->> 'id' into sense_id from public.vocabulary_entries where id = '20000000-0000-4000-8000-000000000002';
   perform set_config('test.sense_id', sense_id, true);
-  perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[sense_id], 'recognized');
-  perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[sense_id], 'produced');
+  perform public.record_sense_coverage(log_id, array[sense_id], 'recognized');
+  perform public.record_sense_coverage(log_id, array[sense_id], 'produced');
   select * into row from public.vocabulary_entries where id = '20000000-0000-4000-8000-000000000002';
   if (row.senses -> 1 #>> '{coverage,recognized}')::int <> 1
     or (row.senses -> 1 #>> '{coverage,produced}')::int <> 1
@@ -57,7 +62,7 @@ begin
   end if;
 
   begin
-    perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[sense_id], 'mastered');
+    perform public.record_sense_coverage(log_id, array[sense_id], 'mastered');
     raise exception 'Invalid outcome was accepted';
   exception when invalid_parameter_value then null; end;
 
@@ -74,7 +79,9 @@ end $$;
 select set_config('request.jwt.claim.sub', '10000000-0000-4000-8000-000000000002', true);
 do $$
 begin
-  perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[current_setting('test.sense_id')], 'produced');
+  begin
+    perform public.record_sense_coverage(current_setting('test.log_id')::bigint, array[current_setting('test.sense_id')], 'produced');
+  exception when insufficient_privilege then null; end;
   if exists(select 1 from public.vocabulary_entries) then raise exception 'Cross-owner read leaked data'; end if;
 end $$;
 reset role;
@@ -84,6 +91,6 @@ declare
 begin
   select (senses -> 1 #>> '{coverage,produced}')::int into produced from public.vocabulary_entries where id = '20000000-0000-4000-8000-000000000002';
   if produced <> 1 then raise exception 'Cross-owner coverage write landed'; end if;
-  if has_function_privilege('anon', 'public.record_sense_coverage(uuid,text[],text)', 'execute') then raise exception 'Anonymous coverage RPC access'; end if;
+  if has_function_privilege('anon', 'public.record_sense_coverage(bigint,text[],text)', 'execute') then raise exception 'Anonymous coverage RPC access'; end if;
 end $$;
 rollback;

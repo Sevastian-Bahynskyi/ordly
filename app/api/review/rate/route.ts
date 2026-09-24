@@ -42,16 +42,6 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (updateError) return NextResponse.json({ error: updateError.message }, { status: 500 })
 
   const learningStatus = next.reps === 0 ? 'new' : next.reps >= 5 && next.stability >= 21 ? 'mastered' : 'learning'
-  // Coverage (D9, D18): credit the senses a successful typed meaning named. Only a recognition
-  // answer is a meaning; a Danish production answer never matches a translation sense. It runs
-  // alongside the status write rather than after it, so rating gains no round-trip depth.
-  const senseIds = rating > 1 && (answerResult === 'correct' || answerResult === 'mostly') && typeof answerText === 'string'
-    ? matchingSenseIds(answerText, activeSenses(parseSenses(row.vocabulary_entries?.senses)))
-    : []
-  await Promise.all([
-    supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', row.entry_id),
-    senseIds.length ? supabase.rpc('record_sense_coverage', { target_entry_id: row.entry_id, sense_ids: senseIds, outcome: 'recognized' }) : null,
-  ])
   const studyDate = copenhagenDate(now)
   const { data: log, error: logError } = await supabase.from('review_logs').insert({
     card_id: cardId, entry_id: row.entry_id, rating, answer_result: answerResult || null, answer_text: answerText || null,
@@ -59,6 +49,18 @@ export async function POST(request: Request): Promise<NextResponse> {
     stability: next.stability, difficulty: next.difficulty, scheduled_days: next.scheduled_days, reviewed_at: now.toISOString(), study_date: studyDate,
   }).select('id').single()
   if (logError) return NextResponse.json({ error: logError.message }, { status: 500 })
+
+  // Coverage (D9, D18): credit the senses a successful typed meaning named. Only a recognition
+  // answer is a meaning; a Danish production answer never matches a translation sense. It is
+  // recorded against this Review log, which is what lets the database refuse it from anywhere
+  // else (issue #13), and runs alongside the status write so rating gains no round-trip depth.
+  const senseIds = rating > 1 && (answerResult === 'correct' || answerResult === 'mostly') && typeof answerText === 'string'
+    ? matchingSenseIds(answerText, activeSenses(parseSenses(row.vocabulary_entries?.senses)))
+    : []
+  await Promise.all([
+    supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', row.entry_id),
+    senseIds.length ? supabase.rpc('record_sense_coverage', { review_log_id: log.id, sense_ids: senseIds, outcome: 'recognized' }) : null,
+  ])
 
   const { data: profile } = await supabase.from('profiles').select('current_streak, longest_streak, last_study_date').single()
   if (profile?.last_study_date !== studyDate) {

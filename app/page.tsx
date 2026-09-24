@@ -67,7 +67,7 @@ export default async function HomePage() {
               <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
               <p>Due cards first, then new words.</p>
               <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
-              {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Guided practice →</Link>}
+              {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Practice →</Link>}
             </div>
           </aside>
         </section>

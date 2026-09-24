@@ -1,49 +1,42 @@
-# Guided practice: first release
+# Practice: safe standalone session
 
-Implementation of stages 0–1 and basic listening/dialogue from `learning-research-plan.md`.
+Issue #13, from the [adaptive practice specification](adaptive-practice-spec.md). Replaces the earlier guided-practice release, which could write Review and call a model. The behaviour summary lives in `AGENTS.md` §21; this file is the runbook for verifying it.
 
 ## User flow
 
-Home → **Practice for 10 minutes**. The first session includes up to three cold production checks on previously reviewed vocabulary. Sessions then combine due retrieval, repair, a small bank of sentence transformations, short everyday exchanges, and retries. AI feedback is explicitly opt-in at the start; memory examples require a separate button. Ordinary Review remains available.
+Review stays the default. Home and Review each carry a quiet **Practice →** link. Practice asks for a length every time (5, 10, 20 or custom 1–30 minutes, default 10) and starts only when the learner presses **Start practice**. Exercises come from saved Material only. Pause, leaving the app, or reloading keeps the same exercise and whatever was typed. Near the chosen time no new exercise starts; the current one always finishes. If saved Material cannot fill the time, the learner is offered the shorter session, or Review when nothing can be built.
 
-A ten-minute timer offers a stopping point. The active queue is saved on each answer/help/rating and every 15 seconds while practising. Pause, tab hiding, and reloading preserve the queue; unsent text is not saved. A rating updates the queue and its schedule in one transaction. If ordinary Review has already advanced the same card after a guided answer, the stale guided task is removed without overwriting that newer schedule. Do not present unfinished steps as cleared reviews.
+## What Practice writes
 
-## Scheduling and evidence
+Only `practice_state.session` (the version-2 session) and one `practice_attempts` row per finished exercise. An attempt stores the target, entry and sense, exercise kind, result, assistance, response time, content version and learner language. It has no Review rating.
 
-- The existing card/history remains the legacy mixed-exercise schedule. Guided meaning reviews update it without cloning its stability into another direction. Existing ordinary-review rating revision remains unchanged.
-- Production objectives start conservatively with their own FSRS state and are admitted only to a small active repertoire. The entire vocabulary backlog is not doubled.
-- Again preserves the original objective and requeues in the same session, including the last remaining item. Assisted success is a practice event and schedules an unaided retry. Explicit Again can record a failure. A response that communicates successfully without retrieving the production target earns no production success.
-- Exact answer checking precedes optional semantic feedback. Different short words are not accepted by edit distance. Uncertain/provider-failed checks remain ungraded and permit the learner's own rating.
-- Events store direction, prompt version, source-content version, assistance, modality, response duration, replay count, the initial answer timestamp, and the latest model-exposure timestamp (including rating after an overnight pause). Delayed evidence excludes teaching, assistance, same-day exposure, and ungraded/spoken self-checks. Existing review timestamps are considered when checking whether an entry was recently exposed.
-- New targets are capped at two per guided study day, including new frames. Recent weak recall or a large due queue reduces intake to zero. Ordinary review retains its configured intake limit; opening that separate mode can introduce additional material.
-- The timer and task counts are provisional operating rules, not research-derived optimal values or a guarantee of ten minutes for every learner.
+It never writes `review_cards`, `review_logs`, `vocabulary_entries` (status, senses, coverage or examples) or the streak on `profiles`, and it calls no model. `commit_practice` and `record_sense_coverage` (which now takes the id of a fresh, successful Review log) enforce this in the database (`20260924170000_isolate_practice_from_review.sql`), so an old client or an old server still sending the retired `legacy_change` payload or a version-1 session is refused.
 
-## Persistence and security
+The migration rewrites no data. Existing Review cards, Review logs with their `previous_card` snapshots, senses, attempts, `practice_state.objectives` and `practice_packs` stay exactly as they are. A stored version-1 session row is kept (the constraint is `NOT VALID`), but no version-1 session can be written again; the app reports it as retired and starts fresh.
 
-`practice_state` holds the current resumable session and the small active production repertoire. JSON shapes are versioned and validated. `practice_attempts` is an append-only, owner-scoped evidence stream. `practice_packs` caches separate generated memory aids by target, content revision, translation language, and prompt version.
-
-`commit_practice` is a SECURITY INVOKER RPC with owner RLS, explicit authenticated grants, revision checks, duplicate-event detection, and transactional legacy-card/log updates. No anonymous RPC access. No service-role credential is needed. Generated aids never overwrite vocabulary fields. The migration is additive and keeps old review histories intact.
-
-Set `NEXT_PUBLIC_GUIDED_PRACTICE_ENABLED=false` and rebuild to remove the guided entry points and disable its API. Ordinary reviews and all stored evidence remain intact.
+Set `NEXT_PUBLIC_GUIDED_PRACTICE_ENABLED=false` and rebuild to remove the entry points and disable the API.
 
 ## Verification
 
-- `pnpm test`: answer/cloze safety, planner intake and ordering, assistance rules, delayed evidence, conservative FSRS initialization, persistence/AI shape validation, and existing OpenRouter contracts.
-- `pnpm build`: production compilation and route generation. GitHub Build now also runs the test suite.
-- `supabase/tests/guided_practice.sql`: run in an isolated disposable database with the repository migrations. Verifies atomic legacy review/log/queue writes, idempotent event submission, stale revision/card rejection, anonymous denial, and cross-owner RLS. It rolls back all test data. Do not run its fixture setup in production.
-- `supabase/tests/practice-server.mjs`: exercises the real service against a local PostgREST fixture at `127.0.0.1:54398`. Run with `pnpm exec tsx supabase/tests/practice-server.mjs` after seeding the fixture below. Uses a test-only JWT signed within the script; it cannot point to production.
+- `pnpm test`: session boundary with a recording client (`lib/practice-session.test.mjs`), including legacy payloads; grading, planning, validation.
+- `pnpm build`.
+- `supabase/tests/guided_practice.sql`: database boundary. Refused `legacy_change`, refused version-1 session, attempt recorded, Review card/logs/entry/streak unchanged, coverage refused without a fresh, successful Review log of the caller's own, direct version-1 writes refused, owner scoping, no anonymous access. Rolls back.
+- `supabase/tests/meaning_model.sql`: senses and coverage, now rated through Review first.
+- `supabase/tests/practice-server.mjs`: the real service through PostgREST. Runs a whole session, pause/resume with a draft, the shortfall offer and the legacy refusals, then checks Review cards, logs, entries and the streak are byte-identical.
 
-For the service fixture, use a disposable Supabase Postgres image and PostgREST v14.14. Apply `0001_initial.sql`, `0002_entry_kind.sql`, `0003_review_rating_revision.sql`, `0006_vocabulary_icons.sql`, and the guided-practice migration. The bare Postgres image's `auth.uid()` must support PostgREST's `request.jwt.claims` JSON as well as `request.jwt.claim.sub`. Configure PostgREST's local JWT secret to `ordly-local-validation-secret-32-characters` and its anonymous role to `anon`. Seed only the synthetic account `10000000-0000-4000-8000-000000000001` (`practice-fixture@example.invalid`), then two vocabulary entries (`svært` → `трудно, сложно`; `Jeg arbejder i dag.` → `Я сегодня работаю.`). Set their cards to reps=2, stability=2, difficulty=5, state=2, last_review two days ago, and due now. Start with no practice state or attempts. Reset this disposable fixture before repeating the service test.
+All SQL runs against a disposable database only, never production.
 
-Manual acceptance:
+### Local fixture
 
-1. Start with AI off; answer, reveal, hint, and rate. Verify a helped Good returns for an unaided retry.
-2. Pause/reload on a revealed answer and on an unresolved Again. Resume in the same direction.
-3. Open the same session twice and submit in both. The stale screen must reload rather than double-advance a card.
-4. Try a transformation with an alternative answer and AI off/unavailable. It should offer self-checking, not force failure.
-5. Try listening with a Danish voice, then without one. The transcript path should always permit reading practice and exclude the result from unaided listening evidence.
-6. Verify narrow iPhone layout, keyboard, audio, background/foreground transitions, and the ten-minute stopping prompt in the installed PWA.
+1. Start a throwaway Postgres (a bare PostgreSQL 16 works). Create the roles `anon`, `authenticated` and `service_role`, the schemas `auth`, `extensions`, `storage` and `cron`, a minimal `auth.users(id uuid primary key, email text, raw_user_meta_data jsonb, created_at timestamptz)`, and `auth.uid()` reading `request.jwt.claim.sub` or the `sub` in `request.jwt.claims`. Stub `cron.schedule`/`cron.unschedule` and `storage.objects(bucket_id, name)`.
+2. Apply every file in `supabase/migrations/` in order, skipping the `pg_cron`/`pg_net` `create extension` lines.
+3. Run the two `.sql` tests with `psql -v ON_ERROR_STOP=1 -f …`.
+4. For the service test, reset the database, apply the migrations, run `supabase/tests/practice-server-seed.sql`, create a login role `authenticator` granted `anon` and `authenticated`, and start PostgREST on `127.0.0.1:54398` with `jwt-secret = "ordly-local-validation-secret-32-characters"` and `db-anon-role = "anon"`. Then `pnpm exec tsx supabase/tests/practice-server.mjs`.
 
-## Remaining evaluation work
+## Manual acceptance (installed iPhone PWA and a 402px browser)
 
-The initial frame bank contains four authored situations. Native Danish review, a larger graded curriculum, controlled weekly novel-transfer probes, provider benchmarks, automated speech recognition/pronunciation scoring, and an actual thirty-day outcome study remain later work. The device TTS fallback is not presented as native-validated pronunciation. No audio is recorded or uploaded. This release must not claim A2 attainment or measured fluency gains from its counters.
+1. Open Practice from Home. Nothing starts until a length is chosen; custom rejects 0 and 31.
+2. Type half an answer, leave the app, come back: **Resume practice** shows the same exercise with the text.
+3. Answer past the target: the answer is graded, then the session offers **Finish session**.
+4. With only one or two saved words, pick 20 minutes: the shorter session is offered.
+5. After a session, check Review: due count, rings, new-word count and streak are unchanged.
