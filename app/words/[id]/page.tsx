@@ -1,3 +1,4 @@
+import { learnerLanguage } from '@/lib/learner-language'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
@@ -90,7 +91,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
         <EntryEditor
           mode="edit"
           entry={typedEntry}
-          translationLanguage={profile?.default_translation_language || 'ru'}
+          translationLanguage={learnerLanguage(profile?.default_translation_language)}
         />
 
         {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} initialForms={(typedEntry.canonical_entry_id ? canonicalForms || [] : forms || []) as WordForm[]} />}

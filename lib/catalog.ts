@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { corLookupForm, parseCorForms } from './cor'
-import { emptyCoverage, isNounGender, isPartOfSpeech } from './senses'
-import type { EntrySense, NounGender, PartOfSpeech } from './types'
+import { activeSenses, emptyCoverage, isNounGender, isPartOfSpeech, normalizeSenseText } from './senses'
+import type { EntrySense, NounGender, PartOfSpeech, TranslationLanguage } from './types'
 
 /**
  * Reading the pre-built catalog (issue #6 §7).
@@ -15,9 +15,14 @@ import type { EntrySense, NounGender, PartOfSpeech } from './types'
  * never read at review time: unlocking copies the data into the entry, so a later catalog change
  * cannot rewrite a word the learner has already been studying.
  */
+/**
+ * One meaning, in one learner language. The same `sense_id` has one row per language it is
+ * supplied in (issue #14): the identity is shared, the wording is not.
+ */
 export interface CatalogSense {
   sense_id: string
   ordinal: number
+  lang: TranslationLanguage
   text: string
   pos: PartOfSpeech | null
   gender: NounGender | null
@@ -36,7 +41,13 @@ export interface CatalogEntry {
   audio_path: string | null
   example_sentence: string | null
   example_translation: string | null
+  /** Meanings supplied in the learner language. */
   senses: CatalogSense[]
+  /**
+   * Meanings that exist but have no wording in the learner language yet. They are named so the
+   * learner can be told, and are never shown in another language as a substitute.
+   */
+  missing: { sense_id: string; ordinal: number }[]
   forms: { form_key: string; form_text: string; gender: string }[]
 }
 
@@ -52,17 +63,24 @@ function text(value: unknown): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : null
 }
 
+function isLanguage(value: unknown): value is TranslationLanguage {
+  return value === 'ru' || value === 'en' || value === 'uk'
+}
+
 export function parseCatalogSense(value: unknown): CatalogSense | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const record = value as Record<string, unknown>
   const senseId = text(record.sense_id)
   const body = text(record.text)
   const ordinal = typeof record.ordinal === 'number' && Number.isInteger(record.ordinal) ? record.ordinal : null
-  if (!senseId || !body || ordinal === null) return null
+  // The column defaults to Russian, which every row written before issue #14 is.
+  const lang = record.lang === undefined ? 'ru' : record.lang
+  if (!senseId || !body || ordinal === null || !isLanguage(lang)) return null
   const pos = isPartOfSpeech(record.pos) ? record.pos : null
   return {
     sense_id: senseId,
     ordinal,
+    lang,
     text: body,
     pos,
     gender: pos === 'noun' && isNounGender(record.gender) ? record.gender : null,
@@ -71,17 +89,21 @@ export function parseCatalogSense(value: unknown): CatalogSense | null {
   }
 }
 
-export function parseCatalogEntry(value: unknown): CatalogEntry | null {
+/** One catalog row read for a learner language. Rows in other languages only mark what is missing. */
+export function parseCatalogEntry(value: unknown, lang: TranslationLanguage): CatalogEntry | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const record = value as Record<string, unknown>
   const lemma = text(record.lemma)
   const kind = record.kind === 'word' || record.kind === 'phrase' ? record.kind : null
   if (!lemma || !kind) return null
-  const senses = Array.isArray(record.word_catalog_sense)
+  const rows = Array.isArray(record.word_catalog_sense)
     ? record.word_catalog_sense.map(parseCatalogSense).filter((sense): sense is CatalogSense => sense !== null)
-      .sort((left, right) => left.ordinal - right.ordinal)
     : []
-  if (!senses.length) return null
+  const senses = rows.filter((sense) => sense.lang === lang).sort((left, right) => left.ordinal - right.ordinal)
+  const supplied = new Set(senses.map((sense) => sense.sense_id))
+  const missing = [...new Map(rows.filter((sense) => !supplied.has(sense.sense_id)).map((sense) => [sense.sense_id, { sense_id: sense.sense_id, ordinal: sense.ordinal }])).values()]
+    .sort((left, right) => left.ordinal - right.ordinal)
+  if (!senses.length && !missing.length) return null
   const pos = isPartOfSpeech(record.pos) ? record.pos : null
   const forms = Array.isArray(record.word_catalog_form) ? record.word_catalog_form.flatMap((value): { form_key: string; form_text: string; gender: string }[] => {
     if (!value || typeof value !== 'object') return []
@@ -100,8 +122,20 @@ export function parseCatalogEntry(value: unknown): CatalogEntry | null {
     example_sentence: text(record.example_sentence),
     example_translation: text(record.example_translation),
     senses,
+    missing,
     forms,
   }
+}
+
+/**
+ * The form the learner actually typed, and whether the headword's verified forms include it.
+ * Only a verified form is claimed as belonging to the word; an unverified one is still shown as
+ * what was typed, but the paradigm is never said to contain it (spec #12, decision 11).
+ */
+export function encounteredFormOf(entry: Pick<CatalogEntry, 'lemma' | 'forms'>, typed: string): { text: string; verified: boolean; isHeadword: boolean } {
+  const form = corLookupForm(typed) || typed.trim().toLocaleLowerCase('da-DK')
+  const isHeadword = form === entry.lemma
+  return { text: form, isHeadword, verified: isHeadword || entry.forms.some((candidate) => candidate.form_text.toLocaleLowerCase('da-DK') === form) }
 }
 
 /**
@@ -121,14 +155,14 @@ export function candidateLemmas(typed: string, corRows: readonly { lemma: string
 
 const ENTRY_COLUMNS = 'lemma, kind, freq_rank, pos, gender, definite_singular, pronunciation, audio_path,'
   + ' example_sentence, example_translation,'
-  + ' word_catalog_sense(sense_id, ordinal, text, pos, gender, example, example_translation),'
+  + ' word_catalog_sense(sense_id, ordinal, lang, text, pos, gender, example, example_translation),'
   + ' word_catalog_form(form_key, form_text, gender)'
 
 /**
  * What the catalog holds for one typed text. Never throws: a catalog outage must fall through to
  * the live AI path, not stop the learner adding a word.
  */
-export async function lookupCatalog(client: SupabaseClient, typed: string): Promise<CatalogLookup> {
+export async function lookupCatalog(client: SupabaseClient, typed: string, lang: TranslationLanguage): Promise<CatalogLookup> {
   const form = corLookupForm(typed)
   if (!form) return { candidates: [], miss: null }
   const isPhrase = /\s/u.test(form)
@@ -145,10 +179,9 @@ export async function lookupCatalog(client: SupabaseClient, typed: string): Prom
       .select(ENTRY_COLUMNS)
       .eq('kind', isPhrase ? 'phrase' : 'word')
       .in('lemma', lemmas)
-      .eq('word_catalog_sense.lang', 'ru')
 
     const candidates = (Array.isArray(data) ? data : [])
-      .map(parseCatalogEntry)
+      .map((row) => parseCatalogEntry(row, lang))
       .filter((entry): entry is CatalogEntry => entry !== null)
       // The typed form's own lemma first; after that, the more common word.
       .sort((left, right) => Number(right.lemma === form) - Number(left.lemma === form)
@@ -181,10 +214,12 @@ export interface UnlockedDraft {
  * `source: 'cor'` marks a meaning whose grammar is a recorded fact rather than an opinion, which
  * is what keeps the sense-refinement queue from asking a model to re-classify it.
  */
-export function unlockedDraft(entry: CatalogEntry, pickedSenseId: string): UnlockedDraft {
-  const picked = entry.senses.find((sense) => sense.sense_id === pickedSenseId) || entry.senses[0]
+export function unlockedDraft(entry: CatalogEntry, pickedSenseId: string | null): UnlockedDraft {
+  // No meaning in the learner language: the headword, its pronunciation and its audio still
+  // need no translation, so they are offered and the learner writes the meaning.
+  const picked = pickedSenseId === null ? null : entry.senses.find((sense) => sense.sense_id === pickedSenseId) || entry.senses[0] || null
   const now = new Date().toISOString()
-  const senses = entry.senses.map((sense): EntrySense => ({
+  const senses = picked ? entry.senses.map((sense): EntrySense => ({
     id: sense.sense_id,
     text: sense.text,
     pos: sense.pos,
@@ -197,16 +232,41 @@ export function unlockedDraft(entry: CatalogEntry, pickedSenseId: string): Unloc
     coverage: emptyCoverage(),
     created_at: now,
     removed_at: null,
-  }))
+  })) : []
   // The primary sense owns the entry's example columns (D10), so the picked meaning's example
-  // becomes the entry's and is not repeated on the sense itself.
+  // becomes the entry's and is not repeated on the sense itself. The entry-level example is
+  // Russian-only data from before issue #14, so it is only a fallback for a Russian learner.
   const orderedSenses = [...senses].sort((left, right) => Number(left.locked) - Number(right.locked))
+  const entryExample = picked?.lang === 'ru'
   return {
     danish: entry.lemma,
     pronunciation: entry.pronunciation || '',
     audio_path: entry.audio_path,
     senses: orderedSenses,
-    example_sentence: picked.example || entry.example_sentence || '',
-    example_translation: picked.example_translation || entry.example_translation || '',
+    example_sentence: picked?.example || (entryExample ? entry.example_sentence : null) || '',
+    example_translation: picked?.example ? picked.example_translation || '' : (entryExample ? entry.example_translation : null) || '',
   }
+}
+
+/**
+ * Add a meaning to a word that is already saved (spec #12, decision 11), rather than saving the
+ * word a second time. With a picked catalog sense, a copy stored locked is unlocked in place and a
+ * meaning the word lacks is appended with its catalog id. With no catalog sense (the learner wrote
+ * their own meaning because none was supplied in their language), each new wording is appended.
+ * Every existing meaning, its id and its coverage are left exactly as they are, and no new entry,
+ * card or history is created.
+ */
+export function addCatalogMeaning(saved: readonly EntrySense[], draft: readonly EntrySense[], pickedSenseId: string | null): { status: 'added' | 'already-saved'; senses: EntrySense[] } {
+  const current = [...saved]
+  if (pickedSenseId === null) {
+    const known = new Set(activeSenses(current).map((sense) => normalizeSenseText(sense.text)))
+    const fresh = activeSenses(draft).filter((sense) => !known.has(normalizeSenseText(sense.text)))
+    return fresh.length ? { status: 'added', senses: [...current, ...fresh] } : { status: 'already-saved', senses: current }
+  }
+  const existing = current.find((sense) => sense.id === pickedSenseId && !sense.removed_at)
+  if (existing && !existing.locked) return { status: 'already-saved', senses: current }
+  if (existing) return { status: 'added', senses: current.map((sense) => sense === existing ? { ...sense, locked: false } : sense) }
+  const incoming = draft.find((sense) => sense.id === pickedSenseId)
+  if (!incoming) return { status: 'already-saved', senses: current }
+  return { status: 'added', senses: [...current, { ...incoming, locked: false }] }
 }

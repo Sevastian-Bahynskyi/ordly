@@ -1,3 +1,5 @@
+import { LEARNER_LANGUAGE_NAMES, learnerLanguage } from '@/lib/learner-language'
+import type { TranslationLanguage } from '@/lib/types'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { EntryKind, EntrySense } from '@/lib/types'
@@ -55,9 +57,7 @@ const pronunciationSchema = {
   additionalProperties: false,
 }
 
-const languageNames: Record<string, string> = { ru: 'Russian', en: 'English', uk: 'Ukrainian' }
 
-type TranslationLanguage = 'ru' | 'en' | 'uk'
 
 async function aiCompletion(body: Record<string, unknown>, label: string, models: readonly string[]) {
   return openRouterJson(body, label, { models, timeoutMs: 10000 })
@@ -167,7 +167,7 @@ function readSenseContext(value: unknown): SenseContext | null {
 }
 
 async function generateTranslation(danish: string, entryKind: EntryKind, language: TranslationLanguage) {
-  const targetLanguage = languageNames[language]
+  const targetLanguage = LEARNER_LANGUAGE_NAMES[language]
   const outputRules = entryKind === 'sentence'
     ? `Translate the complete Danish sentence/expression naturally into ${targetLanguage}. Return exactly ONE sense object holding the whole natural translation. Never split a sentence translation into several senses.`
     : `Translate the Danish word or phrase into ${targetLanguage}. Return one sense object per genuinely distinct meaning. One meaning is completely fine. Return at most 3 senses, and only when each is genuinely useful to a learner.`
@@ -406,7 +406,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     jobs.push((async () => {
       try {
         const { data: profile } = await profilePromise!
-        const language = (profile?.default_translation_language || 'ru') as TranslationLanguage
+        const language = learnerLanguage(profile?.default_translation_language)
         const { translation, senses } = await generateTranslation(danish, entryKind, language)
         // Both shapes are part of the contract: the composer reads `senses`, while the
         // Words-page preview/apply flow reads the flat `translation` string.
@@ -428,7 +428,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           supabase.from('vocabulary_entries').select('danish').in('learning_status', ['learning', 'mastered']).not('danish', 'eq', danish).limit(30),
         ])
 
-        const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
+        const targetLanguage = LEARNER_LANGUAGE_NAMES[learnerLanguage(profile?.default_translation_language)]
         const level = profile?.danish_level || 'A1'
         const knownWords = (known || []).map((x) => x.danish).join(', ')
         const existingExample = regenerate ? '' : String(draft.example_sentence || '').trim()

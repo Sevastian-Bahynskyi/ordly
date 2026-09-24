@@ -379,6 +379,10 @@
 
 .catalog-candidate-head strong { color: var(--ink); font-weight: 650; }
 .catalog-form-preview { margin: 5px 0 9px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.catalog-encountered { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.catalog-encountered strong { color: var(--ink); font-weight: 600; }
+/* A meaning with no wording in the learner language is counted, never shown in another language. */
+.catalog-missing { display: block; margin: 6px 2px 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
 .catalog-pos { color: var(--muted-2); font-size: 12px; }
 .catalog-pron { color: var(--muted); font-size: 12px; }
 

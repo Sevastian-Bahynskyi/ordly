@@ -1,11 +1,13 @@
 'use client'
 
+import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Undo2, WandSparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { CatalogMatch } from '@/components/CatalogMatch'
+import { addCatalogMeaning } from '@/lib/catalog'
 import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
 import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
@@ -123,7 +125,7 @@ export function EntryEditor({
   mode,
   entry = null,
   compact = false,
-  translationLanguage = 'ru',
+  translationLanguage = DEFAULT_LEARNER_LANGUAGE,
 }: {
   mode: EntryEditorMode
   entry?: VocabularyEntry | null
@@ -149,6 +151,16 @@ export function EntryEditor({
   const [duplicate, setDuplicate] = useState<DuplicateEntry[] | null>(null)
   const [liveDuplicate, setLiveDuplicate] = useState<DuplicateEntry[]>([])
   const [allowDuplicate, setAllowDuplicate] = useState(false)
+  /**
+   * The catalog meaning the learner picked, if the draft came from the catalog. `senseId` is null
+   * when no meaning was supplied in their language and they are writing their own.
+   */
+  const catalogPick = useRef<{ lemma: string; senseId: string | null } | null>(null)
+  /**
+   * A catalog word that is already in Material (spec #12, decision 11). It is never saved a second
+   * time: the picked meaning is added to the saved entry instead, or it is already there.
+   */
+  const [catalogDuplicate, setCatalogDuplicate] = useState<{ id: string; danish: string; updatedAt: string; senses: EntrySense[]; status: 'added' | 'already-saved' } | null>(null)
   const [notice, setNotice] = useState<{ text: string; tone: ToastTone } | null>(null)
   /** The undo toast is transient; `undoSnapshot` outlives it and keeps Undo in the AI sheet. */
   const [undoToastOpen, setUndoToastOpen] = useState(false)
@@ -379,6 +391,10 @@ export function EntryEditor({
       setUndoSnapshot(null)
       setDuplicate(null)
       setAllowDuplicate(false)
+      if (value.trim() !== draft.danish.trim()) {
+        catalogPick.current = null
+        setCatalogDuplicate(null)
+      }
     } else {
       if (key === 'example_sentence') {
         latestExampleSentence.current = value
@@ -986,6 +1002,27 @@ export function EntryEditor({
     }
     const graded = fillCorGender(senses, corForms)
 
+    // A catalog word already in Material gets its meaning added to the saved entry rather than a
+    // second entry, card and history. Owner-scoped by RLS like every other Material read.
+    if (!editing && current.catalog_lemma && catalogPick.current?.lemma === current.catalog_lemma) {
+      const { data: saved } = await supabase
+        .from('vocabulary_entries')
+        .select('id, danish, senses, updated_at')
+        .eq('entry_kind', 'word')
+        .or(`catalog_lemma.eq."${current.catalog_lemma}",danish.ilike."${current.catalog_lemma}"`)
+        .limit(1)
+      const existing = saved?.[0]
+      if (existing) {
+        const incoming = graded.map((sense) => sense.id === catalogPick.current?.senseId && !sense.example
+          ? { ...sense, example: current.example_sentence.trim() || null, example_translation: current.example_translation.trim() || null }
+          : sense)
+        const merged = addCatalogMeaning(parseSenses(existing.senses), [...incoming, ...lockedSenses(current.senses)], catalogPick.current.senseId)
+        setCatalogDuplicate({ id: existing.id, danish: existing.danish, updatedAt: existing.updated_at, senses: merged.senses, status: merged.status })
+        setSaving(false)
+        return
+      }
+    }
+
     if (!allowDuplicate && !editing) {
       const { data } = await supabase
         .from('vocabulary_entries')
@@ -1085,6 +1122,7 @@ export function EntryEditor({
     setDuplicate(null)
     setLiveDuplicate([])
     setAllowDuplicate(false)
+    catalogPick.current = null
     setUsedAI(false)
     notify('Saved. It is ready for review.', 'success')
     setSaving(false)
@@ -1108,6 +1146,32 @@ export function EntryEditor({
         <span className="keyboard-hint">⌘ K</span>
       </button>
     )
+  }
+
+  /** Add the picked meaning to the saved word. The write is conditional on `updated_at`, so an edit made elsewhere meanwhile wins. */
+  async function addToSavedWord(): Promise<void> {
+    if (!catalogDuplicate || catalogDuplicate.status !== 'added') return
+    setSaving(true)
+    const { data, error } = await createClient()
+      .from('vocabulary_entries')
+      .update({ senses: catalogDuplicate.senses })
+      .eq('id', catalogDuplicate.id)
+      .eq('updated_at', catalogDuplicate.updatedAt)
+      .select('id')
+    setSaving(false)
+    if (error || !data?.length) {
+      notify('That word changed meanwhile. Open it to add the meaning.', 'error')
+      return
+    }
+    const danish = catalogDuplicate.danish
+    catalogPick.current = null
+    setCatalogDuplicate(null)
+    resetDraft(blankDraft(), [])
+    setEntryKind('word')
+    setIncludeExample(false)
+    setLiveDuplicate([])
+    notify(`Added to “${danish}”. Its Review history is unchanged.`, 'success')
+    router.refresh()
   }
 
   const duplicateMeanings = [...new Set(liveDuplicate.map((item) => item.translation?.trim() || 'No translation'))]
@@ -1198,7 +1262,10 @@ export function EntryEditor({
         {!editing && (
           <CatalogMatch
             danish={draft.danish}
-            onUnlock={(unlocked, lemma) => {
+            lang={translationLanguage}
+            onUnlock={(unlocked, lemma, senseId) => {
+              catalogPick.current = { lemma, senseId }
+              setCatalogDuplicate(null)
               commitDraft((current) => ({
                 ...current,
                 ...unlocked,
@@ -1345,6 +1412,19 @@ export function EntryEditor({
           <Plus size={16} /> Add example sentence
         </button>
       ))}
+
+      {catalogDuplicate && (
+        <div className="duplicate-box">
+          <div>
+            <strong>“{catalogDuplicate.danish}” is already in your Material.</strong>
+            <span>{catalogDuplicate.status === 'already-saved' ? 'It already has this meaning.' : 'Add this meaning to it. Its Review history stays as it is.'}</span>
+          </div>
+          <div className="row-actions">
+            <button className="soft-button" onClick={() => router.push(`/words/${catalogDuplicate.id}`)}>Open existing</button>
+            {catalogDuplicate.status === 'added' && <button className="soft-button strong" disabled={saving} onClick={() => void addToSavedWord()}>Add this meaning</button>}
+          </div>
+        </div>
+      )}
 
       {duplicate && (
         <div className="duplicate-box">

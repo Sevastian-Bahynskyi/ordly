@@ -9,7 +9,7 @@ Ordly is a personal, mobile-first Danish learning PWA. The user wants extremely 
 Core product constraints:
 
 - Danish is always the source language.
-- Translation language is configurable: Russian (default), English, Ukrainian.
+- Learner language is one app-wide preference: English (default for new profiles), Russian, Ukrainian (saved material only; no supplied content). Read it through `learnerLanguage()` in `lib/learner-language.ts`, never with an inline fallback.
 - Danish level is configurable A1–C1; default A1.
 - Manual-first entry. AI assists only when explicitly requested.
 - Support single words, phrases, sentence fragments, and full sentences.
@@ -649,6 +649,15 @@ anything here. The shape:
 - **The audio button is a narrow reversal of §19.** What stays removed is the three-button
   Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
   is not that.
+
+## 24. Catalog headwords and learner languages (issue #14)
+
+- **One sense, one id, several wordings.** `word_catalog_sense` is keyed `(lemma, kind, sense_id, lang)`. An English row reuses the Russian row's `sense_id`, and the trigger `word_catalog_sense_locale_consistent` refuses a language row whose ordinal, part of speech or gender differs from its siblings. Never mint a new id for a translation: saved entries and practice history hang off it.
+- **Wordings are loaded by script.** `scripts/import-catalog-locale.ts <file> [--sql]` validates a locale file (`lib/catalog-locale.ts`: script matches the language, provenance present, example with translation) and upserts only onto senses that already exist in another language. The first file is `catalog/locale-pilot.en.json` (57 senses, 37 words), provenance `locale-pilot-en-2026-09-25`.
+- **Missing wording is named, never substituted.** `parseCatalogEntry(row, lang)` returns the senses supplied in the learner language plus a `missing` list. The composer counts missing meanings and can still unlock the headword, pronunciation, audio and forms for the learner's own meaning. The entry-level `word_catalog.example_translation` is Russian-only data and is used only for a Russian learner.
+- **Encountered forms.** The composer saves the headword (`gulvet` → `gulv`); the verified forms are copied by `private.copy_catalog_forms`. `encounteredFormOf` claims the typed form as one of the word's forms only when the verified paradigm contains it.
+- **A catalog word already in Material is never saved twice.** On Save, a draft with `catalog_lemma` looks for the learner's saved word (by `catalog_lemma` or Danish). `addCatalogMeaning` then either reports the meaning as already saved or adds it to the saved entry (unlocking a locked copy or appending with the catalog id), conditional on `updated_at`. No second entry, card or history. The manual "Add another meaning" path is unchanged for non-catalog text.
+- A learner-language switch updates `profiles` only. Saved meanings, Review and practice are untouched; only the wording offered from the catalog changes.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

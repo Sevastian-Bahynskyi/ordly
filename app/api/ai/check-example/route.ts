@@ -1,3 +1,4 @@
+import { LEARNER_LANGUAGE_NAMES, learnerLanguage } from '@/lib/learner-language'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
@@ -39,12 +40,6 @@ const verificationSchema = {
   },
   required: ['accept', 'grammar_correct', 'preserves_intent', 'minimal_change', 'confidence', 'final_sentence', 'final_translation', 'issue'],
   additionalProperties: false,
-}
-
-const languageNames: Record<string, string> = {
-  ru: 'Russian',
-  en: 'English',
-  uk: 'Ukrainian',
 }
 
 type LanguageToolHint = {
@@ -294,7 +289,7 @@ export async function POST(request: Request) {
     .select('default_translation_language, danish_level')
     .single()
 
-  const targetLanguage = languageNames[profile?.default_translation_language || 'ru'] || 'Russian'
+  const targetLanguage = LEARNER_LANGUAGE_NAMES[learnerLanguage(profile?.default_translation_language)]
   const level = String(profile?.danish_level || 'A1')
 
   try {
