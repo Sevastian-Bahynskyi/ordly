@@ -55,3 +55,16 @@ for (let offset = 0; offset < savedValues.length; offset += 180) {
   await query(`insert into public.word_forms (user_id, entry_id, form_key, form_text, gender, source) select e.user_id, v.entry_id, v.form_key, v.form_text, v.gender, 'cor' from (values ${savedValues.slice(offset, offset + 180).join(',')}) v(entry_id,form_key,form_text,gender) join public.vocabulary_entries e on e.id = v.entry_id on conflict do nothing`)
 }
 console.log('Paradigms synchronized')
+
+// DDO's suppletive comparisons are absent from COR. Keep them in the reference catalog and
+// already saved headwords when a fresh environment imports its catalog after the migrations.
+const ddoComparisons = [
+  ['lille', 'comparative', 'mindre', 'меньше, менее'],
+  ['lille', 'superlative', 'mindst', 'самый маленький, меньше всего'],
+  ['megen', 'comparative', 'mere', 'больше, ещё'],
+  ['megen', 'superlative', 'mest', 'больше всего, наиболее'],
+] as const
+for (const [lemma, key, text, gloss] of ddoComparisons) {
+  await query(`insert into public.word_catalog_form (lemma, kind, form_key, form_text, gender, source, gloss) select lemma, kind, ${literal(key)}, ${literal(text)}, '', 'ddo', ${literal(gloss)} from public.word_catalog where lemma = ${literal(lemma)} and kind = 'word' on conflict do nothing`)
+  await query(`insert into public.word_forms (user_id, entry_id, form_key, form_text, gender, source, gloss) select user_id, id, ${literal(key)}, ${literal(text)}, '', 'ddo', ${literal(gloss)} from public.vocabulary_entries where danish = ${literal(lemma)} and entry_kind = 'word' on conflict do nothing`)
+}

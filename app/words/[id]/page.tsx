@@ -5,12 +5,10 @@ import { AppShell } from '@/components/AppShell'
 import { DefiniteNoun } from '@/components/DefiniteNoun'
 import { EntryEditor } from '@/components/EntryEditor'
 import { MemoryRing } from '@/components/MemoryRing'
-import { SynonymGraph } from '@/components/SynonymGraph'
 import { WordAudio } from '@/components/WordAudio'
 import { WordStructure } from '@/components/WordStructure'
 import { requireUser } from '@/lib/auth'
 import { definiteFormKey, fetchCorDefiniteForms } from '@/lib/cor'
-import type { EntryLinkRow, LinkedEntryLabel } from '@/lib/entry-links'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { activeSenses, nounGenderOf, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
@@ -31,17 +29,9 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   // before it goes anywhere near the query rather than trusted from the URL.
   if (!isUuid(id)) notFound()
 
-  const [{ data: entry }, { data: profile }, { data: links }, { data: groupEntries }, { data: forms }] = await Promise.all([
+  const [{ data: entry }, { data: profile }, { data: forms }] = await Promise.all([
     supabase.from('vocabulary_entries').select('*').eq('id', id).maybeSingle(),
     supabase.from('profiles').select('default_translation_language').single(),
-    // Either end of the edge can be this entry: symmetric kinds are stored once, in canonical
-    // order, so a filter on a_id alone would show half the graph.
-    supabase
-      .from('entry_links')
-      .select('a_id, b_id, kind, source, confidence, confirmed, concept')
-      .or(`a_id.eq.${id},b_id.eq.${id}`)
-      .is('dismissed_at', null),
-    supabase.from('vocabulary_entries').select('id, danish, translation, entry_kind, canonical_entry_id').eq('entry_kind', 'word').order('danish'),
     supabase.from('word_forms').select('*').eq('entry_id', id),
   ])
 
@@ -50,18 +40,10 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   if (!entry) notFound()
 
   const typedEntry = entry as VocabularyEntry
-  const linkRows = (links || []) as EntryLinkRow[]
-  const neighbourIds = [...new Set(linkRows.map((link) => link.a_id === id ? link.b_id : link.a_id))]
-
-  // Second and last round-trip. The neighbour labels ride along with the review card rather
-  // than after it, so the graph costs the page no extra depth (AGENTS.md §16).
   // The recording belongs to the catalog row, not to the entry: the entry is a copy, and audio is
   // reference data every account shares (issue #6 §5). One primary-key read, and null is ordinary.
-  const [{ data: card }, { data: neighbours }, { data: catalog }, { data: canonicalForms }] = await Promise.all([
+  const [{ data: card }, { data: catalog }, { data: canonicalForms }] = await Promise.all([
     supabase.from('review_cards').select('*').eq('entry_id', typedEntry.id).maybeSingle(),
-    neighbourIds.length
-      ? supabase.from('vocabulary_entries').select('id, danish, translation').in('id', neighbourIds)
-      : Promise.resolve({ data: [] as LinkedEntryLabel[] }),
     typedEntry.catalog_lemma
       ? supabase.from('word_catalog').select('audio_path').eq('lemma', typedEntry.catalog_lemma)
         .eq('kind', typedEntry.entry_kind === 'sentence' ? 'phrase' : 'word').maybeSingle()
@@ -91,12 +73,11 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
                 </span>
               )}
               {typedEntry.danish}
-              <WordAudio audioPath={typedEntry.audio_path ?? (catalog as { audio_path: string | null } | null)?.audio_path ?? null} label={typedEntry.danish} />
+              {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordAudio audioPath={typedEntry.audio_path ?? (typedEntry.catalog_lemma === typedEntry.danish ? (catalog as { audio_path: string | null } | null)?.audio_path : null) ?? null} label={typedEntry.danish} />}
             </h1>
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}
               {typedEntry.pronunciation || 'No pronunciation yet'}
-              {typedEntry.audio_source === 'device_voice' && ' · Device voice'}
               {senses.length > 1 && ` · ${senses.length} meanings`}
             </p>
           </div>
@@ -112,18 +93,8 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
           translationLanguage={profile?.default_translation_language || 'ru'}
         />
 
-        {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} entries={(groupEntries || []) as Pick<VocabularyEntry, 'id' | 'danish' | 'translation' | 'entry_kind' | 'canonical_entry_id'>[]} initialForms={(typedEntry.canonical_entry_id ? canonicalForms || [] : forms || []) as WordForm[]} />}
+        {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} initialForms={(typedEntry.canonical_entry_id ? canonicalForms || [] : forms || []) as WordForm[]} />}
 
-        {/* Sentences are learned whole and never get synonym links, so the graph would always be empty. */}
-        {typedEntry.entry_kind !== 'sentence' && (
-          <SynonymGraph
-            entryId={typedEntry.id}
-            entryDanish={typedEntry.danish}
-            entryKind={typedEntry.entry_kind || 'word'}
-            initialLinks={linkRows}
-            neighbourEntries={(neighbours || []) as LinkedEntryLabel[]}
-          />
-        )}
       </div>
     </AppShell>
   )

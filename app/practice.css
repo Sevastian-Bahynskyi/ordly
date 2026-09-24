@@ -58,9 +58,8 @@
 .practice-bottom-note svg { flex-shrink: 0; }
 .practice-notice, .practice-time-notice { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 15px 18px; border: 1px solid #e7d9b9; background: #fffcf4; border-radius: 15px; font-size: 13px; line-height: 1.5; margin-bottom: 20px; }
 .practice-time-notice button { color: var(--purple); font: inherit; font-weight: 600; border: 0; background: none; cursor: pointer; margin-left: auto; padding: 8px; }
-.review-practice-link { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 21px; margin-bottom: 24px; border: 1px solid #e5dbf7; border-radius: 18px; background: linear-gradient(115deg, #f2ebff, #fff); color: var(--ink); }
-.review-practice-link strong, .review-practice-link small { display: block; }
-.review-practice-link small { margin-top: 4px; font-size: 12px; color: var(--muted); }
+.review-practice-link { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; margin: 20px auto 0; color: var(--muted); font-size: 12px; font-weight: 600; }
+.review-practice-link:hover { color: var(--purple); }
 .review-hero .ordinary-review-link { display: block; color: #e9dfff; font-size: 12px; margin-top: 15px; }
 @media (max-width: 600px) {
   .practice-header { align-items: flex-start; gap: 12px; }

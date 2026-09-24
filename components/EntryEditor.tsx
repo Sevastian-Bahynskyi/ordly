@@ -12,7 +12,6 @@ import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stri
 import { diffAnswer } from '@/lib/answer-diff'
 import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, syncCorParadigm, type CorForm } from '@/lib/cor'
 import { replaceWordInText, type Misspelling } from '@/lib/danish-text'
-import { discoverSynonyms } from '@/lib/entry-links'
 import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { parseRefinedMeanings } from '@/lib/sense-refinement'
@@ -963,24 +962,6 @@ export function EntryEditor({
     }
   }
 
-  /**
-   * Look for synonyms of the entry that was just written (D16, step 4).
-   *
-   * Deliberately not awaited, and deliberately after the write: the row is already committed
-   * and the composer is already reset by the time this runs, so a slow, rate-limited or absent
-   * model costs the learner nothing. `discoverSynonyms` swallows every failure, and the only
-   * visible effect of success is that the chips and the ego-graph appear on the next render.
-   */
-  function runSynonymDiscovery(entryId: string, kind: EntryKind | null | undefined): void {
-    // Synonymy between whole sentences is not a claim worth an AI call. The route refuses it
-    // anyway; this only saves the round-trip.
-    if (!entryId || kind === 'sentence') return
-    void discoverSynonyms(entryId).then((found) => {
-      // Only a run that actually stored an edge is worth re-rendering the route for.
-      if (found > 0) router.refresh()
-    })
-  }
-
   async function save() {
     if (aiLoading) return notify('Wait for the AI check to finish.')
     const current = draftRef.current
@@ -1073,7 +1054,6 @@ export function EntryEditor({
       notify('Saved. Your changes are live.', 'success')
       setSaving(false)
       router.refresh()
-      runSynonymDiscovery(saved.id, saved.entry_kind)
       return
     }
 
@@ -1091,7 +1071,6 @@ export function EntryEditor({
 
     if (savedEntry?.id) {
       if (entryKind === 'word' && !current.catalog_lemma) await syncCorParadigm(supabase, savedEntry.id, current.danish, graded)
-      runSynonymDiscovery(savedEntry.id, savedEntry.entry_kind)
     }
 
     exampleSentenceDirty.current = false

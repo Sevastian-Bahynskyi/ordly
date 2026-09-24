@@ -7,14 +7,6 @@ import { BookOpenText, Check, CloudUpload, Loader2, Search, Sparkles, VolumeX, W
 import { createClient } from '@/lib/supabase/client'
 import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
 import { definiteFormKey } from '@/lib/cor'
-import {
-  neighboursByEntry,
-  withConfirmedLink,
-  withoutLink,
-  type EntryLinkRow,
-  type LinkedEntryLabel,
-} from '@/lib/entry-links'
-import { canStartDiscovery, discoveryStartIndex, type DiscoveryRun } from '@/lib/discovery-run'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { hasWordRecording } from '@/lib/material-audio'
@@ -23,8 +15,7 @@ import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, 
 import type { WordForm } from '@/lib/word-forms'
 import { DefiniteNoun } from './DefiniteNoun'
 import { MemoryRing } from './MemoryRing'
-import { SynonymChips } from './SynonymChips'
-import { VocabularyGraph } from './VocabularyGraph'
+import { FormForest } from './FormForest'
 
 export type MaterialKind = 'all' | 'words' | 'phrases' | 'sentences'
 type StatusFilter = 'all' | LearningStatus
@@ -65,7 +56,6 @@ const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example
 export function MaterialClient({
   initialWords,
   initialCards,
-  initialLinks = [],
   initialForms = [],
   catalogAudio = {},
   initialMissingAudio = false,
@@ -77,7 +67,6 @@ export function MaterialClient({
 }: {
   initialWords: VocabularyEntry[]
   initialCards: ReviewCard[]
-  initialLinks?: EntryLinkRow[]
   initialForms?: WordForm[]
   catalogAudio?: Record<string, string | null>
   initialMissingAudio?: boolean
@@ -92,14 +81,10 @@ export function MaterialClient({
   const pathname = usePathname()
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
-  const [links, setLinks] = useState<EntryLinkRow[]>(initialLinks)
   const [missingAudio, setMissingAudio] = useState(initialMissingAudio)
   const [query, setQuery] = useState(initialQuery)
   const [kind, setKind] = useState<MaterialKind>(initialKind)
   const [graphOpen, setGraphOpen] = useState(false)
-  const [discovery, setDiscovery] = useState<DiscoveryRun | null>(null)
-  /** How far the last discovery run got, so resuming does not re-run the entries it finished. */
-  const discoveryCursor = useRef(0)
   const [status, setStatus] = useState<StatusFilter>('all')
   /** Part of speech, offered only while the list is showing words — a sentence has none. */
   const [pos, setPos] = useState<PartOfSpeech | 'all'>(initialPos)
@@ -112,22 +97,8 @@ export function MaterialClient({
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
 
-  // Every word is already in memory, so a chip costs one map lookup rather than a join — the
-  // same reason `senses` lives on the entry row (plan §7, AGENTS.md §16).
-  const neighbours = useMemo(
-    () => neighboursByEntry(links, new Map<string, LinkedEntryLabel>(
-      words.map((word) => [word.id, { id: word.id, danish: word.danish, translation: word.translation }]),
-    )),
-    [links, words],
-  )
-
-  function resolveLink(link: EntryLinkRow, action: 'confirm' | 'dismiss') {
-    setLinks((current) => action === 'dismiss' ? withoutLink(current, link) : withConfirmedLink(current, link))
-  }
-
   useEffect(() => setWords(initialWords), [initialWords])
   useEffect(() => setCards(initialCards), [initialCards])
-  useEffect(() => setLinks(initialLinks), [initialLinks])
   useEffect(() => setMissingAudio(initialMissingAudio), [initialMissingAudio])
 
   function toggleMissingAudio(): void {
@@ -247,7 +218,7 @@ export function MaterialClient({
       .filter((row) => kind === 'all' || `${row.kind}s` === kind)
       .filter((row) => pos === 'all' || (grammar.get(row.entry.id)?.parts || []).includes(pos))
       .filter((row) => !missingAudio || (row.kind === 'word' && !hasWordRecording(row.entry, catalogAudio)))
-      .filter((row) => matches(row.entry.danish, row.entry.translation, ...(collapseGroups ? (groupMembers.get(row.entry.id) || []).flatMap((member) => [member.danish, member.translation]) : [])))
+      .filter((row) => matches(row.entry.danish, row.entry.translation, ...(formsByEntry.get(row.entry.id) || []).flatMap((form) => [form.form_text, form.gloss]), ...(collapseGroups ? (groupMembers.get(row.entry.id) || []).flatMap((member) => [member.danish, member.translation]) : [])))
     if (kind !== 'sentences') return entries
     // Sentences you added come first; the examples that belong to your words follow them.
     const examples: MaterialRow[] = status !== 'all' || missingAudio ? [] : words
@@ -255,7 +226,7 @@ export function MaterialClient({
       .map((word) => ({ type: 'example' as const, key: `example:${word.id}`, entry: word, danish: word.example_sentence!.trim(), translation: word.example_translation?.trim() || null }))
       .filter((row) => matches(row.danish, row.translation, row.entry.danish))
     return [...entries, ...examples]
-  }, [words, query, status, kind, pos, grammar, missingAudio, catalogAudio, groupMembers])
+  }, [words, query, status, kind, pos, grammar, missingAudio, catalogAudio, groupMembers, formsByEntry])
 
 
   /** The noun's definite singular, when its meanings agree on one gender and COR holds the form. */
@@ -369,68 +340,13 @@ export function MaterialClient({
     setApplyingPreview(false)
   }
 
-  /**
-   * Re-run synonym discovery across the whole vocabulary.
-   *
-   * Discovery normally fires once, right after an entry is saved, so a vocabulary that predates
-   * it — or one whose edges were cleared — has no links and no way to get them. One call per
-   * word, sequentially: the route is rate limited, and hammering it in parallel is the fastest
-   * way to get every remaining call rejected.
-   */
-  async function findLinks(): Promise<void> {
-    const targets = words.filter((word) => word.entry_kind !== 'sentence')
-    // A stopped run is resumable — only a live one should swallow a second tap. Blocking on
-    // `discovery` alone left the button permanently dead after the first interruption.
-    if (!canStartDiscovery(discovery, targets.length)) return
-
-    // Carry on where the last run stopped rather than paying for the same entries twice.
-    const startAt = discoveryStartIndex(discovery, discoveryCursor.current, targets.length)
-    setDiscovery({ done: startAt, total: targets.length })
-
-    for (let index = startAt; index < targets.length; index += 1) {
-      discoveryCursor.current = index
-      let stopped: string | undefined
-
-      // iOS suspends the page as soon as Ordly leaves the screen, so every request from here
-      // would fail one after another. Stop on purpose and keep the place.
-      if (typeof document !== 'undefined' && document.hidden) {
-        stopped = 'Paused while Ordly was in the background.'
-      } else {
-        try {
-          const response = await fetch('/api/synonyms/discover', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ entryId: targets[index].id }),
-          })
-          if (response.status === 429) stopped = 'AI is rate limited. Try again in a minute.'
-          else if (response.status === 503) stopped = 'Synonym discovery is unavailable right now.'
-        } catch {
-          stopped = 'Lost connection.'
-        }
-      }
-
-      if (stopped) {
-        setDiscovery({ done: index, total: targets.length, stopped })
-        router.refresh()
-        return
-      }
-      setDiscovery({ done: index + 1, total: targets.length })
-    }
-
-    discoveryCursor.current = 0
-    setDiscovery(null)
-    router.refresh()
-  }
-
   async function removeWord(id: string) {
     if (!confirm('Delete this entry and its review history?')) return
     const { error } = await createClient().from('vocabulary_entries').delete().eq('id', id)
     if (!error) {
       setWords((current) => current.filter((word) => word.id !== id))
       setCards((current) => current.filter((card) => card.entry_id !== id))
-      // The database cascades the edges; the local copy has to follow or a chip would point at
-      // a word that is gone.
-      setLinks((current) => current.filter((link) => link.a_id !== id && link.b_id !== id))
+
     }
   }
 
@@ -454,7 +370,7 @@ export function MaterialClient({
   }
 
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="graph-open-button material-export-button" disabled={uploadingGithub} onClick={uploadMaterialToGithub}>{uploadingGithub ? <Loader2 className="spin" size={16}/> : <CloudUpload size={16}/>} {uploadingGithub ? 'Saving…' : 'Save to GitHub'}</button><button className="graph-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show graph</button></div></header>
+    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="forest-open-button material-export-button" disabled={uploadingGithub} onClick={uploadMaterialToGithub}>{uploadingGithub ? <Loader2 className="spin" size={16}/> : <CloudUpload size={16}/>} {uploadingGithub ? 'Saving…' : 'Save to GitHub'}</button><button className="forest-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show forms</button></div></header>
 
     <div className="material-kinds segmented" role="tablist" aria-label="Show">
       {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
@@ -498,7 +414,7 @@ export function MaterialClient({
         const word = row.entry
         const card = cardsByEntry.get(word.id)
         return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
-          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)!.map((member) => member.danish).join(' · ')}</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{`${formsByEntry.get(word.id)!.length} forms`}</span>}</div>}<SynonymChips neighbours={neighbours.get(word.id) || []} limit={row.kind === 'sentence' ? 2 : 3} onResolved={resolveLink} /></div></div>
+          <div className="word-main"><span className="word-bubble small">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)!.map((member) => member.danish).join(' · ')}</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{`${formsByEntry.get(word.id)!.length} forms`}</span>}</div>}</div></div>
           <span>{word.translation || <em className="muted">Not added</em>}</span>
           <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>
@@ -513,13 +429,9 @@ export function MaterialClient({
       {!visible.length && <div className="empty-state tall">Nothing matches this view.</div>}
     </section>
 
-    {/* Near full screen: the graph is the only thing worth looking at while it is open. */}
-    {graphOpen && <div className="graph-overlay" role="dialog" aria-modal="true" aria-label="Meaning graph">
-      <div className="graph-overlay-head">
-        <span className="eyebrow"><Waypoints size={14}/> MEANING GRAPH</span>
-        <button className="icon-button" aria-label="Close the graph" onClick={() => setGraphOpen(false)}><X size={18}/></button>
-      </div>
-      <VocabularyGraph entries={words} links={links} discovery={discovery} onFindLinks={findLinks} />
+    {graphOpen && <div className="forest-overlay" role="dialog" aria-modal="true" aria-label="Form forest">
+      <div className="forest-overlay-head"><span className="eyebrow"><Waypoints size={14}/> FORM FOREST</span><button className="icon-button" aria-label="Close the form forest" onClick={() => setGraphOpen(false)}><X size={18}/></button></div>
+      <FormForest entries={words} forms={initialForms} initialQuery={query} />
     </div>}
 
     {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>

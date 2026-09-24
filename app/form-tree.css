@@ -1,0 +1,85 @@
+.form-branch { margin: 16px 0; }
+.form-branch-heading { display: block; color: var(--text); font-size: 13px; font-weight: 700; }
+.form-branch-heading small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; font-weight: 400; }
+.form-branch-list { margin: 10px 0 0 9px; border-left: 2px solid var(--pos-border, var(--line)); }
+.form-branch-row { display: grid; grid-template-columns: minmax(100px, 28%) minmax(0, 1fr); column-gap: 12px; align-items: baseline; position: relative; padding: 9px 0 9px 16px; border-bottom: 1px solid var(--line); }
+.form-branch-row::before { content: ''; position: absolute; width: 10px; height: 2px; top: 19px; left: 0; background: var(--pos-border, var(--line)); }
+.form-branch-row:last-child { border-bottom: 0; }
+.form-branch-role { color: var(--muted); font-size: 11px; }
+.form-branch-row strong { color: var(--pos-fg, var(--text)); font-size: 15px; font-weight: 650; overflow-wrap: anywhere; }
+.form-branch-gloss { grid-column: 2; color: var(--muted); font-size: 11px; }
+.form-branch.compact { padding: 13px 0; border-top: 1px solid var(--line); }
+.form-branch.compact .form-branch-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 16px; border-left: 0; margin-left: 0; }
+.form-branch.compact .form-branch-row { grid-template-columns: 1fr; padding: 5px 0 5px 12px; border-bottom: 0; border-left: 2px solid var(--line); }
+.form-branch.compact .form-branch-row::before { display: none; }
+.form-branch.compact .form-branch-gloss { grid-column: 1; }
+.form-forest > p { color: var(--muted); font-size: 13px; }
+.form-forest-search { margin: 16px 0; }
+.form-forest-layout { display: grid; grid-template-columns: minmax(190px, 32%) minmax(0, 1fr); gap: 18px; min-height: 380px; }
+.form-forest-index { max-height: min(64vh, 620px); overflow: auto; border-right: 1px solid var(--line); padding-right: 12px; }
+.form-forest-item { display: block; width: 100%; min-height: 52px; padding: 10px 12px; margin-bottom: 3px; text-align: left; background: none; border: 0; border-left: 3px solid transparent; border-radius: 8px; cursor: pointer; }
+.form-forest-item.active { background: var(--surface-2); border-left-color: var(--pos-fg, var(--purple)); }
+.form-forest-item strong, .form-forest-item small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.form-forest-item small { color: var(--muted); font-size: 11px; margin-top: 2px; }
+.form-tree { --pos-fg: var(--purple); --pos-border: var(--line); padding: 20px; }
+.form-tree-root { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; padding: 8px 0 16px; border-bottom: 1px solid var(--line); }
+.form-tree-root strong { color: var(--pos-fg); font-size: 28px; letter-spacing: -.04em; }
+.form-tree-root span { color: var(--muted); font-size: 13px; }
+.form-tree > a { color: var(--purple); display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; font-weight: 650; }
+.form-forest-caption, .form-forest-empty { color: var(--muted); font-size: 12px; }
+@media (max-width: 600px) { .form-forest-layout { grid-template-columns: 1fr; gap: 0; } .form-forest-index { display: flex; gap: 6px; max-height: none; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 10px; } .form-forest-item { flex: 0 0 130px; } .form-tree { padding: 16px 2px; } .form-branch.compact .form-branch-list { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .form-forest * { scroll-behavior: auto; } }
+
+/* ---- Form forest overlay ---- */
+.forest-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  overflow-y: auto;
+  animation: forest-open .2s cubic-bezier(.22, .8, .2, 1) both;
+}
+
+.forest-overlay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
+  flex: 0 0 auto;
+}
+
+
+@keyframes forest-open { from { opacity: .001; transform: scale(.985); } }
+@media (prefers-reduced-motion: reduce) { .forest-overlay { animation: none; } }
+
+/* The Material page's header actions. */
+.forest-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--purple-soft);
+  color: #684dc7;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.forest-open-button:hover { background: #e7defe; }
+
+.material-export-button { background: var(--surface-2); color: var(--muted); }
+.material-export-button:hover { background: var(--line); color: var(--text); }
+
+@media (max-width: 760px) {
+  .forest-open-button { width: 100%; }
+}
+

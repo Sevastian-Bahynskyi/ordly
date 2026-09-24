@@ -101,7 +101,7 @@ export interface VocabularyEntry {
   pronunciation: string | null
   /** Private word-audio bucket object path. */
   audio_path: string | null
-  audio_source: 'ddo' | 'device_voice' | null
+  audio_source: 'ddo' | null
   /** Null for a group's canonical entry or an entry that has not been grouped. */
   canonical_entry_id: string | null
   /** Denormalized join of the non-removed `senses` texts. Kept in sync by the DB trigger. */

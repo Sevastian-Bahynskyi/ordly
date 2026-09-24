@@ -2,6 +2,7 @@ import { fsrs, type Card } from 'ts-fsrs'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { activeSenses, nounGenderOf, parseSenses } from '@/lib/senses'
 import type { EntrySense, ReviewCard, VocabularyEntry } from '@/lib/types'
+import { formLabel, sortedForms, type WordForm } from '@/lib/word-forms'
 
 export interface ExportReviewLog {
   entryId: string
@@ -192,14 +193,18 @@ export function buildMaterialCsv({
   cards,
   reviewLogs,
   practiceAttempts,
+  forms = [],
   exportedAt = new Date(),
 }: {
   entries: VocabularyEntry[]
   cards: ReviewCard[]
   reviewLogs: ExportReviewLog[]
   practiceAttempts: ExportPracticeAttempt[]
+  forms?: WordForm[]
   exportedAt?: Date
 }): string {
+  const formsByEntry = new Map<string, WordForm[]>()
+  for (const form of forms) formsByEntry.set(form.entry_id, [...(formsByEntry.get(form.entry_id) || []), form])
   const cardsByEntry = new Map(cards.map((card) => [card.entry_id, card]))
   const logsByEntry = new Map<string, ExportReviewLog[]>()
   const attemptsByEntry = new Map<string, ExportPracticeAttempt[]>()
@@ -217,7 +222,7 @@ export function buildMaterialCsv({
       const dates = logs.map((log) => log.reviewedAt).sort()
       const practiceDates = attempts.map((attempt) => attempt.at).sort()
       return {
-        export_format: 'ordly-material-v1',
+        export_format: 'ordly-material-v2',
         exported_at: exportedAtIso,
         kind: inferDanishInputKind(entry.danish) === 'word' ? 'word' : 'phrase',
         entry_id: entry.id,
@@ -225,9 +230,13 @@ export function buildMaterialCsv({
         danish: entry.danish,
         pronunciation_cyrillic: entry.pronunciation,
         audio_path: entry.audio_path,
+        audio_source: entry.audio_source,
+        canonical_entry_id: entry.canonical_entry_id,
         translation: entry.translation,
         senses: senseSummary(senses),
         senses_json: JSON.stringify(entry.senses),
+        forms: sortedForms(formsByEntry.get(entry.id) || []).map((form) => `${formLabel(form.form_key)}: ${form.form_text}${form.gloss ? ` (${form.gloss})` : ''}`).join(' | '),
+        forms_json: JSON.stringify(sortedForms(formsByEntry.get(entry.id) || []).map((form) => ({ role: form.form_key, text: form.form_text, gender: form.gender, gloss: form.gloss, source: form.source }))),
         sense_coverage: senseCoverage(senses),
         part_of_speech: [...new Set(senses.flatMap((sense) => sense.pos ? [sense.pos] : []))].join(' | '),
         noun_gender: nounGenderOf(senses),

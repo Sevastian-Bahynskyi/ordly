@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { buildMaterialCsv, normalizeExportPracticeAttempt, normalizeExportReviewLog } from '@/lib/material-export'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
+import type { WordForm } from '@/lib/word-forms'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -80,11 +81,12 @@ export async function POST(): Promise<NextResponse> {
   if (!user) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 })
 
   try {
-    const [{ data: entries, error: entriesError }, { data: cards, error: cardsError }] = await Promise.all([
+    const [{ data: entries, error: entriesError }, { data: cards, error: cardsError }, { data: forms, error: formsError }] = await Promise.all([
       supabase.from('vocabulary_entries').select('*').eq('user_id', user.id).neq('entry_kind', 'sentence'),
       supabase.from('review_cards').select('*').eq('user_id', user.id),
+      supabase.from('word_forms').select('*').eq('user_id', user.id),
     ])
-    if (entriesError || cardsError) throw new Error('Could not read your material.')
+    if (entriesError || cardsError || formsError) throw new Error('Could not read your material.')
     const material = (entries || []) as VocabularyEntry[]
     const entryIds = material.map((entry) => entry.id)
     if (!entryIds.length) return NextResponse.json({ error: 'Add a word or phrase before exporting.' }, { status: 400 })
@@ -95,6 +97,7 @@ export async function POST(): Promise<NextResponse> {
     const csv = buildMaterialCsv({
       entries: material,
       cards: (cards || []) as ReviewCard[],
+      forms: (forms || []) as WordForm[],
       reviewLogs: rawLogs.flatMap((row) => { const normalized = normalizeExportReviewLog(row); return normalized ? [normalized] : [] }),
       practiceAttempts: rawAttempts.flatMap((row) => { const normalized = normalizeExportPracticeAttempt(row); return normalized ? [normalized] : [] }),
     })

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { EntrySense, LearningStatus, ReviewItem } from '@/lib/types'
-import { checkAnswer, meaningMatch, type AnswerResult } from '@/lib/answer'
+import { checkAnswer, type AnswerResult } from '@/lib/answer'
 import {
   activeSenses,
   createSense,
@@ -17,7 +17,10 @@ import {
 } from '@/lib/senses'
 import { MemoryRing } from '@/components/MemoryRing'
 import { ReviewPromptReveal } from '@/components/ReviewPromptReveal'
+import { FormBranch } from '@/components/FormBranch'
+import type { WordForm } from '@/lib/word-forms'
 import { WordAudio } from '@/components/WordAudio'
+import { inferDanishInputKind } from '@/lib/entry-kind'
 
 const ratings = [
   { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
@@ -27,7 +30,7 @@ const ratings = [
 ]
 
 type CardPatch = Pick<ReviewItem, 'due' | 'stability' | 'difficulty' | 'elapsed_days' | 'scheduled_days' | 'reps' | 'lapses' | 'learning_steps' | 'state' | 'last_review'>
-type AnswerRelation = 'exact' | 'synonym' | 'valid_alternative' | 'near' | 'incorrect'
+type AnswerRelation = 'exact' | 'valid_alternative' | 'near' | 'incorrect'
 type AnswerFeedback = { relation: AnswerRelation; note: string }
 
 type ReviewedItem = {
@@ -40,10 +43,9 @@ type ReviewedItem = {
   logId: string | number
 }
 
-export function ReviewSession({ initialItems, linkedSenses = {}, translationLanguage = 'ru', autoplayAudio = false }: {
+export function ReviewSession({ initialItems, formsByEntry = {}, translationLanguage = 'ru', autoplayAudio = false }: {
   initialItems: ReviewItem[]
-  /** Senses of each entry's synonym neighbours, keyed by entry id (D5). */
-  linkedSenses?: Record<string, EntrySense[]>
+  formsByEntry?: Record<string, WordForm[]>
   translationLanguage?: 'ru' | 'en' | 'uk'
   autoplayAudio?: boolean
 }): React.JSX.Element {
@@ -80,18 +82,13 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
     }
 
     const senses = entrySenses(entry)
-    const synonymSenses = current ? linkedSenses[current.entry_id] || null : null
     const quickResult = checkAnswer(typedAnswer, expected, {
       meaning: true,
       senses,
-      linkedSenses: synonymSenses,
     })
     if (quickResult !== 'incorrect') {
-      const match = meaningMatch(typedAnswer, senses, synonymSenses)
       setResult(quickResult)
-      setFeedback(match === 'synonym'
-        ? { relation: 'synonym', note: 'This is a saved meaning of a confirmed synonym.' }
-        : quickResult === 'mostly'
+      setFeedback(quickResult === 'mostly'
           ? { relation: 'near', note: 'The meaning is close; compare it with the saved meanings.' }
           : { relation: 'exact', note: 'This matches one of your saved meanings.' })
       setRevealedWithoutAnswer(false)
@@ -241,6 +238,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
       count={history.length}
       languageLabel={languageLabel}
       autoplayAudio={autoplayAudio}
+      forms={formsByEntry[reviewed.item.entry_id] || []}
       onPrevious={() => setHistoryIndex((index) => index === null ? null : Math.max(0, index - 1))}
       onNext={() => setHistoryIndex((index) => index === null || index >= history.length - 1 ? null : index + 1)}
       onRatingChanged={(oldRating, newRating, card, status) => applyRevisedRating(reviewed, oldRating, newRating, card, status)}
@@ -312,6 +310,7 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
         </div>
 
         <SavedMeanings entry={entry} />
+        <FormBranch forms={formsByEntry[current.entry_id] || []} headword={entry.danish} compact />
 
         {/* Only in recognition: there the typed answer is a meaning, which is what a sense is.
             In production the answer is Danish, and storing it as a meaning would be wrong. */}
@@ -334,17 +333,18 @@ export function ReviewSession({ initialItems, linkedSenses = {}, translationLang
 
     <div className="review-tip">
       <RotateCcw size={15}/>
-      Synonyms are checked by meaning. Sentence building and gap exercises live in Guided Practice.
+      Rate your memory of the headword. Forms are here for recognition.
     </div>
   </>
 }
 
-function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, onPrevious, onNext, onRatingChanged }: {
+function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, forms, onPrevious, onNext, onRatingChanged }: {
   reviewed: ReviewedItem
   index: number
   count: number
   languageLabel: string
   autoplayAudio: boolean
+  forms: WordForm[]
   onPrevious: () => void
   onNext: () => void
   onRatingChanged: (oldRating: number, newRating: number, card: CardPatch, status: LearningStatus) => void
@@ -410,6 +410,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, on
           {reviewed.feedback?.note && <span>{reviewed.feedback.note}</span>}
         </div>
         <SavedMeanings entry={entry} />
+        <FormBranch forms={forms} headword={entry.danish} compact />
         <div className="rating-title"><span>Change your rating if needed</span><small>The FSRS schedule is recalculated from the original review state.</small></div>
         <div className="rating-grid">{ratings.map((rating) => <button
           disabled={loading}
@@ -431,7 +432,6 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, on
 
 function verdictLabel(result: AnswerResult | null, feedback: AnswerFeedback | null, revealedWithoutAnswer: boolean): string {
   if (revealedWithoutAnswer) return "Didn't know"
-  if (feedback?.relation === 'synonym') return 'Valid synonym'
   if (feedback?.relation === 'valid_alternative') return 'Valid alternative'
   if (result === 'correct') return 'Correct'
   if (result === 'mostly') return 'Almost right'
@@ -457,7 +457,7 @@ function SavedMeanings({ entry }: { entry: ReviewItem['vocabulary_entries'] }): 
 function DanishAudio({ entry, autoPlay }: { entry: ReviewItem['vocabulary_entries']; autoPlay: boolean }): React.JSX.Element | null {
   return <div className="review-word-audio">
     {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
-    <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />
+    {inferDanishInputKind(entry.danish) === 'word' && <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />}
   </div>
 }
 

@@ -10,7 +10,6 @@ import { currentTaskContentVersion } from './practice-content'
 import { isSenseTargetKey, itemSenses } from './practice-senses'
 import { sentenceTiles } from './practice-exercises'
 import { activeSenses, createSense, entrySenses, normalizeSenseText, parseSenses, splitTranslationIntoSenses } from './senses'
-import { linkedSensesFor, synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
 import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
 
 export class PracticeConflict extends Error {}
@@ -20,13 +19,6 @@ export class PracticeConflict extends Error {}
  * coaching is gated by the learner's AI toggle (D5) — see the `'answer'` handler.
  */
 export const PRACTICE_AI_CALL_BUDGET = 12
-
-/** The learner's live `synonym` edges — dismissed tombstones excluded. Degrades to none rather than failing. */
-async function readSynonymLinks(supabase: SupabaseClient, userId: string): Promise<SynonymLinkRow[]> {
-  const { data, error } = await supabase.from('entry_links').select('a_id, b_id, kind, confirmed').eq('user_id', userId).eq('kind', 'synonym').is('dismissed_at', null).limit(2000)
-  if (error || !Array.isArray(data)) return []
-  return data as SynonymLinkRow[]
-}
 
 export async function readPractice(supabase: SupabaseClient, userId: string): Promise<{ store: PracticeStore; attempts: PracticeAttempt[] }> {
   const [state, history] = await Promise.all([
@@ -57,11 +49,10 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   const { store, attempts } = await readPractice(supabase, userId)
   if (store.session?.queue.length) return
   const now = new Date()
-  const [cards, profile, newLogs, links] = await Promise.all([
+  const [cards, profile, newLogs] = await Promise.all([
     supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).order('due').limit(1000),
     supabase.from('profiles').select('daily_new_limit, default_translation_language').eq('id', userId).single(),
     supabase.from('review_logs').select('entry_id').eq('user_id', userId).eq('study_date', practiceStudyDate(now)).eq('previous_state', 0),
-    readSynonymLinks(supabase, userId),
   ])
   if (cards.error || profile.error || newLogs.error) throw new Error('Could not prepare practice')
   const introduced = introducedPracticeTargets(attempts, now)
@@ -73,7 +64,7 @@ export async function startPractice(supabase: SupabaseClient, userId: string, ai
   if (typeof dailyLimit !== 'number' || !Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 50) throw new Error('Invalid practice limit')
   const previous = store.session && !store.session.finished ? store.session : null
   const plan = (source: ReviewItem[]): PracticeSessionState =>
-    planPractice({ items: source, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled: previous?.aiEnabled ?? aiEnabled, now, links })
+    planPractice({ items: source, store, attempts, introducedToday: introduced.size, dailyLimit, language, aiEnabled: previous?.aiEnabled ?? aiEnabled, now, links: [] })
   let planned = plan(items)
   // D10: a meaning gets its example sentence the moment it first becomes an objective. Replanning
   // with the filled-in example lets the newly promoted sense start on a real interactive board
@@ -123,26 +114,6 @@ async function fillSenseExamples(supabase: SupabaseClient, userId: string, sessi
     changed = true
   }
   return changed
-}
-
-/**
- * The senses of the entries a `synonym` edge joins this one to (D5, §4).
- *
- * Grading reads the whole synonym graph, confirmed or not: accepting a meaning the learner
- * genuinely knows is forgiving, and being too generous here costs far less than marking a right
- * answer wrong. Distractors are the opposite case and pass `confirmedOnly: true` — see the planner.
- *
- * Called only after the entry's own senses have already failed to match, so the two queries never
- * land on the answers that were going to be accepted anyway.
- */
-async function linkedGradingSenses(supabase: SupabaseClient, userId: string, entry: Record<string, unknown> | null): Promise<EntrySense[]> {
-  const entryId = entry ? String(entry.id || '') : ''
-  if (!entryId) return []
-  const links = await readSynonymLinks(supabase, userId)
-  const neighbours = synonymNeighbourIds(entryId, links)
-  if (!neighbours.length) return []
-  const { data } = await supabase.from('vocabulary_entries').select('id, danish, translation, senses, entry_kind').eq('user_id', userId).in('id', neighbours).limit(50)
-  return linkedSensesFor(entryId, links, data || [])
 }
 
 /**
@@ -313,11 +284,6 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     // The saved base form typed into a gap that needs an inflected one is the right word, wrong form.
     const baseFormInGap = task.kind === 'cloze' && result === 'incorrect' && Boolean(answer) && checkAnswer(answer, task.danish.replace(/^at\s+/iu, ''), { sentence: true }) !== 'incorrect'
     if (baseFormInGap) result = 'mostly'
-    // Deterministic-first, then one hop across the synonym graph, and only then the provider.
-    if (result === 'incorrect' && answer && !spoken && recall) {
-      const linkedSenses = await linkedGradingSenses(supabase, userId, entry)
-      if (linkedSenses.length) result = checkAnswer(answer, task.answer, { ...options, linkedSenses })
-    }
     const message = spoken ? 'Compare what you said with the example. Choose your own recall rating.'
       : !answer ? 'Read the answer, connect it to a situation, then try again later.'
         : baseFormInGap ? `Right word. This sentence needs the form “${task.answer}”.`

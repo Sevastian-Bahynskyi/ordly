@@ -18,7 +18,7 @@ for (const item of manifest) {
   const lemma = record.lemma
   const file = record.file
   const source = record.source
-  if (typeof lemma !== 'string' || typeof file !== 'string' || (source !== 'ddo' && source !== 'device_voice')) throw new Error('Invalid recording fields')
+  if (typeof lemma !== 'string' || typeof file !== 'string' || source !== 'ddo') throw new Error('Invalid recording fields')
   const digest = createHash('sha1').update(lemma).digest('hex')
   const key = audioObjectKey(lemma, digest)
   if (process.argv.includes('--dry-run')) { console.log(`${lemma} (${source}) → ${key}`); continue }
@@ -38,6 +38,6 @@ for (const item of manifest) {
     }
   }
   await query(`update public.vocabulary_entries set audio_path = ${literal(key)}, audio_source = ${literal(source)} where lower(danish) = ${literal(lemma)} and audio_path is null`)
-  if (source === 'ddo') await query(`update public.word_catalog set audio_path = ${literal(key)} where lemma = ${literal(lemma)} and kind = 'word' and audio_path is null`)
+  await query(`update public.word_catalog set audio_path = ${literal(key)} where lemma = ${literal(lemma)} and kind = 'word' and audio_path is null`)
   console.log(`${lemma}: uploaded ${source}`)
 }
