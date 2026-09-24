@@ -65,6 +65,8 @@ export interface PracticeResponse {
   responseMs: number
   revealed: boolean
   answeredAt: string | null
+  /** The learner reported an unconfirmed typed answer as correct, for later content review. */
+  reported?: boolean
 }
 
 /** Unsent input on the current exercise, saved on pause so resume shows exactly what was typed. */
@@ -100,6 +102,9 @@ export interface PracticeAttempt {
   locale?: TranslationLanguage
   newTarget?: boolean
   rating?: 1 | 2 | 3 | 4 | null
+  /** Set only when the learner reported the answer; then the wording is kept for review. */
+  reported?: boolean
+  answer?: string
 }
 
 /** Bumped when the planner or exercise builders change what a stored task means. */
@@ -132,8 +137,6 @@ export interface PracticeSessionState {
 export interface PracticeStore {
   revision: number
   session: PracticeSessionState | null
-  /** The retired practice schedule. Kept as stored, never read or written. */
-  objectives: Record<string, unknown>
 }
 
 /** Offered at every start. A custom target is any whole minute from 1 to `MAX_PRACTICE_MINUTES`. */
@@ -207,6 +210,15 @@ function hash(value: string): number {
  * the retired contract also count an Again rating. The one rule both requeueing and target
  * selection use.
  */
+/**
+ * A typed answer the prepared answers could not confirm. The learner may report it as correct;
+ * that queues it for content review and changes nothing else.
+ */
+export function isReportable(task: Pick<PracticeTask, 'kind'>, response: Pick<PracticeResponse, 'answer' | 'result' | 'revealed'>): boolean {
+  return response.revealed && !isChoiceKind(task.kind) && Boolean(response.answer.trim())
+    && (response.result === 'unverified' || response.result === 'incorrect')
+}
+
 export function missed(outcome: { result: PracticeAttempt['result'] | null; assistance: PracticeAttempt['assistance']; rating?: PracticeAttempt['rating'] }): boolean {
   return outcome.rating === 1 || outcome.result === 'incorrect' || outcome.result === 'dont_know' || outcome.assistance === 'hint' || outcome.assistance === 'model'
 }

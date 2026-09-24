@@ -8,7 +8,7 @@ Review stays the default. Home and Review each carry a quiet **Practice →** li
 
 ## What Practice writes
 
-Only `practice_state.session` (the version-2 session) and one `practice_attempts` row per finished exercise. An attempt stores the target, entry and sense, exercise kind, result, assistance, response time, content version and learner language. It has no Review rating.
+Only `practice_state.session` (the version-2 session) and one `practice_attempts` row per finished exercise. An attempt stores the target, entry and sense, exercise kind, result, assistance, response time, content version and learner language. It has no Review rating. The typed answer is stored only when the learner reports it as correct (`reported: true`), which queues it for content review and changes nothing else. Reported answers: `select payload from practice_attempts where payload->>'reported' = 'true'`.
 
 It never writes `review_cards`, `review_logs`, `vocabulary_entries` (status, senses, coverage or examples) or the streak on `profiles`, and it calls no model. `commit_practice` and `record_sense_coverage` (which now takes the id of a fresh, successful Review log) enforce this in the database (`20260924170000_isolate_practice_from_review.sql`), so an old client or an old server still sending the retired `legacy_change` payload or a version-1 session is refused.
 

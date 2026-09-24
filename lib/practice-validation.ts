@@ -67,6 +67,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
     && (value.revealed ? value.result !== null : value.result === null)
     && ASSISTANCE.includes(String(value.assistance))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= MAX_RESPONSE_MS
+    && (value.reported === undefined || typeof value.reported === 'boolean')
 }
 
 export function isPracticeDraft(value: unknown): value is PracticeDraft {
@@ -89,6 +90,8 @@ export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
     && (value.entryId === undefined || value.entryId === null || text(value.entryId, 100))
     && (value.rating === undefined || [null, 1, 2, 3, 4].includes(value.rating as number | null))
     && (value.newTarget === undefined || typeof value.newTarget === 'boolean')
+    && (value.reported === undefined || typeof value.reported === 'boolean')
+    && (value.answer === undefined || text(value.answer))
 }
 
 export function isPracticeSession(value: unknown): value is PracticeSessionState {
@@ -114,7 +117,7 @@ export type PracticeRequest =
   | { kind: 'retired' }
 
 export type PracticeActionInput =
-  | { action: 'resume' | 'finish' | 'help' | 'next'; revision: number; taskId: string }
+  | { action: 'resume' | 'finish' | 'help' | 'next' | 'report'; revision: number; taskId: string }
   | { action: 'pause'; revision: number; taskId: string; draft: PracticeDraftInput | null }
   | { action: 'answer'; revision: number; taskId: string; answer: string; responseMs: number }
 
@@ -131,7 +134,7 @@ export function parsePracticeRequest(body: unknown): PracticeRequest | null {
   if (!Number.isInteger(body.revision) || Number(body.revision) < 0 || !text(body.taskId, 2000)) return null
   const common = { revision: Number(body.revision), taskId: body.taskId }
   switch (body.action) {
-    case 'resume': case 'finish': case 'help': case 'next':
+    case 'resume': case 'finish': case 'help': case 'next': case 'report':
       return { kind: 'act', action: { action: body.action, ...common } }
     case 'pause': {
       if (body.draft !== undefined && body.draft !== null && !(isRecord(body.draft) && isPracticeDraft({ ...body.draft, taskId: common.taskId }))) return null
