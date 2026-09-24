@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState, type JSX, type KeyboardEvent } from 'react'
-import { ArrowRight, Check, Lightbulb, Pause, RotateCcw } from 'lucide-react'
+import { ArrowRight, Check, Flag, Lightbulb, Pause, RotateCcw } from 'lucide-react'
 import { diffAnswer } from '@/lib/answer-diff'
 import {
-  DEFAULT_PRACTICE_MINUTES, isChoiceKind, isPracticeMinutes, MAX_PRACTICE_MINUTES, PRACTICE_MINUTE_PRESETS,
+  DEFAULT_PRACTICE_MINUTES, isChoiceKind, isPracticeMinutes, isReportable, MAX_PRACTICE_MINUTES, PRACTICE_MINUTE_PRESETS,
   type PracticeKind, type PracticeResponse, type PracticeSessionState, type PracticeTask,
 } from '@/lib/practice'
 import { isPracticeSession, isRecord } from '@/lib/practice-validation'
@@ -200,6 +200,9 @@ export function PracticeSession(): JSX.Element {
         <span className={`practice-verdict ${response.result}`}>{verdict(response)}</span>
         <p>{response.feedback}</p>
         <FeedbackAnswers task={task} response={response} />
+        {response.reported
+          ? <p className="practice-reported" role="status"><Flag size={14} />Sent for review. Nothing else changed.</p>
+          : isReportable(task, response) && <button className="practice-text-button" type="button" disabled={busy} onClick={() => void send('report')}><Flag size={15} />My answer is also correct</button>}
         <button className="primary-button practice-continue" disabled={busy} onClick={() => void send('next')} autoFocus>Continue<ArrowRight size={17} /></button>
       </div>}
     </section>
@@ -269,7 +272,8 @@ function verdict(response: PracticeResponse): string {
  */
 function FeedbackAnswers({ task, response }: { task: PracticeTask; response: PracticeResponse }): JSX.Element {
   const typed = response.answer.trim()
-  const comparable = typed && response.result !== 'correct' && ['produce', 'cloze', 'assemble'].includes(task.kind)
+  // An unverified answer may be right, so it is shown beside the saved one rather than marked up.
+  const comparable = typed && response.result !== 'correct' && response.result !== 'unverified' && ['produce', 'cloze', 'assemble'].includes(task.kind)
   const diff = comparable ? diffAnswer(typed, task.answer) : null
   const label = task.kind === 'sense' || task.kind === 'pick' ? 'The meaning' : 'Answer'
   const answerIsDanish = !['sense', 'pick'].includes(task.kind)
@@ -281,6 +285,12 @@ function FeedbackAnswers({ task, response }: { task: PracticeTask; response: Pra
     </div>
   }
   const wrongTap = response.assistance === 'choices' && response.result === 'incorrect' && typed
+  if (response.result === 'unverified') {
+    return <div className="practice-diff">
+      <div><small>Your sentence</small><p lang="da">{typed}</p></div>
+      <div><small>Saved sentence</small><p lang="da">{task.answer}</p></div>
+    </div>
+  }
   return <>
     <div className="correct-answer"><span>{label}</span><strong lang={answerIsDanish ? 'da' : undefined}>{task.answer}</strong></div>
     {wrongTap && <p className="practice-your-answer"><small>Your answer</small><mark className="diff-wrong">{typed}</mark></p>}

@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import {
-  activeSeconds, finishPracticeTask, isChoiceKind, isTranslationLanguage, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
+  activeSeconds, finishPracticeTask, isChoiceKind, isReportable, isTranslationLanguage, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
   type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore,
 } from './practice'
 import { planPractice } from './practice-planner'
@@ -36,13 +36,12 @@ export interface PracticeShortfall {
 /** The saved session. Only planning needs the attempt history, so only planning pays for it. */
 export async function readPractice(supabase: SupabaseClient, userId: string, options: { history?: boolean } = {}): Promise<{ store: PracticeStore; attempts: PracticeAttempt[]; retired: boolean }> {
   const [state, history] = await Promise.all([
-    supabase.from('practice_state').select('revision, session, objectives').eq('user_id', userId).maybeSingle(),
+    supabase.from('practice_state').select('revision, session').eq('user_id', userId).maybeSingle(),
     options.history ? supabase.from('practice_attempts').select('payload').eq('user_id', userId).order('created_at', { ascending: false }).limit(2000) : { data: [], error: null },
   ])
   if (state.error || history.error) throw new Error('Practice unavailable')
-  const raw: unknown = state.data || { revision: 0, session: null, objectives: {} }
+  const raw: unknown = state.data || { revision: 0, session: null }
   if (!isRecord(raw) || !Number.isInteger(raw.revision) || Number(raw.revision) < 0) throw new Error('Practice data needs checking')
-  const objectives = isRecord(raw.objectives) ? raw.objectives : {}
   let session: PracticeSessionState | null = null
   let retired = false
   if (isRecord(raw.session) && raw.session.version === 1) retired = true
@@ -51,7 +50,7 @@ export async function readPractice(supabase: SupabaseClient, userId: string, opt
     session = raw.session
   }
   const attempts = (history.data || []).map((row) => row.payload as unknown).filter(isPracticeAttempt).reverse()
-  return { store: { revision: Number(raw.revision), session, objectives }, attempts, retired }
+  return { store: { revision: Number(raw.revision), session }, attempts, retired }
 }
 
 export async function practiceView(supabase: SupabaseClient, userId: string): Promise<PracticeView> {
@@ -64,7 +63,7 @@ async function commit(supabase: SupabaseClient, store: PracticeStore, session: P
   if (session !== null && !isPracticeSession(session)) throw new Error('Invalid practice state')
   // `next_objectives` and `legacy_change` are retired: the database ignores the first and refuses
   // any non-null value of the second. They are passed only because the routine keeps its signature.
-  const { data, error } = await supabase.rpc('commit_practice', { expected_revision: store.revision, next_session: session, next_objectives: store.objectives, attempt, legacy_change: null })
+  const { data, error } = await supabase.rpc('commit_practice', { expected_revision: store.revision, next_session: session, next_objectives: {}, attempt, legacy_change: null })
   if (error?.code === '40001') throw new PracticeConflict()
   if (error || !isRecord(data) || !Number.isInteger(data.revision) || (data.session !== null && !isPracticeSession(data.session))) throw new Error('Could not save practice')
   return { revision: Number(data.revision), session: data.session as PracticeSessionState | null, retired: false }
@@ -154,12 +153,19 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     return commit(supabase, store, { ...running, draft: null, current: { answer, ...grade, responseMs: input.responseMs, revealed: true, answeredAt: now.toISOString() } })
   }
 
+  if (input.action === 'report') {
+    if (!isReportable(task, response) || response.reported) throw new PracticeConflict()
+    return commit(supabase, store, { ...running, current: { ...response, reported: true } })
+  }
+
   // 'next': record the finished exercise as an internal attempt and move on.
   if (!response.revealed || response.result === null) throw new PracticeConflict()
   const attempt: PracticeAttempt = {
     id: crypto.randomUUID(), taskId: task.id, targetKey: task.targetKey, entryId: task.entryId, senseId: task.senseId,
     kind: task.kind, result: response.result, assistance: response.assistance, responseMs: response.responseMs,
     at: response.answeredAt || now.toISOString(), contentVersion: task.contentVersion, locale: session.locale, newTarget: task.newTarget,
+    // A typed answer is kept only when the learner asked for it to be reviewed.
+    ...(response.reported ? { reported: true, answer: response.answer } : {}),
   }
   // Near the target no new exercise starts; the one just answered was never cut off.
   const queue = targetReached(session, elapsedSeconds) ? [] : finishPracticeTask(session.queue, response, session.seed)
