@@ -35,8 +35,10 @@ export async function POST(request: Request): Promise<NextResponse> {
   // session, which also fetches the current app.
   if (parsed.kind === 'retired') return NextResponse.json({ error: 'Practice was updated. Reload to continue.' }, { status: 409 })
   try {
-    const shortfall = parsed.kind === 'start' ? await startPractice(supabase, user.id, parsed) : (await actOnPractice(supabase, user.id, parsed.action), null)
-    return NextResponse.json({ ...await practiceView(supabase, user.id), shortfall }, { headers: noStore })
+    const { view, shortfall } = parsed.kind === 'start'
+      ? await startPractice(supabase, user.id, parsed)
+      : { view: await actOnPractice(supabase, user.id, parsed.action), shortfall: null }
+    return NextResponse.json({ ...view, shortfall }, { headers: noStore })
   } catch (error) {
     if (error instanceof PracticeConflict) return NextResponse.json({ error: 'This session changed on another screen. Reload the saved session to continue.' }, { status: 409 })
     return NextResponse.json({ error: 'Could not save this step. Please retry; your saved session is safe.' }, { status: 503 })

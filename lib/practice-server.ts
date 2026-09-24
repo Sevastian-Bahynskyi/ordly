@@ -1,13 +1,12 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import {
-  activeSeconds, finishPracticeTask, isChoiceKind, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
+  activeSeconds, finishPracticeTask, isChoiceKind, isTranslationLanguage, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
   type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore,
 } from './practice'
 import { planPractice } from './practice-planner'
 import { gradePracticeAnswer, isOfferedChoice } from './practice-grading'
 import { currentTaskContentVersion } from './practice-content'
 import { isPracticeAttempt, isPracticeSession, isRecord, isReviewSource, type PracticeActionInput } from './practice-validation'
-import type { TranslationLanguage } from './types'
 
 /**
  * The Practice session boundary (issue #13).
@@ -34,10 +33,11 @@ export interface PracticeShortfall {
   availableMinutes: number
 }
 
-export async function readPractice(supabase: SupabaseClient, userId: string): Promise<{ store: PracticeStore; attempts: PracticeAttempt[]; retired: boolean }> {
+/** The saved session. Only planning needs the attempt history, so only planning pays for it. */
+export async function readPractice(supabase: SupabaseClient, userId: string, options: { history?: boolean } = {}): Promise<{ store: PracticeStore; attempts: PracticeAttempt[]; retired: boolean }> {
   const [state, history] = await Promise.all([
     supabase.from('practice_state').select('revision, session, objectives').eq('user_id', userId).maybeSingle(),
-    supabase.from('practice_attempts').select('payload').eq('user_id', userId).order('created_at', { ascending: false }).limit(2000),
+    options.history ? supabase.from('practice_attempts').select('payload').eq('user_id', userId).order('created_at', { ascending: false }).limit(2000) : { data: [], error: null },
   ])
   if (state.error || history.error) throw new Error('Practice unavailable')
   const raw: unknown = state.data || { revision: 0, session: null, objectives: {} }
@@ -59,13 +59,19 @@ export async function practiceView(supabase: SupabaseClient, userId: string): Pr
   return { revision: store.revision, session: store.session, retired }
 }
 
-async function commit(supabase: SupabaseClient, store: PracticeStore, session: PracticeSessionState | null, attempt: Record<string, unknown> | null = null): Promise<void> {
+/** Save the session (and an attempt), returning what the learner now sees. */
+async function commit(supabase: SupabaseClient, store: PracticeStore, session: PracticeSessionState | null, attempt: Record<string, unknown> | null = null): Promise<PracticeView> {
   if (session !== null && !isPracticeSession(session)) throw new Error('Invalid practice state')
   // `next_objectives` and `legacy_change` are retired: the database ignores the first and refuses
   // any non-null value of the second. They are passed only because the routine keeps its signature.
-  const { error } = await supabase.rpc('commit_practice', { expected_revision: store.revision, next_session: session, next_objectives: store.objectives, attempt, legacy_change: null })
+  const { data, error } = await supabase.rpc('commit_practice', { expected_revision: store.revision, next_session: session, next_objectives: store.objectives, attempt, legacy_change: null })
   if (error?.code === '40001') throw new PracticeConflict()
-  if (error) throw new Error('Could not save practice')
+  if (error || !isRecord(data) || !Number.isInteger(data.revision) || (data.session !== null && !isPracticeSession(data.session))) throw new Error('Could not save practice')
+  return { revision: Number(data.revision), session: data.session as PracticeSessionState | null, retired: false }
+}
+
+function viewOf(store: PracticeStore, retired: boolean): PracticeView {
+  return { revision: store.revision, session: store.session, retired }
 }
 
 function isActive(session: PracticeSessionState | null): session is PracticeSessionState {
@@ -77,34 +83,33 @@ function isActive(session: PracticeSessionState | null): session is PracticeSess
  * replanned. When saved Material cannot fill the time, nothing is saved and the shortfall is
  * returned so the learner can take the shorter session or go to Review.
  */
-export async function startPractice(supabase: SupabaseClient, userId: string, input: { minutes: number; acceptShorter: boolean }): Promise<PracticeShortfall | null> {
-  const { store, attempts } = await readPractice(supabase, userId)
-  if (isActive(store.session)) return null
-  const now = new Date()
-  const [cards, profile] = await Promise.all([
+export async function startPractice(supabase: SupabaseClient, userId: string, input: { minutes: number; acceptShorter: boolean }): Promise<{ view: PracticeView; shortfall: PracticeShortfall | null }> {
+  const [{ store, attempts, retired }, cards, profile] = await Promise.all([
+    readPractice(supabase, userId, { history: true }),
     supabase.from('review_cards').select('*, vocabulary_entries(*)').eq('user_id', userId).order('due').limit(1000),
     supabase.from('profiles').select('default_translation_language').eq('id', userId).single(),
   ])
+  if (isActive(store.session)) return { view: viewOf(store, retired), shortfall: null }
   if (cards.error || profile.error) throw new Error('Could not prepare practice')
+  const now = new Date()
   const locale: unknown = profile.data?.default_translation_language
-  if (locale !== 'ru' && locale !== 'en' && locale !== 'uk') throw new Error('Invalid practice language')
+  if (!isTranslationLanguage(locale)) throw new Error('Invalid practice language')
   // Only the learner's own saved Material can become a target.
   const items = (cards.data || []).filter(isReviewSource).filter((item) => item.user_id === userId)
   const seed = crypto.randomUUID()
-  const plan = (minutes: number): PracticeSessionState => planPractice({ items, attempts, targetMinutes: minutes, seed, locale: locale as TranslationLanguage, now })
-  let session = plan(input.minutes)
+  let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now })
   const available = queueSeconds(session.queue)
-  if (!session.queue.length) return { requestedMinutes: input.minutes, availableMinutes: 0 }
+  const unchanged = viewOf(store, retired)
+  if (!session.queue.length) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes: 0 } }
   if (available + NEAR_TARGET_SECONDS < input.minutes * 60) {
     const availableMinutes = Math.max(1, Math.floor(available / 60))
-    if (!input.acceptShorter) return { requestedMinutes: input.minutes, availableMinutes }
+    if (!input.acceptShorter) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes } }
     session = { ...session, targetMinutes: Math.min(input.minutes, availableMinutes) }
   }
-  await commit(supabase, store, session)
-  return null
+  return { view: await commit(supabase, store, session), shortfall: null }
 }
 
-export async function actOnPractice(supabase: SupabaseClient, userId: string, input: PracticeActionInput): Promise<void> {
+export async function actOnPractice(supabase: SupabaseClient, userId: string, input: PracticeActionInput): Promise<PracticeView> {
   const { store } = await readPractice(supabase, userId)
   if (store.revision !== input.revision) throw new PracticeConflict()
   const session = store.session
@@ -115,26 +120,22 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   const running = { ...session, elapsedSeconds, activeSince: now.toISOString() }
 
   if (input.action === 'finish') {
-    await commit(supabase, store, { ...session, elapsedSeconds, activeSince: null, finished: true, queue: [], current: null, draft: null })
-    return
+    return commit(supabase, store, { ...session, elapsedSeconds, activeSince: null, finished: true, queue: [], current: null, draft: null })
   }
   if (input.action === 'pause') {
     const draft = task && input.draft ? { taskId: task.id, answer: input.draft.answer, picked: input.draft.picked.filter((index) => index < (task.choices?.length || 0)) } : null
-    await commit(supabase, store, { ...session, elapsedSeconds, activeSince: null, draft: draft && (draft.answer || draft.picked.length) ? draft : null })
-    return
+    return commit(supabase, store, { ...session, elapsedSeconds, activeSince: null, draft: draft && (draft.answer || draft.picked.length) ? draft : null })
   }
   if (input.action === 'resume') {
     // A stretch left running by a closed app is unknown time, so it is not counted.
-    await commit(supabase, store, { ...session, activeSince: now.toISOString() })
-    return
+    return commit(supabase, store, { ...session, activeSince: now.toISOString() })
   }
   if (!task) throw new PracticeConflict()
   const response: PracticeResponse = session.current || { answer: '', result: null, assistance: 'none', feedback: '', responseMs: 0, revealed: false, answeredAt: null }
 
   if (input.action === 'help') {
     if (response.revealed || isChoiceKind(task.kind)) throw new PracticeConflict()
-    await commit(supabase, store, { ...running, current: { ...response, assistance: 'hint' } })
-    return
+    return commit(supabase, store, { ...running, current: { ...response, assistance: 'hint' } })
   }
 
   if (input.action === 'answer') {
@@ -147,12 +148,10 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     const { data: entry, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
     if (error) throw new Error('Could not check this entry')
     if (!entry || currentTaskContentVersion(entry, task) !== task.contentVersion) {
-      await commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.entryId !== task.entryId), current: null, draft: null })
-      return
+      return commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.entryId !== task.entryId), current: null, draft: null })
     }
     const grade = gradePracticeAnswer(task, answer, response.assistance)
-    await commit(supabase, store, { ...running, draft: null, current: { answer, ...grade, responseMs: input.responseMs, revealed: true, answeredAt: now.toISOString() } })
-    return
+    return commit(supabase, store, { ...running, draft: null, current: { answer, ...grade, responseMs: input.responseMs, revealed: true, answeredAt: now.toISOString() } })
   }
 
   // 'next': record the finished exercise as an internal attempt and move on.
@@ -164,7 +163,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   }
   // Near the target no new exercise starts; the one just answered was never cut off.
   const queue = targetReached(session, elapsedSeconds) ? [] : finishPracticeTask(session.queue, response, session.seed)
-  await commit(supabase, store, {
+  return commit(supabase, store, {
     ...running, queue, current: null, draft: null, completed: session.completed + 1,
     activeSince: queue.length ? running.activeSince : null,
     attempts: [...session.attempts, attempt].slice(-500),

@@ -12,7 +12,7 @@
 
 /* The duration picker: one row of quiet pills, only the chosen one tinted. */
 .practice-duration { border: 0; padding: 0; margin: 0 auto 24px; max-width: 420px; }
-.practice-duration legend { width: 100%; margin-bottom: 12px; text-align: center; font-size: 11px; font-weight: 650; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.practice-duration legend { display: flex; justify-content: center; width: 100%; margin-bottom: 12px; }
 .practice-duration-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .practice-duration-option { min-height: 44px; padding: 0 8px; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; transition: background 150ms ease, border-color 150ms ease, color 150ms ease; }
 .practice-duration-option.chosen { color: var(--purple); background: var(--purple-soft); border-color: var(--purple-2); }

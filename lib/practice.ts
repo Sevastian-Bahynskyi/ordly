@@ -75,6 +75,15 @@ export interface PracticeDraft {
   picked: number[]
 }
 
+/** A draft as the client sends it; the server attaches it to the current exercise. */
+export type PracticeDraftInput = Omit<PracticeDraft, 'taskId'>
+
+export const TRANSLATION_LANGUAGES: readonly TranslationLanguage[] = ['ru', 'en', 'uk']
+
+export function isTranslationLanguage(value: unknown): value is TranslationLanguage {
+  return TRANSLATION_LANGUAGES.includes(value as TranslationLanguage)
+}
+
 export interface PracticeAttempt {
   id: string
   taskId: string
@@ -93,7 +102,6 @@ export interface PracticeAttempt {
   rating?: 1 | 2 | 3 | 4 | null
 }
 
-export const PRACTICE_SESSION_VERSION = 2
 /** Bumped when the planner or exercise builders change what a stored task means. */
 export const PRACTICE_CONTENT_REVISION = 'practice-v2'
 
@@ -194,8 +202,13 @@ function hash(value: string): number {
   return result >>> 0
 }
 
-export function missed(response: Pick<PracticeResponse, 'result' | 'assistance'>): boolean {
-  return response.result === 'incorrect' || response.result === 'dont_know' || response.assistance === 'hint' || response.assistance === 'model'
+/**
+ * A miss: a wrong or unknown answer, or one that needed a hint or the answer shown. Attempts from
+ * the retired contract also count an Again rating. The one rule both requeueing and target
+ * selection use.
+ */
+export function missed(outcome: { result: PracticeAttempt['result'] | null; assistance: PracticeAttempt['assistance']; rating?: PracticeAttempt['rating'] }): boolean {
+  return outcome.rating === 1 || outcome.result === 'incorrect' || outcome.result === 'dont_know' || outcome.assistance === 'hint' || outcome.assistance === 'model'
 }
 
 /**

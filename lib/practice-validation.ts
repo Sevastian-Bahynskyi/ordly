@@ -1,5 +1,5 @@
 import { TARGET_KEY_MAX_LENGTH } from './practice-senses'
-import { isPracticeMinutes, type PracticeAttempt, type PracticeDraft, type PracticeResponse, type PracticeSessionState, type PracticeTask } from './practice'
+import { isPracticeMinutes, isTranslationLanguage, type PracticeAttempt, type PracticeDraft, type PracticeDraftInput, type PracticeResponse, type PracticeSessionState, type PracticeTask } from './practice'
 import type { ReviewItem } from './types'
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
@@ -36,6 +36,9 @@ const ATTEMPT_KINDS = [...TASK_KINDS, 'recall', 'teach', 'build', 'listen', 'dia
 const ASSISTANCE = ['none', 'hint', 'choices', 'model']
 const RESULTS = ['correct', 'mostly', 'incorrect', 'unverified', 'dont_know']
 
+/** An answer open longer than an hour is recorded as an hour. */
+const MAX_RESPONSE_MS = 3_600_000
+
 /** No board is bigger than this. A longer list is corrupt state, not an exercise. */
 const MAX_CHOICES = 16
 
@@ -63,7 +66,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
     && (value.result === null || RESULTS.includes(String(value.result)))
     && (value.revealed ? value.result !== null : value.result === null)
     && ASSISTANCE.includes(String(value.assistance))
-    && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= 3600000
+    && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= MAX_RESPONSE_MS
 }
 
 export function isPracticeDraft(value: unknown): value is PracticeDraft {
@@ -92,7 +95,7 @@ export function isPracticeSession(value: unknown): value is PracticeSessionState
   if (!isRecord(value)) return false
   const session = value
   return session.version === 2 && text(session.id, 100) && text(session.seed, 100) && text(session.contentRevision, 100)
-    && isPracticeMinutes(session.targetMinutes) && ['ru', 'en', 'uk'].includes(String(session.locale))
+    && isPracticeMinutes(session.targetMinutes) && isTranslationLanguage(session.locale)
     && typeof session.finished === 'boolean'
     && Array.isArray(session.queue) && session.queue.length <= 100 && session.queue.every(isPracticeTask)
     && (!session.finished || (session.queue.length === 0 && session.current === null && session.activeSince === null))
@@ -112,7 +115,7 @@ export type PracticeRequest =
 
 export type PracticeActionInput =
   | { action: 'resume' | 'finish' | 'help' | 'next'; revision: number; taskId: string }
-  | { action: 'pause'; revision: number; taskId: string; draft: { answer: string; picked: number[] } | null }
+  | { action: 'pause'; revision: number; taskId: string; draft: PracticeDraftInput | null }
   | { action: 'answer'; revision: number; taskId: string; answer: string; responseMs: number }
 
 /** Actions only an older Practice client sends. They used to reach Review; now they are refused. */
@@ -132,12 +135,12 @@ export function parsePracticeRequest(body: unknown): PracticeRequest | null {
       return { kind: 'act', action: { action: body.action, ...common } }
     case 'pause': {
       if (body.draft !== undefined && body.draft !== null && !(isRecord(body.draft) && isPracticeDraft({ ...body.draft, taskId: common.taskId }))) return null
-      const draft = isRecord(body.draft) ? { answer: String(body.draft.answer), picked: body.draft.picked as number[] } : null
+      const draft: PracticeDraftInput | null = isRecord(body.draft) ? { answer: String(body.draft.answer), picked: body.draft.picked as number[] } : null
       return { kind: 'act', action: { action: 'pause', ...common, draft } }
     }
     case 'answer':
       if (!text(body.answer) || typeof body.responseMs !== 'number' || !Number.isFinite(body.responseMs) || body.responseMs < 0) return null
-      return { kind: 'act', action: { action: 'answer', ...common, answer: body.answer, responseMs: Math.min(3600000, body.responseMs) } }
+      return { kind: 'act', action: { action: 'answer', ...common, answer: body.answer, responseMs: Math.min(MAX_RESPONSE_MS, body.responseMs) } }
     default:
       return null
   }

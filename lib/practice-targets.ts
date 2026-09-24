@@ -1,5 +1,5 @@
 import { parseSenseTargetKey } from './practice-senses'
-import type { PracticeAttempt } from './practice'
+import { missed, type PracticeAttempt } from './practice'
 import type { ReviewItem } from './types'
 
 /**
@@ -44,11 +44,6 @@ function attemptEntryId(attempt: PracticeAttempt): string {
   return attempt.entryId || parseSenseTargetKey(attempt.targetKey)?.entryId || attempt.targetKey
 }
 
-/** A miss, whichever contract recorded it: an old Again rating or a new failed or unknown answer. */
-function attemptMissed(attempt: PracticeAttempt): boolean {
-  return attempt.rating === 1 || attempt.result === 'incorrect' || attempt.result === 'dont_know'
-}
-
 export function scoreTargets(input: { items: readonly ReviewItem[]; attempts: readonly PracticeAttempt[]; now: Date }): TargetScore[] {
   const now = input.now.getTime()
   const byEntry = new Map<string, PracticeAttempt[]>()
@@ -69,11 +64,11 @@ export function scoreTargets(input: { items: readonly ReviewItem[]; attempts: re
     for (const attempt of history) {
       const weight = typedKinds.has(attempt.kind) ? 1 : 0.5
       weighted += weight
-      if (!attemptMissed(attempt) && attempt.result !== 'unverified') succeeded += weight
+      if (!missed(attempt) && attempt.result !== 'unverified') succeeded += weight
     }
     const accuracy = (succeeded + 1) / (weighted + 2)
     const last = history.at(-1)
-    const lastMissed = Boolean(last && attemptMissed(last))
+    const lastMissed = Boolean(last && missed(last))
 
     const recall = item.reps > 0 && item.last_review
       ? retrievability(item.stability, (now - Date.parse(item.last_review)) / DAY_MS)

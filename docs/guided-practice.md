@@ -10,9 +10,9 @@ Review stays the default. Home and Review each carry a quiet **Practice →** li
 
 Only `practice_state.session` (the version-2 session) and one `practice_attempts` row per finished exercise. An attempt stores the target, entry and sense, exercise kind, result, assistance, response time, content version and learner language. It has no Review rating.
 
-It never writes `review_cards`, `review_logs`, `vocabulary_entries` (status, senses, coverage or examples) or the streak on `profiles`, and it calls no model. `commit_practice` and `record_sense_coverage` enforce this in the database (`20260924170000_isolate_practice_from_review.sql`), so an old client or an old server still sending the retired `legacy_change` payload or a version-1 session is refused.
+It never writes `review_cards`, `review_logs`, `vocabulary_entries` (status, senses, coverage or examples) or the streak on `profiles`, and it calls no model. `commit_practice` and `record_sense_coverage` (which now takes the id of a fresh, successful Review log) enforce this in the database (`20260924170000_isolate_practice_from_review.sql`), so an old client or an old server still sending the retired `legacy_change` payload or a version-1 session is refused.
 
-The migration rewrites no data. Existing Review cards, Review logs with their `previous_card` snapshots, senses, attempts, `practice_state.objectives` and `practice_packs` stay exactly as they are. A stored version-1 session stays a valid row; the app reports it as retired and starts fresh.
+The migration rewrites no data. Existing Review cards, Review logs with their `previous_card` snapshots, senses, attempts, `practice_state.objectives` and `practice_packs` stay exactly as they are. A stored version-1 session row is kept (the constraint is `NOT VALID`), but no version-1 session can be written again; the app reports it as retired and starts fresh.
 
 Set `NEXT_PUBLIC_GUIDED_PRACTICE_ENABLED=false` and rebuild to remove the entry points and disable the API.
 
@@ -20,7 +20,7 @@ Set `NEXT_PUBLIC_GUIDED_PRACTICE_ENABLED=false` and rebuild to remove the entry 
 
 - `pnpm test`: session boundary with a recording client (`lib/practice-session.test.mjs`), including legacy payloads; grading, planning, validation.
 - `pnpm build`.
-- `supabase/tests/guided_practice.sql`: database boundary. Refused `legacy_change`, refused version-1 session, attempt recorded, Review card/logs/entry/streak unchanged, coverage refused without a Review rating, owner scoping, no anonymous access. Rolls back.
+- `supabase/tests/guided_practice.sql`: database boundary. Refused `legacy_change`, refused version-1 session, attempt recorded, Review card/logs/entry/streak unchanged, coverage refused without a fresh, successful Review log of the caller's own, direct version-1 writes refused, owner scoping, no anonymous access. Rolls back.
 - `supabase/tests/meaning_model.sql`: senses and coverage, now rated through Review first.
 - `supabase/tests/practice-server.mjs`: the real service through PostgREST. Runs a whole session, pause/resume with a draft, the shortfall offer and the legacy refusals, then checks Review cards, logs, entries and the streak are byte-identical.
 

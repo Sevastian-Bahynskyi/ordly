@@ -3,17 +3,19 @@
 -- Review is the sole measure of retention. Before this migration `commit_practice` could move a
 -- Review card, append a Review log, set `learning_status` and advance the Review streak, and
 -- `record_sense_coverage` accepted a write from any caller. Both are closed here, in the database,
--- so an old client or an old deployed server cannot reach Review through the retired path.
+-- so neither routine can be used for a Practice write by an old client or an old deployed server.
+-- (Direct owner writes to `vocabulary_entries` stay allowed: the entry editor needs them.)
 --
 -- Nothing existing is rewritten: Review cards, Review logs (with their `previous_card`
 -- snapshots), saved senses and practice attempts are left exactly as they are. Historical
 -- practice-originated Review rows are not identified or deleted.
 
--- 1. Session payloads are versioned. Version 2 is the AI-free session contract; a stored
---    version-1 session stays valid as a row but can never be written again.
+-- 1. Session payloads are versioned. Version 2 is the AI-free session contract. NOT VALID keeps a
+--    stored version-1 row as it is (the app reports it as retired) while every new write, through
+--    the routine or directly, must be version 2.
 alter table public.practice_state drop constraint if exists practice_state_session_check;
 alter table public.practice_state add constraint practice_state_session_check
-  check (session is null or (jsonb_typeof(session) = 'object' and session->>'version' in ('1', '2')));
+  check (session is null or (jsonb_typeof(session) = 'object' and session->>'version' = '2')) not valid;
 
 -- 2. The Practice commit routine. Same signature, so an older caller gets a clear refusal rather
 --    than a missing-function error; `next_objectives` and `legacy_change` are retired:
@@ -56,11 +58,13 @@ $$;
 revoke all on function public.commit_practice(integer, jsonb, jsonb, jsonb, jsonb) from public, anon;
 grant execute on function public.commit_practice(integer, jsonb, jsonb, jsonb, jsonb) to authenticated;
 
--- 3. Shared sense coverage is Review evidence. The only legitimate caller is the Review rating
---    route, which moves the entry's Review card immediately before recording coverage, so a write
---    is accepted only when that card was reviewed in the last ten minutes. A Practice answer never
---    moves a Review card and so can never satisfy this.
-create or replace function public.record_sense_coverage(target_entry_id uuid, sense_ids text[], outcome text)
+-- 3. Shared sense coverage is Review evidence, so it is now recorded against a Review log: the
+--    caller names the log of the rating it just made, and the entry is taken from that log. It must
+--    be the caller's own, from the last ten minutes, and a success unless only `seen` is recorded.
+--    Practice never creates a Review log, so it cannot satisfy this. The old signature, which took
+--    any entry id, is dropped.
+drop function if exists public.record_sense_coverage(uuid, text[], text);
+create function public.record_sense_coverage(review_log_id bigint, sense_ids text[], outcome text)
 returns void
 language plpgsql
 security invoker
@@ -68,20 +72,22 @@ set search_path = ''
 as $$
 declare
   stamp text := to_char(now() at time zone 'utc', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"');
+  target_entry_id uuid;
 begin
   if outcome not in ('seen', 'recognized', 'produced') then
     raise exception 'Invalid coverage outcome' using errcode = '22023';
   end if;
+  select log.entry_id into target_entry_id
+  from public.review_logs log
+  where log.id = review_log_id
+    and log.user_id = (select auth.uid())
+    and log.reviewed_at >= now() - interval '10 minutes'
+    and (outcome = 'seen' or log.rating > 1);
+  if target_entry_id is null then
+    raise exception 'Coverage requires a Review rating' using errcode = '42501';
+  end if;
   if sense_ids is null or cardinality(sense_ids) = 0 then
     return;
-  end if;
-  if not exists (
-    select 1 from public.review_cards card
-    where card.entry_id = target_entry_id
-      and card.user_id = (select auth.uid())
-      and card.last_review >= now() - interval '10 minutes'
-  ) then
-    raise exception 'Coverage requires a Review rating' using errcode = '42501';
   end if;
 
   update public.vocabulary_entries entry
@@ -108,5 +114,5 @@ begin
     );
 end;
 $$;
-revoke all on function public.record_sense_coverage(uuid, text[], text) from public, anon;
-grant execute on function public.record_sense_coverage(uuid, text[], text) to authenticated;
+revoke all on function public.record_sense_coverage(bigint, text[], text) from public, anon;
+grant execute on function public.record_sense_coverage(bigint, text[], text) to authenticated;

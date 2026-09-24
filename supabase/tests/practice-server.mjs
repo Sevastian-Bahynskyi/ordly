@@ -30,7 +30,7 @@ const act = (action, extra = {}) => actOnPractice(supabase, userId, { action, re
 const reload = async () => { store = (await readPractice(supabase, userId)).store }
 
 // A shortfall is offered, not saved.
-const shortfall = await startPractice(supabase, userId, { minutes: 30, acceptShorter: false })
+const { shortfall } = await startPractice(supabase, userId, { minutes: 30, acceptShorter: false })
 assert.ok(shortfall && shortfall.availableMinutes > 0 && shortfall.availableMinutes < 30)
 await reload()
 assert.equal(store.session, null)
@@ -76,7 +76,7 @@ const legacy = await supabase.rpc('commit_practice', { expected_revision: store.
 assert.equal(legacy.error?.code, '42501')
 const oldSession = await supabase.rpc('commit_practice', { expected_revision: store.revision, next_session: { version: 1, queue: [], aiEnabled: true }, next_objectives: {} })
 assert.equal(oldSession.error?.code, '22023')
-const coverage = await supabase.rpc('record_sense_coverage', { target_entry_id: before.entries[0].id, sense_ids: [before.entries[0].senses[0].id], outcome: 'produced' })
+const coverage = await supabase.rpc('record_sense_coverage', { review_log_id: 0, sense_ids: [before.entries[0].senses[0].id], outcome: 'produced' })
 assert.equal(coverage.error?.code, '42501')
 
 assert.deepEqual(await reviewSnapshot(), before, 'Practice changed Review cards, logs, Material, status or the streak')

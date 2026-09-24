@@ -18,6 +18,7 @@ declare
   patch jsonb;
   event jsonb;
   change jsonb;
+  log_id bigint;
   session jsonb := '{"version":2,"queue":[]}';
 begin
   select * into card from public.review_cards limit 1;
@@ -60,14 +61,27 @@ begin
   if (select to_jsonb(v) - 'updated_at' from public.vocabulary_entries v where id = card.entry_id) <> before_entry then raise exception 'Practice changed the entry'; end if;
   if (select jsonb_build_object('current', current_streak, 'longest', longest_streak, 'last', last_study_date) from public.profiles) <> before_profile then raise exception 'Practice changed the Review streak'; end if;
 
-  -- Shared sense coverage is Review evidence only.
+  -- Shared sense coverage is Review evidence only: it needs the caller's own recent, successful Review log.
   begin
-    perform public.record_sense_coverage(card.entry_id, array[(before_entry #>> '{senses,0,id}')], 'produced');
+    perform public.record_sense_coverage(0, array[(before_entry #>> '{senses,0,id}')], 'produced');
     raise exception 'Coverage was written without a Review rating';
   exception when insufficient_privilege then null; end;
   if (select to_jsonb(v) - 'updated_at' from public.vocabulary_entries v where id = card.entry_id) <> before_entry then raise exception 'Coverage leaked into the entry'; end if;
-  update public.review_cards set last_review = now(), reps = 1 where id = card.id;
-  perform public.record_sense_coverage(card.entry_id, array[(before_entry #>> '{senses,0,id}')], 'recognized');
+  insert into public.review_logs(card_id, entry_id, rating, previous_state, stability, difficulty, scheduled_days, study_date, reviewed_at)
+  values (card.id, card.entry_id, 1, 0, 1, 5, 0, current_date, now()) returning id into log_id;
+  begin
+    perform public.record_sense_coverage(log_id, array[(before_entry #>> '{senses,0,id}')], 'recognized');
+    raise exception 'An Again rating credited coverage';
+  exception when insufficient_privilege then null; end;
+  insert into public.review_logs(card_id, entry_id, rating, previous_state, stability, difficulty, scheduled_days, study_date, reviewed_at)
+  values (card.id, card.entry_id, 3, 0, 1, 5, 0, current_date, now() - interval '1 hour') returning id into log_id;
+  begin
+    perform public.record_sense_coverage(log_id, array[(before_entry #>> '{senses,0,id}')], 'recognized');
+    raise exception 'A stale Review log credited coverage';
+  exception when insufficient_privilege then null; end;
+  insert into public.review_logs(card_id, entry_id, rating, previous_state, stability, difficulty, scheduled_days, study_date, reviewed_at)
+  values (card.id, card.entry_id, 3, 0, 1, 5, 0, current_date, now()) returning id into log_id;
+  perform public.record_sense_coverage(log_id, array[(before_entry #>> '{senses,0,id}')], 'recognized');
   if (select (senses #>> '{0,coverage,recognized}')::int from public.vocabulary_entries where id = card.entry_id) <> 1 then raise exception 'Review coverage was not written'; end if;
 
   begin
@@ -81,9 +95,12 @@ do $$ begin
 end $$;
 reset role;
 do $$ begin
-  -- A version-1 row stored before the migration stays readable; it is only never written again.
-  update public.practice_state set session = '{"version":1,"queue":[]}' where user_id = '10000000-0000-4000-8000-000000000001';
+  -- A version-1 session can no longer be written, even directly to the table.
+  begin
+    update public.practice_state set session = '{"version":1,"queue":[]}' where user_id = '10000000-0000-4000-8000-000000000001';
+    raise exception 'A version-1 session was written';
+  exception when check_violation then null; end;
   if has_function_privilege('anon', 'public.commit_practice(integer,jsonb,jsonb,jsonb,jsonb)', 'execute') then raise exception 'Anonymous RPC access'; end if;
-  if has_function_privilege('anon', 'public.record_sense_coverage(uuid,text[],text)', 'execute') then raise exception 'Anonymous coverage access'; end if;
+  if has_function_privilege('anon', 'public.record_sense_coverage(bigint,text[],text)', 'execute') then raise exception 'Anonymous coverage access'; end if;
 end $$;
 rollback;

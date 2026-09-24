@@ -229,7 +229,7 @@ function PracticeStart({ busy, shortfall, retired, finished, onStart }: { busy: 
           </div>
         : <>
             <fieldset className="practice-duration" disabled={busy}>
-              <legend>How long?</legend>
+              <legend className="eyebrow">HOW LONG?</legend>
               <div className="practice-duration-options" role="radiogroup" aria-label="Practice length">
                 {PRACTICE_MINUTE_PRESETS.map((value) => <button key={value} type="button" role="radio" aria-checked={preset === value} className={`practice-duration-option ${preset === value ? 'chosen' : ''}`} onClick={() => setPreset(value)}>{value} min</button>)}
                 <button type="button" role="radio" aria-checked={preset === 'custom'} className={`practice-duration-option ${preset === 'custom' ? 'chosen' : ''}`} onClick={() => setPreset('custom')}>Custom</button>
