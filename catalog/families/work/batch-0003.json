@@ -1,0 +1,713 @@
+[
+ {
+  "lemma": "denne",
+  "kind": "word",
+  "sense_id": "604a82ac-dab2-5296-a33e-d32db181dc3b",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 57,
+  "min_level": "A1",
+  "ru": "этот, эта",
+  "en": "this",
+  "forms": [
+   "denne",
+   "dennes",
+   "dette",
+   "dettes",
+   "disse",
+   "disses"
+  ]
+ },
+ {
+  "lemma": "mangen",
+  "kind": "word",
+  "sense_id": "d79d0c98-29bd-5d92-ae1b-481efd56fb11",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 58,
+  "min_level": "A1",
+  "ru": "многие, не один",
+  "en": "many a, more than one",
+  "forms": [
+   "mange",
+   "mangen",
+   "mangt"
+  ]
+ },
+ {
+  "lemma": "dag",
+  "kind": "word",
+  "sense_id": "11760f40-490e-54d2-aa95-ecbd9976aace",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 59,
+  "min_level": "A1",
+  "ru": "день",
+  "en": "day",
+  "forms": [
+   "dag",
+   "dage",
+   "dagen",
+   "dagene",
+   "dagenes",
+   "dagens",
+   "dages",
+   "dags"
+  ]
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "af5ca027-0f2e-57ff-91a8-3edabefab676",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 60,
+  "min_level": "A1",
+  "ru": "если",
+  "en": "if",
+  "forms": [
+   "hvis"
+  ]
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 60,
+  "min_level": "A1",
+  "ru": "чей, чья, чьё",
+  "en": "whose",
+  "forms": [
+   "hvis"
+  ]
+ },
+ {
+  "lemma": "da",
+  "kind": "word",
+  "sense_id": "2583cff2-cd4f-5f43-ad2e-ec0f28052dbf",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 61,
+  "min_level": "A1",
+  "ru": "когда (в прошлом)",
+  "en": "when (in the past)",
+  "forms": [
+   "da"
+  ]
+ },
+ {
+  "lemma": "da",
+  "kind": "word",
+  "sense_id": "9610ff6d-9332-546a-a769-dd8db6e18339",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 61,
+  "min_level": "A1",
+  "ru": "тогда, в таком случае",
+  "en": "then, in that case",
+  "forms": [
+   "da"
+  ]
+ },
+ {
+  "lemma": "tage",
+  "kind": "word",
+  "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 62,
+  "min_level": "A1",
+  "ru": "брать",
+  "en": "to take",
+  "forms": [
+   "ta'",
+   "ta'r",
+   "tag",
+   "tage",
+   "tagen",
+   "tagende",
+   "tager",
+   "tages",
+   "taget",
+   "tagne",
+   "tog"
+  ]
+ },
+ {
+  "lemma": "tage",
+  "kind": "word",
+  "sense_id": "49a715f4-b01b-5528-9e64-e82d2d99b191",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 62,
+  "min_level": "A1",
+  "ru": "ехать, отправляться",
+  "en": "to go, to travel",
+  "forms": [
+   "ta'",
+   "ta'r",
+   "tag",
+   "tage",
+   "tagen",
+   "tagende",
+   "tager",
+   "tages",
+   "taget",
+   "tagne",
+   "tog"
+  ]
+ },
+ {
+  "lemma": "mange",
+  "kind": "word",
+  "sense_id": "97bcb815-8c71-50a1-8e32-f134d8f5a24a",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 63,
+  "min_level": "A1",
+  "ru": "многие, много",
+  "en": "many",
+  "forms": [
+   "mange"
+  ]
+ },
+ {
+  "lemma": "her",
+  "kind": "word",
+  "sense_id": "cb0aed16-4840-54c8-a959-e4e4e2fbee26",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 64,
+  "min_level": "A1",
+  "ru": "здесь",
+  "en": "here",
+  "forms": [
+   "her"
+  ]
+ },
+ {
+  "lemma": "her",
+  "kind": "word",
+  "sense_id": "f4afb220-ede6-50c9-a96e-d218a8de0f8a",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 64,
+  "min_level": "A1",
+  "ru": "сюда",
+  "en": "here (to this place)",
+  "forms": [
+   "her"
+  ]
+ },
+ {
+  "lemma": "krone",
+  "kind": "word",
+  "sense_id": "9ff60b19-354a-5513-9426-3381802ae5fa",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 66,
+  "min_level": "A1",
+  "ru": "крона (датская валюта)",
+  "en": "krone (Danish currency)",
+  "forms": [
+   "krone",
+   "kronen",
+   "kronens",
+   "kroner",
+   "kronerne",
+   "kronernes",
+   "kroners",
+   "krones"
+  ]
+ },
+ {
+  "lemma": "krone",
+  "kind": "word",
+  "sense_id": "1b3c0d1b-d4f0-5a1f-a319-a4ef96a841b5",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 66,
+  "min_level": "A1",
+  "ru": "корона (королевская)",
+  "en": "crown (royal headpiece)",
+  "forms": [
+   "krone",
+   "kronen",
+   "kronens",
+   "kroner",
+   "kronerne",
+   "kronernes",
+   "kroners",
+   "krones"
+  ]
+ },
+ {
+  "lemma": "krone",
+  "kind": "word",
+  "sense_id": "428a8e4d-a93a-58fc-9e50-0ec733644721",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 66,
+  "min_level": "A1",
+  "ru": "крона (дерева)",
+  "en": "crown (of a tree)",
+  "forms": [
+   "krone",
+   "kronen",
+   "kronens",
+   "kroner",
+   "kronerne",
+   "kronernes",
+   "kroners",
+   "krones"
+  ]
+ },
+ {
+  "lemma": "gang",
+  "kind": "word",
+  "sense_id": "b7a0066f-6502-5823-aafd-46b59dd84d47",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 67,
+  "min_level": "A1",
+  "ru": "раз",
+  "en": "time (occurrence)",
+  "forms": [
+   "gang",
+   "gange",
+   "gangen",
+   "gangene",
+   "gangenes",
+   "gangens",
+   "ganges",
+   "gangs"
+  ]
+ },
+ {
+  "lemma": "gang",
+  "kind": "word",
+  "sense_id": "fc437696-1ba0-5200-8085-bc62fc34d345",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 67,
+  "min_level": "A1",
+  "ru": "коридор",
+  "en": "corridor, hallway",
+  "forms": [
+   "gang",
+   "gange",
+   "gangen",
+   "gangene",
+   "gangenes",
+   "gangens",
+   "ganges",
+   "gangs"
+  ]
+ },
+ {
+  "lemma": "gang",
+  "kind": "word",
+  "sense_id": "889de0ff-3746-5cfe-9513-54aaa210c41f",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 67,
+  "min_level": "A1",
+  "ru": "походка",
+  "en": "gait, walk (way of walking)",
+  "forms": [
+   "gang",
+   "gange",
+   "gangen",
+   "gangene",
+   "gangenes",
+   "gangens",
+   "ganges",
+   "gangs"
+  ]
+ },
+ {
+  "lemma": "tid",
+  "kind": "word",
+  "sense_id": "76233c7b-210a-576a-8000-f97d3ea97630",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 68,
+  "min_level": "A1",
+  "ru": "время",
+  "en": "time",
+  "forms": [
+   "tid",
+   "tide",
+   "tiden",
+   "tidens",
+   "tider",
+   "tiderne",
+   "tidernes",
+   "tiders",
+   "tids"
+  ]
+ },
+ {
+  "lemma": "tid",
+  "kind": "word",
+  "sense_id": "74de5e55-e4a2-57df-878e-a0ed291ef799",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 68,
+  "min_level": "A1",
+  "ru": "приём, запись (например, к врачу)",
+  "en": "appointment (e.g. with a doctor)",
+  "forms": [
+   "tid",
+   "tide",
+   "tiden",
+   "tidens",
+   "tider",
+   "tiderne",
+   "tidernes",
+   "tiders",
+   "tids"
+  ]
+ },
+ {
+  "lemma": "mod",
+  "kind": "word",
+  "sense_id": "55bb0142-67c2-5a98-826f-032cf4ad8b88",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 69,
+  "min_level": "A1",
+  "ru": "к, по направлению к",
+  "en": "towards",
+  "forms": [
+   "mod"
+  ]
+ },
+ {
+  "lemma": "mod",
+  "kind": "word",
+  "sense_id": "c36a5fd6-331d-52f7-94eb-1142033a0442",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 69,
+  "min_level": "A1",
+  "ru": "против",
+  "en": "against",
+  "forms": [
+   "mod"
+  ]
+ },
+ {
+  "lemma": "mod",
+  "kind": "word",
+  "sense_id": "8854b5c6-3ff8-58ee-8502-3078ad970e00",
+  "pos": "noun",
+  "gender": null,
+  "freq_rank": 69,
+  "min_level": "A1",
+  "ru": "мужество",
+  "en": "courage",
+  "forms": [
+   "mod",
+   "mode",
+   "modes",
+   "modet",
+   "modets",
+   "mods"
+  ]
+ },
+ {
+  "lemma": "give",
+  "kind": "word",
+  "sense_id": "7bc613ad-fa93-58fa-b51f-f766fb5b20f3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 70,
+  "min_level": "A1",
+  "ru": "давать",
+  "en": "to give",
+  "forms": [
+   "gav",
+   "gi'",
+   "gi'r",
+   "giv",
+   "give",
+   "given",
+   "givende",
+   "giver",
+   "gives",
+   "givet",
+   "givne"
+  ]
+ },
+ {
+  "lemma": "give",
+  "kind": "word",
+  "sense_id": "41fd3bcb-69c2-5a40-ab65-bfffe15c32f5",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 70,
+  "min_level": "A1",
+  "ru": "угощать, платить за кого-то",
+  "en": "to treat, to pay for someone",
+  "forms": [
+   "gav",
+   "gi'",
+   "gi'r",
+   "giv",
+   "give",
+   "given",
+   "givende",
+   "giver",
+   "gives",
+   "givet",
+   "givne"
+  ]
+ },
+ {
+  "lemma": "finde",
+  "kind": "word",
+  "sense_id": "5d704fde-2f0c-588d-aeb2-77993b54afda",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 71,
+  "min_level": "A1",
+  "ru": "находить",
+  "en": "to find",
+  "forms": [
+   "fandt",
+   "fandtes",
+   "find",
+   "finde",
+   "findende",
+   "finder",
+   "findes",
+   "funden",
+   "fundet",
+   "fundne"
+  ]
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 72,
+  "min_level": "A1",
+  "ru": "пришлось, был вынужден",
+  "en": "had to (was forced to)",
+  "forms": [
+   "må",
+   "måtte",
+   "måttede",
+   "måttet"
+  ]
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 72,
+  "min_level": "A1",
+  "ru": "мог, имел разрешение",
+  "en": "was allowed to, could",
+  "forms": [
+   "må",
+   "måtte",
+   "måttede",
+   "måttet"
+  ]
+ },
+ {
+  "lemma": "end",
+  "kind": "word",
+  "sense_id": "3f03eaf2-c555-5ab6-bfea-f9bd4a284ad0",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 73,
+  "min_level": "A1",
+  "ru": "чем",
+  "en": "than",
+  "forms": [
+   "end"
+  ]
+ },
+ {
+  "lemma": "hvad",
+  "kind": "word",
+  "sense_id": "c3ccf28b-740b-510b-8a17-576fe64430f1",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 74,
+  "min_level": "A1",
+  "ru": "что",
+  "en": "what",
+  "forms": [
+   "hva'",
+   "hvad"
+  ]
+ },
+ {
+  "lemma": "kun",
+  "kind": "word",
+  "sense_id": "9686cdc4-74fd-5dea-b0a1-f4754edc3bfa",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 75,
+  "min_level": "A1",
+  "ru": "только",
+  "en": "only",
+  "forms": [
+   "kun"
+  ]
+ },
+ {
+  "lemma": "du",
+  "kind": "word",
+  "sense_id": "dee8375d-d5b7-5d2d-9ff2-84ce49ddcc11",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 76,
+  "min_level": "A1",
+  "ru": "ты",
+  "en": "you (singular)",
+  "forms": [
+   "dig",
+   "du"
+  ]
+ },
+ {
+  "lemma": "ind",
+  "kind": "word",
+  "sense_id": "6270c1e4-9660-5f6d-89dc-cd365dea7c90",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 77,
+  "min_level": "A1",
+  "ru": "внутрь",
+  "en": "in, inside",
+  "forms": [
+   "ind"
+  ]
+ },
+ {
+  "lemma": "stå",
+  "kind": "word",
+  "sense_id": "9a361c2b-171c-5a15-bd40-56adb106cff3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 78,
+  "min_level": "A1",
+  "ru": "стоять",
+  "en": "to stand",
+  "forms": [
+   "stod",
+   "stå",
+   "ståede",
+   "stående",
+   "stået",
+   "står",
+   "stås"
+  ]
+ },
+ {
+  "lemma": "stå",
+  "kind": "word",
+  "sense_id": "c9fe714f-0131-5b26-9d20-888604347017",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 78,
+  "min_level": "A1",
+  "ru": "быть написанным, значиться",
+  "en": "to say, to be written",
+  "forms": [
+   "stod",
+   "stå",
+   "ståede",
+   "stående",
+   "stået",
+   "står",
+   "stås"
+  ]
+ },
+ {
+  "lemma": "blandt",
+  "kind": "word",
+  "sense_id": "5a33990b-43b5-5e3d-8d51-38b702784dcd",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 79,
+  "min_level": "A1",
+  "ru": "среди",
+  "en": "among",
+  "forms": [
+   "blandt"
+  ]
+ },
+ {
+  "lemma": "lang",
+  "kind": "word",
+  "sense_id": "220a9e42-5d62-57d7-9c48-0e1a32595fa7",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 80,
+  "min_level": "A1",
+  "ru": "длинный, долгий",
+  "en": "long",
+  "forms": [
+   "lang",
+   "lange",
+   "langt",
+   "længere",
+   "længst",
+   "længste"
+  ]
+ },
+ {
+  "lemma": "under",
+  "kind": "word",
+  "sense_id": "be0e7c04-eebb-5312-a704-06a20df6b67a",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 81,
+  "min_level": "A1",
+  "ru": "под",
+  "en": "under, beneath",
+  "forms": [
+   "under"
+  ]
+ },
+ {
+  "lemma": "under",
+  "kind": "word",
+  "sense_id": "08b250ac-9c18-5f50-9f2e-1b7171b154bc",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 81,
+  "min_level": "A1",
+  "ru": "во время, в течение",
+  "en": "during",
+  "forms": [
+   "under"
+  ]
+ },
+ {
+  "lemma": "første",
+  "kind": "word",
+  "sense_id": "3b4f4af6-e0bc-5108-a967-006aca263af2",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 82,
+  "min_level": "A1",
+  "ru": "первый",
+  "en": "first",
+  "forms": [
+   "første"
+  ]
+ }
+]
