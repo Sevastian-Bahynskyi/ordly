@@ -21,7 +21,7 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 - New / Learning / Mastered states
 - Installable iOS/desktop PWA with Web Push notifications
 - Due-review reminders, occasional word challenges, and per-weekday mandatory study reminders
-- One-owner Supabase authentication model
+- Supabase authentication with owner-scoped data per account
 - Responsive mobile and desktop UI
 
 ## Stack

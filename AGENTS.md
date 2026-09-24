@@ -80,7 +80,7 @@ Important tables/functions currently include:
 - private first-account claim / review-card creation / timestamp helpers
 - `private.sync_entry_senses` trigger and `public.record_sense_coverage` RPC (senses, see §20)
 
-RLS is owner-scoped. The app is intentionally personal-only: the first registered account gets access; later accounts are DB-blocked.
+RLS is owner-scoped. Any number of accounts can register; each sees only its own data. A new account gets its profile from the `on_auth_user_created_ordly` trigger (`private.create_profile()`). Shared tables (the word catalog and COR register) are read-only to signed-in users.
 
 Repo migrations currently start at:
 
