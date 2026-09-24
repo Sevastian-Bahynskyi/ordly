@@ -676,6 +676,40 @@ anything here. The shape:
 - `catalogLookupText` keeps a phrase whole; `corLookupForm` deliberately refuses anything with a space.
 - A learner-language switch updates `profiles` only. Saved meanings, Review and practice are untouched; only the wording offered from the catalog changes.
 
+## 25. Content through B2: English wording, sentence families, coverage (issue #16)
+
+The runbook and progress log are `docs/content-population.md`; the published numbers are
+`docs/content-coverage-report.md`. The rules that bind future changes:
+
+- **Every catalog sense has an English wording** (`catalog/locale-en.json`, loaded by
+  `scripts/import-catalog-locale.ts`). A wording pass may only add wording: `lib/catalog-locale-pass.ts`
+  refuses a reply that changes a sense's id, ordinal, part of speech, gender or Danish example.
+- **Sentence families** (`lib/catalog-families.ts`, tables `catalog_sentence_family` /
+  `catalog_sentence_variant`) teach one catalog sense in one context. The frame and slots record
+  what varies; **every allowed combination is an explicit variant** with its own verified target
+  form and its own English and Russian translation. Nothing is recombined at runtime, and the
+  distinct-sentence count is the number of variants, never a Cartesian product.
+- **The family gate** (`scripts/check-family-batches.ts`) checks the target against verified
+  forms (DSL's DDO full-form list, COR), slot constraints, spelling, article/gender agreement,
+  alternative orders (same words only), the A1–B2 matrix cell, the word's level floor, and overlap
+  with the frozen benchmark. A failure is quarantined in `needs_review.jsonl`; a batch below 95%
+  publishes nothing. Only `published.jsonl` is imported (`scripts/import-catalog-families.ts`),
+  and its cleanup refuses to run unless the whole snapshot is loaded.
+- **The benchmark is frozen.** `catalog/benchmark/unseen-tatoeba.tsv` was committed before any
+  family existed. Do not tune content against it and do not add its sentences to the catalog.
+- **Practice reads families only for the learner's own saved senses** (`lib/practice-contexts.ts`).
+  A catalog sentence is offered only with a translation in the learner language and at most one
+  level above theirs. A task built from one records `source: { variantId, version }` and is
+  dropped, not graded, if that variant has changed. A failed catalog read leaves Practice on the
+  learner's own examples. §19 and §21 still hold: no model call, no Review or Material write.
+- **Scripts can run without a linked database**: `CATALOG_COR_TSV` points `scripts/catalog-db.ts`
+  at a local copy of COR. In the cloud session, data was loaded through the Supabase MCP tool from
+  each importer's `--sql-dir` output.
+- **Coverage is three separate measures** (`lib/content-coverage.ts`): weighted lemma coverage
+  within DSL `freq-30k-ex` (by band and open/closed class, with credit through a COR headword shown
+  separately), coverage of the frozen unseen set, and A1–B2 matrix cells. None of them is a claim
+  about a learner's level.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

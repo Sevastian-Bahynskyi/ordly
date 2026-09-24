@@ -41,6 +41,10 @@ The exact form of a word the learner saw and chose to add. It remains among the 
 One distinct meaning of a Danish word or expression. Knowing one sense does not establish knowledge of its other senses.
 _Avoid_: Translation, when referring to the meaning rather than its wording in another language.
 
+**Sentence family**:
+A prepared set of Danish sentences that teach one sense in one context. Each sentence in it (a variant) is written, checked and translated as a whole; variants are never assembled at runtime.
+_Avoid_: Template, when it suggests words are recombined on the fly.
+
 **Exercise format**:
 A reusable form of interaction, such as choosing an answer, ordering words, or typing a response.
 _Avoid_: Exercise, when referring to the format rather than a particular task.
