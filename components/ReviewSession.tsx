@@ -1,5 +1,6 @@
 'use client'
 
+import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
@@ -44,7 +45,7 @@ type ReviewedItem = {
   logId: string | number
 }
 
-export function ReviewSession({ initialItems, formsByEntry = {}, translationLanguage = 'ru', autoplayAudio = false }: {
+export function ReviewSession({ initialItems, formsByEntry = {}, translationLanguage = DEFAULT_LEARNER_LANGUAGE, autoplayAudio = false }: {
   initialItems: ReviewItem[]
   formsByEntry?: Record<string, WordForm[]>
   translationLanguage?: 'ru' | 'en' | 'uk'

@@ -1,8 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import {
-  activeSeconds, finishPracticeTask, isChoiceKind, isReportable, isTranslationLanguage, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
+  activeSeconds, finishPracticeTask, isChoiceKind, isReportable, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
   type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore,
 } from './practice'
+import { isTranslationLanguage } from './learner-language'
 import { planPractice } from './practice-planner'
 import { gradePracticeAnswer, isOfferedChoice } from './practice-grading'
 import { currentTaskContentVersion } from './practice-content'

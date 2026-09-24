@@ -1,3 +1,4 @@
+import { learnerLanguage } from '@/lib/learner-language'
 import { AppShell } from '@/components/AppShell'
 import { MaterialClient, type MaterialKind } from '@/components/MaterialClient'
 import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
@@ -36,5 +37,5 @@ export default async function MaterialPage({ searchParams }: { searchParams: Pro
       : Promise.resolve({ data: [] as { lemma: string; kind: string; audio_path: string | null }[] }),
   ])
   const audioByCatalogKey = Object.fromEntries((catalogAudio.data || []).map((row) => [`${row.lemma}:${row.kind}`, row.audio_path]))
-  return <AppShell><SenseRefinementBackfill entryIds={unrefined} /><div className="page-wrap"><MaterialClient initialWords={all} initialCards={cards || []} initialForms={(forms || []) as WordForm[]} catalogAudio={audioByCatalogKey} initialMissingAudio={params.missingAudio === '1'} initialQuery={params.q || ''} initialKind={initialKind} initialPos={initialPos} translationLanguage={profile?.default_translation_language || 'ru'} definiteForms={Object.fromEntries(definiteForms)} /></div></AppShell>
+  return <AppShell><SenseRefinementBackfill entryIds={unrefined} /><div className="page-wrap"><MaterialClient initialWords={all} initialCards={cards || []} initialForms={(forms || []) as WordForm[]} catalogAudio={audioByCatalogKey} initialMissingAudio={params.missingAudio === '1'} initialQuery={params.q || ''} initialKind={initialKind} initialPos={initialPos} translationLanguage={learnerLanguage(profile?.default_translation_language)} definiteForms={Object.fromEntries(definiteForms)} /></div></AppShell>
 }

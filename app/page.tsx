@@ -1,3 +1,4 @@
+import { learnerLanguage } from '@/lib/learner-language'
 import Link from 'next/link'
 import { guidedPracticeEnabled } from '@/lib/practice-config'
 import { BookOpenCheck, Flame, Layers3, Target } from 'lucide-react'
@@ -58,7 +59,7 @@ export default async function HomePage() {
         </header>
 
         <section className="hero-grid">
-          <AddWordComposer translationLanguage={profile?.default_translation_language || 'ru'} />
+          <AddWordComposer translationLanguage={learnerLanguage(profile?.default_translation_language)} />
           <aside className="review-hero">
             <ReviewAurora />
             <div className="review-hero-content">

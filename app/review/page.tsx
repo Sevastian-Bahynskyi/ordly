@@ -1,3 +1,4 @@
+import { learnerLanguage } from '@/lib/learner-language'
 import Link from 'next/link'
 import { guidedPracticeEnabled } from '@/lib/practice-config'
 import { AppShell } from '@/components/AppShell'
@@ -45,5 +46,5 @@ export default async function ReviewPage(): Promise<React.JSX.Element> {
   const formsByEntry: Record<string, WordForm[]> = {}
   for (const form of (forms || []) as WordForm[]) (formsByEntry[form.entry_id] ||= []).push(form)
 
-  return <AppShell><div className="page-wrap review-page"><ReviewSession initialItems={items} formsByEntry={formsByEntry} translationLanguage={profile?.default_translation_language || 'ru'} autoplayAudio={profile?.autoplay_audio ?? false} />{guidedPracticeEnabled && <Link href="/review/practice" className="review-practice-link">Practice <span aria-hidden="true">→</span></Link>}</div></AppShell>
+  return <AppShell><div className="page-wrap review-page"><ReviewSession initialItems={items} formsByEntry={formsByEntry} translationLanguage={learnerLanguage(profile?.default_translation_language)} autoplayAudio={profile?.autoplay_audio ?? false} />{guidedPracticeEnabled && <Link href="/review/practice" className="review-practice-link">Practice <span aria-hidden="true">→</span></Link>}</div></AppShell>
 }

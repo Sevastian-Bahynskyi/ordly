@@ -1,5 +1,6 @@
 'use client'
 
+import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
@@ -62,7 +63,7 @@ export function MaterialClient({
   initialQuery = '',
   initialKind = 'all',
   initialPos = 'all',
-  translationLanguage = 'ru',
+  translationLanguage = DEFAULT_LEARNER_LANGUAGE,
   definiteForms = {},
 }: {
   initialWords: VocabularyEntry[]

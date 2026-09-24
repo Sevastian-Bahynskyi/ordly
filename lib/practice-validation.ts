@@ -1,5 +1,6 @@
 import { TARGET_KEY_MAX_LENGTH } from './practice-senses'
-import { isPracticeMinutes, isTranslationLanguage, type PracticeAttempt, type PracticeDraft, type PracticeDraftInput, type PracticeResponse, type PracticeSessionState, type PracticeTask } from './practice'
+import { isTranslationLanguage } from './learner-language'
+import { isPracticeMinutes, type PracticeAttempt, type PracticeDraft, type PracticeDraftInput, type PracticeResponse, type PracticeSessionState, type PracticeTask } from './practice'
 import type { ReviewItem } from './types'
 
 export function isRecord(value: unknown): value is Record<string, unknown> {

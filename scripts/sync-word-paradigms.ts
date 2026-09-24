@@ -11,7 +11,7 @@ const savedOnly = process.argv.includes('--saved-only')
 const entryAt = process.argv.indexOf('--entry')
 const entryId = entryAt >= 0 ? process.argv[entryAt + 1] : null
 if (entryId && !/^[0-9a-f-]{36}$/i.test(entryId)) throw new Error('Invalid entry id')
-const catalog = savedOnly ? [] : await queryJson<CatalogRow>(`select c.lemma, coalesce(s.pos, c.pos) as pos, coalesce(s.gender, c.gender) as gender from public.word_catalog c left join public.word_catalog_sense s on s.lemma = c.lemma and s.kind = c.kind where c.kind = 'word'`)
+const catalog = savedOnly ? [] : await queryJson<CatalogRow>(`select c.lemma, coalesce(s.pos, c.pos) as pos, coalesce(s.gender, c.gender) as gender from public.word_catalog c left join public.word_catalog_sense s on s.lemma = c.lemma and s.kind = c.kind and s.lang = 'ru' where c.kind = 'word'`)
 const saved = await queryJson<SavedRow>(`select id, danish, catalog_lemma, senses from public.vocabulary_entries where entry_kind = 'word'${entryId ? ` and id = ${literal(entryId)}::uuid` : ''}`)
 const lemmas = [...new Set([...catalog.map((row) => row.lemma), ...saved.map((row) => row.catalog_lemma || corLookupForm(row.danish))].filter(Boolean))]
 const corByLemma = new Map<string, CorForm[]>()

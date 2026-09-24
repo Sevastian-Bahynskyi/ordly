@@ -80,11 +80,6 @@ export interface PracticeDraft {
 /** A draft as the client sends it; the server attaches it to the current exercise. */
 export type PracticeDraftInput = Omit<PracticeDraft, 'taskId'>
 
-export const TRANSLATION_LANGUAGES: readonly TranslationLanguage[] = ['ru', 'en', 'uk']
-
-export function isTranslationLanguage(value: unknown): value is TranslationLanguage {
-  return TRANSLATION_LANGUAGES.includes(value as TranslationLanguage)
-}
 
 export interface PracticeAttempt {
   id: string

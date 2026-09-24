@@ -211,7 +211,7 @@ async function main(): Promise<void> {
     await query(`insert into public.word_catalog_sense
       (lemma, kind, sense_id, ordinal, lang, text, pos, gender, example, example_translation)
       values ${chunk.join(', ')}
-      on conflict (lemma, kind, sense_id) do update set
+      on conflict (lemma, kind, sense_id, lang) do update set
         ordinal = excluded.ordinal, text = excluded.text, pos = excluded.pos, gender = excluded.gender,
         example = excluded.example, example_translation = excluded.example_translation`)
     console.log(`  meanings ${Math.min(start + BATCH_SIZE, senses.length)}/${senses.length}`)

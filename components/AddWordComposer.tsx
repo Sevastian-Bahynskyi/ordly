@@ -1,5 +1,6 @@
 'use client'
 
+import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import { EntryEditor } from './EntryEditor'
 import type { TranslationLanguage } from '@/lib/types'
 
@@ -10,7 +11,7 @@ import type { TranslationLanguage } from '@/lib/types'
  */
 export function AddWordComposer({
   compact = false,
-  translationLanguage = 'ru',
+  translationLanguage = DEFAULT_LEARNER_LANGUAGE,
 }: {
   compact?: boolean
   translationLanguage?: TranslationLanguage
