@@ -184,8 +184,6 @@ button { color: inherit; }
 .settings-save { margin: 18px 22px 22px auto; }
 
 .review-page { width: min(820px, calc(100% - 64px)); }
-.review-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
-.review-header h1 { margin: 5px 0 0; font-size: 29px; letter-spacing: -.04em; }
 .review-progress-wrap { width: 210px; display: flex; align-items: center; gap: 9px; color: #8e8794; font-size: 10px; }
 .review-progress { flex: 1; height: 5px; border-radius: 99px; overflow: hidden; background: #e7e3e9; }
 .review-progress i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #7355d9, #a986e7); transition: width .3s ease; }
@@ -287,7 +285,7 @@ button { color: inherit; }
   .mobile-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #9a939f; font-size: 8.5px; border-radius: 11px; }
   .mobile-nav a.active { color: #694fc7; background: #f1ecff; }
   .page-wrap, .narrow-page, .review-page { width: calc(100% - 28px); padding: 28px 0 30px; }
-  .top-header, .page-header, .review-header { align-items: flex-start; }
+  .top-header, .page-header { align-items: flex-start; }
   .top-header h1, .page-header h1 { font-size: 29px; }
   .streak-pill { height: 34px; flex-shrink: 0; }
   .hero-grid { gap: 12px; }
@@ -328,7 +326,6 @@ button { color: inherit; }
   .setting-row { grid-template-columns: 1fr; gap: 13px; padding: 18px; }
   .settings-note { margin: 14px 18px 0; }
   .settings-save { margin: 14px 18px 18px; width: calc(100% - 36px); }
-  .review-header { flex-direction: column; gap: 14px; }
   .review-progress-wrap { width: 100%; }
   .flash-card { padding: 20px 17px 21px; border-radius: 20px; }
   .flash-prompt { min-height: 190px; }

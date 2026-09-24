@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { EntrySense, LearningStatus, ReviewItem } from '@/lib/types'
@@ -232,17 +233,20 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
 
   if (historyIndex !== null && history[historyIndex]) {
     const reviewed = history[historyIndex]
-    return <ReviewedCard
-      reviewed={reviewed}
-      index={historyIndex}
-      count={history.length}
-      languageLabel={languageLabel}
-      autoplayAudio={autoplayAudio}
-      forms={formsByEntry[reviewed.item.entry_id] || []}
-      onPrevious={() => setHistoryIndex((index) => index === null ? null : Math.max(0, index - 1))}
-      onNext={() => setHistoryIndex((index) => index === null || index >= history.length - 1 ? null : index + 1)}
-      onRatingChanged={(oldRating, newRating, card, status) => applyRevisedRating(reviewed, oldRating, newRating, card, status)}
-    />
+    return <div className="review-zen-active">
+      <ReviewZenBar progressLabel={`${historyIndex + 1} / ${history.length}`} />
+      <ReviewedCard
+        reviewed={reviewed}
+        index={historyIndex}
+        count={history.length}
+        languageLabel={languageLabel}
+        autoplayAudio={autoplayAudio}
+        forms={formsByEntry[reviewed.item.entry_id] || []}
+        onPrevious={() => setHistoryIndex((index) => index === null ? null : Math.max(0, index - 1))}
+        onNext={() => setHistoryIndex((index) => index === null || index >= history.length - 1 ? null : index + 1)}
+        onRatingChanged={(oldRating, newRating, card, status) => applyRevisedRating(reviewed, oldRating, newRating, card, status)}
+      />
+    </div>
   }
 
   if (!current || !entry) {
@@ -256,15 +260,9 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
     </section>
   }
 
-  return <>
-    <header className="review-header">
-      <div>
-        <span className="eyebrow">FOCUS MODE</span>
-        <h1>Review session</h1>
-        {history.length > 0 && <button className="soft-button" style={{ marginTop: 8, padding: '7px 10px' }} onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={14}/> Previous answer</button>}
-      </div>
-      <div className="review-progress-wrap"><span>{completed} / {total}</span><div className="review-progress review-progress-live"><i style={{ width: `${progress}%` }}/></div></div>
-    </header>
+  return <div className="review-zen-active">
+    <ReviewZenBar progressLabel={`${completed} / ${total}`} progress={progress} />
+    {history.length > 0 && <button className="review-previous-button" onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={14}/> Previous answer</button>}
 
     <section key={current.id} className={`flash-card review-card-live ${revealed ? 'revealed' : ''}`}>
       <div className="card-topline">
@@ -335,7 +333,17 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
       <RotateCcw size={15}/>
       Rate your memory of the headword. Forms are here for recognition.
     </div>
-  </>
+  </div>
+}
+
+function ReviewZenBar({ progressLabel, progress }: { progressLabel: string; progress?: number }): React.JSX.Element {
+  return <div className="review-zen-bar">
+    <Link href="/" className="review-exit"><ArrowLeft size={17}/><span>Exit review</span></Link>
+    <div className="review-progress-wrap" aria-label={`Review progress: ${progressLabel}`}>
+      <span>{progressLabel}</span>
+      {progress !== undefined && <div className="review-progress review-progress-live"><i style={{ width: `${progress}%` }}/></div>}
+    </div>
+  </div>
 }
 
 function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, forms, onPrevious, onNext, onRatingChanged }: {
@@ -380,11 +388,6 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, fo
   }
 
   return <>
-    <header className="review-header">
-      <div><span className="eyebrow">REVIEW HISTORY</span><h1>Previous answer</h1></div>
-      <div className="review-progress-wrap"><span>{index + 1} / {count}</span></div>
-    </header>
-
     <section className="flash-card revealed">
       <div className="card-topline">
         <span className="prompt-type">Danish → {languageLabel}</span>

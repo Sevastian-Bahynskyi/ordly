@@ -1,0 +1,56 @@
+.app-shell:has(.review-zen-active) .sidebar,
+.app-shell:has(.review-zen-active) .mobile-nav,
+.app-shell:has(.review-zen-active) .review-practice-link {
+  display: none;
+}
+
+.app-shell:has(.review-zen-active) .main-content {
+  margin-left: 0;
+  padding-bottom: 0;
+}
+
+.review-zen-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.review-exit {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.review-exit:hover,
+.review-exit:focus-visible {
+  color: var(--text);
+}
+
+.review-zen-bar .review-progress-wrap {
+  width: min(280px, 58%);
+}
+
+.review-previous-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0;
+  margin: -8px 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .review-zen-bar { gap: 10px; margin-bottom: 14px; }
+  .review-zen-bar .review-progress-wrap { width: min(230px, 60%); }
+}
