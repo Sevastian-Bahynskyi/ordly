@@ -1,4 +1,4 @@
-import { learnerLanguage } from '@/lib/learner-language'
+import { LEARNER_LANGUAGE_NAMES, learnerLanguage } from '@/lib/learner-language'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   ])
   if (!entry) return NextResponse.json({ error: 'Word not found' }, { status: 404 })
 
-  const target = ({ ru: 'Russian', en: 'English', uk: 'Ukrainian' } as Record<string,string>)[learnerLanguage(profile?.default_translation_language)]
+  const target = LEARNER_LANGUAGE_NAMES[learnerLanguage(profile?.default_translation_language)]
 
   try {
     const result = await openRouterJson({

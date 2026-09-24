@@ -42,9 +42,14 @@ begin
     insert into public.word_catalog_sense(lemma, kind, sense_id, ordinal, lang, text) values ('gulv', 'word', gen_random_uuid(), 2, 'en', 'x');
     raise exception 'A learner wrote the catalog';
   exception when insufficient_privilege then null; end;
-  update public.word_catalog_sense set text = 'changed' where lemma = 'gulv';
-  if exists (select 1 from public.word_catalog_sense where text = 'changed') then raise exception 'A learner changed the catalog'; end if;
-exception when insufficient_privilege then null;
+  begin
+    update public.word_catalog_sense set text = 'changed' where lemma = 'gulv';
+    raise exception 'A learner updated the catalog';
+  exception when insufficient_privilege then null; end;
+  begin
+    delete from public.word_catalog_sense where lemma = 'gulv';
+    raise exception 'A learner deleted from the catalog';
+  exception when insufficient_privilege then null; end;
 end $$;
 -- Switching the learner language changes the preference only: saved meanings and Review stay.
 insert into public.vocabulary_entries(id, danish, translation) values ('20000000-0000-4000-8000-000000000001', 'gulv', 'пол');

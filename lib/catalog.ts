@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { corLookupForm, parseCorForms } from './cor'
-import { activeSenses, emptyCoverage, isNounGender, isPartOfSpeech, normalizeSenseText } from './senses'
+import { isTranslationLanguage } from './learner-language'
+import { activeSenses, emptyCoverage, isNounGender, isPartOfSpeech, normalizeSenseText, parseSenses } from './senses'
 import type { EntrySense, NounGender, PartOfSpeech, TranslationLanguage } from './types'
 
 /**
@@ -63,10 +64,6 @@ function text(value: unknown): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : null
 }
 
-function isLanguage(value: unknown): value is TranslationLanguage {
-  return value === 'ru' || value === 'en' || value === 'uk'
-}
-
 export function parseCatalogSense(value: unknown): CatalogSense | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const record = value as Record<string, unknown>
@@ -75,7 +72,7 @@ export function parseCatalogSense(value: unknown): CatalogSense | null {
   const ordinal = typeof record.ordinal === 'number' && Number.isInteger(record.ordinal) ? record.ordinal : null
   // The column defaults to Russian, which every row written before issue #14 is.
   const lang = record.lang === undefined ? 'ru' : record.lang
-  if (!senseId || !body || ordinal === null || !isLanguage(lang)) return null
+  if (!senseId || !body || ordinal === null || !isTranslationLanguage(lang)) return null
   const pos = isPartOfSpeech(record.pos) ? record.pos : null
   return {
     sense_id: senseId,
@@ -162,8 +159,18 @@ const ENTRY_COLUMNS = 'lemma, kind, freq_rank, pos, gender, definite_singular, p
  * What the catalog holds for one typed text. Never throws: a catalog outage must fall through to
  * the live AI path, not stop the learner adding a word.
  */
+/**
+ * The text a lookup searches for. A single word goes through the register's normalisation; a
+ * phrase is kept whole (lowercased, spaces collapsed), because `corLookupForm` deliberately
+ * refuses anything with a space and a phrase must never be collapsed to one of its words.
+ */
+export function catalogLookupText(typed: string): string {
+  const text = typed.normalize('NFC').trim().replace(/^[«»"'“”(\[]+|[«»"'“”)\].,!?;:]+$/g, '').trim().replace(/\s+/g, ' ').toLocaleLowerCase('da-DK')
+  return /\s/u.test(text) ? (/\p{L}/u.test(text) ? text : '') : corLookupForm(text)
+}
+
 export async function lookupCatalog(client: SupabaseClient, typed: string, lang: TranslationLanguage): Promise<CatalogLookup> {
-  const form = corLookupForm(typed)
+  const form = catalogLookupText(typed)
   if (!form) return { candidates: [], miss: null }
   const isPhrase = /\s/u.test(form)
 
@@ -263,10 +270,45 @@ export function addCatalogMeaning(saved: readonly EntrySense[], draft: readonly 
     const fresh = activeSenses(draft).filter((sense) => !known.has(normalizeSenseText(sense.text)))
     return fresh.length ? { status: 'added', senses: [...current, ...fresh] } : { status: 'already-saved', senses: current }
   }
-  const existing = current.find((sense) => sense.id === pickedSenseId && !sense.removed_at)
-  if (existing && !existing.locked) return { status: 'already-saved', senses: current }
-  if (existing) return { status: 'added', senses: current.map((sense) => sense === existing ? { ...sense, locked: false } : sense) }
+  // A removed copy is restored rather than appended again: sense ids must stay unique (AGENTS §20).
+  const existing = current.find((sense) => sense.id === pickedSenseId)
+  if (existing && !existing.locked && !existing.removed_at) return { status: 'already-saved', senses: current }
   const incoming = draft.find((sense) => sense.id === pickedSenseId)
+  // A locked copy was stored in whatever language the word was first saved in. It is unlocked with
+  // the wording the learner just picked, so a Russian copy never becomes an English learner's
+  // active meaning; its id and coverage stay.
+  if (existing) return { status: 'added', senses: current.map((sense) => sense === existing ? { ...sense, ...(incoming ? { text: incoming.text, example: incoming.example, example_translation: incoming.example_translation } : {}), locked: false, removed_at: null } : sense) }
   if (!incoming) return { status: 'already-saved', senses: current }
   return { status: 'added', senses: [...current, { ...incoming, locked: false }] }
+}
+
+/** What the learner picked from the catalog: the headword, the meaning, and its verified spellings. */
+export interface CatalogPick { lemma: string; senseId: string | null; forms: string[] }
+export interface SavedCatalogWord { id: string; danish: string; updatedAt: string; senses: EntrySense[]; catalogLemma: string | null }
+
+/**
+ * The learner's saved word for a catalog pick: first one unlocked from the same catalog row, then
+ * one saved as the headword, then one saved under any of its verified forms (a manual `gulvet`).
+ * Two exact reads in parallel, owner-scoped by RLS; a failed read is reported, never treated as
+ * "not saved", because that would create the second card this exists to prevent.
+ */
+export async function findSavedCatalogWord(supabase: SupabaseClient, pick: CatalogPick): Promise<SavedCatalogWord | null | 'error'> {
+  const spellings = [...new Set([pick.lemma, ...pick.forms].map((form) => form.trim().toLocaleLowerCase('da-DK')).filter(Boolean))]
+  const columns = 'id, danish, senses, updated_at, catalog_lemma'
+  const [byCatalog, bySpelling] = await Promise.all([
+    supabase.from('vocabulary_entries').select(columns).eq('entry_kind', 'word').eq('catalog_lemma', pick.lemma).order('created_at').limit(1),
+    supabase.from('vocabulary_entries').select(columns).eq('entry_kind', 'word').in('danish', spellings).order('created_at').limit(10),
+  ])
+  if (byCatalog.error || bySpelling.error) return 'error'
+  const bySpellingRows = [...(bySpelling.data || [])].sort((a, b) => Number(b.danish === pick.lemma) - Number(a.danish === pick.lemma))
+  const row = [...(byCatalog.data || []), ...bySpellingRows][0]
+  return row ? { id: row.id, danish: row.danish, updatedAt: row.updated_at, senses: parseSenses(row.senses), catalogLemma: row.catalog_lemma } : null
+}
+
+/** The saved word's meanings with the picked one added, from the draft as it is now. */
+export function catalogMerge(saved: readonly EntrySense[], draft: { senses: readonly EntrySense[]; example_sentence: string; example_translation: string }, pick: CatalogPick): ReturnType<typeof addCatalogMeaning> {
+  const incoming = draft.senses.map((sense) => sense.id === pick.senseId && !sense.example
+    ? { ...sense, example: draft.example_sentence.trim() || null, example_translation: draft.example_translation.trim() || null }
+    : sense)
+  return addCatalogMeaning(saved, incoming, pick.senseId)
 }

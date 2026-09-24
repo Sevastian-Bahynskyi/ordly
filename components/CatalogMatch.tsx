@@ -36,8 +36,11 @@ const LOOKUP_DELAY_MS = 350
 interface Props {
   danish: string
   lang: TranslationLanguage
-  /** `senseId` is null when the learner will write the meaning themselves. */
-  onUnlock: (draft: UnlockedDraft, lemma: string, senseId: string | null) => void
+  /**
+   * `senseId` is null when the learner will write the meaning themselves. `forms` are the word's
+   * verified spellings, used to find it in Material under any of them.
+   */
+  onUnlock: (draft: UnlockedDraft, lemma: string, senseId: string | null, forms: string[]) => void
 }
 
 const MISS_NOTE: Record<CatalogMiss, string> = {
@@ -50,7 +53,9 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
   const [candidates, setCandidates] = useState<CatalogEntry[]>([])
   const [miss, setMiss] = useState<CatalogMiss | null>(null)
   const [loading, setLoading] = useState(false)
-  const [dismissed, setDismissed] = useState('')
+  // Both the typed text and the headword it filled in: picking `stjernen` replaces the field with
+  // `stjerne`, which must not reopen the same offer.
+  const [dismissed, setDismissed] = useState<string[]>([])
 
   const text = danish.trim()
 
@@ -77,7 +82,7 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
     }
   }, [text, lang])
 
-  if (!text || dismissed === text) return null
+  if (!text || dismissed.includes(text)) return null
   if (loading && !candidates.length) return null
 
   if (!candidates.length) {
@@ -89,10 +94,9 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
       <span className="catalog-title">Choose meaning</span>
       {candidates.map((entry) => {
         const encountered = encounteredFormOf(entry, text)
-        const languageName = LEARNER_LANGUAGE_NAMES[lang]
         const unlock = (senseId: string | null): void => {
-          onUnlock(unlockedDraft(entry, senseId), entry.lemma, senseId)
-          setDismissed(text)
+          onUnlock(unlockedDraft(entry, senseId), entry.lemma, senseId, entry.forms.map((form) => form.form_text))
+          setDismissed([text, entry.lemma])
         }
         return (
           <div key={`${entry.lemma}:${entry.kind}`} className="catalog-candidate">
@@ -125,7 +129,7 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
             </div>
             {entry.missing.length > 0 && (
               <small className="catalog-missing">
-                {entry.missing.length === 1 ? 'One meaning is' : `${entry.missing.length} meanings are`} not yet available in {languageName}.
+                {entry.missing.length === 1 ? 'One meaning is' : `${entry.missing.length} meanings are`} not yet available in {LEARNER_LANGUAGE_NAMES[lang]}.
               </small>
             )}
           </div>

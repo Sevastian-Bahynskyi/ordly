@@ -8,8 +8,9 @@
 --
 -- No data is rewritten. Every existing row is Russian and keeps its id.
 
-alter table public.word_catalog_sense drop constraint word_catalog_sense_pkey;
+alter table public.word_catalog_sense drop constraint if exists word_catalog_sense_pkey;
 alter table public.word_catalog_sense add primary key (lemma, kind, sense_id, lang);
+alter table public.word_catalog_sense drop constraint if exists word_catalog_sense_lang_check;
 alter table public.word_catalog_sense add constraint word_catalog_sense_lang_check check (lang in ('ru', 'en', 'uk'));
 
 -- Provenance per wording: which build or batch wrote it, so a bad batch can be found and fixed.
@@ -41,6 +42,7 @@ end;
 $$;
 revoke all on function private.check_catalog_sense_locale() from public, anon, authenticated;
 
+drop trigger if exists word_catalog_sense_locale_consistent on public.word_catalog_sense;
 create trigger word_catalog_sense_locale_consistent
 before insert or update of ordinal, pos, gender, sense_id, lang on public.word_catalog_sense
 for each row execute function private.check_catalog_sense_locale();
