@@ -19,7 +19,7 @@ import type { CatalogValidationSources } from '../lib/catalog-validation'
 import { corLookupForm, parseCorForms, type CorForm } from '../lib/cor'
 import { findMisspellings as findDanishMisspellings } from '../lib/spelling'
 import type { PartOfSpeech } from '../lib/types'
-import { literal, queryJson } from './catalog-db'
+import { corRowsFor } from './catalog-db'
 
 /** One round trip per distinct lemma, then in memory: a batch is forty words, not forty thousand. */
 const formCache = new Map<string, Promise<CorForm[] | null>>()
@@ -29,7 +29,7 @@ async function corForms(lemma: string): Promise<CorForm[] | null> {
   if (!form) return []
   let pending = formCache.get(form)
   if (!pending) {
-    pending = queryJson<unknown>(`select form, lemma, tag from cor_form where form = ${literal(form)}`)
+    pending = corRowsFor([form], 'form')
       .then((rows) => parseCorForms(rows))
       // A database that could not answer is not a database that said no.
       .catch(() => null)

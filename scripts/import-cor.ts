@@ -25,24 +25,13 @@ import { execFile } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { promisify } from 'node:util'
+import { parseCorTsv } from '../lib/cor-tsv'
 
 const run = promisify(execFile)
 
 const COR_URL = 'https://ordregister.dk/files/cor1.5.1.0.tsv'
 /** Rows per statement. ~250 KB of SQL per batch, comfortably inside the API's payload limit. */
 const BATCH_SIZE = 5000
-
-/** Field positions in the six-column TSV, 0-based. Field 3 (Glosse) is unused. */
-const LEMMA = 1
-const TAG = 3
-const FORM = 4
-const NORMERING = 5
-
-interface CorRow {
-  form: string
-  lemma: string
-  tag: string
-}
 
 async function query(sql: string): Promise<Record<string, unknown>[]> {
   const { stdout } = await run('supabase', ['db', 'query', '--linked', sql], { maxBuffer: 64 * 1024 * 1024 })
@@ -62,27 +51,6 @@ async function download(): Promise<string> {
   const response = await fetch(COR_URL)
   if (!response.ok) throw new Error(`COR download failed with HTTP ${response.status}`)
   return response.text()
-}
-
-/**
- * Parse the TSV into the rows the table stores: normering `N` only, form and lemma lowercased
- * because every lookup is case-insensitive, and deduplicated because one form/lemma/tag triple
- * can carry several COR ids.
- */
-export function parseCorTsv(tsv: string): CorRow[] {
-  const byKey = new Map<string, CorRow>()
-  for (const line of tsv.split('\n')) {
-    if (!line) continue
-    const fields = line.split('\t')
-    if (fields.length !== 6 || fields[NORMERING] !== 'N') continue
-    // Exactly the key `corLookupForm` builds, or a form imported here would never be found.
-    const form = fields[FORM].normalize('NFC').trim().toLocaleLowerCase('da-DK')
-    const lemma = fields[LEMMA].normalize('NFC').trim().toLocaleLowerCase('da-DK')
-    const tag = fields[TAG].trim()
-    if (!form || !lemma || !tag) continue
-    byKey.set(`${form}\t${lemma}\t${tag}`, { form, lemma, tag })
-  }
-  return [...byKey.values()]
 }
 
 async function main(): Promise<void> {
