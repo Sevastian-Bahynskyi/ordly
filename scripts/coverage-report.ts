@@ -14,18 +14,22 @@ import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { parseCatalogGeneratorText } from '../lib/catalog-contract'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
+import { corPartsOfSpeech } from '../lib/cor'
+import { parseCorTsv, type CorRow } from '../lib/cor-tsv'
+import type { PartOfSpeech } from '../lib/types'
 import { DSL_CLASSES, matrixCoverage, parseFrequencyList, supportKey, textCoverage, weightedCoverage, type WeightedCoverage } from '../lib/content-coverage'
 
 const argv = process.argv.slice(2)
 const option = (flag: string): string | null => (argv.includes(flag) ? argv[argv.indexOf(flag) + 1] : null)
 const freqPath = option('--freq')
+const corPath = option('--cor') || process.env.CATALOG_COR_TSV || null
 const fullFormsPath = option('--fullforms')
 if (!freqPath || !fullFormsPath) {
   console.error('Usage: coverage-report.ts --freq <freq-30k-ex.txt> --fullforms <ddo-fullforms.csv> [--out dirs] [--locale files] [--report file]')
   process.exit(1)
 }
-const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out'].filter(existsSync).join(',')).split(',')
-const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json'].filter(existsSync).join(',')).split(',')
+const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out'].filter(existsSync).join(',')).split(',')
+const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json'].filter(existsSync).join(',')).split(',')
 const reportPath = option('--report') || 'docs/content-coverage-report.md'
 
 // What the catalog supports, per learner language: `lemma|pos` with a worded sense.
@@ -52,7 +56,17 @@ for (const path of localeFiles) {
 const both = new Set([...ru].filter((key) => en.has(key)))
 
 const { rows, excluded } = parseFrequencyList(await readFile(freqPath, 'utf8'))
-const lexical = { ru: weightedCoverage(rows, ru), en: weightedCoverage(rows, en), both: weightedCoverage(rows, both) }
+// The register's headword for a list lemma that is only a form in that class (`det` → `den`).
+// A list lemma COR also knows as a headword in that class is never re-read as a form of another
+// word: `have` the noun is "garden", not the plural of `hav`.
+const corByForm = new Map<string, CorRow[]>()
+if (corPath) for (const row of parseCorTsv(await readFile(corPath, 'utf8'))) corByForm.set(row.form, [...(corByForm.get(row.form) || []), row])
+const headwordOf = (lemma: string, pos: string): string | null => {
+  const rowsForForm = (corByForm.get(lemma.toLocaleLowerCase('da-DK')) || []).filter((row) => corPartsOfSpeech(row.tag).includes(pos as PartOfSpeech))
+  if (!rowsForForm.length || rowsForForm.some((row) => row.lemma === lemma.toLocaleLowerCase('da-DK'))) return null
+  return rowsForForm[0].lemma
+}
+const lexical = { ru: weightedCoverage(rows, ru, headwordOf), en: weightedCoverage(rows, en, headwordOf), both: weightedCoverage(rows, both, headwordOf) }
 // The string-only figure, for comparison with the baseline measured before this pass.
 const byString = weightedCoverage(rows, new Set(rows.filter((row) => lemmas.has(row.lemma.toLocaleLowerCase('da-DK'))).map((row) => supportKey(row.lemma, DSL_CLASSES[row.cls]))))
 
@@ -107,11 +121,16 @@ ${Object.entries(excluded).map(([cls, n]) => `${cls} (${n})`).join(', ')}.
 A lemma counts when the catalog has a sense for it **in the word class the list gives** and that
 sense is worded in the learner language.
 
-| learner language | weighted coverage | lemmas covered | open classes (NC V A D) | closed classes |
-|---|---|---|---|---|
-| Russian | ${pct(lexical.ru.overall)} | ${lexical.ru.covered.toLocaleString('en-US')} | ${pct(lexical.ru.open)} | ${pct(lexical.ru.closed)} |
-| English | ${pct(lexical.en.overall)} | ${lexical.en.covered.toLocaleString('en-US')} | ${pct(lexical.en.open)} | ${pct(lexical.en.closed)} |
-| both | ${pct(lexical.both.overall)} | ${lexical.both.covered.toLocaleString('en-US')} | ${pct(lexical.both.open)} | ${pct(lexical.both.closed)} |
+| learner language | weighted coverage | of which via headword | lemmas covered | open classes (NC V A D) | closed classes |
+|---|---|---|---|---|---|
+| Russian | ${pct(lexical.ru.overall)} | ${pct(lexical.ru.viaHeadword)} | ${lexical.ru.covered.toLocaleString('en-US')} | ${pct(lexical.ru.open)} | ${pct(lexical.ru.closed)} |
+| English | ${pct(lexical.en.overall)} | ${pct(lexical.en.viaHeadword)} | ${lexical.en.covered.toLocaleString('en-US')} | ${pct(lexical.en.open)} | ${pct(lexical.en.closed)} |
+| both | ${pct(lexical.both.overall)} | ${pct(lexical.both.viaHeadword)} | ${lexical.both.covered.toLocaleString('en-US')} | ${pct(lexical.both.open)} | ${pct(lexical.both.closed)} |
+
+"Via headword": the list names a word COR files as a form of another headword in the same class
+(\`det\` → \`den\`, \`far\` → \`fader\`, \`mens\` → \`medens\`); the catalog saves words under COR's
+headword, so it teaches them there. ${corPath ? '' : '**COR was not supplied to this run, so nothing was credited this way.**'}
+Direct coverage alone is the overall figure minus that column.
 
 Lemma-string match without the class check (the baseline's method): ${pct(byString.overall)}.
 
@@ -157,7 +176,7 @@ ${cells.map((cell) => `| ${cell.axis} | ${cell.id} | ${cell.level} | ${cell.fami
 Cells below the threshold: ${cells.filter((cell) => cell.families < CELL_MIN).map((cell) => `${cell.id} ${cell.level}`).join(', ') || 'none'}.
 `
 await writeFile(reportPath, report)
-console.log(`lexical both ${pct(lexical.both.overall)} · ru ${pct(lexical.ru.overall)} · en ${pct(lexical.en.overall)} · string ${pct(byString.overall)}`)
+console.log(`lexical both ${pct(lexical.both.overall)} (via headword ${pct(lexical.both.viaHeadword)}) · ru ${pct(lexical.ru.overall)} · en ${pct(lexical.en.overall)} · string ${pct(byString.overall)}`)
 console.log(`unseen tokens ${pct(text.tokenCoverage)} · lemmas ${pct(text.lemmaCoverage)} · sentences ${pct(text.sentenceCoverage)}`)
 console.log(`matrix ${coveredCells.length}/${cells.length} cells · ${families.length} families · ${variants} sentences → ${reportPath}`)
 

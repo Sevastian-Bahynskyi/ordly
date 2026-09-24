@@ -2,6 +2,7 @@
  * Hold every learner-language reply to its work file (issue #16).
  *
  *   pnpm exec tsx scripts/check-locale-batches.ts --lang en [--only batch-0007.json] [--merge]
+ *     [--root catalog/expansion/locale --merged catalog/expansion/locale-en.json]
  *
  * A reply may only add wording. It must name exactly the senses its work file lists, keep their
  * ids, ordinals, part of speech and gender, and translate the Danish example it was given rather
@@ -22,9 +23,11 @@ const argv = process.argv.slice(2)
 const lang = argv[argv.indexOf('--lang') + 1] || 'en'
 const only = argv.includes('--only') ? argv[argv.indexOf('--only') + 1] : null
 const merge = argv.includes('--merge')
+const root = argv.includes('--root') ? argv[argv.indexOf('--root') + 1] : join('catalog', 'locale')
+const mergedPath = argv.includes('--merged') ? argv[argv.indexOf('--merged') + 1] : join('catalog', `locale-${lang}.json`)
 
-const workDir = join('catalog', 'locale', 'work')
-const replyDir = join('catalog', 'locale', lang)
+const workDir = join(root, 'work')
+const replyDir = join(root, lang)
 const names = (await readdir(workDir)).filter((name) => /^batch-\d+\.json$/.test(name) && (!only || name === only)).sort()
 
 let clean = 0
@@ -57,7 +60,7 @@ if (merge) {
     process.exit(1)
   }
   const out: LocaleFile = { lang: lang as LocaleFile['lang'], generator: [...generators].sort().join(' + '), senses: merged }
-  const target = join('catalog', `locale-${lang}.json`)
+  const target = mergedPath
   await writeFile(target, `${JSON.stringify(out, null, 1)}\n`)
   console.log(`Merged ${merged.length} senses into ${target}`)
 }

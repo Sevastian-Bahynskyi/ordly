@@ -49,6 +49,8 @@ export const BANDS: [number, number][] = [[1, 1000], [1001, 2000], [2001, 3000],
 
 export interface WeightedCoverage {
   overall: number
+  /** Share credited only through the register's headword (`det` → `den`), included in `overall`. */
+  viaHeadword: number
   covered: number
   lemmas: number
   bands: { from: number; to: number; coverage: number; covered: number; lemmas: number }[]
@@ -56,14 +58,27 @@ export interface WeightedCoverage {
   closed: number
 }
 
-export function weightedCoverage(rows: readonly FrequencyRow[], supported: SupportedSet): WeightedCoverage {
-  const hit = (row: FrequencyRow) => supported.has(supportKey(row.lemma, DSL_CLASSES[row.cls]))
+/**
+ * `headwordOf` names the register's headword for a list lemma that is not a headword itself in
+ * that class (`det` is a form of `den`, `far` of `fader`). The catalog teaches such a word under
+ * that headword, so it is credited — but reported apart, so the direct figure stays visible.
+ */
+export function weightedCoverage(rows: readonly FrequencyRow[], supported: SupportedSet, headwordOf: (lemma: string, pos: string) => string | null = () => null): WeightedCoverage {
+  const direct = (row: FrequencyRow) => supported.has(supportKey(row.lemma, DSL_CLASSES[row.cls]))
+  const viaHeadword = (row: FrequencyRow) => {
+    if (direct(row)) return false
+    const headword = headwordOf(row.lemma, DSL_CLASSES[row.cls])
+    return headword !== null && supported.has(supportKey(headword, DSL_CLASSES[row.cls]))
+  }
+  const hit = (row: FrequencyRow) => direct(row) || viaHeadword(row)
   const share = (subset: readonly FrequencyRow[]) => {
     const total = subset.reduce((sum, row) => sum + row.freq, 0)
     return total ? subset.filter(hit).reduce((sum, row) => sum + row.freq, 0) / total : 0
   }
+  const total = rows.reduce((sum, row) => sum + row.freq, 0)
   return {
     overall: share(rows),
+    viaHeadword: total ? rows.filter(viaHeadword).reduce((sum, row) => sum + row.freq, 0) / total : 0,
     covered: rows.filter(hit).length,
     lemmas: rows.length,
     bands: BANDS.map(([from, to]) => {
