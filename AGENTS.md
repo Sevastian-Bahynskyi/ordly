@@ -511,7 +511,19 @@ Review is the default and the only measure of retention (`docs/adr/0002-review-o
 - **Session contract** is version 2 (`lib/practice.ts`): seed, queue, target minutes, content revision, locale, cursor (`completed`), active time and the unsent `draft`. Pause (also on `visibilitychange`) saves the draft; resume shows the same exercise and text. Time counts only while running, one stretch at most ten minutes. The target is checked only on `next`, so the current answer is never cut off; past it the queue empties and the learner finishes.
 - **Isolation is enforced in the database too** (`20260924170000_isolate_practice_from_review.sql`). `commit_practice` refuses a non-null `legacy_change` (42501) and any session that is not version 2 (22023), ignores `next_objectives`, and no longer touches the streak. The session check is `NOT VALID` on version 2, so a stored version-1 row stays but none can be written again; the app shows it as retired. The old `record_sense_coverage(uuid, …)` is dropped. Historical Review rows are left as they are.
 - Practice no longer appends `source: 'user'` senses, fills saved examples, generates memory aids, or records coverage. `practice_state.objectives` and `practice_packs` are kept as stored but never read, returned or written.
-- Tests: `lib/practice-session.test.mjs` (session boundary, legacy payloads), `supabase/tests/guided_practice.sql` (database boundary), `supabase/tests/practice-server.mjs` (real SQL through PostgREST; see `docs/guided-practice.md`).
+- **Ten formats (issue #15).** choice `pick`, drag-gap `choose`, order `assemble`, type `cloze`/`produce`, binary, odd-one-out `odd`, category-sort `sort`, match, dialogue, flash-reveal `flash`. The table and builders are in `lib/practice.ts` and `lib/practice-formats.ts`. Each builder returns null without safe content, so an ambiguous board is never offered:
+  - binary's false claim is never a meaning of the word;
+  - match skips meanings that contain one another;
+  - sort and odd-one-out use only nouns whose gender COR recorded;
+  - dialogue needs the headword in Material and a situation in the learner language.
+- **Grading contract** (`lib/practice-grading.ts`):
+  - `accepted` lists the prepared alternatives, so a second reply or word order counts. Word order ignores the case and punctuation a tile carries.
+  - A typed gap marks any other verified form of the word (`forms`, from `word_forms`) as `wrong_form` before typo tolerance.
+  - Sort and match grade each word and store `targets` on the attempt; `attemptOutcomes` spreads them for selection.
+  - Flash-reveal records `self_known`/`self_unknown` with `assistance: 'self'`, weighted lowest, never checked.
+  - Feedback is a code (`PracticeFeedbackCode`) worded by `lib/practice-i18n.ts` in English or Russian (Ukrainian reads English). Stored English sentences from older sessions still show.
+- The dialogue pilot is `lib/practice-pilot.ts`: ten exchanges, English and Russian situations, provenance `dialogue-pilot-2026-09-25`. The session seed derives from the user and the saved revision, so a shortfall offer and its acceptance plan the same session.
+- Tests: `lib/practice-session.test.mjs` (session boundary, legacy payloads, a journey through all ten formats), `lib/practice-formats.test.mjs` (builder safety, per-format grading), `supabase/tests/guided_practice.sql` (database boundary), `supabase/tests/practice-server.mjs` (real SQL through PostgREST; see `docs/guided-practice.md`).
 
 ## 22. Free data instead of a model (COR, spelling, write-time checks)
 

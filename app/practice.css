@@ -101,3 +101,40 @@
 .diff-wrong, .diff-fixed { border-radius: 4px; padding: 0 1px; color: inherit; }
 .diff-wrong { background: #ffdcd6; color: #a3261a; text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .diff-fixed { background: #d3f2e0; color: #1d6b43; }
+
+/* Issue #15 formats. Tap-first boards: every target is a 44px button, so they work by touch and keyboard alike. */
+.practice-instruction { margin: 14px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; text-align: center; }
+.practice-dialogue { max-width: 560px; margin: 22px auto 24px; }
+.practice-dialogue .practice-context { text-align: center; margin-bottom: 16px; }
+.practice-speech { display: flex; align-items: flex-start; gap: 10px; margin: 0; padding: 14px 16px; border-radius: 16px 16px 16px 4px; background: var(--surface-2); font-size: 18px; line-height: 1.5; overflow-wrap: anywhere; }
+.practice-speech svg { flex: 0 0 auto; margin-top: 4px; color: var(--purple-2); }
+.practice-self-rating { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.practice-self-rating .soft-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; }
+.practice-self-note { display: block; margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.5; text-align: center; }
+.practice-match { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.practice-match-column, .practice-sort-placed { display: flex; flex-direction: column; gap: 8px; }
+.practice-column-label { font-size: 11px; font-weight: 650; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.practice-match .practice-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; text-align: left; overflow-wrap: anywhere; }
+.practice-match .practice-tile small { color: var(--muted); font-size: 12px; }
+.practice-tile.chosen { color: var(--purple); background: var(--purple-soft); border-color: var(--purple-2); box-shadow: 0 0 0 1px var(--purple-2) inset; }
+.practice-tile.used { color: var(--muted-2); }
+.practice-sort-help { display: block; margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+.practice-sort-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.practice-sort-group { display: flex; flex-direction: column; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); min-height: 120px; }
+.practice-sort-target { min-height: 44px; font: inherit; font-size: 14px; font-weight: 650; color: var(--purple); background: var(--purple-soft); border: 0; border-radius: 11px; cursor: pointer; transition: background 150ms ease; }
+.practice-sort-target:disabled { color: var(--muted); background: var(--surface-2); cursor: default; }
+.practice-outcomes { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 6px; }
+.practice-outcomes li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: 15px; }
+.practice-outcomes li span { margin-left: auto; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.practice-outcomes li.correct svg { color: var(--green); }
+.practice-outcomes li.incorrect svg { color: var(--red); }
+.practice-also strong { display: block; }
+.practice-verdict.self_known { color: var(--green); }
+.practice-verdict.self_unknown, .practice-verdict.partial, .practice-verdict.wrong_form { color: var(--amber); }
+@media (prefers-reduced-motion: reduce) {
+  .practice-sort-target { transition: none; }
+}
+@media (max-width: 420px) {
+  .practice-match, .practice-sort-groups { gap: 8px; }
+  .practice-match .practice-tile { padding: 10px 11px; font-size: 15px; }
+}

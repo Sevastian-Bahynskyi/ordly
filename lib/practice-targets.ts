@@ -1,5 +1,5 @@
 import { parseSenseTargetKey } from './practice-senses'
-import { missed, type PracticeAttempt } from './practice'
+import { attemptOutcomes, missed, type PracticeAttempt } from './practice'
 import type { ReviewItem } from './types'
 
 /**
@@ -38,7 +38,13 @@ export function retrievability(stability: number, elapsedDays: number): number {
   return Math.pow(1 + (19 / 81) * Math.max(0, elapsedDays) / stability, -0.5)
 }
 
-const typedKinds = new Set(['recall', 'produce', 'cloze', 'build', 'dialogue', 'listen'])
+const typedKinds = new Set(['recall', 'produce', 'cloze', 'build', 'listen'])
+
+/** Checked unaided answers weigh most, tapped ones less, self-ratings least (spec #12 decision 6). */
+function evidenceWeight(attempt: PracticeAttempt): number {
+  if (attempt.assistance === 'self') return 0.25
+  return typedKinds.has(attempt.kind) ? 1 : 0.5
+}
 
 function attemptEntryId(attempt: PracticeAttempt): string {
   return attempt.entryId || parseSenseTargetKey(attempt.targetKey)?.entryId || attempt.targetKey
@@ -47,7 +53,7 @@ function attemptEntryId(attempt: PracticeAttempt): string {
 export function scoreTargets(input: { items: readonly ReviewItem[]; attempts: readonly PracticeAttempt[]; now: Date }): TargetScore[] {
   const now = input.now.getTime()
   const byEntry = new Map<string, PracticeAttempt[]>()
-  for (const attempt of input.attempts) {
+  for (const attempt of input.attempts.flatMap(attemptOutcomes)) {
     if (attempt.kind === 'teach') continue
     const id = attemptEntryId(attempt)
     const list = byEntry.get(id) || []
@@ -62,7 +68,7 @@ export function scoreTargets(input: { items: readonly ReviewItem[]; attempts: re
     let weighted = 0
     let succeeded = 0
     for (const attempt of history) {
-      const weight = typedKinds.has(attempt.kind) ? 1 : 0.5
+      const weight = evidenceWeight(attempt)
       weighted += weight
       if (!missed(attempt) && attempt.result !== 'unverified') succeeded += weight
     }

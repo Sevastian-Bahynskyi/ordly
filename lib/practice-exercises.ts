@@ -125,6 +125,8 @@ export interface ExerciseInput {
   /** Wrong meanings for `pick`, in the learner's language. Built by `selectMeaningDistractors`. */
   meaningDistractors?: readonly string[]
   newTarget: boolean
+  /** The entry's verified forms (from `word_forms`), for typed gaps. */
+  forms?: readonly string[]
 }
 
 function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTask, 'kind' | 'prompt' | 'answer' | 'hint' | 'answerIsSentence'> {
@@ -347,6 +349,13 @@ export function pickMeaningTask(input: ExerciseInput): PracticeTask | null {
   }
 }
 
+/** The verified forms other than the one a gap expects, stored on the task for grading. */
+function otherForms(forms: readonly string[] | undefined, expected: string): { forms?: string[] } {
+  const key = expected.trim().toLocaleLowerCase('da-DK')
+  const others = [...new Set((forms || []).map((form) => form.trim().toLocaleLowerCase('da-DK')))].filter((form) => form && form !== key).slice(0, 16)
+  return others.length ? { forms: others } : {}
+}
+
 /** Type the missing word into its example sentence, with the sentence's meaning shown (Clozemaster). */
 export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
   const { candidate } = input
@@ -366,6 +375,7 @@ export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
     context: example.translation || undefined,
     hint: `Starts with “${found.surface.slice(0, 1)}” · ${[...found.surface].length} letters`,
     newTarget: input.newTarget,
+    ...otherForms(input.forms, found.surface),
   }
 }
 
