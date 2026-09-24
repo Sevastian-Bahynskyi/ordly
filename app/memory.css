@@ -40,13 +40,19 @@
   letter-spacing: 0;
   color: #81798a;
   outline: none;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
-.memory-stat.tier-new { --memory-color: #aaa3ae; }
-.memory-stat.tier-fragile { --memory-color: #c96870; }
-.memory-stat.tier-building { --memory-color: #d39a36; }
-.memory-stat.tier-growing { --memory-color: #4f8a75; }
-.memory-stat.tier-strong { --memory-color: #7658d8; }
+.memory-stat.tier-new, .memory-tooltip.tier-new { --memory-color: #aaa3ae; }
+.memory-stat.tier-fragile, .memory-tooltip.tier-fragile { --memory-color: #c96870; }
+.memory-stat.tier-building, .memory-tooltip.tier-building { --memory-color: #d39a36; }
+.memory-stat.tier-growing, .memory-tooltip.tier-growing { --memory-color: #4f8a75; }
+.memory-stat.tier-strong, .memory-tooltip.tier-strong { --memory-color: #7658d8; }
 
 .memory-ring-wrap {
   width: 34px;
@@ -107,10 +113,8 @@
 }
 
 .memory-tooltip {
-  position: absolute;
-  z-index: 120;
-  top: calc(100% + 8px);
-  right: 0;
+  position: fixed;
+  z-index: 130;
   width: max-content;
   min-width: 205px;
   max-width: 270px;
@@ -128,12 +132,11 @@
   text-align: left;
   text-transform: none;
   letter-spacing: 0;
-  opacity: 0;
-  visibility: hidden;
   pointer-events: none;
-  transform: translateY(-3px);
-  transition: opacity .14s ease, transform .14s ease, visibility .14s ease;
+  animation: memory-tooltip-in .16s cubic-bezier(.22, .8, .2, 1) both;
 }
+
+@keyframes memory-tooltip-in { from { opacity: 0; transform: translateY(-3px); } }
 
 .memory-tooltip::before {
   content: '';
@@ -147,6 +150,8 @@
   border-top: 1px solid rgba(225, 220, 230, .94);
   transform: rotate(45deg);
 }
+
+.memory-tooltip.above::before { top: auto; bottom: -5px; transform: rotate(225deg); }
 
 .memory-tooltip > strong {
   color: #4f4855;
@@ -173,14 +178,6 @@
   background: var(--memory-color);
 }
 
-.memory-stat:hover .memory-tooltip,
-.memory-stat:focus .memory-tooltip,
-.memory-stat:focus-within .memory-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
 @media (max-width: 640px) {
   .card-meta {
     gap: 6px;
@@ -202,7 +199,6 @@
   }
 
   .memory-tooltip {
-    right: -4px;
     min-width: 190px;
     max-width: min(260px, calc(100vw - 40px));
   }
@@ -214,8 +210,8 @@
     animation-delay: 2.15s;
   }
 
-  .memory-ring-value,
-  .memory-tooltip {
+  .memory-ring-value {
     transition: none;
   }
+  .memory-tooltip { animation: none; }
 }

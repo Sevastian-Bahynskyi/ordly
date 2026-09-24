@@ -62,7 +62,7 @@ button { color: inherit; }
 .eyebrow { display: inline-flex; align-items: center; gap: 6px; color: #8b8495; font-size: 10.5px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
 .eyebrow.light { color: rgba(255,255,255,.62); }
 .top-header, .page-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
-.top-header h1, .page-header h1 { margin: 7px 0 0; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.045em; line-height: 1.08; font-weight: 690; }
+.top-header h1, .page-header h1 { margin: 7px 0 0; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; line-height: 1.08; font-weight: 690; }
 .page-header { align-items: flex-start; }
 .page-header p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
 .streak-pill { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 13px; border: 1px solid #eadfd6; border-radius: 999px; background: #fffaf4; color: #a56a33; font-size: 13px; }
@@ -129,6 +129,7 @@ button { color: inherit; }
 .recent-word { min-height: 64px; display: grid; grid-template-columns: 36px minmax(150px, 1fr) minmax(140px, 1fr) 90px; gap: 10px; align-items: center; border-top: 1px solid #f0edf2; font-size: 12px; }
 .recent-word:first-child { border-top: 0; }
 .word-bubble { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; color: #6c51c8; background: #eee9ff; font-weight: 750; }
+.word-bubble[class*="pos-"] { color: var(--pos-fg); background: var(--pos-bg); }
 .word-bubble.small { width: 32px; height: 32px; border-radius: 10px; }
 .recent-word > div { display: flex; flex-direction: column; gap: 2px; }
 .recent-word strong, .word-main strong { font-size: 12.5px; }
@@ -193,7 +194,7 @@ button { color: inherit; }
 .card-topline { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; color: #938d99; font-size: 9.5px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; }
 .card-status { padding: 4px 7px; border-radius: 7px; background: #f1eef4; }
 .flash-prompt { position: relative; z-index: 1; min-height: 205px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.flash-prompt h2 { margin: 0; font-size: clamp(36px, 6vw, 56px); font-weight: 680; letter-spacing: -.055em; }
+.flash-prompt h2 { margin: 0; font-size: clamp(36px, 6vw, 56px); font-weight: 680; letter-spacing: -.035em; }
 .pronunciation { margin-top: 10px; color: #99919f; font-size: 13px; }
 .cloze-prompt { max-width: 610px; margin: 0; font-size: clamp(24px, 4vw, 37px); line-height: 1.28; letter-spacing: -.035em; font-weight: 620; }
 .flash-prompt small { margin-top: 11px; color: #9c95a1; font-size: 12px; }

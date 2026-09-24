@@ -272,7 +272,7 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
           Danish → {languageLabel}
         </span>
         <span className="card-meta">
-          <MemoryRing item={current} />
+          <MemoryRing item={current} placement="top" />
           <span className="card-status">{entry.learning_status}</span>
         </span>
       </div>

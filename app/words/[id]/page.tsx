@@ -68,7 +68,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
             <Link className="entry-back" href={backHref}><ArrowLeft size={14} /> {typedEntry.entry_kind === 'sentence' ? 'Sentences' : 'Material'}</Link>
             <h1>
               {typedEntry.entry_kind !== 'sentence' && (
-                <span className="word-bubble small entry-page-bubble">
+                <span className={`word-bubble small entry-page-bubble pos-${senses[0]?.pos || 'none'}`}>
                   {typedEntry.danish.slice(0, 1).toLocaleUpperCase('da-DK')}
                 </span>
               )}

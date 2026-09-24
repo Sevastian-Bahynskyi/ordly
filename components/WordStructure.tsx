@@ -48,9 +48,11 @@ export function WordStructure({ entry, initialForms }: { entry: VocabularyEntry;
     setSaving(false)
   }
 
-  return <section className="composer-card word-structure">
-    <div className="word-structure-heading"><div><span className="eyebrow">WORD FORMS</span><h2>{entry.danish}</h2><p>One word to review. Its forms are here whenever you need them.</p></div><button type="button" className="soft-button" onClick={() => setEditing(!editing)}>{editing ? 'Done' : 'Edit forms'}</button></div>
-    <div className={`form-tree ${parts[0] ? `pos-${parts[0]}` : ''}`}><div className="form-tree-root"><strong lang="da">{entry.danish}</strong><span>{entry.translation}</span></div><FormBranch forms={forms} headword={entry.danish} />{forms.length === 0 && <p className="word-paradigm-empty">No forms recorded yet. Add a part of speech to a meaning, or add a form below.</p>}</div>
+  const isCombiningElement = entry.danish.endsWith('-')
+
+  return <section className={`composer-card word-structure${forms.length ? '' : ' word-structure-empty'}`}>
+    <div className="word-structure-heading"><div><span className="eyebrow">WORD FORMS</span><h2>Forms</h2></div><button type="button" className="soft-button" onClick={() => setEditing(!editing)}>{editing ? 'Done' : 'Edit forms'}</button></div>
+    <div className={`form-tree ${parts[0] ? `pos-${parts[0]}` : ''}`}><div className="form-tree-root"><strong lang="da">{entry.danish}</strong><span>{entry.translation}</span></div><FormBranch forms={forms} headword={entry.danish} showHeading={false} />{forms.length === 0 && <p className="word-paradigm-empty">{isCombiningElement ? 'Used before another word in a compound. This word element does not inflect.' : 'No inflections recorded for this word.'}</p>}</div>
     {editing && <div className="word-form-editor"><div className="word-form-editor-list">{sortedForms(forms).map((form) => <FormEditRow key={`${form.form_key}:${form.form_text}:${form.gender}`} form={form} saving={saving} onSave={saveGloss} onRemove={removeForm} />)}</div><div className="word-form-add"><label>Form type<select value={addKey} onChange={(event) => setAddKey(event.target.value as WordFormKey)}>{keys.map(({ key, label }) => <option key={key} value={key}>{label}</option>)}</select></label><label>Danish form<input value={addText} maxLength={200} onChange={(event) => setAddText(event.target.value)} placeholder="Type a form" /></label><label>Meaning for this form<input value={addGloss} maxLength={500} onChange={(event) => setAddGloss(event.target.value)} placeholder="Optional" /></label><button type="button" className="soft-button" disabled={saving || !addText.trim()} onClick={() => void addForm()}>Add form</button></div></div>}
     {notice && <p role="status" className="word-structure-notice">{notice}</p>}
   </section>

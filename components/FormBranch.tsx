@@ -14,11 +14,11 @@ function displayedForms(forms: readonly WordForm[]): DisplayForm[] {
   return [...grouped.values()]
 }
 
-export function FormBranch({ forms, headword, compact = false }: { forms: readonly WordForm[]; headword: string; compact?: boolean }): React.JSX.Element | null {
+export function FormBranch({ forms, headword, compact = false, showHeading = true }: { forms: readonly WordForm[]; headword: string; compact?: boolean; showHeading?: boolean }): React.JSX.Element | null {
   const branches = displayedForms(forms)
   if (!branches.length) return null
   return <div className={`form-branch${compact ? ' compact' : ''}`}>
-    <span className="form-branch-heading">Forms <small>{compact ? <>For recognition · rate only {headword}</> : 'Recorded for this word'}</small></span>
+    {showHeading && <span className="form-branch-heading">Forms <small>{compact ? <>For recognition · rate only {headword}</> : 'Recorded for this word'}</small></span>}
     <div className="form-branch-list">{branches.map((form) => <div className="form-branch-row" key={JSON.stringify([form.text, form.gender, form.gloss])}><span className="form-branch-role">{form.roles.join(' · ')}</span><strong lang="da">{form.text}{form.gender && <small> · {form.gender}</small>}</strong>{form.gloss && <span className="form-branch-gloss">{form.gloss}</span>}</div>)}</div>
   </div>
 }

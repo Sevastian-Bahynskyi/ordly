@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { JSX } from 'react'
 import { fsrs, type Card } from 'ts-fsrs'
 import type { ReviewCard } from '@/lib/types'
@@ -87,7 +91,10 @@ function nextReviewLabel(dueValue: string) {
   return relative ? `${relative} · ${exact}` : exact
 }
 
-export function MemoryRing({ item, compact = false }: { item: ReviewCard; compact?: boolean }): JSX.Element {
+export function MemoryRing({ item, compact = false, placement = 'bottom' }: { item: ReviewCard; compact?: boolean; placement?: 'top' | 'bottom' }): JSX.Element {
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const [position, setPosition] = useState<{ top: number; right: number; above: boolean } | null>(null)
+  const tooltipId = useId()
   const isNew = item.state === 0 || !item.last_review
   const recall = recallPercent(item)
   const tier = memoryTier(item)
@@ -97,11 +104,47 @@ export function MemoryRing({ item, compact = false }: { item: ReviewCard; compac
     ? `New memory. Next review ${nextReview}.`
     : `Estimated recall ${recall} percent. ${tierName} memory with stability ${stabilityLabel(item.stability)}. Next review ${nextReview}.`
 
+  useEffect(() => {
+    if (!position) return
+    const dismiss = (event: PointerEvent): void => {
+      if (!buttonRef.current?.contains(event.target as Node)) setPosition(null)
+    }
+    const close = (): void => setPosition(null)
+    const onKeyDown = (event: KeyboardEvent): void => { if (event.key === 'Escape') close() }
+    document.addEventListener('pointerdown', dismiss)
+    document.addEventListener('keydown', onKeyDown)
+    window.addEventListener('scroll', close, true)
+    window.addEventListener('resize', close)
+    return () => {
+      document.removeEventListener('pointerdown', dismiss)
+      document.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('scroll', close, true)
+      window.removeEventListener('resize', close)
+    }
+  }, [position])
+
+  const toggle = (): void => {
+    if (position) { setPosition(null); return }
+    const rect = buttonRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const above = (placement === 'top' && rect.top >= 132) || rect.bottom > window.innerHeight - 130
+    setPosition({
+      top: above ? Math.max(12, rect.top - 118) : rect.bottom + 8,
+      right: Math.max(12, window.innerWidth - rect.right),
+      above,
+    })
+  }
+
   return (
-    <span
+    <>
+    <button
+      ref={buttonRef}
+      type="button"
       className={`memory-stat tier-${tier}${compact ? ' compact' : ''}`}
-      tabIndex={0}
-      aria-label={aria}
+      aria-label={`Memory progress. ${aria}`}
+      aria-expanded={position !== null}
+      aria-describedby={position ? tooltipId : undefined}
+      onClick={toggle}
     >
       <span className="memory-ring-wrap" aria-hidden="true">
         <svg viewBox="0 0 36 36" className="memory-ring-svg">
@@ -120,12 +163,13 @@ export function MemoryRing({ item, compact = false }: { item: ReviewCard; compac
         <strong>{isNew ? 'New' : `${recall}%`}</strong>
         <small>{isNew ? 'memory' : 'recall'}</small>
       </span>
-      <span className="memory-tooltip" role="tooltip">
+    </button>
+    {position && createPortal(<span id={tooltipId} className={`memory-tooltip tier-${tier}${position.above ? ' above' : ''}`} role="tooltip" style={{ top: position.top, right: position.right }}>
         <strong>{isNew ? 'New memory' : `${recall}% recall now`}</strong>
-        <span>Review recall · mixed exercise history</span>
+        <span>Based on your review history</span>
         <span><i className="memory-tier-dot" />{tierName} · stability {stabilityLabel(item.stability)}</span>
         <span>Next review <b>{nextReview}</b></span>
-      </span>
-    </span>
+      </span>, document.body)}
+    </>
   )
 }

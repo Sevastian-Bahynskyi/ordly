@@ -1144,7 +1144,7 @@ export function EntryEditor({
     <section className={`composer-card capture-focus${editing ? ' entry-editor-card' : ''}`} onKeyDown={keyDown}>
       <div className="composer-heading">
         <div>
-          <span className="eyebrow"><Sparkles size={14} /> {editing ? 'EDIT ENTRY' : 'QUICK CAPTURE'}</span>
+          {!editing && <span className="eyebrow"><Sparkles size={14} /> QUICK CAPTURE</span>}
           <h2>{editing ? 'Edit this entry' : 'Add Danish'}</h2>
         </div>
         {compact && <button className="icon-button" onClick={() => setOpen(false)} aria-label="Close"><X size={18} /></button>}

@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { guidedPracticeEnabled } from '@/lib/practice-config'
-import { BookOpenCheck, Flame, Layers3, Sparkles, Target } from 'lucide-react'
+import { BookOpenCheck, Flame, Layers3, Target } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { AddWordComposer } from '@/components/AddWordComposer'
 import { StatCard } from '@/components/StatCard'
 import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
 import { requireUser } from '@/lib/auth'
 import { needsRefinement } from '@/lib/sense-refinement'
+import { activeSenses, parseSenses } from '@/lib/senses'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,7 +48,7 @@ export default async function HomePage() {
       <SenseRefinementBackfill entryIds={unrefinedRecent} />
       <div className="page-wrap dashboard-page">
         <header className="top-header">
-          <div><span className="eyebrow">GOD FORMIDDAG</span><h1>Your Danish, one word at a time.</h1></div>
+          <div><span className="eyebrow">TODAY</span><h1>Your Danish, one word at a time.</h1></div>
           <div className="streak-pill">
             <span className="streak-fire" aria-hidden="true"><Flame className="streak-flame" size={17} /></span>
             <strong>{profile?.current_streak || 0}</strong>
@@ -59,12 +60,12 @@ export default async function HomePage() {
           <AddWordComposer translationLanguage={profile?.default_translation_language || 'ru'} />
           <aside className="review-hero">
             <div className="review-glow" />
-            <span className="eyebrow light"><Sparkles size={14} /> READY WHEN YOU ARE</span>
+            <span className="eyebrow light">REVIEW QUEUE</span>
             <div className="review-number">{due}</div>
             <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
-            <p>A short session now is worth more than a long one later.</p>
-            <Link href={guidedPracticeEnabled ? "/review/practice" : "/review"} className="review-start">{guidedPracticeEnabled ? "Start guided practice" : "Start review"} <BookOpenCheck size={18} /></Link>
-            <Link href="/review" className="ordinary-review-link">Ordinary FSRS review →</Link>
+            <p>Due cards first, then new words.</p>
+            <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
+            {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Guided practice →</Link>}
             <div className="mini-progress"><span style={{ width: `${Math.min(100, due ? 34 : 100)}%` }} /></div>
           </aside>
         </section>
@@ -81,7 +82,7 @@ export default async function HomePage() {
           <div className="recent-list">
             {recentWords.length ? recentWords.map((word) => (
               <div className="recent-word" key={word.id}>
-                <span className="word-bubble">{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span>
+                <span className={`word-bubble pos-${activeSenses(parseSenses(word.senses))[0]?.pos || 'none'}`}>{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span>
                 <div><strong>{word.danish}</strong><small>{word.pronunciation || 'pronunciation not added'}</small></div>
                 <span className="recent-translation">{word.translation}</span>
                 <span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span>
