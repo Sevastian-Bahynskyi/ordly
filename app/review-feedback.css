@@ -60,3 +60,6 @@
     align-items: flex-start;
   }
 }
+
+.review-card-live .flash-prompt { min-height: 160px; }
+@media (max-width: 480px) { .review-card-live .flash-prompt { min-height: 126px; } }
