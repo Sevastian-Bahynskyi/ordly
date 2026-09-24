@@ -1,51 +1,5 @@
 [
  {
-  "lemma": "base",
-  "kind": "word",
-  "sense_id": "ffd0f75f-2d79-54e6-bba6-d71b661f2513",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2355,
-  "min_level": "B1",
-  "ru": "основа",
-  "en": null,
-  "forms": [
-   "base",
-   "basen",
-   "basens",
-   "baser",
-   "baserne",
-   "basernes",
-   "basers",
-   "bases"
-  ]
- },
- {
-  "lemma": "indeks",
-  "kind": "word",
-  "sense_id": "eecede2c-a38e-50ac-bd05-ed848cb465b5",
-  "pos": "noun",
-  "gender": "et",
-  "freq_rank": 2356,
-  "min_level": "B1",
-  "ru": "индекс",
-  "en": null,
-  "forms": [
-   "indeks",
-   "indeks'",
-   "indeksene",
-   "indeksenes",
-   "indekser",
-   "indekserne",
-   "indeksernes",
-   "indeksers",
-   "indekset",
-   "indeksets",
-   "indices",
-   "indices'"
-  ]
- },
- {
   "lemma": "integration",
   "kind": "word",
   "sense_id": "a1b81a76-c311-52c5-ad20-2042d142c901",
@@ -54,7 +8,7 @@
   "freq_rank": 2357,
   "min_level": "B1",
   "ru": "интеграция",
-  "en": null,
+  "en": "integration",
   "forms": [
    "integration",
    "integrationen",
@@ -75,7 +29,7 @@
   "freq_rank": 2358,
   "min_level": "B1",
   "ru": "оригинальный, подлинный",
-  "en": null,
+  "en": "original, genuine",
   "forms": [
    "original",
    "originale",
@@ -94,7 +48,7 @@
   "freq_rank": 2358,
   "min_level": "B1",
   "ru": "своеобразный, необычный",
-  "en": null,
+  "en": "original, distinctive (style)",
   "forms": [
    "original",
    "originale",
@@ -113,7 +67,7 @@
   "freq_rank": 2359,
   "min_level": "B1",
   "ru": "отменять",
-  "en": null,
+  "en": "to cancel",
   "forms": [
    "aflys",
    "aflyse",
@@ -134,7 +88,7 @@
   "freq_rank": 2360,
   "min_level": "B1",
   "ru": "поддерживать, сохранять",
-  "en": null,
+  "en": "to maintain, to uphold",
   "forms": [
    "oprethold",
    "opretholde",
@@ -155,7 +109,7 @@
   "freq_rank": 2361,
   "min_level": "B1",
   "ru": "прыгать",
-  "en": null,
+  "en": "to jump, to hop",
   "forms": [
    "hop",
    "hoppe",
@@ -176,7 +130,7 @@
   "freq_rank": 2362,
   "min_level": "B1",
   "ru": "труп",
-  "en": null,
+  "en": "corpse",
   "forms": [
    "lig",
    "ligene",
@@ -195,7 +149,7 @@
   "freq_rank": 2363,
   "min_level": "B1",
   "ru": "экипаж, персонал",
-  "en": null,
+  "en": "crew, personnel",
   "forms": [
    "mandskab",
    "mandskaber",
@@ -216,7 +170,7 @@
   "freq_rank": 2364,
   "min_level": "B1",
   "ru": "перекрёсток",
-  "en": null,
+  "en": "crossroads, intersection",
   "forms": [
    "kryds",
    "kryds'",
@@ -241,7 +195,7 @@
   "freq_rank": 2364,
   "min_level": "B1",
   "ru": "крест",
-  "en": null,
+  "en": "cross, mark (X)",
   "forms": [
    "kryds",
    "kryds'",
@@ -266,7 +220,7 @@
   "freq_rank": 2365,
   "min_level": "B1",
   "ru": "высказывание, утверждение",
-  "en": null,
+  "en": "statement, assertion",
   "forms": [
    "udsagn",
    "udsagnene",
@@ -285,7 +239,7 @@
   "freq_rank": 2366,
   "min_level": "B1",
   "ru": "этический",
-  "en": null,
+  "en": "ethical",
   "forms": [
    "etisk",
    "etiske"
@@ -300,7 +254,7 @@
   "freq_rank": 2367,
   "min_level": "B1",
   "ru": "побег, бегство",
-  "en": null,
+  "en": "flight, escape",
   "forms": [
    "flugt",
    "flugten",
@@ -321,7 +275,7 @@
   "freq_rank": 2368,
   "min_level": "B1",
   "ru": "полуфинал",
-  "en": null,
+  "en": "semifinal",
   "forms": [
    "semifinale",
    "semifinalen",
@@ -342,7 +296,7 @@
   "freq_rank": 2369,
   "min_level": "B1",
   "ru": "весить",
-  "en": null,
+  "en": "to weigh (have a weight)",
   "forms": [
    "vej",
    "veje",
@@ -363,7 +317,7 @@
   "freq_rank": 2369,
   "min_level": "B1",
   "ru": "взвешивать",
-  "en": null,
+  "en": "to weigh (something)",
   "forms": [
    "vej",
    "veje",
@@ -384,7 +338,7 @@
   "freq_rank": 2370,
   "min_level": "B1",
   "ru": "вагон, тележка, машина",
-  "en": null,
+  "en": "cart, wagon, car (vehicle)",
   "forms": [
    "vogn",
    "vogne",
@@ -405,7 +359,7 @@
   "freq_rank": 2371,
   "min_level": "B1",
   "ru": "зависеть",
-  "en": null,
+  "en": "to depend (on)",
   "forms": [
    "afhang",
    "afhæng",
@@ -426,7 +380,7 @@
   "freq_rank": 2372,
   "min_level": "B1",
   "ru": "ехать на велосипеде",
-  "en": null,
+  "en": "to cycle, to bike",
   "forms": [
    "cykl",
    "cykle",
@@ -447,7 +401,7 @@
   "freq_rank": 2373,
   "min_level": "B1",
   "ru": "агент",
-  "en": null,
+  "en": "agent",
   "forms": [
    "agent",
    "agenten",
@@ -468,7 +422,7 @@
   "freq_rank": 2374,
   "min_level": "B1",
   "ru": "отдавать, выделять",
-  "en": null,
+  "en": "to give off, to emit",
   "forms": [
    "afgav",
    "afgiv",
@@ -490,7 +444,7 @@
   "freq_rank": 2374,
   "min_level": "B1",
   "ru": "подавать, высказывать",
-  "en": null,
+  "en": "to give, to make (a statement)",
   "forms": [
    "afgav",
    "afgiv",
@@ -512,7 +466,7 @@
   "freq_rank": 2375,
   "min_level": "B1",
   "ru": "очевидный",
-  "en": null,
+  "en": "obvious",
   "forms": [
    "oplagt",
    "oplagte"
@@ -527,7 +481,7 @@
   "freq_rank": 2375,
   "min_level": "B1",
   "ru": "бодрый, готовый к действию",
-  "en": null,
+  "en": "in good spirits, up for it",
   "forms": [
    "oplagt",
    "oplagte"
@@ -542,7 +496,7 @@
   "freq_rank": 2376,
   "min_level": "B1",
   "ru": "нить, провод",
-  "en": null,
+  "en": "thread, wire",
   "forms": [
    "tråd",
    "tråddene",
@@ -567,7 +521,7 @@
   "freq_rank": 2377,
   "min_level": "B1",
   "ru": "скандал",
-  "en": null,
+  "en": "scandal",
   "forms": [
    "skandale",
    "skandalen",
@@ -588,7 +542,7 @@
   "freq_rank": 2378,
   "min_level": "B1",
   "ru": "миллиметр",
-  "en": null,
+  "en": "millimeter",
   "forms": [
    "millimeter",
    "millimeteren",
@@ -607,7 +561,7 @@
   "freq_rank": 2379,
   "min_level": "B1",
   "ru": "дома, у себя",
-  "en": null,
+  "en": "at home",
   "forms": [
    "derhjemme"
   ]
@@ -621,7 +575,7 @@
   "freq_rank": 2380,
   "min_level": "B1",
   "ru": "неприятный",
-  "en": null,
+  "en": "unpleasant",
   "forms": [
    "ubehagelig",
    "ubehagelige",
@@ -640,7 +594,7 @@
   "freq_rank": 2381,
   "min_level": "B1",
   "ru": "планета",
-  "en": null,
+  "en": "planet, globe",
   "forms": [
    "klode",
    "kloden",
@@ -661,7 +615,7 @@
   "freq_rank": 2382,
   "min_level": "B1",
   "ru": "намекать",
-  "en": null,
+  "en": "to hint, to imply",
   "forms": [
    "antyd",
    "antyde",
@@ -682,7 +636,7 @@
   "freq_rank": 2383,
   "min_level": "B1",
   "ru": "цитировать",
-  "en": null,
+  "en": "to quote",
   "forms": [
    "citer",
    "citere",
@@ -704,7 +658,7 @@
   "freq_rank": 2384,
   "min_level": "B1",
   "ru": "брать на себя",
-  "en": null,
+  "en": "to take on, to assume (responsibility)",
   "forms": [
    "påtag",
    "påtage",
@@ -726,7 +680,7 @@
   "freq_rank": 2385,
   "min_level": "B1",
   "ru": "близкий родственник",
-  "en": null,
+  "en": "relative, next of kin",
   "forms": [
    "pårørende",
    "pårørendes"
@@ -741,7 +695,7 @@
   "freq_rank": 2386,
   "min_level": "B1",
   "ru": "созывать, вызывать",
-  "en": null,
+  "en": "to call, to convene",
   "forms": [
    "indkald",
    "indkalde",
@@ -762,7 +716,7 @@
   "freq_rank": 2387,
   "min_level": "B1",
   "ru": "страдание",
-  "en": null,
+  "en": "suffering",
   "forms": [
    "lidelse",
    "lidelsen",
@@ -783,7 +737,7 @@
   "freq_rank": 2387,
   "min_level": "B1",
   "ru": "болезнь",
-  "en": null,
+  "en": "condition, ailment (medical)",
   "forms": [
    "lidelse",
    "lidelsen",
@@ -804,7 +758,7 @@
   "freq_rank": 2388,
   "min_level": "B1",
   "ru": "вилла, частный дом",
-  "en": null,
+  "en": "villa, detached house",
   "forms": [
    "villa",
    "villaen",
@@ -814,6 +768,49 @@
    "villaernes",
    "villaers",
    "villas"
+  ]
+ },
+ {
+  "lemma": "ko",
+  "kind": "word",
+  "sense_id": "0db27270-5c77-55cf-b4e5-10c51ca4780b",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2389,
+  "min_level": "B1",
+  "ru": "корова",
+  "en": "cow",
+  "forms": [
+   "ko",
+   "koen",
+   "koens",
+   "kos",
+   "køer",
+   "køerne",
+   "køernes",
+   "køers"
+  ]
+ },
+ {
+  "lemma": "argumentere",
+  "kind": "word",
+  "sense_id": "f5167a0a-aa5a-5852-b3b3-dbb8b0fe27f9",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2390,
+  "min_level": "B1",
+  "ru": "аргументировать",
+  "en": "to argue (make a case)",
+  "forms": [
+   "argumenter",
+   "argumentere",
+   "argumenterede",
+   "argumenteredes",
+   "argumenterende",
+   "argumenterer",
+   "argumenteres",
+   "argumenteret",
+   "argumentér"
   ]
  }
 ]

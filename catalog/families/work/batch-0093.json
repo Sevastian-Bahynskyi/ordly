@@ -1,41 +1,5 @@
 [
  {
-  "lemma": "systematisk",
-  "kind": "word",
-  "sense_id": "b8cb13de-cafd-598a-ae04-a24e7b3bed74",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2796,
-  "min_level": "B1",
-  "ru": "систематический, планомерный",
-  "en": null,
-  "forms": [
-   "systematisk",
-   "systematiske"
-  ]
- },
- {
-  "lemma": "plakat",
-  "kind": "word",
-  "sense_id": "86853612-c3f3-5d76-80ed-b07fcb7474d9",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2797,
-  "min_level": "B1",
-  "ru": "плакат, афиша",
-  "en": null,
-  "forms": [
-   "plakat",
-   "plakaten",
-   "plakatens",
-   "plakater",
-   "plakaterne",
-   "plakaternes",
-   "plakaters",
-   "plakats"
-  ]
- },
- {
   "lemma": "fattigdom",
   "kind": "word",
   "sense_id": "18783220-6747-594a-a639-4f9d853422e0",
@@ -44,7 +8,7 @@
   "freq_rank": 2798,
   "min_level": "B1",
   "ru": "бедность, нищета",
-  "en": null,
+  "en": "poverty",
   "forms": [
    "fattigdom",
    "fattigdommen",
@@ -61,7 +25,7 @@
   "freq_rank": 2799,
   "min_level": "B1",
   "ru": "выписывать (из больницы)",
-  "en": null,
+  "en": "to discharge (from hospital)",
   "forms": [
    "udskrev",
    "udskreven",
@@ -83,7 +47,7 @@
   "freq_rank": 2799,
   "min_level": "B1",
   "ru": "выписывать (документ, рецепт)",
-  "en": null,
+  "en": "to write out, to issue (a prescription)",
   "forms": [
    "udskrev",
    "udskreven",
@@ -105,7 +69,7 @@
   "freq_rank": 2799,
   "min_level": "B1",
   "ru": "назначать (выборы)",
-  "en": null,
+  "en": "to call (an election)",
   "forms": [
    "udskrev",
    "udskreven",
@@ -127,7 +91,7 @@
   "freq_rank": 2800,
   "min_level": "B1",
   "ru": "рана",
-  "en": null,
+  "en": "wound",
   "forms": [
    "sår",
    "sårene",
@@ -146,7 +110,7 @@
   "freq_rank": 2801,
   "min_level": "B1",
   "ru": "симптом, признак болезни",
-  "en": null,
+  "en": "symptom",
   "forms": [
    "symptom",
    "symptomer",
@@ -167,7 +131,7 @@
   "freq_rank": 2802,
   "min_level": "B1",
   "ru": "чувствовать, ощущать",
-  "en": null,
+  "en": "to sense, to feel",
   "forms": [
    "fornem",
    "fornemme",
@@ -188,7 +152,7 @@
   "freq_rank": 2804,
   "min_level": "B1",
   "ru": "надзор, присмотр",
-  "en": null,
+  "en": "supervision, care",
   "forms": [
    "tilsyn",
    "tilsynene",
@@ -207,7 +171,7 @@
   "freq_rank": 2805,
   "min_level": "B1",
   "ru": "сербский",
-  "en": null,
+  "en": "Serbian",
   "forms": [
    "serbisk",
    "serbiske"
@@ -222,7 +186,7 @@
   "freq_rank": 2806,
   "min_level": "B1",
   "ru": "аллея",
-  "en": null,
+  "en": "avenue, tree-lined lane",
   "forms": [
    "alle",
    "alleen",
@@ -251,7 +215,7 @@
   "freq_rank": 2807,
   "min_level": "B1",
   "ru": "закрытие",
-  "en": null,
+  "en": "closure, closing",
   "forms": [
    "lukning",
    "lukningen",
@@ -272,7 +236,7 @@
   "freq_rank": 2808,
   "min_level": "B1",
   "ru": "комментатор",
-  "en": null,
+  "en": "commentator",
   "forms": [
    "kommentator",
    "kommentatoren",
@@ -293,7 +257,7 @@
   "freq_rank": 2809,
   "min_level": "B1",
   "ru": "отпечаток, след, влияние",
-  "en": null,
+  "en": "mark, imprint (influence)",
   "forms": [
    "præg",
    "prægene",
@@ -312,7 +276,7 @@
   "freq_rank": 2810,
   "min_level": "B1",
   "ru": "скамейка",
-  "en": null,
+  "en": "bench",
   "forms": [
    "bænk",
    "bænke",
@@ -333,7 +297,7 @@
   "freq_rank": 2811,
   "min_level": "B1",
   "ru": "подросток",
-  "en": null,
+  "en": "teenager",
   "forms": [
    "teenager",
    "teenagere",
@@ -354,7 +318,7 @@
   "freq_rank": 2812,
   "min_level": "B1",
   "ru": "диван",
-  "en": null,
+  "en": "sofa, couch",
   "forms": [
    "sofa",
    "sofaen",
@@ -375,7 +339,7 @@
   "freq_rank": 2813,
   "min_level": "B1",
   "ru": "дисциплина, порядок",
-  "en": null,
+  "en": "discipline (self-control)",
   "forms": [
    "disciplin",
    "disciplinen",
@@ -396,7 +360,7 @@
   "freq_rank": 2813,
   "min_level": "B1",
   "ru": "дисциплина (вид спорта)",
-  "en": null,
+  "en": "discipline (a sporting event)",
   "forms": [
    "disciplin",
    "disciplinen",
@@ -417,7 +381,7 @@
   "freq_rank": 2814,
   "min_level": "B1",
   "ru": "включая, включительно",
-  "en": null,
+  "en": "including",
   "forms": [
    "inklusive"
   ]
@@ -431,7 +395,7 @@
   "freq_rank": 2815,
   "min_level": "B1",
   "ru": "философия",
-  "en": null,
+  "en": "philosophy",
   "forms": [
    "filosofi",
    "filosofien",
@@ -452,7 +416,7 @@
   "freq_rank": 2816,
   "min_level": "B1",
   "ru": "шторм, буря",
-  "en": null,
+  "en": "storm",
   "forms": [
    "storm",
    "storme",
@@ -473,7 +437,7 @@
   "freq_rank": 2817,
   "min_level": "B1",
   "ru": "подготовка",
-  "en": null,
+  "en": "preparation",
   "forms": [
    "forberedelse",
    "forberedelsen",
@@ -494,7 +458,7 @@
   "freq_rank": 2818,
   "min_level": "B1",
   "ru": "самоубийство",
-  "en": null,
+  "en": "suicide",
   "forms": [
    "selvmord",
    "selvmordene",
@@ -513,7 +477,7 @@
   "freq_rank": 2819,
   "min_level": "B1",
   "ru": "давление",
-  "en": null,
+  "en": "pressure",
   "forms": [
    "tryk",
    "trykken",
@@ -533,7 +497,7 @@
   "freq_rank": 2819,
   "min_level": "B1",
   "ru": "нажатие",
-  "en": null,
+  "en": "press, push (of a button)",
   "forms": [
    "tryk",
    "trykken",
@@ -553,7 +517,7 @@
   "freq_rank": 2820,
   "min_level": "B1",
   "ru": "гнев, злость",
-  "en": null,
+  "en": "anger",
   "forms": [
    "vrede",
    "vreden",
@@ -570,7 +534,7 @@
   "freq_rank": 2821,
   "min_level": "B1",
   "ru": "нужда, бедствие",
-  "en": null,
+  "en": "distress, need",
   "forms": [
    "nød",
    "nødden",
@@ -593,7 +557,7 @@
   "freq_rank": 2821,
   "min_level": "B1",
   "ru": "орех",
-  "en": null,
+  "en": "nut",
   "forms": [
    "nød",
    "nødden",
@@ -616,7 +580,7 @@
   "freq_rank": 2822,
   "min_level": "B1",
   "ru": "терпеть, переносить",
-  "en": null,
+  "en": "to tolerate, to stand",
   "forms": [
    "tål",
    "tåle",
@@ -637,7 +601,7 @@
   "freq_rank": 2822,
   "min_level": "B1",
   "ru": "выдерживать",
-  "en": null,
+  "en": "to withstand",
   "forms": [
    "tål",
    "tåle",
@@ -658,7 +622,7 @@
   "freq_rank": 2823,
   "min_level": "B1",
   "ru": "сила, усилие",
-  "en": null,
+  "en": "effort, force (as in 'with effort')",
   "forms": [
    "mag"
   ]
@@ -672,7 +636,7 @@
   "freq_rank": 2824,
   "min_level": "B1",
   "ru": "снижение налогов, налоговая льгота",
-  "en": null,
+  "en": "tax cut, tax relief",
   "forms": [
    "skattelettelse",
    "skattelettelsen",
@@ -693,7 +657,7 @@
   "freq_rank": 2825,
   "min_level": "B1",
   "ru": "рабочий",
-  "en": null,
+  "en": "worker",
   "forms": [
    "arbejder",
    "arbejdere",
@@ -714,7 +678,7 @@
   "freq_rank": 2826,
   "min_level": "B1",
   "ru": "законный, разрешённый",
-  "en": null,
+  "en": "legal, permitted",
   "forms": [
    "lovlig",
    "lovlige",
@@ -730,7 +694,7 @@
   "freq_rank": 2827,
   "min_level": "B1",
   "ru": "ветряная мельница, ветряная турбина",
-  "en": null,
+  "en": "wind turbine, windmill",
   "forms": [
    "vindmølle",
    "vindmøllen",
@@ -751,7 +715,7 @@
   "freq_rank": 2828,
   "min_level": "B1",
   "ru": "минимум",
-  "en": null,
+  "en": "minimum",
   "forms": [
    "minima",
    "minimaene",
@@ -776,7 +740,7 @@
   "freq_rank": 2829,
   "min_level": "B1",
   "ru": "транспортное средство",
-  "en": null,
+  "en": "vehicle",
   "forms": [
    "køretøj",
    "køretøjer",
@@ -797,7 +761,7 @@
   "freq_rank": 2830,
   "min_level": "B1",
   "ru": "объявлять, анонсировать",
-  "en": null,
+  "en": "to announce",
   "forms": [
    "annoncer",
    "annoncere",
@@ -808,6 +772,49 @@
    "annonceres",
    "annonceret",
    "annoncér"
+  ]
+ },
+ {
+  "lemma": "annoncere",
+  "kind": "word",
+  "sense_id": "389ec062-225d-5874-b403-d7456d3dcb8e",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2830,
+  "min_level": "B1",
+  "ru": "давать объявление",
+  "en": "to advertise, to place an ad",
+  "forms": [
+   "annoncer",
+   "annoncere",
+   "annoncerede",
+   "annonceredes",
+   "annoncerende",
+   "annoncerer",
+   "annonceres",
+   "annonceret",
+   "annoncér"
+  ]
+ },
+ {
+  "lemma": "pind",
+  "kind": "word",
+  "sense_id": "52a9d9d3-15bc-540a-bff2-705fd23c18cd",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2831,
+  "min_level": "B1",
+  "ru": "палка, палочка",
+  "en": "stick",
+  "forms": [
+   "pind",
+   "pinde",
+   "pinden",
+   "pindene",
+   "pindenes",
+   "pindens",
+   "pindes",
+   "pinds"
   ]
  }
 ]

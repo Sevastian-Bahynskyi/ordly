@@ -34,7 +34,7 @@ word you may put in a sentence: they are verified by DSL's DDO full-form list or
     "slots": { "subject": [ { "da": "Bogen" }, { "da": "Tasken" }, { "da": "Min telefon" } ] },
     "variants": [
       { "slots": { "subject": 0 }, "target": "gulvet", "en": "The book is lying on the floor.", "ru": "Книга лежит на полу.", "orders": [] },
-      { "slots": { "subject": 1 }, "target": "gulvet", "en": "The bag is lying on the floor.", "ru": "Сумка лежит на полу.", "orders": ["På gulvet ligger tasken."] },
+      { "slots": { "subject": 1 }, "target": "gulvet", "en": "The bag is lying on the floor.", "ru": "Сумка лежит на полу.", "orders": ["På gulvet ligger tasken."], "accepted": [] },
       { "slots": { "subject": 2 }, "target": "gulvet", "en": "My phone is lying on the floor.", "ru": "Мой телефон лежит на полу.", "orders": [] }
     ]
   }
@@ -64,11 +64,13 @@ sentence; do not skip merely because the word is hard.
   declares it: `{ "da": "i går", "requires": { "verb": [1] } }` means it may only appear when the
   `verb` slot is option 1. Frames with no varying part are allowed only as `"slots": {}` with
   variants that differ in `target` (e.g. present vs past).
-- **`variants`**: 2–6 explicit combinations. Each gives the option index for **every** slot, the
-  exact `target` form in that sentence (one of `forms`), and complete `en` and `ru` translations of
-  that whole sentence. `orders` lists other complete Danish word orders that are equally correct
-  and natural (same words, different order, e.g. a fronted time phrase with inversion); leave it
-  empty when there is none or you are unsure.
+- **`variants`**: 3–4 explicit combinations (2 only when the frame genuinely allows no more; at
+  most 6). Each gives the option index for **every** slot, the exact `target` form in that
+  sentence (one of `forms`), and complete `en` and `ru` translations of that whole sentence.
+  `orders` lists other complete Danish word orders that are equally correct and natural (same
+  words, different order, e.g. a fronted time phrase with inversion); leave it empty when there is
+  none or you are unsure. `accepted` lists other Danish words (at most 4) that a learner could
+  correctly type into the gap given the translation shown — see rule 4.
 
 ## Rules that decide quality
 
@@ -84,10 +86,14 @@ sentence; do not skip merely because the word is hard.
    slot option (`{ "da": "et stort" }`), or the combination must be excluded with `requires`, or
    the variants must not include it. Never list a combination you have not read as a full
    sentence.
-4. **The gap is unambiguous.** With the translation shown, only this word (in this form) should
-   fit where `{target}` is. Avoid frames where a synonym or another common word would be equally
-   right. For prepositions and other small words, choose contexts where the choice is fixed
-   (*Bogen ligger på bordet*, *Jeg venter på bussen*).
+4. **The gap is unambiguous, or its alternatives are listed.** After writing the translations,
+   list every Danish word a learner could type into the gap from the English or the Russian. If
+   one of them is also correct there (`for` "because" → *fordi*; *skal* "have to" → *må*;
+   *hustruen* "the wife" → *konen*; *tilstrækkelig* "enough" → *nok*; *Indtag* "Take" → *Tag*),
+   first try to change the sentence or the translation so only the target fits; if that is not
+   possible, put the other correct words in `accepted`. Never leave a known alternative unlisted.
+   For prepositions choose contexts where the choice is fixed (*Bogen ligger på bordet*, *Jeg
+   venter på bussen*).
 5. **Translations are faithful and natural**: translate the Danish sentence, keep tense, person,
    number and meaning; no added or dropped content. English in English, Russian in Russian
    Cyrillic.
@@ -96,10 +102,50 @@ sentence; do not skip merely because the word is hard.
 7. **Vocabulary around the target stays at or below the family's level.** Prefer common words;
    no personal names, brands, places or numbers written as digits. Pronouns and common nouns
    (*min bror*, *naboen*, *læreren*) instead of names.
-8. **No copying.** Do not use sentences from Tatoeba, dictionaries (DDO/ordnet.dk examples are
+8. **Register decides the level.** A formal or written-register word (*hustru*, *indtage*,
+   *tilstrækkelig*, *forbrug*, *udtalelse*) gets a formal context — news, letters, official
+   language — at B1 or B2, whatever its `min_level`. If no natural context exists, skip it.
+9. **Translations add nothing and drop nothing.** No "campaign" that the Danish lacks, no
+   "товара" that is not there. Russian must be natural: *Дом красят* (not *Дом красится*),
+   *работает на семью*, *со станции*. Keep tense: *som firmaet havde planlagt* is "had planned".
+10. **No copying.** Do not use sentences from Tatoeba, dictionaries (DDO/ordnet.dk examples are
    copyright-protected) or textbooks. Write your own.
-9. **Variety.** Across a batch, vary situations, grammar features and sentence shapes; do not
+11. **Variety.** Across a batch, vary situations, grammar features and sentence shapes; do not
    reuse one frame for many words.
+
+12. **Natural word order and complete contexts.** Put the phrase that belongs to a noun next to it
+   (*Jagten i skoven var hård*, not *Jagten var hård i skoven*); give verbs the complements they
+   need (*spiller fodbold med min bror*, or *leger*). Avoid forced comparatives of rare
+   adjectives (*særere*).
+13. **Question the gloss.** If `ru`/`en` does not match what the Danish word means (e.g. a gloss
+   that belongs to a different word, like *udtalelse* glossed as "pronunciation", which is
+   *udtale*), do not write a family for it: skip with `"skip": "gloss wrong: …"` and say what the
+   word actually means. These skips become catalog repairs.
+
+### Choosing `grammar` and `situation`
+
+Label what the sentence actually exercises; the nearest familiar id is not good enough.
+
+| the target is… | `grammar` |
+|---|---|
+| a preposition of place or direction (*i, på, under, ind i*) | `prepositions-place` |
+| a preposition or adverbial of time (*om, i, siden, før*) | `prepositions-time` |
+| any other preposition: purpose, cause, material, topic, fixed government (*til, for, af, med, om* "about") | `prepositions-other` |
+| the infinitive marker *at*, or a verb in an infinitive construction | `infinitive` |
+| an adverb of degree, frequency or manner (*meget, for* "too", *ofte, næsten*) | `adverbs` |
+| a modal particle or sentence adverb (*jo, vel, nok, dog*) | `sentence-adverbs` |
+| a conjunction | `conjunctions` or `subordinate-clause` (when the clause order is the point) |
+| a noun whose form is the point (indefinite, definite, plural) | `noun-indefinite` / `noun-definite` / `noun-plural` |
+| a noun whose meaning in context is the point | `noun-meaning` |
+| an adjective whose ending is the point | `adjective-agreement` (never for numerals or adverbs) |
+| an adjective whose meaning is the point | `adjective-meaning` |
+| a verb whose tense is the point | `verb-present` / `verb-past` / `verb-perfect` / `verb-future` |
+| a verb whose meaning or object is the point | `verb-meaning` |
+| a pronoun or possessive | `pronouns` or `reflexive` |
+
+`situation` is the setting a reader recognises: a cemetery walk is `leisure`, repairing one's
+own car is `home` or `transport`, a company's quarterly figures are `work` or `society`. Topics
+that only exist at B1/B2 (`society`, `abstract`) put the family at B1/B2.
 
 The checker enforces the mechanical half (forms, placeholders, constraints, spelling, scripts,
 duplicates, alternative orders use the same words, article/gender agreement before a noun target,

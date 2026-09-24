@@ -1,5 +1,26 @@
 [
  {
+  "lemma": "amt",
+  "kind": "word",
+  "sense_id": "7d7f9e83-bc41-5446-b021-08891a2cbe5f",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 927,
+  "min_level": "A2",
+  "ru": "округ, административная область",
+  "en": "county",
+  "forms": [
+   "amt",
+   "amter",
+   "amterne",
+   "amternes",
+   "amters",
+   "amtet",
+   "amtets",
+   "amts"
+  ]
+ },
+ {
   "lemma": "kontrol",
   "kind": "word",
   "sense_id": "41626713-0938-587c-9b2f-3bf8f1704b32",
@@ -8,7 +29,7 @@
   "freq_rank": 928,
   "min_level": "A2",
   "ru": "контроль, власть над чем-либо",
-  "en": null,
+  "en": "control",
   "forms": [
    "kontrol",
    "kontrollen",
@@ -29,7 +50,7 @@
   "freq_rank": 928,
   "min_level": "A2",
   "ru": "проверка, досмотр",
-  "en": null,
+  "en": "check, inspection",
   "forms": [
    "kontrol",
    "kontrollen",
@@ -50,7 +71,7 @@
   "freq_rank": 929,
   "min_level": "A2",
   "ru": "насилие",
-  "en": null,
+  "en": "violence",
   "forms": [
    "vold",
    "volde",
@@ -71,7 +92,7 @@
   "freq_rank": 929,
   "min_level": "A2",
   "ru": "вал, крепостная насыпь",
-  "en": null,
+  "en": "rampart, embankment",
   "forms": [
    "vold",
    "volde",
@@ -92,7 +113,7 @@
   "freq_rank": 930,
   "min_level": "A2",
   "ru": "средство",
-  "en": null,
+  "en": "remedy, means",
   "forms": [
    "middel",
    "middels",
@@ -113,7 +134,7 @@
   "freq_rank": 930,
   "min_level": "A2",
   "ru": "средний, посредственный",
-  "en": null,
+  "en": "average, mediocre",
   "forms": [
    "middel"
   ]
@@ -127,7 +148,7 @@
   "freq_rank": 931,
   "min_level": "A2",
   "ru": "бесплатный",
-  "en": null,
+  "en": "free (no charge)",
   "forms": [
    "gratis"
   ]
@@ -141,7 +162,7 @@
   "freq_rank": 932,
   "min_level": "A2",
   "ru": "хватать, ловить",
-  "en": null,
+  "en": "to grab, to catch",
   "forms": [
    "greb",
    "greben",
@@ -163,7 +184,7 @@
   "freq_rank": 932,
   "min_level": "A2",
   "ru": "растрогать, взволновать",
-  "en": null,
+  "en": "to move, to touch (emotionally)",
   "forms": [
    "greb",
    "greben",
@@ -185,7 +206,7 @@
   "freq_rank": 933,
   "min_level": "A2",
   "ru": "приземляться",
-  "en": null,
+  "en": "to land",
   "forms": [
    "land",
    "lande",
@@ -206,7 +227,7 @@
   "freq_rank": 934,
   "min_level": "A2",
   "ru": "управлять, руководить",
-  "en": null,
+  "en": "to steer, to control",
   "forms": [
    "styr",
    "styre",
@@ -227,7 +248,7 @@
   "freq_rank": 934,
   "min_level": "A2",
   "ru": "сдерживаться, совладать с собой",
-  "en": null,
+  "en": "to control oneself, to hold back",
   "forms": [
    "styr",
    "styre",
@@ -248,7 +269,7 @@
   "freq_rank": 935,
   "min_level": "A2",
   "ru": "представлять себе, воображать",
-  "en": null,
+  "en": "to imagine",
   "forms": [
    "forestil",
    "forestille",
@@ -269,7 +290,7 @@
   "freq_rank": 935,
   "min_level": "A2",
   "ru": "представлять, знакомить (кого-то с кем-то)",
-  "en": null,
+  "en": "to introduce (someone to someone)",
   "forms": [
    "forestil",
    "forestille",
@@ -290,7 +311,7 @@
   "freq_rank": 936,
   "min_level": "A2",
   "ru": "выполнять, исполнять",
-  "en": null,
+  "en": "to carry out, to perform",
   "forms": [
    "udfør",
    "udføre",
@@ -311,7 +332,7 @@
   "freq_rank": 936,
   "min_level": "A2",
   "ru": "вывозить, экспортировать",
-  "en": null,
+  "en": "to export",
   "forms": [
    "udfør",
    "udføre",
@@ -332,7 +353,7 @@
   "freq_rank": 937,
   "min_level": "A2",
   "ru": "участвовать, способствовать",
-  "en": null,
+  "en": "to take part, to contribute",
   "forms": [
    "medvirk",
    "medvirke",
@@ -354,7 +375,7 @@
   "freq_rank": 938,
   "min_level": "A2",
   "ru": "комиссия (комитет, орган)",
-  "en": null,
+  "en": "commission (committee, body)",
   "forms": [
    "kommission",
    "kommissionen",
@@ -375,7 +396,7 @@
   "freq_rank": 938,
   "min_level": "A2",
   "ru": "комиссионные, вознаграждение за посредничество",
-  "en": null,
+  "en": "commission (fee for a service)",
   "forms": [
    "kommission",
    "kommissionen",
@@ -396,7 +417,7 @@
   "freq_rank": 939,
   "min_level": "A2",
   "ru": "товар",
-  "en": null,
+  "en": "good, item (merchandise)",
   "forms": [
    "vare",
    "varen",
@@ -417,7 +438,7 @@
   "freq_rank": 939,
   "min_level": "A2",
   "ru": "длиться, продолжаться",
-  "en": null,
+  "en": "to last",
   "forms": [
    "var",
    "vare",
@@ -438,7 +459,7 @@
   "freq_rank": 941,
   "min_level": "A2",
   "ru": "профессиональный",
-  "en": null,
+  "en": "professional",
   "forms": [
    "professionel",
    "professionelle",
@@ -454,7 +475,7 @@
   "freq_rank": 942,
   "min_level": "A2",
   "ru": "самолёт",
-  "en": null,
+  "en": "airplane",
   "forms": [
    "fly",
    "flyen",
@@ -475,7 +496,7 @@
   "freq_rank": 943,
   "min_level": "A2",
   "ru": "больница",
-  "en": null,
+  "en": "hospital",
   "forms": [
    "sygehus",
    "sygehus'",
@@ -496,7 +517,7 @@
   "freq_rank": 944,
   "min_level": "A2",
   "ru": "ездить верхом",
-  "en": null,
+  "en": "to ride (a horse)",
   "forms": [
    "red",
    "reden",
@@ -518,7 +539,7 @@
   "freq_rank": 945,
   "min_level": "A2",
   "ru": "красивый, аккуратный",
-  "en": null,
+  "en": "nice, tidy",
   "forms": [
    "pæn",
    "pæne",
@@ -537,7 +558,7 @@
   "freq_rank": 945,
   "min_level": "A2",
   "ru": "приличный, солидный (о количестве)",
-  "en": null,
+  "en": "decent, sizable (of an amount)",
   "forms": [
    "pæn",
    "pæne",
@@ -556,7 +577,7 @@
   "freq_rank": 946,
   "min_level": "A2",
   "ru": "двигать, двигаться",
-  "en": null,
+  "en": "to move (physically)",
   "forms": [
    "bevæg",
    "bevæge",
@@ -577,7 +598,7 @@
   "freq_rank": 946,
   "min_level": "A2",
   "ru": "растрогать, взволновать",
-  "en": null,
+  "en": "to move, to touch (emotionally)",
   "forms": [
    "bevæg",
    "bevæge",
@@ -598,7 +619,7 @@
   "freq_rank": 947,
   "min_level": "A2",
   "ru": "изменение",
-  "en": null,
+  "en": "change",
   "forms": [
    "ændring",
    "ændringen",
@@ -619,7 +640,7 @@
   "freq_rank": 948,
   "min_level": "A2",
   "ru": "ограничивать",
-  "en": null,
+  "en": "to limit, to restrict",
   "forms": [
    "begræns",
    "begrænse",
@@ -640,7 +661,7 @@
   "freq_rank": 949,
   "min_level": "A2",
   "ru": "эффективный",
-  "en": null,
+  "en": "effective, efficient",
   "forms": [
    "effektiv",
    "effektive",
@@ -659,7 +680,7 @@
   "freq_rank": 950,
   "min_level": "A2",
   "ru": "смешивать",
-  "en": null,
+  "en": "to mix",
   "forms": [
    "bland",
    "blande",
@@ -680,7 +701,7 @@
   "freq_rank": 950,
   "min_level": "A2",
   "ru": "вмешиваться (во что-то)",
-  "en": null,
+  "en": "to interfere, to meddle",
   "forms": [
    "bland",
    "blande",
@@ -701,7 +722,7 @@
   "freq_rank": 951,
   "min_level": "A2",
   "ru": "добровольный",
-  "en": null,
+  "en": "voluntary",
   "forms": [
    "frivillig",
    "frivillige",
@@ -719,7 +740,7 @@
   "freq_rank": 952,
   "min_level": "A2",
   "ru": "охватывать, включать",
-  "en": null,
+  "en": "to cover, to include",
   "forms": [
    "omfat",
    "omfatte",
@@ -740,7 +761,7 @@
   "freq_rank": 953,
   "min_level": "A2",
   "ru": "вторая половина дня",
-  "en": null,
+  "en": "afternoon",
   "forms": [
    "eftermiddag",
    "eftermiddage",
@@ -761,7 +782,7 @@
   "freq_rank": 954,
   "min_level": "A2",
   "ru": "оценка",
-  "en": null,
+  "en": "grade, mark (school)",
   "forms": [
    "karakter",
    "karakteren",
@@ -782,28 +803,7 @@
   "freq_rank": 954,
   "min_level": "A2",
   "ru": "характер",
-  "en": null,
-  "forms": [
-   "karakter",
-   "karakteren",
-   "karakterens",
-   "karakterer",
-   "karaktererne",
-   "karakterernes",
-   "karakterers",
-   "karakters"
-  ]
- },
- {
-  "lemma": "karakter",
-  "kind": "word",
-  "sense_id": "bea35bb3-d55e-5bc0-80b5-10e9211d75a8",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 954,
-  "min_level": "A2",
-  "ru": "персонаж",
-  "en": null,
+  "en": "character (personality)",
   "forms": [
    "karakter",
    "karakteren",

@@ -1,35 +1,5 @@
 [
  {
-  "lemma": "attraktiv",
-  "kind": "word",
-  "sense_id": "af7dd2bc-794f-5c62-866b-c15914a5c95a",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 1789,
-  "min_level": "B1",
-  "ru": "привлекательный",
-  "en": null,
-  "forms": [
-   "attraktiv",
-   "attraktive",
-   "attraktivt"
-  ]
- },
- {
-  "lemma": "foruden",
-  "kind": "word",
-  "sense_id": "1570a36f-b4b1-555c-803d-a40bc24bc7d4",
-  "pos": "preposition",
-  "gender": null,
-  "freq_rank": 1790,
-  "min_level": "B1",
-  "ru": "кроме, помимо",
-  "en": null,
-  "forms": [
-   "foruden"
-  ]
- },
- {
   "lemma": "sæt",
   "kind": "word",
   "sense_id": "96666156-725f-5bd4-9d25-3b697db57fe8",
@@ -38,7 +8,7 @@
   "freq_rank": 1791,
   "min_level": "B1",
   "ru": "набор, комплект",
-  "en": null,
+  "en": "set (of items)",
   "forms": [
    "sæt",
    "sæts",
@@ -57,7 +27,7 @@
   "freq_rank": 1791,
   "min_level": "B1",
   "ru": "предложение (в грамматике)",
-  "en": null,
+  "en": "sentence (grammar)",
   "forms": [
    "sæt",
    "sæts",
@@ -76,7 +46,7 @@
   "freq_rank": 1792,
   "min_level": "B1",
   "ru": "редактор",
-  "en": null,
+  "en": "editor",
   "forms": [
    "redaktør",
    "redaktøren",
@@ -97,7 +67,7 @@
   "freq_rank": 1793,
   "min_level": "B1",
   "ru": "связываться",
-  "en": null,
+  "en": "to contact",
   "forms": [
    "kontakt",
    "kontakte",
@@ -118,7 +88,7 @@
   "freq_rank": 1794,
   "min_level": "B1",
   "ru": "пугать",
-  "en": null,
+  "en": "to scare, frighten",
   "forms": [
    "skræm",
    "skræmme",
@@ -139,7 +109,7 @@
   "freq_rank": 1795,
   "min_level": "B1",
   "ru": "ежедневная газета",
-  "en": null,
+  "en": "daily newspaper",
   "forms": [
    "dagblad",
    "dagblade",
@@ -160,7 +130,7 @@
   "freq_rank": 1796,
   "min_level": "B1",
   "ru": "скрывать",
-  "en": null,
+  "en": "to hide, conceal",
   "forms": [
    "skjul",
    "skjule",
@@ -181,7 +151,7 @@
   "freq_rank": 1797,
   "min_level": "B1",
   "ru": "условие",
-  "en": null,
+  "en": "condition",
   "forms": [
    "betingelse",
    "betingelsen",
@@ -202,7 +172,7 @@
   "freq_rank": 1799,
   "min_level": "B1",
   "ru": "транспорт, перевозка",
-  "en": null,
+  "en": "transport, transportation",
   "forms": [
    "transport",
    "transporten",
@@ -223,7 +193,7 @@
   "freq_rank": 1800,
   "min_level": "B1",
   "ru": "проверять, контролировать",
-  "en": null,
+  "en": "to check, control",
   "forms": [
    "kontroller",
    "kontrollere",
@@ -245,7 +215,7 @@
   "freq_rank": 1801,
   "min_level": "B1",
   "ru": "счастливый",
-  "en": null,
+  "en": "happy",
   "forms": [
    "lykkelig",
    "lykkelige",
@@ -264,7 +234,7 @@
   "freq_rank": 1801,
   "min_level": "B1",
   "ru": "удачный",
-  "en": null,
+  "en": "fortunate, lucky",
   "forms": [
    "lykkelig",
    "lykkelige",
@@ -283,7 +253,7 @@
   "freq_rank": 1802,
   "min_level": "B1",
   "ru": "вероятно",
-  "en": null,
+  "en": "probably",
   "forms": [
    "sandsynligvis"
   ]
@@ -297,7 +267,7 @@
   "freq_rank": 1803,
   "min_level": "B1",
   "ru": "серьёзный",
-  "en": null,
+  "en": "serious (of a person)",
   "forms": [
    "seriøs",
    "seriøse",
@@ -313,7 +283,7 @@
   "freq_rank": 1803,
   "min_level": "B1",
   "ru": "важный, значительный",
-  "en": null,
+  "en": "serious, significant (of a problem)",
   "forms": [
    "seriøs",
    "seriøse",
@@ -329,7 +299,7 @@
   "freq_rank": 1804,
   "min_level": "B1",
   "ru": "из этого, отсюда",
-  "en": null,
+  "en": "of these, from this",
   "forms": [
    "heraf"
   ]
@@ -343,7 +313,7 @@
   "freq_rank": 1805,
   "min_level": "B1",
   "ru": "заместитель председателя",
-  "en": null,
+  "en": "vice chairman, deputy chairman",
   "forms": [
    "næstformand",
    "næstformanden",
@@ -364,7 +334,7 @@
   "freq_rank": 1806,
   "min_level": "B1",
   "ru": "худой",
-  "en": null,
+  "en": "thin, skinny (of a person)",
   "forms": [
    "tynd",
    "tynde",
@@ -383,7 +353,7 @@
   "freq_rank": 1806,
   "min_level": "B1",
   "ru": "тонкий",
-  "en": null,
+  "en": "thin (of a material)",
   "forms": [
    "tynd",
    "tynde",
@@ -402,7 +372,7 @@
   "freq_rank": 1807,
   "min_level": "B1",
   "ru": "утверждение",
-  "en": null,
+  "en": "claim, assertion",
   "forms": [
    "påstand",
    "påstande",
@@ -423,7 +393,7 @@
   "freq_rank": 1808,
   "min_level": "B1",
   "ru": "преступность",
-  "en": null,
+  "en": "crime, criminality",
   "forms": [
    "kriminalitet",
    "kriminaliteten",
@@ -440,7 +410,7 @@
   "freq_rank": 1809,
   "min_level": "B1",
   "ru": "кафе",
-  "en": null,
+  "en": "cafe",
   "forms": [
    "cafe",
    "cafeen",
@@ -469,7 +439,7 @@
   "freq_rank": 1810,
   "min_level": "B1",
   "ru": "законопроект",
-  "en": null,
+  "en": "bill (proposed law)",
   "forms": [
    "lovforslag",
    "lovforslagene",
@@ -488,7 +458,7 @@
   "freq_rank": 1811,
   "min_level": "B1",
   "ru": "южный",
-  "en": null,
+  "en": "southern",
   "forms": [
    "sydlig",
    "sydlige",
@@ -507,7 +477,7 @@
   "freq_rank": 1812,
   "min_level": "B1",
   "ru": "народная высшая школа",
-  "en": null,
+  "en": "folk high school",
   "forms": [
    "højskole",
    "højskolen",
@@ -528,7 +498,7 @@
   "freq_rank": 1813,
   "min_level": "B1",
   "ru": "кусать",
-  "en": null,
+  "en": "to bite",
   "forms": [
    "bed",
    "bid",
@@ -549,7 +519,7 @@
   "freq_rank": 1813,
   "min_level": "B1",
   "ru": "откусывать",
-  "en": null,
+  "en": "to bite off, take a bite of",
   "forms": [
    "bed",
    "bid",
@@ -570,7 +540,7 @@
   "freq_rank": 1814,
   "min_level": "B1",
   "ru": "запускать, представлять",
-  "en": null,
+  "en": "to launch",
   "forms": [
    "lancer",
    "lancere",
@@ -592,7 +562,7 @@
   "freq_rank": 1815,
   "min_level": "B1",
   "ru": "лошадиная сила",
-  "en": null,
+  "en": "horsepower",
   "forms": [
    "hestekraft",
    "hestekraften",
@@ -613,7 +583,7 @@
   "freq_rank": 1816,
   "min_level": "B1",
   "ru": "повсюду",
-  "en": null,
+  "en": "everywhere",
   "forms": [
    "overalt"
   ]
@@ -627,7 +597,7 @@
   "freq_rank": 1817,
   "min_level": "B1",
   "ru": "северный",
-  "en": null,
+  "en": "northern",
   "forms": [
    "nordlig",
    "nordlige",
@@ -646,7 +616,7 @@
   "freq_rank": 1818,
   "min_level": "B1",
   "ru": "танцевать",
-  "en": null,
+  "en": "to dance",
   "forms": [
    "dans",
    "danse",
@@ -667,7 +637,7 @@
   "freq_rank": 1819,
   "min_level": "B1",
   "ru": "бутылка",
-  "en": null,
+  "en": "bottle",
   "forms": [
    "flaske",
    "flasken",
@@ -688,7 +658,7 @@
   "freq_rank": 1820,
   "min_level": "B1",
   "ru": "сторонник",
-  "en": null,
+  "en": "supporter",
   "forms": [
    "tilhænger",
    "tilhængere",
@@ -709,7 +679,7 @@
   "freq_rank": 1821,
   "min_level": "B1",
   "ru": "тестировать",
-  "en": null,
+  "en": "to test",
   "forms": [
    "test",
    "teste",
@@ -730,7 +700,7 @@
   "freq_rank": 1822,
   "min_level": "B1",
   "ru": "вовлекать",
-  "en": null,
+  "en": "to engage, involve",
   "forms": [
    "engager",
    "engagere",
@@ -752,7 +722,7 @@
   "freq_rank": 1822,
   "min_level": "B1",
   "ru": "нанимать на работу",
-  "en": null,
+  "en": "to hire, engage (an employee)",
   "forms": [
    "engager",
    "engagere",
@@ -774,7 +744,7 @@
   "freq_rank": 1823,
   "min_level": "B1",
   "ru": "оставаться",
-  "en": null,
+  "en": "to remain, stay",
   "forms": [
    "forblev",
    "forblevede",
@@ -784,6 +754,44 @@
    "forblivende",
    "forbliver",
    "forblives"
+  ]
+ },
+ {
+  "lemma": "kedelig",
+  "kind": "word",
+  "sense_id": "3d3ac48f-38d7-5bcf-b94b-441a41beeada",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 1824,
+  "min_level": "B1",
+  "ru": "скучный",
+  "en": "boring",
+  "forms": [
+   "kedelig",
+   "kedelige",
+   "kedeligere",
+   "kedeligst",
+   "kedeligste",
+   "kedeligt"
+  ]
+ },
+ {
+  "lemma": "kedelig",
+  "kind": "word",
+  "sense_id": "955ae429-a171-50ed-a595-2cb1dc7f954d",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 1824,
+  "min_level": "B1",
+  "ru": "досадный",
+  "en": "unfortunate, annoying",
+  "forms": [
+   "kedelig",
+   "kedelige",
+   "kedeligere",
+   "kedeligst",
+   "kedeligste",
+   "kedeligt"
   ]
  }
 ]

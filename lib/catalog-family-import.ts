@@ -30,7 +30,7 @@ export function familyChunkSql(families: readonly PublishedFamily[], meta: { sna
   const payload = families.map((family) => ({
     id: family.id, lemma: family.lemma, kind: family.kind, sense_id: family.sense_id, level: family.level,
     situation: family.situation, grammar: family.grammar, frame: family.frame, slots: family.slots,
-    variants: family.variants.map((variant) => ({ id: variant.id, version: variant.version, danish: variant.danish, target: variant.target, translations: { en: variant.en, ru: variant.ru }, orders: variant.orders })),
+    variants: family.variants.map((variant) => ({ id: variant.id, version: variant.version, danish: variant.danish, target: variant.target, translations: { en: variant.en, ru: variant.ru }, orders: variant.orders, accepted: variant.accepted ?? [] })),
   }))
   const source = JSON.stringify({ snapshot: meta.snapshot, gate: meta.gate, licence: 'Ordly-authored; generated offline, gated and audited (issue #16)' })
   return `with incoming as (
@@ -55,11 +55,11 @@ dropped as (
   returning 1
 ),
 variants as (
-  insert into public.catalog_sentence_variant (id, family_id, version, danish, target, translations, orders)
-  select v.id, known.id, v.version, v.danish, v.target, v.translations, v.orders
-  from known, jsonb_to_recordset(known.variants) as v(id uuid, version text, danish text, target text, translations jsonb, orders text[])
+  insert into public.catalog_sentence_variant (id, family_id, version, danish, target, translations, orders, accepted)
+  select v.id, known.id, v.version, v.danish, v.target, v.translations, v.orders, coalesce(v.accepted, '{}')
+  from known, jsonb_to_recordset(known.variants) as v(id uuid, version text, danish text, target text, translations jsonb, orders text[], accepted text[])
   where exists (select 1 from families where families.id = known.id)
-  on conflict (id) do update set version = excluded.version, target = excluded.target, translations = excluded.translations, orders = excluded.orders
+  on conflict (id) do update set version = excluded.version, target = excluded.target, translations = excluded.translations, orders = excluded.orders, accepted = excluded.accepted
   returning 1
 )
 select (select count(*) from incoming) as incoming, (select count(*) from families) as families,

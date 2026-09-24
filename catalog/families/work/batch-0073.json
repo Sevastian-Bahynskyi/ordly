@@ -1,42 +1,5 @@
 [
  {
-  "lemma": "regional",
-  "kind": "word",
-  "sense_id": "15e70b03-08d1-5174-8ca7-b099a812317d",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2163,
-  "min_level": "B1",
-  "ru": "региональный",
-  "en": "regional",
-  "forms": [
-   "regional",
-   "regionale",
-   "regionalt"
-  ]
- },
- {
-  "lemma": "opfordring",
-  "kind": "word",
-  "sense_id": "ae4d51f7-105b-55fc-8905-45c32de682ae",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2164,
-  "min_level": "B1",
-  "ru": "призыв, просьба",
-  "en": "call, appeal (request)",
-  "forms": [
-   "opfordring",
-   "opfordringen",
-   "opfordringens",
-   "opfordringer",
-   "opfordringerne",
-   "opfordringernes",
-   "opfordringers",
-   "opfordrings"
-  ]
- },
- {
   "lemma": "betaling",
   "kind": "word",
   "sense_id": "3cd65fb5-c051-57db-a2e5-d563c404b7c0",
@@ -782,6 +745,41 @@
    "skyggernes",
    "skyggers",
    "skygges"
+  ]
+ },
+ {
+  "lemma": "skygge",
+  "kind": "word",
+  "sense_id": "c639b896-ef2a-5413-bc10-0f4ae75e7482",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2196,
+  "min_level": "B1",
+  "ru": "отбрасывать тень",
+  "en": "to shade, to cast a shadow",
+  "forms": [
+   "skyg",
+   "skygge",
+   "skyggede",
+   "skyggedes",
+   "skyggende",
+   "skygger",
+   "skygges",
+   "skygget"
+  ]
+ },
+ {
+  "lemma": "passende",
+  "kind": "word",
+  "sense_id": "95693968-269d-558f-8880-f6fe27a28af2",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2198,
+  "min_level": "B1",
+  "ru": "подходящий",
+  "en": "suitable, appropriate",
+  "forms": [
+   "passende"
   ]
  }
 ]

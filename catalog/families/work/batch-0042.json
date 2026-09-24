@@ -1,5 +1,24 @@
 [
  {
+  "lemma": "tegn",
+  "kind": "word",
+  "sense_id": "69a8c6c7-090d-5f60-89f9-1eeff299a990",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 1229,
+  "min_level": "A2",
+  "ru": "символ",
+  "en": "symbol",
+  "forms": [
+   "tegn",
+   "tegnene",
+   "tegnenes",
+   "tegnet",
+   "tegnets",
+   "tegns"
+  ]
+ },
+ {
   "lemma": "billet",
   "kind": "word",
   "sense_id": "ce036214-c11c-5e9d-b9c2-50362c1a8bea",
@@ -563,7 +582,7 @@
   "freq_rank": 1251,
   "min_level": "A2",
   "ru": "священник",
-  "en": null,
+  "en": "priest, minister",
   "forms": [
    "præst",
    "præsten",
@@ -584,7 +603,7 @@
   "freq_rank": 1252,
   "min_level": "A2",
   "ru": "отпуск, каникулы",
-  "en": null,
+  "en": "vacation, holiday",
   "forms": [
    "ferie",
    "ferien",
@@ -605,7 +624,7 @@
   "freq_rank": 1253,
   "min_level": "A2",
   "ru": "покупка",
-  "en": null,
+  "en": "purchase, buy",
   "forms": [
    "køb",
    "købene",
@@ -624,7 +643,7 @@
   "freq_rank": 1254,
   "min_level": "A2",
   "ru": "проводить",
-  "en": null,
+  "en": "to hold (a meeting, an event)",
   "forms": [
    "afhold",
    "afholde",
@@ -645,7 +664,7 @@
   "freq_rank": 1254,
   "min_level": "A2",
   "ru": "удерживать, предотвращать",
-  "en": null,
+  "en": "to keep, to prevent (from doing something)",
   "forms": [
    "afhold",
    "afholde",
@@ -666,7 +685,7 @@
   "freq_rank": 1255,
   "min_level": "A2",
   "ru": "нападать",
-  "en": null,
+  "en": "to attack",
   "forms": [
    "angreb",
    "angreben",
@@ -688,7 +707,7 @@
   "freq_rank": 1256,
   "min_level": "A2",
   "ru": "сантиметр",
-  "en": null,
+  "en": "centimeter",
   "forms": [
    "centimeter",
    "centimeteren",
@@ -707,7 +726,7 @@
   "freq_rank": 1257,
   "min_level": "A2",
   "ru": "суметь, быть способным",
-  "en": null,
+  "en": "to manage, to be able to",
   "forms": [
    "formå",
    "formåede",
@@ -726,7 +745,7 @@
   "freq_rank": 1258,
   "min_level": "A2",
   "ru": "сосед",
-  "en": null,
+  "en": "neighbor",
   "forms": [
    "nabo",
    "naboen",
@@ -747,7 +766,7 @@
   "freq_rank": 1259,
   "min_level": "A2",
   "ru": "упоминать, описывать",
-  "en": null,
+  "en": "to mention, to cover (in a report)",
   "forms": [
    "omtal",
    "omtale",
@@ -768,29 +787,7 @@
   "freq_rank": 1260,
   "min_level": "A2",
   "ru": "соединять, связывать",
-  "en": null,
-  "forms": [
-   "forbandt",
-   "forbind",
-   "forbinde",
-   "forbindende",
-   "forbinder",
-   "forbindes",
-   "forbunden",
-   "forbundet",
-   "forbundne"
-  ]
- },
- {
-  "lemma": "forbinde",
-  "kind": "word",
-  "sense_id": "7c0f013d-8531-59ea-8ed2-ef30075e4c29",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 1260,
-  "min_level": "A2",
-  "ru": "перевязывать",
-  "en": null,
+  "en": "to connect, to link",
   "forms": [
    "forbandt",
    "forbind",

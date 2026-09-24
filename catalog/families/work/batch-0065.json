@@ -1,43 +1,5 @@
 [
  {
-  "lemma": "blød",
-  "kind": "word",
-  "sense_id": "f3518ac7-d7e6-5aeb-8391-17549f618900",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 1910,
-  "min_level": "B1",
-  "ru": "нежный, ласковый",
-  "en": null,
-  "forms": [
-   "blød",
-   "bløde",
-   "blødere",
-   "blødest",
-   "blødeste",
-   "blødt"
-  ]
- },
- {
-  "lemma": "angå",
-  "kind": "word",
-  "sense_id": "c93380c4-716a-57f3-994a-f28fe56a7602",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 1911,
-  "min_level": "B1",
-  "ru": "касаться, иметь отношение",
-  "en": null,
-  "forms": [
-   "angik",
-   "angå",
-   "angåede",
-   "angående",
-   "angået",
-   "angår"
-  ]
- },
- {
   "lemma": "kritiker",
   "kind": "word",
   "sense_id": "d24f06cb-6596-56e7-9628-3e2f41a82e52",
@@ -46,7 +8,7 @@
   "freq_rank": 1912,
   "min_level": "B1",
   "ru": "критик",
-  "en": null,
+  "en": "critic",
   "forms": [
    "kritiker",
    "kritikere",
@@ -67,7 +29,7 @@
   "freq_rank": 1913,
   "min_level": "B1",
   "ru": "исключение",
-  "en": null,
+  "en": "exception",
   "forms": [
    "undtagelse",
    "undtagelsen",
@@ -88,7 +50,7 @@
   "freq_rank": 1914,
   "min_level": "B1",
   "ru": "временный",
-  "en": null,
+  "en": "temporary",
   "forms": [
    "midlertidig",
    "midlertidige",
@@ -104,7 +66,7 @@
   "freq_rank": 1915,
   "min_level": "B1",
   "ru": "эпизод, серия",
-  "en": null,
+  "en": "episode (of a series)",
   "forms": [
    "episode",
    "episoden",
@@ -125,7 +87,7 @@
   "freq_rank": 1915,
   "min_level": "B1",
   "ru": "случай, происшествие",
-  "en": null,
+  "en": "incident, occurrence",
   "forms": [
    "episode",
    "episoden",
@@ -146,7 +108,7 @@
   "freq_rank": 1916,
   "min_level": "B1",
   "ru": "индивидуальный",
-  "en": null,
+  "en": "individual",
   "forms": [
    "individuel",
    "individuelle",
@@ -162,7 +124,7 @@
   "freq_rank": 1917,
   "min_level": "B1",
   "ru": "река",
-  "en": null,
+  "en": "river",
   "forms": [
    "flod",
    "floden",
@@ -183,7 +145,7 @@
   "freq_rank": 1918,
   "min_level": "B1",
   "ru": "сердитый, злой",
-  "en": null,
+  "en": "angry, cross",
   "forms": [
    "sur",
    "sure",
@@ -202,7 +164,7 @@
   "freq_rank": 1918,
   "min_level": "B1",
   "ru": "кислый",
-  "en": null,
+  "en": "sour",
   "forms": [
    "sur",
    "sure",
@@ -221,7 +183,7 @@
   "freq_rank": 1919,
   "min_level": "B1",
   "ru": "чувствующий себя в безопасности",
-  "en": null,
+  "en": "safe, secure (feeling)",
   "forms": [
    "tryg",
    "trygge",
@@ -240,7 +202,7 @@
   "freq_rank": 1920,
   "min_level": "B1",
   "ru": "проявлять, показывать",
-  "en": null,
+  "en": "to show, display (patience)",
   "forms": [
    "udvis",
    "udvise",
@@ -261,7 +223,7 @@
   "freq_rank": 1920,
   "min_level": "B1",
   "ru": "высылать (из страны)",
-  "en": null,
+  "en": "to expel, deport",
   "forms": [
    "udvis",
    "udvise",
@@ -282,7 +244,7 @@
   "freq_rank": 1921,
   "min_level": "B1",
   "ru": "подруга",
-  "en": null,
+  "en": "friend (female)",
   "forms": [
    "veninde",
    "veninden",
@@ -303,7 +265,7 @@
   "freq_rank": 1922,
   "min_level": "B1",
   "ru": "преступление",
-  "en": null,
+  "en": "crime",
   "forms": [
    "forbrydelse",
    "forbrydelsen",
@@ -324,7 +286,7 @@
   "freq_rank": 1923,
   "min_level": "B1",
   "ru": "этап",
-  "en": null,
+  "en": "stage, leg (of a journey or race)",
   "forms": [
    "etape",
    "etapen",
@@ -345,7 +307,7 @@
   "freq_rank": 1924,
   "min_level": "B1",
   "ru": "копенгагенский",
-  "en": null,
+  "en": "Copenhagen (adjective)",
   "forms": [
    "københavnsk",
    "københavnske",
@@ -361,7 +323,7 @@
   "freq_rank": 1925,
   "min_level": "B1",
   "ru": "администрация",
-  "en": null,
+  "en": "administration",
   "forms": [
    "administration",
    "administrationen",
@@ -382,7 +344,7 @@
   "freq_rank": 1926,
   "min_level": "B1",
   "ru": "приближаться",
-  "en": null,
+  "en": "to approach, get closer",
   "forms": [
    "nærm",
    "nærme",
@@ -403,7 +365,7 @@
   "freq_rank": 1928,
   "min_level": "B1",
   "ru": "разрешение",
-  "en": null,
+  "en": "permission",
   "forms": [
    "tilladelse",
    "tilladelsen",
@@ -424,7 +386,7 @@
   "freq_rank": 1929,
   "min_level": "B1",
   "ru": "нос",
-  "en": null,
+  "en": "nose",
   "forms": [
    "næse",
    "næsen",
@@ -445,7 +407,7 @@
   "freq_rank": 1930,
   "min_level": "B1",
   "ru": "сюрприз",
-  "en": null,
+  "en": "surprise",
   "forms": [
    "overraskelse",
    "overraskelsen",
@@ -466,7 +428,7 @@
   "freq_rank": 1931,
   "min_level": "B1",
   "ru": "министр финансов",
-  "en": null,
+  "en": "minister of finance",
   "forms": [
    "finansminister",
    "finansministeren",
@@ -487,7 +449,7 @@
   "freq_rank": 1932,
   "min_level": "B1",
   "ru": "смесь",
-  "en": null,
+  "en": "mixture, blend",
   "forms": [
    "blanding",
    "blandingen",
@@ -508,7 +470,7 @@
   "freq_rank": 1933,
   "min_level": "B1",
   "ru": "знание",
-  "en": null,
+  "en": "knowledge (of a subject)",
   "forms": [
    "kendskab",
    "kendskabet",
@@ -525,7 +487,7 @@
   "freq_rank": 1933,
   "min_level": "B1",
   "ru": "знакомство",
-  "en": null,
+  "en": "acquaintance (with someone)",
   "forms": [
    "kendskab",
    "kendskabet",
@@ -542,7 +504,7 @@
   "freq_rank": 1934,
   "min_level": "B1",
   "ru": "драма",
-  "en": null,
+  "en": "drama",
   "forms": [
    "drama",
    "dramaer",
@@ -563,7 +525,7 @@
   "freq_rank": 1935,
   "min_level": "B1",
   "ru": "привыкший",
-  "en": null,
+  "en": "used, accustomed (to)",
   "forms": [
    "vant",
    "vante"
@@ -578,7 +540,7 @@
   "freq_rank": 1936,
   "min_level": "B1",
   "ru": "обращаться",
-  "en": null,
+  "en": "to address (someone)",
   "forms": [
    "tiltal",
    "tiltale",
@@ -600,7 +562,7 @@
   "freq_rank": 1936,
   "min_level": "B1",
   "ru": "привлекать к суду",
-  "en": null,
+  "en": "to charge, prosecute",
   "forms": [
    "tiltal",
    "tiltale",
@@ -622,7 +584,7 @@
   "freq_rank": 1937,
   "min_level": "B1",
   "ru": "потолок",
-  "en": null,
+  "en": "ceiling",
   "forms": [
    "loft",
    "lofter",
@@ -643,7 +605,7 @@
   "freq_rank": 1937,
   "min_level": "B1",
   "ru": "чердак",
-  "en": null,
+  "en": "attic, loft",
   "forms": [
    "loft",
    "lofter",
@@ -664,7 +626,7 @@
   "freq_rank": 1938,
   "min_level": "B1",
   "ru": "структура",
-  "en": null,
+  "en": "structure",
   "forms": [
    "struktur",
    "strukturen",
@@ -685,7 +647,7 @@
   "freq_rank": 1939,
   "min_level": "B1",
   "ru": "бросить",
-  "en": null,
+  "en": "to drop out, quit",
   "forms": [
    "drop",
    "droppe",
@@ -706,7 +668,7 @@
   "freq_rank": 1939,
   "min_level": "B1",
   "ru": "отказаться",
-  "en": null,
+  "en": "to drop, abandon (a plan)",
   "forms": [
    "drop",
    "droppe",
@@ -727,7 +689,7 @@
   "freq_rank": 1942,
   "min_level": "B1",
   "ru": "фактор",
-  "en": null,
+  "en": "factor",
   "forms": [
    "faktor",
    "faktoren",
@@ -748,7 +710,7 @@
   "freq_rank": 1943,
   "min_level": "B1",
   "ru": "площадь",
-  "en": null,
+  "en": "area (measurement)",
   "forms": [
    "areal",
    "arealer",
@@ -769,7 +731,7 @@
   "freq_rank": 1943,
   "min_level": "B1",
   "ru": "территория",
-  "en": null,
+  "en": "area, grounds (land)",
   "forms": [
    "areal",
    "arealer",
@@ -790,10 +752,52 @@
   "freq_rank": 1944,
   "min_level": "B1",
   "ru": "еврейский",
-  "en": null,
+  "en": "Jewish",
   "forms": [
    "jødisk",
    "jødiske"
+  ]
+ },
+ {
+  "lemma": "leje",
+  "kind": "word",
+  "sense_id": "0cceb96a-19f6-5845-be5b-fff068ffe32d",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 1945,
+  "min_level": "B1",
+  "ru": "арендовать",
+  "en": "to rent",
+  "forms": [
+   "lej",
+   "leje",
+   "lejede",
+   "lejedes",
+   "lejende",
+   "lejer",
+   "lejes",
+   "lejet"
+  ]
+ },
+ {
+  "lemma": "beskylde",
+  "kind": "word",
+  "sense_id": "541478b5-05e0-5e45-b616-8eb83e645444",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 1946,
+  "min_level": "B1",
+  "ru": "обвинять",
+  "en": "to accuse",
+  "forms": [
+   "beskyld",
+   "beskylde",
+   "beskyldende",
+   "beskylder",
+   "beskyldes",
+   "beskyldt",
+   "beskyldte",
+   "beskyldtes"
   ]
  }
 ]

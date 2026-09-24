@@ -1,45 +1,5 @@
 [
  {
-  "lemma": "kniv",
-  "kind": "word",
-  "sense_id": "d8133d36-6e24-592e-bff5-f599b8af65c1",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2230,
-  "min_level": "B1",
-  "ru": "нож",
-  "en": "knife",
-  "forms": [
-   "kniv",
-   "knive",
-   "kniven",
-   "knivene",
-   "knivenes",
-   "knivens",
-   "knives",
-   "knivs"
-  ]
- },
- {
-  "lemma": "flag",
-  "kind": "word",
-  "sense_id": "844e9797-abb0-5803-b73a-6f878a2f1fca",
-  "pos": "noun",
-  "gender": "et",
-  "freq_rank": 2231,
-  "min_level": "B1",
-  "ru": "флаг",
-  "en": "flag",
-  "forms": [
-   "flag",
-   "flagene",
-   "flagenes",
-   "flaget",
-   "flagets",
-   "flags"
-  ]
- },
- {
   "lemma": "lighed",
   "kind": "word",
   "sense_id": "8caece1e-eb65-527a-96cf-cf9747647206",
@@ -763,6 +723,48 @@
    "banker",
    "bankes",
    "banket"
+  ]
+ },
+ {
+  "lemma": "banke",
+  "kind": "word",
+  "sense_id": "aab65d7c-c7a1-50dd-93ae-7218ebebcc52",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2262,
+  "min_level": "B1",
+  "ru": "бить",
+  "en": "to pound, to beat (heart)",
+  "forms": [
+   "bank",
+   "banke",
+   "bankede",
+   "bankedes",
+   "bankende",
+   "banker",
+   "bankes",
+   "banket"
+  ]
+ },
+ {
+  "lemma": "tilknytte",
+  "kind": "word",
+  "sense_id": "846451fa-cfac-5d1e-bbfc-e23c0b88e298",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2263,
+  "min_level": "B1",
+  "ru": "прикреплять",
+  "en": "to attach (a file)",
+  "forms": [
+   "tilknyt",
+   "tilknytte",
+   "tilknyttede",
+   "tilknyttedes",
+   "tilknyttende",
+   "tilknytter",
+   "tilknyttes",
+   "tilknyttet"
   ]
  }
 ]

@@ -1,40 +1,5 @@
 [
  {
-  "lemma": "skygge",
-  "kind": "word",
-  "sense_id": "c639b896-ef2a-5413-bc10-0f4ae75e7482",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2196,
-  "min_level": "B1",
-  "ru": "отбрасывать тень",
-  "en": "to shade, to cast a shadow",
-  "forms": [
-   "skyg",
-   "skygge",
-   "skyggede",
-   "skyggedes",
-   "skyggende",
-   "skygger",
-   "skygges",
-   "skygget"
-  ]
- },
- {
-  "lemma": "passende",
-  "kind": "word",
-  "sense_id": "95693968-269d-558f-8880-f6fe27a28af2",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2198,
-  "min_level": "B1",
-  "ru": "подходящий",
-  "en": "suitable, appropriate",
-  "forms": [
-   "passende"
-  ]
- },
- {
   "lemma": "gas",
   "kind": "word",
   "sense_id": "1f9f3573-2d4d-5e92-94c7-c899f8a7dcf3",
@@ -782,6 +747,46 @@
    "korsenes",
    "korset",
    "korsets"
+  ]
+ },
+ {
+  "lemma": "kniv",
+  "kind": "word",
+  "sense_id": "d8133d36-6e24-592e-bff5-f599b8af65c1",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2230,
+  "min_level": "B1",
+  "ru": "нож",
+  "en": "knife",
+  "forms": [
+   "kniv",
+   "knive",
+   "kniven",
+   "knivene",
+   "knivenes",
+   "knivens",
+   "knives",
+   "knivs"
+  ]
+ },
+ {
+  "lemma": "flag",
+  "kind": "word",
+  "sense_id": "844e9797-abb0-5803-b73a-6f878a2f1fca",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 2231,
+  "min_level": "B1",
+  "ru": "флаг",
+  "en": "flag",
+  "forms": [
+   "flag",
+   "flagene",
+   "flagenes",
+   "flaget",
+   "flagets",
+   "flags"
   ]
  }
 ]

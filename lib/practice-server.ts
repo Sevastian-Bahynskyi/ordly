@@ -117,7 +117,7 @@ async function catalogContexts(supabase: SupabaseClient, items: readonly ReviewI
   const chunks: string[][] = []
   for (let at = 0; at < senseIds.length; at += FORM_CHUNK) chunks.push(senseIds.slice(at, at + FORM_CHUNK))
   const results = await Promise.all(chunks.map((ids) => supabase.from('catalog_sentence_family')
-    .select('sense_id, level, catalog_sentence_variant(id, version, danish, target, translations, orders)').in('sense_id', ids)))
+    .select('sense_id, level, catalog_sentence_variant(id, version, danish, target, translations, orders, accepted)').in('sense_id', ids)))
   if (results.some((result) => result.error)) return {}
   return contextsBySense(results.flatMap((result) => result.data || []), locale, danishLevel)
 }

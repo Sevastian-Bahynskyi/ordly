@@ -481,6 +481,7 @@ export function contextClozeTask(input: ExerciseInput): PracticeTask | null {
     hint: `${found.surface.slice(0, 1)}…`,
     newTarget: input.newTarget,
     source: { variantId: context.variantId, version: context.version },
+    ...(context.accepted.length ? { accepted: context.accepted } : {}),
     ...otherForms(input.forms, found.surface),
   }
 }

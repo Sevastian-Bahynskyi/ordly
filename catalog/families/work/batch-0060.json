@@ -1,47 +1,5 @@
 [
  {
-  "lemma": "gevinst",
-  "kind": "word",
-  "sense_id": "8779174c-d560-5fbb-b1ef-42e4568dc1e4",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1756,
-  "min_level": "B1",
-  "ru": "выигрыш",
-  "en": null,
-  "forms": [
-   "gevinst",
-   "gevinsten",
-   "gevinstens",
-   "gevinster",
-   "gevinsterne",
-   "gevinsternes",
-   "gevinsters",
-   "gevinsts"
-  ]
- },
- {
-  "lemma": "gevinst",
-  "kind": "word",
-  "sense_id": "695fd4f0-6174-54f9-8483-200126d98b14",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1756,
-  "min_level": "B1",
-  "ru": "выгода, польза",
-  "en": null,
-  "forms": [
-   "gevinst",
-   "gevinsten",
-   "gevinstens",
-   "gevinster",
-   "gevinsterne",
-   "gevinsternes",
-   "gevinsters",
-   "gevinsts"
-  ]
- },
- {
   "lemma": "retssag",
   "kind": "word",
   "sense_id": "95b4fd5b-0bad-55db-9fbf-b5e35c69e10b",
@@ -50,7 +8,7 @@
   "freq_rank": 1757,
   "min_level": "B1",
   "ru": "судебное дело",
-  "en": null,
+  "en": "lawsuit, court case",
   "forms": [
    "retssag",
    "retssagen",
@@ -71,7 +29,7 @@
   "freq_rank": 1758,
   "min_level": "B1",
   "ru": "ветер",
-  "en": null,
+  "en": "wind",
   "forms": [
    "vind",
    "vinde",
@@ -92,7 +50,7 @@
   "freq_rank": 1759,
   "min_level": "B1",
   "ru": "присуждать, предоставлять",
-  "en": null,
+  "en": "to award, grant",
   "forms": [
    "tildel",
    "tildele",
@@ -113,7 +71,7 @@
   "freq_rank": 1760,
   "min_level": "B1",
   "ru": "сменять, заменять",
-  "en": null,
+  "en": "to relieve, replace (someone)",
   "forms": [
    "afløs",
    "afløse",
@@ -134,7 +92,7 @@
   "freq_rank": 1761,
   "min_level": "B1",
   "ru": "стадион",
-  "en": null,
+  "en": "stadium",
   "forms": [
    "stadion",
    "stadioner",
@@ -155,7 +113,7 @@
   "freq_rank": 1762,
   "min_level": "B1",
   "ru": "этнический",
-  "en": null,
+  "en": "ethnic",
   "forms": [
    "etnisk",
    "etniske"
@@ -170,7 +128,7 @@
   "freq_rank": 1763,
   "min_level": "B1",
   "ru": "известный, знакомый",
-  "en": null,
+  "en": "known, familiar",
   "forms": [
    "bekendt",
    "bekendte"
@@ -185,7 +143,7 @@
   "freq_rank": 1764,
   "min_level": "B1",
   "ru": "интересно, неужели (частица вопроса)",
-  "en": null,
+  "en": "I wonder (question particle)",
   "forms": [
    "mon"
   ]
@@ -199,7 +157,7 @@
   "freq_rank": 1765,
   "min_level": "B1",
   "ru": "тем (в конструкциях чем... тем...)",
-  "en": null,
+  "en": "the (in 'the...the...' constructions)",
   "forms": [
    "desto"
   ]
@@ -213,7 +171,7 @@
   "freq_rank": 1766,
   "min_level": "B1",
   "ru": "голландский",
-  "en": null,
+  "en": "Dutch",
   "forms": [
    "hollandsk",
    "hollandske",
@@ -229,7 +187,7 @@
   "freq_rank": 1767,
   "min_level": "B1",
   "ru": "лига",
-  "en": null,
+  "en": "league",
   "forms": [
    "liga",
    "ligaen",
@@ -250,7 +208,7 @@
   "freq_rank": 1768,
   "min_level": "B1",
   "ru": "акция, действие",
-  "en": null,
+  "en": "operation, action (police campaign)",
   "forms": [
    "aktion",
    "aktionen",
@@ -271,7 +229,7 @@
   "freq_rank": 1769,
   "min_level": "B1",
   "ru": "создавать, выстраивать",
-  "en": null,
+  "en": "to build up, construct",
   "forms": [
    "opbyg",
    "opbygge",
@@ -292,7 +250,7 @@
   "freq_rank": 1770,
   "min_level": "B1",
   "ru": "отец",
-  "en": null,
+  "en": "father",
   "forms": [
    "fader",
    "fædre"
@@ -307,7 +265,7 @@
   "freq_rank": 1771,
   "min_level": "B1",
   "ru": "завершение, окончание",
-  "en": null,
+  "en": "ending, conclusion",
   "forms": [
    "afslutning",
    "afslutningen",
@@ -328,7 +286,7 @@
   "freq_rank": 1772,
   "min_level": "B1",
   "ru": "закручивать, откручивать",
-  "en": null,
+  "en": "to screw (on or off)",
   "forms": [
    "skru",
    "skrue",
@@ -349,7 +307,7 @@
   "freq_rank": 1772,
   "min_level": "B1",
   "ru": "регулировать, увеличивать или уменьшать",
-  "en": null,
+  "en": "to turn, adjust (volume)",
   "forms": [
    "skru",
    "skrue",
@@ -370,7 +328,7 @@
   "freq_rank": 1772,
   "min_level": "B1",
   "ru": "винт, шуруп",
-  "en": null,
+  "en": "screw",
   "forms": [
    "skrue",
    "skruen",
@@ -391,7 +349,7 @@
   "freq_rank": 1773,
   "min_level": "B1",
   "ru": "ландшафт, пейзаж",
-  "en": null,
+  "en": "landscape",
   "forms": [
    "landskab",
    "landskaber",
@@ -412,7 +370,7 @@
   "freq_rank": 1774,
   "min_level": "B1",
   "ru": "заранее, вперёд",
-  "en": null,
+  "en": "beforehand, in advance",
   "forms": [
    "forud"
   ]
@@ -426,7 +384,7 @@
   "freq_rank": 1775,
   "min_level": "B1",
   "ru": "единица, устройство",
-  "en": null,
+  "en": "unit, device",
   "forms": [
    "enhed",
    "enheden",
@@ -447,7 +405,7 @@
   "freq_rank": 1775,
   "min_level": "B1",
   "ru": "единство, сплоченность",
-  "en": null,
+  "en": "unity, cohesion",
   "forms": [
    "enhed",
    "enheden",
@@ -468,7 +426,7 @@
   "freq_rank": 1776,
   "min_level": "B1",
   "ru": "автомобилист, водитель",
-  "en": null,
+  "en": "motorist, driver",
   "forms": [
    "bilist",
    "bilisten",
@@ -489,7 +447,7 @@
   "freq_rank": 1777,
   "min_level": "B1",
   "ru": "улыбка",
-  "en": null,
+  "en": "smile",
   "forms": [
    "smil",
    "smilene",
@@ -508,7 +466,7 @@
   "freq_rank": 1778,
   "min_level": "B1",
   "ru": "включать, зажигать",
-  "en": null,
+  "en": "to turn on, light",
   "forms": [
    "tænd",
    "tænde",
@@ -529,7 +487,7 @@
   "freq_rank": 1779,
   "min_level": "B1",
   "ru": "наказание",
-  "en": null,
+  "en": "punishment",
   "forms": [
    "straf",
    "straffe",
@@ -550,7 +508,7 @@
   "freq_rank": 1780,
   "min_level": "B1",
   "ru": "полоса",
-  "en": null,
+  "en": "stripe",
   "forms": [
    "stribe",
    "striben",
@@ -571,7 +529,7 @@
   "freq_rank": 1781,
   "min_level": "B1",
   "ru": "выделять (время, деньги)",
-  "en": null,
+  "en": "to set aside, allocate (time, money)",
   "forms": [
    "afsat",
    "afsatte",
@@ -592,7 +550,7 @@
   "freq_rank": 1781,
   "min_level": "B1",
   "ru": "отстранять, смещать",
-  "en": null,
+  "en": "to depose, remove (from power)",
   "forms": [
    "afsat",
    "afsatte",
@@ -613,7 +571,7 @@
   "freq_rank": 1782,
   "min_level": "B1",
   "ru": "кинотеатр",
-  "en": null,
+  "en": "cinema, movie theater",
   "forms": [
    "biograf",
    "biografen",
@@ -634,7 +592,7 @@
   "freq_rank": 1783,
   "min_level": "B1",
   "ru": "первая половина дня",
-  "en": null,
+  "en": "morning (before noon)",
   "forms": [
    "formiddag",
    "formiddage",
@@ -655,7 +613,7 @@
   "freq_rank": 1784,
   "min_level": "B1",
   "ru": "честный",
-  "en": null,
+  "en": "honest",
   "forms": [
    "ærlig",
    "ærlige",
@@ -674,7 +632,7 @@
   "freq_rank": 1785,
   "min_level": "B1",
   "ru": "на месте назначения, впереди",
-  "en": null,
+  "en": "there, arrived (at the destination)",
   "forms": [
    "fremme"
   ]
@@ -688,7 +646,7 @@
   "freq_rank": 1785,
   "min_level": "B1",
   "ru": "продвигать, способствовать",
-  "en": null,
+  "en": "to promote, foster",
   "forms": [
    "frem",
    "fremme",
@@ -709,7 +667,7 @@
   "freq_rank": 1786,
   "min_level": "B1",
   "ru": "танец",
-  "en": null,
+  "en": "dance",
   "forms": [
    "dans",
    "dans'",
@@ -730,7 +688,7 @@
   "freq_rank": 1787,
   "min_level": "B1",
   "ru": "старший врач",
-  "en": null,
+  "en": "senior consultant (chief physician)",
   "forms": [
    "overlæge",
    "overlægen",
@@ -751,7 +709,7 @@
   "freq_rank": 1788,
   "min_level": "B1",
   "ru": "всадник",
-  "en": null,
+  "en": "rider (on horseback)",
   "forms": [
    "rytter",
    "ryttere",
@@ -772,7 +730,7 @@
   "freq_rank": 1788,
   "min_level": "B1",
   "ru": "велосипедист",
-  "en": null,
+  "en": "cyclist (racer)",
   "forms": [
    "rytter",
    "ryttere",
@@ -782,6 +740,36 @@
    "rytterne",
    "rytternes",
    "rytters"
+  ]
+ },
+ {
+  "lemma": "attraktiv",
+  "kind": "word",
+  "sense_id": "af7dd2bc-794f-5c62-866b-c15914a5c95a",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 1789,
+  "min_level": "B1",
+  "ru": "привлекательный",
+  "en": "attractive",
+  "forms": [
+   "attraktiv",
+   "attraktive",
+   "attraktivt"
+  ]
+ },
+ {
+  "lemma": "foruden",
+  "kind": "word",
+  "sense_id": "1570a36f-b4b1-555c-803d-a40bc24bc7d4",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 1790,
+  "min_level": "B1",
+  "ru": "кроме, помимо",
+  "en": "besides, apart from",
+  "forms": [
+   "foruden"
   ]
  }
 ]

@@ -1,5 +1,26 @@
 [
  {
+  "lemma": "arrangement",
+  "kind": "word",
+  "sense_id": "a29c7ac6-413a-551a-bdb5-716f2b427132",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 986,
+  "min_level": "A2",
+  "ru": "мероприятие",
+  "en": "event",
+  "forms": [
+   "arrangement",
+   "arrangementer",
+   "arrangementerne",
+   "arrangementernes",
+   "arrangementers",
+   "arrangementet",
+   "arrangementets",
+   "arrangements"
+  ]
+ },
+ {
   "lemma": "betydelig",
   "kind": "word",
   "sense_id": "e3f6980c-5a46-52c2-95c1-0f61616a7add",
@@ -8,7 +29,7 @@
   "freq_rank": 987,
   "min_level": "A2",
   "ru": "значительный",
-  "en": null,
+  "en": "considerable, significant",
   "forms": [
    "betydelig",
    "betydelige",
@@ -27,7 +48,7 @@
   "freq_rank": 988,
   "min_level": "A2",
   "ru": "спорт",
-  "en": null,
+  "en": "sport",
   "forms": [
    "sport",
    "sporten",
@@ -44,7 +65,7 @@
   "freq_rank": 989,
   "min_level": "A2",
   "ru": "передовой, главный",
-  "en": null,
+  "en": "foremost, leading",
   "forms": [
    "fremmest",
    "fremmeste"
@@ -59,7 +80,7 @@
   "freq_rank": 990,
   "min_level": "A2",
   "ru": "издание, версия",
-  "en": null,
+  "en": "edition, version",
   "forms": [
    "udgave",
    "udgaven",
@@ -80,7 +101,7 @@
   "freq_rank": 991,
   "min_level": "A2",
   "ru": "учитель",
-  "en": null,
+  "en": "teacher",
   "forms": [
    "lærer",
    "lærere",
@@ -101,7 +122,7 @@
   "freq_rank": 992,
   "min_level": "A2",
   "ru": "осмеливаться",
-  "en": null,
+  "en": "to dare",
   "forms": [
    "turde",
    "turdede",
@@ -118,7 +139,7 @@
   "freq_rank": 993,
   "min_level": "A2",
   "ru": "веб-сайт",
-  "en": null,
+  "en": "website",
   "forms": [
    "hjemmeside",
    "hjemmesiden",
@@ -139,7 +160,7 @@
   "freq_rank": 994,
   "min_level": "A2",
   "ru": "институт",
-  "en": null,
+  "en": "institute",
   "forms": [
    "institut",
    "instituts",
@@ -160,7 +181,7 @@
   "freq_rank": 995,
   "min_level": "A2",
   "ru": "след",
-  "en": null,
+  "en": "trace, trail",
   "forms": [
    "spor",
    "sporene",
@@ -179,7 +200,7 @@
   "freq_rank": 995,
   "min_level": "A2",
   "ru": "путь, платформа",
-  "en": null,
+  "en": "track, platform",
   "forms": [
    "spor",
    "sporene",
@@ -198,7 +219,7 @@
   "freq_rank": 996,
   "min_level": "A2",
   "ru": "убеждать",
-  "en": null,
+  "en": "to convince",
   "forms": [
    "overbevis",
    "overbevise",
@@ -219,7 +240,7 @@
   "freq_rank": 997,
   "min_level": "A2",
   "ru": "приглашать",
-  "en": null,
+  "en": "to invite",
   "forms": [
    "inviter",
    "invitere",
@@ -241,7 +262,7 @@
   "freq_rank": 998,
   "min_level": "A2",
   "ru": "беженец",
-  "en": null,
+  "en": "refugee",
   "forms": [
    "flygtning",
    "flygtninge",
@@ -262,7 +283,7 @@
   "freq_rank": 999,
   "min_level": "A2",
   "ru": "корабль",
-  "en": null,
+  "en": "ship",
   "forms": [
    "skib",
    "skibe",
@@ -283,7 +304,7 @@
   "freq_rank": 1000,
   "min_level": "A2",
   "ru": "решать, определять",
-  "en": null,
+  "en": "to decide, to determine (a case)",
   "forms": [
    "afgjorde",
    "afgjordes",
@@ -780,22 +801,6 @@
    "initiativet",
    "initiativets",
    "initiativs"
-  ]
- },
- {
-  "lemma": "foreløbig",
-  "kind": "word",
-  "sense_id": "7b3a29d0-49c9-53d7-9445-d2c55c597ba2",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 1018,
-  "min_level": "A2",
-  "ru": "предварительный",
-  "en": "preliminary",
-  "forms": [
-   "foreløbig",
-   "foreløbige",
-   "foreløbigt"
   ]
  }
 ]

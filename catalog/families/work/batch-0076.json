@@ -1,47 +1,5 @@
 [
  {
-  "lemma": "banke",
-  "kind": "word",
-  "sense_id": "aab65d7c-c7a1-50dd-93ae-7218ebebcc52",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2262,
-  "min_level": "B1",
-  "ru": "бить",
-  "en": "to pound, to beat (heart)",
-  "forms": [
-   "bank",
-   "banke",
-   "bankede",
-   "bankedes",
-   "bankende",
-   "banker",
-   "bankes",
-   "banket"
-  ]
- },
- {
-  "lemma": "tilknytte",
-  "kind": "word",
-  "sense_id": "846451fa-cfac-5d1e-bbfc-e23c0b88e298",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2263,
-  "min_level": "B1",
-  "ru": "прикреплять",
-  "en": "to attach (a file)",
-  "forms": [
-   "tilknyt",
-   "tilknytte",
-   "tilknyttede",
-   "tilknyttedes",
-   "tilknyttende",
-   "tilknytter",
-   "tilknyttes",
-   "tilknyttet"
-  ]
- },
- {
   "lemma": "tilknytte",
   "kind": "word",
   "sense_id": "91998257-6e56-58a2-87b4-6b9da6aa7ae0",
@@ -798,6 +756,48 @@
    "heltens",
    "heltes",
    "helts"
+  ]
+ },
+ {
+  "lemma": "længde",
+  "kind": "word",
+  "sense_id": "ed8258a8-531f-545f-8c04-1f211b125dac",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2292,
+  "min_level": "B1",
+  "ru": "длина",
+  "en": "length",
+  "forms": [
+   "længde",
+   "længden",
+   "længdens",
+   "længder",
+   "længderne",
+   "længdernes",
+   "længders",
+   "længdes"
+  ]
+ },
+ {
+  "lemma": "længde",
+  "kind": "word",
+  "sense_id": "9a1500ae-83eb-5cb8-85b5-4c2c2dc90298",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2292,
+  "min_level": "B1",
+  "ru": "долгота",
+  "en": "longitude",
+  "forms": [
+   "længde",
+   "længden",
+   "længdens",
+   "længder",
+   "længderne",
+   "længdernes",
+   "længders",
+   "længdes"
   ]
  }
 ]

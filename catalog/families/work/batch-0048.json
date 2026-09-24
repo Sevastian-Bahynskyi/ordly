@@ -1,5 +1,24 @@
 [
  {
+  "lemma": "kvadratmeter",
+  "kind": "word",
+  "sense_id": "36b9bdaf-6cc5-556f-a027-2e8ade9041ff",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 1409,
+  "min_level": "A2",
+  "ru": "квадратный метр",
+  "en": "square meter",
+  "forms": [
+   "kvadratmeter",
+   "kvadratmeteren",
+   "kvadratmeterens",
+   "kvadratmeterne",
+   "kvadratmeternes",
+   "kvadratmeters"
+  ]
+ },
+ {
   "lemma": "båd",
   "kind": "word",
   "sense_id": "3584486c-ad81-5b9a-917a-b636503c661d",
@@ -8,7 +27,7 @@
   "freq_rank": 1410,
   "min_level": "A2",
   "ru": "лодка, судно",
-  "en": null,
+  "en": "boat",
   "forms": [
    "båd",
    "både",
@@ -29,7 +48,7 @@
   "freq_rank": 1411,
   "min_level": "A2",
   "ru": "квартал года",
-  "en": null,
+  "en": "quarter (of a year)",
   "forms": [
    "kvartal",
    "kvartaler",
@@ -50,7 +69,7 @@
   "freq_rank": 1411,
   "min_level": "A2",
   "ru": "квартал, часть города",
-  "en": null,
+  "en": "quarter, district (of a city)",
   "forms": [
    "kvartal",
    "kvartaler",
@@ -71,7 +90,7 @@
   "freq_rank": 1412,
   "min_level": "A2",
   "ru": "немного, капля",
-  "en": null,
+  "en": "a bit, a little",
   "forms": [
    "smule",
    "smulen",
@@ -92,7 +111,7 @@
   "freq_rank": 1412,
   "min_level": "A2",
   "ru": "крошка",
-  "en": null,
+  "en": "crumb",
   "forms": [
    "smule",
    "smulen",
@@ -113,7 +132,7 @@
   "freq_rank": 1413,
   "min_level": "A2",
   "ru": "элемент, составная часть",
-  "en": null,
+  "en": "element, component",
   "forms": [
    "element",
    "elementer",
@@ -134,7 +153,7 @@
   "freq_rank": 1413,
   "min_level": "A2",
   "ru": "стихия",
-  "en": null,
+  "en": "element (nature: fire, water, etc.)",
   "forms": [
    "element",
    "elementer",
@@ -155,7 +174,7 @@
   "freq_rank": 1414,
   "min_level": "A2",
   "ru": "мусульманский",
-  "en": null,
+  "en": "Muslim (adjective)",
   "forms": [
    "muslimsk",
    "muslimske"
@@ -170,7 +189,7 @@
   "freq_rank": 1415,
   "min_level": "A2",
   "ru": "подчёркивать, выделять",
-  "en": null,
+  "en": "to highlight, to emphasize",
   "forms": [
    "fremhæv",
    "fremhæve",
@@ -191,7 +210,7 @@
   "freq_rank": 1415,
   "min_level": "A2",
   "ru": "акцентировать внимание",
-  "en": null,
+  "en": "to stress, to draw attention to",
   "forms": [
    "fremhæv",
    "fremhæve",
@@ -212,7 +231,7 @@
   "freq_rank": 1416,
   "min_level": "A2",
   "ru": "все без исключения",
-  "en": null,
+  "en": "all, every single",
   "forms": [
    "samtlige"
   ]
@@ -226,7 +245,7 @@
   "freq_rank": 1417,
   "min_level": "A2",
   "ru": "обстоятельство",
-  "en": null,
+  "en": "circumstance",
   "forms": [
    "omstændighed",
    "omstændigheden",
@@ -247,7 +266,7 @@
   "freq_rank": 1418,
   "min_level": "A2",
   "ru": "законодательство",
-  "en": null,
+  "en": "legislation",
   "forms": [
    "lovgivning",
    "lovgivningen",
@@ -268,7 +287,7 @@
   "freq_rank": 1419,
   "min_level": "A2",
   "ru": "связывать, завязывать",
-  "en": null,
+  "en": "to tie, to bind",
   "forms": [
    "bandt",
    "bind",
@@ -290,7 +309,7 @@
   "freq_rank": 1419,
   "min_level": "A2",
   "ru": "обязывать",
-  "en": null,
+  "en": "to bind, to commit (obligate)",
   "forms": [
    "bandt",
    "bind",
@@ -312,7 +331,7 @@
   "freq_rank": 1420,
   "min_level": "A2",
   "ru": "оказывать, предоставлять",
-  "en": null,
+  "en": "to provide, to render (assistance)",
   "forms": [
    "yd",
    "yde",
@@ -333,7 +352,7 @@
   "freq_rank": 1420,
   "min_level": "A2",
   "ru": "выдавать, производить (результат)",
-  "en": null,
+  "en": "to yield, to produce (an output)",
   "forms": [
    "yd",
    "yde",
@@ -354,7 +373,7 @@
   "freq_rank": 1421,
   "min_level": "A2",
   "ru": "недавний",
-  "en": null,
+  "en": "the other day, recent",
   "forms": [
    "forleden"
   ]
@@ -368,7 +387,7 @@
   "freq_rank": 1422,
   "min_level": "A2",
   "ru": "настраивать",
-  "en": null,
+  "en": "to set, to adjust",
   "forms": [
    "indstil",
    "indstille",
@@ -389,7 +408,7 @@
   "freq_rank": 1422,
   "min_level": "A2",
   "ru": "прекращать",
-  "en": null,
+  "en": "to halt, to stop (an activity)",
   "forms": [
    "indstil",
    "indstille",
@@ -410,7 +429,7 @@
   "freq_rank": 1422,
   "min_level": "A2",
   "ru": "выдвигать кандидатуру",
-  "en": null,
+  "en": "to nominate",
   "forms": [
    "indstil",
    "indstille",
@@ -431,7 +450,7 @@
   "freq_rank": 1423,
   "min_level": "A2",
   "ru": "предмет, специальность",
-  "en": null,
+  "en": "subject (school), field",
   "forms": [
    "fag",
    "fagene",
@@ -450,7 +469,7 @@
   "freq_rank": 1424,
   "min_level": "A2",
   "ru": "стена",
-  "en": null,
+  "en": "wall",
   "forms": [
    "væg",
    "vægge",
@@ -471,7 +490,7 @@
   "freq_rank": 1425,
   "min_level": "A2",
   "ru": "христианский",
-  "en": null,
+  "en": "Christian",
   "forms": [
    "kristen",
    "kristens",
@@ -489,7 +508,7 @@
   "freq_rank": 1426,
   "min_level": "A2",
   "ru": "относительный",
-  "en": null,
+  "en": "relative",
   "forms": [
    "relativ",
    "relative",
@@ -505,7 +524,7 @@
   "freq_rank": 1427,
   "min_level": "A2",
   "ru": "широко",
-  "en": null,
+  "en": "wide, wide open",
   "forms": [
    "vidt"
   ]
@@ -519,7 +538,7 @@
   "freq_rank": 1427,
   "min_level": "A2",
   "ru": "далеко",
-  "en": null,
+  "en": "far (in progress)",
   "forms": [
    "vidt"
   ]
@@ -533,7 +552,7 @@
   "freq_rank": 1428,
   "min_level": "A2",
   "ru": "вдоль",
-  "en": null,
+  "en": "along",
   "forms": [
    "langs"
   ]
@@ -547,7 +566,7 @@
   "freq_rank": 1429,
   "min_level": "A2",
   "ru": "право",
-  "en": null,
+  "en": "right (entitlement)",
   "forms": [
    "rettighed",
    "rettigheden",
@@ -568,7 +587,7 @@
   "freq_rank": 1430,
   "min_level": "A2",
   "ru": "психический",
-  "en": null,
+  "en": "mental, psychological",
   "forms": [
    "psykisk",
    "psykiske"
@@ -583,7 +602,7 @@
   "freq_rank": 1431,
   "min_level": "A2",
   "ru": "палец",
-  "en": null,
+  "en": "finger",
   "forms": [
    "finger",
    "fingeren",
@@ -604,7 +623,7 @@
   "freq_rank": 1432,
   "min_level": "A2",
   "ru": "на юг, южнее",
-  "en": null,
+  "en": "south, southward",
   "forms": [
    "syd"
   ]
@@ -618,7 +637,7 @@
   "freq_rank": 1433,
   "min_level": "A2",
   "ru": "конкурент",
-  "en": null,
+  "en": "competitor",
   "forms": [
    "konkurrent",
    "konkurrenten",
@@ -639,7 +658,7 @@
   "freq_rank": 1434,
   "min_level": "A2",
   "ru": "стоящий, достойный",
-  "en": null,
+  "en": "worth, worthwhile",
   "forms": [
    "værd"
   ]
@@ -653,7 +672,7 @@
   "freq_rank": 1435,
   "min_level": "A2",
   "ru": "тема",
-  "en": null,
+  "en": "theme",
   "forms": [
    "tema",
    "temaer",
@@ -674,7 +693,7 @@
   "freq_rank": 1437,
   "min_level": "A2",
   "ru": "зима",
-  "en": null,
+  "en": "winter",
   "forms": [
    "vinter",
    "vinteren",
@@ -695,7 +714,7 @@
   "freq_rank": 1438,
   "min_level": "A2",
   "ru": "ухаживать",
-  "en": null,
+  "en": "to care for, to look after",
   "forms": [
    "plej",
    "pleje",
@@ -716,7 +735,7 @@
   "freq_rank": 1438,
   "min_level": "A2",
   "ru": "иметь обыкновение",
-  "en": null,
+  "en": "to usually do, to be in the habit of",
   "forms": [
    "plej",
    "pleje",
@@ -737,28 +756,7 @@
   "freq_rank": 1439,
   "min_level": "A2",
   "ru": "ферма",
-  "en": null,
-  "forms": [
-   "gård",
-   "gårde",
-   "gården",
-   "gårdene",
-   "gårdenes",
-   "gårdens",
-   "gårdes",
-   "gårds"
-  ]
- },
- {
-  "lemma": "gård",
-  "kind": "word",
-  "sense_id": "992e3683-c14a-5e3e-81e1-8f6d3862e669",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1439,
-  "min_level": "A2",
-  "ru": "двор",
-  "en": null,
+  "en": "farm",
   "forms": [
    "gård",
    "gårde",

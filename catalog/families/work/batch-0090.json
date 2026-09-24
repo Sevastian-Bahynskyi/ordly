@@ -1,40 +1,5 @@
 [
  {
-  "lemma": "officer",
-  "kind": "word",
-  "sense_id": "c0609ce8-459c-5b40-9603-470514c89efc",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2703,
-  "min_level": "B1",
-  "ru": "офицер",
-  "en": null,
-  "forms": [
-   "officer",
-   "officeren",
-   "officerens",
-   "officerer",
-   "officererne",
-   "officerernes",
-   "officerers",
-   "officers"
-  ]
- },
- {
-  "lemma": "ydre",
-  "kind": "word",
-  "sense_id": "ae03c025-feab-5a03-ba06-0241b7754aed",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2704,
-  "min_level": "B1",
-  "ru": "внешний, наружный",
-  "en": null,
-  "forms": [
-   "ydre"
-  ]
- },
- {
   "lemma": "rune",
   "kind": "word",
   "sense_id": "83fb837c-cb16-5633-a7bd-816f6bfcd79e",
@@ -43,7 +8,7 @@
   "freq_rank": 2705,
   "min_level": "B1",
   "ru": "руна",
-  "en": null,
+  "en": "rune",
   "forms": [
    "rune",
    "runen",
@@ -64,7 +29,7 @@
   "freq_rank": 2706,
   "min_level": "B1",
   "ru": "очевидно, явно",
-  "en": null,
+  "en": "clearly, evidently",
   "forms": [
    "tydeligvis"
   ]
@@ -78,7 +43,7 @@
   "freq_rank": 2707,
   "min_level": "B1",
   "ru": "покупка, закупка",
-  "en": null,
+  "en": "shopping, purchase",
   "forms": [
    "indkøb",
    "indkøbene",
@@ -97,7 +62,7 @@
   "freq_rank": 2708,
   "min_level": "B1",
   "ru": "маленькие",
-  "en": null,
+  "en": "small (plural)",
   "forms": [
    "små",
    "småt"
@@ -112,7 +77,7 @@
   "freq_rank": 2709,
   "min_level": "B1",
   "ru": "наличный",
-  "en": null,
+  "en": "cash (payment)",
   "forms": [
    "kontant",
    "kontante"
@@ -127,7 +92,7 @@
   "freq_rank": 2709,
   "min_level": "B1",
   "ru": "прямолинейный, решительный",
-  "en": null,
+  "en": "blunt, direct (manner)",
   "forms": [
    "kontant",
    "kontante"
@@ -142,7 +107,7 @@
   "freq_rank": 2710,
   "min_level": "B1",
   "ru": "романтичный",
-  "en": null,
+  "en": "romantic",
   "forms": [
    "romantisk",
    "romantiske"
@@ -157,7 +122,7 @@
   "freq_rank": 2711,
   "min_level": "B1",
   "ru": "масло (сливочное)",
-  "en": null,
+  "en": "butter",
   "forms": [
    "smør",
    "smørret",
@@ -174,7 +139,7 @@
   "freq_rank": 2712,
   "min_level": "B1",
   "ru": "банда",
-  "en": null,
+  "en": "gang",
   "forms": [
    "bande",
    "banden",
@@ -195,7 +160,7 @@
   "freq_rank": 2712,
   "min_level": "B1",
   "ru": "ругаться, сквернословить",
-  "en": null,
+  "en": "to swear, to curse",
   "forms": [
    "band",
    "bande",
@@ -216,7 +181,7 @@
   "freq_rank": 2713,
   "min_level": "B1",
   "ru": "советский",
-  "en": null,
+  "en": "Soviet",
   "forms": [
    "sovjetisk",
    "sovjetiske"
@@ -231,7 +196,7 @@
   "freq_rank": 2714,
   "min_level": "B1",
   "ru": "настроение",
-  "en": null,
+  "en": "mood",
   "forms": [
    "humør",
    "humøret",
@@ -248,7 +213,7 @@
   "freq_rank": 2715,
   "min_level": "B1",
   "ru": "поставлять, обеспечивать (чем-л.)",
-  "en": null,
+  "en": "to supply, to provide",
   "forms": [
    "tilfør",
    "tilføre",
@@ -269,7 +234,7 @@
   "freq_rank": 2716,
   "min_level": "B1",
   "ru": "классика (произведение)",
-  "en": null,
+  "en": "classic (a work)",
   "forms": [
    "klassiker",
    "klassikere",
@@ -290,7 +255,7 @@
   "freq_rank": 2717,
   "min_level": "B1",
   "ru": "год выпуска, урожай (год)",
-  "en": null,
+  "en": "vintage (year)",
   "forms": [
    "årgang",
    "årgange",
@@ -311,7 +276,7 @@
   "freq_rank": 2717,
   "min_level": "B1",
   "ru": "выпуск, поколение (например, школьный)",
-  "en": null,
+  "en": "class, cohort (e.g. school year)",
   "forms": [
    "årgang",
    "årgange",
@@ -332,7 +297,7 @@
   "freq_rank": 2718,
   "min_level": "B1",
   "ru": "заявление, декларация",
-  "en": null,
+  "en": "statement, declaration",
   "forms": [
    "erklæring",
    "erklæringen",
@@ -353,7 +318,7 @@
   "freq_rank": 2719,
   "min_level": "B1",
   "ru": "архив",
-  "en": null,
+  "en": "archive",
   "forms": [
    "arkiv",
    "arkiver",
@@ -374,7 +339,7 @@
   "freq_rank": 2720,
   "min_level": "B1",
   "ru": "отчёт, изложение",
-  "en": null,
+  "en": "account, report",
   "forms": [
    "redegørelse",
    "redegørelsen",
@@ -395,7 +360,7 @@
   "freq_rank": 2721,
   "min_level": "B1",
   "ru": "дебютировать",
-  "en": null,
+  "en": "to make one's debut",
   "forms": [
    "debuter",
    "debutere",
@@ -417,7 +382,7 @@
   "freq_rank": 2722,
   "min_level": "B1",
   "ru": "видный, выдающийся",
-  "en": null,
+  "en": "prominent, eminent",
   "forms": [
    "fremtrædende"
   ]
@@ -431,7 +396,7 @@
   "freq_rank": 2722,
   "min_level": "B1",
   "ru": "выступающий, заметный",
-  "en": null,
+  "en": "prominent, conspicuous (position)",
   "forms": [
    "fremtrædende"
   ]
@@ -445,7 +410,7 @@
   "freq_rank": 2723,
   "min_level": "B1",
   "ru": "парковать(ся)",
-  "en": null,
+  "en": "to park",
   "forms": [
    "parker",
    "parkere",
@@ -467,7 +432,7 @@
   "freq_rank": 2723,
   "min_level": "B1",
   "ru": "откладывать (дело)",
-  "en": null,
+  "en": "to shelve, to set aside (an issue)",
   "forms": [
    "parker",
    "parkere",
@@ -489,7 +454,7 @@
   "freq_rank": 2724,
   "min_level": "B1",
   "ru": "обед (в середине дня)",
-  "en": null,
+  "en": "lunch",
   "forms": [
    "frokost",
    "frokosten",
@@ -510,7 +475,7 @@
   "freq_rank": 2725,
   "min_level": "B1",
   "ru": "трудолюбивый, прилежный",
-  "en": null,
+  "en": "hardworking, diligent",
   "forms": [
    "flittig",
    "flittige",
@@ -529,7 +494,7 @@
   "freq_rank": 2726,
   "min_level": "B1",
   "ru": "забывать",
-  "en": null,
+  "en": "to forget",
   "forms": [
    "glem",
    "glemme",
@@ -550,7 +515,7 @@
   "freq_rank": 2726,
   "min_level": "B1",
   "ru": "упускать из виду",
-  "en": null,
+  "en": "to overlook",
   "forms": [
    "glem",
    "glemme",
@@ -571,7 +536,7 @@
   "freq_rank": 2727,
   "min_level": "B1",
   "ru": "горсть",
-  "en": null,
+  "en": "handful (of something physical)",
   "forms": [
    "håndfuld",
    "håndfulde",
@@ -592,7 +557,7 @@
   "freq_rank": 2727,
   "min_level": "B1",
   "ru": "небольшое количество",
-  "en": null,
+  "en": "a handful, a small number",
   "forms": [
    "håndfuld",
    "håndfulde",
@@ -613,7 +578,7 @@
   "freq_rank": 2728,
   "min_level": "B1",
   "ru": "добиваться результата, справляться",
-  "en": null,
+  "en": "to perform (achieve a result)",
   "forms": [
    "præster",
    "præstere",
@@ -635,7 +600,7 @@
   "freq_rank": 2728,
   "min_level": "B1",
   "ru": "выполнять, совершать",
-  "en": null,
+  "en": "to manage to do, to accomplish",
   "forms": [
    "præster",
    "præstere",
@@ -657,7 +622,7 @@
   "freq_rank": 2729,
   "min_level": "B1",
   "ru": "разыскивать, обращаться (к кому-л.)",
-  "en": null,
+  "en": "to seek out, to see (a professional)",
   "forms": [
    "opsøg",
    "opsøge",
@@ -678,7 +643,7 @@
   "freq_rank": 2729,
   "min_level": "B1",
   "ru": "навещать, посещать",
-  "en": null,
+  "en": "to visit, to look up",
   "forms": [
    "opsøg",
    "opsøge",
@@ -699,7 +664,7 @@
   "freq_rank": 2730,
   "min_level": "B1",
   "ru": "холм",
-  "en": null,
+  "en": "hill",
   "forms": [
    "bakke",
    "bakken",
@@ -720,7 +685,7 @@
   "freq_rank": 2730,
   "min_level": "B1",
   "ru": "поднос",
-  "en": null,
+  "en": "tray",
   "forms": [
    "bakke",
    "bakken",
@@ -741,7 +706,7 @@
   "freq_rank": 2730,
   "min_level": "B1",
   "ru": "двигаться назад, сдавать назад",
-  "en": null,
+  "en": "to back up, to reverse",
   "forms": [
    "bak",
    "bakke",
@@ -762,7 +727,7 @@
   "freq_rank": 2731,
   "min_level": "B1",
   "ru": "экзамен",
-  "en": null,
+  "en": "exam",
   "forms": [
    "eksamen",
    "eksamenen",
@@ -776,6 +741,43 @@
    "eksaminerne",
    "eksaminernes",
    "eksaminers"
+  ]
+ },
+ {
+  "lemma": "forsvarsminister",
+  "kind": "word",
+  "sense_id": "55a84d3e-4918-50ce-8a26-9f64bb35506f",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2732,
+  "min_level": "B1",
+  "ru": "министр обороны",
+  "en": "Minister of Defense",
+  "forms": [
+   "forsvarsminister",
+   "forsvarsministeren",
+   "forsvarsministerens",
+   "forsvarsministers",
+   "forsvarsministre",
+   "forsvarsministrene",
+   "forsvarsministrenes",
+   "forsvarsministres"
+  ]
+ },
+ {
+  "lemma": "grønlandsk",
+  "kind": "word",
+  "sense_id": "7913b997-eaf1-5355-97be-5b671f52727b",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2733,
+  "min_level": "B1",
+  "ru": "гренландский",
+  "en": "Greenlandic",
+  "forms": [
+   "grønlandsk",
+   "grønlandske",
+   "grønlandsks"
   ]
  }
 ]

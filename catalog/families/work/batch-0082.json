@@ -1,42 +1,5 @@
 [
  {
-  "lemma": "kælder",
-  "kind": "word",
-  "sense_id": "7f659bc3-b451-5b11-9b17-bb0f5db2a960",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2454,
-  "min_level": "B1",
-  "ru": "подвал",
-  "en": null,
-  "forms": [
-   "kælder",
-   "kældere",
-   "kælderen",
-   "kælderens",
-   "kælderes",
-   "kælders",
-   "kældre",
-   "kældrene",
-   "kældrenes",
-   "kældres"
-  ]
- },
- {
-  "lemma": "udefra",
-  "kind": "word",
-  "sense_id": "7af4625e-569e-5ed1-a3f9-8fc0c3b6ee00",
-  "pos": "adverb",
-  "gender": null,
-  "freq_rank": 2455,
-  "min_level": "B1",
-  "ru": "снаружи",
-  "en": null,
-  "forms": [
-   "udefra"
-  ]
- },
- {
   "lemma": "udefra",
   "kind": "word",
   "sense_id": "9f6380ec-0ea4-55b3-b92d-ce8e1b70d3bc",
@@ -45,7 +8,7 @@
   "freq_rank": 2455,
   "min_level": "B1",
   "ru": "извне",
-  "en": null,
+  "en": "from outside, externally",
   "forms": [
    "udefra"
   ]
@@ -59,7 +22,7 @@
   "freq_rank": 2456,
   "min_level": "B1",
   "ru": "осознавать",
-  "en": null,
+  "en": "to realize (accept a truth)",
   "forms": [
    "indse",
    "indseende",
@@ -80,7 +43,7 @@
   "freq_rank": 2456,
   "min_level": "B1",
   "ru": "понимать",
-  "en": null,
+  "en": "to realize (come to understand)",
   "forms": [
    "indse",
    "indseende",
@@ -101,7 +64,7 @@
   "freq_rank": 2457,
   "min_level": "B1",
   "ru": "главный редактор",
-  "en": null,
+  "en": "editor-in-chief",
   "forms": [
    "chefredaktør",
    "chefredaktøren",
@@ -122,7 +85,7 @@
   "freq_rank": 2458,
   "min_level": "B1",
   "ru": "убивать",
-  "en": null,
+  "en": "to murder",
   "forms": [
    "myrd",
    "myrde",
@@ -144,7 +107,7 @@
   "freq_rank": 2459,
   "min_level": "B1",
   "ru": "блок",
-  "en": null,
+  "en": "block (of flats)",
   "forms": [
    "blok",
    "blokke",
@@ -165,7 +128,7 @@
   "freq_rank": 2459,
   "min_level": "B1",
   "ru": "блокнот",
-  "en": null,
+  "en": "notepad, notebook",
   "forms": [
    "blok",
    "blokke",
@@ -186,7 +149,7 @@
   "freq_rank": 2460,
   "min_level": "B1",
   "ru": "журнал",
-  "en": null,
+  "en": "journal, periodical",
   "forms": [
    "tidsskrift",
    "tidsskrifter",
@@ -207,7 +170,7 @@
   "freq_rank": 2461,
   "min_level": "B1",
   "ru": "вход",
-  "en": null,
+  "en": "entrance",
   "forms": [
    "indgang",
    "indgange",
@@ -228,7 +191,7 @@
   "freq_rank": 2462,
   "min_level": "B1",
   "ru": "вмешательство",
-  "en": null,
+  "en": "intervention",
   "forms": [
    "indgreb",
    "indgrebene",
@@ -247,7 +210,7 @@
   "freq_rank": 2462,
   "min_level": "B1",
   "ru": "хирургическая операция",
-  "en": null,
+  "en": "procedure (surgical)",
   "forms": [
    "indgreb",
    "indgrebene",
@@ -266,7 +229,7 @@
   "freq_rank": 2463,
   "min_level": "B1",
   "ru": "оснащать",
-  "en": null,
+  "en": "to equip",
   "forms": [
    "udstyr",
    "udstyre",
@@ -287,7 +250,7 @@
   "freq_rank": 2464,
   "min_level": "B1",
   "ru": "очаровывать, увлекать",
-  "en": null,
+  "en": "to fascinate",
   "forms": [
    "fasciner",
    "fascinere",
@@ -309,7 +272,7 @@
   "freq_rank": 2465,
   "min_level": "B1",
   "ru": "посольство",
-  "en": null,
+  "en": "embassy",
   "forms": [
    "ambassade",
    "ambassaden",
@@ -330,7 +293,7 @@
   "freq_rank": 2466,
   "min_level": "B1",
   "ru": "доход",
-  "en": null,
+  "en": "income",
   "forms": [
    "indkomst",
    "indkomsten",
@@ -351,7 +314,7 @@
   "freq_rank": 2467,
   "min_level": "B1",
   "ru": "в котором",
-  "en": null,
+  "en": "in which",
   "forms": [
    "hvori"
   ]
@@ -365,7 +328,7 @@
   "freq_rank": 2468,
   "min_level": "B1",
   "ru": "том",
-  "en": null,
+  "en": "volume (of a book)",
   "forms": [
    "bind",
    "bindene",
@@ -384,7 +347,7 @@
   "freq_rank": 2468,
   "min_level": "B1",
   "ru": "повязка",
-  "en": null,
+  "en": "bandage",
   "forms": [
    "bind",
    "bindene",
@@ -403,7 +366,7 @@
   "freq_rank": 2469,
   "min_level": "B1",
   "ru": "студент",
-  "en": null,
+  "en": "student (university)",
   "forms": [
    "student",
    "studenten",
@@ -424,7 +387,7 @@
   "freq_rank": 2469,
   "min_level": "B1",
   "ru": "выпускник гимназии",
-  "en": null,
+  "en": "high school graduate",
   "forms": [
    "student",
    "studenten",
@@ -445,7 +408,7 @@
   "freq_rank": 2470,
   "min_level": "B1",
   "ru": "передавать, доносить",
-  "en": null,
+  "en": "to convey, to impart",
   "forms": [
    "formidl",
    "formidle",
@@ -466,7 +429,7 @@
   "freq_rank": 2470,
   "min_level": "B1",
   "ru": "организовывать, содействовать",
-  "en": null,
+  "en": "to arrange, to facilitate",
   "forms": [
    "formidl",
    "formidle",
@@ -487,7 +450,7 @@
   "freq_rank": 2471,
   "min_level": "B1",
   "ru": "восток",
-  "en": null,
+  "en": "east",
   "forms": [
    "øst",
    "østs"
@@ -502,7 +465,7 @@
   "freq_rank": 2472,
   "min_level": "B1",
   "ru": "мусор, отходы",
-  "en": null,
+  "en": "waste, garbage",
   "forms": [
    "affald",
    "affaldet",
@@ -519,7 +482,7 @@
   "freq_rank": 2473,
   "min_level": "B1",
   "ru": "усиливать",
-  "en": null,
+  "en": "to strengthen, to reinforce",
   "forms": [
    "forstærk",
    "forstærke",
@@ -540,7 +503,7 @@
   "freq_rank": 2474,
   "min_level": "B1",
   "ru": "изобретать",
-  "en": null,
+  "en": "to invent",
   "forms": [
    "opfandt",
    "opfandtes",
@@ -563,7 +526,7 @@
   "freq_rank": 2475,
   "min_level": "B1",
   "ru": "соглашение, коллективный договор",
-  "en": null,
+  "en": "collective agreement",
   "forms": [
    "overenskomst",
    "overenskomsten",
@@ -584,7 +547,7 @@
   "freq_rank": 2476,
   "min_level": "B1",
   "ru": "иллюстрировать, показывать на примере",
-  "en": null,
+  "en": "to illustrate",
   "forms": [
    "illustrer",
    "illustrere",
@@ -606,7 +569,7 @@
   "freq_rank": 2477,
   "min_level": "B1",
   "ru": "целое, общая картина",
-  "en": null,
+  "en": "whole, overall picture",
   "forms": [
    "helhed",
    "helheden",
@@ -627,7 +590,7 @@
   "freq_rank": 2478,
   "min_level": "B1",
   "ru": "медицинский",
-  "en": null,
+  "en": "medical",
   "forms": [
    "medicinsk",
    "medicinske"
@@ -642,7 +605,7 @@
   "freq_rank": 2479,
   "min_level": "B1",
   "ru": "даже, к тому же",
-  "en": null,
+  "en": "even, moreover",
   "forms": [
    "tilmed"
   ]
@@ -656,7 +619,7 @@
   "freq_rank": 2480,
   "min_level": "B1",
   "ru": "палестинец, палестинка",
-  "en": null,
+  "en": "Palestinian (person)",
   "forms": [
    "palæstinenser",
    "palæstinensere",
@@ -677,7 +640,7 @@
   "freq_rank": 2481,
   "min_level": "B1",
   "ru": "королевство, государство",
-  "en": null,
+  "en": "kingdom, realm",
   "forms": [
    "rige",
    "riger",
@@ -698,7 +661,7 @@
   "freq_rank": 2482,
   "min_level": "B1",
   "ru": "психолог",
-  "en": null,
+  "en": "psychologist",
   "forms": [
    "psykolog",
    "psykologen",
@@ -719,7 +682,7 @@
   "freq_rank": 2483,
   "min_level": "B1",
   "ru": "недовольный",
-  "en": null,
+  "en": "dissatisfied",
   "forms": [
    "utilfreds",
    "utilfredse",
@@ -735,7 +698,7 @@
   "freq_rank": 2484,
   "min_level": "B1",
   "ru": "музыкальный инструмент",
-  "en": null,
+  "en": "instrument (musical)",
   "forms": [
    "instrument",
    "instrumenter",
@@ -756,7 +719,7 @@
   "freq_rank": 2484,
   "min_level": "B1",
   "ru": "инструмент, прибор",
-  "en": null,
+  "en": "instrument, tool (device)",
   "forms": [
    "instrument",
    "instrumenter",
@@ -777,12 +740,52 @@
   "freq_rank": 2485,
   "min_level": "B1",
   "ru": "дождь",
-  "en": null,
+  "en": "rain",
   "forms": [
    "regn",
    "regnen",
    "regnens",
    "regns"
+  ]
+ },
+ {
+  "lemma": "sparke",
+  "kind": "word",
+  "sense_id": "abb6345e-ff7c-5052-97a6-3727f5d2ffc3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2486,
+  "min_level": "B1",
+  "ru": "пинать",
+  "en": "to kick",
+  "forms": [
+   "spark",
+   "sparke",
+   "sparkede",
+   "sparkedes",
+   "sparkende",
+   "sparker",
+   "sparkes",
+   "sparket"
+  ]
+ },
+ {
+  "lemma": "smal",
+  "kind": "word",
+  "sense_id": "82093ea1-03fd-5842-8783-69a8ac7e12a9",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2487,
+  "min_level": "B1",
+  "ru": "узкий",
+  "en": "narrow",
+  "forms": [
+   "smal",
+   "smalle",
+   "smallere",
+   "smallest",
+   "smalleste",
+   "smalt"
   ]
  }
 ]

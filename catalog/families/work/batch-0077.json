@@ -1,47 +1,5 @@
 [
  {
-  "lemma": "længde",
-  "kind": "word",
-  "sense_id": "ed8258a8-531f-545f-8c04-1f211b125dac",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2292,
-  "min_level": "B1",
-  "ru": "длина",
-  "en": "length",
-  "forms": [
-   "længde",
-   "længden",
-   "længdens",
-   "længder",
-   "længderne",
-   "længdernes",
-   "længders",
-   "længdes"
-  ]
- },
- {
-  "lemma": "længde",
-  "kind": "word",
-  "sense_id": "9a1500ae-83eb-5cb8-85b5-4c2c2dc90298",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2292,
-  "min_level": "B1",
-  "ru": "долгота",
-  "en": "longitude",
-  "forms": [
-   "længde",
-   "længden",
-   "længdens",
-   "længder",
-   "længderne",
-   "længdernes",
-   "længders",
-   "længdes"
-  ]
- },
- {
   "lemma": "magasin",
   "kind": "word",
   "sense_id": "a3a75007-0439-555f-ac57-02eb7f935df6",
@@ -274,7 +232,7 @@
   "freq_rank": 2301,
   "min_level": "B1",
   "ru": "любимец, фаворит",
-  "en": null,
+  "en": "favorite",
   "forms": [
    "favorit",
    "favorits",
@@ -295,7 +253,7 @@
   "freq_rank": 2302,
   "min_level": "B1",
   "ru": "палестинский",
-  "en": null,
+  "en": "Palestinian",
   "forms": [
    "palæstinensisk",
    "palæstinensiske"
@@ -310,7 +268,7 @@
   "freq_rank": 2303,
   "min_level": "B1",
   "ru": "район города",
-  "en": null,
+  "en": "neighborhood, district (of a city)",
   "forms": [
    "bydel",
    "bydele",
@@ -331,7 +289,7 @@
   "freq_rank": 2304,
   "min_level": "B1",
   "ru": "подсчёт, инвентаризация",
-  "en": null,
+  "en": "count, inventory",
   "forms": [
    "opgørelse",
    "opgørelsen",
@@ -352,7 +310,7 @@
   "freq_rank": 2304,
   "min_level": "B1",
   "ru": "отчёт, сводка",
-  "en": null,
+  "en": "statement, summary (report)",
   "forms": [
    "opgørelse",
    "opgørelsen",
@@ -373,7 +331,7 @@
   "freq_rank": 2305,
   "min_level": "B1",
   "ru": "информировать",
-  "en": null,
+  "en": "to inform, to brief",
   "forms": [
    "orienter",
    "orientere",
@@ -395,7 +353,7 @@
   "freq_rank": 2305,
   "min_level": "B1",
   "ru": "ориентироваться",
-  "en": null,
+  "en": "to orient oneself, to find one's bearings",
   "forms": [
    "orienter",
    "orientere",
@@ -417,7 +375,7 @@
   "freq_rank": 2306,
   "min_level": "B1",
   "ru": "восстание, бунт",
-  "en": null,
+  "en": "uprising, riot",
   "forms": [
    "oprør",
    "oprørene",
@@ -436,7 +394,7 @@
   "freq_rank": 2307,
   "min_level": "B1",
   "ru": "находиться, пребывать",
-  "en": null,
+  "en": "to stay, to be present",
   "forms": [
    "ophold",
    "opholde",
@@ -457,7 +415,7 @@
   "freq_rank": 2308,
   "min_level": "B1",
   "ru": "обильный, достаточный",
-  "en": null,
+  "en": "plentiful, ample",
   "forms": [
    "rigelig",
    "rigelige",
@@ -476,7 +434,7 @@
   "freq_rank": 2309,
   "min_level": "B1",
   "ru": "ректор, директор учебного заведения",
-  "en": null,
+  "en": "principal, headmaster (of a school)",
   "forms": [
    "rektor",
    "rektoren",
@@ -497,7 +455,7 @@
   "freq_rank": 2310,
   "min_level": "B1",
   "ru": "пресс-конференция",
-  "en": null,
+  "en": "press conference",
   "forms": [
    "pressemøde",
    "pressemøder",
@@ -518,7 +476,7 @@
   "freq_rank": 2311,
   "min_level": "B1",
   "ru": "ранить, обижать",
-  "en": null,
+  "en": "to hurt (feelings)",
   "forms": [
    "sår",
    "såre",
@@ -540,7 +498,7 @@
   "freq_rank": 2312,
   "min_level": "B1",
   "ru": "расследование",
-  "en": null,
+  "en": "investigation",
   "forms": [
    "efterforskning",
    "efterforskningen",
@@ -561,7 +519,7 @@
   "freq_rank": 2313,
   "min_level": "B1",
   "ru": "защита",
-  "en": null,
+  "en": "protection",
   "forms": [
    "beskyttelse",
    "beskyttelsen",
@@ -582,7 +540,7 @@
   "freq_rank": 2314,
   "min_level": "B1",
   "ru": "устойчивый, экологичный",
-  "en": null,
+  "en": "sustainable",
   "forms": [
    "bæredygtig",
    "bæredygtige",
@@ -598,7 +556,7 @@
   "freq_rank": 2315,
   "min_level": "B1",
   "ru": "измерение",
-  "en": null,
+  "en": "measurement",
   "forms": [
    "måling",
    "målingen",
@@ -619,7 +577,7 @@
   "freq_rank": 2316,
   "min_level": "B1",
   "ru": "жениться, выходить замуж",
-  "en": null,
+  "en": "to get married",
   "forms": [
    "gift",
    "gifte",
@@ -640,7 +598,7 @@
   "freq_rank": 2317,
   "min_level": "B1",
   "ru": "проверять",
-  "en": null,
+  "en": "to check",
   "forms": [
    "tjek",
    "tjekke",
@@ -661,7 +619,7 @@
   "freq_rank": 2318,
   "min_level": "B1",
   "ru": "застройка, поселение",
-  "en": null,
+  "en": "development, settlement (built-up area)",
   "forms": [
    "bebyggelse",
    "bebyggelsen",
@@ -682,7 +640,7 @@
   "freq_rank": 2319,
   "min_level": "B1",
   "ru": "изолировать",
-  "en": null,
+  "en": "to insulate, to isolate",
   "forms": [
    "isoler",
    "isolere",
@@ -704,7 +662,7 @@
   "freq_rank": 2320,
   "min_level": "B1",
   "ru": "всё",
-  "en": null,
+  "en": "everything",
   "forms": [
    "alting",
    "altings"
@@ -719,7 +677,7 @@
   "freq_rank": 2321,
   "min_level": "B1",
   "ru": "окружать",
-  "en": null,
+  "en": "to surround",
   "forms": [
    "omgav",
    "omgiv",
@@ -740,7 +698,7 @@
   "freq_rank": 2322,
   "min_level": "B1",
   "ru": "верховный суд",
-  "en": null,
+  "en": "supreme court",
   "forms": [
    "højesteret",
    "højesterets",
@@ -761,7 +719,7 @@
   "freq_rank": 2323,
   "min_level": "B1",
   "ru": "священный",
-  "en": null,
+  "en": "holy, sacred",
   "forms": [
    "hellig",
    "hellige",
@@ -780,7 +738,7 @@
   "freq_rank": 2323,
   "min_level": "B1",
   "ru": "ханжеский",
-  "en": null,
+  "en": "sanctimonious, self-righteous",
   "forms": [
    "hellig",
    "hellige",
@@ -799,7 +757,7 @@
   "freq_rank": 2324,
   "min_level": "B1",
   "ru": "воздерживаться",
-  "en": null,
+  "en": "to refrain (from)",
   "forms": [
    "undlad",
    "undlade",
@@ -809,6 +767,48 @@
    "undladt",
    "undladte",
    "undlod"
+  ]
+ },
+ {
+  "lemma": "undlade",
+  "kind": "word",
+  "sense_id": "0873190a-91a9-5136-825f-75b975064fb4",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2324,
+  "min_level": "B1",
+  "ru": "упускать",
+  "en": "to fail to, to omit",
+  "forms": [
+   "undlad",
+   "undlade",
+   "undladende",
+   "undlader",
+   "undlades",
+   "undladt",
+   "undladte",
+   "undlod"
+  ]
+ },
+ {
+  "lemma": "afgang",
+  "kind": "word",
+  "sense_id": "149706af-276f-5890-9a31-acf541096176",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2325,
+  "min_level": "B1",
+  "ru": "отправление",
+  "en": "departure",
+  "forms": [
+   "afgang",
+   "afgange",
+   "afgangen",
+   "afgangene",
+   "afgangenes",
+   "afgangens",
+   "afganges",
+   "afgangs"
   ]
  }
 ]

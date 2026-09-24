@@ -1,5 +1,26 @@
 [
  {
+  "lemma": "karakter",
+  "kind": "word",
+  "sense_id": "bea35bb3-d55e-5bc0-80b5-10e9211d75a8",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 954,
+  "min_level": "A2",
+  "ru": "персонаж",
+  "en": "character (in a story)",
+  "forms": [
+   "karakter",
+   "karakteren",
+   "karakterens",
+   "karakterer",
+   "karaktererne",
+   "karakterernes",
+   "karakterers",
+   "karakters"
+  ]
+ },
+ {
   "lemma": "stigning",
   "kind": "word",
   "sense_id": "0a543705-1656-5f57-b4c6-855b4ab7be61",
@@ -8,7 +29,7 @@
   "freq_rank": 955,
   "min_level": "A2",
   "ru": "рост, повышение",
-  "en": null,
+  "en": "increase, rise",
   "forms": [
    "stigning",
    "stigningen",
@@ -29,7 +50,7 @@
   "freq_rank": 956,
   "min_level": "A2",
   "ru": "комментарий",
-  "en": null,
+  "en": "comment",
   "forms": [
    "kommentar",
    "kommentaren",
@@ -50,7 +71,7 @@
   "freq_rank": 957,
   "min_level": "A2",
   "ru": "влиять",
-  "en": null,
+  "en": "to affect, to influence",
   "forms": [
    "påvirk",
    "påvirke",
@@ -71,7 +92,7 @@
   "freq_rank": 958,
   "min_level": "A2",
   "ru": "участник",
-  "en": null,
+  "en": "participant",
   "forms": [
    "deltager",
    "deltagere",
@@ -92,7 +113,7 @@
   "freq_rank": 959,
   "min_level": "A2",
   "ru": "линия",
-  "en": null,
+  "en": "line (mark, shape)",
   "forms": [
    "linje",
    "linjen",
@@ -113,7 +134,7 @@
   "freq_rank": 959,
   "min_level": "A2",
   "ru": "строка",
-  "en": null,
+  "en": "line (of text)",
   "forms": [
    "linje",
    "linjen",
@@ -134,7 +155,7 @@
   "freq_rank": 959,
   "min_level": "A2",
   "ru": "маршрут, линия транспорта",
-  "en": null,
+  "en": "line, route (transit)",
   "forms": [
    "linje",
    "linjen",
@@ -155,7 +176,7 @@
   "freq_rank": 960,
   "min_level": "A2",
   "ru": "перенимать, брать на себя",
-  "en": null,
+  "en": "to take over",
   "forms": [
    "overtag",
    "overtage",
@@ -178,7 +199,7 @@
   "freq_rank": 961,
   "min_level": "A2",
   "ru": "вино",
-  "en": null,
+  "en": "wine",
   "forms": [
    "vin",
    "vine",
@@ -199,7 +220,7 @@
   "freq_rank": 963,
   "min_level": "A2",
   "ru": "актуальный, текущий",
-  "en": null,
+  "en": "current, topical",
   "forms": [
    "aktuel",
    "aktuelle",
@@ -215,7 +236,7 @@
   "freq_rank": 964,
   "min_level": "A2",
   "ru": "порт, гавань",
-  "en": null,
+  "en": "harbor, port",
   "forms": [
    "havn",
    "havne",
@@ -236,7 +257,7 @@
   "freq_rank": 965,
   "min_level": "A2",
   "ru": "недвижимость",
-  "en": null,
+  "en": "property, real estate",
   "forms": [
    "ejendom",
    "ejendomme",
@@ -257,7 +278,7 @@
   "freq_rank": 965,
   "min_level": "A2",
   "ru": "имущество",
-  "en": null,
+  "en": "possession, property (belongings)",
   "forms": [
    "ejendom",
    "ejendomme",
@@ -278,7 +299,7 @@
   "freq_rank": 966,
   "min_level": "A2",
   "ru": "цвет",
-  "en": null,
+  "en": "color",
   "forms": [
    "farve",
    "farven",
@@ -299,7 +320,7 @@
   "freq_rank": 966,
   "min_level": "A2",
   "ru": "краска",
-  "en": null,
+  "en": "paint",
   "forms": [
    "farve",
    "farven",
@@ -320,7 +341,7 @@
   "freq_rank": 967,
   "min_level": "A2",
   "ru": "западный",
-  "en": null,
+  "en": "western",
   "forms": [
    "vestlig",
    "vestlige",
@@ -339,7 +360,7 @@
   "freq_rank": 968,
   "min_level": "A2",
   "ru": "действие, поступок",
-  "en": null,
+  "en": "action, deed",
   "forms": [
    "handling",
    "handlingen",
@@ -360,7 +381,7 @@
   "freq_rank": 968,
   "min_level": "A2",
   "ru": "сюжет",
-  "en": null,
+  "en": "plot (of a story)",
   "forms": [
    "handling",
    "handlingen",
@@ -381,7 +402,7 @@
   "freq_rank": 969,
   "min_level": "A2",
   "ru": "оценка",
-  "en": null,
+  "en": "assessment, evaluation",
   "forms": [
    "vurdering",
    "vurderingen",
@@ -402,7 +423,7 @@
   "freq_rank": 970,
   "min_level": "A2",
   "ru": "прибыль",
-  "en": null,
+  "en": "profit",
   "forms": [
    "overskud",
    "overskuddene",
@@ -421,7 +442,7 @@
   "freq_rank": 970,
   "min_level": "A2",
   "ru": "запас сил, энергия",
-  "en": null,
+  "en": "surplus energy, spare capacity",
   "forms": [
    "overskud",
    "overskuddene",
@@ -440,7 +461,7 @@
   "freq_rank": 971,
   "min_level": "A2",
   "ru": "принимать, соглашаться",
-  "en": null,
+  "en": "to accept",
   "forms": [
    "accepter",
    "acceptere",
@@ -462,7 +483,7 @@
   "freq_rank": 972,
   "min_level": "A2",
   "ru": "холодный",
-  "en": null,
+  "en": "cold",
   "forms": [
    "kold",
    "kolde",
@@ -481,7 +502,7 @@
   "freq_rank": 973,
   "min_level": "A2",
   "ru": "станция, вокзал",
-  "en": null,
+  "en": "station",
   "forms": [
    "station",
    "stationen",
@@ -502,7 +523,7 @@
   "freq_rank": 974,
   "min_level": "A2",
   "ru": "тяжёлый",
-  "en": null,
+  "en": "heavy",
   "forms": [
    "tung",
    "tunge",
@@ -521,7 +542,7 @@
   "freq_rank": 975,
   "min_level": "A2",
   "ru": "влияние",
-  "en": null,
+  "en": "influence",
   "forms": [
    "indflydelse",
    "indflydelsen",
@@ -542,7 +563,7 @@
   "freq_rank": 976,
   "min_level": "A2",
   "ru": "процесс",
-  "en": null,
+  "en": "process",
   "forms": [
    "proces",
    "proces'",
@@ -563,7 +584,7 @@
   "freq_rank": 976,
   "min_level": "A2",
   "ru": "судебный процесс",
-  "en": null,
+  "en": "lawsuit, legal proceedings",
   "forms": [
    "proces",
    "proces'",
@@ -584,7 +605,7 @@
   "freq_rank": 977,
   "min_level": "A2",
   "ru": "подтверждать",
-  "en": null,
+  "en": "to confirm",
   "forms": [
    "bekræft",
    "bekræfte",
@@ -605,7 +626,7 @@
   "freq_rank": 978,
   "min_level": "A2",
   "ru": "движение",
-  "en": null,
+  "en": "movement (physical motion)",
   "forms": [
    "bevægelse",
    "bevægelsen",
@@ -626,7 +647,7 @@
   "freq_rank": 978,
   "min_level": "A2",
   "ru": "движение (общественное)",
-  "en": null,
+  "en": "movement (political, social)",
   "forms": [
    "bevægelse",
    "bevægelsen",
@@ -647,7 +668,7 @@
   "freq_rank": 979,
   "min_level": "A2",
   "ru": "внимательный",
-  "en": null,
+  "en": "attentive",
   "forms": [
    "opmærksom",
    "opmærksomme",
@@ -666,7 +687,7 @@
   "freq_rank": 980,
   "min_level": "A2",
   "ru": "мечта",
-  "en": null,
+  "en": "dream (aspiration)",
   "forms": [
    "drøm",
    "drømme",
@@ -687,7 +708,7 @@
   "freq_rank": 980,
   "min_level": "A2",
   "ru": "сон",
-  "en": null,
+  "en": "dream (while sleeping)",
   "forms": [
    "drøm",
    "drømme",
@@ -708,7 +729,7 @@
   "freq_rank": 981,
   "min_level": "A2",
   "ru": "фонд",
-  "en": null,
+  "en": "fund, foundation",
   "forms": [
    "fond",
    "fonde",
@@ -735,7 +756,7 @@
   "freq_rank": 982,
   "min_level": "A2",
   "ru": "демократический",
-  "en": null,
+  "en": "democratic",
   "forms": [
    "demokratisk",
    "demokratiske"
@@ -750,7 +771,7 @@
   "freq_rank": 983,
   "min_level": "A2",
   "ru": "традиция",
-  "en": null,
+  "en": "tradition",
   "forms": [
    "tradition",
    "traditionen",
@@ -771,7 +792,7 @@
   "freq_rank": 984,
   "min_level": "A2",
   "ru": "устанавливать, констатировать",
-  "en": null,
+  "en": "to establish, to determine (a fact)",
   "forms": [
    "fastslog",
    "fastslå",
@@ -791,7 +812,7 @@
   "freq_rank": 985,
   "min_level": "A2",
   "ru": "размер",
-  "en": null,
+  "en": "size",
   "forms": [
    "størrelse",
    "størrelsen",
@@ -801,27 +822,6 @@
    "størrelsernes",
    "størrelsers",
    "størrelses"
-  ]
- },
- {
-  "lemma": "arrangement",
-  "kind": "word",
-  "sense_id": "a29c7ac6-413a-551a-bdb5-716f2b427132",
-  "pos": "noun",
-  "gender": "et",
-  "freq_rank": 986,
-  "min_level": "A2",
-  "ru": "мероприятие",
-  "en": null,
-  "forms": [
-   "arrangement",
-   "arrangementer",
-   "arrangementerne",
-   "arrangementernes",
-   "arrangementers",
-   "arrangementet",
-   "arrangementets",
-   "arrangements"
   ]
  }
 ]

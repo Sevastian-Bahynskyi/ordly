@@ -1,48 +1,5 @@
 [
  {
-  "lemma": "ko",
-  "kind": "word",
-  "sense_id": "0db27270-5c77-55cf-b4e5-10c51ca4780b",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2389,
-  "min_level": "B1",
-  "ru": "корова",
-  "en": null,
-  "forms": [
-   "ko",
-   "koen",
-   "koens",
-   "kos",
-   "køer",
-   "køerne",
-   "køernes",
-   "køers"
-  ]
- },
- {
-  "lemma": "argumentere",
-  "kind": "word",
-  "sense_id": "f5167a0a-aa5a-5852-b3b3-dbb8b0fe27f9",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2390,
-  "min_level": "B1",
-  "ru": "аргументировать",
-  "en": null,
-  "forms": [
-   "argumenter",
-   "argumentere",
-   "argumenterede",
-   "argumenteredes",
-   "argumenterende",
-   "argumenterer",
-   "argumenteres",
-   "argumenteret",
-   "argumentér"
-  ]
- },
- {
   "lemma": "manuskript",
   "kind": "word",
   "sense_id": "59d52d29-3beb-5479-aa8f-4a4854b525b6",
@@ -51,7 +8,7 @@
   "freq_rank": 2391,
   "min_level": "B1",
   "ru": "рукопись",
-  "en": null,
+  "en": "manuscript",
   "forms": [
    "manuskript",
    "manuskripter",
@@ -72,7 +29,7 @@
   "freq_rank": 2391,
   "min_level": "B1",
   "ru": "сценарий",
-  "en": null,
+  "en": "screenplay, script",
   "forms": [
    "manuskript",
    "manuskripter",
@@ -93,7 +50,7 @@
   "freq_rank": 2392,
   "min_level": "B1",
   "ru": "экземпляр",
-  "en": null,
+  "en": "copy (of a book)",
   "forms": [
    "eksemplar",
    "eksemplarer",
@@ -114,7 +71,7 @@
   "freq_rank": 2393,
   "min_level": "B1",
   "ru": "светить",
-  "en": null,
+  "en": "to shine (give light)",
   "forms": [
    "lys",
    "lyse",
@@ -135,7 +92,7 @@
   "freq_rank": 2393,
   "min_level": "B1",
   "ru": "освещать",
-  "en": null,
+  "en": "to light up, to illuminate",
   "forms": [
    "lys",
    "lyse",
@@ -156,7 +113,7 @@
   "freq_rank": 2394,
   "min_level": "B1",
   "ru": "практиковать",
-  "en": null,
+  "en": "to practice (a profession)",
   "forms": [
    "praktiser",
    "praktisere",
@@ -178,7 +135,7 @@
   "freq_rank": 2394,
   "min_level": "B1",
   "ru": "применять на практике",
-  "en": null,
+  "en": "to put into practice",
   "forms": [
    "praktiser",
    "praktisere",
@@ -200,7 +157,7 @@
   "freq_rank": 2395,
   "min_level": "B1",
   "ru": "разведывательная служба",
-  "en": null,
+  "en": "intelligence service",
   "forms": [
    "efterretningstjeneste",
    "efterretningstjenesten",
@@ -221,7 +178,7 @@
   "freq_rank": 2396,
   "min_level": "B1",
   "ru": "покойный",
-  "en": null,
+  "en": "late, deceased",
   "forms": [
    "afdød",
    "afdøde",
@@ -239,7 +196,7 @@
   "freq_rank": 2397,
   "min_level": "B1",
   "ru": "максимальный",
-  "en": null,
+  "en": "maximum",
   "forms": [
    "maksimal",
    "maksimale",
@@ -255,7 +212,7 @@
   "freq_rank": 2398,
   "min_level": "B1",
   "ru": "чувство",
-  "en": null,
+  "en": "sense (of the body)",
   "forms": [
    "sans",
    "sans'",
@@ -276,7 +233,7 @@
   "freq_rank": 2398,
   "min_level": "B1",
   "ru": "способность, склонность",
-  "en": null,
+  "en": "sense, eye (for something)",
   "forms": [
    "sans",
    "sans'",
@@ -297,7 +254,7 @@
   "freq_rank": 2399,
   "min_level": "B1",
   "ru": "шум, беспорядок",
-  "en": null,
+  "en": "noise, commotion",
   "forms": [
    "ballade",
    "balladen",
@@ -318,7 +275,7 @@
   "freq_rank": 2399,
   "min_level": "B1",
   "ru": "неприятности",
-  "en": null,
+  "en": "trouble",
   "forms": [
    "ballade",
    "balladen",
@@ -339,7 +296,7 @@
   "freq_rank": 2400,
   "min_level": "B1",
   "ru": "Новый год",
-  "en": null,
+  "en": "New Year",
   "forms": [
    "nytår",
    "nytårene",
@@ -358,7 +315,7 @@
   "freq_rank": 2401,
   "min_level": "B1",
   "ru": "плоский",
-  "en": null,
+  "en": "flat",
   "forms": [
    "flad",
    "flade",
@@ -379,7 +336,7 @@
   "freq_rank": 2401,
   "min_level": "B1",
   "ru": "спущенный (о шине)",
-  "en": null,
+  "en": "flat (deflated tire)",
   "forms": [
    "flad",
    "flade",
@@ -400,7 +357,7 @@
   "freq_rank": 2402,
   "min_level": "B1",
   "ru": "грудь",
-  "en": null,
+  "en": "chest",
   "forms": [
    "bryst",
    "bryster",
@@ -421,7 +378,7 @@
   "freq_rank": 2403,
   "min_level": "B1",
   "ru": "продавец",
-  "en": null,
+  "en": "salesperson, seller",
   "forms": [
    "sælger",
    "sælgere",
@@ -442,7 +399,7 @@
   "freq_rank": 2404,
   "min_level": "B1",
   "ru": "объединять",
-  "en": null,
+  "en": "to unite",
   "forms": [
    "foren",
    "forene",
@@ -463,7 +420,7 @@
   "freq_rank": 2405,
   "min_level": "B1",
   "ru": "член парламента Дании",
-  "en": null,
+  "en": "member of the Danish parliament",
   "forms": [
    "folketingsmedlem",
    "folketingsmedlemmer",
@@ -484,7 +441,7 @@
   "freq_rank": 2406,
   "min_level": "B1",
   "ru": "досадный, неприятный",
-  "en": null,
+  "en": "annoying, a pity",
   "forms": [
    "ærgerlig",
    "ærgerlige",
@@ -500,7 +457,7 @@
   "freq_rank": 2406,
   "min_level": "B1",
   "ru": "расстроенный, огорченный",
-  "en": null,
+  "en": "upset, annoyed",
   "forms": [
    "ærgerlig",
    "ærgerlige",
@@ -516,7 +473,7 @@
   "freq_rank": 2407,
   "min_level": "B1",
   "ru": "горе, печаль",
-  "en": null,
+  "en": "grief, sorrow",
   "forms": [
    "sorg",
    "sorgen",
@@ -537,7 +494,7 @@
   "freq_rank": 2408,
   "min_level": "B1",
   "ru": "террор",
-  "en": null,
+  "en": "terror",
   "forms": [
    "terror",
    "terroren",
@@ -554,7 +511,7 @@
   "freq_rank": 2409,
   "min_level": "B1",
   "ru": "футболист",
-  "en": null,
+  "en": "football player, soccer player",
   "forms": [
    "fodboldspiller",
    "fodboldspillere",
@@ -575,7 +532,7 @@
   "freq_rank": 2410,
   "min_level": "B1",
   "ru": "формировать, придавать форму",
-  "en": null,
+  "en": "to shape, to mold",
   "forms": [
    "form",
    "forme",
@@ -596,7 +553,7 @@
   "freq_rank": 2412,
   "min_level": "B1",
   "ru": "прорыв",
-  "en": null,
+  "en": "breakthrough",
   "forms": [
    "gennembrud",
    "gennembruddene",
@@ -615,7 +572,7 @@
   "freq_rank": 2413,
   "min_level": "B1",
   "ru": "сырой, необработанный",
-  "en": null,
+  "en": "raw",
   "forms": [
    "rå",
    "råt"
@@ -630,7 +587,7 @@
   "freq_rank": 2413,
   "min_level": "B1",
   "ru": "грубый, суровый",
-  "en": null,
+  "en": "harsh, rough (weather)",
   "forms": [
    "rå",
    "råt"
@@ -645,7 +602,7 @@
   "freq_rank": 2414,
   "min_level": "B1",
   "ru": "изменять",
-  "en": null,
+  "en": "to change",
   "forms": [
    "forandr",
    "forandre",
@@ -666,7 +623,7 @@
   "freq_rank": 2415,
   "min_level": "B1",
   "ru": "свойство, качество",
-  "en": null,
+  "en": "trait, quality",
   "forms": [
    "egenskab",
    "egenskaben",
@@ -687,7 +644,7 @@
   "freq_rank": 2416,
   "min_level": "B1",
   "ru": "напрасный, тщетный",
-  "en": null,
+  "en": "in vain, futile",
   "forms": [
    "forgæves"
   ]
@@ -701,7 +658,7 @@
   "freq_rank": 2417,
   "min_level": "B1",
   "ru": "продолжатель, преемник",
-  "en": null,
+  "en": "successor",
   "forms": [
    "fortsætter",
    "fortsættere",
@@ -722,7 +679,7 @@
   "freq_rank": 2418,
   "min_level": "B1",
   "ru": "тысяча",
-  "en": null,
+  "en": "thousand",
   "forms": [
    "1000",
    "1000.",
@@ -740,7 +697,7 @@
   "freq_rank": 2419,
   "min_level": "B1",
   "ru": "мода",
-  "en": null,
+  "en": "fashion",
   "forms": [
    "mode",
    "moden",
@@ -761,7 +718,7 @@
   "freq_rank": 2420,
   "min_level": "B1",
   "ru": "консультация, консультирование",
-  "en": null,
+  "en": "advice, consultation",
   "forms": [
    "rådgivning",
    "rådgivningen",
@@ -782,7 +739,7 @@
   "freq_rank": 2421,
   "min_level": "B1",
   "ru": "основывать",
-  "en": null,
+  "en": "to found, to establish",
   "forms": [
    "grundlagde",
    "grundlagdes",
@@ -793,6 +750,41 @@
    "grundlæggende",
    "grundlægger",
    "grundlægges"
+  ]
+ },
+ {
+  "lemma": "glimrende",
+  "kind": "word",
+  "sense_id": "b0f7afcb-a9af-5165-8bf8-767cee398a6d",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2422,
+  "min_level": "B1",
+  "ru": "отличный, превосходный",
+  "en": "excellent",
+  "forms": [
+   "glimrende"
+  ]
+ },
+ {
+  "lemma": "indstilling",
+  "kind": "word",
+  "sense_id": "46b5df2c-92c3-5d94-8eb1-d0c88c281971",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2423,
+  "min_level": "B1",
+  "ru": "настройка",
+  "en": "setting (device)",
+  "forms": [
+   "indstilling",
+   "indstillingen",
+   "indstillingens",
+   "indstillinger",
+   "indstillingerne",
+   "indstillingernes",
+   "indstillingers",
+   "indstillings"
   ]
  }
 ]

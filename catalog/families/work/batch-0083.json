@@ -1,45 +1,5 @@
 [
  {
-  "lemma": "sparke",
-  "kind": "word",
-  "sense_id": "abb6345e-ff7c-5052-97a6-3727f5d2ffc3",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2486,
-  "min_level": "B1",
-  "ru": "пинать",
-  "en": null,
-  "forms": [
-   "spark",
-   "sparke",
-   "sparkede",
-   "sparkedes",
-   "sparkende",
-   "sparker",
-   "sparkes",
-   "sparket"
-  ]
- },
- {
-  "lemma": "smal",
-  "kind": "word",
-  "sense_id": "82093ea1-03fd-5842-8783-69a8ac7e12a9",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2487,
-  "min_level": "B1",
-  "ru": "узкий",
-  "en": null,
-  "forms": [
-   "smal",
-   "smalle",
-   "smallere",
-   "smallest",
-   "smalleste",
-   "smalt"
-  ]
- },
- {
   "lemma": "henblik",
   "kind": "word",
   "sense_id": "e0348968-3eb9-5058-8c34-0c0bdc954dec",
@@ -48,7 +8,7 @@
   "freq_rank": 2488,
   "min_level": "B1",
   "ru": "цель, намерение",
-  "en": null,
+  "en": "view, purpose (with a view to)",
   "forms": [
    "henblik",
    "henbliks"
@@ -63,7 +23,7 @@
   "freq_rank": 2489,
   "min_level": "B1",
   "ru": "рецепт",
-  "en": null,
+  "en": "recipe",
   "forms": [
    "opskrift",
    "opskriften",
@@ -84,7 +44,7 @@
   "freq_rank": 2490,
   "min_level": "B1",
   "ru": "дело, событие",
-  "en": null,
+  "en": "affair, matter",
   "forms": [
    "affære",
    "affæren",
@@ -105,7 +65,7 @@
   "freq_rank": 2490,
   "min_level": "B1",
   "ru": "роман, любовная связь",
-  "en": null,
+  "en": "affair (romantic)",
   "forms": [
    "affære",
    "affæren",
@@ -126,7 +86,7 @@
   "freq_rank": 2491,
   "min_level": "B1",
   "ru": "скульптура",
-  "en": null,
+  "en": "sculpture",
   "forms": [
    "skulptur",
    "skulpturen",
@@ -147,7 +107,7 @@
   "freq_rank": 2492,
   "min_level": "B1",
   "ru": "размещать, помещать",
-  "en": null,
+  "en": "to place, to put",
   "forms": [
    "anbragt",
    "anbragte",
@@ -168,7 +128,7 @@
   "freq_rank": 2493,
   "min_level": "B1",
   "ru": "повар",
-  "en": null,
+  "en": "cook, chef",
   "forms": [
    "kok",
    "kokke",
@@ -189,7 +149,7 @@
   "freq_rank": 2494,
   "min_level": "B1",
   "ru": "чистить, очищать",
-  "en": null,
+  "en": "to clean",
   "forms": [
    "rens",
    "rense",
@@ -210,7 +170,7 @@
   "freq_rank": 2494,
   "min_level": "B1",
   "ru": "сдавать в химчистку",
-  "en": null,
+  "en": "to have dry-cleaned",
   "forms": [
    "rens",
    "rense",
@@ -231,7 +191,7 @@
   "freq_rank": 2495,
   "min_level": "B1",
   "ru": "разум, сознание",
-  "en": null,
+  "en": "mind",
   "forms": [
    "sind",
    "sinde",
@@ -251,7 +211,7 @@
   "freq_rank": 2495,
   "min_level": "B1",
   "ru": "душевное состояние, нрав",
-  "en": null,
+  "en": "temperament, disposition",
   "forms": [
    "sind",
    "sinde",
@@ -271,7 +231,7 @@
   "freq_rank": 2496,
   "min_level": "B1",
   "ru": "ёмкость, вместимость",
-  "en": null,
+  "en": "capacity (volume)",
   "forms": [
    "kapacitet",
    "kapaciteten",
@@ -292,7 +252,7 @@
   "freq_rank": 2496,
   "min_level": "B1",
   "ru": "способность, потенциал",
-  "en": null,
+  "en": "capacity, potential (ability)",
   "forms": [
    "kapacitet",
    "kapaciteten",
@@ -313,7 +273,7 @@
   "freq_rank": 2497,
   "min_level": "B1",
   "ru": "медаль",
-  "en": null,
+  "en": "medal",
   "forms": [
    "medalje",
    "medaljen",
@@ -334,7 +294,7 @@
   "freq_rank": 2498,
   "min_level": "B1",
   "ru": "коричневый",
-  "en": null,
+  "en": "brown",
   "forms": [
    "brun",
    "brune",
@@ -353,7 +313,7 @@
   "freq_rank": 2498,
   "min_level": "B1",
   "ru": "загорелый",
-  "en": null,
+  "en": "tanned",
   "forms": [
    "brun",
    "brune",
@@ -372,7 +332,7 @@
   "freq_rank": 2499,
   "min_level": "B1",
   "ru": "стресс",
-  "en": null,
+  "en": "stress",
   "forms": [
    "stress",
    "stress'",
@@ -391,7 +351,7 @@
   "freq_rank": 2500,
   "min_level": "B1",
   "ru": "террорист",
-  "en": null,
+  "en": "terrorist",
   "forms": [
    "terrorist",
    "terroristen",
@@ -808,6 +768,45 @@
    "møllernes",
    "møllers",
    "mølles"
+  ]
+ },
+ {
+  "lemma": "elegant",
+  "kind": "word",
+  "sense_id": "214dc05a-8450-5e95-a4de-99d808534529",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2515,
+  "min_level": "B1",
+  "ru": "элегантный",
+  "en": "elegant",
+  "forms": [
+   "elegant",
+   "elegante",
+   "elegantere",
+   "elegantest",
+   "eleganteste"
+  ]
+ },
+ {
+  "lemma": "berette",
+  "kind": "word",
+  "sense_id": "02a12a87-ed6b-59b8-a11d-98054ba7f38f",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2516,
+  "min_level": "B1",
+  "ru": "рассказывать, сообщать",
+  "en": "to recount, to relate, to report",
+  "forms": [
+   "beret",
+   "berette",
+   "berettede",
+   "berettedes",
+   "berettende",
+   "beretter",
+   "berettes",
+   "berettet"
   ]
  }
 ]

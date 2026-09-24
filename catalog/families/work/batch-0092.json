@@ -1,45 +1,5 @@
 [
  {
-  "lemma": "tvivlsom",
-  "kind": "word",
-  "sense_id": "962d5fe1-9a39-50e3-aea9-858ef9851012",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2765,
-  "min_level": "B1",
-  "ru": "сомнительный",
-  "en": null,
-  "forms": [
-   "tvivlsom",
-   "tvivlsomme",
-   "tvivlsommere",
-   "tvivlsomst",
-   "tvivlsomste",
-   "tvivlsomt"
-  ]
- },
- {
-  "lemma": "ofre",
-  "kind": "word",
-  "sense_id": "a3196f2f-16f3-5af5-ba81-4d5b7e6f4798",
-  "pos": "verb",
-  "gender": null,
-  "freq_rank": 2766,
-  "min_level": "B1",
-  "ru": "жертвовать",
-  "en": null,
-  "forms": [
-   "ofr",
-   "ofre",
-   "ofrede",
-   "ofredes",
-   "ofrende",
-   "ofrer",
-   "ofres",
-   "ofret"
-  ]
- },
- {
   "lemma": "ofre",
   "kind": "word",
   "sense_id": "33f6987a-438c-56df-bd99-77acf443f79d",
@@ -48,7 +8,7 @@
   "freq_rank": 2766,
   "min_level": "B1",
   "ru": "тратить (деньги, время)",
-  "en": null,
+  "en": "to spend, to splurge (extra effort or money)",
   "forms": [
    "ofr",
    "ofre",
@@ -69,7 +29,7 @@
   "freq_rank": 2767,
   "min_level": "B1",
   "ru": "продление",
-  "en": null,
+  "en": "extension, renewal",
   "forms": [
    "forlængelse",
    "forlængelsen",
@@ -90,7 +50,7 @@
   "freq_rank": 2767,
   "min_level": "B1",
   "ru": "дополнительное время (в спорте)",
-  "en": null,
+  "en": "extra time, overtime (sports)",
   "forms": [
    "forlængelse",
    "forlængelsen",
@@ -111,7 +71,7 @@
   "freq_rank": 2768,
   "min_level": "B1",
   "ru": "паспорт",
-  "en": null,
+  "en": "passport",
   "forms": [
    "pas",
    "pas'",
@@ -136,7 +96,7 @@
   "freq_rank": 2769,
   "min_level": "B1",
   "ru": "вакцина",
-  "en": null,
+  "en": "vaccine",
   "forms": [
    "vaccine",
    "vaccinen",
@@ -157,7 +117,7 @@
   "freq_rank": 2770,
   "min_level": "B1",
   "ru": "взрываться",
-  "en": null,
+  "en": "to explode",
   "forms": [
    "eksploder",
    "eksplodere",
@@ -179,7 +139,7 @@
   "freq_rank": 2771,
   "min_level": "B1",
   "ru": "отменять",
-  "en": null,
+  "en": "to repeal, to abolish (a law)",
   "forms": [
    "ophæv",
    "ophæve",
@@ -200,7 +160,7 @@
   "freq_rank": 2771,
   "min_level": "B1",
   "ru": "аннулировать",
-  "en": null,
+  "en": "to annul, to cancel (an agreement)",
   "forms": [
    "ophæv",
    "ophæve",
@@ -221,7 +181,7 @@
   "freq_rank": 2772,
   "min_level": "B1",
   "ru": "одиночка, не состоящий в отношениях",
-  "en": null,
+  "en": "single (unattached person)",
   "forms": [
    "single",
    "singlen",
@@ -242,7 +202,7 @@
   "freq_rank": 2772,
   "min_level": "B1",
   "ru": "сингл, музыкальная запись",
-  "en": null,
+  "en": "single (music track)",
   "forms": [
    "single",
    "singlen",
@@ -263,7 +223,7 @@
   "freq_rank": 2773,
   "min_level": "B1",
   "ru": "сковорода",
-  "en": null,
+  "en": "frying pan",
   "forms": [
    "pande",
    "panden",
@@ -284,7 +244,7 @@
   "freq_rank": 2773,
   "min_level": "B1",
   "ru": "лоб",
-  "en": null,
+  "en": "forehead",
   "forms": [
    "pande",
    "panden",
@@ -305,7 +265,7 @@
   "freq_rank": 2775,
   "min_level": "B1",
   "ru": "кража",
-  "en": null,
+  "en": "theft",
   "forms": [
    "tyveri",
    "tyverier",
@@ -326,7 +286,7 @@
   "freq_rank": 2776,
   "min_level": "B1",
   "ru": "компромисс",
-  "en": null,
+  "en": "compromise",
   "forms": [
    "kompromis",
    "kompromis'",
@@ -347,7 +307,7 @@
   "freq_rank": 2777,
   "min_level": "B1",
   "ru": "существо",
-  "en": null,
+  "en": "being, creature",
   "forms": [
    "væsen",
    "væsener",
@@ -374,7 +334,7 @@
   "freq_rank": 2777,
   "min_level": "B1",
   "ru": "нрав, характер",
-  "en": null,
+  "en": "nature, disposition",
   "forms": [
    "væsen",
    "væsener",
@@ -401,7 +361,7 @@
   "freq_rank": 2777,
   "min_level": "B1",
   "ru": "система, отрасль",
-  "en": null,
+  "en": "system, sector (public administration)",
   "forms": [
    "væsen",
    "væsener",
@@ -428,7 +388,7 @@
   "freq_rank": 2778,
   "min_level": "B1",
   "ru": "сложный",
-  "en": null,
+  "en": "complex",
   "forms": [
    "kompleks",
    "komplekse",
@@ -444,7 +404,7 @@
   "freq_rank": 2779,
   "min_level": "B1",
   "ru": "подходить, годиться",
-  "en": null,
+  "en": "to be suitable, to be fit for",
   "forms": [
    "egn",
    "egne",
@@ -465,7 +425,7 @@
   "freq_rank": 2780,
   "min_level": "B1",
   "ru": "атмосфера, воздух",
-  "en": null,
+  "en": "atmosphere (of a planet)",
   "forms": [
    "atmosfære",
    "atmosfæren",
@@ -486,7 +446,7 @@
   "freq_rank": 2780,
   "min_level": "B1",
   "ru": "атмосфера, обстановка",
-  "en": null,
+  "en": "atmosphere, ambiance (mood)",
   "forms": [
    "atmosfære",
    "atmosfæren",
@@ -507,7 +467,7 @@
   "freq_rank": 2781,
   "min_level": "B1",
   "ru": "шляпа",
-  "en": null,
+  "en": "hat",
   "forms": [
    "hat",
    "hats",
@@ -528,7 +488,7 @@
   "freq_rank": 2782,
   "min_level": "B1",
   "ru": "фотография",
-  "en": null,
+  "en": "photograph",
   "forms": [
    "fotografi",
    "fotografien",
@@ -551,7 +511,7 @@
   "freq_rank": 2783,
   "min_level": "B1",
   "ru": "гигантский",
-  "en": null,
+  "en": "gigantic",
   "forms": [
    "gigantisk",
    "gigantiske"
@@ -566,7 +526,7 @@
   "freq_rank": 2784,
   "min_level": "B1",
   "ru": "ровный, гладкий",
-  "en": null,
+  "en": "even, smooth (surface)",
   "forms": [
    "jævn",
    "jævne",
@@ -585,7 +545,7 @@
   "freq_rank": 2784,
   "min_level": "B1",
   "ru": "равномерный",
-  "en": null,
+  "en": "steady, even (pace)",
   "forms": [
    "jævn",
    "jævne",
@@ -604,7 +564,7 @@
   "freq_rank": 2785,
   "min_level": "B1",
   "ru": "честь",
-  "en": null,
+  "en": "honor",
   "forms": [
    "ære",
    "æren",
@@ -621,7 +581,7 @@
   "freq_rank": 2785,
   "min_level": "B1",
   "ru": "чтить, почитать",
-  "en": null,
+  "en": "to honor, to revere",
   "forms": [
    "ær",
    "ære",
@@ -642,7 +602,7 @@
   "freq_rank": 2786,
   "min_level": "B1",
   "ru": "могущественный, влиятельный",
-  "en": null,
+  "en": "powerful, influential",
   "forms": [
    "magtfuld",
    "magtfulde",
@@ -658,7 +618,7 @@
   "freq_rank": 2787,
   "min_level": "B1",
   "ru": "налагать, возлагать",
-  "en": null,
+  "en": "to impose",
   "forms": [
    "pålagde",
    "pålagdes",
@@ -680,7 +640,7 @@
   "freq_rank": 2788,
   "min_level": "B1",
   "ru": "внешность",
-  "en": null,
+  "en": "appearance, looks",
   "forms": [
    "udseende",
    "udseender",
@@ -701,7 +661,7 @@
   "freq_rank": 2789,
   "min_level": "B1",
   "ru": "приблизительно",
-  "en": null,
+  "en": "approximately",
   "forms": [
    "omtrent"
   ]
@@ -715,7 +675,7 @@
   "freq_rank": 2790,
   "min_level": "B1",
   "ru": "ограбление",
-  "en": null,
+  "en": "robbery",
   "forms": [
    "røveri",
    "røverier",
@@ -736,7 +696,7 @@
   "freq_rank": 2791,
   "min_level": "B1",
   "ru": "здравоохранение",
-  "en": null,
+  "en": "healthcare system",
   "forms": [
    "sundhedsvæsen",
    "sundhedsvæsener",
@@ -763,7 +723,7 @@
   "freq_rank": 2792,
   "min_level": "B1",
   "ru": "хаос, беспорядок",
-  "en": null,
+  "en": "chaos",
   "forms": [
    "kaos",
    "kaos'",
@@ -780,7 +740,7 @@
   "freq_rank": 2794,
   "min_level": "B1",
   "ru": "впереди, в передней части",
-  "en": null,
+  "en": "at the front, foremost",
   "forms": [
    "forrest",
    "forreste"
@@ -795,7 +755,7 @@
   "freq_rank": 2795,
   "min_level": "B1",
   "ru": "бесконечный",
-  "en": null,
+  "en": "infinite",
   "forms": [
    "uendelig",
    "uendelige",
@@ -811,11 +771,47 @@
   "freq_rank": 2795,
   "min_level": "B1",
   "ru": "огромный, бесчисленный",
-  "en": null,
+  "en": "endless, countless",
   "forms": [
    "uendelig",
    "uendelige",
    "uendeligt"
+  ]
+ },
+ {
+  "lemma": "systematisk",
+  "kind": "word",
+  "sense_id": "b8cb13de-cafd-598a-ae04-a24e7b3bed74",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2796,
+  "min_level": "B1",
+  "ru": "систематический, планомерный",
+  "en": "systematic",
+  "forms": [
+   "systematisk",
+   "systematiske"
+  ]
+ },
+ {
+  "lemma": "plakat",
+  "kind": "word",
+  "sense_id": "86853612-c3f3-5d76-80ed-b07fcb7474d9",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2797,
+  "min_level": "B1",
+  "ru": "плакат, афиша",
+  "en": "poster",
+  "forms": [
+   "plakat",
+   "plakaten",
+   "plakatens",
+   "plakater",
+   "plakaterne",
+   "plakaternes",
+   "plakaters",
+   "plakats"
   ]
  }
 ]

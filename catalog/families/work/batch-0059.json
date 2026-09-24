@@ -1,47 +1,5 @@
 [
  {
-  "lemma": "sanger",
-  "kind": "word",
-  "sense_id": "27f4cded-d669-507e-8e92-f5537f269e91",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1729,
-  "min_level": "B1",
-  "ru": "певец",
-  "en": "singer (male)",
-  "forms": [
-   "sanger",
-   "sangere",
-   "sangeren",
-   "sangerens",
-   "sangeres",
-   "sangerne",
-   "sangernes",
-   "sangers"
-  ]
- },
- {
-  "lemma": "sanger",
-  "kind": "word",
-  "sense_id": "2494cab6-7a5d-5abb-a6e6-a96e947b3c0c",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1729,
-  "min_level": "B1",
-  "ru": "певица",
-  "en": "singer (female)",
-  "forms": [
-   "sanger",
-   "sangere",
-   "sangeren",
-   "sangerens",
-   "sangeres",
-   "sangerne",
-   "sangernes",
-   "sangers"
-  ]
- },
- {
   "lemma": "is",
   "kind": "word",
   "sense_id": "89527e15-31b0-5e02-802e-9101ab4ba93d",
@@ -624,7 +582,7 @@
   "freq_rank": 1751,
   "min_level": "B1",
   "ru": "общее собрание",
-  "en": null,
+  "en": "general meeting, general assembly",
   "forms": [
    "generalforsamling",
    "generalforsamlingen",
@@ -645,7 +603,7 @@
   "freq_rank": 1752,
   "min_level": "B1",
   "ru": "основывать, учреждать",
-  "en": null,
+  "en": "to found, establish",
   "forms": [
    "stift",
    "stifte",
@@ -666,7 +624,7 @@
   "freq_rank": 1752,
   "min_level": "B1",
   "ru": "делать (долг)",
-  "en": null,
+  "en": "to incur (debt)",
   "forms": [
    "stift",
    "stifte",
@@ -687,7 +645,7 @@
   "freq_rank": 1753,
   "min_level": "B1",
   "ru": "иметь вкус",
-  "en": null,
+  "en": "to taste (have a flavor)",
   "forms": [
    "smag",
    "smage",
@@ -708,7 +666,7 @@
   "freq_rank": 1753,
   "min_level": "B1",
   "ru": "пробовать на вкус",
-  "en": null,
+  "en": "to taste (sample)",
   "forms": [
    "smag",
    "smage",
@@ -729,7 +687,7 @@
   "freq_rank": 1754,
   "min_level": "B1",
   "ru": "органический (о продуктах)",
-  "en": null,
+  "en": "organic (food)",
   "forms": [
    "økologisk",
    "økologiske"
@@ -744,7 +702,7 @@
   "freq_rank": 1754,
   "min_level": "B1",
   "ru": "экологический",
-  "en": null,
+  "en": "ecological, environmental",
   "forms": [
    "økologisk",
    "økologiske"
@@ -759,7 +717,7 @@
   "freq_rank": 1755,
   "min_level": "B1",
   "ru": "доказывать",
-  "en": null,
+  "en": "to prove",
   "forms": [
    "bevis",
    "bevise",
@@ -769,6 +727,48 @@
    "bevist",
    "beviste",
    "bevistes"
+  ]
+ },
+ {
+  "lemma": "gevinst",
+  "kind": "word",
+  "sense_id": "8779174c-d560-5fbb-b1ef-42e4568dc1e4",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 1756,
+  "min_level": "B1",
+  "ru": "выигрыш",
+  "en": "prize, winnings",
+  "forms": [
+   "gevinst",
+   "gevinsten",
+   "gevinstens",
+   "gevinster",
+   "gevinsterne",
+   "gevinsternes",
+   "gevinsters",
+   "gevinsts"
+  ]
+ },
+ {
+  "lemma": "gevinst",
+  "kind": "word",
+  "sense_id": "695fd4f0-6174-54f9-8483-200126d98b14",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 1756,
+  "min_level": "B1",
+  "ru": "выгода, польза",
+  "en": "gain, benefit",
+  "forms": [
+   "gevinst",
+   "gevinsten",
+   "gevinstens",
+   "gevinster",
+   "gevinsterne",
+   "gevinsternes",
+   "gevinsters",
+   "gevinsts"
   ]
  }
 ]

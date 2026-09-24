@@ -1,5 +1,26 @@
 [
  {
+  "lemma": "tone",
+  "kind": "word",
+  "sense_id": "e154fc31-3f2e-5c35-8a08-b25c8cb6f735",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 1470,
+  "min_level": "A2",
+  "ru": "тон, манера речи",
+  "en": "tone, manner (of speech)",
+  "forms": [
+   "tone",
+   "tonen",
+   "tonens",
+   "toner",
+   "tonerne",
+   "tonernes",
+   "toners",
+   "tones"
+  ]
+ },
+ {
   "lemma": "servere",
   "kind": "word",
   "sense_id": "833ba687-c5d1-5453-93d7-d01fbfa3fd1c",
@@ -8,7 +29,7 @@
   "freq_rank": 1471,
   "min_level": "A2",
   "ru": "подавать еду",
-  "en": null,
+  "en": "to serve (food)",
   "forms": [
    "server",
    "servere",
@@ -30,28 +51,7 @@
   "freq_rank": 1472,
   "min_level": "A2",
   "ru": "заявление, высказывание",
-  "en": null,
-  "forms": [
-   "udtalelse",
-   "udtalelsen",
-   "udtalelsens",
-   "udtalelser",
-   "udtalelserne",
-   "udtalelsernes",
-   "udtalelsers",
-   "udtalelses"
-  ]
- },
- {
-  "lemma": "udtalelse",
-  "kind": "word",
-  "sense_id": "358c4ca2-b377-543a-a492-83451497264c",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 1472,
-  "min_level": "A2",
-  "ru": "произношение",
-  "en": null,
+  "en": "statement, remark",
   "forms": [
    "udtalelse",
    "udtalelsen",
@@ -72,7 +72,7 @@
   "freq_rank": 1473,
   "min_level": "A2",
   "ru": "избирательная кампания",
-  "en": null,
+  "en": "election campaign",
   "forms": [
    "valgkamp",
    "valgkampe",
@@ -93,7 +93,7 @@
   "freq_rank": 1474,
   "min_level": "A2",
   "ru": "видеть сны",
-  "en": null,
+  "en": "to dream (during sleep)",
   "forms": [
    "drøm",
    "drømme",
@@ -114,7 +114,7 @@
   "freq_rank": 1474,
   "min_level": "A2",
   "ru": "мечтать",
-  "en": null,
+  "en": "to dream (aspire, wish)",
   "forms": [
    "drøm",
    "drømme",
@@ -135,7 +135,7 @@
   "freq_rank": 1475,
   "min_level": "A2",
   "ru": "жена",
-  "en": null,
+  "en": "wife",
   "forms": [
    "hustru",
    "hustruen",
@@ -156,7 +156,7 @@
   "freq_rank": 1476,
   "min_level": "A2",
   "ru": "достаточный",
-  "en": null,
+  "en": "sufficient",
   "forms": [
    "tilstrækkelig",
    "tilstrækkelige",
@@ -172,7 +172,7 @@
   "freq_rank": 1477,
   "min_level": "A2",
   "ru": "тренировка",
-  "en": null,
+  "en": "training, practice (sports session)",
   "forms": [
    "træning",
    "træningen",
@@ -193,7 +193,7 @@
   "freq_rank": 1477,
   "min_level": "A2",
   "ru": "обучение, подготовка",
-  "en": null,
+  "en": "training (professional preparation)",
   "forms": [
    "træning",
    "træningen",
@@ -214,7 +214,7 @@
   "freq_rank": 1478,
   "min_level": "A2",
   "ru": "работодатель",
-  "en": null,
+  "en": "employer",
   "forms": [
    "arbejdsgiver",
    "arbejdsgivere",
@@ -235,7 +235,7 @@
   "freq_rank": 1479,
   "min_level": "A2",
   "ru": "неизвестный",
-  "en": null,
+  "en": "unknown (not known)",
   "forms": [
    "ukendt",
    "ukendte",
@@ -252,7 +252,7 @@
   "freq_rank": 1479,
   "min_level": "A2",
   "ru": "незнакомый",
-  "en": null,
+  "en": "unfamiliar, strange (a stranger)",
   "forms": [
    "ukendt",
    "ukendte",
@@ -269,7 +269,7 @@
   "freq_rank": 1480,
   "min_level": "A2",
   "ru": "премьер-министр",
-  "en": null,
+  "en": "prime minister",
   "forms": [
    "premierminister",
    "premierministeren",
@@ -290,7 +290,7 @@
   "freq_rank": 1481,
   "min_level": "A2",
   "ru": "дизайн",
-  "en": null,
+  "en": "design",
   "forms": [
    "design",
    "designene",
@@ -310,7 +310,7 @@
   "freq_rank": 1482,
   "min_level": "A2",
   "ru": "потребление",
-  "en": null,
+  "en": "consumption",
   "forms": [
    "forbrug",
    "forbruget",
@@ -327,7 +327,7 @@
   "freq_rank": 1482,
   "min_level": "A2",
   "ru": "расход",
-  "en": null,
+  "en": "consumption, usage (fuel)",
   "forms": [
    "forbrug",
    "forbruget",
@@ -344,7 +344,7 @@
   "freq_rank": 1483,
   "min_level": "A2",
   "ru": "жирный",
-  "en": null,
+  "en": "fatty, fat (food)",
   "forms": [
    "fed",
    "fede",
@@ -365,7 +365,7 @@
   "freq_rank": 1483,
   "min_level": "A2",
   "ru": "классный, крутой",
-  "en": null,
+  "en": "cool, awesome",
   "forms": [
    "fed",
    "fede",
@@ -386,7 +386,7 @@
   "freq_rank": 1484,
   "min_level": "A2",
   "ru": "охота",
-  "en": null,
+  "en": "hunt, hunting",
   "forms": [
    "jagt",
    "jagten",
@@ -407,7 +407,7 @@
   "freq_rank": 1484,
   "min_level": "A2",
   "ru": "погоня, поиск",
-  "en": null,
+  "en": "hunt, search (for something)",
   "forms": [
    "jagt",
    "jagten",
@@ -428,7 +428,7 @@
   "freq_rank": 1485,
   "min_level": "A2",
   "ru": "видимость",
-  "en": null,
+  "en": "visibility",
   "forms": [
    "sigt",
    "sigts"
@@ -443,7 +443,7 @@
   "freq_rank": 1485,
   "min_level": "A2",
   "ru": "перспектива",
-  "en": null,
+  "en": "run, term (as in long-term)",
   "forms": [
    "sigt",
    "sigts"
@@ -458,7 +458,7 @@
   "freq_rank": 1486,
   "min_level": "A2",
   "ru": "альтернатива",
-  "en": null,
+  "en": "alternative (a choice)",
   "forms": [
    "alternativ",
    "alternativer",
@@ -479,7 +479,7 @@
   "freq_rank": 1486,
   "min_level": "A2",
   "ru": "альтернативный",
-  "en": null,
+  "en": "alternative (adjective)",
   "forms": [
    "alternativ",
    "alternative",
@@ -495,7 +495,7 @@
   "freq_rank": 1487,
   "min_level": "A2",
   "ru": "волосы",
-  "en": null,
+  "en": "hair (collectively)",
   "forms": [
    "hår",
    "hårene",
@@ -514,7 +514,7 @@
   "freq_rank": 1487,
   "min_level": "A2",
   "ru": "волос",
-  "en": null,
+  "en": "a hair (single strand)",
   "forms": [
    "hår",
    "hårene",
@@ -533,7 +533,7 @@
   "freq_rank": 1488,
   "min_level": "A2",
   "ru": "повестка дня",
-  "en": null,
+  "en": "agenda",
   "forms": [
    "dagsorden",
    "dagsordenen",
@@ -558,7 +558,7 @@
   "freq_rank": 1489,
   "min_level": "A2",
   "ru": "обязательно, непременно",
-  "en": null,
+  "en": "necessarily",
   "forms": [
    "nødvendigvis"
   ]
@@ -572,7 +572,7 @@
   "freq_rank": 1490,
   "min_level": "A2",
   "ru": "амбиция, стремление",
-  "en": null,
+  "en": "ambition",
   "forms": [
    "ambition",
    "ambitionen",
@@ -593,7 +593,7 @@
   "freq_rank": 1491,
   "min_level": "A2",
   "ru": "мясо",
-  "en": null,
+  "en": "meat",
   "forms": [
    "kød",
    "kødet",
@@ -610,7 +610,7 @@
   "freq_rank": 1492,
   "min_level": "A2",
   "ru": "доминировать",
-  "en": null,
+  "en": "to dominate",
   "forms": [
    "dominer",
    "dominere",
@@ -632,7 +632,7 @@
   "freq_rank": 1493,
   "min_level": "A2",
   "ru": "двойной",
-  "en": null,
+  "en": "double",
   "forms": [
    "dobbelt",
    "dobbelte"
@@ -647,7 +647,7 @@
   "freq_rank": 1494,
   "min_level": "A2",
   "ru": "обслуживание",
-  "en": null,
+  "en": "service (hospitality)",
   "forms": [
    "service",
    "servicen",
@@ -670,7 +670,7 @@
   "freq_rank": 1494,
   "min_level": "A2",
   "ru": "столовый сервиз",
-  "en": null,
+  "en": "dinner service, china set",
   "forms": [
    "service",
    "servicen",
@@ -693,7 +693,7 @@
   "freq_rank": 1495,
   "min_level": "A2",
   "ru": "идеальный",
-  "en": null,
+  "en": "perfect",
   "forms": [
    "perfekt",
    "perfekte"
@@ -708,7 +708,7 @@
   "freq_rank": 1496,
   "min_level": "A2",
   "ru": "занимать место",
-  "en": null,
+  "en": "to hold, to occupy (a position)",
   "forms": [
    "indtag",
    "indtage",
@@ -730,7 +730,7 @@
   "freq_rank": 1496,
   "min_level": "A2",
   "ru": "принимать пищу",
-  "en": null,
+  "en": "to consume, to take in (food)",
   "forms": [
    "indtag",
    "indtage",
@@ -752,7 +752,7 @@
   "freq_rank": 1497,
   "min_level": "A2",
   "ru": "эксплуатация, работа",
-  "en": null,
+  "en": "operation, running (of a machine)",
   "forms": [
    "drift",
    "driften",
@@ -773,7 +773,7 @@
   "freq_rank": 1497,
   "min_level": "A2",
   "ru": "влечение, инстинкт",
-  "en": null,
+  "en": "drive, instinct",
   "forms": [
    "drift",
    "driften",

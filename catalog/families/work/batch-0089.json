@@ -1,47 +1,5 @@
 [
  {
-  "lemma": "gods",
-  "kind": "word",
-  "sense_id": "9ae905e7-68bc-5fab-928a-6808b630b455",
-  "pos": "noun",
-  "gender": "et",
-  "freq_rank": 2674,
-  "min_level": "B1",
-  "ru": "груз, товар (перевозимый)",
-  "en": null,
-  "forms": [
-   "gods",
-   "gods'",
-   "godser",
-   "godserne",
-   "godsernes",
-   "godsers",
-   "godset",
-   "godsets"
-  ]
- },
- {
-  "lemma": "gods",
-  "kind": "word",
-  "sense_id": "07ef50e6-0586-5b15-9741-f0798d763a90",
-  "pos": "noun",
-  "gender": "et",
-  "freq_rank": 2674,
-  "min_level": "B1",
-  "ru": "поместье, имение",
-  "en": null,
-  "forms": [
-   "gods",
-   "gods'",
-   "godser",
-   "godserne",
-   "godsernes",
-   "godsers",
-   "godset",
-   "godsets"
-  ]
- },
- {
   "lemma": "republik",
   "kind": "word",
   "sense_id": "f4ac6a03-5493-5621-ad13-0a67a51de274",
@@ -50,7 +8,7 @@
   "freq_rank": 2675,
   "min_level": "B1",
   "ru": "республика",
-  "en": null,
+  "en": "republic",
   "forms": [
    "republik",
    "republikken",
@@ -71,7 +29,7 @@
   "freq_rank": 2676,
   "min_level": "B1",
   "ru": "понятие, представление (о чём-либо)",
-  "en": null,
+  "en": "idea, notion (of something)",
   "forms": [
    "anelse",
    "anelsen",
@@ -92,7 +50,7 @@
   "freq_rank": 2676,
   "min_level": "B1",
   "ru": "чуточка, лёгкий оттенок",
-  "en": null,
+  "en": "a touch, a hint (small amount)",
   "forms": [
    "anelse",
    "anelsen",
@@ -113,7 +71,7 @@
   "freq_rank": 2676,
   "min_level": "B1",
   "ru": "предчувствие",
-  "en": null,
+  "en": "premonition, feeling",
   "forms": [
    "anelse",
    "anelsen",
@@ -134,7 +92,7 @@
   "freq_rank": 2677,
   "min_level": "B1",
   "ru": "демонстрант, участник демонстрации",
-  "en": null,
+  "en": "demonstrator, protester",
   "forms": [
    "demonstrant",
    "demonstranten",
@@ -155,7 +113,7 @@
   "freq_rank": 2678,
   "min_level": "B1",
   "ru": "безразличный, равнодушный",
-  "en": null,
+  "en": "indifferent, unconcerned",
   "forms": [
    "ligeglad",
    "ligeglade"
@@ -170,7 +128,7 @@
   "freq_rank": 2679,
   "min_level": "B1",
   "ru": "доход, прибыль (от инвестиции)",
-  "en": null,
+  "en": "return, yield (on investment)",
   "forms": [
    "afkast",
    "afkastene",
@@ -189,7 +147,7 @@
   "freq_rank": 2680,
   "min_level": "B1",
   "ru": "разногласие, несогласие",
-  "en": null,
+  "en": "disagreement",
   "forms": [
    "uenighed",
    "uenigheden",
@@ -210,7 +168,7 @@
   "freq_rank": 2681,
   "min_level": "B1",
   "ru": "частый",
-  "en": null,
+  "en": "frequent",
   "forms": [
    "hyppig",
    "hyppige",
@@ -229,7 +187,7 @@
   "freq_rank": 2682,
   "min_level": "B1",
   "ru": "сообщение, уведомление",
-  "en": null,
+  "en": "message, notice",
   "forms": [
    "meddelelse",
    "meddelelsen",
@@ -250,7 +208,7 @@
   "freq_rank": 2683,
   "min_level": "B1",
   "ru": "приходской священник",
-  "en": null,
+  "en": "parish priest",
   "forms": [
    "sognepræst",
    "sognepræsten",
@@ -271,7 +229,7 @@
   "freq_rank": 2684,
   "min_level": "B1",
   "ru": "ложь",
-  "en": null,
+  "en": "lie",
   "forms": [
    "løgn",
    "løgne",
@@ -292,7 +250,7 @@
   "freq_rank": 2685,
   "min_level": "B1",
   "ru": "устанавливать, назначать (срок, цену)",
-  "en": null,
+  "en": "to set, to fix (a date, price)",
   "forms": [
    "fastsat",
    "fastsatte",
@@ -313,7 +271,7 @@
   "freq_rank": 2686,
   "min_level": "B1",
   "ru": "собирать (средства, данные)",
-  "en": null,
+  "en": "to collect (funds, data)",
   "forms": [
    "indsaml",
    "indsamle",
@@ -334,7 +292,7 @@
   "freq_rank": 2687,
   "min_level": "B1",
   "ru": "продвигаться, идти (о процессе)",
-  "en": null,
+  "en": "to progress, to proceed",
   "forms": [
    "skred",
    "skreden",
@@ -356,7 +314,7 @@
   "freq_rank": 2687,
   "min_level": "B1",
   "ru": "уходить, сваливать (разговорное)",
-  "en": null,
+  "en": "to take off, to clear off (informal)",
   "forms": [
    "skred",
    "skreden",
@@ -378,7 +336,7 @@
   "freq_rank": 2688,
   "min_level": "B1",
   "ru": "дебют",
-  "en": null,
+  "en": "debut",
   "forms": [
    "debut",
    "debuten",
@@ -399,7 +357,7 @@
   "freq_rank": 2689,
   "min_level": "B1",
   "ru": "страна-участница, страна-член",
-  "en": null,
+  "en": "member state",
   "forms": [
    "medlemsland",
    "medlemslande",
@@ -420,7 +378,7 @@
   "freq_rank": 2690,
   "min_level": "B1",
   "ru": "приучать (к чему-либо)",
-  "en": null,
+  "en": "to get used to, to accustom",
   "forms": [
    "væn",
    "vænne",
@@ -441,7 +399,7 @@
   "freq_rank": 2691,
   "min_level": "B1",
   "ru": "электрический",
-  "en": null,
+  "en": "electric",
   "forms": [
    "elektrisk",
    "elektriske"
@@ -456,7 +414,7 @@
   "freq_rank": 2692,
   "min_level": "B1",
   "ru": "наёмный работник",
-  "en": null,
+  "en": "employee, wage earner",
   "forms": [
    "lønmodtager",
    "lønmodtagere",
@@ -477,7 +435,7 @@
   "freq_rank": 2693,
   "min_level": "B1",
   "ru": "внешний, сторонний",
-  "en": null,
+  "en": "external",
   "forms": [
    "ekstern",
    "eksterne",
@@ -493,7 +451,7 @@
   "freq_rank": 2694,
   "min_level": "B1",
   "ru": "инструкция, руководство",
-  "en": null,
+  "en": "instructions, manual",
   "forms": [
    "vejledning",
    "vejledningen",
@@ -514,7 +472,7 @@
   "freq_rank": 2694,
   "min_level": "B1",
   "ru": "консультация, наставление",
-  "en": null,
+  "en": "guidance, counseling",
   "forms": [
    "vejledning",
    "vejledningen",
@@ -535,7 +493,7 @@
   "freq_rank": 2695,
   "min_level": "B1",
   "ru": "наследство",
-  "en": null,
+  "en": "inheritance",
   "forms": [
    "arv",
    "arven",
@@ -552,7 +510,7 @@
   "freq_rank": 2695,
   "min_level": "B1",
   "ru": "наследие",
-  "en": null,
+  "en": "heritage, legacy",
   "forms": [
    "arv",
    "arven",
@@ -569,7 +527,7 @@
   "freq_rank": 2696,
   "min_level": "B1",
   "ru": "завоёвывать",
-  "en": null,
+  "en": "to conquer (militarily)",
   "forms": [
    "erobr",
    "erobre",
@@ -590,7 +548,7 @@
   "freq_rank": 2696,
   "min_level": "B1",
   "ru": "покорять, добиваться",
-  "en": null,
+  "en": "to win over, to capture (figurative)",
   "forms": [
    "erobr",
    "erobre",
@@ -611,7 +569,7 @@
   "freq_rank": 2697,
   "min_level": "B1",
   "ru": "большая часть, большинство",
-  "en": null,
+  "en": "the majority, the greater part",
   "forms": [
    "hovedpart",
    "hovedparten",
@@ -627,7 +585,7 @@
   "freq_rank": 2698,
   "min_level": "B1",
   "ru": "клетка (биологическая)",
-  "en": null,
+  "en": "cell (biological)",
   "forms": [
    "celle",
    "cellen",
@@ -648,7 +606,7 @@
   "freq_rank": 2698,
   "min_level": "B1",
   "ru": "камера (тюремная)",
-  "en": null,
+  "en": "cell (prison)",
   "forms": [
    "celle",
    "cellen",
@@ -669,7 +627,7 @@
   "freq_rank": 2699,
   "min_level": "B1",
   "ru": "также, вдобавок",
-  "en": null,
+  "en": "also, in addition",
   "forms": [
    "tillige"
   ]
@@ -683,7 +641,7 @@
   "freq_rank": 2700,
   "min_level": "B1",
   "ru": "заключить в тюрьму",
-  "en": null,
+  "en": "to imprison",
   "forms": [
    "fængsl",
    "fængsle",
@@ -704,7 +662,7 @@
   "freq_rank": 2700,
   "min_level": "B1",
   "ru": "захватывать, завораживать",
-  "en": null,
+  "en": "to captivate, to grip",
   "forms": [
    "fængsl",
    "fængsle",
@@ -725,7 +683,7 @@
   "freq_rank": 2701,
   "min_level": "B1",
   "ru": "превосходить, превышать",
-  "en": null,
+  "en": "to surpass, to exceed",
   "forms": [
    "overgik",
    "overgå",
@@ -745,7 +703,7 @@
   "freq_rank": 2701,
   "min_level": "B1",
   "ru": "случаться, происходить (с кем-л.)",
-  "en": null,
+  "en": "to happen, to befall (someone)",
   "forms": [
    "overgik",
    "overgå",
@@ -765,7 +723,7 @@
   "freq_rank": 2702,
   "min_level": "B1",
   "ru": "несправедливый",
-  "en": null,
+  "en": "unfair",
   "forms": [
    "urimelig",
    "urimelige",
@@ -784,7 +742,7 @@
   "freq_rank": 2702,
   "min_level": "B1",
   "ru": "чрезмерный, неразумный",
-  "en": null,
+  "en": "unreasonable, excessive",
   "forms": [
    "urimelig",
    "urimelige",
@@ -792,6 +750,41 @@
    "urimeligst",
    "urimeligste",
    "urimeligt"
+  ]
+ },
+ {
+  "lemma": "officer",
+  "kind": "word",
+  "sense_id": "c0609ce8-459c-5b40-9603-470514c89efc",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2703,
+  "min_level": "B1",
+  "ru": "офицер",
+  "en": "officer (military)",
+  "forms": [
+   "officer",
+   "officeren",
+   "officerens",
+   "officerer",
+   "officererne",
+   "officerernes",
+   "officerers",
+   "officers"
+  ]
+ },
+ {
+  "lemma": "ydre",
+  "kind": "word",
+  "sense_id": "ae03c025-feab-5a03-ba06-0241b7754aed",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2704,
+  "min_level": "B1",
+  "ru": "внешний, наружный",
+  "en": "outer, exterior",
+  "forms": [
+   "ydre"
   ]
  }
 ]

@@ -22,6 +22,8 @@ export interface CatalogContext {
   translation: string
   /** Other complete word orders that are equally correct. */
   orders: string[]
+  /** Other words that fill the gap correctly. */
+  accepted: string[]
 }
 
 export interface CatalogFamilyRow {
@@ -66,9 +68,10 @@ export function contextsBySense(rows: readonly CatalogFamilyRow[], locale: Trans
       const translation = translations[locale]
       if (!text(translation)) continue
       const orders = Array.isArray(variant.orders) ? variant.orders.filter(text) : []
+      const accepted = Array.isArray(variant.accepted) ? variant.accepted.filter(text) : []
       ;(out[row.sense_id] ||= []).push({
         variantId: variant.id, version: variant.version, senseId: row.sense_id,
-        sentence: variant.danish.trim(), target: variant.target.trim(), translation: translation.trim(), orders,
+        sentence: variant.danish.trim(), target: variant.target.trim(), translation: translation.trim(), orders, accepted,
       })
     }
   }

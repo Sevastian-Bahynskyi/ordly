@@ -41,6 +41,11 @@ export interface FamilyVariant {
   ru: string
   /** Other complete Danish word orders that are also correct (for the order format). */
   orders?: string[]
+  /**
+   * Other words that fill the gap correctly given the translation shown (`fordi` beside `for`
+   * "because"). A gap two words fit is graded against both rather than calling one of them wrong.
+   */
+  accepted?: string[]
 }
 
 export interface FamilyReply {
@@ -150,8 +155,8 @@ export function variantId(familyUuid: string, danish: string): string {
   return stableUuid('ordly.catalog.variant', `${familyUuid}|${normalizeSentence(danish)}`)
 }
 
-export function variantVersion(variant: { danish: string; target: string; en: string; ru: string; orders: readonly string[] }): string {
-  return createHash('sha256').update(JSON.stringify(['variant-v1', variant.danish, variant.target, variant.en, variant.ru, [...variant.orders].sort()])).digest('hex').slice(0, 16)
+export function variantVersion(variant: { danish: string; target: string; en: string; ru: string; orders: readonly string[]; accepted: readonly string[] }): string {
+  return createHash('sha256').update(JSON.stringify(['variant-v2', variant.danish, variant.target, variant.en, variant.ru, [...variant.orders].sort(), [...variant.accepted].sort()])).digest('hex').slice(0, 16)
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -276,6 +281,18 @@ export function validateFamily(raw: unknown, work: FamilyWorkSense | undefined, 
     seenEn.add(en)
     seenRu.add(ru)
 
+    // Accepted gap answers: other single words or short phrases, spelled, never the target itself.
+    const accepted = variant.accepted ?? []
+    if (!Array.isArray(accepted) || accepted.length > 4) errors.push(`${v}: accepted must be a list of at most 4`)
+    else for (const alternative of accepted) {
+      if (!text(alternative, 40) || /[{}.!?]/.test(alternative)) errors.push(`${v}: bad accepted answer`)
+      else if (alternative.trim().toLocaleLowerCase('da-DK') === variant.target.toLocaleLowerCase('da-DK')) errors.push(`${v}: accepted repeats the target`)
+      else {
+        const unknownAlternative = checks.unknownWords(alternative)
+        if (unknownAlternative === null || unknownAlternative.length) errors.push(`${v}: accepted answer "${alternative}" is not known Danish`)
+      }
+    }
+
     // Word orders: a real alternative uses exactly the same words, in a different order.
     const orders = variant.orders ?? []
     if (!Array.isArray(orders)) errors.push(`${v}: orders must be a list`)
@@ -310,6 +327,7 @@ export interface PublishedVariant {
   en: string
   ru: string
   orders: string[]
+  accepted: string[]
 }
 
 /** Only for a family `validateFamily` accepted. */
@@ -320,7 +338,7 @@ export function publishFamily(family: FamilyReply): PublishedFamily {
     situation: family.situation, grammar: family.grammar, frame: family.frame, slots: family.slots,
     variants: family.variants.map((variant) => {
       const danish = variantDanish(family, variant) as string
-      const base = { danish, target: variant.target, en: variant.en.trim(), ru: variant.ru.trim(), orders: variant.orders ?? [] }
+      const base = { danish, target: variant.target, en: variant.en.trim(), ru: variant.ru.trim(), orders: variant.orders ?? [], accepted: (variant.accepted ?? []).map((word) => word.trim()) }
       return { id: variantId(id, danish), version: variantVersion(base), ...base }
     }),
   }

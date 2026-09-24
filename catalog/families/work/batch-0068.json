@@ -1,45 +1,5 @@
 [
  {
-  "lemma": "stram",
-  "kind": "word",
-  "sense_id": "26ba382a-8ad0-5be8-86b9-9e8fa33e9cc8",
-  "pos": "adjective",
-  "gender": null,
-  "freq_rank": 2006,
-  "min_level": "B1",
-  "ru": "строгий",
-  "en": "strict, tight (schedule, rules)",
-  "forms": [
-   "stram",
-   "stramme",
-   "strammere",
-   "strammest",
-   "strammeste",
-   "stramt"
-  ]
- },
- {
-  "lemma": "udlænding",
-  "kind": "word",
-  "sense_id": "4c67d434-a50e-5045-8728-3470b42feb0b",
-  "pos": "noun",
-  "gender": "en",
-  "freq_rank": 2007,
-  "min_level": "B1",
-  "ru": "иностранец",
-  "en": "foreigner",
-  "forms": [
-   "udlænding",
-   "udlændinge",
-   "udlændingen",
-   "udlændingene",
-   "udlændingenes",
-   "udlændingens",
-   "udlændinges",
-   "udlændings"
-  ]
- },
- {
   "lemma": "potentiel",
   "kind": "word",
   "sense_id": "a25df6af-6324-5d2b-8924-da381f46dee1",
@@ -837,6 +797,43 @@
    "genstandens",
    "genstandes",
    "genstands"
+  ]
+ },
+ {
+  "lemma": "overskrift",
+  "kind": "word",
+  "sense_id": "b990c57d-b122-5fa3-a5a5-a72609c4c482",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2041,
+  "min_level": "B1",
+  "ru": "заголовок",
+  "en": "headline, heading",
+  "forms": [
+   "overskrift",
+   "overskriften",
+   "overskriftens",
+   "overskrifter",
+   "overskrifterne",
+   "overskrifternes",
+   "overskrifters",
+   "overskrifts"
+  ]
+ },
+ {
+  "lemma": "beskeden",
+  "kind": "word",
+  "sense_id": "e3d04471-dc00-5ca6-83f7-916a00cbdfa4",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2042,
+  "min_level": "B1",
+  "ru": "скромный",
+  "en": "modest (person, character)",
+  "forms": [
+   "beskeden",
+   "beskedent",
+   "beskedne"
   ]
  }
 ]
