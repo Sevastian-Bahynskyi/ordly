@@ -24,6 +24,7 @@ import './review-feedback.css'
 import './review-zen.css'
 import './mobile-form-controls.css'
 import './practice.css'
+import './home-review.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),

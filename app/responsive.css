@@ -100,10 +100,6 @@
   .soft-button,
   .review-start { min-height: 42px; }
 
-  .review-hero { min-height: 218px; padding: 18px; border-radius: 17px; }
-  .review-number { margin-top: 19px; font-size: 46px; }
-  .review-hero h2 { margin: 6px 0 8px; }
-  .review-hero p { margin-bottom: 17px; }
 
   .stats-grid { gap: 8px; margin: 12px 0; }
   .stat-card { min-height: 80px; padding: 11px; gap: 8px; border-radius: 14px; }

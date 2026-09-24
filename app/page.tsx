@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { guidedPracticeEnabled } from '@/lib/practice-config'
 import { BookOpenCheck, Flame, Layers3, Target } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
+import { ReviewAurora } from '@/components/ReviewAurora'
 import { AddWordComposer } from '@/components/AddWordComposer'
 import { StatCard } from '@/components/StatCard'
 import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
@@ -59,14 +60,15 @@ export default async function HomePage() {
         <section className="hero-grid">
           <AddWordComposer translationLanguage={profile?.default_translation_language || 'ru'} />
           <aside className="review-hero">
-            <div className="review-glow" />
-            <span className="eyebrow light">REVIEW QUEUE</span>
-            <div className="review-number">{due}</div>
-            <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
-            <p>Due cards first, then new words.</p>
-            <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
-            {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Guided practice →</Link>}
-            <div className="mini-progress"><span style={{ width: `${Math.min(100, due ? 34 : 100)}%` }} /></div>
+            <ReviewAurora />
+            <div className="review-hero-content">
+              <span className="eyebrow">REVIEW QUEUE</span>
+              <div className="review-number">{due}</div>
+              <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
+              <p>Due cards first, then new words.</p>
+              <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
+              {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Guided practice →</Link>}
+            </div>
           </aside>
         </section>
 

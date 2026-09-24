@@ -26,6 +26,9 @@ importers:
       nspell:
         specifier: 2.1.5
         version: 2.1.5
+      ogl:
+        specifier: ^1.0.11
+        version: 1.0.11
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -550,6 +553,9 @@ packages:
   nspell@2.1.5:
     resolution: {integrity: sha512-PSStyugKMiD9mHmqI/CR5xXrSIGejUXPlo88FBRq5Og1kO5QwQ5Ilu8D8O5I/SHpoS+mibpw6uKA8rd3vXd2Sg==}
 
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -985,6 +991,8 @@ snapshots:
   nspell@2.1.5:
     dependencies:
       is-buffer: 2.0.5
+
+  ogl@1.0.11: {}
 
   picocolors@1.1.1: {}
 
