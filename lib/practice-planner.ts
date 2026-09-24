@@ -1,10 +1,11 @@
-import { PRACTICE_CONTENT_REVISION, queueSeconds, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
+import { attemptOutcomes, PRACTICE_CONTENT_REVISION, queueSeconds, seedHash, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
 import {
   assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
   selectDistractors, selectMeaningDistractors, sentenceAssembleTask, senseTask, WORD_BANK_DISTRACTOR_COUNT,
   type DistractorEntry, type ExerciseInput,
 } from './practice-exercises'
 import { itemSenses, senseTargetKey, SENSE_PROMOTION_MIN_REPS, TARGET_KEY_MAX_LENGTH, type SenseCandidate } from './practice-senses'
+import { binaryTask, dialogueTasks, flashTask, matchTask, oddTask, sortTask } from './practice-formats'
 import { scoreTargets, type TargetLevel, type TargetScore } from './practice-targets'
 import { synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
 import type { EntrySense, ReviewItem, TranslationLanguage } from './types'
@@ -31,12 +32,19 @@ const DISTRACTOR_POOL_SIZE = CLOZE_DISTRACTOR_COUNT + WORD_BANK_DISTRACTOR_COUNT
 
 type Builder = (input: ExerciseInput) => PracticeTask | null
 
-/** Easy to hard, per rung. The planner takes the first that has material, then a harder one. */
+/**
+ * Easy to hard, per rung. The planner takes the first that has material, then one harder one
+ * chosen by the session seed, so the same word meets different formats across sessions.
+ * Recognition (choice, binary) leads; production (type) and self-rated recall (flash) follow.
+ */
+/** Formats that only ask the learner to recognise a meaning, never to recall or use the word. */
+const RECOGNITION_KINDS = new Set<PracticeTask['kind']>(['pick', 'binary', 'flash'])
+
 const WORD_LADDER: Record<TargetLevel, Builder[]> = {
-  0: [pickMeaningTask, chooseTask, assembleTask, clozeTypedTask, produceSenseTask],
-  1: [chooseTask, clozeTypedTask, senseTask, assembleTask, produceSenseTask],
-  2: [senseTask, assembleTask, clozeTypedTask, produceSenseTask],
-  3: [clozeTypedTask, produceSenseTask],
+  0: [pickMeaningTask, binaryTask, chooseTask, assembleTask, clozeTypedTask],
+  1: [chooseTask, binaryTask, clozeTypedTask, senseTask, assembleTask, flashTask, produceSenseTask],
+  2: [senseTask, assembleTask, clozeTypedTask, flashTask, produceSenseTask],
+  3: [clozeTypedTask, flashTask, produceSenseTask],
 }
 
 const SENTENCE_LADDER: Record<TargetLevel, Builder[]> = {
@@ -51,6 +59,8 @@ interface PlanContext {
   links: readonly SynonymLinkRow[]
   /** When each sense target was last practised, from the attempt history. */
   practisedAt: ReadonlyMap<string, number>
+  /** Each entry's verified forms, for typed gaps. */
+  formsByEntry: Readonly<Record<string, readonly string[]>>
   seed: string
 }
 
@@ -91,17 +101,25 @@ function danishDistractors(item: ReviewItem, sense: EntrySense, context: PlanCon
 }
 
 /** Up to two exercises for one saved item, easy then harder. Empty when nothing safe can be built. */
-function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] {
+/** The sense an item is practised on this session, or null when it has no stable target. */
+function candidateFor(score: TargetScore, context: PlanContext): SenseCandidate | null {
   const item = score.item
   const entry = item.vocabulary_entries
   const senses = itemSenses(item)
   // A row without stored senses cannot key a stable target; it is not practised until it has one.
-  if (!senses.length) return []
-
+  if (!senses.length) return null
   const sense = senseFor(score, senses, context)
   const targetKey = senseTargetKey(entry.id, sense.id)
-  if (targetKey.length > TARGET_KEY_MAX_LENGTH) return []
-  const candidate: SenseCandidate = { item, entryId: entry.id, sense, primary: sense.id === senses[0].id, targetKey }
+  if (targetKey.length > TARGET_KEY_MAX_LENGTH) return null
+  return { item, entryId: entry.id, sense, primary: sense.id === senses[0].id, targetKey }
+}
+
+function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] {
+  const candidate = candidateFor(score, context)
+  if (!candidate) return []
+  const { item, sense, targetKey } = candidate
+  const entry = item.vocabulary_entries
+  const senses = itemSenses(item)
   const sentence = entry.entry_kind === 'sentence'
   const seed = `${context.seed}:${targetKey}`
   const exclude = [entry.id, ...synonymNeighbourIds(entry.id, context.links, { confirmedOnly: true })]
@@ -114,16 +132,21 @@ function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] 
       pool: context.pool, excludeIds: exclude, count: MEANING_DISTRACTOR_COUNT, seed,
     }),
     newTarget: false,
+    forms: context.formsByEntry[entry.id],
   }
 
-  const built: PracticeTask[] = []
+  const available: PracticeTask[] = []
   for (const build of (sentence ? SENTENCE_LADDER : WORD_LADDER)[score.level]) {
     const task = build(input)
-    if (!task || built.some((existing) => existing.kind === task.kind)) continue
-    built.push(task)
-    if (built.length === 2) break
+    if (task && !available.some((existing) => existing.kind === task.kind)) available.push(task)
   }
-  return built.map((task, index) => ({ ...task, newTarget: index === 0 && score.isNew }))
+  const [first, ...harder] = available
+  if (!first) return []
+  // The second step should ask for more than recognition when the ladder offers anything more.
+  const productive = harder.filter((task) => !RECOGNITION_KINDS.has(task.kind))
+  const options = productive.length ? productive : harder
+  const second = options.length ? options[seedHash(seed) % options.length] : null
+  return [first, ...(second ? [second] : [])].map((task, index) => ({ ...task, newTarget: index === 0 && score.isNew }))
 }
 
 /** New and weak items alternate so a session never opens with a block of unfamiliar words. */
@@ -149,7 +172,12 @@ export interface PracticePlanInput {
   now: Date
   /** `entry_links` rows for this learner. Only confirmed `synonym` edges are read. */
   links?: readonly SynonymLinkRow[]
+  /** Each entry's verified forms, from `word_forms`. */
+  formsByEntry?: Readonly<Record<string, readonly string[]>>
 }
+
+/** Group boards take at most this share of the session, so single-word practice still leads. */
+const GROUP_SHARE = 0.4
 
 export function planPractice(input: PracticePlanInput): PracticeSessionState {
   const { attempts, now } = input
@@ -163,7 +191,7 @@ export function planPractice(input: PracticePlanInput): PracticeSessionState {
     .sort((a, b) => b.priority - a.priority || a.item.entry_id.localeCompare(b.item.entry_id))
 
   const practisedAt = new Map<string, number>()
-  for (const attempt of attempts) {
+  for (const attempt of attempts.flatMap(attemptOutcomes)) {
     const at = Date.parse(attempt.at)
     if (Number.isFinite(at) && at > (practisedAt.get(attempt.targetKey) ?? Number.NEGATIVE_INFINITY)) practisedAt.set(attempt.targetKey, at)
   }
@@ -171,14 +199,34 @@ export function planPractice(input: PracticePlanInput): PracticeSessionState {
     pool: usable.map((item) => ({ id: item.entry_id, danish: item.vocabulary_entries.danish, senses: itemSenses(item), sentence: item.vocabulary_entries.entry_kind === 'sentence' })),
     links: input.links || [],
     practisedAt,
+    formsByEntry: input.formsByEntry || {},
     seed: input.seed,
   }
 
   const goal = input.targetMinutes * 60
+  const order = interleave(fresh, weak)
+
+  // Boards that span several saved words: matching, sorting by gender, odd one out, and the
+  // prepared dialogues for saved headwords. Each is offered once at most and only when its
+  // content is safe; a word that is still new is not put on a board it has never been shown in.
+  const known = order.filter((score) => !score.isNew).map((score) => candidateFor(score, context)).filter((candidate): candidate is SenseCandidate => candidate !== null)
+  const groups: PracticeTask[] = []
+  let groupSeconds = 0
+  for (const task of [
+    matchTask(known, `${input.seed}:match`),
+    sortTask(known, `${input.seed}:sort`),
+    oddTask(known.slice().reverse(), `${input.seed}:odd`),
+    ...dialogueTasks(known, input.locale, input.seed),
+  ]) {
+    if (!task || groupSeconds + queueSeconds([task]) > goal * GROUP_SHARE) continue
+    groups.push(task)
+    groupSeconds += queueSeconds([task])
+  }
+
   const plans: PracticeTask[][] = []
-  let seconds = 0
-  let count = 0
-  for (const score of interleave(fresh, weak)) {
+  let seconds = groupSeconds
+  let count = groups.length
+  for (const score of order) {
     if (seconds >= goal || count >= MAX_QUEUE) break
     const tasks = exercisesFor(score, context).slice(0, MAX_QUEUE - count)
     if (!tasks.length) continue
@@ -191,11 +239,21 @@ export function planPractice(input: PracticePlanInput): PracticeSessionState {
   const offset = Math.ceil(plans.length / 2)
   const secondSteps = [...plans.slice(offset), ...plans.slice(0, offset)].flatMap((tasks) => tasks.slice(1))
   if (secondSteps.length > 1 && secondSteps[0].targetKey === firsts.at(-1)?.targetKey) secondSteps.push(secondSteps.shift()!)
+  // Boards are spread through the session rather than bunched, after the first few words.
+  const singles = [...firsts, ...secondSteps]
+  const queue: PracticeTask[] = []
+  const spacing = Math.max(2, Math.floor(singles.length / (groups.length + 1)))
+  let nextGroup = 0
+  singles.forEach((task, index) => {
+    queue.push(task)
+    if ((index + 1) % spacing === 0 && nextGroup < groups.length) queue.push(groups[nextGroup++])
+  })
+  queue.push(...groups.slice(nextGroup))
 
   return {
     version: 2, id: crypto.randomUUID(), seed: input.seed, targetMinutes: input.targetMinutes,
     contentRevision: PRACTICE_CONTENT_REVISION, locale: input.locale, createdAt: now.toISOString(),
-    queue: [...firsts, ...secondSteps], attempts: [], completed: 0, elapsedSeconds: 0,
+    queue, attempts: [], completed: 0, elapsedSeconds: 0,
     activeSince: now.toISOString(), current: null, draft: null, finished: false,
   }
 }

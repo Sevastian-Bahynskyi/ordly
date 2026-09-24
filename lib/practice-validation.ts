@@ -31,11 +31,11 @@ export function isReviewSource(value: unknown): value is ReviewItem {
     && Number(value.state) <= 3
 }
 
-const TASK_KINDS = ['pick', 'choose', 'assemble', 'cloze', 'produce', 'sense']
+const TASK_KINDS = ['pick', 'choose', 'assemble', 'cloze', 'produce', 'sense', 'binary', 'odd', 'sort', 'match', 'dialogue', 'flash']
 /** Attempts recorded under the retired contract carry these kinds too; they stay readable history. */
-const ATTEMPT_KINDS = [...TASK_KINDS, 'recall', 'teach', 'build', 'listen', 'dialogue']
-const ASSISTANCE = ['none', 'hint', 'choices', 'model']
-const RESULTS = ['correct', 'mostly', 'incorrect', 'unverified', 'dont_know']
+const ATTEMPT_KINDS = [...TASK_KINDS, 'recall', 'teach', 'build', 'listen']
+const ASSISTANCE = ['none', 'hint', 'choices', 'model', 'self']
+const RESULTS = ['correct', 'mostly', 'incorrect', 'unverified', 'dont_know', 'self_known', 'self_unknown']
 
 /** An answer open longer than an hour is recorded as an hour. */
 const MAX_RESPONSE_MS = 3_600_000
@@ -45,6 +45,18 @@ const MAX_CHOICES = 16
 
 function isChoiceList(value: unknown): boolean {
   return value === undefined || (Array.isArray(value) && value.length <= MAX_CHOICES && value.every((choice) => text(choice, 200)))
+}
+
+function isGroupItems(value: unknown): boolean {
+  return value === undefined || (Array.isArray(value) && value.length <= 8 && value.every((item) => isRecord(item)
+    && text(item.text, 200) && text(item.answer, 300) && text(item.targetKey, TARGET_KEY_MAX_LENGTH)
+    && text(item.entryId, 100) && text(item.senseId, 100) && text(item.contentVersion, 100)))
+}
+
+function isTargetOutcomes(value: unknown): boolean {
+  return value === undefined || (Array.isArray(value) && value.length <= 8 && value.every((target) => isRecord(target)
+    && text(target.targetKey, TARGET_KEY_MAX_LENGTH) && text(target.entryId, 100) && text(target.senseId, 100)
+    && ['correct', 'incorrect', 'dont_know'].includes(String(target.result))))
 }
 
 export function isPracticeTask(value: unknown): value is PracticeTask {
@@ -58,6 +70,10 @@ export function isPracticeTask(value: unknown): value is PracticeTask {
     && isChoiceList(value.choices)
     && (value.contrast === undefined || text(value.contrast))
     && (value.context === undefined || text(value.context))
+    && isChoiceList(value.accepted) && isChoiceList(value.categories) && isChoiceList(value.forms)
+    && (value.claim === undefined || text(value.claim, 300))
+    && (value.support === undefined || text(value.support, 500))
+    && isGroupItems(value.items)
 }
 
 export function isPracticeResponse(value: unknown): value is PracticeResponse {
@@ -69,6 +85,7 @@ export function isPracticeResponse(value: unknown): value is PracticeResponse {
     && ASSISTANCE.includes(String(value.assistance))
     && Number.isFinite(value.responseMs) && Number(value.responseMs) >= 0 && Number(value.responseMs) <= MAX_RESPONSE_MS
     && (value.reported === undefined || typeof value.reported === 'boolean')
+    && isTargetOutcomes(value.targets)
 }
 
 export function isPracticeDraft(value: unknown): value is PracticeDraft {
@@ -93,6 +110,7 @@ export function isPracticeAttempt(value: unknown): value is PracticeAttempt {
     && (value.newTarget === undefined || typeof value.newTarget === 'boolean')
     && (value.reported === undefined || typeof value.reported === 'boolean')
     && (value.answer === undefined || text(value.answer))
+    && isTargetOutcomes(value.targets)
 }
 
 export function isPracticeSession(value: unknown): value is PracticeSessionState {

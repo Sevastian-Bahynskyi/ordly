@@ -1,11 +1,12 @@
+import { createHash } from 'node:crypto'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import {
-  activeSeconds, finishPracticeTask, isChoiceKind, isReportable, queueSeconds, targetReached, NEAR_TARGET_SECONDS,
+  activeSeconds, finishPracticeTask, isReportable, queueSeconds, TYPED_KINDS, targetReached, NEAR_TARGET_SECONDS,
   type PracticeAttempt, type PracticeResponse, type PracticeSessionState, type PracticeStore,
 } from './practice'
 import { isTranslationLanguage } from './learner-language'
 import { planPractice } from './practice-planner'
-import { gradePracticeAnswer, isOfferedChoice } from './practice-grading'
+import { gradePracticeAnswer } from './practice-grading'
 import { currentTaskContentVersion } from './practice-content'
 import { isPracticeAttempt, isPracticeSession, isRecord, isReviewSource, type PracticeActionInput } from './practice-validation'
 
@@ -83,6 +84,24 @@ function isActive(session: PracticeSessionState | null): session is PracticeSess
  * replanned. When saved Material cannot fill the time, nothing is saved and the shortfall is
  * returned so the learner can take the shorter session or go to Review.
  */
+const FORM_CHUNK = 60
+
+/**
+ * Verified inflected forms of the given entries, so a form of the same word is told apart from a
+ * typo. Read per entry in chunks: one query over every form would be cut off by the row limit.
+ */
+async function verifiedForms(supabase: SupabaseClient, userId: string, entryIds: readonly string[]): Promise<Record<string, string[]>> {
+  const chunks: string[][] = []
+  for (let at = 0; at < entryIds.length; at += FORM_CHUNK) chunks.push(entryIds.slice(at, at + FORM_CHUNK))
+  const results = await Promise.all(chunks.map((ids) => supabase.from('word_forms').select('entry_id, form_text').eq('user_id', userId).in('entry_id', ids).in('source', ['cor', 'ddo'])))
+  const formsByEntry: Record<string, string[]> = {}
+  for (const { data, error } of results) {
+    if (error) throw new Error('Could not prepare practice')
+    for (const row of data || []) if (typeof row.entry_id === 'string' && typeof row.form_text === 'string') (formsByEntry[row.entry_id] ||= []).push(row.form_text)
+  }
+  return formsByEntry
+}
+
 export async function startPractice(supabase: SupabaseClient, userId: string, input: { minutes: number; acceptShorter: boolean }): Promise<{ view: PracticeView; shortfall: PracticeShortfall | null }> {
   const [{ store, attempts, retired }, cards, profile] = await Promise.all([
     readPractice(supabase, userId, { history: true }),
@@ -96,8 +115,11 @@ export async function startPractice(supabase: SupabaseClient, userId: string, in
   if (!isTranslationLanguage(locale)) throw new Error('Invalid practice language')
   // Only the learner's own saved Material can become a target.
   const items = (cards.data || []).filter(isReviewSource).filter((item) => item.user_id === userId)
-  const seed = crypto.randomUUID()
-  let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now })
+  const formsByEntry = await verifiedForms(supabase, userId, items.map((item) => item.vocabulary_entries.id))
+  // Fixed by the saved state, so the session started after a shortfall offer is the one that was
+  // measured; every save bumps the revision, so each new session still gets a new seed.
+  const seed = createHash('sha256').update(`practice-seed:${userId}:${store.revision}`).digest('hex').slice(0, 32)
+  let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now, formsByEntry })
   const available = queueSeconds(session.queue)
   const unchanged = viewOf(store, retired)
   if (!session.queue.length) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes: 0 } }
@@ -134,23 +156,31 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
   const response: PracticeResponse = session.current || { answer: '', result: null, assistance: 'none', feedback: '', responseMs: 0, revealed: false, answeredAt: null }
 
   if (input.action === 'help') {
-    if (response.revealed || isChoiceKind(task.kind)) throw new PracticeConflict()
+    // A hint belongs to typed exercises only; a board shows its options already.
+    if (response.revealed || !TYPED_KINDS.includes(task.kind)) throw new PracticeConflict()
     return commit(supabase, store, { ...running, current: { ...response, assistance: 'hint' } })
   }
 
   if (input.action === 'answer') {
     if (response.revealed) throw new PracticeConflict()
     const answer = input.answer.trim()
-    if (isChoiceKind(task.kind) && answer && !isOfferedChoice(task, answer)) throw new PracticeConflict()
-    // The target must still be a live sense of the learner's own saved entry, unchanged since the
-    // plan was made. A deleted or edited entry drops out of the session rather than being graded
-    // against content it no longer has.
-    const { data: entry, error } = await supabase.from('vocabulary_entries').select('*').eq('id', task.entryId).eq('user_id', userId).maybeSingle()
+    // Every target on the board must still be a live sense of the learner's own saved entry,
+    // unchanged since the plan was made. An edited or deleted entry drops the exercise rather than
+    // grading it against content it no longer has.
+    const targets = [{ entryId: task.entryId, senseId: task.senseId, contentVersion: task.contentVersion }, ...(task.items || [])]
+    const ids = [...new Set(targets.map((target) => target.entryId))]
+    const { data: entries, error } = await supabase.from('vocabulary_entries').select('*').in('id', ids).eq('user_id', userId)
     if (error) throw new Error('Could not check this entry')
-    if (!entry || currentTaskContentVersion(entry, task) !== task.contentVersion) {
-      return commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.entryId !== task.entryId), current: null, draft: null })
+    const byId = new Map((entries || []).map((entry) => [entry.id as string, entry]))
+    const stale = targets.filter((target) => {
+      const entry = byId.get(target.entryId)
+      return !entry || currentTaskContentVersion(entry, target) !== target.contentVersion
+    }).map((target) => target.entryId)
+    if (stale.length) {
+      return commit(supabase, store, { ...running, queue: session.queue.filter((item) => item.id !== task.id && !stale.includes(item.entryId)), current: null, draft: null })
     }
     const grade = gradePracticeAnswer(task, answer, response.assistance)
+    if (!grade) throw new PracticeConflict()
     return commit(supabase, store, { ...running, draft: null, current: { answer, ...grade, responseMs: input.responseMs, revealed: true, answeredAt: now.toISOString() } })
   }
 
@@ -167,6 +197,7 @@ export async function actOnPractice(supabase: SupabaseClient, userId: string, in
     at: response.answeredAt || now.toISOString(), contentVersion: task.contentVersion, locale: session.locale, newTarget: task.newTarget,
     // A typed answer is kept only when the learner asked for it to be reviewed.
     ...(response.reported ? { reported: true, answer: response.answer } : {}),
+    ...(response.targets ? { targets: response.targets } : {}),
   }
   // Near the target no new exercise starts; the one just answered was never cut off.
   const queue = targetReached(session, elapsedSeconds) ? [] : finishPracticeTask(session.queue, response, session.seed)

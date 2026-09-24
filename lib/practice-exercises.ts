@@ -2,7 +2,7 @@ import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
 import { senseContentVersion } from './practice-content'
 import { senseExample, type SenseCandidate } from './practice-senses'
-import type { PracticeTask } from './practice'
+import { seedHash, type PracticeTask } from './practice'
 import type { EntrySense, PartOfSpeech, ReviewItem } from './types'
 
 /**
@@ -57,20 +57,10 @@ function normalized(value: string): string {
   return normalizeSenseText(value)
 }
 
-/** FNV-1a. Small, dependency-free, and good enough to shuffle a handful of tiles. */
-function hash(value: string): number {
-  let result = 2166136261
-  for (let index = 0; index < value.length; index += 1) {
-    result ^= value.charCodeAt(index)
-    result = Math.imul(result, 16777619)
-  }
-  return result >>> 0
-}
-
 /** Deterministic shuffle: the order depends only on the seed and the items themselves. */
 export function seededShuffle<T>(items: readonly T[], seed: string): T[] {
   return [...items]
-    .map((item, index) => ({ item, key: hash(`${seed}:${index}`) }))
+    .map((item, index) => ({ item, key: seedHash(`${seed}:${index}`) }))
     .sort((a, b) => a.key - b.key || 0)
     .map((entry) => entry.item)
 }
@@ -125,6 +115,8 @@ export interface ExerciseInput {
   /** Wrong meanings for `pick`, in the learner's language. Built by `selectMeaningDistractors`. */
   meaningDistractors?: readonly string[]
   newTarget: boolean
+  /** The entry's verified forms (from `word_forms`), for typed gaps. */
+  forms?: readonly string[]
 }
 
 function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTask, 'kind' | 'prompt' | 'answer' | 'hint' | 'answerIsSentence'> {
@@ -161,8 +153,10 @@ export function assembleTask(input: ExerciseInput): PracticeTask | null {
     prompt: example.translation || candidate.sense.text,
     answer: example.sentence,
     answerIsSentence: true,
-    hint: `Starts with “${tiles[0]}”.`,
+    // Stored hints are language-neutral; the interface words them in the learner language.
+    hint: `${tiles[0]}…`,
     choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:assemble`),
+    ...alternativeOrders(example.sentence),
     newTarget: input.newTarget,
   }
 }
@@ -224,7 +218,7 @@ export function senseTask(input: ExerciseInput): PracticeTask | null {
     contrast: contrast.example.sentence,
     answer: candidate.sense.text.trim(),
     answerIsSentence: false,
-    hint: `“${item.vocabulary_entries.danish}” carries ${options.length} meanings here. Read both sentences before choosing.`,
+    hint: '',
     choices: seededShuffle(options, `${candidate.targetKey}:sense`),
     newTarget: input.newTarget,
   }
@@ -247,6 +241,7 @@ export function produceSenseTask(input: ExerciseInput): PracticeTask {
     hint: `${entry.danish.slice(0, 1)}…`,
     example: example.sentence || entry.danish,
     newTarget: input.newTarget,
+    ...(entry.entry_kind === 'sentence' ? alternativeOrders(entry.danish) : otherForms(input.forms, entry.danish)),
   }
 }
 
@@ -347,6 +342,45 @@ export function pickMeaningTask(input: ExerciseInput): PracticeTask | null {
   }
 }
 
+/**
+ * Pronouns that can only be the subject when they open a clause: each has a separate object form
+ * (mig, dig, ham, hende, os). `det` and `den` may be a fronted object (`Det gør jeg i dag.`), `de`
+ * may be an article, and `I` reads as the preposition, so none of them is reordered by rule.
+ */
+const SUBJECTS = ['jeg', 'du', 'han', 'hun', 'vi', 'man']
+/** Time phrases that may close a simple main clause, and open it instead. */
+const TIME_PHRASES = ['i dag', 'i morgen', 'i går', 'i aften', 'i weekenden', 'nu', 'hver dag']
+/** Words that start a second clause. A sentence holding one is not simple enough to reorder by rule. */
+const CLAUSE_WORDS = new Set(['og', 'men', 'eller', 'fordi', 'at', 'som', 'der', 'hvis', 'når', 'da', 'så', 'mens', 'selvom'])
+
+/**
+ * Another valid word order for a simple main clause, by Danish verb-second: a sentence that is
+ * `subject verb … time.` may equally open with its time phrase and invert subject and verb
+ * (`Jeg arbejder i dag.` → `I dag arbejder jeg.`). Anything less simple gets no alternative
+ * rather than a guessed one: no comma, no question, no second clause, a known subject pronoun.
+ */
+export function alternativeOrders(sentence: string): { accepted?: string[] } {
+  const text = sentence.trim()
+  if (!text.endsWith('.') || /[,;:?!]/u.test(text.slice(0, -1))) return {}
+  const words = text.slice(0, -1).split(/\s+/u)
+  if (words.length < 3 || words.some((word) => CLAUSE_WORDS.has(word.toLocaleLowerCase('da-DK')))) return {}
+  const [subject, verb, ...rest] = words
+  if (!SUBJECTS.includes(subject.toLocaleLowerCase('da-DK'))) return {}
+  const tail = rest.join(' ').toLocaleLowerCase('da-DK')
+  const time = TIME_PHRASES.find((phrase) => tail === phrase || tail.endsWith(` ${phrase}`))
+  if (!time) return {}
+  const middle = rest.slice(0, rest.length - time.split(' ').length)
+  const opening = time.charAt(0).toLocaleUpperCase('da-DK') + time.slice(1)
+  return { accepted: [`${[opening, verb, subject.toLocaleLowerCase('da-DK'), ...middle].join(' ')}.`] }
+}
+
+/** The verified forms other than the one a gap expects, stored on the task for grading. */
+function otherForms(forms: readonly string[] | undefined, expected: string): { forms?: string[] } {
+  const key = expected.trim().toLocaleLowerCase('da-DK')
+  const others = [...new Set((forms || []).map((form) => form.trim().toLocaleLowerCase('da-DK')))].filter((form) => form && form !== key).slice(0, 16)
+  return others.length ? { forms: others } : {}
+}
+
 /** Type the missing word into its example sentence, with the sentence's meaning shown (Clozemaster). */
 export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
   const { candidate } = input
@@ -364,8 +398,9 @@ export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
     answer: found.surface,
     answerIsSentence: false,
     context: example.translation || undefined,
-    hint: `Starts with “${found.surface.slice(0, 1)}” · ${[...found.surface].length} letters`,
+    hint: `${found.surface.slice(0, 1)}…`,
     newTarget: input.newTarget,
+    ...otherForms(input.forms, found.surface),
   }
 }
 
@@ -390,7 +425,7 @@ export function sentenceClozeTask(input: ExerciseInput): PracticeTask | null {
     answerIsSentence: false,
     example: sentence,
     context: candidate.sense.text,
-    hint: `Starts with “${chosen[0].slice(0, 1)}” · ${[...chosen[0]].length} letters`,
+    hint: `${chosen[0].slice(0, 1)}…`,
     newTarget: input.newTarget,
   }
 }
@@ -413,8 +448,9 @@ export function sentenceAssembleTask(input: ExerciseInput): PracticeTask | null 
     answer: sentence,
     answerIsSentence: true,
     example: sentence,
-    hint: `Starts with “${tiles[0]}”.`,
+    hint: `${tiles[0]}…`,
     choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:assemble`),
+    ...alternativeOrders(sentence),
     newTarget: input.newTarget,
   }
 }

@@ -7,26 +7,77 @@ import type { TranslationLanguage } from './types'
  * exercise by exercise. Nothing in it calls a model, and nothing it records reaches Review:
  * the only thing a Practice answer writes is an internal attempt used to choose later exercises.
  *
- * `pick`, `choose`, `assemble` and `sense` are answered by tapping; `cloze` and `produce` are typed.
+ * Ten exercise formats (issue #15), each a bounded interaction with a prepared answer:
+ *
+ * | format        | kind        | answered by                                             |
+ * |---------------|-------------|---------------------------------------------------------|
+ * | choice        | `pick`      | tapping the meaning of a Danish word                    |
+ * | drag-gap      | `choose`    | placing one word in a gap                               |
+ * | order         | `assemble`  | placing tiles into a sentence (several orders may count) |
+ * | type          | `cloze`, `produce` | typing a word, form, phrase or saved sentence    |
+ * | binary        | `binary`    | true or false for “X means Y”                           |
+ * | odd-one-out   | `odd`       | tapping the noun whose gender differs                   |
+ * | category-sort | `sort`      | placing each noun under `en` or `et`                    |
+ * | match         | `match`     | pairing each Danish word with its meaning               |
+ * | dialogue      | `dialogue`  | choosing a reply in a prepared exchange                 |
+ * | flash-reveal  | `flash`     | revealing the meaning, then rating oneself              |
+ *
+ * `sense` (which meaning does this sentence use) is a variant of choice.
  */
 export type PracticeKind = 'pick' | 'choose' | 'assemble' | 'cloze' | 'produce' | 'sense'
+  | 'binary' | 'odd' | 'sort' | 'match' | 'dialogue' | 'flash'
 
 /** Kinds that only appear in attempts recorded before this session contract. */
-export type LegacyPracticeKind = 'recall' | 'teach' | 'build' | 'listen' | 'dialogue'
+export type LegacyPracticeKind = 'recall' | 'teach' | 'build' | 'listen'
 
-/** `'choices'` marks an answer selected rather than produced; `'model'` an answer that was shown. */
-export type PracticeAssistance = 'none' | 'hint' | 'choices' | 'model'
+/**
+ * `'choices'` marks an answer selected rather than produced; `'model'` an answer that was shown;
+ * `'self'` a self-rating after a reveal, which is never checked evidence.
+ */
+export type PracticeAssistance = 'none' | 'hint' | 'choices' | 'model' | 'self'
 
 /**
  * `unverified` is a typed sentence that does not match the saved one: it may still be valid
  * Danish, so it is neither marked right nor wrong. `dont_know` is an explicit “I don't know”.
+ * `self_known` / `self_unknown` are flash-reveal self-ratings: what the learner says, not a check.
  */
-export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'unverified' | 'dont_know'
+export type PracticeResult = 'correct' | 'mostly' | 'incorrect' | 'unverified' | 'dont_know' | 'self_known' | 'self_unknown'
 
-export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense', 'pick']
+/** Kinds answered by tapping prepared options; everything except typing and self-rating. */
+export const CHOICE_KINDS: readonly PracticeKind[] = ['assemble', 'choose', 'sense', 'pick', 'binary', 'odd', 'sort', 'match', 'dialogue']
+
+/** Kinds that grade several targets at once and record an outcome for each. */
+export const GROUP_KINDS: readonly PracticeKind[] = ['sort', 'match']
+
+export const TYPED_KINDS: readonly PracticeKind[] = ['cloze', 'produce']
 
 export function isChoiceKind(kind: PracticeKind): boolean {
   return CHOICE_KINDS.includes(kind)
+}
+
+export function isGroupKind(kind: PracticeKind): boolean {
+  return GROUP_KINDS.includes(kind)
+}
+
+/**
+ * One assessed target inside a group exercise, or one item on an odd-one-out board. `answer` is
+ * what it must be placed with: its gender category for sort and odd-one-out, its meaning for match.
+ */
+export interface PracticeGroupItem {
+  text: string
+  answer: string
+  targetKey: string
+  entryId: string
+  senseId: string
+  contentVersion: string
+}
+
+/** A target's own outcome inside a group exercise, so one mistake never marks every word. */
+export interface PracticeTargetOutcome {
+  targetKey: string
+  entryId: string
+  senseId: string
+  result: 'correct' | 'incorrect' | 'dont_know'
 }
 
 export interface PracticeTask {
@@ -55,6 +106,24 @@ export interface PracticeTask {
   contrast?: string
   /** The translation of a gapped sentence, shown under a typed cloze. */
   context?: string
+  /**
+   * Every answer the prepared content accepts besides `answer`: another valid word order, another
+   * natural reply. Grading never goes beyond this list.
+   */
+  accepted?: string[]
+  /** Binary: the meaning claimed for the Danish word. */
+  claim?: string
+  /** Sort, match and odd-one-out: the words on the board, each with its own target. */
+  items?: PracticeGroupItem[]
+  /** Sort: the groups, e.g. `en` and `et`. */
+  categories?: string[]
+  /** Dialogue: support text in the learner language (who is speaking, where). */
+  support?: string
+  /**
+   * Typed gaps: the word's other verified forms. Typing one of them is the wrong form, never a
+   * harmless typo, because the form is what the gap tests.
+   */
+  forms?: string[]
 }
 
 export interface PracticeResponse {
@@ -67,6 +136,8 @@ export interface PracticeResponse {
   answeredAt: string | null
   /** The learner reported an unconfirmed typed answer as correct, for later content review. */
   reported?: boolean
+  /** Group exercises: each target's own outcome. */
+  targets?: PracticeTargetOutcome[]
 }
 
 /** Unsent input on the current exercise, saved on pause so resume shows exactly what was typed. */
@@ -100,10 +171,12 @@ export interface PracticeAttempt {
   /** Set only when the learner reported the answer; then the wording is kept for review. */
   reported?: boolean
   answer?: string
+  /** Group exercises: each target's own outcome, so selection attributes mistakes precisely. */
+  targets?: PracticeTargetOutcome[]
 }
 
 /** Bumped when the planner or exercise builders change what a stored task means. */
-export const PRACTICE_CONTENT_REVISION = 'practice-v2'
+export const PRACTICE_CONTENT_REVISION = 'practice-v3'
 
 export interface PracticeSessionState {
   version: 2
@@ -148,9 +221,15 @@ export function isPracticeMinutes(value: unknown): value is number {
  * than typing; building a sentence from tiles sits in between.
  */
 export function estimatedSeconds(task: Pick<PracticeTask, 'kind'>): number {
-  if (task.kind === 'assemble') return 35
-  if (task.kind === 'cloze' || task.kind === 'produce') return 30
-  return 20
+  switch (task.kind) {
+    case 'match': case 'sort': return 45
+    case 'assemble': return 35
+    case 'cloze': case 'produce': return 30
+    case 'dialogue': return 25
+    case 'flash': return 15
+    case 'binary': return 12
+    default: return 20
+  }
 }
 
 export function queueSeconds(queue: readonly Pick<PracticeTask, 'kind'>[]): number {
@@ -183,7 +262,8 @@ export const MAX_RETRIES = 2
  * sentence. Meaning and sense discrimination have no unaided form here and return null.
  */
 export function unaidedForm(task: PracticeTask): PracticeTask | null {
-  if (task.kind === 'sense' || task.kind === 'pick') return null
+  // Only a gap or a word bank has a typed form; every other board has no fair unaided retry.
+  if (!['assemble', 'choose', 'cloze', 'produce'].includes(task.kind)) return null
   if (task.kind !== 'assemble' && task.kind !== 'choose') return task
   const { choices: _choices, contrast: _contrast, ...rest } = task
   return task.kind === 'choose'
@@ -191,13 +271,40 @@ export function unaidedForm(task: PracticeTask): PracticeTask | null {
     : { ...rest, kind: 'produce' }
 }
 
-function hash(value: string): number {
+/** FNV-1a. Small, dependency-free and stable: every seeded choice in Practice goes through it. */
+export function seedHash(value: string): number {
   let result = 2166136261
   for (let index = 0; index < value.length; index += 1) {
     result ^= value.charCodeAt(index)
     result = Math.imul(result, 16777619)
   }
   return result >>> 0
+}
+
+/** How a Danish word is compared: trimmed and lowercased the Danish way. */
+export function danishKey(value: string): string {
+  return value.trim().toLocaleLowerCase('da-DK')
+}
+
+/** Sort and match answer with a JSON object: item text → the category or meaning it was placed with. */
+export function parsePlacement(answer: string): Record<string, string> | null {
+  try {
+    const value: unknown = JSON.parse(answer)
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+    const entries = Object.entries(value as Record<string, unknown>)
+    return entries.every(([, placed]) => typeof placed === 'string') ? Object.fromEntries(entries) as Record<string, string> : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * One attempt as the outcomes it holds for each target. A group exercise answered with one
+ * mistake yields one miss for that word and a success for every other, never a miss for all.
+ */
+export function attemptOutcomes(attempt: PracticeAttempt): PracticeAttempt[] {
+  if (!attempt.targets?.length) return [attempt]
+  return attempt.targets.map((target) => ({ ...attempt, targetKey: target.targetKey, entryId: target.entryId, senseId: target.senseId, result: target.result, targets: undefined }))
 }
 
 /**
@@ -210,12 +317,13 @@ function hash(value: string): number {
  * that queues it for content review and changes nothing else.
  */
 export function isReportable(task: Pick<PracticeTask, 'kind'>, response: Pick<PracticeResponse, 'answer' | 'result' | 'revealed'>): boolean {
-  return response.revealed && !isChoiceKind(task.kind) && Boolean(response.answer.trim())
+  return response.revealed && TYPED_KINDS.includes(task.kind) && Boolean(response.answer.trim())
     && (response.result === 'unverified' || response.result === 'incorrect')
 }
 
 export function missed(outcome: { result: PracticeAttempt['result'] | null; assistance: PracticeAttempt['assistance']; rating?: PracticeAttempt['rating'] }): boolean {
-  return outcome.rating === 1 || outcome.result === 'incorrect' || outcome.result === 'dont_know' || outcome.assistance === 'hint' || outcome.assistance === 'model'
+  return outcome.rating === 1 || outcome.result === 'incorrect' || outcome.result === 'dont_know' || outcome.result === 'self_unknown'
+    || outcome.assistance === 'hint' || outcome.assistance === 'model'
 }
 
 /**
@@ -230,6 +338,6 @@ export function finishPracticeTask(queue: readonly PracticeTask[], response: Pic
   if (!source) return remaining
   const retry: PracticeTask = { ...source, id: `${task.id}:retry`, newTarget: false, retry: task.retry + 1 }
   const next = [...remaining]
-  next.splice(Math.min(next.length, 2 + hash(`${seed}:${task.id}`) % 3), 0, retry)
+  next.splice(Math.min(next.length, 2 + seedHash(`${seed}:${task.id}`) % 3), 0, retry)
   return next
 }
