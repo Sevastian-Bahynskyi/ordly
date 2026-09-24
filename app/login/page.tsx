@@ -74,7 +74,7 @@ export default function LoginPage() {
       <section className="auth-card">
         <div className="auth-lock"><LockKeyhole size={22} /></div>
         <h2>{mode === 'signin' ? 'Welcome back' : 'Claim your account'}</h2>
-        <p>{mode === 'signin' ? 'Continue your Danish streak.' : 'Only the first registered account can use this site.'}</p>
+        <p>{mode === 'signin' ? 'Continue your Danish streak.' : 'Create an account to start learning.'}</p>
         <form onSubmit={submit}>
           <label className="field"><span>Email</span><input type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" /></label>
           <label className="field"><span>Password</span><input type="password" minLength={8} required autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 8 characters" /></label>
