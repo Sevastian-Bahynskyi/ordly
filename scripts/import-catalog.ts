@@ -24,37 +24,16 @@ import { join } from 'node:path'
 import { promisify } from 'node:util'
 import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
-import { catalogCleanupSql } from '../lib/catalog-import'
+import { catalogCleanupSql, senseId } from '../lib/catalog-import'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
 import { literal, query } from './catalog-db'
 
 /** Rows per statement. Each carries its senses, so this stays well inside the payload limit. */
 const BATCH_SIZE = 250
 
-/** Namespace for the derived sense ids. Changing it re-mints every id, so it never changes. */
-const SENSE_NAMESPACE = 'ordly.word_catalog.sense'
-
 function valueAfter(argv: string[], flag: string): string | null {
   const at = argv.indexOf(flag)
   return at >= 0 && at + 1 < argv.length ? argv[at + 1] : null
-}
-
-/**
- * A stable uuid for one meaning of one entry.
- *
- * Derived from lemma, kind and ordinal — not from the meaning's text, because correcting a
- * translation must not strand the scheduling state attached to that meaning.
- */
-export function senseId(lemma: string, kind: string, ordinal: number): string {
-  const digest = createHash('sha1').update(`${SENSE_NAMESPACE}:${lemma}:${kind}:${ordinal}`).digest('hex')
-  const variant = ((parseInt(digest.slice(16, 18), 16) & 0x3f) | 0x80).toString(16)
-  return [
-    digest.slice(0, 8),
-    digest.slice(8, 12),
-    `5${digest.slice(13, 16)}`,
-    `${variant}${digest.slice(18, 20)}`,
-    digest.slice(20, 32),
-  ].join('-')
 }
 
 function sqlText(value: string | null): string {
