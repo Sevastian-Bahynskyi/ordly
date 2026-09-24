@@ -33,7 +33,8 @@ begin
     raise exception 'Bulk add gained senses';
   end if;
 
-  -- Coverage is recorded atomically and only on the named sense.
+  -- Coverage is recorded atomically and only on the named sense, after a Review rating.
+  update public.review_cards set last_review = now() where entry_id = '20000000-0000-4000-8000-000000000002';
   select senses -> 1 ->> 'id' into sense_id from public.vocabulary_entries where id = '20000000-0000-4000-8000-000000000002';
   perform set_config('test.sense_id', sense_id, true);
   perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[sense_id], 'recognized');
@@ -74,7 +75,9 @@ end $$;
 select set_config('request.jwt.claim.sub', '10000000-0000-4000-8000-000000000002', true);
 do $$
 begin
-  perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[current_setting('test.sense_id')], 'produced');
+  begin
+    perform public.record_sense_coverage('20000000-0000-4000-8000-000000000002', array[current_setting('test.sense_id')], 'produced');
+  exception when insufficient_privilege then null; end;
   if exists(select 1 from public.vocabulary_entries) then raise exception 'Cross-owner read leaked data'; end if;
 end $$;
 reset role;
