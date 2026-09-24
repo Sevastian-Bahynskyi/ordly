@@ -1,0 +1,1612 @@
+[
+ {
+  "lemma": "servere",
+  "kind": "word",
+  "sense_id": "833ba687-c5d1-5453-93d7-d01fbfa3fd1c",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} {dish} til middag.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Tjeneren"
+    },
+    {
+     "da": "Min mor"
+    }
+   ],
+   "dish": [
+    {
+     "da": "fisk"
+    },
+    {
+     "da": "suppe"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "dish": 0
+    },
+    "target": "serverede",
+    "en": "The waiter served fish for dinner.",
+    "ru": "Официант подал рыбу на ужин.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "dish": 1
+    },
+    "target": "serverede",
+    "en": "My mother served soup for dinner.",
+    "ru": "Моя мама подала суп на ужин.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "udtalelse",
+  "kind": "word",
+  "sense_id": "71f32492-c6a3-552e-b1bd-454367cf6697",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "noun-definite",
+  "frame": "{subject} læste {target} højt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Journalisten"
+    },
+    {
+     "da": "Læreren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "udtalelsen",
+    "en": "The journalist read the statement aloud.",
+    "ru": "Журналист прочитал заявление вслух.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "udtalelsen",
+    "en": "The teacher read the statement aloud.",
+    "ru": "Учитель прочитал заявление вслух.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "udtalelse",
+  "kind": "word",
+  "sense_id": "358c4ca2-b377-543a-a492-83451497264c",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "{target} af {word_desc} er svær.",
+  "slots": {
+   "word_desc": [
+    {
+     "da": "dette ord"
+    },
+    {
+     "da": "det lange ord"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "word_desc": 0
+    },
+    "target": "udtalelsen",
+    "en": "The pronunciation of this word is difficult.",
+    "ru": "Произношение этого слова сложное.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "word_desc": 1
+    },
+    "target": "udtalelsen",
+    "en": "The pronunciation of the long word is difficult.",
+    "ru": "Произношение длинного слова сложное.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "valgkamp",
+  "kind": "word",
+  "sense_id": "4f3e59fb-65ce-5e56-95fb-1936e5ccfe00",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "noun-definite",
+  "frame": "{target} begyndte {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "i sidste uge"
+    },
+    {
+     "da": "i denne måned"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "valgkampen",
+    "en": "The election campaign began last week.",
+    "ru": "Избирательная кампания началась на прошлой неделе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "valgkampen",
+    "en": "The election campaign began this month.",
+    "ru": "Избирательная кампания началась в этом месяце.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "drømme",
+  "kind": "word",
+  "sense_id": "14a2bacf-69a3-5182-b7bd-62f096880219",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} om {topic} i nat.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    }
+   ],
+   "topic": [
+    {
+     "da": "en rejse"
+    },
+    {
+     "da": "sin barndom"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "topic": 0
+    },
+    "target": "drømte",
+    "en": "I dreamed about a trip last night.",
+    "ru": "Сегодня ночью мне приснилось путешествие.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "topic": 1
+    },
+    "target": "drømte",
+    "en": "He dreamed about his childhood last night.",
+    "ru": "Сегодня ночью ему приснилось детство.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "drømme",
+  "kind": "word",
+  "sense_id": "ba2e3bed-f52e-51af-9da1-eec5aec68bb5",
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "fixed-expressions",
+  "frame": "{subject} {target} om at {goal}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "goal": [
+    {
+     "da": "blive læge"
+    },
+    {
+     "da": "rejse jorden rundt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "goal": 0
+    },
+    "target": "drømmer",
+    "en": "I dream of becoming a doctor.",
+    "ru": "Я мечтаю стать врачом.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "goal": 1
+    },
+    "target": "drømmer",
+    "en": "She dreams of traveling around the world.",
+    "ru": "Она мечтает объехать весь мир.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hustru",
+  "kind": "word",
+  "sense_id": "52f2d23c-c0cb-5a82-864e-9b95f569e2fc",
+  "level": "A2",
+  "situation": "family",
+  "grammar": "noun-definite",
+  "frame": "{target} arbejder som {job}.",
+  "slots": {
+   "job": [
+    {
+     "da": "sygeplejerske"
+    },
+    {
+     "da": "lærer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "job": 0
+    },
+    "target": "hustruen",
+    "en": "The wife works as a nurse.",
+    "ru": "Жена работает медсестрой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "job": 1
+    },
+    "target": "hustruen",
+    "en": "The wife works as a teacher.",
+    "ru": "Жена работает учительницей.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "tilstrækkelig",
+  "kind": "word",
+  "sense_id": "0497273e-05b6-58b0-a9de-fc9cd904b121",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "adjective-agreement",
+  "frame": "Vi har {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "søvn"
+    },
+    {
+     "da": "lys"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "tilstrækkelig",
+    "en": "We have enough sleep.",
+    "ru": "У нас достаточно сна.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "tilstrækkeligt",
+    "en": "We have enough light.",
+    "ru": "У нас достаточно света.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "træning",
+  "kind": "word",
+  "sense_id": "6414353c-85b0-5971-a5b8-b50ecd66f8ea",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{target} var meget {adj} i dag.",
+  "slots": {
+   "adj": [
+    {
+     "da": "hård"
+    },
+    {
+     "da": "sjov"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "træningen",
+    "en": "The training was very hard today.",
+    "ru": "Тренировка была очень тяжёлой сегодня.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "træningen",
+    "en": "The training was very fun today.",
+    "ru": "Тренировка была очень весёлой сегодня.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "træning",
+  "kind": "word",
+  "sense_id": "9caf5d9b-095c-5221-8c3b-e6fab48eedeb",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "adjective-agreement",
+  "frame": "Han fik god {target} {context}.",
+  "slots": {
+   "context": [
+    {
+     "da": "på det nye arbejde"
+    },
+    {
+     "da": "i firmaet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "context": 0
+    },
+    "target": "træning",
+    "en": "He got good training at the new job.",
+    "ru": "Он прошёл хорошую подготовку на новой работе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "context": 1
+    },
+    "target": "træning",
+    "en": "He got good training at the company.",
+    "ru": "Он прошёл хорошую подготовку в компании.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "arbejdsgiver",
+  "kind": "word",
+  "sense_id": "e287316b-7c86-53fb-90b3-d1c765e0fc56",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{target} tilbød mig {benefit}.",
+  "slots": {
+   "benefit": [
+    {
+     "da": "en fastansættelse"
+    },
+    {
+     "da": "mere ferie"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "benefit": 0
+    },
+    "target": "arbejdsgiveren",
+    "en": "The employer offered me a permanent position.",
+    "ru": "Работодатель предложил мне постоянную должность.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "benefit": 1
+    },
+    "target": "arbejdsgiveren",
+    "en": "The employer offered me more vacation.",
+    "ru": "Работодатель предложил мне больше отпуска.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "ukendt",
+  "kind": "word",
+  "sense_id": "1f35f37c-1903-576c-905f-0d4342f1a9c0",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} var {target} for {experiencer}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Nummeret"
+    },
+    {
+     "da": "Kvinden"
+    }
+   ],
+   "experiencer": [
+    {
+     "da": "mig"
+    },
+    {
+     "da": "alle"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "experiencer": 0
+    },
+    "target": "ukendt",
+    "en": "The number was unknown to me.",
+    "ru": "Номер был мне неизвестен.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "experiencer": 1
+    },
+    "target": "ukendt",
+    "en": "The woman was unknown to everyone.",
+    "ru": "Женщина была неизвестна всем.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "ukendt",
+  "kind": "word",
+  "sense_id": "585ca7cd-e1e2-590b-ba2b-3217d25e0e33",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "adjective-agreement",
+  "frame": "Jeg gik en tur i en {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "by"
+    },
+    {
+     "da": "bydel"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "ukendt",
+    "en": "I went for a walk in an unfamiliar town.",
+    "ru": "Я гулял в незнакомом городе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "ukendt",
+    "en": "I went for a walk in an unfamiliar neighborhood.",
+    "ru": "Я гулял в незнакомом районе.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "premierminister",
+  "kind": "word",
+  "sense_id": "c1a53f78-1f9e-5161-85e1-fa5d0ee612bd",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "noun-definite",
+  "frame": "{target} holdt en tale i {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "radioen"
+    },
+    {
+     "da": "fjernsynet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "premierministeren",
+    "en": "The prime minister gave a speech on the radio.",
+    "ru": "Премьер-министр выступил с речью по радио.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "premierministeren",
+    "en": "The prime minister gave a speech on television.",
+    "ru": "Премьер-министр выступил с речью по телевидению.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "design",
+  "kind": "word",
+  "sense_id": "668610d7-d6ca-5a81-92f0-185f5364bcce",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "frame": "{target} af {object} er meget moderne.",
+  "slots": {
+   "object": [
+    {
+     "da": "stolen"
+    },
+    {
+     "da": "huset"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "designet",
+    "en": "The design of the chair is very modern.",
+    "ru": "Дизайн стула очень современный.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "designet",
+    "en": "The design of the house is very modern.",
+    "ru": "Дизайн дома очень современный.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "forbrug",
+  "kind": "word",
+  "sense_id": "ee23c57c-86c0-5739-925e-830c4a1a97d0",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "noun-definite",
+  "frame": "{target} af {resource} steg i vinter.",
+  "slots": {
+   "resource": [
+    {
+     "da": "strøm"
+    },
+    {
+     "da": "vand"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "resource": 0
+    },
+    "target": "forbruget",
+    "en": "The consumption of electricity rose in winter.",
+    "ru": "Потребление электроэнергии выросло зимой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "resource": 1
+    },
+    "target": "forbruget",
+    "en": "The consumption of water rose in winter.",
+    "ru": "Потребление воды выросло зимой.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "forbrug",
+  "kind": "word",
+  "sense_id": "6c3a646a-ed35-5400-8536-9f9f2adda10a",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "frame": "{target} af penge var højt {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "i denne måned"
+    },
+    {
+     "da": "i sidste kvartal"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "forbruget",
+    "en": "The spending of money was high this month.",
+    "ru": "Расход денег был высоким в этом месяце.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "forbruget",
+    "en": "The spending of money was high last quarter.",
+    "ru": "Расход денег был высоким в прошлом квартале.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fed",
+  "kind": "word",
+  "sense_id": "60db7bfc-6860-5384-a237-2e6a4e3320ba",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er meget {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Osten"
+    },
+    {
+     "da": "Kødet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fed",
+    "en": "The cheese is very fatty.",
+    "ru": "Сыр очень жирный.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fedt",
+    "en": "The meat is very fatty.",
+    "ru": "Мясо очень жирное.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fed",
+  "kind": "word",
+  "sense_id": "e66a9750-3e2e-5572-92ec-101ffd065f1f",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}!",
+  "slots": {
+   "subject": [
+    {
+     "da": "Den nye film"
+    },
+    {
+     "da": "Spillet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fed",
+    "en": "The new movie is awesome!",
+    "ru": "Новый фильм классный!",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fedt",
+    "en": "The game is awesome!",
+    "ru": "Игра классная!",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "jagt",
+  "kind": "word",
+  "sense_id": "91508edb-7d1c-5e54-85f3-1fcead2bedfa",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "noun-definite",
+  "frame": "{target} var {adj} i skoven.",
+  "slots": {
+   "adj": [
+    {
+     "da": "hård"
+    },
+    {
+     "da": "kort"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "jagten",
+    "en": "The hunt was tough in the forest.",
+    "ru": "Охота в лесу была тяжёлой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "jagten",
+    "en": "The hunt was short in the forest.",
+    "ru": "Охота в лесу была короткой.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "jagt",
+  "kind": "word",
+  "sense_id": "b6c84283-84da-5deb-9497-63b3af796ed3",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{target} på {object} tog lang tid.",
+  "slots": {
+   "object": [
+    {
+     "da": "en løsning"
+    },
+    {
+     "da": "et svar"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "jagten",
+    "en": "The search for a solution took a long time.",
+    "ru": "Поиск решения занял много времени.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "jagten",
+    "en": "The search for an answer took a long time.",
+    "ru": "Поиск ответа занял много времени.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "sigt",
+  "kind": "word",
+  "sense_id": "434c21be-3d56-5d32-bba2-18ced0e22d14",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "adjective-agreement",
+  "frame": "Der var {adj} {target} i dag.",
+  "slots": {
+   "adj": [
+    {
+     "da": "god"
+    },
+    {
+     "da": "dårlig"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "sigt",
+    "en": "There was good visibility today.",
+    "ru": "Сегодня была хорошая видимость.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "sigt",
+    "en": "There was poor visibility today.",
+    "ru": "Сегодня была плохая видимость.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "sigt",
+  "kind": "word",
+  "sense_id": "c630d482-d369-53ac-8a31-ba3a5974b877",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "frame": "Planen er god på {length} {target}.",
+  "slots": {
+   "length": [
+    {
+     "da": "lang"
+    },
+    {
+     "da": "kort"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "length": 0
+    },
+    "target": "sigt",
+    "en": "The plan is good in the long term.",
+    "ru": "План хорош в долгосрочной перспективе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "length": 1
+    },
+    "target": "sigt",
+    "en": "The plan is good in the short term.",
+    "ru": "План хорош в краткосрочной перспективе.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "alternativ",
+  "kind": "word",
+  "sense_id": "d8f464b2-2a1c-5786-a68c-c2854b2fddbd",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "frame": "{target} til denne løsning var {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "billigere"
+    },
+    {
+     "da": "bedre"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "alternativet",
+    "en": "The alternative to this solution was cheaper.",
+    "ru": "Альтернатива этому решению была дешевле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "alternativet",
+    "en": "The alternative to this solution was better.",
+    "ru": "Альтернатива этому решению была лучше.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "alternativ",
+  "kind": "word",
+  "sense_id": "12794b52-f8e9-5c3e-bebf-f6eadc6f0943",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "adjective-agreement",
+  "frame": "De {target} {noun} er dyrere.",
+  "slots": {
+   "noun": [
+    {
+     "da": "løsninger"
+    },
+    {
+     "da": "metoder"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "alternative",
+    "en": "The alternative solutions are more expensive.",
+    "ru": "Альтернативные решения дороже.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "alternative",
+    "en": "The alternative methods are more expensive.",
+    "ru": "Альтернативные методы дороже.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hår",
+  "kind": "word",
+  "sense_id": "0acf5c22-98e2-5c7d-b613-f049ac671bd1",
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "noun-definite",
+  "frame": "{target} var meget {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "langt"
+    },
+    {
+     "da": "kort"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "håret",
+    "en": "The hair was very long.",
+    "ru": "Волосы были очень длинными.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "håret",
+    "en": "The hair was very short.",
+    "ru": "Волосы были очень короткими.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hår",
+  "kind": "word",
+  "sense_id": "6745a268-665c-5555-b1a5-c9212d65c957",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "prepositions-place",
+  "frame": "Der lå et {target} i {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "suppen"
+    },
+    {
+     "da": "maden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "hår",
+    "en": "There was a hair in the soup.",
+    "ru": "В супе был волос.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "hår",
+    "en": "There was a hair in the food.",
+    "ru": "В еде был волос.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "dagsorden",
+  "kind": "word",
+  "sense_id": "71dfe483-a4f9-5c4c-8c7c-1b8c0d44481e",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{target} for {meeting} var lang.",
+  "slots": {
+   "meeting": [
+    {
+     "da": "mødet"
+    },
+    {
+     "da": "konferencen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "meeting": 0
+    },
+    "target": "dagsordenen",
+    "en": "The agenda for the meeting was long.",
+    "ru": "Повестка дня собрания была длинной.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "meeting": 1
+    },
+    "target": "dagsordenen",
+    "en": "The agenda for the conference was long.",
+    "ru": "Повестка дня конференции была длинной.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "nødvendigvis",
+  "kind": "word",
+  "sense_id": "6ded181c-7968-5765-8e33-a20252f9bd52",
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "negation",
+  "frame": "Det er ikke {target} {comp}.",
+  "slots": {
+   "comp": [
+    {
+     "da": "rigtigt"
+    },
+    {
+     "da": "sandt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "comp": 0
+    },
+    "target": "nødvendigvis",
+    "en": "It is not necessarily correct.",
+    "ru": "Это не обязательно правильно.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "comp": 1
+    },
+    "target": "nødvendigvis",
+    "en": "It is not necessarily true.",
+    "ru": "Это не обязательно правда.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "ambition",
+  "kind": "word",
+  "sense_id": "f01ae85e-58ca-5b14-8408-a0b024e40396",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-plural",
+  "frame": "{subject} har store {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "ambitioner",
+    "en": "He has big ambitions.",
+    "ru": "У него большие амбиции.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "ambitioner",
+    "en": "She has big ambitions.",
+    "ru": "У неё большие амбиции.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "kød",
+  "kind": "word",
+  "sense_id": "2aabe885-3213-5f83-a7f4-32740fc9ef10",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "noun-definite",
+  "frame": "{target} var meget {adj}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "mørt"
+    },
+    {
+     "da": "tørt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "kødet",
+    "en": "The meat was very tender.",
+    "ru": "Мясо было очень нежным.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "kødet",
+    "en": "The meat was very dry.",
+    "ru": "Мясо было очень сухим.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "dominere",
+  "kind": "word",
+  "sense_id": "1305590b-3118-5c9f-b072-1f70b5921d39",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} kampen fra start.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Holdet"
+    },
+    {
+     "da": "Spilleren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "dominerede",
+    "en": "The team dominated the match from the start.",
+    "ru": "Команда доминировала в матче с самого начала.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "dominerede",
+    "en": "The player dominated the match from the start.",
+    "ru": "Игрок доминировал в матче с самого начала.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "dobbelt",
+  "kind": "word",
+  "sense_id": "b5a5670b-1bff-5b2b-889b-5d223bf0fb67",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "adjective-agreement",
+  "frame": "Vi bestilte en {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "kaffe"
+    },
+    {
+     "da": "burger"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "dobbelt",
+    "en": "We ordered a double coffee.",
+    "ru": "Мы заказали двойной кофе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "dobbelt",
+    "en": "We ordered a double burger.",
+    "ru": "Мы заказали двойной бургер.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "service",
+  "kind": "word",
+  "sense_id": "10455c43-abdb-5bee-9d84-8ce9427d0c47",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "frame": "{target} på {place} var fremragende.",
+  "slots": {
+   "place": [
+    {
+     "da": "hotellet"
+    },
+    {
+     "da": "restauranten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "servicen",
+    "en": "The service at the hotel was excellent.",
+    "ru": "Обслуживание в отеле было превосходным.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "servicen",
+    "en": "The service at the restaurant was excellent.",
+    "ru": "Обслуживание в ресторане было превосходным.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "service",
+  "kind": "word",
+  "sense_id": "a2d4521f-2469-5255-9be4-2083681f5cb6",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "frame": "{target} stod {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "på bordet"
+    },
+    {
+     "da": "i skabet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "servicet",
+    "en": "The dinner set was on the table.",
+    "ru": "Сервиз стоял на столе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "servicet",
+    "en": "The dinner set was in the cabinet.",
+    "ru": "Сервиз стоял в шкафу.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "perfekt",
+  "kind": "word",
+  "sense_id": "1ae394ab-8830-50ba-9003-eda7e8346ce4",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} var {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vejret"
+    },
+    {
+     "da": "Aftenen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "perfekt",
+    "en": "The weather was perfect.",
+    "ru": "Погода была идеальной.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "perfekt",
+    "en": "The evening was perfect.",
+    "ru": "Вечер был идеальным.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "indtage",
+  "kind": "word",
+  "sense_id": "04bcf577-5ac8-51f3-9448-b61f2361ebf5",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} {position} i firmaet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "position": [
+    {
+     "da": "en ledende stilling"
+    },
+    {
+     "da": "en vigtig rolle"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "position": 0
+    },
+    "target": "indtog",
+    "en": "He took up a leading position in the company.",
+    "ru": "Он занял руководящую должность в компании.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "position": 1
+    },
+    "target": "indtog",
+    "en": "She took up an important role in the company.",
+    "ru": "Она заняла важную роль в компании.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "indtage",
+  "kind": "word",
+  "sense_id": "914955f7-aecc-57ad-81f9-8cb3be11cb2c",
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "imperative",
+  "frame": "{target} {object} tre gange om dagen.",
+  "slots": {
+   "object": [
+    {
+     "da": "medicinen"
+    },
+    {
+     "da": "tabletterne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "indtag",
+    "en": "Take the medicine three times a day.",
+    "ru": "Принимайте лекарство три раза в день.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "indtag",
+    "en": "Take the tablets three times a day.",
+    "ru": "Принимайте таблетки три раза в день.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "drift",
+  "kind": "word",
+  "sense_id": "04c32e54-6021-5515-af61-21b6ed424ddf",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{target} af {facility} kostede mange penge.",
+  "slots": {
+   "facility": [
+    {
+     "da": "fabrikken"
+    },
+    {
+     "da": "maskinen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "facility": 0
+    },
+    "target": "driften",
+    "en": "The operation of the factory cost a lot of money.",
+    "ru": "Эксплуатация завода стоила больших денег.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "facility": 1
+    },
+    "target": "driften",
+    "en": "The operation of the machine cost a lot of money.",
+    "ru": "Эксплуатация машины стоила больших денег.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "drift",
+  "kind": "word",
+  "sense_id": "7f9bd475-73ae-5f94-8228-51cf5762fb06",
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "noun-plural",
+  "frame": "Mennesker har {adj} {target}.",
+  "slots": {
+   "adj": [
+    {
+     "da": "naturlige"
+    },
+    {
+     "da": "stærke"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "drifter",
+    "en": "Humans have natural instincts.",
+    "ru": "У людей есть естественные инстинкты.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "adj": 1
+    },
+    "target": "drifter",
+    "en": "Humans have strong instincts.",
+    "ru": "У людей есть сильные инстинкты.",
+    "orders": []
+   }
+  ]
+ }
+]
