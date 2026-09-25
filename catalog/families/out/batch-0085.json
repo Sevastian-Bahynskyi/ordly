@@ -13,7 +13,7 @@
      "da": "den store mark"
     },
     {
-     "da": "landet"
+     "da": "sine marker"
     },
     {
      "da": "sin jord"
@@ -28,16 +28,22 @@
     "target": "bonden",
     "en": "The farmer grows grain in the big field.",
     "ru": "Фермер выращивает зерно на большом поле.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "landmanden"
+    ]
    },
    {
     "slots": {
      "place": 1
     },
     "target": "bonden",
-    "en": "The farmer grows grain in the countryside.",
-    "ru": "Фермер выращивает зерно в деревне.",
-    "orders": []
+    "en": "The farmer grows grain in his fields.",
+    "ru": "Фермер выращивает зерно на своих полях.",
+    "orders": [],
+    "accepted": [
+     "landmanden"
+    ]
    },
    {
     "slots": {
@@ -46,7 +52,10 @@
     "target": "bonden",
     "en": "The farmer grows grain on his land.",
     "ru": "Фермер выращивает зерно на своей земле.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "landmanden"
+    ]
    }
   ]
  },
@@ -57,14 +66,14 @@
   "level": "B1",
   "situation": "leisure",
   "grammar": "noun-meaning",
-  "frame": "{subject} flytter en {target} frem.",
+  "frame": "{subject} flytter en {target} frem på skakbrættet.",
   "slots": {
    "subject": [
     {
      "da": "Han"
     },
     {
-     "da": "Skakspilleren"
+     "da": "Min modstander"
     },
     {
      "da": "Hun"
@@ -77,8 +86,8 @@
      "subject": 0
     },
     "target": "bonde",
-    "en": "He moves a pawn forward.",
-    "ru": "Он двигает пешку вперёд.",
+    "en": "He moves a pawn forward on the chessboard.",
+    "ru": "Он двигает пешку вперёд на шахматной доске.",
     "orders": []
    },
    {
@@ -86,8 +95,8 @@
      "subject": 1
     },
     "target": "bonde",
-    "en": "The chess player moves a pawn forward.",
-    "ru": "Шахматист двигает пешку вперёд.",
+    "en": "My opponent moves a pawn forward on the chessboard.",
+    "ru": "Мой соперник двигает пешку вперёд на шахматной доске.",
     "orders": []
    },
    {
@@ -95,8 +104,8 @@
      "subject": 2
     },
     "target": "bonde",
-    "en": "She moves a pawn forward.",
-    "ru": "Она двигает пешку вперёд.",
+    "en": "She moves a pawn forward on the chessboard.",
+    "ru": "Она двигает пешку вперёд на шахматной доске.",
     "orders": []
    }
   ]
@@ -115,7 +124,7 @@
      "da": "Politiet"
     },
     {
-     "da": "Vidnet"
+     "da": "Eksperterne"
     },
     {
      "da": "Efterforskerne"
@@ -137,8 +146,8 @@
      "subject": 1
     },
     "target": "identificerer",
-    "en": "The witness identifies the man in the video recording.",
-    "ru": "Свидетель идентифицирует мужчину на видеозаписи.",
+    "en": "The experts identify the man in the video recording.",
+    "ru": "Эксперты идентифицируют мужчину на видеозаписи.",
     "orders": []
    },
    {
@@ -159,17 +168,17 @@
   "level": "B1",
   "situation": "education",
   "grammar": "noun-definite",
-  "frame": "{subject} underviser i {target}.",
+  "frame": "{subject} handler om {target} historie.",
   "slots": {
    "subject": [
     {
-     "da": "Læreren"
+     "da": "Bogen"
     },
     {
-     "da": "Præsten"
+     "da": "Foredraget"
     },
     {
-     "da": "Professoren"
+     "da": "Udstillingen"
     }
    ]
   },
@@ -178,27 +187,27 @@
     "slots": {
      "subject": 0
     },
-    "target": "kristendommen",
-    "en": "The teacher teaches about Christianity.",
-    "ru": "Учитель преподаёт христианство.",
+    "target": "kristendommens",
+    "en": "The book is about the history of Christianity.",
+    "ru": "Книга рассказывает об истории христианства.",
     "orders": []
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "kristendommen",
-    "en": "The priest teaches about Christianity.",
-    "ru": "Священник преподаёт христианство.",
+    "target": "kristendommens",
+    "en": "The lecture is about the history of Christianity.",
+    "ru": "Лекция посвящена истории христианства.",
     "orders": []
    },
    {
     "slots": {
      "subject": 2
     },
-    "target": "kristendommen",
-    "en": "The professor teaches about Christianity.",
-    "ru": "Профессор преподаёт христианство.",
+    "target": "kristendommens",
+    "en": "The exhibition is about the history of Christianity.",
+    "ru": "Выставка посвящена истории христианства.",
     "orders": []
    }
   ]
@@ -217,10 +226,10 @@
      "da": "taget"
     },
     {
-     "da": "køkkenet"
+     "da": "vinduet"
     },
     {
-     "da": "badeværelset"
+     "da": "døren"
     }
    ]
   },
@@ -239,8 +248,8 @@
      "object": 1
     },
     "target": "håndværkeren",
-    "en": "The tradesman repairs the kitchen.",
-    "ru": "Мастер ремонтирует кухню.",
+    "en": "The tradesman repairs the window.",
+    "ru": "Мастер чинит окно.",
     "orders": []
    },
    {
@@ -248,8 +257,8 @@
      "object": 2
     },
     "target": "håndværkeren",
-    "en": "The tradesman repairs the bathroom.",
-    "ru": "Мастер ремонтирует ванную комнату.",
+    "en": "The tradesman repairs the door.",
+    "ru": "Мастер чинит дверь.",
     "orders": []
    }
   ]
@@ -316,13 +325,13 @@
   "slots": {
    "subject": [
     {
-     "da": "Båden"
+     "da": "Bladet"
     },
     {
      "da": "Træstammen"
     },
     {
-     "da": "Isen"
+     "da": "Bolden"
     }
    ]
   },
@@ -332,8 +341,8 @@
      "subject": 0
     },
     "target": "flyder",
-    "en": "The boat floats on the water.",
-    "ru": "Лодка плавает на воде.",
+    "en": "The leaf floats on the water.",
+    "ru": "Лист плавает на воде.",
     "orders": []
    },
    {
@@ -350,8 +359,8 @@
      "subject": 2
     },
     "target": "flyder",
-    "en": "The ice floats on the water.",
-    "ru": "Лёд плавает на воде.",
+    "en": "The ball floats on the water.",
+    "ru": "Мяч плавает на воде.",
     "orders": []
    }
   ]
@@ -362,8 +371,8 @@
   "sense_id": "f7ff0545-ae34-576a-8964-af7e70a0afa5",
   "level": "B1",
   "situation": "home",
-  "grammar": "verb-meaning",
-  "frame": "{subject} {target} ud over bordet.",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} ud over hele bordet.",
   "slots": {
    "subject": [
     {
@@ -382,28 +391,37 @@
     "slots": {
      "subject": 0
     },
-    "target": "flyder",
-    "en": "The milk spills over the table.",
-    "ru": "Молоко течёт по столу.",
-    "orders": []
+    "target": "flød",
+    "en": "The milk spilled all over the table.",
+    "ru": "Молоко разлилось по всему столу.",
+    "orders": [],
+    "accepted": [
+     "løb"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "flyder",
-    "en": "The water spills over the table.",
-    "ru": "Вода течёт по столу.",
-    "orders": []
+    "target": "flød",
+    "en": "The water spilled all over the table.",
+    "ru": "Вода разлилась по всему столу.",
+    "orders": [],
+    "accepted": [
+     "løb"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
-    "target": "flyder",
-    "en": "The coffee spills over the table.",
-    "ru": "Кофе течёт по столу.",
-    "orders": []
+    "target": "flød",
+    "en": "The coffee spilled all over the table.",
+    "ru": "Кофе разлился по всему столу.",
+    "orders": [],
+    "accepted": [
+     "løb"
+    ]
    }
   ]
  },
@@ -463,9 +481,9 @@
   "kind": "word",
   "sense_id": "e9d5b5e4-1bf7-542a-91d9-2faff1c53f4d",
   "level": "B1",
-  "situation": "services",
-  "grammar": "verb-meaning",
-  "frame": "{subject} {target} det rigtige svar på skemaet.",
+  "situation": "education",
+  "grammar": "particle-verbs",
+  "frame": "{subject} {target} det rigtige svar af på skemaet.",
   "slots": {
    "subject": [
     {
@@ -538,7 +556,11 @@
     "target": "oplæg",
     "en": "The researcher gives a talk about climate change.",
     "ru": "Учёный делает доклад об изменении климата.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "foredrag",
+     "indlæg"
+    ]
    },
    {
     "slots": {
@@ -547,7 +569,11 @@
     "target": "oplæg",
     "en": "She gives a talk about climate change.",
     "ru": "Она делает доклад об изменении климата.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "foredrag",
+     "indlæg"
+    ]
    },
    {
     "slots": {
@@ -556,7 +582,11 @@
     "target": "oplæg",
     "en": "The consultant gives a talk about climate change.",
     "ru": "Консультант делает доклад об изменении климата.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "foredrag",
+     "indlæg"
+    ]
    }
   ]
  },
@@ -589,7 +619,10 @@
     "target": "oplæg",
     "en": "The committee draws up a proposal for the new project.",
     "ru": "Комитет разрабатывает предложение для нового проекта.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "forslag"
+    ]
    },
    {
     "slots": {
@@ -598,7 +631,10 @@
     "target": "oplæg",
     "en": "The management draws up a proposal for the new project.",
     "ru": "Руководство разрабатывает предложение для нового проекта.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "forslag"
+    ]
    },
    {
     "slots": {
@@ -607,7 +643,10 @@
     "target": "oplæg",
     "en": "The working group draws up a proposal for the new project.",
     "ru": "Рабочая группа разрабатывает предложение для нового проекта.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "forslag"
+    ]
    }
   ]
  },
@@ -679,7 +718,7 @@
      "da": "Han"
     },
     {
-     "da": "Investoren"
+     "da": "Fonden"
     }
    ]
   },
@@ -707,8 +746,8 @@
      "subject": 2
     },
     "target": "kapital",
-    "en": "The investor invests his capital in stocks.",
-    "ru": "Инвестор инвестирует свой капитал в акции.",
+    "en": "The foundation invests its capital in stocks.",
+    "ru": "Фонд инвестирует свой капитал в акции.",
     "orders": []
    }
   ]
@@ -730,7 +769,7 @@
      "da": "Forslaget"
     },
     {
-     "da": "Resultaterne"
+     "da": "De nye regler"
     }
    ]
   },
@@ -758,8 +797,8 @@
      "subject": 2
     },
     "target": "problematiske",
-    "en": "The results are problematic.",
-    "ru": "Результаты проблематичны.",
+    "en": "The new rules are problematic.",
+    "ru": "Новые правила проблематичны.",
     "orders": []
    }
   ]
@@ -771,47 +810,56 @@
   "level": "B1",
   "situation": "society",
   "grammar": "noun-meaning",
-  "frame": "{subject} gennemgår et stort {target} i denne tid.",
+  "frame": "I de senere år er der sket et stort {target} {change}.",
   "slots": {
-   "subject": [
+   "change": [
     {
-     "da": "Virksomheden"
+     "da": "fra benzinbiler til elbiler"
     },
     {
-     "da": "Branchen"
+     "da": "fra kontanter til mobilbetaling"
     },
     {
-     "da": "Samfundet"
+     "da": "fra papir til skærm"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "change": 0
     },
     "target": "skift",
-    "en": "The company is undergoing a major change right now.",
-    "ru": "Компания переживает большие перемены в это время.",
-    "orders": []
+    "en": "In recent years there has been a big shift from petrol cars to electric cars.",
+    "ru": "В последние годы произошёл большой переход от бензиновых машин к электромобилям.",
+    "orders": [],
+    "accepted": [
+     "skifte"
+    ]
    },
    {
     "slots": {
-     "subject": 1
+     "change": 1
     },
     "target": "skift",
-    "en": "The industry is undergoing a major change right now.",
-    "ru": "Отрасль переживает большие перемены в это время.",
-    "orders": []
+    "en": "In recent years there has been a big shift from cash to mobile payment.",
+    "ru": "В последние годы произошёл большой переход от наличных к мобильной оплате.",
+    "orders": [],
+    "accepted": [
+     "skifte"
+    ]
    },
    {
     "slots": {
-     "subject": 2
+     "change": 2
     },
     "target": "skift",
-    "en": "Society is undergoing a major change right now.",
-    "ru": "Общество переживает большие перемены в это время.",
-    "orders": []
+    "en": "In recent years there has been a big shift from paper to screen.",
+    "ru": "В последние годы произошёл большой переход от бумаги к экрану.",
+    "orders": [],
+    "accepted": [
+     "skifte"
+    ]
    }
   ]
  },
@@ -822,7 +870,7 @@
   "level": "B1",
   "situation": "work",
   "grammar": "noun-meaning",
-  "frame": "{subject} starter sit {target} klokken ti.",
+  "frame": "{subject} har et langt {target} på fabrikken i dag.",
   "slots": {
    "subject": [
     {
@@ -832,7 +880,7 @@
      "da": "Hun"
     },
     {
-     "da": "Portneren"
+     "da": "Min far"
     }
    ]
   },
@@ -842,8 +890,8 @@
      "subject": 0
     },
     "target": "skift",
-    "en": "He starts his shift at ten o'clock.",
-    "ru": "Он начинает свою смену в десять часов.",
+    "en": "He has a long shift at the factory today.",
+    "ru": "У него сегодня долгая смена на заводе.",
     "orders": []
    },
    {
@@ -851,8 +899,8 @@
      "subject": 1
     },
     "target": "skift",
-    "en": "She starts her shift at ten o'clock.",
-    "ru": "Она начинает свою смену в десять часов.",
+    "en": "She has a long shift at the factory today.",
+    "ru": "У неё сегодня долгая смена на заводе.",
     "orders": []
    },
    {
@@ -860,8 +908,8 @@
      "subject": 2
     },
     "target": "skift",
-    "en": "The janitor starts his shift at ten o'clock.",
-    "ru": "Дворник начинает свою смену в десять часов.",
+    "en": "My father has a long shift at the factory today.",
+    "ru": "У моего отца сегодня долгая смена на заводе.",
     "orders": []
    }
   ]
@@ -873,17 +921,17 @@
   "level": "B1",
   "situation": "leisure",
   "grammar": "noun-indefinite",
-  "frame": "{subject} synger en kendt {target}.",
+  "frame": "{subject} nynner en kendt {target}.",
   "slots": {
    "subject": [
     {
      "da": "Hun"
     },
     {
-     "da": "Koret"
+     "da": "Min far"
     },
     {
-     "da": "Bandet"
+     "da": "Bedstemor"
     }
    ]
   },
@@ -893,8 +941,8 @@
      "subject": 0
     },
     "target": "melodi",
-    "en": "She sings a well-known melody.",
-    "ru": "Она поёт известную мелодию.",
+    "en": "She hums a well-known tune.",
+    "ru": "Она напевает известную мелодию.",
     "orders": []
    },
    {
@@ -902,8 +950,8 @@
      "subject": 1
     },
     "target": "melodi",
-    "en": "The choir sings a well-known melody.",
-    "ru": "Хор поёт известную мелодию.",
+    "en": "My father hums a well-known tune.",
+    "ru": "Мой папа напевает известную мелодию.",
     "orders": []
    },
    {
@@ -911,8 +959,8 @@
      "subject": 2
     },
     "target": "melodi",
-    "en": "The band sings a well-known melody.",
-    "ru": "Группа поёт известную мелодию.",
+    "en": "Grandma hums a well-known tune.",
+    "ru": "Бабушка напевает известную мелодию.",
     "orders": []
    }
   ]
@@ -924,7 +972,7 @@
   "level": "B1",
   "situation": "shopping",
   "grammar": "noun-meaning",
-  "frame": "{subject} binder pakken med et rødt {target}.",
+  "frame": "{subject} binder et rødt {target} om gaven.",
   "slots": {
    "subject": [
     {
@@ -944,8 +992,8 @@
      "subject": 0
     },
     "target": "bånd",
-    "en": "She ties the package with a red ribbon.",
-    "ru": "Она перевязывает посылку красной лентой.",
+    "en": "She ties a red ribbon around the present.",
+    "ru": "Она повязывает на подарок красную ленту.",
     "orders": []
    },
    {
@@ -953,8 +1001,8 @@
      "subject": 1
     },
     "target": "bånd",
-    "en": "The shop assistant ties the package with a red ribbon.",
-    "ru": "Продавец перевязывает посылку красной лентой.",
+    "en": "The shop assistant ties a red ribbon around the present.",
+    "ru": "Продавец повязывает на подарок красную ленту.",
     "orders": []
    },
    {
@@ -962,8 +1010,8 @@
      "subject": 2
     },
     "target": "bånd",
-    "en": "He ties the package with a red ribbon.",
-    "ru": "Он перевязывает посылку красной лентой.",
+    "en": "He ties a red ribbon around the present.",
+    "ru": "Он повязывает на подарок красную ленту.",
     "orders": []
    }
   ]
@@ -1024,8 +1072,8 @@
   "kind": "word",
   "sense_id": "9b6b643b-93ed-509a-b075-1251919fc32b",
   "level": "B1",
-  "situation": "transport",
-  "grammar": "noun-indefinite",
+  "situation": "communication-media",
+  "grammar": "noun-meaning",
   "frame": "{subject} beskriver deres lange {target} gennem landet.",
   "slots": {
    "subject": [
@@ -1047,8 +1095,12 @@
     },
     "target": "færd",
     "en": "The book describes their long journey through the country.",
-    "ru": "Книга описывает их долгий путь через страну.",
-    "orders": []
+    "ru": "Книга описывает их долгое путешествие через страну.",
+    "orders": [],
+    "accepted": [
+     "rejse",
+     "tur"
+    ]
    },
    {
     "slots": {
@@ -1056,8 +1108,12 @@
     },
     "target": "færd",
     "en": "The diary describes their long journey through the country.",
-    "ru": "Дневник описывает их долгий путь через страну.",
-    "orders": []
+    "ru": "Дневник описывает их долгое путешествие через страну.",
+    "orders": [],
+    "accepted": [
+     "rejse",
+     "tur"
+    ]
    },
    {
     "slots": {
@@ -1065,8 +1121,12 @@
     },
     "target": "færd",
     "en": "The film describes their long journey through the country.",
-    "ru": "Фильм описывает их долгий путь через страну.",
-    "orders": []
+    "ru": "Фильм описывает их долгое путешествие через страну.",
+    "orders": [],
+    "accepted": [
+     "rejse",
+     "tur"
+    ]
    }
   ]
  },
@@ -1084,7 +1144,7 @@
      "da": "Projektet"
     },
     {
-     "da": "Løsningen"
+     "da": "Byggeriet"
     },
     {
      "da": "Investeringen"
@@ -1106,8 +1166,8 @@
      "subject": 1
     },
     "target": "langsigtet",
-    "en": "The solution requires a long-term plan.",
-    "ru": "Решение требует долгосрочного плана.",
+    "en": "The construction project requires a long-term plan.",
+    "ru": "Строительство требует долгосрочного плана.",
     "orders": []
    },
    {
@@ -1135,7 +1195,7 @@
      "da": "Han"
     },
     {
-     "da": "Barnet"
+     "da": "Min søster"
     },
     {
      "da": "De"
@@ -1150,16 +1210,22 @@
     "target": "rask",
     "en": "He is well again after the illness.",
     "ru": "Он снова здоров после болезни.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "frisk"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "raskt",
-    "en": "The child is well again after the illness.",
-    "ru": "Ребёнок снова здоров после болезни.",
-    "orders": []
+    "target": "rask",
+    "en": "My sister is well again after the illness.",
+    "ru": "Моя сестра снова здорова после болезни.",
+    "orders": [],
+    "accepted": [
+     "frisk"
+    ]
    },
    {
     "slots": {
@@ -1168,7 +1234,10 @@
     "target": "raske",
     "en": "They are well again after the illness.",
     "ru": "Они снова здоровы после болезни.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "friske"
+    ]
    }
   ]
  },
@@ -1201,7 +1270,10 @@
     "target": "rask",
     "en": "She takes a brisk walk every morning.",
     "ru": "Она совершает бодрую прогулку каждое утро.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "frisk"
+    ]
    },
    {
     "slots": {
@@ -1210,7 +1282,10 @@
     "target": "rask",
     "en": "He takes a brisk walk every morning.",
     "ru": "Он совершает бодрую прогулку каждое утро.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "frisk"
+    ]
    },
    {
     "slots": {
@@ -1219,7 +1294,10 @@
     "target": "rask",
     "en": "Grandpa takes a brisk walk every morning.",
     "ru": "Дедушка совершает бодрую прогулку каждое утро.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "frisk"
+    ]
    }
   ]
  },
@@ -1251,8 +1329,11 @@
     },
     "target": "forebygger",
     "en": "People prevent illness by washing their hands.",
-    "ru": "Люди предотвращают болезни, моя руки.",
-    "orders": []
+    "ru": "Люди предотвращают болезни тем, что моют руки.",
+    "orders": [],
+    "accepted": [
+     "forhindrer"
+    ]
    },
    {
     "slots": {
@@ -1260,8 +1341,11 @@
     },
     "target": "forebygger",
     "en": "The nurse prevents illness by washing her hands.",
-    "ru": "Медсестра предотвращает болезни, моя руки.",
-    "orders": []
+    "ru": "Медсестра предотвращает болезни тем, что моет руки.",
+    "orders": [],
+    "accepted": [
+     "forhindrer"
+    ]
    },
    {
     "slots": {
@@ -1269,8 +1353,11 @@
     },
     "target": "forebygger",
     "en": "We prevent illness by washing our hands.",
-    "ru": "Мы предотвращаем болезни, моя руки.",
-    "orders": []
+    "ru": "Мы предотвращаем болезни тем, что моем руки.",
+    "orders": [],
+    "accepted": [
+     "forhindrer"
+    ]
    }
   ]
  },
@@ -1332,7 +1419,7 @@
   "level": "B1",
   "situation": "leisure",
   "grammar": "noun-meaning",
-  "frame": "{subject} studerer byens gamle {target}.",
+  "frame": "{subject} beundrer byens gamle {target}.",
   "slots": {
    "subject": [
     {
@@ -1352,8 +1439,8 @@
      "subject": 0
     },
     "target": "arkitektur",
-    "en": "The tourists study the city's old architecture.",
-    "ru": "Туристы изучают старую архитектуру города.",
+    "en": "The tourists admire the city's old architecture.",
+    "ru": "Туристы любуются старой архитектурой города.",
     "orders": []
    },
    {
@@ -1361,8 +1448,8 @@
      "subject": 1
     },
     "target": "arkitektur",
-    "en": "She studies the city's old architecture.",
-    "ru": "Она изучает старую архитектуру города.",
+    "en": "She admires the city's old architecture.",
+    "ru": "Она любуется старой архитектурой города.",
     "orders": []
    },
    {
@@ -1370,8 +1457,8 @@
      "subject": 2
     },
     "target": "arkitektur",
-    "en": "The students study the city's old architecture.",
-    "ru": "Студенты изучают старую архитектуру города.",
+    "en": "The students admire the city's old architecture.",
+    "ru": "Студенты любуются старой архитектурой города.",
     "orders": []
    }
   ]
@@ -1381,7 +1468,7 @@
   "kind": "word",
   "sense_id": "94deb026-2c75-5100-b836-86ec51801879",
   "level": "B1",
-  "situation": "abstract",
+  "situation": "leisure",
   "grammar": "noun-indefinite",
   "frame": "{subject} ser en mørk {target} i horisonten.",
   "slots": {
@@ -1390,7 +1477,7 @@
      "da": "Hun"
     },
     {
-     "da": "Vagten"
+     "da": "Min far"
     },
     {
      "da": "Vi"
@@ -1405,16 +1492,22 @@
     "target": "skikkelse",
     "en": "She sees a dark figure on the horizon.",
     "ru": "Она видит тёмную фигуру на горизонте.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "figur"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
     "target": "skikkelse",
-    "en": "The guard sees a dark figure on the horizon.",
-    "ru": "Охранник видит тёмную фигуру на горизонте.",
-    "orders": []
+    "en": "My father sees a dark figure on the horizon.",
+    "ru": "Мой отец видит тёмную фигуру на горизонте.",
+    "orders": [],
+    "accepted": [
+     "figur"
+    ]
    },
    {
     "slots": {
@@ -1423,7 +1516,10 @@
     "target": "skikkelse",
     "en": "We see a dark figure on the horizon.",
     "ru": "Мы видим тёмную фигуру на горизонте.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "figur"
+    ]
    }
   ]
  },
@@ -1456,7 +1552,10 @@
     "target": "pulje",
     "en": "The municipality sets up a new fund for cultural projects.",
     "ru": "Муниципалитет создаёт новый фонд для культурных проектов.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fond"
+    ]
    },
    {
     "slots": {
@@ -1465,7 +1564,10 @@
     "target": "pulje",
     "en": "The municipality sets up a new fund for sports clubs.",
     "ru": "Муниципалитет создаёт новый фонд для спортивных клубов.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fond"
+    ]
    },
    {
     "slots": {
@@ -1474,7 +1576,10 @@
     "target": "pulje",
     "en": "The municipality sets up a new fund for social work.",
     "ru": "Муниципалитет создаёт новый фонд для социальной работы.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fond"
+    ]
    }
   ]
  },
@@ -1505,7 +1610,7 @@
      "subject": 0
     },
     "target": "færgen",
-    "en": "We sail on the ferry to the island.",
+    "en": "We take the ferry to the island.",
     "ru": "Мы плывём на пароме на остров.",
     "orders": []
    },
@@ -1514,7 +1619,7 @@
      "subject": 1
     },
     "target": "færgen",
-    "en": "The tourists sail on the ferry to the island.",
+    "en": "The tourists take the ferry to the island.",
     "ru": "Туристы плывут на пароме на остров.",
     "orders": []
    },
@@ -1523,7 +1628,7 @@
      "subject": 2
     },
     "target": "færgen",
-    "en": "The family sails on the ferry to the island.",
+    "en": "The family takes the ferry to the island.",
     "ru": "Семья плывёт на пароме на остров.",
     "orders": []
    }
@@ -1558,7 +1663,10 @@
     "target": "besejrer",
     "en": "The team defeats the opponent in the final.",
     "ru": "Команда побеждает соперника в финале.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "slår"
+    ]
    },
    {
     "slots": {
@@ -1567,7 +1675,10 @@
     "target": "besejrer",
     "en": "The national team defeats the opponent in the final.",
     "ru": "Сборная побеждает соперника в финале.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "slår"
+    ]
    },
    {
     "slots": {
@@ -1576,7 +1687,10 @@
     "target": "besejrer",
     "en": "She defeats the opponent in the final.",
     "ru": "Она побеждает соперника в финале.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "slår"
+    ]
    }
   ]
  },
@@ -1609,7 +1723,10 @@
     "target": "hjemland",
     "en": "He returns to his home country.",
     "ru": "Он возвращается на родину.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fædreland"
+    ]
    },
    {
     "slots": {
@@ -1618,7 +1735,10 @@
     "target": "hjemland",
     "en": "She returns to her home country.",
     "ru": "Она возвращается на родину.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fædreland"
+    ]
    },
    {
     "slots": {
@@ -1627,7 +1747,10 @@
     "target": "hjemland",
     "en": "The refugee returns to his home country.",
     "ru": "Беженец возвращается на родину.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fædreland"
+    ]
    }
   ]
  },
@@ -1660,7 +1783,10 @@
     "target": "personlighed",
     "en": "She is a well-known personality on Danish TV.",
     "ru": "Она известная личность на датском телевидении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "person"
+    ]
    },
    {
     "slots": {
@@ -1669,7 +1795,10 @@
     "target": "personlighed",
     "en": "He is a well-known personality on Danish TV.",
     "ru": "Он известная личность на датском телевидении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "person"
+    ]
    },
    {
     "slots": {
@@ -1678,7 +1807,10 @@
     "target": "personlighed",
     "en": "The host is a well-known personality on Danish TV.",
     "ru": "Ведущий — известная личность на датском телевидении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "person"
+    ]
    }
   ]
  },
@@ -1711,7 +1843,10 @@
     "target": "personlighed",
     "en": "She has a strong personality.",
     "ru": "У неё сильный характер.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "karakter"
+    ]
    },
    {
     "slots": {
@@ -1720,7 +1855,10 @@
     "target": "personlighed",
     "en": "My boss has a strong personality.",
     "ru": "У моего начальника сильный характер.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "karakter"
+    ]
    },
    {
     "slots": {
@@ -1729,7 +1867,10 @@
     "target": "personlighed",
     "en": "He has a strong personality.",
     "ru": "У него сильный характер.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "karakter"
+    ]
    }
   ]
  },
@@ -1744,13 +1885,13 @@
   "slots": {
    "subject": [
     {
-     "da": "Krigen"
+     "da": "Lønstigningerne"
     },
     {
      "da": "Oliepriserne"
     },
     {
-     "da": "Krisen"
+     "da": "Manglen på varer"
     }
    ]
   },
@@ -1760,8 +1901,8 @@
      "subject": 0
     },
     "target": "inflationen",
-    "en": "The war pushes inflation up.",
-    "ru": "Война разгоняет инфляцию.",
+    "en": "The wage increases push inflation up.",
+    "ru": "Рост зарплат разгоняет инфляцию.",
     "orders": []
    },
    {
@@ -1778,8 +1919,8 @@
      "subject": 2
     },
     "target": "inflationen",
-    "en": "The crisis pushes inflation up.",
-    "ru": "Кризис разгоняет инфляцию.",
+    "en": "The shortage of goods pushes inflation up.",
+    "ru": "Нехватка товаров разгоняет инфляцию.",
     "orders": []
    }
   ]
@@ -1842,47 +1983,56 @@
   "level": "B1",
   "situation": "work",
   "grammar": "noun-meaning",
-  "frame": "{subject} fejrer sin nye {target}.",
+  "frame": "{target} af {object} tog lang tid.",
   "slots": {
-   "subject": [
+   "object": [
     {
-     "da": "Han"
+     "da": "den nye lærer"
     },
     {
-     "da": "Hun"
+     "da": "en ny direktør"
     },
     {
-     "da": "Min ven"
+     "da": "de nye medarbejdere"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "object": 0
     },
-    "target": "ansættelse",
-    "en": "He celebrates his new employment.",
-    "ru": "Он отмечает своё новое трудоустройство.",
-    "orders": []
+    "target": "ansættelsen",
+    "en": "The hiring of the new teacher took a long time.",
+    "ru": "Наём нового учителя занял много времени.",
+    "orders": [],
+    "accepted": [
+     "rekrutteringen"
+    ]
    },
    {
     "slots": {
-     "subject": 1
+     "object": 1
     },
-    "target": "ansættelse",
-    "en": "She celebrates her new employment.",
-    "ru": "Она отмечает своё новое трудоустройство.",
-    "orders": []
+    "target": "ansættelsen",
+    "en": "The hiring of a new director took a long time.",
+    "ru": "Наём нового директора занял много времени.",
+    "orders": [],
+    "accepted": [
+     "rekrutteringen"
+    ]
    },
    {
     "slots": {
-     "subject": 2
+     "object": 2
     },
-    "target": "ansættelse",
-    "en": "My friend celebrates his new employment.",
-    "ru": "Мой друг отмечает своё новое трудоустройство.",
-    "orders": []
+    "target": "ansættelsen",
+    "en": "The hiring of the new employees took a long time.",
+    "ru": "Наём новых сотрудников занял много времени.",
+    "orders": [],
+    "accepted": [
+     "rekrutteringen"
+    ]
    }
   ]
  },
@@ -1893,7 +2043,7 @@
   "level": "B1",
   "situation": "food-drink",
   "grammar": "noun-definite",
-  "frame": "{subject} hælder {target} i kaffen.",
+  "frame": "{subject} stiller {target} tilbage i køleskabet.",
   "slots": {
    "subject": [
     {
@@ -1913,8 +2063,8 @@
      "subject": 0
     },
     "target": "mælken",
-    "en": "He pours the milk into the coffee.",
-    "ru": "Он наливает молоко в кофе.",
+    "en": "He puts the milk back in the fridge.",
+    "ru": "Он ставит молоко обратно в холодильник.",
     "orders": []
    },
    {
@@ -1922,8 +2072,8 @@
      "subject": 1
     },
     "target": "mælken",
-    "en": "She pours the milk into the coffee.",
-    "ru": "Она наливает молоко в кофе.",
+    "en": "She puts the milk back in the fridge.",
+    "ru": "Она ставит молоко обратно в холодильник.",
     "orders": []
    },
    {
@@ -1931,8 +2081,8 @@
      "subject": 2
     },
     "target": "mælken",
-    "en": "I pour the milk into the coffee.",
-    "ru": "Я наливаю молоко в кофе.",
+    "en": "I put the milk back in the fridge.",
+    "ru": "Я ставлю молоко обратно в холодильник.",
     "orders": []
    }
   ]
@@ -2017,7 +2167,10 @@
     "target": "uro",
     "en": "The war creates unrest in the country.",
     "ru": "Война порождает волнения в стране.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "uroligheder"
+    ]
    },
    {
     "slots": {
@@ -2026,7 +2179,10 @@
     "target": "uro",
     "en": "The election creates unrest in the country.",
     "ru": "Выборы порождают волнения в стране.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "uroligheder"
+    ]
    },
    {
     "slots": {
@@ -2035,7 +2191,10 @@
     "target": "uro",
     "en": "The crisis creates unrest in the country.",
     "ru": "Кризис порождает волнения в стране.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "uroligheder"
+    ]
    }
   ]
  }

@@ -1,0 +1,248 @@
+[
+ {
+  "sense_id": "b86c8840-4f75-5037-a1d1-b1dd4a5ceb07",
+  "lemma": "bonde",
+  "changes": [
+   "accepted +landmanden",
+   "slot 'landet' → 'sine marker'"
+  ]
+ },
+ {
+  "sense_id": "e964ab94-1e9c-5eef-99db-a713ba042378",
+  "lemma": "bonde",
+  "changes": [
+   "frame + 'på skakbrættet' so the Danish alone selects the chess sense",
+   "subject 'Skakspilleren' → 'Min modstander'"
+  ]
+ },
+ {
+  "sense_id": "2ec900f1-f82c-5edd-ba70-d2091daa0210",
+  "lemma": "identificere",
+  "changes": [
+   "subject 'Vidnet' → 'Eksperterne' (witness 'идентифицирует' is unnatural Russian; 'genkender' would fit)"
+  ]
+ },
+ {
+  "sense_id": "fbeb6a2c-b48e-5394-a6e1-d471bad216a1",
+  "lemma": "kristendom",
+  "changes": [
+   "frame rewritten: 'underviser i kristendommen' (subject is 'kristendom' without article) → 'handler om kristendommens historie'"
+  ]
+ },
+ {
+  "sense_id": "873e90bb-655f-542f-823d-6fdf1dc4da07",
+  "lemma": "håndværker",
+  "changes": [
+   "objects 'køkkenet'/'badeværelset' (one does not 'repair' a kitchen) → 'vinduet'/'døren'"
+  ]
+ },
+ {
+  "sense_id": "45212c9a-56bb-5ae0-a2fd-3cd663ab0cce",
+  "lemma": "flyde",
+  "changes": [
+   "subjects 'Båden'/'Isen' → 'Bladet'/'Bolden' ('Лодка плавает' back-translates to 'sejler')"
+  ]
+ },
+ {
+  "sense_id": "f7ff0545-ae34-576a-8964-af7e70a0afa5",
+  "lemma": "flyde",
+  "changes": [
+   "present → past 'flød' (one spill), 'ud over hele bordet'",
+   "accepted +løb",
+   "grammar verb-meaning → verb-past"
+  ]
+ },
+ {
+  "sense_id": "e9d5b5e4-1bf7-542a-91d9-2faff1c53f4d",
+  "lemma": "krydse",
+  "changes": [
+   "particle 'af' added (krydse af)",
+   "situation services → education",
+   "grammar verb-meaning → particle-verbs"
+  ]
+ },
+ {
+  "sense_id": "a97574f4-5009-55db-b0a8-e638575ba693",
+  "lemma": "oplæg",
+  "changes": [
+   "accepted +foredrag +indlæg"
+  ]
+ },
+ {
+  "sense_id": "3cd278b7-8600-579e-8e36-4e9ace503f0f",
+  "lemma": "oplæg",
+  "changes": [
+   "accepted +forslag"
+  ]
+ },
+ {
+  "sense_id": "230b18e4-0ecd-59aa-9e6d-09205398db92",
+  "lemma": "kapital",
+  "changes": [
+   "subject 'Investoren' (investor invests: tautology) → 'Fonden'"
+  ]
+ },
+ {
+  "sense_id": "48a2e29a-82bf-5198-9325-a9f7c3eb7a13",
+  "lemma": "problematisk",
+  "changes": [
+   "subject 'Resultaterne' → 'De nye regler'"
+  ]
+ },
+ {
+  "sense_id": "2de3c73b-79f0-5a85-b1ac-2bef8a9c0f57",
+  "lemma": "skift",
+  "changes": [
+   "frame rewritten ('gennemgår et stort skift i denne tid' had plural 'перемены' and 'right now')",
+   "accepted +skifte"
+  ]
+ },
+ {
+  "sense_id": "b464f377-08e7-5871-a187-44b50a8d68f4",
+  "lemma": "skift",
+  "changes": [
+   "frame rewritten ('starter sit skift' unidiomatic; 'Portneren' ≠ janitor/дворник)"
+  ]
+ },
+ {
+  "sense_id": "6ad2ff0f-42b2-5847-8c14-b2370bd0eaff",
+  "lemma": "melodi",
+  "changes": [
+   "'synger' → 'nynner' ('Bandet synger' unnatural), subjects changed"
+  ]
+ },
+ {
+  "sense_id": "86033422-8502-50d7-a917-c481541274f6",
+  "lemma": "bånd",
+  "changes": [
+   "'binder pakken med et rødt bånd' → 'binder et rødt bånd om gaven'"
+  ]
+ },
+ {
+  "sense_id": "9b6b643b-93ed-509a-b075-1251919fc32b",
+  "lemma": "færd",
+  "changes": [
+   "accepted +rejse +tur",
+   "ru 'путь' → 'путешествие' (путь → vej)",
+   "grammar noun-indefinite → noun-meaning",
+   "situation transport → communication-media"
+  ]
+ },
+ {
+  "sense_id": "05ec097d-fd1d-56b2-a1ba-08b0509546c9",
+  "lemma": "langsigtet",
+  "changes": [
+   "subject 'Løsningen' → 'Byggeriet'"
+  ]
+ },
+ {
+  "sense_id": "354939de-07ce-520f-9d5f-bd3ffcd02d97",
+  "lemma": "rask",
+  "changes": [
+   "accepted +frisk/friske",
+   "subject 'Barnet' ('Barnet er raskt' sounds stilted) → 'Min søster'"
+  ]
+ },
+ {
+  "sense_id": "697f10ad-d617-55c1-b379-68188fa8334e",
+  "lemma": "rask",
+  "changes": [
+   "accepted +frisk"
+  ]
+ },
+ {
+  "sense_id": "c76e659b-b7a1-5d5d-8bfc-d31c28513a7e",
+  "lemma": "forebygge",
+  "changes": [
+   "accepted +forhindrer",
+   "ru 'моя руки' → 'тем, что моют руки'"
+  ]
+ },
+ {
+  "sense_id": "c11f87d1-e42e-5db0-8dec-71d33251c8e7",
+  "lemma": "arkitektur",
+  "changes": [
+   "'studerer' → 'beundrer' ('De studerende studerer' tautology)"
+  ]
+ },
+ {
+  "sense_id": "94deb026-2c75-5100-b836-86ec51801879",
+  "lemma": "skikkelse",
+  "changes": [
+   "accepted +figur",
+   "situation abstract → leisure",
+   "subject 'Vagten' → 'Min far'"
+  ]
+ },
+ {
+  "sense_id": "492ed58b-6cd9-5510-a154-80ae08b35800",
+  "lemma": "pulje",
+  "changes": [
+   "accepted +fond"
+  ]
+ },
+ {
+  "sense_id": "0113704b-8578-5f99-bd83-a037cab9795f",
+  "lemma": "færge",
+  "changes": [
+   "en 'sail on the ferry' → 'take the ferry'"
+  ]
+ },
+ {
+  "sense_id": "c7cde64b-ba5c-5beb-bca9-52af1b169b18",
+  "lemma": "besejre",
+  "changes": [
+   "accepted +slår"
+  ]
+ },
+ {
+  "sense_id": "9c507d16-369f-5ed8-b070-b56f53b49caa",
+  "lemma": "hjemland",
+  "changes": [
+   "accepted +fædreland"
+  ]
+ },
+ {
+  "sense_id": "6bf1975e-00fb-55b8-95cb-b1eb7fcbd5c1",
+  "lemma": "personlighed",
+  "changes": [
+   "accepted +person"
+  ]
+ },
+ {
+  "sense_id": "6ecb8cbf-db78-52e8-a0a8-10f5cd54c011",
+  "lemma": "personlighed",
+  "changes": [
+   "accepted +karakter"
+  ]
+ },
+ {
+  "sense_id": "f4b25f88-81f4-52eb-ae9f-5b74be0ecbe5",
+  "lemma": "inflation",
+  "changes": [
+   "subjects 'Krigen'/'Krisen' (repeated from uro) → 'Lønstigningerne'/'Manglen på varer'"
+  ]
+ },
+ {
+  "sense_id": "9a67e2ee-793e-5099-b881-c8103b6f90a5",
+  "lemma": "ansættelse",
+  "changes": [
+   "frame rewritten ('fejrer sin nye ansættelse' stiff; 'трудоустройство' unnatural; 'stilling' fitted)",
+   "accepted +rekrutteringen"
+  ]
+ },
+ {
+  "sense_id": "7708a0ad-1962-5e03-80c3-22aba1615208",
+  "lemma": "mælk",
+  "changes": [
+   "'hælder mælken i kaffen' (definite unnatural) → 'stiller mælken tilbage i køleskabet'"
+  ]
+ },
+ {
+  "sense_id": "a6a6ac69-e292-52a8-9ae5-b008506203be",
+  "lemma": "uro",
+  "changes": [
+   "accepted +uroligheder"
+  ]
+ }
+]
