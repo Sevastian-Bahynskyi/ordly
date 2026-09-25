@@ -1,0 +1,6998 @@
+[
+ {
+  "id": "37e699a3-952a-5c8b-a5c6-fcb12f5fb891",
+  "family_id": "eaecfaeb-5f99-5948-98c6-6b77fdc49f61",
+  "lemma": "efter",
+  "sense": {
+   "ru": "после",
+   "en": "after (time)"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {verb} {target} {event}.",
+  "variant": {
+   "id": "37e699a3-952a-5c8b-a5c6-fcb12f5fb891",
+   "version": "ab2efd244620b3ae",
+   "danish": "Børnene leger udenfor efter skolen.",
+   "target": "efter",
+   "en": "The children play outside after school.",
+   "ru": "Дети играют на улице после школы.",
+   "orders": [
+    "Efter skolen leger børnene udenfor."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "72db911c-9105-5ce0-b31c-1597ebf40482",
+  "family_id": "03dd5d68-02dc-5e2d-a120-7ed274033def",
+  "lemma": "en",
+  "sense": {
+   "ru": "неопределённый артикль (при существительных общего рода)",
+   "en": "a, an (indefinite article, common gender)"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} ser {target} {noun} i haven.",
+  "variant": {
+   "id": "72db911c-9105-5ce0-b31c-1597ebf40482",
+   "version": "62c31655aee539d4",
+   "danish": "Børnene ser en hund i haven.",
+   "target": "en",
+   "en": "The children see a dog in the garden.",
+   "ru": "Дети видят собаку в саду.",
+   "orders": [
+    "I haven ser børnene en hund."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "202299ce-5c3e-5be9-9d11-c8d05dd3c3e9",
+  "family_id": "47c222e6-3b3e-5a62-8284-e730e6627ae8",
+  "lemma": "for",
+  "sense": {
+   "ru": "слишком",
+   "en": "too (excessively)"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} er {target} {adj} til at købe.",
+  "variant": {
+   "id": "202299ce-5c3e-5be9-9d11-c8d05dd3c3e9",
+   "version": "93b2fd2b1a0a9e00",
+   "danish": "Huset er for dyrt til at købe.",
+   "target": "for",
+   "en": "The house is too expensive to buy.",
+   "ru": "Дом слишком дорогой, чтобы его купить.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "92be8809-c048-5750-bd34-8aa6be43577c",
+  "family_id": "8079e78a-cbc2-54c9-b704-000d59fbcc73",
+  "lemma": "kun",
+  "sense": {
+   "ru": "только",
+   "en": "only"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} har {target} {amount}.",
+  "variant": {
+   "id": "92be8809-c048-5750-bd34-8aa6be43577c",
+   "version": "ea9cecd459d55294",
+   "danish": "Jeg har kun én krone.",
+   "target": "kun",
+   "en": "I only have one krone.",
+   "ru": "У меня только одна крона.",
+   "orders": [],
+   "accepted": [
+    "bare",
+    "blot"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "79cbf08d-983e-51a0-9403-d15b4a1fc81f",
+  "family_id": "3ae42bc0-d04d-5270-86d2-c6fef25206c3",
+  "lemma": "nu",
+  "sense": {
+   "ru": "сейчас",
+   "en": "now"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} sover {target}.",
+  "variant": {
+   "id": "79cbf08d-983e-51a0-9403-d15b4a1fc81f",
+   "version": "3c7b18c242e8073d",
+   "danish": "Katten sover nu.",
+   "target": "nu",
+   "en": "The cat is sleeping now.",
+   "ru": "Кошка сейчас спит.",
+   "orders": [
+    "Nu sover katten."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "b39e8732-f7a5-500d-b122-aeb8ccbf976c",
+  "family_id": "6ec082d6-62ac-5d31-9425-982e073f430a",
+  "lemma": "blive",
+  "sense": {
+   "ru": "становиться",
+   "en": "to become"
+  },
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {adj}.",
+  "variant": {
+   "id": "b39e8732-f7a5-500d-b122-aeb8ccbf976c",
+   "version": "180bddbab1ceb542",
+   "danish": "Himlen bliver mørk.",
+   "target": "bliver",
+   "en": "The sky is getting dark.",
+   "ru": "Небо становится тёмным.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "b7c408d5-dffa-531c-bab1-de8bac2adb71",
+  "family_id": "f02895f7-cc10-5dc2-9a07-964879f5249f",
+  "lemma": "til",
+  "sense": {
+   "ru": "для",
+   "en": "for"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{item} er {target} {purpose}.",
+  "variant": {
+   "id": "b7c408d5-dffa-531c-bab1-de8bac2adb71",
+   "version": "5a8311c80afa4b42",
+   "danish": "Denne kop er til te.",
+   "target": "til",
+   "en": "This cup is for tea.",
+   "ru": "Эта чашка для чая.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "bbdd5f1e-0a46-576d-aeeb-d813f03e7d32",
+  "family_id": "1b3b841f-8322-5c45-9767-74a3a0530f45",
+  "lemma": "på",
+  "sense": {
+   "ru": "в (при обозначении дней недели и времени)",
+   "en": "on (with days and times)"
+  },
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Vi har møde {target} {day}.",
+  "variant": {
+   "id": "bbdd5f1e-0a46-576d-aeeb-d813f03e7d32",
+   "version": "338f0057935f57ed",
+   "danish": "Vi har møde på fredag.",
+   "target": "på",
+   "en": "We have a meeting on Friday.",
+   "ru": "У нас встреча в пятницу.",
+   "orders": [
+    "På fredag har vi møde."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "2c91c452-2b2c-5cf5-8e78-decf8fb8f236",
+  "family_id": "42b7fa69-ea56-50e2-a545-e8175a218381",
+  "lemma": "så",
+  "sense": {
+   "ru": "так",
+   "en": "so"
+  },
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Det er {target} {adj} i dag.",
+  "variant": {
+   "id": "2c91c452-2b2c-5cf5-8e78-decf8fb8f236",
+   "version": "2691cc6f17b2ead7",
+   "danish": "Det er så blæsende i dag.",
+   "target": "så",
+   "en": "It is so windy today.",
+   "ru": "Сегодня так ветрено.",
+   "orders": [
+    "I dag er det så blæsende."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "2eb1a15b-061b-5af9-96f1-a66aaaf4d07b",
+  "family_id": "62846ccf-51f1-57bd-972a-4e433d6c0aa3",
+  "lemma": "give",
+  "sense": {
+   "ru": "давать",
+   "en": "to give"
+  },
+  "level": "A1",
+  "situation": "family",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {target} {gift}.",
+  "variant": {
+   "id": "2eb1a15b-061b-5af9-96f1-a66aaaf4d07b",
+   "version": "6834283631fc43ff",
+   "danish": "Han giver sin søster en bog.",
+   "target": "giver",
+   "en": "He is giving his sister a book.",
+   "ru": "Он даёт сестре книгу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "1f49ed6e-b812-53c8-b5ea-30c63a6447a2",
+  "family_id": "2062f895-48d8-525c-a3a1-e8804cd3051b",
+  "lemma": "stå",
+  "sense": {
+   "ru": "стоять",
+   "en": "to stand"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {target} {place}.",
+  "variant": {
+   "id": "1f49ed6e-b812-53c8-b5ea-30c63a6447a2",
+   "version": "6b04efd09dba4f9a",
+   "danish": "Han står ved vinduet.",
+   "target": "står",
+   "en": "He is standing by the window.",
+   "ru": "Он стоит у окна.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "45826a1e-70cc-52dd-9b82-bddbbfb83094",
+  "family_id": "4ca510d0-587c-5a3f-90f1-3eb9333b44ae",
+  "lemma": "mod",
+  "sense": {
+   "ru": "к, по направлению к",
+   "en": "towards"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {verb} {target} {place}.",
+  "variant": {
+   "id": "45826a1e-70cc-52dd-9b82-bddbbfb83094",
+   "version": "d7e32421d5ff3543",
+   "danish": "Fuglene flyver mod syd.",
+   "target": "mod",
+   "en": "The birds are flying south.",
+   "ru": "Птицы летят на юг.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "295ea29e-0e6f-53cd-bc90-2d5fc0431f28",
+  "family_id": "178f1b3c-59aa-5c59-8b5d-31646d73bfda",
+  "lemma": "tage",
+  "sense": {
+   "ru": "брать",
+   "en": "to take"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {target} {object}.",
+  "variant": {
+   "id": "295ea29e-0e6f-53cd-bc90-2d5fc0431f28",
+   "version": "d4c846d06d07aacb",
+   "danish": "Han tager et stykke kage fra tallerkenen.",
+   "target": "tager",
+   "en": "He takes a piece of cake from the plate.",
+   "ru": "Он берёт кусок торта с тарелки.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "27152ad7-c8c9-5fd6-9b1d-608f24673a37",
+  "family_id": "0342874e-1f05-5071-a559-f1ab01042e19",
+  "lemma": "april",
+  "sense": {
+   "ru": "апрель",
+   "en": "April"
+  },
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} holder ferie i {target}.",
+  "variant": {
+   "id": "27152ad7-c8c9-5fd6-9b1d-608f24673a37",
+   "version": "49692731572cb415",
+   "danish": "Vi holder ferie i april.",
+   "target": "april",
+   "en": "We are on vacation in April.",
+   "ru": "У нас отпуск в апреле.",
+   "orders": [
+    "I april holder vi ferie."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "8d4c50ef-c066-574a-bb13-f9027d5e6b69",
+  "family_id": "5f1fcbde-5a36-58ee-9a87-bf0f6b624dfa",
+  "lemma": "under",
+  "sense": {
+   "ru": "под",
+   "en": "under, beneath"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{object} ligger {target} {place}.",
+  "variant": {
+   "id": "8d4c50ef-c066-574a-bb13-f9027d5e6b69",
+   "version": "4becc6f3dc76baca",
+   "danish": "Katten ligger under bordet.",
+   "target": "under",
+   "en": "The cat is lying under the table.",
+   "ru": "Кошка лежит под столом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "b7bccda8-0333-51f5-8439-c1484cebf586",
+  "family_id": "9f29e7ac-436f-5659-a1df-386ae0768852",
+  "lemma": "krone",
+  "sense": {
+   "ru": "крона (датская валюта)",
+   "en": "krone (Danish currency)"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} koster {amount} {target}.",
+  "variant": {
+   "id": "b7bccda8-0333-51f5-8439-c1484cebf586",
+   "version": "50086af5f6bc8c65",
+   "danish": "Billetten koster hundrede kroner.",
+   "target": "kroner",
+   "en": "The ticket costs a hundred kroner.",
+   "ru": "Билет стоит сто крон.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "39f3221d-34e5-5779-aff9-7e8bf366904e",
+  "family_id": "4bd9e73e-61fb-53d9-878e-eb067c1c9c3d",
+  "lemma": "her",
+  "sense": {
+   "ru": "здесь",
+   "en": "here"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {verb} {target}.",
+  "variant": {
+   "id": "39f3221d-34e5-5779-aff9-7e8bf366904e",
+   "version": "39fd28763b21e6c5",
+   "danish": "Min cykel står her.",
+   "target": "her",
+   "en": "My bike is here.",
+   "ru": "Мой велосипед стоит здесь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "0b4b23c4-799d-5fa7-bd12-5baf05f5c616",
+  "family_id": "e8200119-e664-57e7-940d-237e788061b8",
+  "lemma": "blive",
+  "sense": {
+   "ru": "оставаться, находиться",
+   "en": "to stay, to remain"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} hjemme {time}.",
+  "variant": {
+   "id": "0b4b23c4-799d-5fa7-bd12-5baf05f5c616",
+   "version": "8965ca1e4f3764d0",
+   "danish": "Vi bliver hjemme i weekenden.",
+   "target": "bliver",
+   "en": "We are staying home this weekend.",
+   "ru": "Мы остаёмся дома на выходных.",
+   "orders": [
+    "I weekenden bliver vi hjemme."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "4f09b9e2-dbc2-576f-b462-701382ea57bb",
+  "family_id": "c84c5b1c-e3a6-542f-b7d3-4d80e1fff19d",
+  "lemma": "se",
+  "sense": {
+   "ru": "видеть, смотреть",
+   "en": "to see"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} {object} {place}.",
+  "variant": {
+   "id": "4f09b9e2-dbc2-576f-b462-701382ea57bb",
+   "version": "f754103eec5ce8ab",
+   "danish": "Hun ser en stjerne på himlen.",
+   "target": "ser",
+   "en": "She sees a star in the sky.",
+   "ru": "Она видит звезду на небе.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "95646723-2ea4-5d7a-9521-72ce4e1c3b95",
+  "family_id": "0e9a40da-4e63-5197-b3a3-f526989a5eb7",
+  "lemma": "mange",
+  "sense": {
+   "ru": "многие, много",
+   "en": "many"
+  },
+  "level": "A1",
+  "situation": "family",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} har {target} {noun}.",
+  "variant": {
+   "id": "95646723-2ea4-5d7a-9521-72ce4e1c3b95",
+   "version": "5190b825ad7e7da2",
+   "danish": "Jeg har mange venner.",
+   "target": "mange",
+   "en": "I have many friends.",
+   "ru": "У меня много друзей.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "8d8b427f-1904-5736-9b14-4ac5bbcaff51",
+  "family_id": "c52de275-cbe7-51f0-b3c5-c9b99b7571d0",
+  "lemma": "være",
+  "sense": {
+   "ru": "быть",
+   "en": "to be"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {adj} i dag.",
+  "variant": {
+   "id": "8d8b427f-1904-5736-9b14-4ac5bbcaff51",
+   "version": "b3bcac32417910c0",
+   "danish": "Han er sulten i dag.",
+   "target": "er",
+   "en": "He is hungry today.",
+   "ru": "Он сегодня голоден.",
+   "orders": [
+    "I dag er han sulten."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "23f868de-a23e-5e88-a128-6f88d7310187",
+  "family_id": "7862e20b-a5e6-5c4c-b594-725552d17dd3",
+  "lemma": "at",
+  "sense": {
+   "ru": "частица перед инфинитивом глагола (не переводится отдельно)",
+   "en": "to (before a verb's infinitive)"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg elsker {target} {verb_phrase}.",
+  "variant": {
+   "id": "23f868de-a23e-5e88-a128-6f88d7310187",
+   "version": "217a7d550002bf75",
+   "danish": "Jeg elsker at rejse til nye lande.",
+   "target": "at",
+   "en": "I love to travel to new countries.",
+   "ru": "Я люблю путешествовать в новые страны.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7fc2de59-1c67-558c-a599-75798dc51f00",
+  "family_id": "072e3ad3-8783-5d39-98f8-1bfd6b961042",
+  "lemma": "den",
+  "sense": {
+   "ru": "он, она, это (о предмете общего рода)",
+   "en": "it (a common-gender thing)"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} har en {noun}, og {target} er {adj}.",
+  "variant": {
+   "id": "7fc2de59-1c67-558c-a599-75798dc51f00",
+   "version": "22d0850d661df4bc",
+   "danish": "Han har en telefon, og den er dyr.",
+   "target": "den",
+   "en": "He has a phone, and it is expensive.",
+   "ru": "У него есть телефон, и он дорогой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "761a6480-eeb2-59ba-ad92-58b42945ebe7",
+  "family_id": "4d42fcaa-2e8f-5d19-adbb-e848c1ccde3f",
+  "lemma": "dag",
+  "sense": {
+   "ru": "день",
+   "en": "day"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Det har været en {adj} {target}.",
+  "variant": {
+   "id": "761a6480-eeb2-59ba-ad92-58b42945ebe7",
+   "version": "593b1fcd4369b8b4",
+   "danish": "Det har været en travl dag.",
+   "target": "dag",
+   "en": "It has been a busy day.",
+   "ru": "Это был напряжённый день.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "46bc4208-f8cd-55c6-b3a6-61b6cddb31c7",
+  "family_id": "5d844661-f309-5560-919d-59253ffab25b",
+  "lemma": "hvis",
+  "sense": {
+   "ru": "чей, чья, чьё",
+   "en": "whose"
+  },
+  "level": "A1",
+  "situation": "social",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} {item} er det?",
+  "variant": {
+   "id": "46bc4208-f8cd-55c6-b3a6-61b6cddb31c7",
+   "version": "0e621dc0522450df",
+   "danish": "Hvis bil er det?",
+   "target": "hvis",
+   "en": "Whose car is it?",
+   "ru": "Чья это машина?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b780f004-1b09-510c-bf97-21e7cd55b8a4",
+  "family_id": "edc4a538-1c60-5803-b039-b3a5863c6fcf",
+  "lemma": "her",
+  "sense": {
+   "ru": "сюда",
+   "en": "here (to this place)"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{verb} {target}!",
+  "variant": {
+   "id": "b780f004-1b09-510c-bf97-21e7cd55b8a4",
+   "version": "06fbb46b10143e69",
+   "danish": "Kom her!",
+   "target": "her",
+   "en": "Come here!",
+   "ru": "Иди сюда!",
+   "orders": [],
+   "accepted": [
+    "herhen",
+    "hid",
+    "herover"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "3e6e85b6-4be0-5d93-b473-78d8bdc2f2be",
+  "family_id": "a1f1587b-c60b-56a8-84bb-1a6b2c8676f4",
+  "lemma": "så",
+  "sense": {
+   "ru": "потом, затем",
+   "en": "then (next)"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Vi spiser morgenmad, og {target} går vi {place}.",
+  "variant": {
+   "id": "3e6e85b6-4be0-5d93-b473-78d8bdc2f2be",
+   "version": "c0475492cfa2ef5b",
+   "danish": "Vi spiser morgenmad, og så går vi en tur.",
+   "target": "så",
+   "en": "We eat breakfast, and then we go for a walk.",
+   "ru": "Мы завтракаем, а потом идём гулять.",
+   "orders": [],
+   "accepted": [
+    "bagefter",
+    "derefter",
+    "dernæst"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "5c5dc4ba-47ab-5758-a487-f7c34f1220f2",
+  "family_id": "439f172c-f2b2-5bd5-bce3-692288e264e9",
+  "lemma": "også",
+  "sense": {
+   "ru": "тоже, также",
+   "en": "also, too"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} kan {target} lide {object}.",
+  "variant": {
+   "id": "5c5dc4ba-47ab-5758-a487-f7c34f1220f2",
+   "version": "5a7bd4bd273f1d56",
+   "danish": "Jeg kan også lide te.",
+   "target": "også",
+   "en": "I also like tea.",
+   "ru": "Я тоже люблю чай.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e9098211-3c5d-5a1c-87b4-a4ae41493357",
+  "family_id": "3092686f-bd43-51bd-b77d-bd55e980c584",
+  "lemma": "lang",
+  "sense": {
+   "ru": "длинный, долгий",
+   "en": "long"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "e9098211-3c5d-5a1c-87b4-a4ae41493357",
+   "version": "ecb96b4f9d337efa",
+   "danish": "Mødet er langt.",
+   "target": "langt",
+   "en": "The meeting is long.",
+   "ru": "Встреча долгая.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "18e61e4f-f86b-533a-8af1-9e67a8e7ccc1",
+  "family_id": "40ccd53f-30b1-5999-b195-2a118dcf2c27",
+  "lemma": "en",
+  "sense": {
+   "ru": "один",
+   "en": "one"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} har kun {target} {noun}, ikke to.",
+  "variant": {
+   "id": "18e61e4f-f86b-533a-8af1-9e67a8e7ccc1",
+   "version": "f47343e09218415a",
+   "danish": "Hun har kun ét hus, ikke to.",
+   "target": "ét",
+   "en": "She only has one house, not two.",
+   "ru": "У неё только один дом, а не два.",
+   "orders": [],
+   "accepted": [
+    "et"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d33b4f76-4cc8-5fea-8ff8-c9a10990ad8f",
+  "family_id": "c0f9f021-2f8f-598d-a0d9-457a21d72bac",
+  "lemma": "ville",
+  "sense": {
+   "ru": "хотел бы",
+   "en": "to want to"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} gerne {verb}.",
+  "variant": {
+   "id": "d33b4f76-4cc8-5fea-8ff8-c9a10990ad8f",
+   "version": "672194dcac83931e",
+   "danish": "Hun vil gerne lære dansk.",
+   "target": "vil",
+   "en": "She would like to learn Danish.",
+   "ru": "Она хотела бы выучить датский.",
+   "orders": [],
+   "accepted": [
+    "ville"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "154faf38-7732-598a-a660-22483964ba43",
+  "family_id": "8a96faba-a735-5efd-83e5-cc2f7686a82e",
+  "lemma": "denne",
+  "sense": {
+   "ru": "этот, эта",
+   "en": "this"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} {phrase}.",
+  "variant": {
+   "id": "154faf38-7732-598a-a660-22483964ba43",
+   "version": "bb19fa22ff10b085",
+   "danish": "Denne trøje er for lille.",
+   "target": "denne",
+   "en": "This sweater is too small.",
+   "ru": "Этот свитер слишком маленький.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d9301fca-7305-52f0-802b-62f377672b6c",
+  "family_id": "1ffb4e22-698d-556d-9b88-3fb9d146f7a6",
+  "lemma": "de",
+  "sense": {
+   "ru": "они",
+   "en": "they"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{target} spiser morgenmad {time}.",
+  "variant": {
+   "id": "d9301fca-7305-52f0-802b-62f377672b6c",
+   "version": "deda9ebf40c1fa04",
+   "danish": "De spiser morgenmad meget tidligt.",
+   "target": "de",
+   "en": "They eat breakfast very early.",
+   "ru": "Они завтракают очень рано.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "75357084-a9d4-524f-b3a5-7e0035b28cdf",
+  "family_id": "7a46f52f-fe5e-5dc0-833f-2843b18c5164",
+  "lemma": "i",
+  "sense": {
+   "ru": "в",
+   "en": "in"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} er {target} {place}.",
+  "variant": {
+   "id": "75357084-a9d4-524f-b3a5-7e0035b28cdf",
+   "version": "b5b8b5d38a71534d",
+   "danish": "Katten er i haven.",
+   "target": "i",
+   "en": "The cat is in the garden.",
+   "ru": "Кошка в саду.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "99718606-7633-559f-9258-bc847b27753b",
+  "family_id": "02b5a3e8-90ef-5127-8714-a9cb20af42f1",
+  "lemma": "ikke",
+  "sense": {
+   "ru": "не",
+   "en": "not"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg kan {target} lide {object}.",
+  "variant": {
+   "id": "99718606-7633-559f-9258-bc847b27753b",
+   "version": "57ca3acd030b4e90",
+   "danish": "Jeg kan ikke lide løg.",
+   "target": "ikke",
+   "en": "I don't like onions.",
+   "ru": "Я не люблю лук.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "46775472-16f7-508b-b77d-841129be38fc",
+  "family_id": "0eba10a0-ca2a-5363-a20c-b3bb287b20b2",
+  "lemma": "over",
+  "sense": {
+   "ru": "над",
+   "en": "over, above"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} hænger {target} {place}.",
+  "variant": {
+   "id": "46775472-16f7-508b-b77d-841129be38fc",
+   "version": "a279e867529bf4d5",
+   "danish": "Billedet hænger over sofaen.",
+   "target": "over",
+   "en": "The picture hangs above the sofa.",
+   "ru": "Картина висит над диваном.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "51baea34-26f5-52a1-b410-33f076107133",
+  "family_id": "e553ec12-dffd-588e-99c6-710fe4e5bbf3",
+  "lemma": "ved",
+  "sense": {
+   "ru": "у, возле",
+   "en": "at, by, near"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} står {target} {place}.",
+  "variant": {
+   "id": "51baea34-26f5-52a1-b410-33f076107133",
+   "version": "1e41763ecc8b6c28",
+   "danish": "Sofaen står ved væggen.",
+   "target": "ved",
+   "en": "The sofa stands by the wall.",
+   "ru": "Диван стоит у стены.",
+   "orders": [],
+   "accepted": [
+    "nær"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e56e8ae8-9ca8-5717-af14-2bceda0a19c7",
+  "family_id": "d841d850-2947-5b97-b0ab-b4205cf33d81",
+  "lemma": "gå",
+  "sense": {
+   "ru": "идти, ходить",
+   "en": "to go, to walk"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} {place} hver dag.",
+  "variant": {
+   "id": "e56e8ae8-9ca8-5717-af14-2bceda0a19c7",
+   "version": "9ac9418bffcec861",
+   "danish": "Hun går til arbejde hver dag.",
+   "target": "går",
+   "en": "She walks to work every day.",
+   "ru": "Она каждый день ходит на работу пешком.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "2343ff7f-88ba-58bb-9b7b-e8976a9f523a",
+  "family_id": "a2101903-2a03-5799-ac36-6b2ca877cbf1",
+  "lemma": "om",
+  "sense": {
+   "ru": "через (о времени)",
+   "en": "in (after a length of time)"
+  },
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Vi ses {target} {duration}.",
+  "variant": {
+   "id": "2343ff7f-88ba-58bb-9b7b-e8976a9f523a",
+   "version": "41215d1f1b154d28",
+   "danish": "Vi ses om en time.",
+   "target": "om",
+   "en": "See you in an hour.",
+   "ru": "Увидимся через час.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "11c14c13-7087-5062-b4a9-f0748a073e6c",
+  "family_id": "42e71ced-0e56-52ea-b9c6-d0e563eb9b46",
+  "lemma": "vi",
+  "sense": {
+   "ru": "мы",
+   "en": "we"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{target} bor sammen i {place}.",
+  "variant": {
+   "id": "11c14c13-7087-5062-b4a9-f0748a073e6c",
+   "version": "2aba5d0c453f1d27",
+   "danish": "Vi bor sammen i en lejlighed.",
+   "target": "vi",
+   "en": "We live together in an apartment.",
+   "ru": "Мы живём вместе в квартире.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "887ab604-3caa-5b2a-b606-c65dc2f6e0de",
+  "family_id": "124e96fa-c400-5da3-bf28-f3b0684ef95c",
+  "lemma": "ny",
+  "sense": {
+   "ru": "новый",
+   "en": "new"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "887ab604-3caa-5b2a-b606-c65dc2f6e0de",
+   "version": "17c6110a14d39b0d",
+   "danish": "Huset er nyt.",
+   "target": "nyt",
+   "en": "The house is new.",
+   "ru": "Дом новый.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7f677e48-c6a2-598b-b9ba-b1a4baa7eca6",
+  "family_id": "7acd4eb3-5c25-5a76-a285-98c25cdc5132",
+  "lemma": "nat",
+  "sense": {
+   "ru": "ночь",
+   "en": "night"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} sov hele {target}.",
+  "variant": {
+   "id": "7f677e48-c6a2-598b-b9ba-b1a4baa7eca6",
+   "version": "43cbc0e1d3cbf094",
+   "danish": "Barnet sov hele natten.",
+   "target": "natten",
+   "en": "The child slept the whole night.",
+   "ru": "Ребёнок спал всю ночь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "21af8e1e-f738-5b39-9a34-cf4b405f69e2",
+  "family_id": "59e4d9f3-fa2e-5a37-8d4f-374f099f826a",
+  "lemma": "om",
+  "sense": {
+   "ru": "о, об",
+   "en": "about"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Vi taler {target} {topic}.",
+  "variant": {
+   "id": "21af8e1e-f738-5b39-9a34-cf4b405f69e2",
+   "version": "24fd4523594389b8",
+   "danish": "Vi taler om vejret.",
+   "target": "om",
+   "en": "We are talking about the weather.",
+   "ru": "Мы говорим о погоде.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "363853ae-f0f3-51e7-9c62-89852d721524",
+  "family_id": "8c4a2d28-9aa1-58dd-b1e5-71b2460f0f3d",
+  "lemma": "jeg",
+  "sense": {
+   "ru": "я",
+   "en": "I"
+  },
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{target} {verb_phrase}.",
+  "variant": {
+   "id": "363853ae-f0f3-51e7-9c62-89852d721524",
+   "version": "c7c2a18a3d713954",
+   "danish": "Jeg elsker at læse.",
+   "target": "jeg",
+   "en": "I love to read.",
+   "ru": "Я люблю читать.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "c9fb2b09-b06a-5c7a-bdbe-5b032b3c8d40",
+  "family_id": "cee8c5dd-f8ed-5301-81a4-ae4331b91c05",
+  "lemma": "fra",
+  "sense": {
+   "ru": "из, от",
+   "en": "from"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{vehicle} kører {target} {place}.",
+  "variant": {
+   "id": "c9fb2b09-b06a-5c7a-bdbe-5b032b3c8d40",
+   "version": "9a324ef330ed96f0",
+   "danish": "Toget kører fra den gamle station.",
+   "target": "fra",
+   "en": "The train departs from the old station.",
+   "ru": "Поезд отправляется со старого вокзала.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "147c3c0f-197a-5bc8-9703-a03556bc8452",
+  "family_id": "0187be4d-63a1-5247-9cd5-1e81a16fa846",
+  "lemma": "over",
+  "sense": {
+   "ru": "через, по ту сторону",
+   "en": "across, over (to the other side)"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} går {target} {place}.",
+  "variant": {
+   "id": "147c3c0f-197a-5bc8-9703-a03556bc8452",
+   "version": "be914e72a64cab74",
+   "danish": "Børnene går over vejen.",
+   "target": "over",
+   "en": "The children walk across the road.",
+   "ru": "Дети переходят дорогу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "0b7569a4-9f69-5706-b498-faae8572920c",
+  "family_id": "a224e41f-11a0-5a08-a559-b99b4ffd7764",
+  "lemma": "smuk",
+  "sense": {
+   "ru": "красивый",
+   "en": "beautiful"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "0b7569a4-9f69-5706-b498-faae8572920c",
+   "version": "ba7eb101df8e5d97",
+   "danish": "Stuen er smuk.",
+   "target": "smuk",
+   "en": "The living room is beautiful.",
+   "ru": "Гостиная красивая.",
+   "orders": [],
+   "accepted": [
+    "flot",
+    "køn",
+    "pæn"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "c85a2866-38dd-55aa-a417-8dc58b908562",
+  "family_id": "ed93b5a6-3d01-5a51-9246-a505fdd5983f",
+  "lemma": "mærke",
+  "sense": {
+   "ru": "марка, бренд, метка",
+   "en": "brand, mark"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} køber altid tøj fra et kendt {target}.",
+  "variant": {
+   "id": "c85a2866-38dd-55aa-a417-8dc58b908562",
+   "version": "debdde5d81d54a98",
+   "danish": "Min søster køber altid tøj fra et kendt mærke.",
+   "target": "mærke",
+   "en": "My sister always buys clothes from a well-known brand.",
+   "ru": "Моя сестра всегда покупает одежду известной марки.",
+   "orders": [],
+   "accepted": [
+    "varemærke",
+    "brand"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "a4521894-7a0a-564a-a815-89c7d7f24e39",
+  "family_id": "992b9e39-9ce2-578d-a316-50e87e7576fc",
+  "lemma": "på",
+  "sense": {
+   "ru": "на",
+   "en": "on"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{object} står {target} {place}.",
+  "variant": {
+   "id": "a4521894-7a0a-564a-a815-89c7d7f24e39",
+   "version": "383157359d915b0a",
+   "danish": "Vasen står på bordet.",
+   "target": "på",
+   "en": "The vase is standing on the table.",
+   "ru": "Ваза стоит на столе.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a0e93434-8a3b-5596-9a9a-069c5a7a45d7",
+  "family_id": "f5ff2292-d373-5b4b-adc6-6efccf2b881e",
+  "lemma": "i",
+  "sense": {
+   "ru": "в течение (о продолжительности времени)",
+   "en": "for (a length of time)"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} sover {target} {duration} om natten.",
+  "variant": {
+   "id": "a0e93434-8a3b-5596-9a9a-069c5a7a45d7",
+   "version": "ce65f2cf8b52de78",
+   "danish": "Barnet sover i ti timer om natten.",
+   "target": "i",
+   "en": "The child sleeps for ten hours at night.",
+   "ru": "По ночам ребёнок спит десять часов.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d4a55a89-25ea-5efe-b74b-fc79ea242437",
+  "family_id": "937d3f9d-da02-5333-9bc1-1cb81b9191c4",
+  "lemma": "have",
+  "sense": {
+   "ru": "иметь",
+   "en": "to have"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {object}.",
+  "variant": {
+   "id": "d4a55a89-25ea-5efe-b74b-fc79ea242437",
+   "version": "a0e26f75731cd21d",
+   "danish": "Vi har en bil.",
+   "target": "har",
+   "en": "We have a car.",
+   "ru": "У нас есть машина.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "875a55f3-8908-5536-bc73-832961d23e9a",
+  "family_id": "bf4c96a8-967f-592e-b492-5d6a093fb2ac",
+  "lemma": "komme",
+  "sense": {
+   "ru": "приходить, приезжать",
+   "en": "to come, to arrive"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} {time}.",
+  "variant": {
+   "id": "875a55f3-8908-5536-bc73-832961d23e9a",
+   "version": "fd91d38cf6304f4e",
+   "danish": "Bussen kommer klokken ni.",
+   "target": "kommer",
+   "en": "The bus arrives at nine o'clock.",
+   "ru": "Автобус прибывает в девять часов.",
+   "orders": [],
+   "accepted": [
+    "ankommer"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "b025c73b-5daa-5da0-974f-c03d26b459de",
+  "family_id": "a7451fdb-97ad-526c-b29f-1fe53e8d2e7d",
+  "lemma": "af",
+  "sense": {
+   "ru": "из, от",
+   "en": "of, from"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{item} er lavet {target} {material}.",
+  "variant": {
+   "id": "b025c73b-5daa-5da0-974f-c03d26b459de",
+   "version": "5a893bc9f8ad5a83",
+   "danish": "Bordet er lavet af træ.",
+   "target": "af",
+   "en": "The table is made of wood.",
+   "ru": "Стол сделан из дерева.",
+   "orders": [],
+   "accepted": [
+    "i"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "297fb2ed-cbee-596a-ab28-ed9d75ea5cb4",
+  "family_id": "98c3667d-38da-5984-97ce-cbaa6c6d5399",
+  "lemma": "du",
+  "sense": {
+   "ru": "ты",
+   "en": "you (singular)"
+  },
+  "level": "A1",
+  "situation": "social",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} er {predicate}.",
+  "variant": {
+   "id": "297fb2ed-cbee-596a-ab28-ed9d75ea5cb4",
+   "version": "c1ff6ddebd76429e",
+   "danish": "Du er klog.",
+   "target": "du",
+   "en": "You are smart.",
+   "ru": "Ты умный.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a5277f0e-d503-5130-a495-0ee06e3d0a02",
+  "family_id": "1d90108b-5727-57e2-9de9-59d53fa60c58",
+  "lemma": "oktober",
+  "sense": {
+   "ru": "октябрь",
+   "en": "October"
+  },
+  "level": "A1",
+  "situation": "family",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} er født i {target}.",
+  "variant": {
+   "id": "a5277f0e-d503-5130-a495-0ee06e3d0a02",
+   "version": "758450235ed2883c",
+   "danish": "Min mor er født i oktober.",
+   "target": "oktober",
+   "en": "My mother was born in October.",
+   "ru": "Моя мама родилась в октябре.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "10bb8405-c658-5a9c-a921-52dc27ae5e24",
+  "family_id": "fb6ef2cc-f966-5f3a-967a-9c8cf1b23dc1",
+  "lemma": "forskel",
+  "sense": {
+   "ru": "разница",
+   "en": "difference"
+  },
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Der er en stor {target} på {pair}.",
+  "variant": {
+   "id": "10bb8405-c658-5a9c-a921-52dc27ae5e24",
+   "version": "e6b38a5af5dfb472",
+   "danish": "Der er en stor forskel på de to telefoner.",
+   "target": "forskel",
+   "en": "There is a big difference between the two phones.",
+   "ru": "Между двумя телефонами большая разница.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3ed3ada9-6f99-54a9-ad35-39956b24a6da",
+  "family_id": "2e7a5617-fc67-5e79-9274-290d0b5569fe",
+  "lemma": "med",
+  "sense": {
+   "ru": "с",
+   "en": "with"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} skriver {target} {tool}.",
+  "variant": {
+   "id": "3ed3ada9-6f99-54a9-ad35-39956b24a6da",
+   "version": "c81cbab7a1195240",
+   "danish": "Børnene skriver med kridt.",
+   "target": "med",
+   "en": "The children write with chalk.",
+   "ru": "Дети пишут мелом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "65b9fa33-db42-5036-8678-b44727a0692f",
+  "family_id": "ba42161f-d82f-5409-968f-83199af93de6",
+  "lemma": "britisk",
+  "sense": {
+   "ru": "британский",
+   "en": "British"
+  },
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "65b9fa33-db42-5036-8678-b44727a0692f",
+   "version": "2e586fdb08ed5188",
+   "danish": "Skuespillerne er britiske.",
+   "target": "britiske",
+   "en": "The actors are British.",
+   "ru": "Актёры — британцы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5ce95500-355f-58cc-9bcb-cd5b8fc8edfd",
+  "family_id": "707a6022-a9c2-5f7f-b8da-188904afd9e1",
+  "lemma": "kigge",
+  "sense": {
+   "ru": "смотреть, глядеть",
+   "en": "to look"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} ud af vinduet.",
+  "variant": {
+   "id": "5ce95500-355f-58cc-9bcb-cd5b8fc8edfd",
+   "version": "9f2d8d48d72220ac",
+   "danish": "Katten kigger ud af vinduet.",
+   "target": "kigger",
+   "en": "The cat looks out of the window.",
+   "ru": "Кошка смотрит в окно.",
+   "orders": [],
+   "accepted": [
+    "ser",
+    "kikker"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "98ca19a8-497b-5c76-9e2f-5b2d6640aad5",
+  "family_id": "d9bc5917-a627-5822-8129-06be0f2e8821",
+  "lemma": "til",
+  "sense": {
+   "ru": "к, в",
+   "en": "to"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} cykler {target} {place}.",
+  "variant": {
+   "id": "98ca19a8-497b-5c76-9e2f-5b2d6640aad5",
+   "version": "7aced85c77fd6c7c",
+   "danish": "Vi cykler til byen.",
+   "target": "til",
+   "en": "We cycle to town.",
+   "ru": "Мы ездим в город на велосипедах.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "405a3bd5-5589-5251-84be-1dc89a8d5ee2",
+  "family_id": "e91177f9-dca8-54c3-b50a-da7a63caf4b8",
+  "lemma": "tid",
+  "sense": {
+   "ru": "время",
+   "en": "time"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Jeg har ikke {target} til {activity}.",
+  "variant": {
+   "id": "405a3bd5-5589-5251-84be-1dc89a8d5ee2",
+   "version": "0feea60b90e2a69e",
+   "danish": "Jeg har ikke tid til at læse.",
+   "target": "tid",
+   "en": "I don't have time to read.",
+   "ru": "У меня нет времени читать.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "243ac4ee-73ae-508e-a498-48359c6e83e5",
+  "family_id": "9446cfe6-fe1d-5ba1-b996-ef457789f7ca",
+  "lemma": "stor",
+  "sense": {
+   "ru": "большой",
+   "en": "big, large"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "243ac4ee-73ae-508e-a498-48359c6e83e5",
+   "version": "0ef7d1c1148256dd",
+   "danish": "Værelserne er store.",
+   "target": "store",
+   "en": "The rooms are big.",
+   "ru": "Комнаты большие.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "96557bde-84bc-5e99-8b57-2d5e7c66617a",
+  "family_id": "c2838758-bb24-51f3-ac57-108c4afd9cb7",
+  "lemma": "skulle",
+  "sense": {
+   "ru": "собираться, иметь план (о будущем действии)",
+   "en": "to be going to (a plan)"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-future",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {plan} i næste uge.",
+  "variant": {
+   "id": "96557bde-84bc-5e99-8b57-2d5e7c66617a",
+   "version": "f2ad1f9267de2fb8",
+   "danish": "Min bror skal løbe et maraton i næste uge.",
+   "target": "skal",
+   "en": "My brother is going to run a marathon next week.",
+   "ru": "На следующей неделе мой брат собирается пробежать марафон.",
+   "orders": [
+    "I næste uge skal min bror løbe et maraton."
+   ],
+   "accepted": [
+    "vil"
+   ]
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "3b2f8f83-cbe2-5e24-bb81-77d61d7a9f09",
+  "family_id": "baaf1fdd-8adf-513c-b6e0-a8c78e2b9499",
+  "lemma": "skulle",
+  "sense": {
+   "ru": "должен был, следовало",
+   "en": "should, to be supposed to"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {plan}, men {problem}.",
+  "variant": {
+   "id": "3b2f8f83-cbe2-5e24-bb81-77d61d7a9f09",
+   "version": "c3497eef5a68e1f0",
+   "danish": "Mødet skulle begynde klokken ni, men chefen er ikke kommet endnu.",
+   "target": "skulle",
+   "en": "The meeting was supposed to start at nine, but the boss has not arrived yet.",
+   "ru": "Совещание должно было начаться в девять, но начальник ещё не пришёл.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots",
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "75c3e180-8a89-57d9-9872-01dc02a4c532",
+  "family_id": "85f77f9e-6057-5472-a9b3-67acf498ee59",
+  "lemma": "få",
+  "sense": {
+   "ru": "мало, немного (о количестве)",
+   "en": "few"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Der kom {target} {noun} {place}.",
+  "variant": {
+   "id": "75c3e180-8a89-57d9-9872-01dc02a4c532",
+   "version": "91dea9dabcf2c8b3",
+   "danish": "Der kom få mennesker til koncerten.",
+   "target": "få",
+   "en": "Few people came to the concert.",
+   "ru": "На концерт пришло мало людей.",
+   "orders": [
+    "Til koncerten kom der få mennesker."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "595c8029-61d2-513f-b1d6-db563d05bd3e",
+  "family_id": "dd36768b-d8a9-5057-b8dd-c79558b4fdf3",
+  "lemma": "sigt",
+  "sense": {
+   "ru": "видимость",
+   "en": "visibility"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "Der er {adjective} {target} {condition}.",
+  "variant": {
+   "id": "595c8029-61d2-513f-b1d6-db563d05bd3e",
+   "version": "d4405ff7d8769c40",
+   "danish": "Der er dårlig sigt i tågen.",
+   "target": "sigt",
+   "en": "There is poor visibility in the fog.",
+   "ru": "В тумане плохая видимость.",
+   "orders": [
+    "I tågen er der dårlig sigt."
+   ],
+   "accepted": [
+    "sigtbarhed"
+   ]
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "9db631ee-a04f-5083-b340-5b892515b5b7",
+  "family_id": "386db7f6-7062-577b-bc08-78c42d5142c0",
+  "lemma": "hel",
+  "sense": {
+   "ru": "целый, весь",
+   "en": "whole, entire"
+  },
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {verb} {target} {time}.",
+  "variant": {
+   "id": "9db631ee-a04f-5083-b340-5b892515b5b7",
+   "version": "9f79c4556e346d9c",
+   "danish": "Det regnede hele weekenden.",
+   "target": "hele",
+   "en": "It rained the whole weekend.",
+   "ru": "Дождь шёл все выходные.",
+   "orders": [
+    "Hele weekenden regnede det."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "ed018551-e8a2-5b51-9ead-124a57a006fb",
+  "family_id": "1190cf40-a24a-5827-b603-b81b0635ec30",
+  "lemma": "blandt",
+  "sense": {
+   "ru": "среди",
+   "en": "among"
+  },
+  "level": "A2",
+  "situation": "work",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} medarbejderne var {subject} {superlative}.",
+  "variant": {
+   "id": "ed018551-e8a2-5b51-9ead-124a57a006fb",
+   "version": "4b0e6e56e497279b",
+   "danish": "Blandt medarbejderne var jeg den yngste.",
+   "target": "blandt",
+   "en": "Among the employees, I was the youngest.",
+   "ru": "Среди сотрудников я был самым молодым.",
+   "orders": [
+    "Jeg var den yngste blandt medarbejderne."
+   ],
+   "accepted": [
+    "iblandt"
+   ]
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "3073508f-8741-5ac7-8447-a24d608c085f",
+  "family_id": "8bc3bb09-d1b1-5ab6-9517-be8d7eaa27f0",
+  "lemma": "tage",
+  "sense": {
+   "ru": "ехать, отправляться",
+   "en": "to go, to travel"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{time} {target} {subject} {trip}.",
+  "variant": {
+   "id": "3073508f-8741-5ac7-8447-a24d608c085f",
+   "version": "349d035a471013ab",
+   "danish": "Næste sommer tager min søster til udlandet.",
+   "target": "tager",
+   "en": "Next summer my sister is going abroad.",
+   "ru": "Следующим летом моя сестра уезжает за границу.",
+   "orders": [
+    "Min søster tager til udlandet næste sommer."
+   ],
+   "accepted": [
+    "rejser",
+    "kører"
+   ]
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "1572cd7d-6c8f-567c-bf5e-c1570c6a0a25",
+  "family_id": "874c4fa1-1035-5db0-8ee3-b3057ca4307a",
+  "lemma": "måtte",
+  "sense": {
+   "ru": "пришлось, был вынужден",
+   "en": "had to (was forced to)"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Fordi {cause}, {target} {subject} {complement}.",
+  "variant": {
+   "id": "1572cd7d-6c8f-567c-bf5e-c1570c6a0a25",
+   "version": "1499c088256a93c6",
+   "danish": "Fordi hun var syg, måtte hun blive hjemme.",
+   "target": "måtte",
+   "en": "Because she was sick, she had to stay home.",
+   "ru": "Так как она была больна, ей пришлось остаться дома.",
+   "orders": [
+    "Hun måtte blive hjemme, fordi hun var syg."
+   ],
+   "accepted": [
+    "skulle"
+   ]
+  },
+  "risk": [
+   "authored_orders",
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "b03aa88c-7bfe-5802-8d65-20db5485207b",
+  "family_id": "bc805894-fb25-5792-af86-1243f075b6c8",
+  "lemma": "og",
+  "sense": {
+   "ru": "и",
+   "en": "and"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{person} spiser {item1} {target} {item2} til morgenmad.",
+  "variant": {
+   "id": "b03aa88c-7bfe-5802-8d65-20db5485207b",
+   "version": "bf1cf9617b4ac2a0",
+   "danish": "Hun spiser et æg og en skive brød til morgenmad.",
+   "target": "og",
+   "en": "She eats an egg and a slice of bread for breakfast.",
+   "ru": "На завтрак она ест яйцо и кусок хлеба.",
+   "orders": [
+    "Til morgenmad spiser hun et æg og en skive brød."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "e908f42e-f8e4-58e4-bee1-666942d27ff2",
+  "family_id": "1a3ac9e8-c96d-59e6-bc41-c585ab73ac6b",
+  "lemma": "end",
+  "sense": {
+   "ru": "чем",
+   "en": "than"
+  },
+  "level": "A2",
+  "situation": "education",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target} {compared}.",
+  "variant": {
+   "id": "e908f42e-f8e4-58e4-bee1-666942d27ff2",
+   "version": "bc0e110728f88302",
+   "danish": "Denne bog er tykkere end den anden.",
+   "target": "end",
+   "en": "This book is thicker than the other one.",
+   "ru": "Эта книга толще другой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "4113c6f9-8bbe-5282-9bd9-5ab0306755ac",
+  "family_id": "38d93401-7c2b-5e68-a275-978d252f42f2",
+  "lemma": "finde",
+  "sense": {
+   "ru": "находить",
+   "en": "to find"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {target} {object}.",
+  "variant": {
+   "id": "4113c6f9-8bbe-5282-9bd9-5ab0306755ac",
+   "version": "a1887f4608fe38c8",
+   "danish": "Hun fandt en løsning på problemet.",
+   "target": "fandt",
+   "en": "She found a solution to the problem.",
+   "ru": "Она нашла решение проблемы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "a1a3cbfb-86b3-5085-8354-e2efd8e9d9ad",
+  "family_id": "19ee63d5-a611-5a96-b810-3ca509f47c01",
+  "lemma": "så",
+  "sense": {
+   "ru": "поэтому, тогда",
+   "en": "so (as a result)"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{clause}, {target} {result}.",
+  "variant": {
+   "id": "a1a3cbfb-86b3-5085-8354-e2efd8e9d9ad",
+   "version": "e6ea7a50ebc706e1",
+   "danish": "Det regnede, så vi blev hjemme.",
+   "target": "så",
+   "en": "It was raining, so we stayed at home.",
+   "ru": "Шёл дождь, поэтому мы остались дома.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "0d7e5d60-6830-51b2-bc3f-fe3d8777bc62",
+  "family_id": "51b9e2dd-ef99-5091-bd6a-9283788e6c51",
+  "lemma": "ville",
+  "sense": {
+   "ru": "буду, будет (вспомогательный глагол будущего времени)",
+   "en": "will (helper verb for the future)"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "verb-future",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} tage {time}.",
+  "variant": {
+   "id": "0d7e5d60-6830-51b2-bc3f-fe3d8777bc62",
+   "version": "f3bde1b56d22689a",
+   "danish": "Reparationen af bilen vil tage to dage.",
+   "target": "vil",
+   "en": "The car repair will take two days.",
+   "ru": "Ремонт машины займёт два дня.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "18082616-48ca-5ad0-8cb8-1ffe889e9420",
+  "family_id": "2d66672b-6254-5bfb-a160-1e1a12d2f57a",
+  "lemma": "med",
+  "sense": {
+   "ru": "тоже, с собой",
+   "en": "along, too"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} tager {object} {target}.",
+  "variant": {
+   "id": "18082616-48ca-5ad0-8cb8-1ffe889e9420",
+   "version": "5edcd402693e4ab1",
+   "danish": "Han tager sin computer med.",
+   "target": "med",
+   "en": "He is bringing his computer along.",
+   "ru": "Он берёт с собой свой компьютер.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "3c50ba16-b6cd-5bd6-ba72-618496dd33a9",
+  "family_id": "3384f296-d0ca-587d-a5cb-3f430d0affcc",
+  "lemma": "når",
+  "sense": {
+   "ru": "когда",
+   "en": "when (whenever, once)"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{main}, {target} {clause}.",
+  "variant": {
+   "id": "3c50ba16-b6cd-5bd6-ba72-618496dd33a9",
+   "version": "4527a538c77c2294",
+   "danish": "Hun bliver glad, når det sner.",
+   "target": "når",
+   "en": "She gets happy when it snows.",
+   "ru": "Она радуется, когда идёт снег.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "a1f823e8-9399-579a-b5a5-08cbaca35f82",
+  "family_id": "37b8d1bb-9870-5f0a-a2ad-0342e3dcec7b",
+  "lemma": "få",
+  "sense": {
+   "ru": "получать",
+   "en": "to get, to receive"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target} {object} {source}.",
+  "variant": {
+   "id": "a1f823e8-9399-579a-b5a5-08cbaca35f82",
+   "version": "59e85fda8e58b0e1",
+   "danish": "Jeg fik en gave fra min bror.",
+   "target": "fik",
+   "en": "I got a present from my brother.",
+   "ru": "Я получил подарок от брата.",
+   "orders": [],
+   "accepted": [
+    "modtog"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "f055efaa-ed55-56ee-83df-a899fa7ea24a",
+  "family_id": "77ba3454-b59c-54c6-a14b-5e38b6645552",
+  "lemma": "sige",
+  "sense": {
+   "ru": "говорить, сказать",
+   "en": "to say"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target}, at {clause}.",
+  "variant": {
+   "id": "f055efaa-ed55-56ee-83df-a899fa7ea24a",
+   "version": "5e6516f7d151d84d",
+   "danish": "Hun sagde, at hun var træt.",
+   "target": "sagde",
+   "en": "She said that she was tired.",
+   "ru": "Она сказала, что устала.",
+   "orders": [],
+   "accepted": [
+    "fortalte"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "c9affc97-be7b-51d2-9586-1f1a66c5b192",
+  "family_id": "db62ad34-f3f6-5635-b55c-867b1b904ff7",
+  "lemma": "da",
+  "sense": {
+   "ru": "когда (в прошлом)",
+   "en": "when (in the past)"
+  },
+  "level": "A2",
+  "situation": "family",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} {clause}.",
+  "variant": {
+   "id": "c9affc97-be7b-51d2-9586-1f1a66c5b192",
+   "version": "ecc41d379ade6381",
+   "danish": "Da vores datter blev født, boede vi i lejlighed.",
+   "target": "da",
+   "en": "When our daughter was born, we lived in an apartment.",
+   "ru": "Когда родилась наша дочь, мы жили в квартире.",
+   "orders": [
+    "Vi boede i lejlighed, da vores datter blev født."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "52516d41-1261-53bb-a37f-ee1eafec184d",
+  "family_id": "ff59a2e1-8fdc-5e81-88a0-2d6d13f83935",
+  "lemma": "drømme",
+  "sense": {
+   "ru": "видеть сны",
+   "en": "to dream (during sleep)"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {target} om {object} i nat.",
+  "variant": {
+   "id": "52516d41-1261-53bb-a37f-ee1eafec184d",
+   "version": "6f11ede25c0595ad",
+   "danish": "Hun drømte om sin barndom i nat.",
+   "target": "drømte",
+   "en": "She dreamed about her childhood last night.",
+   "ru": "Этой ночью ей приснилось детство.",
+   "orders": [
+    "I nat drømte hun om sin barndom."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "d11e93dd-4bf7-599b-93df-82ee1e649864",
+  "family_id": "f90d1317-78ec-5894-a8ee-031d6dc4ad22",
+  "lemma": "for",
+  "sense": {
+   "ru": "потому что",
+   "en": "because"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg bliver hjemme i dag, {target} {clause}.",
+  "variant": {
+   "id": "d11e93dd-4bf7-599b-93df-82ee1e649864",
+   "version": "603bba67cc408b8c",
+   "danish": "Jeg bliver hjemme i dag, for jeg har det ikke godt.",
+   "target": "for",
+   "en": "I am staying home today because I don't feel well.",
+   "ru": "Я сегодня остаюсь дома, потому что плохо себя чувствую.",
+   "orders": [],
+   "accepted": [
+    "fordi"
+   ]
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "21ac67dc-20ea-5a33-a76f-cdad952a1b6a",
+  "family_id": "b1c235ad-f10c-5dd3-9095-47d077296284",
+  "lemma": "gøre",
+  "sense": {
+   "ru": "поступать, действовать",
+   "en": "to act, to behave"
+  },
+  "level": "A2",
+  "situation": "family",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} {target}, som {clause}.",
+  "variant": {
+   "id": "21ac67dc-20ea-5a33-a76f-cdad952a1b6a",
+   "version": "1be165c67d35e301",
+   "danish": "Børnene gjorde, som de fik besked på.",
+   "target": "gjorde",
+   "en": "The children did as they were told.",
+   "ru": "Дети сделали так, как им велели.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "a1fdec91-77ea-5e7d-8aea-2fdebab81461",
+  "family_id": "9c16ae48-de1c-50fe-b756-19fec617d362",
+  "lemma": "klare",
+  "sense": {
+   "ru": "проясняться (о погоде)",
+   "en": "to clear up (of weather)"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Det {target} op {time}.",
+  "variant": {
+   "id": "a1fdec91-77ea-5e7d-8aea-2fdebab81461",
+   "version": "0f361cdcde3cfbbd",
+   "danish": "Det klarede op efter frokost.",
+   "target": "klarede",
+   "en": "It cleared up after lunch.",
+   "ru": "После обеда прояснилось.",
+   "orders": [
+    "Efter frokost klarede det op."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "ad3425eb-a6cd-5089-9dd9-c019662b349b",
+  "family_id": "aaa142a1-29ed-573b-bb43-1e9571ac9398",
+  "lemma": "have",
+  "sense": {
+   "ru": "вспомогательный глагол для образования перфекта",
+   "en": "have (helper verb forming the perfect)"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{subject} {target} {participle} i dag.",
+  "variant": {
+   "id": "ad3425eb-a6cd-5089-9dd9-c019662b349b",
+   "version": "f3837cab96f8aa41",
+   "danish": "Vi har vasket bilen i dag.",
+   "target": "har",
+   "en": "We have washed the car today.",
+   "ru": "Мы сегодня помыли машину.",
+   "orders": [
+    "I dag har vi vasket bilen."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "82cede01-4228-55e4-886e-3c96d1a3d46c",
+  "family_id": "62559291-0a94-52f3-a582-aa106e0a7dbc",
+  "lemma": "hvis",
+  "sense": {
+   "ru": "если",
+   "en": "if"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{target} {clause}.",
+  "variant": {
+   "id": "82cede01-4228-55e4-886e-3c96d1a3d46c",
+   "version": "565d7f24ea29b8aa",
+   "danish": "Hvis det sner, går vi ikke en tur.",
+   "target": "hvis",
+   "en": "If it snows, we won't go for a walk.",
+   "ru": "Если пойдёт снег, мы не пойдём гулять.",
+   "orders": [
+    "Vi går ikke en tur, hvis det sner."
+   ],
+   "accepted": [
+    "såfremt"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "f4c79272-c420-54e9-bc9d-738fc6687d46",
+  "family_id": "80c233af-4dde-5ad7-b804-c86b47445713",
+  "lemma": "under",
+  "sense": {
+   "ru": "во время, в течение",
+   "en": "during"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target} {event}.",
+  "variant": {
+   "id": "f4c79272-c420-54e9-bc9d-738fc6687d46",
+   "version": "078749dc6b4987e3",
+   "danish": "Det begyndte at regne under kampen.",
+   "target": "under",
+   "en": "It started to rain during the match.",
+   "ru": "Во время матча пошёл дождь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "1e5cb5f9-3575-5ca8-b12b-84db9f22c6c2",
+  "family_id": "a40ecac6-fed2-5169-88cb-a39bd38d047a",
+  "lemma": "salg",
+  "sense": {
+   "ru": "продажа",
+   "en": "sale"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{target} af {product} stiger om sommeren.",
+  "variant": {
+   "id": "1e5cb5f9-3575-5ca8-b12b-84db9f22c6c2",
+   "version": "d36fa80dac6396bf",
+   "danish": "Salget af badetøj stiger om sommeren.",
+   "target": "salget",
+   "en": "Sales of swimwear go up in the summer.",
+   "ru": "Продажи купальников растут летом.",
+   "orders": [
+    "Om sommeren stiger salget af badetøj."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "01409c89-233f-5760-97ff-7747dab8c98f",
+  "family_id": "a5095d89-5fac-51c4-8d55-4c044b3e8197",
+  "lemma": "man",
+  "sense": {
+   "ru": "люди, человек",
+   "en": "one, you (people in general)"
+  },
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{target} skal {verb} for at holde sig sund.",
+  "variant": {
+   "id": "01409c89-233f-5760-97ff-7747dab8c98f",
+   "version": "c51dcdac7423a132",
+   "danish": "Man skal sove nok om natten for at holde sig sund.",
+   "target": "man",
+   "en": "One should sleep enough at night to stay healthy.",
+   "ru": "Нужно достаточно спать по ночам, чтобы оставаться здоровым.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "7106f83b-196d-5ebc-a661-9a95355213c8",
+  "family_id": "2891ad5c-cf63-5f8e-8ddf-60e31ee82f28",
+  "lemma": "første",
+  "sense": {
+   "ru": "первый",
+   "en": "first"
+  },
+  "level": "A2",
+  "situation": "education",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Den {target} {noun} var {adj}.",
+  "variant": {
+   "id": "7106f83b-196d-5ebc-a661-9a95355213c8",
+   "version": "73632d266879e5b5",
+   "danish": "Den første lektion var svær.",
+   "target": "første",
+   "en": "The first lesson was difficult.",
+   "ru": "Первый урок был трудным.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "c55bf136-1ae0-5891-8758-a7d1f0ee4ef7",
+  "family_id": "55248fde-d7f7-543a-97eb-7f206ea9c66b",
+  "lemma": "træning",
+  "sense": {
+   "ru": "тренировка",
+   "en": "training, practice (sports session)"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} har {target} {time}.",
+  "variant": {
+   "id": "c55bf136-1ae0-5891-8758-a7d1f0ee4ef7",
+   "version": "88f742421a325c86",
+   "danish": "Svømmerne har træning tre gange om ugen.",
+   "target": "træning",
+   "en": "The swimmers have training three times a week.",
+   "ru": "У пловцов тренировка три раза в неделю.",
+   "orders": [
+    "Tre gange om ugen har svømmerne træning."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "887ede76-aca6-59f2-a305-63910a9ad748",
+  "family_id": "8c73871e-6db8-59c5-aeed-38d6b86a5b3e",
+  "lemma": "stå",
+  "sense": {
+   "ru": "быть написанным, значиться",
+   "en": "to say, to be written"
+  },
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Der {target} {text} på {surface}.",
+  "variant": {
+   "id": "887ede76-aca6-59f2-a305-63910a9ad748",
+   "version": "239b836de8baa378",
+   "danish": "Der står lukket på døren.",
+   "target": "står",
+   "en": "It says closed on the door.",
+   "ru": "На двери написано «закрыто».",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "c46571c4-5af9-5780-8bc9-20dabfa99f69",
+  "family_id": "d812a7fd-9c8b-574a-9833-3e7b1fcc15aa",
+  "lemma": "ind",
+  "sense": {
+   "ru": "внутрь",
+   "en": "in, inside"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {verb} {target} i {place}.",
+  "variant": {
+   "id": "c46571c4-5af9-5780-8bc9-20dabfa99f69",
+   "version": "720400a84bf02c39",
+   "danish": "Vi løb ind i stuen.",
+   "target": "ind",
+   "en": "We ran into the living room.",
+   "ru": "Мы вбежали в гостиную.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "fe82ba7b-858b-59df-b381-cb1d47e3eba2",
+  "family_id": "d7110442-8a69-50d7-bfee-bd70829ccf16",
+  "lemma": "tid",
+  "sense": {
+   "ru": "приём, запись (например, к врачу)",
+   "en": "appointment (e.g. with a doctor)"
+  },
+  "level": "A2",
+  "situation": "services",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} har bestilt en {target} hos {professional}.",
+  "variant": {
+   "id": "fe82ba7b-858b-59df-b381-cb1d47e3eba2",
+   "version": "e481ee600e369de0",
+   "danish": "Hun har bestilt en tid hos frisøren.",
+   "target": "tid",
+   "en": "She has booked an appointment with the hairdresser.",
+   "ru": "Она записалась к парикмахеру.",
+   "orders": [],
+   "accepted": [
+    "aftale"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "49d8a086-ab75-54c9-80ef-8e02ce60bd1f",
+  "family_id": "21e80107-05a6-56f6-819f-99bf5959a5d5",
+  "lemma": "gang",
+  "sense": {
+   "ru": "раз",
+   "en": "time (occurrence)"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} har {activity} {amount} {target}.",
+  "variant": {
+   "id": "49d8a086-ab75-54c9-80ef-8e02ce60bd1f",
+   "version": "edcb9f9c3b1796e0",
+   "danish": "Han har læst bogen tre gange.",
+   "target": "gange",
+   "en": "He has read the book three times.",
+   "ru": "Он читал эту книгу три раза.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "b1dbc266-2efe-5687-80c1-1a0a85d36af2",
+  "family_id": "797ec7fa-5035-5210-b6c2-f000e4a5b128",
+  "lemma": "gang",
+  "sense": {
+   "ru": "походка",
+   "en": "gait, walk (way of walking)"
+  },
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} har en {adj} {target}.",
+  "variant": {
+   "id": "b1dbc266-2efe-5687-80c1-1a0a85d36af2",
+   "version": "4292a6ad389e9b89",
+   "danish": "Den gamle mand har en langsom gang.",
+   "target": "gang",
+   "en": "The old man has a slow gait.",
+   "ru": "У старика медленная походка.",
+   "orders": [],
+   "accepted": [
+    "gangart"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "d72e6182-74fc-54f9-a8f2-b7094005bd59",
+  "family_id": "e180c1e3-efbc-5064-a600-cea430a15348",
+  "lemma": "service",
+  "sense": {
+   "ru": "столовый сервиз",
+   "en": "dinner service, china set"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} arvede et {adjective} {target} efter {relative}.",
+  "variant": {
+   "id": "d72e6182-74fc-54f9-a8f2-b7094005bd59",
+   "version": "a0c8d4b2cf52c6c0",
+   "danish": "Vi arvede et gammelt service efter vores mormor.",
+   "target": "service",
+   "en": "We inherited an old dinner set from our grandmother.",
+   "ru": "Мы унаследовали старый сервиз от нашей бабушки.",
+   "orders": [],
+   "accepted": [
+    "stel",
+    "spisestel"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "09602835-50de-5b34-92cb-49d3ebbef78d",
+  "family_id": "c558cd3b-3b3d-5dc9-bb3d-5e59e5498ee3",
+  "lemma": "dominere",
+  "sense": {
+   "ru": "доминировать",
+   "en": "to dominate"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {target} {object} fra start til slut.",
+  "variant": {
+   "id": "09602835-50de-5b34-92cb-49d3ebbef78d",
+   "version": "7a3796e5ab4f9e98",
+   "danish": "Holdet dominerede kampen fra start til slut.",
+   "target": "dominerede",
+   "en": "The team dominated the match from start to finish.",
+   "ru": "Команда доминировала в матче от начала до конца.",
+   "orders": [],
+   "accepted": [
+    "beherskede"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "8477974a-9edd-545a-91b0-0944e41fb0ed",
+  "family_id": "3d0f7e95-0788-5a37-b70a-e1ddd7ce85ca",
+  "lemma": "sin",
+  "sense": {
+   "ru": "свой",
+   "en": "his, her, its, their own (reflexive possessive)"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} passer {target} {noun}.",
+  "variant": {
+   "id": "8477974a-9edd-545a-91b0-0944e41fb0ed",
+   "version": "9e22cc99bea55e42",
+   "danish": "Min mormor passer sine planter.",
+   "target": "sine",
+   "en": "My grandmother looks after her plants.",
+   "ru": "Моя бабушка ухаживает за своими растениями.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6eda160d-bb3a-5f73-8b49-e4c66d16833b",
+  "family_id": "1bc91347-bf2f-5344-8efe-009b3dc82319",
+  "lemma": "jagt",
+  "sense": {
+   "ru": "охота",
+   "en": "hunt, hunting"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} går på {target} {extra}.",
+  "variant": {
+   "id": "6eda160d-bb3a-5f73-8b49-e4c66d16833b",
+   "version": "06248ea512c6fc5b",
+   "danish": "Naboen går på jagt med sin hund.",
+   "target": "jagt",
+   "en": "The neighbour goes hunting with his dog.",
+   "ru": "Сосед ходит на охоту со своей собакой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "df0d37ba-2340-5c83-8a27-ecb82053626a",
+  "family_id": "1044ff6f-cd3b-5477-a823-b6342cbdee38",
+  "lemma": "at",
+  "sense": {
+   "ru": "что",
+   "en": "that"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg tror, {target} {clause}.",
+  "variant": {
+   "id": "df0d37ba-2340-5c83-8a27-ecb82053626a",
+   "version": "55a6a04c7e8b49bc",
+   "danish": "Jeg tror, at butikken er lukket nu.",
+   "target": "at",
+   "en": "I think that the shop is closed now.",
+   "ru": "Я думаю, что магазин сейчас закрыт.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d1506daf-18c0-5c76-bc46-d38d46932f51",
+  "family_id": "7740dac1-5f04-5255-99fb-4486b933d954",
+  "lemma": "men",
+  "sense": {
+   "ru": "но",
+   "en": "but"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg er sulten, {target} {clause}.",
+  "variant": {
+   "id": "d1506daf-18c0-5c76-bc46-d38d46932f51",
+   "version": "b8d68be38a31c0a1",
+   "danish": "Jeg er sulten, men der er ikke mere mad.",
+   "target": "men",
+   "en": "I am hungry, but there is no more food.",
+   "ru": "Я голоден, но еды больше нет.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "30c97625-5538-56b0-97bd-56467d6fccfd",
+  "family_id": "62631ca4-39a9-57bb-ba4d-e3517e0ede0c",
+  "lemma": "eller",
+  "sense": {
+   "ru": "или",
+   "en": "or"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Vil du have {item1} {target} {item2} til aftensmad?",
+  "variant": {
+   "id": "30c97625-5538-56b0-97bd-56467d6fccfd",
+   "version": "5788200a7c101a78",
+   "danish": "Vil du have suppe eller salat til aftensmad?",
+   "target": "eller",
+   "en": "Do you want soup or salad for dinner?",
+   "ru": "Хочешь суп или салат на ужин?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "2f2d81ea-0330-5507-9531-80af67121c6d",
+  "family_id": "b89b6573-1cef-54f7-b06c-4222dc53a922",
+  "lemma": "sig",
+  "sense": {
+   "ru": "себя, себе",
+   "en": "himself, herself, itself, themselves"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} vasker {target} hver morgen.",
+  "variant": {
+   "id": "2f2d81ea-0330-5507-9531-80af67121c6d",
+   "version": "2365ae3f2af66201",
+   "danish": "Han vasker sig hver morgen.",
+   "target": "sig",
+   "en": "He washes himself every morning.",
+   "ru": "Он умывается каждое утро.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dae66259-2679-5e8f-b50d-f801e373f74c",
+  "family_id": "c05ee8db-6aff-5954-a693-e496fbdb94a4",
+  "lemma": "om",
+  "sense": {
+   "ru": "если",
+   "en": "if"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Jeg ved ikke, {target} {clause}.",
+  "variant": {
+   "id": "dae66259-2679-5e8f-b50d-f801e373f74c",
+   "version": "56aa3203f41db34b",
+   "danish": "Jeg ved ikke, om det bliver solskin i morgen.",
+   "target": "om",
+   "en": "I don't know if it will be sunny tomorrow.",
+   "ru": "Я не знаю, будет ли завтра солнечно.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e3c801ac-2ee9-5419-a1b2-79a99c4f5ade",
+  "family_id": "efa6ba3d-681f-59b8-b89a-0172fffb8217",
+  "lemma": "efter",
+  "sense": {
+   "ru": "за (вслед, в поисках)",
+   "en": "after (in pursuit of)"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} løber {target} {object}.",
+  "variant": {
+   "id": "e3c801ac-2ee9-5419-a1b2-79a99c4f5ade",
+   "version": "845de37a005591a3",
+   "danish": "Drengen løber efter bussen.",
+   "target": "efter",
+   "en": "The boy runs after the bus.",
+   "ru": "Мальчик бежит за автобусом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "18080432-7948-5dc0-a6ed-e8392e4d4e76",
+  "family_id": "3e00f84b-3e09-5297-a283-32748d415508",
+  "lemma": "unge",
+  "sense": {
+   "ru": "детёныш (животного)",
+   "en": "young one, cub (of an animal)"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} fodrer sine {target} i reden.",
+  "variant": {
+   "id": "18080432-7948-5dc0-a6ed-e8392e4d4e76",
+   "version": "295bb77f5764bb79",
+   "danish": "Mågen fodrer sine unger i reden.",
+   "target": "unger",
+   "en": "The gull feeds its young in the nest.",
+   "ru": "Чайка кормит своих птенцов в гнезде.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "021f90dd-f94f-53ae-9515-f908051466f4",
+  "family_id": "3372e55d-8453-557c-9a37-25a7ced108d2",
+  "lemma": "udtryk",
+  "sense": {
+   "ru": "выражение",
+   "en": "expression"
+  },
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Det er et {desc} dansk {target}.",
+  "variant": {
+   "id": "021f90dd-f94f-53ae-9515-f908051466f4",
+   "version": "746ad0fec1a82a3e",
+   "danish": "Det er et underligt dansk udtryk.",
+   "target": "udtryk",
+   "en": "It's a strange Danish expression.",
+   "ru": "Это странное датское выражение.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "59139180-a081-54e5-8d97-d6cddaf7e0e4",
+  "family_id": "3272190c-a296-5f6d-ae9d-9ca5380eb244",
+  "lemma": "mod",
+  "sense": {
+   "ru": "мужество",
+   "en": "courage"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target} {suffix}",
+  "variant": {
+   "id": "59139180-a081-54e5-8d97-d6cddaf7e0e4",
+   "version": "ed4566a48a399718",
+   "danish": "Brandmanden viste stort mod under branden.",
+   "target": "mod",
+   "en": "The firefighter showed great courage during the fire.",
+   "ru": "Пожарный проявил большое мужество во время пожара.",
+   "orders": [],
+   "accepted": [
+    "mandsmod"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e1608537-7395-5dc7-a2ca-179c8300b71a",
+  "family_id": "244eeaed-1dd3-5523-bd8e-a9178d410904",
+  "lemma": "gøre",
+  "sense": {
+   "ru": "делать, совершать",
+   "en": "to do, to make"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Hvad kan {subject} {target} for {object}?",
+  "variant": {
+   "id": "e1608537-7395-5dc7-a2ca-179c8300b71a",
+   "version": "0836c8d4905aec8f",
+   "danish": "Hvad kan jeg gøre for hende?",
+   "target": "gøre",
+   "en": "What can I do for her?",
+   "ru": "Что я могу для неё сделать?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "733197b8-2664-5b98-8bde-c9cf657e8b7e",
+  "family_id": "c90e1119-e247-5d8e-a52b-f4dc051b58d3",
+  "lemma": "fungere",
+  "sense": {
+   "ru": "работать, функционировать",
+   "en": "to work, to function"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} ikke længere.",
+  "variant": {
+   "id": "733197b8-2664-5b98-8bde-c9cf657e8b7e",
+   "version": "9a43ab3623cb518c",
+   "danish": "Fjernsynet fungerer ikke længere.",
+   "target": "fungerer",
+   "en": "The TV doesn't work anymore.",
+   "ru": "Телевизор больше не работает.",
+   "orders": [],
+   "accepted": [
+    "virker"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "37cb77b1-4e68-5a56-a491-787ac6be0ccc",
+  "family_id": "5ce94fd4-a8d5-59ff-b9a2-d01732aefb37",
+  "lemma": "service",
+  "sense": {
+   "ru": "обслуживание",
+   "en": "service (hospitality)"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} har {adjective} {target}.",
+  "variant": {
+   "id": "37cb77b1-4e68-5a56-a491-787ac6be0ccc",
+   "version": "d332cdd43ad873b9",
+   "danish": "Restauranten har god service.",
+   "target": "service",
+   "en": "The restaurant has good service.",
+   "ru": "В ресторане хорошее обслуживание.",
+   "orders": [],
+   "accepted": [
+    "betjening"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "514ed0c9-c093-574e-b0d4-68816d46332b",
+  "family_id": "f061190f-b72c-5ffe-ade1-8d8e89263af8",
+  "lemma": "perfekt",
+  "sense": {
+   "ru": "идеальный",
+   "en": "perfect"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} var {target} til {activity}.",
+  "variant": {
+   "id": "514ed0c9-c093-574e-b0d4-68816d46332b",
+   "version": "c01fde2796124eb9",
+   "danish": "Forholdene var perfekte til en sejltur.",
+   "target": "perfekte",
+   "en": "The conditions were perfect for a sailing trip.",
+   "ru": "Условия были идеальными для морской прогулки.",
+   "orders": [],
+   "accepted": [
+    "ideelle"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "fcdcffd9-946e-5422-ba93-02759e65d19d",
+  "family_id": "5f8a226c-e99a-52da-af02-dd014968dc8a",
+  "lemma": "hente",
+  "sense": {
+   "ru": "забирать, приносить",
+   "en": "to pick up, to fetch"
+  },
+  "level": "A2",
+  "situation": "family",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} børnene fra skole.",
+  "variant": {
+   "id": "fcdcffd9-946e-5422-ba93-02759e65d19d",
+   "version": "a913d49547901d73",
+   "danish": "Min mand henter børnene fra skole.",
+   "target": "henter",
+   "en": "My husband picks up the children from school.",
+   "ru": "Мой муж забирает детей из школы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "588ff5a6-2048-56bc-92ac-8d29698309ad",
+  "family_id": "e3f93c44-f1af-507b-a980-98361d1e002d",
+  "lemma": "hår",
+  "sense": {
+   "ru": "волос",
+   "en": "a hair (single strand)"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "Der var et {target} i {food}.",
+  "variant": {
+   "id": "588ff5a6-2048-56bc-92ac-8d29698309ad",
+   "version": "d39281b7b85f9733",
+   "danish": "Der var et hår i suppen.",
+   "target": "hår",
+   "en": "There was a hair in the soup.",
+   "ru": "В супе был волос.",
+   "orders": [],
+   "accepted": [
+    "hårstrå"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "3d0e4810-63b5-59e0-a5af-6b5359b3baed",
+  "family_id": "67cb2d08-282f-534f-9962-4a3f56417157",
+  "lemma": "klare",
+  "sense": {
+   "ru": "справляться, суметь (сделать)",
+   "en": "to manage, to handle"
+  },
+  "level": "A2",
+  "situation": "education",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} eksamen uden problemer.",
+  "variant": {
+   "id": "3d0e4810-63b5-59e0-a5af-6b5359b3baed",
+   "version": "04fc39e7fc6f89d1",
+   "danish": "Hun klarede eksamen uden problemer.",
+   "target": "klarede",
+   "en": "She got through the exam without any problems.",
+   "ru": "Она без проблем справилась с экзаменом.",
+   "orders": [],
+   "accepted": [
+    "bestod"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "7665f6b5-55bf-5468-9584-2444c30a809e",
+  "family_id": "f008f29f-d2fa-538f-98cc-d80f346f4c92",
+  "lemma": "op",
+  "sense": {
+   "ru": "вверх",
+   "en": "up"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} går {target} ad {place}.",
+  "variant": {
+   "id": "7665f6b5-55bf-5468-9584-2444c30a809e",
+   "version": "0b3d0da7712786f1",
+   "danish": "Han går op ad trappen.",
+   "target": "op",
+   "en": "He walks up the stairs.",
+   "ru": "Он поднимается по лестнице.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3e4ae25e-baf8-5268-8924-2b08a169d001",
+  "family_id": "3106da82-c908-5bf1-9237-eaff7f3a3b0d",
+  "lemma": "oplysning",
+  "sense": {
+   "ru": "сведение, информация",
+   "en": "piece of information"
+  },
+  "level": "A2",
+  "situation": "services",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} har brug for flere {target}.",
+  "variant": {
+   "id": "3e4ae25e-baf8-5268-8924-2b08a169d001",
+   "version": "95886b88a8cf1d24",
+   "danish": "Politiet har brug for flere oplysninger.",
+   "target": "oplysninger",
+   "en": "The police need more information.",
+   "ru": "Полиции нужно больше сведений.",
+   "orders": [],
+   "accepted": [
+    "informationer"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "739af62f-cba7-5685-a98a-2ae920877b70",
+  "family_id": "1faa5f84-2621-5c46-ac45-2a8e9320e8b7",
+  "lemma": "gang",
+  "sense": {
+   "ru": "коридор",
+   "en": "corridor, hallway"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target}.",
+  "variant": {
+   "id": "739af62f-cba7-5685-a98a-2ae920877b70",
+   "version": "4839988c68a3487c",
+   "danish": "Jeg ventede på dig i gangen.",
+   "target": "gangen",
+   "en": "I waited for you in the hallway.",
+   "ru": "Я ждал тебя в коридоре.",
+   "orders": [],
+   "accepted": [
+    "korridoren",
+    "entréen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "3e161b60-d1b5-520f-b9a8-2b08ec9cca56",
+  "family_id": "8921639a-abf1-5d34-9932-52def8e59a24",
+  "lemma": "journalist",
+  "sense": {
+   "ru": "журналист",
+   "en": "journalist"
+  },
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} arbejder som {target} på en stor avis.",
+  "variant": {
+   "id": "3e161b60-d1b5-520f-b9a8-2b08ec9cca56",
+   "version": "5fc07d261e1d0950",
+   "danish": "Han arbejder som journalist på en stor avis.",
+   "target": "journalist",
+   "en": "He works as a journalist at a big newspaper.",
+   "ru": "Он работает журналистом в крупной газете.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "4d8aea44-669f-5f18-b989-9bfd7c6c51e1",
+  "family_id": "bc38e151-2260-50f2-ba2f-5fcdcbb7524d",
+  "lemma": "hvor",
+  "sense": {
+   "ru": "как (для усиления в восклицаниях)",
+   "en": "how (for emphasis in exclamations)"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{target} er det {adj}!",
+  "variant": {
+   "id": "4d8aea44-669f-5f18-b989-9bfd7c6c51e1",
+   "version": "7412754345156753",
+   "danish": "Hvor er det dejligt!",
+   "target": "hvor",
+   "en": "How lovely it is!",
+   "ru": "Как чудесно!",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "f10fa323-695e-524c-b70e-dac856a53d0e",
+  "family_id": "5356bd41-319b-5af8-a1ed-20a2ef13bf30",
+  "lemma": "tone",
+  "sense": {
+   "ru": "тон, манера речи",
+   "en": "tone, manner (of speech)"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} sagde det i en {adjective} {target}.",
+  "variant": {
+   "id": "f10fa323-695e-524c-b70e-dac856a53d0e",
+   "version": "a306be1807886a33",
+   "danish": "Læreren sagde det i en streng tone.",
+   "target": "tone",
+   "en": "The teacher said it in a stern tone.",
+   "ru": "Учитель сказал это строгим тоном.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "993b1cbe-a43c-5a08-90c5-6217cf63fe49",
+  "family_id": "75569f5a-79c2-5e06-bcf9-04d1228264e9",
+  "lemma": "fed",
+  "sense": {
+   "ru": "жирный",
+   "en": "fatty, fat (food)"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} er meget {target}.",
+  "variant": {
+   "id": "993b1cbe-a43c-5a08-90c5-6217cf63fe49",
+   "version": "3cc28017a0650e70",
+   "danish": "Osten er meget fed.",
+   "target": "fed",
+   "en": "The cheese is very fatty.",
+   "ru": "Сыр очень жирный.",
+   "orders": [],
+   "accepted": [
+    "fedtholdig",
+    "fedtet"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "fb07429f-2d37-5d7a-bce8-41fa2c254d4a",
+  "family_id": "ec93a4bb-ad44-59d7-936f-6fd33e022b7b",
+  "lemma": "mærke",
+  "sense": {
+   "ru": "чувствовать, замечать",
+   "en": "to feel, to notice"
+  },
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} stadig smerten i ryggen.",
+  "variant": {
+   "id": "fb07429f-2d37-5d7a-bce8-41fa2c254d4a",
+   "version": "7ba637582a294a1e",
+   "danish": "Han mærker stadig smerten i ryggen.",
+   "target": "mærker",
+   "en": "He still feels the pain in his back.",
+   "ru": "Он всё ещё чувствует боль в спине.",
+   "orders": [],
+   "accepted": [
+    "føler"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "f6318dde-3012-5b5a-91ed-2dcb0a302077",
+  "family_id": "83fb8091-d430-5534-b617-0101aad907ac",
+  "lemma": "krone",
+  "sense": {
+   "ru": "корона (королевская)",
+   "en": "crown (royal headpiece)"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{royal} i eventyret har en {target} på hovedet.",
+  "variant": {
+   "id": "f6318dde-3012-5b5a-91ed-2dcb0a302077",
+   "version": "04e57aaf391c7b77",
+   "danish": "Prinsessen i eventyret har en krone på hovedet.",
+   "target": "krone",
+   "en": "The princess in the fairy tale has a crown on her head.",
+   "ru": "У принцессы в сказке на голове корона.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e0af323d-a427-53ff-8b68-ce09f630aeaa",
+  "family_id": "3340f14b-c0b1-547f-ac67-a4f31fc37b75",
+  "lemma": "design",
+  "sense": {
+   "ru": "дизайн",
+   "en": "design"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} elsker {target} på {object}.",
+  "variant": {
+   "id": "e0af323d-a427-53ff-8b68-ce09f630aeaa",
+   "version": "1f802e6b21103e51",
+   "danish": "Min ven elsker designet på den nye bil.",
+   "target": "designet",
+   "en": "My friend loves the design of the new car.",
+   "ru": "Мой друг обожает дизайн новой машины.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3e9a9490-2b03-524d-b7be-c8248a35ce6a",
+  "family_id": "e90527c0-974f-5ee7-bf56-bb991fecf230",
+  "lemma": "ambition",
+  "sense": {
+   "ru": "амбиция, стремление",
+   "en": "ambition"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{possessive} {target} er at {infinitive}.",
+  "variant": {
+   "id": "3e9a9490-2b03-524d-b7be-c8248a35ce6a",
+   "version": "5417aacdabaf9db7",
+   "danish": "Min ambition er at vinde konkurrencen.",
+   "target": "ambition",
+   "en": "My ambition is to win the competition.",
+   "ru": "Моё стремление — выиграть конкурс.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "de0449e2-6209-5d36-9904-b4b0f72175e3",
+  "family_id": "e77bd370-4a13-54c7-80da-e91fad23ae7c",
+  "lemma": "kød",
+  "sense": {
+   "ru": "мясо",
+   "en": "meat"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} spiser {frequency} {target}.",
+  "variant": {
+   "id": "de0449e2-6209-5d36-9904-b4b0f72175e3",
+   "version": "6570c31070460cf3",
+   "danish": "Han spiser aldrig kød.",
+   "target": "kød",
+   "en": "He never eats meat.",
+   "ru": "Он никогда не ест мясо.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7ecf65ba-8ccc-5418-a3e3-0214c56ef5bb",
+  "family_id": "f0b27d44-cef3-5638-9194-067dc2234936",
+  "lemma": "dansk",
+  "sense": {
+   "ru": "датский язык",
+   "en": "Danish (the language)"
+  },
+  "level": "A2",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} lærer {target} {context}.",
+  "variant": {
+   "id": "7ecf65ba-8ccc-5418-a3e3-0214c56ef5bb",
+   "version": "e5b7506ebf94b8cd",
+   "danish": "Vi lærer dansk om aftenen.",
+   "target": "dansk",
+   "en": "We learn Danish in the evenings.",
+   "ru": "Мы учим датский по вечерам.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3638a7a8-6838-527f-9a90-4db59f0a64ee",
+  "family_id": "efaa3a3b-5e7c-5a15-94c8-1e0570f7f93c",
+  "lemma": "bane",
+  "sense": {
+   "ru": "поле, площадка (спортивная)",
+   "en": "field, pitch, court"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} løber ud på {target}.",
+  "variant": {
+   "id": "3638a7a8-6838-527f-9a90-4db59f0a64ee",
+   "version": "198372a09f63077d",
+   "danish": "Spillerne løber ud på banen.",
+   "target": "banen",
+   "en": "The players run out onto the field.",
+   "ru": "Игроки выбегают на поле.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5b24537a-8314-5b45-bc39-ab88912c4d55",
+  "family_id": "dc3a236c-1758-5cf2-b2c4-9808615d0cdb",
+  "lemma": "servere",
+  "sense": {
+   "ru": "подавать еду",
+   "en": "to serve (food)"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {target} {dish} for gæsterne.",
+  "variant": {
+   "id": "5b24537a-8314-5b45-bc39-ab88912c4d55",
+   "version": "ee791b87bf78e41c",
+   "danish": "Værten serverer kagen for gæsterne.",
+   "target": "serverer",
+   "en": "The host serves the cake to the guests.",
+   "ru": "Хозяин подаёт торт гостям.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3eb9bf75-d9cb-5476-a586-e4924bfc9a34",
+  "family_id": "f6bf0b86-7c78-596a-addd-2b0df56b6b3e",
+  "lemma": "understrege",
+  "sense": {
+   "ru": "подчёркивать",
+   "en": "to underline, to emphasize"
+  },
+  "level": "A2",
+  "situation": "education",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} {target} det vigtige ord i teksten.",
+  "variant": {
+   "id": "3eb9bf75-d9cb-5476-a586-e4924bfc9a34",
+   "version": "3b4a6cb4c2f48334",
+   "danish": "Læreren understreger det vigtige ord i teksten.",
+   "target": "understreger",
+   "en": "The teacher underlines the important word in the text.",
+   "ru": "Учитель подчёркивает важное слово в тексте.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5bb18f0d-936e-5b83-92c0-29728758ef8b",
+  "family_id": "6a3f7d51-af8e-5cbf-9913-90d7068c2407",
+  "lemma": "al",
+  "sense": {
+   "ru": "весь, вся",
+   "en": "all, the whole (of)"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{target} {noun} er {state}.",
+  "variant": {
+   "id": "5bb18f0d-936e-5b83-92c0-29728758ef8b",
+   "version": "9e39e822513c30c1",
+   "danish": "Al maden er væk.",
+   "target": "al",
+   "en": "All the food is gone.",
+   "ru": "Вся еда закончилась.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "8db2357e-c9cd-5f10-9191-3541558b1740",
+  "family_id": "d63e589b-8d13-508c-bf79-ed594befd087",
+  "lemma": "over",
+  "sense": {
+   "ru": "свыше, больше чем",
+   "en": "over, more than"
+  },
+  "level": "A2",
+  "situation": "personal-info",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "{subject} er {target} {number} år gammel.",
+  "variant": {
+   "id": "8db2357e-c9cd-5f10-9191-3541558b1740",
+   "version": "17b22b6023340cba",
+   "danish": "Hun er over halvtreds år gammel.",
+   "target": "over",
+   "en": "She is over fifty years old.",
+   "ru": "Ей за пятьдесят.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "f4a10d42-7451-525b-b815-b3570c7cb92c",
+  "family_id": "60d3aa30-05fd-5efb-9aed-a13d628455d0",
+  "lemma": "drømme",
+  "sense": {
+   "ru": "мечтать",
+   "en": "to dream (aspire, wish)"
+  },
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {target} om at {infinitive}.",
+  "variant": {
+   "id": "f4a10d42-7451-525b-b815-b3570c7cb92c",
+   "version": "f22d2f3c19266fb0",
+   "danish": "Vi drømmer om at åbne egen forretning.",
+   "target": "drømmer",
+   "en": "We dream of opening our own business.",
+   "ru": "Мы мечтаем открыть свой бизнес.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6257b852-4839-57f2-846c-c0a91c03143b",
+  "family_id": "0384abb4-1f0e-5f71-bec6-2a643dd41298",
+  "lemma": "egentlig",
+  "sense": {
+   "ru": "на самом деле, вообще-то",
+   "en": "actually, really (in fact)"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "sentence-adverbs",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} vil {target} gerne rejse til udlandet.",
+  "variant": {
+   "id": "6257b852-4839-57f2-846c-c0a91c03143b",
+   "version": "50a33dc8a8a0040d",
+   "danish": "Jeg vil egentlig gerne rejse til udlandet.",
+   "target": "egentlig",
+   "en": "Actually, I would quite like to travel abroad.",
+   "ru": "На самом деле я бы с удовольствием поехал за границу.",
+   "orders": [
+    "Egentlig vil jeg gerne rejse til udlandet."
+   ],
+   "accepted": [
+    "faktisk"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "32954ede-6bc3-56f4-ae00-95d83adff5ee",
+  "family_id": "78ae8727-da9d-5517-93d6-a99e8a69339c",
+  "lemma": "nødvendigvis",
+  "sense": {
+   "ru": "обязательно, непременно",
+   "en": "necessarily"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "sentence-adverbs",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} er ikke {target} {adjective}.",
+  "variant": {
+   "id": "32954ede-6bc3-56f4-ae00-95d83adff5ee",
+   "version": "a56fe30a5c871feb",
+   "danish": "Det nemmeste svar er ikke nødvendigvis det rigtige.",
+   "target": "nødvendigvis",
+   "en": "The easiest answer is not necessarily the right one.",
+   "ru": "Самый лёгкий ответ не обязательно правильный.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "3a9e9b3d-05cd-5d3a-a89c-22cfc7e2f494",
+  "family_id": "ba71c9fe-cc2f-56f4-b676-968ca13aae9f",
+  "lemma": "da",
+  "sense": {
+   "ru": "тогда, в таком случае",
+   "en": "then, in that case"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "sentence-adverbs",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Hvis {condition}, {question} {target}?",
+  "variant": {
+   "id": "3a9e9b3d-05cd-5d3a-a89c-22cfc7e2f494",
+   "version": "68a27ac641ba0550",
+   "danish": "Hvis vi ikke når færgen, hvor sover vi da?",
+   "target": "da",
+   "en": "If we don't make the ferry, where do we sleep then?",
+   "ru": "Если мы не успеем на паром, где мы тогда будем спать?",
+   "orders": [],
+   "accepted": [
+    "så"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "57eb639b-8d14-577e-8f5b-826ac4f5ca90",
+  "family_id": "3a868726-4489-5ff6-a941-6cbc17837f54",
+  "lemma": "blive",
+  "sense": {
+   "ru": "вспомогательный глагол для образования пассивного залога",
+   "en": "be (helper verb forming the passive)"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "passive",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "{object} {target} {participle} {time}.",
+  "variant": {
+   "id": "57eb639b-8d14-577e-8f5b-826ac4f5ca90",
+   "version": "87ed26298314a1f9",
+   "danish": "Køkkenet bliver renoveret i denne måned.",
+   "target": "bliver",
+   "en": "The kitchen is being renovated this month.",
+   "ru": "Кухню ремонтируют в этом месяце.",
+   "orders": [
+    "I denne måned bliver køkkenet renoveret."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "ae58ccf1-0dc9-58d0-a2ac-04be1aa230a5",
+  "family_id": "6a35e5e8-7f0d-5a13-9e34-7ca22ee1c7c5",
+  "lemma": "skift",
+  "sense": {
+   "ru": "перемена, изменение",
+   "en": "change, shift"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "I de senere år er der sket et stort {target} {change}.",
+  "variant": {
+   "id": "ae58ccf1-0dc9-58d0-a2ac-04be1aa230a5",
+   "version": "86427af26c734918",
+   "danish": "I de senere år er der sket et stort skift fra kontanter til mobilbetaling.",
+   "target": "skift",
+   "en": "In recent years there has been a big shift from cash to mobile payment.",
+   "ru": "В последние годы произошёл большой переход от наличных к мобильной оплате.",
+   "orders": [],
+   "accepted": [
+    "skifte"
+   ]
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "d23559f9-f555-5968-90c7-91c309cd11c9",
+  "family_id": "4933830a-7789-588b-aab7-d55e18dfe005",
+  "lemma": "formiddag",
+  "sense": {
+   "ru": "первая половина дня",
+   "en": "morning (before noon)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{activity} i {target}, men efter frokost er jeg fri.",
+  "variant": {
+   "id": "d23559f9-f555-5968-90c7-91c309cd11c9",
+   "version": "a49096f1ce065762",
+   "danish": "Jeg holder et kursus i formiddag, men efter frokost er jeg fri.",
+   "target": "formiddag",
+   "en": "I'm teaching a course this morning, but after lunch I'm free.",
+   "ru": "Сегодня до обеда я веду курс, но после обеда я свободен.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "d92d5237-b804-5efb-82e0-f9dc1bd9be24",
+  "family_id": "2cc5c475-4822-54b8-87b1-fda5a23576c2",
+  "lemma": "kirkegård",
+  "sense": {
+   "ru": "кладбище",
+   "en": "cemetery"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} går en tur på {target}.",
+  "variant": {
+   "id": "d92d5237-b804-5efb-82e0-f9dc1bd9be24",
+   "version": "c2279062c01e0984",
+   "danish": "De ældre går en tur på kirkegården.",
+   "target": "kirkegården",
+   "en": "The elderly take a walk in the cemetery.",
+   "ru": "Пожилые люди гуляют по кладбищу.",
+   "orders": [
+    "På kirkegården går de ældre en tur."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "662c392e-6507-5360-aa59-994a13c031bd",
+  "family_id": "6a8e87a5-dfec-50f8-a73d-8b8b9fd66a46",
+  "lemma": "fremme",
+  "sense": {
+   "ru": "на месте назначения, впереди",
+   "en": "there, arrived (at the destination)"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er endelig {target} efter den lange rejse.",
+  "variant": {
+   "id": "662c392e-6507-5360-aa59-994a13c031bd",
+   "version": "64ea7609d2b8545a",
+   "danish": "Vi er endelig fremme efter den lange rejse.",
+   "target": "fremme",
+   "en": "We have finally arrived after the long journey.",
+   "ru": "Мы наконец добрались до места после долгого путешествия.",
+   "orders": [
+    "Endelig er vi fremme efter den lange rejse."
+   ],
+   "accepted": [
+    "ankommet"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "ca4ac84e-2453-5fe7-b69c-a6a2a0900fcb",
+  "family_id": "33165e4b-677b-56a6-afdb-3bb0a54d922d",
+  "lemma": "premierminister",
+  "sense": {
+   "ru": "премьер-министр",
+   "en": "prime minister"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{target} holdt en tale om {topic} i aftes.",
+  "variant": {
+   "id": "ca4ac84e-2453-5fe7-b69c-a6a2a0900fcb",
+   "version": "387c4e1ac0df188f",
+   "danish": "Premierministeren holdt en tale om sundhedsvæsenet i aftes.",
+   "target": "premierministeren",
+   "en": "The prime minister gave a speech about the healthcare system last night.",
+   "ru": "Премьер-министр выступил с речью о системе здравоохранения вчера вечером.",
+   "orders": [
+    "I aftes holdt premierministeren en tale om sundhedsvæsenet."
+   ],
+   "accepted": [
+    "statsministeren"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "ad9241bb-4fba-5109-9210-7c52e89830ad",
+  "family_id": "5185a085-7824-5996-aff9-e48db13535de",
+  "lemma": "desto",
+  "sense": {
+   "ru": "тем (в конструкциях чем... тем...)",
+   "en": "the (in 'the...the...' constructions)"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "Jo mere du øver dig i {skill}, {target} bedre bliver du.",
+  "variant": {
+   "id": "ad9241bb-4fba-5109-9210-7c52e89830ad",
+   "version": "5d8376af718a5a06",
+   "danish": "Jo mere du øver dig i at tale dansk, desto bedre bliver du.",
+   "target": "desto",
+   "en": "The more you practice speaking Danish, the better you get.",
+   "ru": "Чем больше ты тренируешься говорить по-датски, тем лучше у тебя получается.",
+   "orders": [],
+   "accepted": [
+    "jo",
+    "des"
+   ]
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "d8841558-6b77-59b0-9cf2-a243bb93c987",
+  "family_id": "b732d0e7-00ab-5829-a2d5-ba65a12394e8",
+  "lemma": "liga",
+  "sense": {
+   "ru": "лига",
+   "en": "league"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} vandt {target} sidste sæson.",
+  "variant": {
+   "id": "d8841558-6b77-59b0-9cf2-a243bb93c987",
+   "version": "a40d0684ff242244",
+   "danish": "Vores klub vandt ligaen sidste sæson.",
+   "target": "ligaen",
+   "en": "Our club won the league last season.",
+   "ru": "Наш клуб выиграл лигу в прошлом сезоне.",
+   "orders": [
+    "Sidste sæson vandt vores klub ligaen."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "3840a27e-32ae-55d8-b56a-a8dd6c101843",
+  "family_id": "ecad4d0e-e3f3-5f10-947c-b893aaf4ccc6",
+  "lemma": "snes",
+  "sense": {
+   "ru": "два десятка (двадцать штук)",
+   "en": "a score (twenty)"
+  },
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} køber en {target} æg på markedet.",
+  "variant": {
+   "id": "3840a27e-32ae-55d8-b56a-a8dd6c101843",
+   "version": "588140e886639c79",
+   "danish": "Bageren køber en snes æg på markedet.",
+   "target": "snes",
+   "en": "The baker buys a score of eggs at the market.",
+   "ru": "Пекарь покупает два десятка яиц на рынке.",
+   "orders": [
+    "På markedet køber bageren en snes æg."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "788623a1-b02c-5a9b-9f0a-faaf909bfc5e",
+  "family_id": "155a25a8-e185-5add-9eb3-24e0240be951",
+  "lemma": "træning",
+  "sense": {
+   "ru": "обучение, подготовка",
+   "en": "training (professional preparation)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} får {target} i {skill} hvert år.",
+  "variant": {
+   "id": "788623a1-b02c-5a9b-9f0a-faaf909bfc5e",
+   "version": "6295b99f81ecbff6",
+   "danish": "Personalet får træning i brandslukning hvert år.",
+   "target": "træning",
+   "en": "The staff get training in firefighting every year.",
+   "ru": "Персонал каждый год проходит подготовку по тушению пожаров.",
+   "orders": [
+    "Hvert år får personalet træning i brandslukning."
+   ],
+   "accepted": [
+    "undervisning",
+    "uddannelse",
+    "oplæring"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "09e21a20-1ece-58af-b9d6-1272e2ef9661",
+  "family_id": "3f0e0ad8-a3d2-5207-810d-a252c03c5142",
+  "lemma": "mystisk",
+  "sense": {
+   "ru": "таинственный, загадочный",
+   "en": "mysterious"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} finder et {target} brev i postkassen.",
+  "variant": {
+   "id": "09e21a20-1ece-58af-b9d6-1272e2ef9661",
+   "version": "182bd0d37cb1f1a8",
+   "danish": "Hun finder et mystisk brev i postkassen.",
+   "target": "mystisk",
+   "en": "She finds a mysterious letter in the mailbox.",
+   "ru": "Она находит таинственное письмо в почтовом ящике.",
+   "orders": [
+    "I postkassen finder hun et mystisk brev."
+   ],
+   "accepted": [
+    "gådefuldt"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "9bebe452-5bb9-5967-a5b1-08c90471c891",
+  "family_id": "d55b7c30-a3d1-52ea-950e-5fadc83545bb",
+  "lemma": "minister",
+  "sense": {
+   "ru": "министр",
+   "en": "minister (government)"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} interviewer {target} i aften.",
+  "variant": {
+   "id": "9bebe452-5bb9-5967-a5b1-08c90471c891",
+   "version": "d0a869291eb8ca7a",
+   "danish": "Radioværten interviewer ministeren i aften.",
+   "target": "ministeren",
+   "en": "The radio host is interviewing the minister tonight.",
+   "ru": "Радиоведущий берёт интервью у министра сегодня вечером.",
+   "orders": [
+    "I aften interviewer radioværten ministeren."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "e5bfb22f-ffea-52df-b5ab-afc5c4f6c0d4",
+  "family_id": "2819fe1e-535f-5ceb-b5d2-f7f061492e7f",
+  "lemma": "måtte",
+  "sense": {
+   "ru": "мог, имел разрешение",
+   "en": "was allowed to, could"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "Chefen sagde, at {subject} gerne {target} {complement}.",
+  "variant": {
+   "id": "e5bfb22f-ffea-52df-b5ab-afc5c4f6c0d4",
+   "version": "61c3d9ffa00555c3",
+   "danish": "Chefen sagde, at jeg gerne måtte arbejde hjemmefra.",
+   "target": "måtte",
+   "en": "The boss said that I was allowed to work from home.",
+   "ru": "Начальник сказал, что мне можно работать из дома.",
+   "orders": [],
+   "accepted": [
+    "kunne"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "6dc29085-dbef-592d-bbc2-791823e2c09c",
+  "family_id": "13105aa6-df0f-5adb-99c9-c442152b7a36",
+  "lemma": "bosætte",
+  "sense": {
+   "ru": "селиться, обосновываться",
+   "en": "to settle (in a place)"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} {target} sig i en lille by ved kysten, da de gik på pension.",
+  "variant": {
+   "id": "6dc29085-dbef-592d-bbc2-791823e2c09c",
+   "version": "0d911ebbb7c91ef1",
+   "danish": "Min onkel og tante bosatte sig i en lille by ved kysten, da de gik på pension.",
+   "target": "bosatte",
+   "en": "My uncle and aunt settled in a small town on the coast when they retired.",
+   "ru": "Мои дядя и тётя поселились в маленьком городке на побережье, когда вышли на пенсию.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "6e134147-f0ac-5532-b0e5-1085ff7c5235",
+  "family_id": "464c7ff3-e245-5c3a-b59a-54f0706867c1",
+  "lemma": "rytter",
+  "sense": {
+   "ru": "всадник",
+   "en": "rider (on horseback)"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er en dygtig {target} og har sin egen hest.",
+  "variant": {
+   "id": "6e134147-f0ac-5532-b0e5-1085ff7c5235",
+   "version": "2716798a247e8fe3",
+   "danish": "Min søster er en dygtig rytter og har sin egen hest.",
+   "target": "rytter",
+   "en": "My sister is a skilled rider and has her own horse.",
+   "ru": "Моя сестра — умелая наездница, и у неё есть своя лошадь.",
+   "orders": [],
+   "accepted": [
+    "rytterske"
+   ]
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "0eefe7d2-9b3a-5f31-a6b9-cf5b8bff907d",
+  "family_id": "e7315558-f3ca-529f-990b-9db6949cd4a0",
+  "lemma": "valgkamp",
+  "sense": {
+   "ru": "избирательная кампания",
+   "en": "election campaign"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "Under {target} lovede {subject} {promise}.",
+  "variant": {
+   "id": "0eefe7d2-9b3a-5f31-a6b9-cf5b8bff907d",
+   "version": "ff22f15e08053851",
+   "danish": "Under valgkampen lovede kandidaten flere cykelstier.",
+   "target": "valgkampen",
+   "en": "During the election campaign, the candidate promised more cycle paths.",
+   "ru": "Во время предвыборной кампании кандидат обещал больше велодорожек.",
+   "orders": [
+    "Kandidaten lovede flere cykelstier under valgkampen."
+   ],
+   "accepted": [
+    "valgkampagnen"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "2c74db78-f6bc-5788-91aa-4c0e58a72ae0",
+  "family_id": "a3ceb284-c16a-5e1d-8768-91d5e06666e6",
+  "lemma": "folketingsvalg",
+  "sense": {
+   "ru": "парламентские выборы",
+   "en": "parliamentary election"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} forventer et {target} i november.",
+  "variant": {
+   "id": "2c74db78-f6bc-5788-91aa-4c0e58a72ae0",
+   "version": "141961e42609e991",
+   "danish": "Politikerne forventer et folketingsvalg i november.",
+   "target": "folketingsvalg",
+   "en": "The politicians expect a parliamentary election in November.",
+   "ru": "Политики ожидают парламентских выборов в ноябре.",
+   "orders": [
+    "I november forventer politikerne et folketingsvalg."
+   ],
+   "accepted": [
+    "parlamentsvalg"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "42cddff9-4d43-5b0c-b70b-1f4d578c793b",
+  "family_id": "0338f1c4-43c8-5132-97b3-95136f6f5f20",
+  "lemma": "tænde",
+  "sense": {
+   "ru": "включать, зажигать",
+   "en": "to turn on, light"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} lyset, når det bliver mørkt.",
+  "variant": {
+   "id": "42cddff9-4d43-5b0c-b70b-1f4d578c793b",
+   "version": "f9b0cff10843fca0",
+   "danish": "Han tænder lyset, når det bliver mørkt.",
+   "target": "tænder",
+   "en": "He turns on the light when it gets dark.",
+   "ru": "Он включает свет, когда темнеет.",
+   "orders": [
+    "Når det bliver mørkt, tænder han lyset."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "36fee62e-2eb8-55da-b82c-095cf4196494",
+  "family_id": "1cf70509-991e-5547-8a8b-a53145eb1fe9",
+  "lemma": "sigt",
+  "sense": {
+   "ru": "перспектива",
+   "en": "run, term (as in long-term)"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "På langt {target} vil {plan} betale sig.",
+  "variant": {
+   "id": "36fee62e-2eb8-55da-b82c-095cf4196494",
+   "version": "3defd30c036901ae",
+   "danish": "På langt sigt vil investeringen betale sig.",
+   "target": "sigt",
+   "en": "In the long term, the investment will pay off.",
+   "ru": "В долгосрочной перспективе инвестиция окупится.",
+   "orders": [
+    "Investeringen vil betale sig på langt sigt."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "71e2ee26-afb3-5bb9-aa1a-50ce71a3a152",
+  "family_id": "4b869522-fc54-5a2e-bdeb-2680b5e73512",
+  "lemma": "indtage",
+  "sense": {
+   "ru": "принимать пищу",
+   "en": "to consume, to take in (food)"
+  },
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} må ikke {target} {thing} {time}.",
+  "variant": {
+   "id": "71e2ee26-afb3-5bb9-aa1a-50ce71a3a152",
+   "version": "5d4c86817d7f48fd",
+   "danish": "Patienten må ikke indtage fast føde de første dage.",
+   "target": "indtage",
+   "en": "The patient must not consume solid food for the first few days.",
+   "ru": "Пациенту нельзя принимать твёрдую пищу в первые дни.",
+   "orders": [
+    "De første dage må patienten ikke indtage fast føde."
+   ],
+   "accepted": [
+    "spise",
+    "få"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "b845ba66-0cfa-53d5-bbce-42532c644105",
+  "family_id": "9d43b98c-cb17-5aa7-b83f-b69385ceee3e",
+  "lemma": "give",
+  "sense": {
+   "ru": "угощать, платить за кого-то",
+   "en": "to treat, to pay for someone"
+  },
+  "level": "B1",
+  "situation": "social",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} {target} {treat}.",
+  "variant": {
+   "id": "b845ba66-0cfa-53d5-bbce-42532c644105",
+   "version": "401dd6f48c6ca20d",
+   "danish": "Mormor giver isen.",
+   "target": "giver",
+   "en": "The ice cream is on Grandma.",
+   "ru": "Бабушка угощает мороженым.",
+   "orders": [],
+   "accepted": [
+    "betaler",
+    "spenderer"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "68248775-7227-53df-aebc-ac41dacf53fe",
+  "family_id": "a5005a84-8da8-50ca-a331-8b0f5f703f3c",
+  "lemma": "ukendt",
+  "sense": {
+   "ru": "незнакомый",
+   "en": "unfamiliar, strange (a stranger)"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {reaction} i {target} omgivelser.",
+  "variant": {
+   "id": "68248775-7227-53df-aebc-ac41dacf53fe",
+   "version": "35124a862766f999",
+   "danish": "Katten bliver nervøs i ukendte omgivelser.",
+   "target": "ukendte",
+   "en": "The cat gets nervous in unfamiliar surroundings.",
+   "ru": "Кошка нервничает в незнакомой обстановке.",
+   "orders": [],
+   "accepted": [
+    "fremmede"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "bc86a0cb-f8ba-5efa-a62e-881d6f89693c",
+  "family_id": "957b7398-8369-5dae-aa95-d931f5c86f06",
+  "lemma": "ideologisk",
+  "sense": {
+   "ru": "идеологический",
+   "en": "ideological"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "Der er en {target} forskel mellem {groups}.",
+  "variant": {
+   "id": "bc86a0cb-f8ba-5efa-a62e-881d6f89693c",
+   "version": "c8df92fb3b9ecf38",
+   "danish": "Der er en ideologisk forskel mellem de to partier.",
+   "target": "ideologisk",
+   "en": "There is an ideological difference between the two parties.",
+   "ru": "Между двумя партиями есть идеологическое различие.",
+   "orders": [
+    "Mellem de to partier er der en ideologisk forskel."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "2b8d9041-48e8-5ef2-a4ed-518a64ae3c7b",
+  "family_id": "a870b267-ddd8-53c4-b866-31ce09b843c6",
+  "lemma": "stadion",
+  "sense": {
+   "ru": "стадион",
+   "en": "stadium"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} spiller foran et fyldt {target} i aften.",
+  "variant": {
+   "id": "2b8d9041-48e8-5ef2-a4ed-518a64ae3c7b",
+   "version": "2139b83bc9a9f82e",
+   "danish": "Landsholdet spiller foran et fyldt stadion i aften.",
+   "target": "stadion",
+   "en": "The national team is playing in front of a full stadium tonight.",
+   "ru": "Сегодня вечером сборная играет перед полным стадионом.",
+   "orders": [
+    "I aften spiller landsholdet foran et fyldt stadion."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "6a2706e4-44c4-5641-add0-99f5f169acd5",
+  "family_id": "c2eff0b5-646f-57ff-80ac-5121ed471346",
+  "lemma": "trods",
+  "sense": {
+   "ru": "несмотря на",
+   "en": "despite, in spite of"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} gik en tur {target} regnen.",
+  "variant": {
+   "id": "6a2706e4-44c4-5641-add0-99f5f169acd5",
+   "version": "a929587f26299469",
+   "danish": "De gik en tur trods regnen.",
+   "target": "trods",
+   "en": "They went for a walk despite the rain.",
+   "ru": "Они пошли гулять, несмотря на дождь.",
+   "orders": [
+    "Trods regnen gik de en tur."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "c817aaf0-9ee0-5d23-8bd4-27de528d76e3",
+  "family_id": "4cf9a5c6-2502-550c-9f31-924da0c8c984",
+  "lemma": "afløse",
+  "sense": {
+   "ru": "сменять, заменять",
+   "en": "to relieve, replace (someone)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} sin kollega klokken seks.",
+  "variant": {
+   "id": "c817aaf0-9ee0-5d23-8bd4-27de528d76e3",
+   "version": "689b38165e998b22",
+   "danish": "Min mor afløser sin kollega klokken seks.",
+   "target": "afløser",
+   "en": "My mother relieves her colleague at six o'clock.",
+   "ru": "Моя мама сменяет свою коллегу в шесть часов.",
+   "orders": [
+    "Klokken seks afløser min mor sin kollega."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "3dc38c21-f0a0-5e0b-885b-98258d43a02c",
+  "family_id": "6d8ac90e-cc51-504a-9422-2b2ea37ca05b",
+  "lemma": "stilling",
+  "sense": {
+   "ru": "позиция, положение (например, в игре)",
+   "en": "position (situation, standing)"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Efter ti træk har {subject} en stærk {target} på brættet.",
+  "variant": {
+   "id": "3dc38c21-f0a0-5e0b-885b-98258d43a02c",
+   "version": "5adc949eb0e1f605",
+   "danish": "Efter ti træk har computeren en stærk stilling på brættet.",
+   "target": "stilling",
+   "en": "After ten moves, the computer has a strong position on the board.",
+   "ru": "После десяти ходов у компьютера сильная позиция на доске.",
+   "orders": [
+    "Computeren har en stærk stilling på brættet efter ti træk."
+   ],
+   "accepted": [
+    "position"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "782eb1d0-4a48-546b-b252-236f628825ae",
+  "family_id": "dc83d2d0-6d14-55b6-9f9b-cb2bdf9adc58",
+  "lemma": "mod",
+  "sense": {
+   "ru": "против",
+   "en": "against"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{subject} kæmper {target} {opponent}.",
+  "variant": {
+   "id": "782eb1d0-4a48-546b-b252-236f628825ae",
+   "version": "ddfc8bbfc1ec3464",
+   "danish": "Politikeren kæmper mod korruption.",
+   "target": "mod",
+   "en": "The politician fights against corruption.",
+   "ru": "Политик борется против коррупции.",
+   "orders": [],
+   "accepted": [
+    "imod"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "edd6f111-b31c-549b-8113-99939663743e",
+  "family_id": "3c431d71-7b98-5880-a182-889db142d1ad",
+  "lemma": "indtage",
+  "sense": {
+   "ru": "занимать место",
+   "en": "to hold, to occupy (a position)"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} {target} {position}.",
+  "variant": {
+   "id": "edd6f111-b31c-549b-8113-99939663743e",
+   "version": "903dc346d113b69a",
+   "danish": "Partiet indtager en central plads i forhandlingerne.",
+   "target": "indtager",
+   "en": "The party occupies a central place in the negotiations.",
+   "ru": "Партия занимает центральное место в переговорах.",
+   "orders": [],
+   "accepted": [
+    "har"
+   ]
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "2f8f61fb-da3b-52dd-ba8c-699f8106d7a0",
+  "family_id": "6da3a839-ae36-5c5a-aa09-680bede5fda9",
+  "lemma": "af",
+  "sense": {
+   "ru": "кем (указывает деятеля в пассивных конструкциях)",
+   "en": "by (the doer in a passive sentence)"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "passive",
+  "source": "catalog",
+  "batch": "batch-0001.json",
+  "frame": "Sangen blev skrevet {target} {person}.",
+  "variant": {
+   "id": "2f8f61fb-da3b-52dd-ba8c-699f8106d7a0",
+   "version": "7cf71efa4bc8247f",
+   "danish": "Sangen blev skrevet af en berømt komponist.",
+   "target": "af",
+   "en": "The song was written by a famous composer.",
+   "ru": "Песня была написана известным композитором.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5efd0a30-1385-5e68-9205-75cf13cd9f3e",
+  "family_id": "5ac70cbf-21e6-5fb8-8bfb-f481490c09c4",
+  "lemma": "mon",
+  "sense": {
+   "ru": "интересно, неужели (частица вопроса)",
+   "en": "I wonder (question particle)"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "sentence-adverbs",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{target} {subject} kommer i dag?",
+  "variant": {
+   "id": "5efd0a30-1385-5e68-9205-75cf13cd9f3e",
+   "version": "f77bdde545e2ea81",
+   "danish": "Mon han kommer i dag?",
+   "target": "mon",
+   "en": "I wonder if he's coming today.",
+   "ru": "Интересно, придёт ли он сегодня.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3e618da2-67af-5dac-b51b-de7a4eb80fe4",
+  "family_id": "2a1f3f0f-28ab-57b6-bf6a-2f8e0b7f3b82",
+  "lemma": "krydse",
+  "sense": {
+   "ru": "ставить крестик",
+   "en": "to tick, to check off (mark with a cross)"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} det rigtige svar af på skemaet.",
+  "variant": {
+   "id": "3e618da2-67af-5dac-b51b-de7a4eb80fe4",
+   "version": "6e00a6572659d7a7",
+   "danish": "Jeg krydser det rigtige svar af på skemaet.",
+   "target": "krydser",
+   "en": "I tick the correct answer on the form.",
+   "ru": "Я отмечаю крестиком правильный ответ в бланке.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3f92757c-d43a-5ee2-9860-c78f9d991018",
+  "family_id": "dd45b264-0614-58c0-91b4-bc75eb810532",
+  "lemma": "kapital",
+  "sense": {
+   "ru": "капитал, денежные средства",
+   "en": "capital, funds"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} investerer sin {target} i aktier.",
+  "variant": {
+   "id": "3f92757c-d43a-5ee2-9860-c78f9d991018",
+   "version": "b92994440e119d30",
+   "danish": "Han investerer sin kapital i aktier.",
+   "target": "kapital",
+   "en": "He invests his capital in stocks.",
+   "ru": "Он инвестирует свой капитал в акции.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "352aa54c-3cf7-5d53-8678-6780922e1987",
+  "family_id": "9c0d180a-b3e8-52fc-8394-b87f404dffb4",
+  "lemma": "enhed",
+  "sense": {
+   "ru": "единство, сплоченность",
+   "en": "unity, cohesion"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} arbejder for national {target}.",
+  "variant": {
+   "id": "352aa54c-3cf7-5d53-8678-6780922e1987",
+   "version": "9375a7707e8ba8f5",
+   "danish": "Partiet arbejder for national enhed.",
+   "target": "enhed",
+   "en": "The party works for national unity.",
+   "ru": "Партия стремится к национальному единству.",
+   "orders": [],
+   "accepted": [
+    "enighed"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "fa8616b7-93e7-59cb-8205-3ad12bb0231e",
+  "family_id": "7035cbb8-a360-5a20-83d9-3b13e57d7e03",
+  "lemma": "myndighed",
+  "sense": {
+   "ru": "орган власти, ведомство",
+   "en": "authority (governing body)"
+  },
+  "level": "B1",
+  "situation": "services",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} skal kontakte de lokale {target}.",
+  "variant": {
+   "id": "fa8616b7-93e7-59cb-8205-3ad12bb0231e",
+   "version": "688989773eca9693",
+   "danish": "Beboerne skal kontakte de lokale myndigheder.",
+   "target": "myndigheder",
+   "en": "Residents must contact the local authorities.",
+   "ru": "Жителям нужно обратиться в местные органы власти.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "0439b3b7-cec0-57c9-abef-11d4164337b9",
+  "family_id": "e23041c5-56a3-5596-ab7c-f16d1f744a2f",
+  "lemma": "dagsorden",
+  "sense": {
+   "ru": "повестка дня",
+   "en": "agenda"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "Det næste punkt på {target} handler om {topic}.",
+  "variant": {
+   "id": "0439b3b7-cec0-57c9-abef-11d4164337b9",
+   "version": "ff4e196ccafb28e2",
+   "danish": "Det næste punkt på dagsordenen handler om det nye projekt.",
+   "target": "dagsordenen",
+   "en": "The next item on the agenda is about the new project.",
+   "ru": "Следующий пункт повестки дня касается нового проекта.",
+   "orders": [],
+   "accepted": [
+    "agendaen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "cf6d6077-fa58-505b-b89e-b8d1aebcab2a",
+  "family_id": "9685638a-dae9-5e62-bd49-148d7aba1afa",
+  "lemma": "bonde",
+  "sense": {
+   "ru": "пешка (в шахматах)",
+   "en": "pawn (chess)"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} flytter en {target} frem på skakbrættet.",
+  "variant": {
+   "id": "cf6d6077-fa58-505b-b89e-b8d1aebcab2a",
+   "version": "4bf24253d4632d2c",
+   "danish": "Hun flytter en bonde frem på skakbrættet.",
+   "target": "bonde",
+   "en": "She moves a pawn forward on the chessboard.",
+   "ru": "Она двигает пешку вперёд на шахматной доске.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "642950c1-a3cd-5a60-ac05-5c0d97809b53",
+  "family_id": "a6d84cc5-633c-51a7-9b7c-b67d52fe84c1",
+  "lemma": "forud",
+  "sense": {
+   "ru": "заранее, вперёд",
+   "en": "beforehand, in advance"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} betaler rejsen {target}.",
+  "variant": {
+   "id": "642950c1-a3cd-5a60-ac05-5c0d97809b53",
+   "version": "251ec05c4e7f4c62",
+   "danish": "Hun betaler rejsen forud.",
+   "target": "forud",
+   "en": "She pays for the trip in advance.",
+   "ru": "Она оплачивает поездку заранее.",
+   "orders": [],
+   "accepted": [
+    "på forhånd",
+    "i forvejen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d0e892dc-5988-5a7c-be06-e6572ce7af24",
+  "family_id": "85403c52-a36f-5cb4-8e22-08dc0c71b1c5",
+  "lemma": "stribe",
+  "sense": {
+   "ru": "полоса",
+   "en": "stripe"
+  },
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} har en rød {target} på siden.",
+  "variant": {
+   "id": "d0e892dc-5988-5a7c-be06-e6572ce7af24",
+   "version": "d5341bc1180c6ddd",
+   "danish": "Jakken har en rød stribe på siden.",
+   "target": "stribe",
+   "en": "The jacket has a red stripe on the side.",
+   "ru": "На куртке красная полоса сбоку.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e1db3753-8a89-5aa9-bfeb-452c80b6bc49",
+  "family_id": "3081495d-44a8-5c82-8e31-3567a9c59067",
+  "lemma": "markedsføring",
+  "sense": {
+   "ru": "продвижение товара",
+   "en": "marketing, promotion (of a product)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} planlægger {target} af det nye produkt.",
+  "variant": {
+   "id": "e1db3753-8a89-5aa9-bfeb-452c80b6bc49",
+   "version": "4fd57bbff57e8f09",
+   "danish": "Virksomheden planlægger markedsføringen af det nye produkt.",
+   "target": "markedsføringen",
+   "en": "The company is planning the marketing of the new product.",
+   "ru": "Компания планирует продвижение нового продукта.",
+   "orders": [],
+   "accepted": [
+    "promoveringen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "ef38c7a3-a48d-5cac-b5f6-b8501928fe90",
+  "family_id": "8a77f05e-c8d7-5700-9254-947a4822f958",
+  "lemma": "biograf",
+  "sense": {
+   "ru": "кинотеатр",
+   "en": "cinema, movie theater"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} tager i {target} i aften.",
+  "variant": {
+   "id": "ef38c7a3-a48d-5cac-b5f6-b8501928fe90",
+   "version": "2864861096a0c757",
+   "danish": "De unge tager i biografen i aften.",
+   "target": "biografen",
+   "en": "The young people are going to the cinema tonight.",
+   "ru": "Молодёжь идёт в кино сегодня вечером.",
+   "orders": [],
+   "accepted": [
+    "biffen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d7b317ab-56be-50fa-b8fd-f2262f4084f9",
+  "family_id": "5200b32b-704d-5c19-935e-358fa694ede1",
+  "lemma": "kristendom",
+  "sense": {
+   "ru": "христианство",
+   "en": "Christianity"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} handler om {target} historie.",
+  "variant": {
+   "id": "d7b317ab-56be-50fa-b8fd-f2262f4084f9",
+   "version": "08932516b5b9a8b4",
+   "danish": "Udstillingen handler om kristendommens historie.",
+   "target": "kristendommens",
+   "en": "The exhibition is about the history of Christianity.",
+   "ru": "Выставка посвящена истории христианства.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "10dbc774-6eeb-5969-86c4-3ade3905bb2b",
+  "family_id": "c826fad7-a266-594b-9509-34d5e6781207",
+  "lemma": "besejre",
+  "sense": {
+   "ru": "побеждать, одолевать",
+   "en": "to defeat, to conquer"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} modstanderen i finalen.",
+  "variant": {
+   "id": "10dbc774-6eeb-5969-86c4-3ade3905bb2b",
+   "version": "2391a05e391b4128",
+   "danish": "Landsholdet besejrer modstanderen i finalen.",
+   "target": "besejrer",
+   "en": "The national team defeats the opponent in the final.",
+   "ru": "Сборная побеждает соперника в финале.",
+   "orders": [],
+   "accepted": [
+    "slår"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "5460e385-a627-5ffa-b5ba-9dde8e4c06eb",
+  "family_id": "63363661-91da-575d-bdf4-d743da5c162e",
+  "lemma": "etnisk",
+  "sense": {
+   "ru": "этнический",
+   "en": "ethnic"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} tilhører en {target} minoritet.",
+  "variant": {
+   "id": "5460e385-a627-5ffa-b5ba-9dde8e4c06eb",
+   "version": "e5651fbeebb89729",
+   "danish": "Familien tilhører en etnisk minoritet.",
+   "target": "etnisk",
+   "en": "The family belongs to an ethnic minority.",
+   "ru": "Семья принадлежит к этническому меньшинству.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "80716418-2f8a-564d-9a66-b94f5efcf44a",
+  "family_id": "6f0672a4-f8b9-55a7-8f80-cef98662a50f",
+  "lemma": "skrue",
+  "sense": {
+   "ru": "регулировать, увеличивать или уменьшать",
+   "en": "to turn, adjust (volume)"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} {dir} for {object}.",
+  "variant": {
+   "id": "80716418-2f8a-564d-9a66-b94f5efcf44a",
+   "version": "62db176d17b034fb",
+   "danish": "Hun skruer ned for varmen.",
+   "target": "skruer",
+   "en": "She turns down the heating.",
+   "ru": "Она убавляет отопление.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "49c89212-28a6-50da-8e74-0fef9d76a67e",
+  "family_id": "66c55272-0bdf-5ea9-8cb0-c70bed0e396b",
+  "lemma": "attraktiv",
+  "sense": {
+   "ru": "привлекательный",
+   "en": "attractive"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "49c89212-28a6-50da-8e74-0fef9d76a67e",
+   "version": "4b1ac765a71bbd6a",
+   "danish": "Stillingen er attraktiv.",
+   "target": "attraktiv",
+   "en": "The position is attractive.",
+   "ru": "Должность привлекательна.",
+   "orders": [],
+   "accepted": [
+    "tiltrækkende"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "2ca25a8d-773c-5539-9958-539fa08ddd44",
+  "family_id": "f8f6be6f-d935-5854-9a1a-75b4b8b4e711",
+  "lemma": "myndighed",
+  "sense": {
+   "ru": "полномочия, власть",
+   "en": "authority (power)"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} misbrugte sin {target}.",
+  "variant": {
+   "id": "2ca25a8d-773c-5539-9958-539fa08ddd44",
+   "version": "d6ad968ba8f9e731",
+   "danish": "Borgmesteren misbrugte sin myndighed.",
+   "target": "myndighed",
+   "en": "The mayor abused his authority.",
+   "ru": "Мэр злоупотребил своими полномочиями.",
+   "orders": [],
+   "accepted": [
+    "magt",
+    "autoritet"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "ae8abbf4-0bb4-5708-bd39-ea8b253beab6",
+  "family_id": "6955dada-898c-5b8c-8ae3-b1ef56dab9d6",
+  "lemma": "hollandsk",
+  "sense": {
+   "ru": "голландский",
+   "en": "Dutch"
+  },
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "ae8abbf4-0bb4-5708-bd39-ea8b253beab6",
+   "version": "43e640b6e71c8290",
+   "danish": "Skoene er hollandske.",
+   "target": "hollandske",
+   "en": "The shoes are Dutch.",
+   "ru": "Туфли голландские.",
+   "orders": [],
+   "accepted": [
+    "nederlandske"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "f65bc91f-c8af-58b1-ab3b-3a368b9fd11b",
+  "family_id": "8f658891-04f2-5d16-a1fd-107bc39108a1",
+  "lemma": "tilstrækkelig",
+  "sense": {
+   "ru": "достаточный",
+   "en": "sufficient"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} har ikke {target} kapital til {object}.",
+  "variant": {
+   "id": "f65bc91f-c8af-58b1-ab3b-3a368b9fd11b",
+   "version": "6e20dee94dbfc159",
+   "danish": "Virksomheden har ikke tilstrækkelig kapital til projektet.",
+   "target": "tilstrækkelig",
+   "en": "The company does not have sufficient capital for the project.",
+   "ru": "У компании нет достаточного капитала для проекта.",
+   "orders": [],
+   "accepted": [
+    "nok"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e23aa96a-f94f-5afb-a5bb-39b7d89a265a",
+  "family_id": "36223f1c-e199-5b2d-915c-52840fadee4e",
+  "lemma": "drift",
+  "sense": {
+   "ru": "влечение, инстинкт",
+   "en": "drive, instinct"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} er en af {who} stærkeste {target}.",
+  "variant": {
+   "id": "e23aa96a-f94f-5afb-a5bb-39b7d89a265a",
+   "version": "924b5d5666da4a4b",
+   "danish": "Tørst er en af dyrenes stærkeste drifter.",
+   "target": "drifter",
+   "en": "Thirst is one of the strongest drives in animals.",
+   "ru": "Жажда — одно из сильнейших влечений у животных.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cb9eb38c-0f8e-5f88-b5a3-97e6c42db031",
+  "family_id": "0a4dc2cd-6c68-5d2d-9331-26408f631557",
+  "lemma": "jord",
+  "sense": {
+   "ru": "земля, планета (весь мир)",
+   "en": "earth, world (the planet)"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Forskere undersøger {aspect} på {target}.",
+  "variant": {
+   "id": "cb9eb38c-0f8e-5f88-b5a3-97e6c42db031",
+   "version": "eedcd7e075f89250",
+   "danish": "Forskere undersøger livet på Jorden.",
+   "target": "Jorden",
+   "en": "Scientists are studying life on Earth.",
+   "ru": "Учёные изучают жизнь на Земле.",
+   "orders": [],
+   "accepted": [
+    "kloden"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "69a3149a-e089-53c9-91fb-ff89bc057aa1",
+  "family_id": "325cf620-7a3a-5a6c-a525-db3edbd88bab",
+  "lemma": "drift",
+  "sense": {
+   "ru": "эксплуатация, работа",
+   "en": "operation, running (of a machine)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} er i {target} {time}.",
+  "variant": {
+   "id": "69a3149a-e089-53c9-91fb-ff89bc057aa1",
+   "version": "51f2a274035dfa81",
+   "danish": "Færgen er i drift hele året.",
+   "target": "drift",
+   "en": "The ferry is in operation all year round.",
+   "ru": "Паром ходит круглый год.",
+   "orders": [],
+   "accepted": [
+    "fart"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "327169b1-854f-5fe0-8f05-c4703b34f709",
+  "family_id": "ad6e1606-46b8-5cda-a9ad-cae4908447f0",
+  "lemma": "tildele",
+  "sense": {
+   "ru": "присуждать, предоставлять",
+   "en": "to award, grant"
+  },
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} hende prisen for årets bedste bog.",
+  "variant": {
+   "id": "327169b1-854f-5fe0-8f05-c4703b34f709",
+   "version": "a77e74853a5d70dd",
+   "danish": "Komiteen tildelte hende prisen for årets bedste bog.",
+   "target": "tildelte",
+   "en": "The committee awarded her the prize for the year's best book.",
+   "ru": "Комитет присудил ей премию за лучшую книгу года.",
+   "orders": [],
+   "accepted": [
+    "gav"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "ab3bb05e-45d4-5dd4-891f-17efad6b3bb6",
+  "family_id": "be390462-65cd-57ae-8b9b-fd70e2c6aab8",
+  "lemma": "hustru",
+  "sense": {
+   "ru": "жена",
+   "en": "wife"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} og hans {target} deltog i {event}.",
+  "variant": {
+   "id": "ab3bb05e-45d4-5dd4-891f-17efad6b3bb6",
+   "version": "6436c95c406be772",
+   "danish": "Direktøren og hans hustru deltog i mindehøjtideligheden.",
+   "target": "hustru",
+   "en": "The director and his wife attended the memorial ceremony.",
+   "ru": "Директор и его жена присутствовали на траурной церемонии.",
+   "orders": [],
+   "accepted": [
+    "kone",
+    "frue"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d15b5b91-eca3-557c-b562-278fa980e96f",
+  "family_id": "ee04fb5c-6aed-564b-849f-d9f53f790a9f",
+  "lemma": "megen",
+  "sense": {
+   "ru": "много, большой по количеству",
+   "en": "much, a lot of"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0002.json",
+  "frame": "Emnet vækker {target} {noun}.",
+  "variant": {
+   "id": "d15b5b91-eca3-557c-b562-278fa980e96f",
+   "version": "076156cd63f858bc",
+   "danish": "Emnet vækker megen bekymring.",
+   "target": "megen",
+   "en": "The topic causes a lot of concern.",
+   "ru": "Тема вызывает большое беспокойство.",
+   "orders": [],
+   "accepted": [
+    "meget",
+    "stor"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "bfda8fca-4490-57b8-a263-4ebc09309708",
+  "family_id": "ce45a7ed-a5a9-54b6-b6d4-e07cc8f20658",
+  "lemma": "færd",
+  "sense": {
+   "ru": "путь, поездка",
+   "en": "journey, travel"
+  },
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} beskriver deres lange {target} gennem landet.",
+  "variant": {
+   "id": "bfda8fca-4490-57b8-a263-4ebc09309708",
+   "version": "e8aa2ac6cf7c739d",
+   "danish": "Bogen beskriver deres lange færd gennem landet.",
+   "target": "færd",
+   "en": "The book describes their long journey through the country.",
+   "ru": "Книга описывает их долгое путешествие через страну.",
+   "orders": [],
+   "accepted": [
+    "rejse",
+    "tur"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d1fc9467-6e91-5f2d-85d0-7f647cc460f9",
+  "family_id": "97b192ac-4f1a-5ac6-be34-5d334ccd125c",
+  "lemma": "flyde",
+  "sense": {
+   "ru": "течь, литься",
+   "en": "to flow, to spill"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} ud over hele bordet.",
+  "variant": {
+   "id": "d1fc9467-6e91-5f2d-85d0-7f647cc460f9",
+   "version": "371aaa01d2c795f1",
+   "danish": "Mælken flød ud over hele bordet.",
+   "target": "flød",
+   "en": "The milk spilled all over the table.",
+   "ru": "Молоко разлилось по всему столу.",
+   "orders": [],
+   "accepted": [
+    "løb"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "0c132e6c-2eaf-54a0-b597-5b98f5a6df61",
+  "family_id": "3a31881a-d7b0-5ddc-8019-c06e7865d4bd",
+  "lemma": "vind",
+  "sense": {
+   "ru": "ветер",
+   "en": "wind"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} beskytter huset mod {target}.",
+  "variant": {
+   "id": "0c132e6c-2eaf-54a0-b597-5b98f5a6df61",
+   "version": "b8dd02d9d24b61f7",
+   "danish": "Muren beskytter huset mod vinden.",
+   "target": "vinden",
+   "en": "The wall protects the house from the wind.",
+   "ru": "Стена защищает дом от ветра.",
+   "orders": [],
+   "accepted": [
+    "blæsten"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e9b1d3de-b0d2-599b-9ebf-8b2a241083f7",
+  "family_id": "7c08f708-4ddd-5bc0-9d23-89bbf053bb56",
+  "lemma": "bilist",
+  "sense": {
+   "ru": "автомобилист, водитель",
+   "en": "motorist, driver"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} advarer {target} om glat føre.",
+  "variant": {
+   "id": "e9b1d3de-b0d2-599b-9ebf-8b2a241083f7",
+   "version": "634ea15c205515ab",
+   "danish": "Politiet advarer bilisterne om glat føre.",
+   "target": "bilisterne",
+   "en": "The police are warning motorists about slippery roads.",
+   "ru": "Полиция предупреждает автомобилистов о скользкой дороге.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "be387e93-e536-5bbe-a425-6ebb50980c22",
+  "family_id": "b439eafa-afd5-5db8-a4d4-1f96421b9e9c",
+  "lemma": "bekendt",
+  "sense": {
+   "ru": "известный, знакомый",
+   "en": "known, familiar"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} skal være {target} med de nye regler.",
+  "variant": {
+   "id": "be387e93-e536-5bbe-a425-6ebb50980c22",
+   "version": "8be97224c980c9ca",
+   "danish": "Enhver chauffør skal være bekendt med de nye regler.",
+   "target": "bekendt",
+   "en": "Every driver must be familiar with the new rules.",
+   "ru": "Каждый водитель должен быть знаком с новыми правилами.",
+   "orders": [],
+   "accepted": [
+    "fortrolig"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e56b2004-a500-5778-b2ba-a905436d6366",
+  "family_id": "833de7d0-2187-5348-9fe8-426f5055dcea",
+  "lemma": "arkitektur",
+  "sense": {
+   "ru": "архитектура",
+   "en": "architecture"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} beundrer byens gamle {target}.",
+  "variant": {
+   "id": "e56b2004-a500-5778-b2ba-a905436d6366",
+   "version": "54b97d8218cd8ae8",
+   "danish": "De studerende beundrer byens gamle arkitektur.",
+   "target": "arkitektur",
+   "en": "The students admire the city's old architecture.",
+   "ru": "Студенты любуются старой архитектурой города.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "da3ffa15-eaab-5c58-b419-c85b32aafd79",
+  "family_id": "0c376e48-ff64-5a69-b7c6-dd946b2b3eac",
+  "lemma": "færge",
+  "sense": {
+   "ru": "паром",
+   "en": "ferry"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} sejler med {target} til øen.",
+  "variant": {
+   "id": "da3ffa15-eaab-5c58-b419-c85b32aafd79",
+   "version": "03de8fbeb3001598",
+   "danish": "Turisterne sejler med færgen til øen.",
+   "target": "færgen",
+   "en": "The tourists take the ferry to the island.",
+   "ru": "Туристы плывут на пароме на остров.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "56a4ff0d-4e38-5dd6-9c2c-8ceb84a39005",
+  "family_id": "b761ce5e-b5b7-508e-b7e4-fac511c19d7e",
+  "lemma": "jagt",
+  "sense": {
+   "ru": "погоня, поиск",
+   "en": "hunt, search (for something)"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{target} på {object} tog {duration}.",
+  "variant": {
+   "id": "56a4ff0d-4e38-5dd6-9c2c-8ceb84a39005",
+   "version": "9caa3c06649c8b3f",
+   "danish": "Jagten på den forsvundne nøgle tog en time.",
+   "target": "jagten",
+   "en": "The search for the missing key took an hour.",
+   "ru": "Поиск пропавшего ключа занял час.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7b154be7-d6ca-5b65-8b52-ebd14bfebd64",
+  "family_id": "04a9c478-c49c-5c2b-8ccf-159a207070a7",
+  "lemma": "ukendt",
+  "sense": {
+   "ru": "неизвестный",
+   "en": "unknown (not known)"
+  },
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} er stadig {target}.",
+  "variant": {
+   "id": "7b154be7-d6ca-5b65-8b52-ebd14bfebd64",
+   "version": "8dc9c5f4f9110456",
+   "danish": "Offerets identitet er stadig ukendt.",
+   "target": "ukendt",
+   "en": "The victim's identity is still unknown.",
+   "ru": "Личность жертвы до сих пор неизвестна.",
+   "orders": [],
+   "accepted": [
+    "uvis"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "d1228b6c-3f34-53d3-b6b0-ccb9b63fbe0b",
+  "family_id": "9b0249fa-cef3-5952-93ae-9743a28fa471",
+  "lemma": "bånd",
+  "sense": {
+   "ru": "связь, узы",
+   "en": "bond, tie (figurative)"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} har et stærkt {target} til hinanden.",
+  "variant": {
+   "id": "d1228b6c-3f34-53d3-b6b0-ccb9b63fbe0b",
+   "version": "95bbf793aa10b4e8",
+   "danish": "De to venner har et stærkt bånd til hinanden.",
+   "target": "bånd",
+   "en": "The two friends have a strong bond with each other.",
+   "ru": "У этих двух друзей крепкая связь друг с другом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "36905d99-a7c3-5849-8687-06db33409ff1",
+  "family_id": "c3eca9dc-a0f6-5a1a-91f0-6a02f0d11acb",
+  "lemma": "foruden",
+  "sense": {
+   "ru": "кроме, помимо",
+   "en": "besides, apart from"
+  },
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{target} kaffe drikker {subject} også te.",
+  "variant": {
+   "id": "36905d99-a7c3-5849-8687-06db33409ff1",
+   "version": "7eb8f623e1ae8fcd",
+   "danish": "Foruden kaffe drikker de også te.",
+   "target": "foruden",
+   "en": "Besides coffee, they also drink tea.",
+   "ru": "Помимо кофе они также пьют чай.",
+   "orders": [],
+   "accepted": [
+    "udover",
+    "ud over",
+    "ved siden af"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "1ae31464-2150-594f-be1a-786b7b1f1c58",
+  "family_id": "4a899c56-c292-585d-861d-b875480fcdb8",
+  "lemma": "afgørende",
+  "sense": {
+   "ru": "решающий, важнейший",
+   "en": "decisive, crucial"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} var {target} for resultatet.",
+  "variant": {
+   "id": "1ae31464-2150-594f-be1a-786b7b1f1c58",
+   "version": "407b536413d5c44b",
+   "danish": "Vejret var afgørende for resultatet.",
+   "target": "afgørende",
+   "en": "The weather was crucial to the result.",
+   "ru": "Погода имела решающее значение для результата.",
+   "orders": [],
+   "accepted": [
+    "altafgørende",
+    "udslagsgivende"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "56e7d5a2-e228-50b6-9bf0-2fd7980ababe",
+  "family_id": "ba9f8fb8-4ef4-5b58-8651-ea5821cbd57d",
+  "lemma": "skift",
+  "sense": {
+   "ru": "смена (на работе)",
+   "en": "shift (at work)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} har et langt {target} på fabrikken i dag.",
+  "variant": {
+   "id": "56e7d5a2-e228-50b6-9bf0-2fd7980ababe",
+   "version": "9b054c6f65a6540f",
+   "danish": "Min far har et langt skift på fabrikken i dag.",
+   "target": "skift",
+   "en": "My father has a long shift at the factory today.",
+   "ru": "У моего отца сегодня долгая смена на заводе.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "26c4f265-a9cf-5722-9214-ca132d984d65",
+  "family_id": "ecd35c38-1d5d-5d21-b6aa-efcdbeb0cfe4",
+  "lemma": "krone",
+  "sense": {
+   "ru": "крона (дерева)",
+   "en": "crown (of a tree)"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target}.",
+  "variant": {
+   "id": "26c4f265-a9cf-5722-9214-ca132d984d65",
+   "version": "41d995db3d00749a",
+   "danish": "Katten sidder højt oppe i træets krone.",
+   "target": "krone",
+   "en": "The cat is sitting high up in the tree's crown.",
+   "ru": "Кошка сидит высоко в кроне дерева.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "150e85a8-2611-517a-91f2-74ab0dd7876c",
+  "family_id": "897dca77-e0e1-5668-baf4-b87ef2376d51",
+  "lemma": "trods",
+  "sense": {
+   "ru": "упрямство, назло",
+   "en": "defiance, spite"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} gjorde det af ren {target}.",
+  "variant": {
+   "id": "150e85a8-2611-517a-91f2-74ab0dd7876c",
+   "version": "607ffacb94b17f12",
+   "danish": "Drengen gjorde det af ren trods.",
+   "target": "trods",
+   "en": "The boy did it out of pure defiance.",
+   "ru": "Мальчик сделал это из чистого упрямства.",
+   "orders": [],
+   "accepted": [
+    "stædighed"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "ffb12f3a-6ef8-5f18-9f05-546c838e4457",
+  "family_id": "4a594bf8-9431-556b-a038-dced458e79c8",
+  "lemma": "rytter",
+  "sense": {
+   "ru": "велосипедист",
+   "en": "cyclist (racer)"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er den stærkeste {target} på cykelholdet.",
+  "variant": {
+   "id": "ffb12f3a-6ef8-5f18-9f05-546c838e4457",
+   "version": "34ae7decc5871625",
+   "danish": "Den unge dansker er den stærkeste rytter på cykelholdet.",
+   "target": "rytter",
+   "en": "The young Dane is the strongest rider on the cycling team.",
+   "ru": "Молодой датчанин — самый сильный гонщик в велокоманде.",
+   "orders": [],
+   "accepted": [
+    "cyklist"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "c6a32873-d282-5481-80bc-d20bc33139a8",
+  "family_id": "b10d2604-9526-5ada-a367-3b05657c15c2",
+  "lemma": "mystisk",
+  "sense": {
+   "ru": "непонятный, странный",
+   "en": "odd, bizarre (behavior)"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0099.json",
+  "frame": "{subject} opfører sig {target} i dag.",
+  "variant": {
+   "id": "c6a32873-d282-5481-80bc-d20bc33139a8",
+   "version": "85ecc3e81e8dbfe9",
+   "danish": "Katten opfører sig mystisk i dag.",
+   "target": "mystisk",
+   "en": "The cat is behaving oddly today.",
+   "ru": "Кот сегодня странно себя ведёт.",
+   "orders": [],
+   "accepted": [
+    "underligt",
+    "mærkeligt",
+    "sært",
+    "besynderligt"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "c37ff3e7-81e6-50b7-8b59-4dc23daad42d",
+  "family_id": "d6ad70db-f56a-5049-b09e-0171fa3c682d",
+  "lemma": "afslutning",
+  "sense": {
+   "ru": "завершение, окончание",
+   "en": "ending, conclusion"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} markerer {target} på kurset.",
+  "variant": {
+   "id": "c37ff3e7-81e6-50b7-8b59-4dc23daad42d",
+   "version": "59b6f4168dd84af5",
+   "danish": "Eksamen markerer afslutningen på kurset.",
+   "target": "afslutningen",
+   "en": "The exam marks the end of the course.",
+   "ru": "Экзамен знаменует завершение курса.",
+   "orders": [],
+   "accepted": [
+    "slutningen"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "41ba9ee0-0f31-50e5-8d1b-82a84f018f47",
+  "family_id": "54211809-82cc-56ae-afef-dd9566ee2df2",
+  "lemma": "opbygge",
+  "sense": {
+   "ru": "создавать, выстраивать",
+   "en": "to build up, construct"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} har {target} et godt forhold til kunderne.",
+  "variant": {
+   "id": "41ba9ee0-0f31-50e5-8d1b-82a84f018f47",
+   "version": "d2c7fc7cc6dfdaf9",
+   "danish": "Virksomheden har opbygget et godt forhold til kunderne.",
+   "target": "opbygget",
+   "en": "The company has built up a good relationship with the customers.",
+   "ru": "Компания выстроила хорошие отношения с клиентами.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bb6c7e0e-cc3d-528e-ac8e-e3c623bd12a4",
+  "family_id": "3efb1ee1-ebd9-55f3-8234-42c864ebd18d",
+  "lemma": "forebygge",
+  "sense": {
+   "ru": "предотвращать",
+   "en": "to prevent"
+  },
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} sygdomme ved at vaske hænder.",
+  "variant": {
+   "id": "bb6c7e0e-cc3d-528e-ac8e-e3c623bd12a4",
+   "version": "831f31d06d5cd4a8",
+   "danish": "Vi forebygger sygdomme ved at vaske hænder.",
+   "target": "forebygger",
+   "en": "We prevent illness by washing our hands.",
+   "ru": "Мы предотвращаем болезни тем, что моем руки.",
+   "orders": [],
+   "accepted": [
+    "forhindrer"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "666b0d42-e00b-5e14-b68f-216d2162258a",
+  "family_id": "c2fa74ad-8f3e-5314-97d6-cbc5d28cb6dc",
+  "lemma": "guitar",
+  "sense": {
+   "ru": "гитара",
+   "en": "guitar"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} spiller {target} til festen.",
+  "variant": {
+   "id": "666b0d42-e00b-5e14-b68f-216d2162258a",
+   "version": "e611a2a7618f278e",
+   "danish": "Hun spiller guitar til festen.",
+   "target": "guitar",
+   "en": "She plays guitar at the party.",
+   "ru": "Она играет на гитаре на вечеринке.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d7c80c0f-2c1c-5650-94b8-e74e63df5c51",
+  "family_id": "79c73c55-b09f-521e-bc63-ba956050603a",
+  "lemma": "personlighed",
+  "sense": {
+   "ru": "характер",
+   "en": "character, temperament"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} har en stærk {target}.",
+  "variant": {
+   "id": "d7c80c0f-2c1c-5650-94b8-e74e63df5c51",
+   "version": "27869eb8f14c9f35",
+   "danish": "Han har en stærk personlighed.",
+   "target": "personlighed",
+   "en": "He has a strong personality.",
+   "ru": "У него сильный характер.",
+   "orders": [],
+   "accepted": [
+    "karakter"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "60024100-b0cf-5d93-8ce7-4611665b486a",
+  "family_id": "76493bcd-367e-51eb-94f6-a46ded6d6844",
+  "lemma": "smil",
+  "sense": {
+   "ru": "улыбка",
+   "en": "smile"
+  },
+  "level": "B1",
+  "situation": "social",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} hilser på alle med et stort {target}.",
+  "variant": {
+   "id": "60024100-b0cf-5d93-8ce7-4611665b486a",
+   "version": "6d7aa68d38eac830",
+   "danish": "Receptionisten hilser på alle med et stort smil.",
+   "target": "smil",
+   "en": "The receptionist greets everyone with a big smile.",
+   "ru": "Администратор приветствует всех с широкой улыбкой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "22188c95-ecba-54ef-a795-095122d4b3c5",
+  "family_id": "faa49c1d-7bb8-5c76-ae36-74a220381be6",
+  "lemma": "problematisk",
+  "sense": {
+   "ru": "проблематичный",
+   "en": "problematic"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "22188c95-ecba-54ef-a795-095122d4b3c5",
+   "version": "6478929265f3c7c3",
+   "danish": "Forslaget er problematisk.",
+   "target": "problematisk",
+   "en": "The proposal is problematic.",
+   "ru": "Предложение проблематично.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bec2b7e6-cb2e-57de-8451-a812e98637db",
+  "family_id": "ff291cee-1d4c-5173-a6fc-b7421af4d076",
+  "lemma": "forbrug",
+  "sense": {
+   "ru": "расход",
+   "en": "consumption, usage (fuel)"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{vehicle} har et {adjective} {target}.",
+  "variant": {
+   "id": "bec2b7e6-cb2e-57de-8451-a812e98637db",
+   "version": "543f8618e5c1b540",
+   "danish": "Den nye bil har et lavt forbrug.",
+   "target": "forbrug",
+   "en": "The new car has low fuel consumption.",
+   "ru": "У новой машины низкий расход топлива.",
+   "orders": [],
+   "accepted": [
+    "brændstofforbrug",
+    "benzinforbrug"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e6f754c9-9495-5132-9502-59abcc6be6ff",
+  "family_id": "49486e4f-2f04-5af5-add5-22681b325843",
+  "lemma": "rask",
+  "sense": {
+   "ru": "быстрый, бодрый",
+   "en": "brisk, quick"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} tager en {target} gåtur hver morgen.",
+  "variant": {
+   "id": "e6f754c9-9495-5132-9502-59abcc6be6ff",
+   "version": "0e6c82cd20a63ff2",
+   "danish": "Han tager en rask gåtur hver morgen.",
+   "target": "rask",
+   "en": "He takes a brisk walk every morning.",
+   "ru": "Он совершает бодрую прогулку каждое утро.",
+   "orders": [],
+   "accepted": [
+    "frisk"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "2beb1469-6d8c-5e27-837b-b44098489e40",
+  "family_id": "bb432c82-b03e-5031-ab76-76644cb92a3c",
+  "lemma": "bane",
+  "sense": {
+   "ru": "путь, траектория",
+   "en": "path, orbit, trajectory"
+  },
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} følger en fast {target} om Jorden.",
+  "variant": {
+   "id": "2beb1469-6d8c-5e27-837b-b44098489e40",
+   "version": "2e54a85c74d8542d",
+   "danish": "Satellitten følger en fast bane om Jorden.",
+   "target": "bane",
+   "en": "The satellite follows a fixed orbit around the Earth.",
+   "ru": "Спутник движется по постоянной орбите вокруг Земли.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ba634f9b-4e78-5a41-b6a5-6520cb921d27",
+  "family_id": "79b67d75-9f83-5285-84f2-672000629765",
+  "lemma": "straf",
+  "sense": {
+   "ru": "наказание",
+   "en": "punishment"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} idømmer ham en hård {target}.",
+  "variant": {
+   "id": "ba634f9b-4e78-5a41-b6a5-6520cb921d27",
+   "version": "1e2941f4cc96b59b",
+   "danish": "Dommeren idømmer ham en hård straf.",
+   "target": "straf",
+   "en": "The judge imposes a harsh punishment on him.",
+   "ru": "Судья назначает ему суровое наказание.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7ec5d045-e67f-593c-9a0c-39fa931b4098",
+  "family_id": "9d4774b5-ed96-5ff4-8b94-dd4968458206",
+  "lemma": "pulje",
+  "sense": {
+   "ru": "фонд, пул",
+   "en": "fund, pool (of money)"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "Kommunen opretter en ny {target} til {purpose}.",
+  "variant": {
+   "id": "7ec5d045-e67f-593c-9a0c-39fa931b4098",
+   "version": "8a7623d5ea2ae3e3",
+   "danish": "Kommunen opretter en ny pulje til kulturprojekter.",
+   "target": "pulje",
+   "en": "The municipality sets up a new fund for cultural projects.",
+   "ru": "Муниципалитет создаёт новый фонд для культурных проектов.",
+   "orders": [],
+   "accepted": [
+    "fond"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "bf85f896-7181-5025-8670-ead3e68de434",
+  "family_id": "f227489a-2497-5c88-94e6-48c68ec0787a",
+  "lemma": "hjemland",
+  "sense": {
+   "ru": "родина",
+   "en": "home country, homeland"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} vender tilbage til sit {target}.",
+  "variant": {
+   "id": "bf85f896-7181-5025-8670-ead3e68de434",
+   "version": "4904202a020b29fb",
+   "danish": "Hun vender tilbage til sit hjemland.",
+   "target": "hjemland",
+   "en": "She returns to her home country.",
+   "ru": "Она возвращается на родину.",
+   "orders": [],
+   "accepted": [
+    "fædreland"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "29bbb7f8-eb1c-5625-a353-924a233354f2",
+  "family_id": "4237a681-ce2b-5142-b4e4-9a0148602e7e",
+  "lemma": "dans",
+  "sense": {
+   "ru": "танец",
+   "en": "dance"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} lærer en ny {target}.",
+  "variant": {
+   "id": "29bbb7f8-eb1c-5625-a353-924a233354f2",
+   "version": "5b880337318c339e",
+   "danish": "Hun lærer en ny dans.",
+   "target": "dans",
+   "en": "She is learning a new dance.",
+   "ru": "Она учит новый танец.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dd9b440d-c958-579c-969a-9c8e53be4db4",
+  "family_id": "ea8db803-97c3-56f6-a778-7fb8681a4562",
+  "lemma": "inflation",
+  "sense": {
+   "ru": "инфляция",
+   "en": "inflation"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} presser {target} op.",
+  "variant": {
+   "id": "dd9b440d-c958-579c-969a-9c8e53be4db4",
+   "version": "d59a38ee81d10f88",
+   "danish": "Manglen på varer presser inflationen op.",
+   "target": "inflationen",
+   "en": "The shortage of goods pushes inflation up.",
+   "ru": "Нехватка товаров разгоняет инфляцию.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "080fdbec-26a6-52b3-bcbe-b3bd77ed8dad",
+  "family_id": "e22fe6af-dd4f-517a-b218-dd2f7b99b7f8",
+  "lemma": "indgå",
+  "sense": {
+   "ru": "заключать (договор, соглашение)",
+   "en": "to enter into (an agreement)"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} har {target} en aftale med leverandøren.",
+  "variant": {
+   "id": "080fdbec-26a6-52b3-bcbe-b3bd77ed8dad",
+   "version": "5c3243b768a64714",
+   "danish": "Kommunen har indgået en aftale med leverandøren.",
+   "target": "indgået",
+   "en": "The municipality has entered into an agreement with the supplier.",
+   "ru": "Муниципалитет заключил соглашение с поставщиком.",
+   "orders": [],
+   "accepted": [
+    "sluttet"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "70f4b28c-3073-584e-b1aa-18d8af5002e2",
+  "family_id": "357206d7-607b-5ee2-b1d1-065b1a959e43",
+  "lemma": "sætning",
+  "sense": {
+   "ru": "предложение (грамматическое)",
+   "en": "sentence (grammar)"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} skriver en lang {target} på tavlen.",
+  "variant": {
+   "id": "70f4b28c-3073-584e-b1aa-18d8af5002e2",
+   "version": "04acfcc0c520023d",
+   "danish": "Læreren skriver en lang sætning på tavlen.",
+   "target": "sætning",
+   "en": "The teacher writes a long sentence on the board.",
+   "ru": "Учитель пишет длинное предложение на доске.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "c80ba9ef-1be3-594d-b642-15092b5f6429",
+  "family_id": "d9c3c4be-5fb1-5de8-9bdb-a68f4f3eb2b4",
+  "lemma": "overlæge",
+  "sense": {
+   "ru": "старший врач",
+   "en": "senior consultant (chief physician)"
+  },
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} taler med {target} på hospitalet.",
+  "variant": {
+   "id": "c80ba9ef-1be3-594d-b642-15092b5f6429",
+   "version": "3b10a44d0f1c61da",
+   "danish": "Sygeplejersken taler med overlægen på hospitalet.",
+   "target": "overlægen",
+   "en": "The nurse talks with the senior consultant at the hospital.",
+   "ru": "Медсестра разговаривает со старшим врачом в больнице.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dca9cc12-71af-5082-b108-b5485be8827e",
+  "family_id": "714215a9-2ab3-5400-a9eb-0e927fcc4477",
+  "lemma": "mælk",
+  "sense": {
+   "ru": "молоко",
+   "en": "milk"
+  },
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} stiller {target} tilbage i køleskabet.",
+  "variant": {
+   "id": "dca9cc12-71af-5082-b108-b5485be8827e",
+   "version": "af1a24ef4559c6e9",
+   "danish": "Jeg stiller mælken tilbage i køleskabet.",
+   "target": "mælken",
+   "en": "I put the milk back in the fridge.",
+   "ru": "Я ставлю молоко обратно в холодильник.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dee2b831-3f79-573f-a22f-6cb15e55211f",
+  "family_id": "81462c46-1f68-56b5-b80d-38bc554e889f",
+  "lemma": "identificere",
+  "sense": {
+   "ru": "идентифицировать",
+   "en": "to identify"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} manden på videooptagelsen.",
+  "variant": {
+   "id": "dee2b831-3f79-573f-a22f-6cb15e55211f",
+   "version": "27e9c27156814796",
+   "danish": "Efterforskerne identificerer manden på videooptagelsen.",
+   "target": "identificerer",
+   "en": "The investigators identify the man in the video recording.",
+   "ru": "Следователи идентифицируют мужчину на видеозаписи.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cc869e21-8852-5c2d-bf8e-fe62810038ec",
+  "family_id": "bb179693-902b-5733-8c1a-f1e70804534d",
+  "lemma": "egentlig",
+  "sense": {
+   "ru": "настоящий, истинный",
+   "en": "real, actual, true"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "Det {target} arbejde begynder først {time}.",
+  "variant": {
+   "id": "cc869e21-8852-5c2d-bf8e-fe62810038ec",
+   "version": "a306e594835b0b59",
+   "danish": "Det egentlige arbejde begynder først i morgen.",
+   "target": "egentlige",
+   "en": "The actual work only starts tomorrow.",
+   "ru": "Настоящая работа начинается только завтра.",
+   "orders": [],
+   "accepted": [
+    "rigtige",
+    "virkelige",
+    "faktiske"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "e70224d3-e5d0-51a3-8951-a26fd7ae9a83",
+  "family_id": "1909f8ed-373a-5d87-86fa-ae4e639be0a3",
+  "lemma": "værk",
+  "sense": {
+   "ru": "боль, ломота (в теле)",
+   "en": "ache, soreness (in the body)"
+  },
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0020.json",
+  "frame": "{subject} har {target} i knæene, når det er koldt.",
+  "variant": {
+   "id": "e70224d3-e5d0-51a3-8951-a26fd7ae9a83",
+   "version": "bc0d4f6154150f9b",
+   "danish": "Min bedstemor har værk i knæene, når det er koldt.",
+   "target": "værk",
+   "en": "My grandmother has aches in her knees when it is cold.",
+   "ru": "У моей бабушки ломота в коленях, когда холодно.",
+   "orders": [],
+   "accepted": [
+    "ondt",
+    "smerter"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "35202f1b-1565-571c-be81-c56801d1bbdf",
+  "family_id": "033bedd3-f4ba-5dc1-8628-db70f41da2f8",
+  "lemma": "aktion",
+  "sense": {
+   "ru": "акция, действие",
+   "en": "operation, action (police campaign)"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "Politiet indleder en stor {target} mod {crime}.",
+  "variant": {
+   "id": "35202f1b-1565-571c-be81-c56801d1bbdf",
+   "version": "010eb6e8439ec834",
+   "danish": "Politiet indleder en stor aktion mod indbrud.",
+   "target": "aktion",
+   "en": "The police are launching a major operation against burglary.",
+   "ru": "Полиция начинает крупную операцию против краж со взломом.",
+   "orders": [],
+   "accepted": [
+    "operation",
+    "indsats"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "0d95653a-2ae3-5213-b7d4-3c5f8dd6ddaf",
+  "family_id": "377adcbc-8070-58a5-ad85-f9f650c790c7",
+  "lemma": "rask",
+  "sense": {
+   "ru": "здоровый",
+   "en": "well, healthy (recovered)"
+  },
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} er {target} igen efter sygdommen.",
+  "variant": {
+   "id": "0d95653a-2ae3-5213-b7d4-3c5f8dd6ddaf",
+   "version": "8aad16e8d751e49c",
+   "danish": "De er raske igen efter sygdommen.",
+   "target": "raske",
+   "en": "They are well again after the illness.",
+   "ru": "Они снова здоровы после болезни.",
+   "orders": [],
+   "accepted": [
+    "friske"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "878ec03d-9a8d-5126-b1b5-10687bfd6229",
+  "family_id": "1ce9dffe-85d5-5f77-a28e-81f83839135f",
+  "lemma": "ærlig",
+  "sense": {
+   "ru": "честный",
+   "en": "honest"
+  },
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} er {target}.",
+  "variant": {
+   "id": "878ec03d-9a8d-5126-b1b5-10687bfd6229",
+   "version": "a40b3c976b796700",
+   "danish": "Han er ærlig.",
+   "target": "ærlig",
+   "en": "He is honest.",
+   "ru": "Он честный.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bf669495-3ec5-5dec-a713-2c9629850735",
+  "family_id": "a16c2e77-4ccb-5c20-b986-cda009ae2cda",
+  "lemma": "skrue",
+  "sense": {
+   "ru": "винт, шуруп",
+   "en": "screw"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} strammer {target} med en skruetrækker.",
+  "variant": {
+   "id": "bf669495-3ec5-5dec-a713-2c9629850735",
+   "version": "8c1bc598dbc18825",
+   "danish": "Han strammer skruen med en skruetrækker.",
+   "target": "skruen",
+   "en": "He tightens the screw with a screwdriver.",
+   "ru": "Он затягивает винт отвёрткой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cf3d22c1-fb59-5625-ac83-2389537df718",
+  "family_id": "e3dd7ca2-446e-5f78-bf94-287521ecdd45",
+  "lemma": "krydse",
+  "sense": {
+   "ru": "пересекать, переходить",
+   "en": "to cross"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} {target} vejen forsigtigt.",
+  "variant": {
+   "id": "cf3d22c1-fb59-5625-ac83-2389537df718",
+   "version": "b4c6b22e6200c9b8",
+   "danish": "Hun krydser vejen forsigtigt.",
+   "target": "krydser",
+   "en": "She crosses the road carefully.",
+   "ru": "Она осторожно переходит дорогу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ec019538-bb6e-5933-a6cc-5f6ad46dd11b",
+  "family_id": "04586c29-2e77-5493-b13d-16e340d6f859",
+  "lemma": "fader",
+  "sense": {
+   "ru": "отец",
+   "en": "father"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "I dag tager mange {target} {what}.",
+  "variant": {
+   "id": "ec019538-bb6e-5933-a6cc-5f6ad46dd11b",
+   "version": "bf976bf27a6b8662",
+   "danish": "I dag tager mange fædre barsel.",
+   "target": "fædre",
+   "en": "Nowadays many fathers take parental leave.",
+   "ru": "Сегодня многие отцы берут отпуск по уходу за ребёнком.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "148a1ecb-407e-5dfb-980d-f928e5bb026c",
+  "family_id": "b178da34-ccde-5290-94c5-9a89dfb67e7f",
+  "lemma": "finansiering",
+  "sense": {
+   "ru": "финансирование",
+   "en": "financing, funding"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} søger {target} til det nye byggeri.",
+  "variant": {
+   "id": "148a1ecb-407e-5dfb-980d-f928e5bb026c",
+   "version": "d0fd56f865417241",
+   "danish": "Virksomheden søger finansiering til det nye byggeri.",
+   "target": "finansiering",
+   "en": "The company seeks financing for the new building.",
+   "ru": "Компания ищет финансирование для нового здания.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5a2a59f9-a536-51d1-85ef-bd8356d8df0e",
+  "family_id": "d8c86fd1-976b-5c03-bd1e-0122d37a87e9",
+  "lemma": "skrue",
+  "sense": {
+   "ru": "закручивать, откручивать",
+   "en": "to screw (on or off)"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} låget {dir} glasset.",
+  "variant": {
+   "id": "5a2a59f9-a536-51d1-85ef-bd8356d8df0e",
+   "version": "6486a571e2c695c7",
+   "danish": "Han skruer låget på glasset.",
+   "target": "skruer",
+   "en": "He screws the lid onto the jar.",
+   "ru": "Он закручивает крышку на банке.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a0bc8eed-0243-5e76-901c-ac3590040d12",
+  "family_id": "d0c656ae-2e4e-5817-aa19-8b4335ca5c6b",
+  "lemma": "bånd",
+  "sense": {
+   "ru": "лента, тесьма",
+   "en": "ribbon, band (material)"
+  },
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} binder et rødt {target} om gaven.",
+  "variant": {
+   "id": "a0bc8eed-0243-5e76-901c-ac3590040d12",
+   "version": "bafa29c529610a37",
+   "danish": "Hun binder et rødt bånd om gaven.",
+   "target": "bånd",
+   "en": "She ties a red ribbon around the present.",
+   "ru": "Она повязывает на подарок красную ленту.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dcada6fc-c6f1-5728-979c-6466dad70b40",
+  "family_id": "3060e745-9935-590b-b93e-fc7c8a421328",
+  "lemma": "oplæg",
+  "sense": {
+   "ru": "доклад, выступление",
+   "en": "talk, presentation"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} holder et {target} om klimaforandringer.",
+  "variant": {
+   "id": "dcada6fc-c6f1-5728-979c-6466dad70b40",
+   "version": "05ade3f31886f121",
+   "danish": "Forskeren holder et oplæg om klimaforandringer.",
+   "target": "oplæg",
+   "en": "The researcher gives a talk about climate change.",
+   "ru": "Учёный делает доклад об изменении климата.",
+   "orders": [],
+   "accepted": [
+    "foredrag",
+    "indlæg"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "1b86b723-bf09-5924-9df5-0e9976b021ea",
+  "family_id": "4e42b62d-c2a6-5640-b7d7-eda4edf1b3e9",
+  "lemma": "forbrug",
+  "sense": {
+   "ru": "потребление",
+   "en": "consumption"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{possessive} {target} af {thing} er faldet de seneste år.",
+  "variant": {
+   "id": "1b86b723-bf09-5924-9df5-0e9976b021ea",
+   "version": "e37c3bdd5844a75a",
+   "danish": "Husstandenes forbrug af plastik er faldet de seneste år.",
+   "target": "forbrug",
+   "en": "Households' consumption of plastic has fallen in recent years.",
+   "ru": "Потребление пластика домохозяйствами снизилось за последние годы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7a85f401-e67c-59b6-8103-9fbd3fe378f6",
+  "family_id": "27a4aebc-da58-521c-96e1-e028d0ce18cd",
+  "lemma": "mangen",
+  "sense": {
+   "ru": "многие, не один",
+   "en": "many a, more than one"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0003.json",
+  "frame": "{clause} {target} gang.",
+  "variant": {
+   "id": "7a85f401-e67c-59b6-8103-9fbd3fe378f6",
+   "version": "6b2114cea2f1424a",
+   "danish": "Borgmesteren har oplevet det mangen gang.",
+   "target": "mangen",
+   "en": "The mayor has experienced that many a time.",
+   "ru": "Мэр переживал это не один раз.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e7cc11df-6f40-5f68-8cee-00d918aacc2a",
+  "family_id": "f8238d32-8cb9-5b47-ab0a-e2ceb1b606ed",
+  "lemma": "melodi",
+  "sense": {
+   "ru": "мелодия",
+   "en": "melody, tune"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} nynner en kendt {target}.",
+  "variant": {
+   "id": "e7cc11df-6f40-5f68-8cee-00d918aacc2a",
+   "version": "26dc4802969389c2",
+   "danish": "Min far nynner en kendt melodi.",
+   "target": "melodi",
+   "en": "My father hums a well-known tune.",
+   "ru": "Мой папа напевает известную мелодию.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "4f8946ee-e697-5d5c-bbde-b6e0f7ed4411",
+  "family_id": "f0af874d-13b1-57cb-ae1f-305b41000cd6",
+  "lemma": "håndværker",
+  "sense": {
+   "ru": "мастер, ремесленник",
+   "en": "tradesman, craftsman"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{target} reparerer {object}.",
+  "variant": {
+   "id": "4f8946ee-e697-5d5c-bbde-b6e0f7ed4411",
+   "version": "2a492a57bb4c8ed3",
+   "danish": "Håndværkeren reparerer døren.",
+   "target": "håndværkeren",
+   "en": "The tradesman repairs the door.",
+   "ru": "Мастер чинит дверь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "824ee995-af63-544b-8526-8a7360720134",
+  "family_id": "14825247-64b1-585a-bff3-6f5bd2746410",
+  "lemma": "langsigtet",
+  "sense": {
+   "ru": "долгосрочный",
+   "en": "long-term"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} kræver en {target} plan.",
+  "variant": {
+   "id": "824ee995-af63-544b-8526-8a7360720134",
+   "version": "2909f8f5544e068a",
+   "danish": "Byggeriet kræver en langsigtet plan.",
+   "target": "langsigtet",
+   "en": "The construction project requires a long-term plan.",
+   "ru": "Строительство требует долгосрочного плана.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "77ec2df8-884a-5436-8366-d6ad0df5561e",
+  "family_id": "4de34aa6-1220-5019-a1ef-9a23cff5869d",
+  "lemma": "uro",
+  "sense": {
+   "ru": "беспокойство, волнение",
+   "en": "unrest, turmoil"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0085.json",
+  "frame": "{subject} skaber {target} i landet.",
+  "variant": {
+   "id": "77ec2df8-884a-5436-8366-d6ad0df5561e",
+   "version": "7e6a8de79df1191b",
+   "danish": "Valget skaber uro i landet.",
+   "target": "uro",
+   "en": "The election creates unrest in the country.",
+   "ru": "Выборы порождают волнения в стране.",
+   "orders": [],
+   "accepted": [
+    "uroligheder"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "f54c0792-bd2b-511f-a55a-921c88c7f8a4",
+  "family_id": "208b3c48-6f05-531b-b496-7633f728c0e2",
+  "lemma": "udtalelse",
+  "sense": {
+   "ru": "заявление, высказывание",
+   "en": "statement, remark"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "source": "catalog",
+  "batch": "batch-0050.json",
+  "frame": "{subject} kom med en {target} om {topic}.",
+  "variant": {
+   "id": "f54c0792-bd2b-511f-a55a-921c88c7f8a4",
+   "version": "fdd05b2d73c92de3",
+   "danish": "Talsmanden kom med en udtalelse om resultatet.",
+   "target": "udtalelse",
+   "en": "The spokesperson made a statement about the result.",
+   "ru": "Пресс-секретарь сделал заявление о результате.",
+   "orders": [],
+   "accepted": [
+    "erklæring"
+   ]
+  },
+  "risk": []
+ },
+ {
+  "id": "54ba86fc-6151-5c7b-a94c-b2af823085e8",
+  "family_id": "9eb98e7e-4b86-5957-b830-bda89c87519e",
+  "lemma": "afsætte",
+  "sense": {
+   "ru": "отстранять, смещать",
+   "en": "to depose, remove (from power)"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0060.json",
+  "frame": "{subject} {target} præsidenten efter skandalen.",
+  "variant": {
+   "id": "54ba86fc-6151-5c7b-a94c-b2af823085e8",
+   "version": "3b9208c6898d56ba",
+   "danish": "Parlamentet afsatte præsidenten efter skandalen.",
+   "target": "afsatte",
+   "en": "Parliament deposed the president after the scandal.",
+   "ru": "Парламент сместил президента после скандала.",
+   "orders": [
+    "Efter skandalen afsatte parlamentet præsidenten."
+   ],
+   "accepted": [
+    "fjernede"
+   ]
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ }
+]
