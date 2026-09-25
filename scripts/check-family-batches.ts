@@ -61,6 +61,8 @@ for (const name of names) {
       try {
         const danish = variantDanish(family, variant)
         if (danish) sentences.add(danish)
+        // Accepted gap answers are spelled the same way, so they are checked up front too.
+        for (const alternative of Array.isArray(variant.accepted) ? variant.accepted : []) if (typeof alternative === 'string' && alternative.trim()) sentences.add(alternative)
       } catch { /* malformed; validateFamily reports it */ }
     }
   }

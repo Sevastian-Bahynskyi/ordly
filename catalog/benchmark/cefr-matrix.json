@@ -173,7 +173,10 @@
   {
    "id": "noun-indefinite",
    "levels": [
-    "A1"
+    "A1",
+    "A2",
+    "B1",
+    "B2"
    ],
    "label": "Indefinite noun with en/et"
   },
@@ -181,7 +184,9 @@
    "id": "noun-definite",
    "levels": [
     "A1",
-    "A2"
+    "A2",
+    "B1",
+    "B2"
    ],
    "label": "Definite suffix -en/-et"
   },
@@ -189,7 +194,9 @@
    "id": "noun-plural",
    "levels": [
     "A1",
-    "A2"
+    "A2",
+    "B1",
+    "B2"
    ],
    "label": "Plural forms, indefinite and definite"
   },
@@ -213,7 +220,10 @@
   {
    "id": "verb-present",
    "levels": [
-    "A1"
+    "A1",
+    "A2",
+    "B1",
+    "B2"
    ],
    "label": "Present tense -r"
   },
@@ -221,7 +231,8 @@
    "id": "verb-past",
    "levels": [
     "A2",
-    "B1"
+    "B1",
+    "B2"
    ],
    "label": "Simple past, weak and strong verbs"
   },
@@ -229,7 +240,8 @@
    "id": "verb-perfect",
    "levels": [
     "A2",
-    "B1"
+    "B1",
+    "B2"
    ],
    "label": "Perfect with have/være"
   },
@@ -237,7 +249,8 @@
    "id": "verb-future",
    "levels": [
     "A2",
-    "B1"
+    "B1",
+    "B2"
    ],
    "label": "Future with vil/skal/kommer til at"
   },
@@ -246,7 +259,8 @@
    "levels": [
     "A1",
     "A2",
-    "B1"
+    "B1",
+    "B2"
    ],
    "label": "Modal verbs with bare infinitive"
   },
@@ -304,7 +318,8 @@
    "id": "questions",
    "levels": [
     "A1",
-    "A2"
+    "A2",
+    "B1"
    ],
    "label": "Yes/no and hv-questions"
   },
@@ -321,7 +336,8 @@
    "id": "pronouns",
    "levels": [
     "A1",
-    "A2"
+    "A2",
+    "B1"
    ],
    "label": "Personal and possessive pronouns"
   },
