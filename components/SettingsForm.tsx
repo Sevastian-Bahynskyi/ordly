@@ -1,25 +1,27 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Bell, BellOff, Check, Clock3, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { LEARNER_LANGUAGE_NATIVE_NAMES, LEARNER_LANGUAGES, learnerLanguage } from '@/lib/learner-language'
 import { emptyNotificationSchedule, normalizeNotificationSchedule, urlBase64ToUint8Array, VAPID_PUBLIC_KEY, type NotificationDay } from '@/lib/notifications'
-import type { Profile } from '@/lib/types'
+import type { Profile, TranslationLanguage } from '@/lib/types'
+import { useI18n } from './I18nProvider'
 
-const days: { key: NotificationDay; label: string }[] = [
-  { key: 'mon', label: 'Monday' },
-  { key: 'tue', label: 'Tuesday' },
-  { key: 'wed', label: 'Wednesday' },
-  { key: 'thu', label: 'Thursday' },
-  { key: 'fri', label: 'Friday' },
-  { key: 'sat', label: 'Saturday' },
-  { key: 'sun', label: 'Sunday' },
-]
+const days: NotificationDay[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+export function SettingsHeader(): React.JSX.Element {
+  const { t } = useI18n()
+  return <header className="page-header"><div><span className="eyebrow">{t.settings.eyebrow}</span><h1>{t.settings.title}</h1><p>{t.settings.intro}</p></div></header>
+}
 
 type PermissionState = 'unsupported' | NotificationPermission
 
-export function SettingsForm({ profile }: { profile: Profile & { current_streak?: number; longest_streak?: number } }) {
-  const [language, setLanguage] = useState(profile.default_translation_language)
+export function SettingsForm({ profile }: { profile: Profile & { current_streak?: number; longest_streak?: number } }): React.JSX.Element {
+  const { t, setLanguage: setInterfaceLanguage } = useI18n()
+  const router = useRouter()
+  const [language, setLanguage] = useState<TranslationLanguage>(learnerLanguage(profile.default_translation_language))
   const [level, setLevel] = useState(profile.danish_level)
   const [limit, setLimit] = useState(profile.daily_new_limit)
   const [autoplayAudio, setAutoplayAudio] = useState(profile.autoplay_audio ?? false)
@@ -64,13 +66,21 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
       notification_schedule: schedule,
     }).eq('id', profile.id)
     setSaving(false)
-    if (!error) setSaved(true)
+    if (error) {
+      setNotificationMessage(t.settings.couldNotSave)
+      return
+    }
+    setSaved(true)
+    // The whole interface follows the learner language (issue #24): client text switches now, and
+    // the refresh re-renders server text. Saved meanings and Review are untouched.
+    setInterfaceLanguage(language)
+    router.refresh()
   }
 
   async function enableNotifications() {
     if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
       setPermission('unsupported')
-      setNotificationMessage('Push notifications are not supported in this browser. On iPhone, install Ordly to the Home Screen first.')
+      setNotificationMessage(t.settings.pushUnsupported)
       return
     }
 
@@ -80,7 +90,7 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
       const nextPermission = await Notification.requestPermission()
       setPermission(nextPermission)
       if (nextPermission !== 'granted') {
-        setNotificationMessage(nextPermission === 'denied' ? 'Notifications are blocked in system/browser settings.' : 'Notification permission was not granted.')
+        setNotificationMessage(nextPermission === 'denied' ? t.settings.blocked : t.settings.notGranted)
         return
       }
 
@@ -94,7 +104,7 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
       }
 
       const json = subscription.toJSON()
-      if (!json.endpoint || !json.keys?.p256dh || !json.keys?.auth) throw new Error('The browser returned an incomplete push subscription.')
+      if (!json.endpoint || !json.keys?.p256dh || !json.keys?.auth) throw new Error(t.settings.incomplete)
 
       const { error } = await createClient().from('push_subscriptions').upsert({
         endpoint: json.endpoint,
@@ -106,9 +116,9 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
       if (error) throw error
 
       setSubscribed(true)
-      setNotificationMessage('Notifications are enabled on this device.')
+      setNotificationMessage(t.settings.enabled)
     } catch (error) {
-      setNotificationMessage(error instanceof Error ? error.message : 'Could not enable notifications.')
+      setNotificationMessage(error instanceof Error && error.message === t.settings.incomplete ? error.message : t.settings.couldNotEnable)
     } finally {
       setNotificationBusy(false)
     }
@@ -127,9 +137,9 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
         await createClient().from('push_subscriptions').delete().eq('endpoint', endpoint)
       }
       setSubscribed(false)
-      setNotificationMessage('Notifications are disabled on this device.')
+      setNotificationMessage(t.settings.disabled)
     } catch (error) {
-      setNotificationMessage(error instanceof Error ? error.message : 'Could not disable notifications.')
+      setNotificationMessage(t.settings.couldNotDisable)
     } finally {
       setNotificationBusy(false)
     }
@@ -140,53 +150,53 @@ export function SettingsForm({ profile }: { profile: Profile & { current_streak?
   }
 
   return <section className="settings-card">
-    <div className="setting-row"><div><strong>Learner language</strong><p>Meanings, hints and catalog suggestions. Switching never changes meanings you already saved.</p></div><select value={language} onChange={(e) => setLanguage(e.target.value as typeof language)}><option value="en">English</option><option value="ru">Russian</option><option value="uk">Ukrainian (your saved words only)</option></select></div>
-    <div className="setting-row"><div><strong>Current Danish level</strong><p>AI sentences stay understandable without becoming childish.</p></div><select value={level} onChange={(e) => setLevel(e.target.value)}>{['A1','A2','B1','B2','C1'].map(x => <option key={x}>{x}</option>)}</select></div>
-    <div className="setting-row"><div><strong>New words per day</strong><p>Due reviews are always shown first.</p></div><input className="number-input" type="number" min={1} max={50} value={limit} onChange={(e) => setLimit(Number(e.target.value))} /></div>
-    <div className="setting-row"><div><strong>Play word audio automatically</strong><p>In Review, play the recording when the Danish word becomes visible. Every recorded word still has its own play button.</p></div><label className="setting-switch"><input type="checkbox" role="switch" checked={autoplayAudio} onChange={(e) => setAutoplayAudio(e.target.checked)} aria-label="Play word audio automatically" /><span aria-hidden="true" /></label></div>
+    <div className="setting-row"><div><strong>{t.settings.language}</strong><p>{t.settings.languageHelp}</p></div><select value={language} onChange={(e) => setLanguage(learnerLanguage(e.target.value))}>{LEARNER_LANGUAGES.map((code) => <option key={code} value={code} lang={code}>{LEARNER_LANGUAGE_NATIVE_NAMES[code]}</option>)}</select></div>
+    <div className="setting-row"><div><strong>{t.settings.level}</strong><p>{t.settings.levelHelp}</p></div><select value={level} onChange={(e) => setLevel(e.target.value)}>{['A1','A2','B1','B2','C1'].map(x => <option key={x}>{x}</option>)}</select></div>
+    <div className="setting-row"><div><strong>{t.settings.perDay}</strong><p>{t.settings.perDayHelp}</p></div><input className="number-input" type="number" min={1} max={50} value={limit} onChange={(e) => setLimit(Number(e.target.value))} /></div>
+    <div className="setting-row"><div><strong>{t.settings.autoplay}</strong><p>{t.settings.autoplayHelp}</p></div><label className="setting-switch"><input type="checkbox" role="switch" checked={autoplayAudio} onChange={(e) => setAutoplayAudio(e.target.checked)} aria-label={t.settings.autoplay} /><span aria-hidden="true" /></label></div>
 
     <div className="notification-settings">
       <div className="notification-heading">
-        <div><span className="eyebrow"><Bell size={14}/> NOTIFICATIONS</span><h3>Keep Danish from slipping.</h3><p>Ordly can notify you even when the installed web app is closed.</p></div>
+        <div><span className="eyebrow"><Bell size={14}/> {t.settings.notificationsEyebrow}</span><h3>{t.settings.notificationsTitle}</h3><p>{t.settings.notificationsHelp}</p></div>
         <button className={`soft-button ${subscribed ? 'notification-enabled' : ''}`} disabled={notificationBusy || permission === 'unsupported'} onClick={subscribed ? disableNotifications : enableNotifications}>
           {notificationBusy ? <Loader2 className="spin" size={16}/> : subscribed ? <BellOff size={16}/> : <Bell size={16}/>}
-          {subscribed ? 'Disable on this device' : 'Enable notifications'}
+          {subscribed ? t.settings.disableHere : t.settings.enable}
         </button>
       </div>
 
       <div className="notification-options">
         <label className="notification-option">
           <input type="checkbox" checked={dueNotifications} onChange={(e) => setDueNotifications(e.target.checked)} />
-          <span><strong>Due review reminders</strong><small>Notify when FSRS has genuine reviews waiting. Cooldowns prevent repeated spam.</small></span>
+          <span><strong>{t.settings.dueReminders}</strong><small>{t.settings.dueRemindersHelp}</small></span>
         </label>
         <label className="notification-option">
           <input type="checkbox" checked={wordChallenges} onChange={(e) => setWordChallenges(e.target.checked)} />
-          <span><strong>Occasional word challenges</strong><small>Every few days, Ordly picks a weak/important learned word and asks something like “What is the translation of synes?”</small></span>
+          <span><strong>{t.settings.challenges}</strong><small>{t.settings.challengesHelp}</small></span>
         </label>
       </div>
 
       <div className="mandatory-schedule">
-        <div className="mandatory-title"><div><strong>Mandatory study reminder</strong><p>Only fires on the days and times you choose. It is intentionally hard to ignore.</p></div><span><Clock3 size={14}/>{timezone}</span></div>
+        <div className="mandatory-title"><div><strong>{t.settings.mandatory}</strong><p>{t.settings.mandatoryHelp}</p></div><span><Clock3 size={14}/>{timezone}</span></div>
         <div className="schedule-grid">
-          {days.map(({ key, label }) => {
+          {days.map((key) => {
             const enabled = Boolean(schedule[key])
             return <div className={`schedule-row ${enabled ? 'enabled' : ''}`} key={key}>
-              <label><input type="checkbox" checked={enabled} onChange={(e) => toggleDay(key, e.target.checked)} /><span>{label}</span></label>
+              <label><input type="checkbox" checked={enabled} onChange={(e) => toggleDay(key, e.target.checked)} /><span>{t.settings.days[key]}</span></label>
               <input type="time" disabled={!enabled} value={schedule[key] || '19:00'} onChange={(e) => setSchedule((current) => ({ ...current, [key]: e.target.value }))} />
             </div>
           })}
         </div>
-        <div className="notification-preview"><strong>Example</strong><span>🚨🇩🇰 DANISH TIME — OPEN ORDLY NOW!</span><small>12 reviews are waiting. DON'T SKIP TODAY.</small></div>
+        <div className="notification-preview"><strong>{t.settings.exampleLabel}</strong><span>{t.settings.exampleTitle}</span><small>{t.settings.exampleBody}</small></div>
       </div>
 
       {notificationMessage && <div className="notification-message">{notificationMessage}</div>}
-      {permission === 'unsupported' && <div className="notification-message warning">On iPhone/iPad, Web Push requires Ordly to be installed as a Home Screen web app.</div>}
-      {permission === 'denied' && <div className="notification-message warning">Notification permission is blocked. Re-enable Ordly in your browser/system notification settings.</div>}
+      {permission === 'unsupported' && <div className="notification-message warning">{t.settings.iosInstall}</div>}
+      {permission === 'denied' && <div className="notification-message warning">{t.settings.permissionBlocked}</div>}
     </div>
 
-    <div className="settings-note"><strong>Scheduling</strong><p>FSRS controls review timing automatically. You rate each review as Again, Hard, Good, or Easy.</p></div>
+    <div className="settings-note"><strong>{t.settings.scheduling}</strong><p>{t.settings.schedulingHelp}</p></div>
     <div style={{ padding: '18px 22px 22px' }}>
-      <button className="primary-button" onClick={save} disabled={saving}>{saving ? <Loader2 className="spin" size={17}/> : saved ? <Check size={17}/> : null}{saved ? 'Saved' : 'Save settings'}</button>
+      <button className="primary-button" onClick={save} disabled={saving}>{saving ? <Loader2 className="spin" size={17}/> : saved ? <Check size={17}/> : null}{saved ? t.settings.saved : t.settings.saveSettings}</button>
     </div>
   </section>
 }

@@ -25,12 +25,29 @@ function dollar(value: string): string {
   return `$f${n}$${value}$f${n}$`
 }
 
-export function familyChunkSql(families: readonly PublishedFamily[], meta: { snapshot: string; generator: string; gate: string }): string {
+/**
+ * Translations kept beside the snapshot (issue #24): per language, per variant id, pinned to the
+ * Danish they translate. The snapshot itself is rebuilt from audited replies, so a language added
+ * later lives here rather than in it.
+ */
+export type TranslationOverlay = Record<string, Record<string, { danish: string; uk?: string; [lang: string]: string | undefined }>>
+
+function variantTranslations(variant: PublishedFamily['variants'][number], extra: TranslationOverlay | undefined): Record<string, string> {
+  const translations: Record<string, string> = { en: variant.en, ru: variant.ru }
+  for (const [lang, byVariant] of Object.entries(extra || {})) {
+    const row = byVariant[variant.id]
+    const text = row?.[lang]
+    if (row && row.danish === variant.danish && typeof text === 'string' && text.trim()) translations[lang] = text.trim()
+  }
+  return translations
+}
+
+export function familyChunkSql(families: readonly PublishedFamily[], meta: { snapshot: string; generator: string; gate: string; extra?: TranslationOverlay }): string {
   if (!families.length) throw new Error('Refusing an empty chunk')
   const payload = families.map((family) => ({
     id: family.id, lemma: family.lemma, kind: family.kind, sense_id: family.sense_id, level: family.level,
     situation: family.situation, grammar: family.grammar, frame: family.frame, slots: family.slots,
-    variants: family.variants.map((variant) => ({ id: variant.id, version: variant.version, danish: variant.danish, target: variant.target, translations: { en: variant.en, ru: variant.ru }, orders: variant.orders, accepted: variant.accepted ?? [] })),
+    variants: family.variants.map((variant) => ({ id: variant.id, version: variant.version, danish: variant.danish, target: variant.target, translations: variantTranslations(variant, meta.extra), orders: variant.orders, accepted: variant.accepted ?? [] })),
   }))
   const source = JSON.stringify({ snapshot: meta.snapshot, gate: meta.gate, licence: 'Ordly-authored; generated offline, gated and audited (issue #16)' })
   return `with incoming as (

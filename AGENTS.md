@@ -9,7 +9,7 @@ Ordly is a personal, mobile-first Danish learning PWA. The user wants extremely 
 Core product constraints:
 
 - Danish is always the source language.
-- Learner language is one app-wide preference: English (default for new profiles), Russian, Ukrainian (saved material only; no supplied content). Read it through `learnerLanguage()` in `lib/learner-language.ts`, never with an inline fallback.
+- Learner language is one app-wide preference: English (default for new profiles), Russian, Ukrainian. It drives the whole interface (`lib/i18n`, §26) and the supplied content. Read it through `learnerLanguage()` in `lib/learner-language.ts`, never with an inline fallback.
 - Danish level is configurable A1–C1; default A1.
 - Manual-first entry. AI assists only when explicitly requested.
 - Support single words, phrases, sentence fragments, and full sentences.
@@ -525,8 +525,8 @@ Review is the default and the only measure of retention (`docs/adr/0002-review-o
   - Sort and match grade each word and store `targets` on the attempt; `attemptOutcomes` spreads them for selection.
   - Flash-reveal records `self_known`/`self_unknown` with `assistance: 'self'`, weighted lowest (0.25), never checked. **I don't know** on any other format, including a whole board, is `dont_know` for every word on it.
   - Retired dialogue attempts that carry a `rating` keep their typed weight.
-  - Feedback is a code (`PracticeFeedbackCode`) worded by `lib/practice-i18n.ts` in English or Russian (Ukrainian reads English). Stored English sentences from older sessions still show.
-- The dialogue pilot is `lib/practice-pilot.ts`: ten exchanges, English and Russian situations, provenance `dialogue-pilot-2026-09-25`. The session seed derives from the user and the saved revision, so a shortfall offer and its acceptance plan the same session.
+  - Feedback is a code (`PracticeFeedbackCode`) worded by `lib/practice-i18n.ts` in English, Russian or Ukrainian, following the current learner language. Stored English sentences from older sessions still show.
+- The dialogue pilot is `lib/practice-pilot.ts`: ten exchanges, English, Russian and Ukrainian situations, provenance `dialogue-pilot-2026-09-25`. The session seed derives from the user and the saved revision, so a shortfall offer and its acceptance plan the same session.
 - Tests: `lib/practice-session.test.mjs` (session boundary, legacy payloads, a journey through all ten formats), `lib/practice-formats.test.mjs` (builder safety, per-format grading), `supabase/tests/guided_practice.sql` (database boundary), `supabase/tests/practice-server.mjs` (real SQL through PostgREST; see `docs/guided-practice.md`).
 
 ## 22. Free data instead of a model (COR, spelling, write-time checks)
@@ -714,6 +714,41 @@ The runbook and progress log are `docs/content-population.md`; the published num
   within DSL `freq-30k-ex` (by band and open/closed class, with credit through a COR headword shown
   separately), coverage of the frozen unseen set, and A1–B2 matrix cells. None of them is a claim
   about a learner's level.
+
+## 26. Interface and content in English, Russian and Ukrainian (issue #24)
+
+- **The learner language is the interface language.** Every string lives in `lib/i18n/{en,ru,uk}.ts`;
+  English is the reference and the other two are typed against it (`Messages`), so a missing key
+  is a type error. Client components read `useI18n()` (`components/I18nProvider.tsx`); server
+  components call `messagesFor(language)`. Practice keeps its own copy in `lib/practice-i18n.ts`.
+  `lib/i18n/messages.test.mjs` checks that every key exists in all three, that nothing is left in
+  English, and that every Ukrainian string passes the Ukrainian check.
+- **Where the language comes from.** Every signed-in page reads the profile in its existing
+  parallel batch and passes it to `<AppShell language>`, so there is no extra round trip. That
+  provider (`fromProfile`) mirrors it into the `ordly-lang` cookie and `<html lang>`; the root
+  layout's provider only reads the cookie, for sign-in and loading frames. API routes word their
+  user-facing `error` lines through `interfaceMessages()` (the cookie). Never show a raw database
+  or provider error to the learner.
+- **Switching** in Settings calls `setLanguage` on the provider (client text changes at once) and
+  refreshes the route (server text follows). It writes `profiles` only: Review cards, saved
+  meanings and Material are untouched (§24).
+- **Ukrainian is a full learner language.** Every catalog sense has a Ukrainian wording
+  (`catalog/locale-uk.json`, same sense ids, parts of speech and genders), every sense example
+  that English has is translated, and every family variant carries `translations.uk` from the
+  overlay `catalog/families/translations-uk.json` (keyed by variant id and pinned to its Danish,
+  merged by `scripts/import-catalog-families.ts`; the snapshot itself stays en/ru).
+- **Ukrainian vs Russian is checked, not assumed.** Both are Cyrillic, so `lib/ukrainian.ts` rejects
+  Russian-only letters (ы э ъ ё), words the Russian Hunspell dictionary knows and the Ukrainian
+  one does not, verb meanings not worded as a Ukrainian infinitive, and multi-word text Ukrainian
+  cannot read. The dictionaries (`dictionary-uk` GPL-3.0, `dictionary-ru` BSD) are dev
+  dependencies for the offline pipeline and tests only (`lib/ukrainian-dictionaries.ts`); the app
+  never imports them. `scripts/measure-ukrainian-check.ts` measures it on real catalog text.
+- **Pipeline**: `write-locale-work.ts --from-db` → `generate-locale-batch.ts` (DeepSeek words,
+  Translator translates, DeepSeek reviews every sentence, `scripts/ukrainian-sentences.ts`) →
+  `check-locale-batches.ts --lang uk --merge` → `audit-locale.ts` (seeded, stratified; ≥95% clean
+  and no severe finding before loading) → `import-catalog-locale.ts` / `import-catalog-families.ts`.
+  Translator pivots through English, so a round trip alone does not catch a mistranslation; the
+  reviewer pass exists because of that. Runbook and spend: `docs/content-population.md`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

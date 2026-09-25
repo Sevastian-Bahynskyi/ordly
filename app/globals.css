@@ -221,7 +221,7 @@ button { color: inherit; }
 .rating-button.hard strong { color: #a16b23; }
 .rating-button.good strong { color: #4f7c67; }
 .rating-button.easy strong { color: #6550b8; }
-.rating-button.suggested::after { content: 'suggested'; position: absolute; top: -8px; padding: 2px 5px; border-radius: 99px; background: #ede8fb; color: #7058c6; font-size: 7px; font-weight: 700; }
+.rating-button.suggested::after { content: attr(data-suggested-label); position: absolute; top: -8px; padding: 2px 5px; border-radius: 99px; background: #ede8fb; color: #7058c6; font-size: 7px; font-weight: 700; }
 .review-tip { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 15px; color: #9a939f; font-size: 10px; }
 .review-complete { min-height: 560px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .success-burst { width: 82px; height: 82px; display: grid; place-items: center; border-radius: 25px; margin-bottom: 23px; color: #7556da; background: linear-gradient(145deg, #f1ebff, #fcebf3); box-shadow: 0 15px 40px rgba(117,86,218,.12); animation: successFloat 2.8s ease-in-out infinite; }

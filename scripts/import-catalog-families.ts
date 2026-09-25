@@ -10,11 +10,17 @@
  * cleanup deletes whatever it lacks, so the catalog's and the expansion's families load together.
  * Chunks are idempotent upserts; the final cleanup removes families an older snapshot had, and
  * refuses to run unless every family of this snapshot is in the database.
+ *
+ * Translation overlays beside the snapshot (`catalog/families/translations-<lang>.json`, issue #24)
+ * are added to each variant whose Danish they still translate.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { PublishedFamily } from '../lib/catalog-families'
-import { familyChunkSql, familyCleanupSql, snapshotId } from '../lib/catalog-family-import'
+import { existsSync } from 'node:fs'
+import { familyChunkSql, familyCleanupSql, snapshotId, type TranslationOverlay } from '../lib/catalog-family-import'
+import { ukrainianProblems } from '../lib/ukrainian'
+import { loadUkrainianCheckers } from '../lib/ukrainian-dictionaries'
 import { query } from './catalog-db'
 
 const argv = process.argv.slice(2)
@@ -33,9 +39,24 @@ if (!lines.length) {
 }
 const snapshot = snapshotId(lines)
 const families = lines.map((line) => JSON.parse(line) as PublishedFamily)
+const extra: TranslationOverlay = {}
+for (const lang of ['uk']) {
+  const overlayPath = `catalog/families/translations-${lang}.json`
+  if (existsSync(overlayPath)) extra[lang] = JSON.parse(await readFile(overlayPath, 'utf8'))
+}
+if (extra.uk) {
+  // The overlay was gated when it was written; it is checked again here because it is a file
+  // anyone can edit, and a Russian sentence filed as Ukrainian must never reach the catalog.
+  const spell = await loadUkrainianCheckers()
+  const bad = Object.entries(extra.uk).filter(([, row]) => ukrainianProblems(row.uk || '', spell).length)
+  if (bad.length) {
+    console.error(`Refusing to load: ${bad.length} Ukrainian translation(s) fail the language check, e.g. ${bad.slice(0, 3).map(([id, row]) => `${id} "${row.uk}"`).join(', ')}`)
+    process.exit(1)
+  }
+}
 const chunks: string[] = []
 for (let start = 0; start < families.length; start += chunkSize) {
-  chunks.push(familyChunkSql(families.slice(start, start + chunkSize), { snapshot, generator, gate: GATE }))
+  chunks.push(familyChunkSql(families.slice(start, start + chunkSize), { snapshot, generator, gate: GATE, extra }))
 }
 console.log(`${families.length} families, ${families.reduce((sum, family) => sum + family.variants.length, 0)} sentences, snapshot ${snapshot}, ${chunks.length} chunks`)
 

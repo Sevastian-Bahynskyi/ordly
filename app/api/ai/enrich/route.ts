@@ -8,6 +8,7 @@ import { corLookupForm, fetchCorForms, isKnownDanishForm } from '@/lib/cor'
 import { hasOpenRouterKey, isOpenRouterRateLimitError, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 import { isReadableCyrillic, normalizePronunciationText } from '@/lib/pronunciation'
 import { createSense, isNounGender, isPartOfSpeech, PARTS_OF_SPEECH, translationFromSenses } from '@/lib/senses'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 const PIPELINE_VERSION = 11
 
@@ -337,9 +338,10 @@ async function resolvePronunciation(
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const body = await request.json()
   const draft = body.draft || {}
@@ -354,7 +356,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   // re-translates it, so `Regenerate all` could never actually replace an example (D3).
   const regenerate = body.regenerate === true
 
-  if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
+  if (!danish) return NextResponse.json({ error: api.danishRequired }, { status: 400 })
 
   // Is this even Danish? (issue #5 §2). `tinker` is not a Danish word, and the enrichment path
   // invented a confident Russian translation for it. COR holds 247,527 normed forms, inflections
@@ -366,7 +368,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (corLookupForm(danish) && body.allowUnknownDanish !== true) {
     if (!isKnownDanishForm(await fetchCorForms(supabase, danish))) {
       return NextResponse.json({
-        error: `“${danish}” is not in the Danish word register. Check the spelling, or run this again to enrich it anyway.`,
+        error: api.notInRegister(danish),
         unknownDanish: true,
       }, { status: 422 })
     }
@@ -477,12 +479,12 @@ ${senseContext ? `- The example must show this exact meaning of the source item:
 
   if (!Object.keys(result).length) {
     const message = rateLimited
-      ? 'AI is temporarily busy. Please try again shortly.'
+      ? api.aiBusy
       : failures.length === 1 && failures[0] === 'pronunciation'
-        ? 'Could not generate pronunciation. Please try again.'
+        ? api.couldNotPronounce
         : failures.length === 1 && failures[0] === 'translation'
-          ? 'Could not generate a valid translation. Please try again.'
-          : 'Could not enrich this text. Please try again.'
+          ? api.couldNotTranslate
+          : api.couldNotEnrich
     return NextResponse.json({ error: message }, { status: rateLimited ? 429 : 502 })
   }
 

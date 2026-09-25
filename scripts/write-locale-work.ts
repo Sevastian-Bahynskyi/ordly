@@ -2,6 +2,13 @@
  * Work files for a learner-language wording pass over the whole catalog (issue #16).
  *
  *   pnpm exec tsx scripts/write-locale-work.ts --lang en [--out catalog/expansion/out --target catalog/expansion/locale/work]
+ *   pnpm exec tsx scripts/write-locale-work.ts --lang uk --from-db --target catalog/locale-uk/work
+ *
+ * `--from-db` (issue #24) reads every sense from the linked catalog instead of generator files, so
+ * a new language is worded for exactly the senses the database holds: the catalog, both expansion
+ * waves, the phrases and every later repair. Each row also carries the English wording, and the
+ * Danish example is the sense's English-row example (Russian rows mostly keep theirs at entry
+ * level), so the new language gets the examples English learners get.
  *
  * One file per generator batch in `catalog/out`, holding every sense with its stable id, the
  * Russian wording it must mean the same as, and the Danish example it must translate. A sense that
@@ -15,6 +22,7 @@ import { parseCatalogGeneratorText } from '../lib/catalog-contract'
 import { senseId } from '../lib/catalog-import'
 import type { LocaleWorkRow } from '../lib/catalog-locale-pass'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
+import { queryJson } from './catalog-db'
 
 const argv = process.argv.slice(2)
 const lang = argv[argv.indexOf('--lang') + 1] || 'en'
@@ -34,6 +42,21 @@ for (const name of (await readdir('catalog')).filter((file) => /^locale-pilot\..
 const outDir = option('--target') || join('catalog', 'locale', 'work')
 await mkdir(outDir, { recursive: true })
 let total = 0
+if (argv.includes('--from-db')) {
+  const size = Number(option('--batch-size') || 50)
+  const rows = await queryJson<LocaleWorkRow>(`select r.lemma, r.kind, r.sense_id, r.ordinal, r.pos, r.gender, r.text as ru, e.text as en,
+      coalesce(e.example, r.example) as example, r.example_translation as example_ru, e.example_translation as example_en
+    from public.word_catalog_sense r
+    join public.word_catalog_sense e on e.lemma = r.lemma and e.kind = r.kind and e.sense_id = r.sense_id and e.lang = 'en'
+    where r.lang = 'ru' and not exists (
+      select 1 from public.word_catalog_sense t where t.lemma = r.lemma and t.kind = r.kind and t.sense_id = r.sense_id and t.lang = '${lang.replace(/[^a-z]/g, '')}')
+    order by r.kind, r.lemma, r.ordinal`)
+  for (let start = 0; start < rows.length; start += size) {
+    await writeFile(join(outDir, `batch-${String(start / size + 1).padStart(4, '0')}.json`), `${JSON.stringify(rows.slice(start, start + size), null, 1)}\n`)
+  }
+  console.log(`${rows.length} senses need a ${lang} wording (${Math.ceil(rows.length / size)} batches)`)
+  process.exit(0)
+}
 for (const name of (await readdir(sourceDir)).filter((file) => /^batch-\d+\.json$/.test(file)).sort()) {
   const rows: LocaleWorkRow[] = []
   for (const value of parseCatalogGeneratorText(await readFile(join(sourceDir, name), 'utf8'))) {

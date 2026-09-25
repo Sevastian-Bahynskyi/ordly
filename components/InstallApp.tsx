@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Check, Download, MonitorDown, Share2, Smartphone } from 'lucide-react'
+import { useI18n } from './I18nProvider'
 
 type InstallPromptEvent = Event & {
   prompt: () => Promise<void>
@@ -10,7 +11,8 @@ type InstallPromptEvent = Event & {
 
 type InstallState = 'installed' | 'ios' | 'mac-safari' | 'ready' | 'manual'
 
-export function InstallApp() {
+export function InstallApp(): React.JSX.Element {
+  const { t } = useI18n()
   const [prompt, setPrompt] = useState<InstallPromptEvent | null>(null)
   const [state, setState] = useState<InstallState>('manual')
 
@@ -57,27 +59,27 @@ export function InstallApp() {
       <div className="install-heading">
         <div className="install-badge"><Download size={20} /></div>
         <div>
-          <span className="eyebrow">ORDLY APP</span>
-          <h2>Install Ordly</h2>
-          <p>Open it like a normal app, without keeping a browser tab around.</p>
+          <span className="eyebrow">{t.install.eyebrow}</span>
+          <h2>{t.install.title}</h2>
+          <p>{t.install.intro}</p>
         </div>
       </div>
 
       {state === 'installed' && (
-        <div className="install-status success"><Check size={18} /><div><strong>Installed</strong><span>Ordly is already running as a standalone app on this device.</span></div></div>
+        <div className="install-status success"><Check size={18} /><div><strong>{t.install.installed}</strong><span>{t.install.installedHelp}</span></div></div>
       )}
 
       {state === 'ready' && (
-        <button className="primary-button install-button" onClick={install}><MonitorDown size={17} /> Install on this device</button>
+        <button className="primary-button install-button" onClick={install}><MonitorDown size={17} /> {t.install.installHere}</button>
       )}
 
       {state === 'ios' && (
         <div className="install-instructions">
           <div className="install-device"><Smartphone size={18} /><strong>iPhone / iPad</strong></div>
           <ol>
-            <li>Open Ordly in Safari.</li>
-            <li>Tap <span className="inline-icon"><Share2 size={15} /> Share</span>.</li>
-            <li>Choose <strong>Add to Home Screen</strong>, then Add.</li>
+            <li>{t.install.openSafari}</li>
+            <li>{t.install.tap} <span className="inline-icon"><Share2 size={15} /> {t.install.share}</span>.</li>
+            <li>{t.install.choose} <strong>{t.install.addToHome}</strong>{t.install.thenAdd}</li>
           </ol>
         </div>
       )}
@@ -85,14 +87,14 @@ export function InstallApp() {
       {state === 'mac-safari' && (
         <div className="install-instructions">
           <div className="install-device"><MonitorDown size={18} /><strong>Mac Safari</strong></div>
-          <p>Choose <strong>File → Add to Dock</strong>. Ordly will then open in its own standalone window.</p>
+          <p>{t.install.macChoose} <strong>{t.install.addToDock}</strong>{t.install.macThen}</p>
         </div>
       )}
 
       {state === 'manual' && (
         <div className="install-instructions">
-          <div className="install-device"><MonitorDown size={18} /><strong>Desktop</strong></div>
-          <p>In Chrome or Edge, use the <strong>Install app</strong> button in the address bar or browser menu.</p>
+          <div className="install-device"><MonitorDown size={18} /><strong>{t.install.desktop}</strong></div>
+          <p>{t.install.desktopUse} <strong>{t.install.installApp}</strong> {t.install.desktopThen}</p>
         </div>
       )}
     </section>

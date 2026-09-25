@@ -111,7 +111,7 @@ The supplied content and interface use one learner-language preference. English 
 - Unrestricted prose, live conversation, microphone/speaking assessment, or a listening exercise format.
 - A new independent practice mastery or retention score, memory ring, or FSRS schedule.
 - Automatic merging of existing Material entries or deletion/recalculation of historical Review logs.
-- Expanding supplied learner-language content to Ukrainian, while preserving existing Ukrainian preferences and material.
+- ~~Expanding supplied learner-language content to Ukrainian~~ — moved in scope by issue #24: Ukrainian is a full learner language (AGENTS.md §26).
 - A guarantee of offline operation; the current PWA update and network behavior must continue working.
 - A claim that generated variants number in the billions, or that catalog coverage proves CEFR B2 proficiency.
 - Implementation issues beyond the five-ticket maximum required by issue #11.

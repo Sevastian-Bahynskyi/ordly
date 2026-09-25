@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
 import { findMisspellings, type Misspelling } from '@/lib/spelling'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 const intentSchema = {
   type: 'object',
@@ -274,15 +275,16 @@ function usableResult(sentence: string, verification: Record<string, unknown>) {
 }
 
 export async function POST(request: Request) {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const body = await request.json().catch(() => ({}))
   const sentence = String(body.sentence || '').trim()
-  if (!sentence) return NextResponse.json({ error: 'Example sentence is required.' }, { status: 400 })
-  if (sentence.length > 700) return NextResponse.json({ error: 'Example sentence is too long.' }, { status: 400 })
-  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured.' }, { status: 503 })
+  if (!sentence) return NextResponse.json({ error: api.exampleRequired }, { status: 400 })
+  if (sentence.length > 700) return NextResponse.json({ error: api.exampleTooLong }, { status: 400 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: api.aiUnavailable }, { status: 503 })
 
   const { data: profile } = await supabase
     .from('profiles')
@@ -318,7 +320,7 @@ export async function POST(request: Request) {
         verification,
       })
       return NextResponse.json({
-        error: 'I could not correct this sentence confidently without risking changing your meaning. Please adjust it slightly and try again.',
+        error: api.unsafeCorrection,
       }, { status: 422 })
     }
 
@@ -337,6 +339,6 @@ export async function POST(request: Request) {
     })
   } catch (error) {
     console.error('Example sentence correction pipeline failed', error)
-    return NextResponse.json({ error: 'Could not check this example sentence. Please try again.' }, { status: 502 })
+    return NextResponse.json({ error: api.couldNotCheckExample }, { status: 502 })
   }
 }

@@ -1,6 +1,8 @@
 'use client'
 
-import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
+import { DEFAULT_LEARNER_LANGUAGE, LEARNER_LANGUAGE_NAMES } from '@/lib/learner-language'
+import type { Messages } from '@/lib/i18n'
+import { useI18n } from '@/components/I18nProvider'
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Check, Flame, Loader2, RotateCcw, Sparkles, Target, ThumbsUp, X } from 'lucide-react'
@@ -13,7 +15,6 @@ import {
   entrySenses,
   normalizeSenseText,
   parseSenses,
-  PART_OF_SPEECH_LABELS,
   splitTranslationIntoSenses,
   translationFromSenses,
 } from '@/lib/senses'
@@ -25,11 +26,11 @@ import { WordAudio } from '@/components/WordAudio'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 
 const ratings = [
-  { value: 1, label: 'Again', hint: '< 1m', cls: 'again' },
-  { value: 2, label: 'Hard', hint: 'soon', cls: 'hard' },
-  { value: 3, label: 'Good', hint: 'later', cls: 'good' },
-  { value: 4, label: 'Easy', hint: 'much later', cls: 'easy' },
-]
+  { value: 1, cls: 'again' },
+  { value: 2, cls: 'hard' },
+  { value: 3, cls: 'good' },
+  { value: 4, cls: 'easy' },
+] as const
 
 type CardPatch = Pick<ReviewItem, 'due' | 'stability' | 'difficulty' | 'elapsed_days' | 'scheduled_days' | 'reps' | 'lapses' | 'learning_steps' | 'state' | 'last_review'>
 type AnswerRelation = 'exact' | 'valid_alternative' | 'near' | 'incorrect'
@@ -51,7 +52,9 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
   translationLanguage?: 'ru' | 'en' | 'uk'
   autoplayAudio?: boolean
 }): React.JSX.Element {
-  const languageLabel = translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'
+  const { t } = useI18n()
+  // The interface names the language in its own words; the AI checker is told it in English.
+  const languageLabel = t.languageNames[translationLanguage]
   const reviewItems = initialItems.filter((item) => item.vocabulary_entries.entry_kind !== 'sentence')
   const [items, setItems] = useState(reviewItems)
   const [answer, setAnswer] = useState('')
@@ -91,8 +94,8 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
     if (quickResult !== 'incorrect') {
       setResult(quickResult)
       setFeedback(quickResult === 'mostly'
-          ? { relation: 'near', note: 'The meaning is close; compare it with the saved meanings.' }
-          : { relation: 'exact', note: 'This matches one of your saved meanings.' })
+          ? { relation: 'near', note: t.review.near }
+          : { relation: 'exact', note: t.review.exact })
       setRevealedWithoutAnswer(false)
       setRevealed(true)
       return
@@ -109,7 +112,7 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
           expected,
           answer: typedAnswer,
           mode: 'recognition',
-          language: languageLabel,
+          language: LEARNER_LANGUAGE_NAMES[translationLanguage],
         }),
       })
       if (res.ok) {
@@ -126,7 +129,7 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
     }
     setCheckingMeaning(false)
     setResult(finalResult)
-    if (finalResult === 'incorrect') setFeedback((value) => value || { relation: 'incorrect', note: 'This does not express one of the saved meanings here.' })
+    if (finalResult === 'incorrect') setFeedback((value) => value || { relation: 'incorrect', note: t.review.notSaved })
     setRevealedWithoutAnswer(false)
     setRevealed(true)
   }
@@ -175,7 +178,7 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
     setResult('correct')
     setFeedback({
       relation: 'valid_alternative',
-      note: saved ? 'Accepted as another valid meaning and saved for future reviews.' : 'Accepted for this review.',
+      note: saved ? t.review.acceptedSaved : t.review.acceptedOnce,
     })
     setAcceptingAnswer(false)
   }
@@ -253,26 +256,26 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
   if (!current || !entry) {
     return <section className="review-complete">
       <div className="success-burst review-success-burst"><Sparkles size={38}/></div>
-      <span className="eyebrow">SESSION COMPLETE</span>
-      <h1>Nothing else is due.</h1>
-      <p>{completed ? `You cleared ${completed} ${completed === 1 ? 'review' : 'reviews'}.` : 'Your memory queue is clear.'} Come back when FSRS asks for you again.</p>
-      <div className="complete-stats"><span><Check size={18}/><strong>{completed}</strong> reviewed</span><span><Target size={18}/><strong>100%</strong> queue cleared</span><span><span className="review-fire-wrap"><Flame className="review-fire" size={18}/></span><strong>+1</strong> study day</span></div>
-      {history.length > 0 && <button className="soft-button" style={{ marginTop: 18 }} onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={16}/> Review previous</button>}
+      <span className="eyebrow">{t.review.completeEyebrow}</span>
+      <h1>{t.review.completeTitle}</h1>
+      <p>{completed ? t.review.cleared(completed) : t.review.queueClear} {t.review.comeBack}</p>
+      <div className="complete-stats"><span><Check size={18}/><strong>{completed}</strong> {t.review.reviewed}</span><span><Target size={18}/><strong>100%</strong> {t.review.queueCleared}</span><span><span className="review-fire-wrap"><Flame className="review-fire" size={18}/></span><strong>+1</strong> {t.review.studyDay}</span></div>
+      {history.length > 0 && <button className="soft-button" style={{ marginTop: 18 }} onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={16}/> {t.review.reviewPrevious}</button>}
     </section>
   }
 
   return <div className="review-zen-active">
     <ReviewZenBar progressLabel={`${completed} / ${total}`} progress={progress} />
-    {history.length > 0 && <button className="review-previous-button" onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={14}/> Previous answer</button>}
+    {history.length > 0 && <button className="review-previous-button" onClick={() => setHistoryIndex(history.length - 1)}><ArrowLeft size={14}/> {t.review.previousAnswer}</button>}
 
-    <section key={current.id} className={`flash-card review-card-live ${revealed ? 'revealed' : ''}`}>
+    <section key={current.id} className={`flash-card review-card-live ${revealed ? 'revealed' : ''}`} data-loading-label={t.review.loadingNext}>
       <div className="card-topline">
         <span className="prompt-type">
-          Danish → {languageLabel}
+          {t.review.direction(languageLabel)}
         </span>
         <span className="card-meta">
           <MemoryRing item={current} placement="top" />
-          <span className="card-status">{entry.learning_status}</span>
+          <span className="card-status">{t.status[entry.learning_status]}</span>
         </span>
       </div>
 
@@ -286,25 +289,25 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
       </div>
 
       <form onSubmit={submitAnswer} className="answer-form">
-        <label>Your answer</label>
+        <label>{t.review.yourAnswer}</label>
         <div className={`answer-input-wrap ${revealed ? result || '' : ''}`}>
           <input
             autoFocus
             disabled={revealed || checkingMeaning}
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
-            placeholder={`Type the ${languageLabel} meaning…`}
+            placeholder={t.review.typeMeaning(languageLabel)}
           />
           {revealed && (result === 'incorrect' ? <X size={20}/> : <Check size={20}/>)}
         </div>
-        {!revealed && <button disabled={checkingMeaning} className="primary-button answer-submit">{checkingMeaning ? 'Checking meaning…' : answer.trim() ? 'Check answer' : 'Show answer'} {!checkingMeaning && <ArrowRight size={17}/>}</button>}
+        {!revealed && <button disabled={checkingMeaning} className="primary-button answer-submit">{checkingMeaning ? t.review.checkingMeaning : answer.trim() ? t.review.checkAnswer : t.review.showAnswer} {!checkingMeaning && <ArrowRight size={17}/>}</button>}
       </form>
 
       {revealed && <div className="answer-reveal">
         <div className={`answer-verdict ${result}`}>
-          <strong>{verdictLabel(result, feedback, revealedWithoutAnswer)}</strong>
+          <strong>{verdictLabel(t, result, feedback, revealedWithoutAnswer)}</strong>
           {revealedWithoutAnswer
-            ? <span>The answer is shown below. “Again” is recommended.</span>
+            ? <span>{t.review.shownBelow}</span>
             : feedback?.note && <span>{feedback.note}</span>}
         </div>
 
@@ -321,26 +324,27 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
             onClick={() => void acceptTypedAnswer()}
           >
             {acceptingAnswer ? <Loader2 className="spin" size={15} /> : <ThumbsUp size={15} />}
-            My answer was right
+            {t.review.myAnswerRight}
           </button>
         )}
 
-        <div className="rating-title"><span>How well did you remember it?</span><small>You decide. This controls FSRS.</small></div>
-        <div className="rating-grid review-rating-grid">{ratings.map((r) => <button disabled={ratingLoading} key={r.value} onClick={() => rate(r.value)} className={`rating-button ${r.cls} ${suggestedRating(result) === r.value ? 'suggested' : ''}`}><strong>{r.label}</strong><span>{r.hint}</span></button>)}</div>
+        <div className="rating-title"><span>{t.review.howWell}</span><small>{t.review.youDecide}</small></div>
+        <div className="rating-grid review-rating-grid">{ratings.map((r) => <button disabled={ratingLoading} key={r.value} onClick={() => rate(r.value)} className={`rating-button ${r.cls} ${suggestedRating(result) === r.value ? 'suggested' : ''}`} data-suggested-label={t.review.suggested}><strong>{t.review.ratings[r.cls]}</strong><span>{t.review.ratingHints[r.cls]}</span></button>)}</div>
       </div>}
     </section>
 
     <div className="review-tip">
       <RotateCcw size={15}/>
-      Rate your memory of the headword. Forms are here for recognition.
+      {t.review.tip}
     </div>
   </div>
 }
 
 function ReviewZenBar({ progressLabel, progress }: { progressLabel: string; progress?: number }): React.JSX.Element {
+  const { t } = useI18n()
   return <div className="review-zen-bar">
-    <Link href="/" className="review-exit"><ArrowLeft size={17}/><span>Exit review</span></Link>
-    <div className="review-progress-wrap" aria-label={`Review progress: ${progressLabel}`}>
+    <Link href="/" className="review-exit"><ArrowLeft size={17}/><span>{t.review.exit}</span></Link>
+    <div className="review-progress-wrap" aria-label={t.review.progress(progressLabel)}>
       <span>{progressLabel}</span>
       {progress !== undefined && <div className="review-progress review-progress-live"><i style={{ width: `${progress}%` }}/></div>}
     </div>
@@ -358,6 +362,7 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, fo
   onNext: () => void
   onRatingChanged: (oldRating: number, newRating: number, card: CardPatch, status: LearningStatus) => void
 }) {
+  const { t } = useI18n()
   const [loading, setLoading] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
   const entry = reviewed.item.vocabulary_entries
@@ -381,9 +386,10 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, fo
     const body = await res.json().catch(() => ({}))
     if (res.ok && body.card) {
       onRatingChanged(oldRating, newRating, body.card, body.status)
-      setNotice(`Changed to ${ratings.find((rating) => rating.value === newRating)?.label || newRating}.`)
+      const rated = ratings.find((rating) => rating.value === newRating)
+      setNotice(t.review.changedTo(rated ? t.review.ratings[rated.cls] : String(newRating)))
     } else {
-      setNotice(body.error || 'Could not revise this rating.')
+      setNotice(typeof body.error === 'string' && body.error ? body.error : t.review.couldNotRevise)
     }
     setLoading(false)
   }
@@ -391,8 +397,8 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, fo
   return <>
     <section className="flash-card revealed">
       <div className="card-topline">
-        <span className="prompt-type">Danish → {languageLabel}</span>
-        <span className="card-status">answered</span>
+        <span className="prompt-type">{t.review.direction(languageLabel)}</span>
+        <span className="card-status">{t.review.answered}</span>
       </div>
 
       <div className="flash-prompt">
@@ -401,56 +407,57 @@ function ReviewedCard({ reviewed, index, count, languageLabel, autoplayAudio, fo
       </div>
 
       <div className="answer-form">
-        <label>Your answer</label>
+        <label>{t.review.yourAnswer}</label>
         <div className={`answer-input-wrap ${reviewed.result || 'incorrect'}`}>
-          <input disabled value={reviewed.answer} placeholder={reviewed.revealedWithoutAnswer ? 'No answer entered' : ''} readOnly />
+          <input disabled value={reviewed.answer} placeholder={reviewed.revealedWithoutAnswer ? t.review.noAnswer : ''} readOnly />
           {reviewed.result === 'incorrect' ? <X size={20}/> : <Check size={20}/>} 
         </div>
       </div>
 
       <div className="answer-reveal">
         <div className={`answer-verdict ${reviewed.result || 'incorrect'}`}>
-          <strong>{verdictLabel(reviewed.result, reviewed.feedback, reviewed.revealedWithoutAnswer)}</strong>
+          <strong>{verdictLabel(t, reviewed.result, reviewed.feedback, reviewed.revealedWithoutAnswer)}</strong>
           {reviewed.feedback?.note && <span>{reviewed.feedback.note}</span>}
         </div>
         <SavedMeanings entry={entry} />
         <FormBranch forms={forms} headword={entry.danish} compact />
-        <div className="rating-title"><span>Change your rating if needed</span><small>The FSRS schedule is recalculated from the original review state.</small></div>
+        <div className="rating-title"><span>{t.review.changeRating}</span><small>{t.review.recalculated}</small></div>
         <div className="rating-grid">{ratings.map((rating) => <button
           disabled={loading}
           key={rating.value}
           onClick={() => reviseRating(rating.value)}
           className={`rating-button ${rating.cls}`}
           style={reviewed.rating === rating.value ? { boxShadow: '0 0 0 2px #7657d6 inset' } : undefined}
-        ><strong>{rating.label}</strong><span>{rating.hint}</span></button>)}</div>
+        ><strong>{t.review.ratings[rating.cls]}</strong><span>{t.review.ratingHints[rating.cls]}</span></button>)}</div>
         {notice && <small style={{ display: 'block', marginTop: 10, color: '#7c7485' }}>{notice}</small>}
       </div>
     </section>
 
     <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, marginTop: 14 }}>
-      <button className="soft-button" disabled={index === 0} onClick={onPrevious}><ArrowLeft size={15}/> Older</button>
-      <button className="soft-button" onClick={onNext}>{index === count - 1 ? 'Back to current' : 'Newer'} <ArrowRight size={15}/></button>
+      <button className="soft-button" disabled={index === 0} onClick={onPrevious}><ArrowLeft size={15}/> {t.review.older}</button>
+      <button className="soft-button" onClick={onNext}>{index === count - 1 ? t.review.backToCurrent : t.review.newer} <ArrowRight size={15}/></button>
     </div>
   </>
 }
 
-function verdictLabel(result: AnswerResult | null, feedback: AnswerFeedback | null, revealedWithoutAnswer: boolean): string {
-  if (revealedWithoutAnswer) return "Didn't know"
-  if (feedback?.relation === 'valid_alternative') return 'Valid alternative'
-  if (result === 'correct') return 'Correct'
-  if (result === 'mostly') return 'Almost right'
-  return 'Not quite'
+function verdictLabel(t: Messages, result: AnswerResult | null, feedback: AnswerFeedback | null, revealedWithoutAnswer: boolean): string {
+  if (revealedWithoutAnswer) return t.review.didntKnow
+  if (feedback?.relation === 'valid_alternative') return t.review.validAlternative
+  if (result === 'correct') return t.review.correct
+  if (result === 'mostly') return t.review.almost
+  return t.review.notQuite
 }
 
 function SavedMeanings({ entry }: { entry: ReviewItem['vocabulary_entries'] }): React.JSX.Element {
+  const { t } = useI18n()
   const senses = entrySenses(entry)
   return <div className="correct-answer review-saved-meanings">
-    <span>Saved {senses.length === 1 ? 'meaning' : 'meanings'}</span>
+    <span>{t.review.savedMeanings(senses.length)}</span>
     <div className="review-sense-list">
       {senses.map((sense, index) => <div className="review-sense" key={`${sense.id}-${index}`}>
         <strong>{sense.text}</strong>
         {(sense.pos || sense.gender) && <span className={`review-pos pos-${sense.pos || 'none'}`}>
-          {sense.gender ? `${sense.gender} · ` : ''}{sense.pos ? PART_OF_SPEECH_LABELS[sense.pos] : 'meaning'}
+          {sense.gender ? `${sense.gender} · ` : ''}{sense.pos ? t.pos[sense.pos] : t.review.meaning}
         </span>}
       </div>)}
     </div>

@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { buildMaterialCsv, normalizeExportPracticeAttempt, normalizeExportReviewLog } from '@/lib/material-export'
 import type { ReviewCard, VocabularyEntry } from '@/lib/types'
 import type { WordForm } from '@/lib/word-forms'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -76,9 +77,10 @@ async function readAllRows(supabase: Awaited<ReturnType<typeof createClient>>, u
 }
 
 export async function POST(): Promise<NextResponse> {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   try {
     const [{ data: entries, error: entriesError }, { data: cards, error: cardsError }, { data: forms, error: formsError }] = await Promise.all([
@@ -89,7 +91,7 @@ export async function POST(): Promise<NextResponse> {
     if (entriesError || cardsError || formsError) throw new Error('Could not read your material.')
     const material = (entries || []) as VocabularyEntry[]
     const entryIds = material.map((entry) => entry.id)
-    if (!entryIds.length) return NextResponse.json({ error: 'Add a word or phrase before exporting.' }, { status: 400 })
+    if (!entryIds.length) return NextResponse.json({ error: api.addBeforeExport }, { status: 400 })
     const [rawLogs, rawAttempts] = await Promise.all([
       readAllRows(supabase, user.id, 'review_logs', entryIds, 'entry_id, rating, answer_result, answer_text, previous_state, stability, difficulty, scheduled_days, reviewed_at, study_date'),
       readAllRows(supabase, user.id, 'practice_attempts', entryIds, 'entry_id, payload, created_at'),
@@ -123,6 +125,7 @@ export async function POST(): Promise<NextResponse> {
     const commitUrl = typeof result === 'object' && result !== null && 'commit' in result && typeof result.commit === 'object' && result.commit !== null && 'html_url' in result.commit && typeof result.commit.html_url === 'string' ? result.commit.html_url : null
     return NextResponse.json({ path: exportPath, commitUrl })
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : 'Could not upload learning stats.' }, { status: 503 })
+    console.error('GitHub export failed', error instanceof Error ? error.message : 'unknown error')
+    return NextResponse.json({ error: api.couldNotUpload }, { status: 503 })
   }
 }

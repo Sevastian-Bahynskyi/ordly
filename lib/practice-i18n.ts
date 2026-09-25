@@ -3,14 +3,9 @@ import type { PracticeKind } from './practice'
 import type { TranslationLanguage } from './types'
 
 /**
- * Practice interface text in the learner language (issue #15, spec #12 decision 13). English and
- * Russian are supplied; Ukrainian has no supplied content, so its learners read English here.
+ * Practice interface text in the learner language (issue #15, spec #12 decision 13; Ukrainian
+ * since issue #24).
  */
-export type PracticeLocale = 'en' | 'ru'
-
-export function practiceLocale(language: TranslationLanguage): PracticeLocale {
-  return language === 'ru' ? 'ru' : 'en'
-}
 
 export interface PracticeCopy {
   kind: Record<PracticeKind, string>
@@ -230,7 +225,75 @@ const ru: PracticeCopy = {
   offline: 'Соединение прервалось. Подключитесь и повторите этот шаг.',
 }
 
-export const PRACTICE_COPY: Record<PracticeLocale, PracticeCopy> = { en, ru }
+const uk: PracticeCopy = {
+  kind: {
+    pick: 'Оберіть значення', choose: 'Заповніть пропуск', assemble: 'Розставте слова', cloze: 'Впишіть пропущене слово',
+    produce: 'Напишіть данською', sense: 'Яке це значення?', binary: 'Правда чи ні', odd: 'Зайве слово',
+    sort: 'Розподіліть за родом', match: 'Знайдіть пари', dialogue: 'Оберіть відповідь', flash: 'Пригадайте й відкрийте',
+  },
+  instruction: {
+    pick: 'Яке значення має це слово?',
+    choose: 'Торкніться слова, яке підходить у пропуск.',
+    assemble: 'Торкайтеся слів по черзі, щоб скласти речення.',
+    binary: 'Чи має це слово таке значення?',
+    odd: 'Який іменник має інший рід?',
+    sort: 'Розподіліть іменники за родом.',
+    match: 'Торкніться данського слова, потім його значення.',
+    dialogue: 'Оберіть природну відповідь.',
+    flash: 'Спершу пригадайте значення, потім відкрийте його.',
+  },
+  feedback: {
+    correct: () => '',
+    mostly: () => 'Подивіться на виділені літери.',
+    incorrect: () => 'Порівняйте з відповіддю нижче.',
+    wrong_form: ({ answer }) => `Слово правильне. У цьому реченні потрібна форма «${answer}».`,
+    unverified: () => 'Це відрізняється від збереженого речення. Порівняйте їх: ваш варіант не перевірявся.',
+    dont_know: () => 'Ось відповідь. Ця вправа повернеться за кілька кроків.',
+    self_known: () => 'Позначено як відоме. Це ваша власна оцінка, а не перевірена відповідь.',
+    self_unknown: () => 'Позначено. Це повернеться пізніше.',
+    partial: ({ right, total }) => `Правильно ${right} з ${total}. Кожне слово зараховується окремо.`,
+  },
+  verdict: {
+    correct: 'Правильно', mostly: 'Майже', incorrect: 'Не зовсім', wrong_form: 'Не та форма', unverified: 'Порівняйте зі збереженим реченням',
+    dont_know: 'Ось відповідь', self_known: 'Ви знали', self_unknown: 'Поки ні', partial: 'Частково правильно',
+  },
+  check: 'Перевірити', dontKnow: 'Не знаю', showHint: 'Підказка', startsWith: (start) => `Починається на «${start}»`, continue: 'Далі', pause: 'Пауза', finish: 'Завершити',
+  finishSession: 'Завершити заняття', resume: 'Продовжити', start: 'Почати практику', preparing: 'Готуємо…', checking: 'Перевіряємо…',
+  reviewInstead: 'Краще повторення →', openReview: 'Відкрити повторення', howLong: 'Скільки часу?', custom: 'Свій', minutesWord: 'хвилин',
+  minuteOption: (minutes) => `${minutes} хв`,
+  upTo: (max) => `Не більше ${max}.`,
+  chooseMinutes: (max) => `Оберіть від 1 до ${max} цілих хвилин.`,
+  goalEyebrow: (minutes) => `ПРАКТИКА · МЕТА ${minutes} ХВ`,
+  eyebrow: 'ПРАКТИКА', doneEyebrow: 'ЗАНЯТТЯ ЗАВЕРШЕНО',
+  titleStart: 'Потренуйте збережені слова.', titleAgain: 'Ще практики?',
+  intro: 'Короткі вправи з вашого матеріалу. Практика ніколи не змінює розклад повторення.',
+  retired: 'Практику оновлено, тому попереднє заняття закрито. Ваш прогрес у повторенні не змінився.',
+  emptyMaterial: 'Поки що замало збережених слів зі значеннями, щоб скласти практику. Збережіть кілька слів або повторіть те, що є.',
+  shortfall: (available, requested) => `Збереженого матеріалу вистачить приблизно на ${available} хв практики, а не на ${requested}.`,
+  startShorter: (minutes) => `Почати заняття на ${minutes} хв`,
+  summary: (count, minutes, right) => `Вправ: ${count}, приблизно ${minutes} хв${count ? `, правильно: ${right}` : ''}.`,
+  placeSaved: 'ВАШЕ МІСЦЕ ЗБЕРЕЖЕНО', pickUp: 'Продовжте з того самого місця.',
+  pausedBody: (done, withDraft) => `${done ? `Виконано вправ: ${done}. ` : ''}На вас чекає та сама вправа${withDraft ? ' разом із вашою відповіддю' : ''}.`,
+  goalReached: 'МЕТУ ДОСЯГНУТО', outOfExercises: 'ВПРАВИ ЗАКІНЧИЛИСЯ', nicelyDone: 'Чудово.', noMoreExercises: 'У цьому занятті більше немає вправ.',
+  again: 'Знову', footnote: 'Практика ніколи не змінює розклад повторення.',
+  yourAnswer: 'Ваша відповідь', answer: 'Відповідь', alsoAccepted: 'Теж правильно', meaning: 'Значення', yourSentence: 'Ваше речення', savedSentence: 'Збережене речення',
+  reportCorrect: 'Моя відповідь теж правильна', reported: 'Надіслано на перевірку. Більше нічого не змінилося.',
+  missingWord: 'Пропущене слово', yourDanish: 'Ваша відповідь данською', typeWord: 'Введіть слово…', typeDanish: 'Напишіть данською…',
+  wholeSentence: 'Напишіть усе речення данською.', tapInOrder: 'Торкайтеся слів по черзі.', allPlaced: 'Усі слова розставлено.', clear: 'Очистити',
+  senseLead: (danish) => `Два речення, одне слово — ${danish} — два різні значення. Яке значення в першому реченні?`,
+  otherMeaning: 'Інше значення — тут',
+  isTrue: 'Правда', isFalse: 'Неправда', claim: (danish, meaning) => `«${danish}» означає «${meaning}».`,
+  reveal: 'Відкрити', knewIt: 'Я знав(ла)', notYet: 'Поки ні', selfRated: 'Самооцінка: це ваше судження, а не перевірена відповідь.',
+  danishColumn: 'Данська', meaningColumn: 'Значення', unplaced: 'Торкніться слова, потім групи.',
+  categoryName: (category) => `слова на ${category}`,
+  reconnect: 'Перепідключаємося.', reload: 'Завантажити збережене заняття',
+  loadFailed: 'Не вдалося завантажити практику. Спробуйте ще раз або відкрийте повторення.',
+  conflict: 'Заняття змінилося на іншому екрані. Завантажте збережене заняття, щоб продовжити.',
+  saveFailed: 'Не вдалося зберегти цей крок. Спробуйте ще раз: збережений прогрес у безпеці.',
+  offline: 'Зʼєднання перервалося. Підключіться й повторіть цей крок.',
+}
+
+export const PRACTICE_COPY: Record<TranslationLanguage, PracticeCopy> = { en, ru, uk }
 
 export function isFeedbackCode(value: string): value is PracticeFeedbackCode {
   return Object.hasOwn(en.feedback, value)

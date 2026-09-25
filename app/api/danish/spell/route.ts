@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { findMisspellings } from '@/lib/spelling'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 /**
  * Danish spelling, checked against the local dictionary (issue #5 §3).
@@ -14,9 +15,10 @@ import { findMisspellings } from '@/lib/spelling'
 const MAX_LENGTH = 700
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const body: unknown = await request.json().catch(() => null)
   const record = body && typeof body === 'object' ? body as Record<string, unknown> : {}

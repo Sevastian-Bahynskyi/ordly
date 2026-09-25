@@ -4,7 +4,9 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { JSX } from 'react'
 import { fsrs, type Card } from 'ts-fsrs'
-import type { ReviewCard } from '@/lib/types'
+import type { Messages } from '@/lib/i18n'
+import type { ReviewCard, TranslationLanguage } from '@/lib/types'
+import { useI18n } from './I18nProvider'
 
 const scheduler = fsrs()
 
@@ -36,12 +38,13 @@ function recallPercent(item: ReviewCard) {
   }
 }
 
-function stabilityLabel(days: number) {
-  if (!Number.isFinite(days) || days <= 0) return '0d'
-  if (days < 1) return `${Math.max(1, Math.round(days * 24))}h`
-  if (days < 30) return `${Math.round(days)}d`
-  if (days < 365) return `${Math.round(days / 30)}mo`
-  return `${(days / 365).toFixed(1)}y`
+function stabilityLabel(t: Messages, days: number): string {
+  const unit = t.memory.units
+  if (!Number.isFinite(days) || days <= 0) return `0${unit.days}`
+  if (days < 1) return `${Math.max(1, Math.round(days * 24))}${unit.hours}`
+  if (days < 30) return `${Math.round(days)}${unit.days}`
+  if (days < 365) return `${Math.round(days / 30)}${unit.months}`
+  return `${(days / 365).toFixed(1)}${unit.years}`
 }
 
 function memoryTier(item: ReviewCard): MemoryTier {
@@ -52,35 +55,27 @@ function memoryTier(item: ReviewCard): MemoryTier {
   return 'strong'
 }
 
-function tierLabel(tier: MemoryTier) {
-  if (tier === 'new') return 'New'
-  if (tier === 'fragile') return 'Fragile'
-  if (tier === 'building') return 'Building'
-  if (tier === 'growing') return 'Growing'
-  return 'Strong'
-}
-
-function nextReviewLabel(dueValue: string) {
+function nextReviewLabel(t: Messages, language: TranslationLanguage, dueValue: string): string {
   const due = new Date(dueValue)
-  if (Number.isNaN(due.getTime())) return 'Not scheduled'
+  if (Number.isNaN(due.getTime())) return t.memory.notScheduled
 
   const deltaMs = due.getTime() - Date.now()
-  let relative = 'Due now'
+  let relative = t.memory.dueNow
 
   if (deltaMs > 0) {
     const minutes = Math.ceil(deltaMs / 60_000)
-    if (minutes < 90) relative = `in ${minutes}m`
+    if (minutes < 90) relative = t.memory.inMinutes(minutes)
     else {
       const hours = Math.ceil(deltaMs / 3_600_000)
-      if (hours < 48) relative = `in ${hours}h`
+      if (hours < 48) relative = t.memory.inHours(hours)
       else {
         const days = Math.ceil(deltaMs / 86_400_000)
-        relative = days < 14 ? `in ${days}d` : ''
+        relative = days < 14 ? t.memory.inDays(days) : ''
       }
     }
   }
 
-  const exact = new Intl.DateTimeFormat('en-GB', {
+  const exact = new Intl.DateTimeFormat(language === 'en' ? 'en-GB' : language === 'ru' ? 'ru-RU' : 'uk-UA', {
     timeZone: 'Europe/Copenhagen',
     day: 'numeric',
     month: 'short',
@@ -92,17 +87,17 @@ function nextReviewLabel(dueValue: string) {
 }
 
 export function MemoryRing({ item, compact = false, placement = 'bottom' }: { item: ReviewCard; compact?: boolean; placement?: 'top' | 'bottom' }): JSX.Element {
+  const { t, language } = useI18n()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [position, setPosition] = useState<{ top: number; right: number; above: boolean } | null>(null)
   const tooltipId = useId()
   const isNew = item.state === 0 || !item.last_review
   const recall = recallPercent(item)
   const tier = memoryTier(item)
-  const tierName = tierLabel(tier)
-  const nextReview = nextReviewLabel(item.due)
-  const aria = isNew
-    ? `New memory. Next review ${nextReview}.`
-    : `Estimated recall ${recall} percent. ${tierName} memory with stability ${stabilityLabel(item.stability)}. Next review ${nextReview}.`
+  const tierName = t.memory.tiers[tier]
+  const nextReview = nextReviewLabel(t, language, item.due)
+  const stability = stabilityLabel(t, item.stability)
+  const aria = isNew ? t.memory.newAria(nextReview) : t.memory.aria(recall, tierName, stability, nextReview)
 
   useEffect(() => {
     if (!position) return
@@ -141,7 +136,7 @@ export function MemoryRing({ item, compact = false, placement = 'bottom' }: { it
       ref={buttonRef}
       type="button"
       className={`memory-stat tier-${tier}${compact ? ' compact' : ''}`}
-      aria-label={`Memory progress. ${aria}`}
+      aria-label={t.memory.progressAria(aria)}
       aria-expanded={position !== null}
       aria-describedby={position ? tooltipId : undefined}
       onClick={toggle}
@@ -160,15 +155,15 @@ export function MemoryRing({ item, compact = false, placement = 'bottom' }: { it
         </svg>
       </span>
       <span className="memory-stat-copy">
-        <strong>{isNew ? 'New' : `${recall}%`}</strong>
-        <small>{isNew ? 'memory' : 'recall'}</small>
+        <strong>{isNew ? t.memory.newShort : `${recall}%`}</strong>
+        <small>{isNew ? t.memory.memoryWord : t.memory.recallWord}</small>
       </span>
     </button>
     {position && createPortal(<span id={tooltipId} className={`memory-tooltip tier-${tier}${position.above ? ' above' : ''}`} role="tooltip" style={{ top: position.top, right: position.right }}>
-        <strong>{isNew ? 'New memory' : `${recall}% recall now`}</strong>
-        <span>Based on your review history</span>
-        <span><i className="memory-tier-dot" />{tierName} · stability {stabilityLabel(item.stability)}</span>
-        <span>Next review <b>{nextReview}</b></span>
+        <strong>{isNew ? t.memory.newMemory : t.memory.recallNow(recall)}</strong>
+        <span>{t.memory.basedOn}</span>
+        <span><i className="memory-tier-dot" />{t.memory.stability(tierName, stability)}</span>
+        <span>{t.memory.nextReview} <b>{nextReview}</b></span>
       </span>, document.body)}
     </>
   )

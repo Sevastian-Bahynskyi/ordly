@@ -124,10 +124,15 @@ export async function deepseekJson(op: string, label: string, system: string, us
 
 const translationCachePath = 'catalog/families/translation-cache.json'
 const translationCache: Record<string, string> = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
-async function saveTranslationCache(): Promise<void> {
-  const onDisk = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
-  Object.assign(translationCache, { ...onDisk, ...translationCache })
-  await writeFile(translationCachePath, `${JSON.stringify(translationCache, null, 1)}\n`)
+// Concurrent translations in one process must not write the file at the same time.
+let cacheSaving: Promise<void> = Promise.resolve()
+function saveTranslationCache(): Promise<void> {
+  cacheSaving = cacheSaving.then(async () => {
+    const onDisk = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
+    Object.assign(translationCache, { ...onDisk, ...translationCache })
+    await writeFile(translationCachePath, `${JSON.stringify(translationCache, null, 1)}\n`)
+  })
+  return cacheSaving
 }
 
 export async function translate(text: string, to: string, from = 'da'): Promise<string> {

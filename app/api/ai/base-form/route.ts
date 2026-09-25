@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 const schema = {
   type: 'object',
@@ -15,16 +16,17 @@ const schema = {
 type Mode = 'word' | 'phrase' | 'sentence'
 
 export async function POST(request: Request) {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'OpenRouter is not configured yet.' }, { status: 503 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: api.aiUnavailable }, { status: 503 })
 
   const body = await request.json()
   const danish = String(body.danish || '').trim()
   const mode = (['word', 'phrase', 'sentence'].includes(body.mode) ? body.mode : 'word') as Mode
-  if (!danish) return NextResponse.json({ error: 'Danish text is required.' }, { status: 400 })
-  if (danish.length > 300) return NextResponse.json({ error: 'Keep the Danish entry under 300 characters.' }, { status: 400 })
+  if (!danish) return NextResponse.json({ error: api.danishRequired }, { status: 400 })
+  if (danish.length > 300) return NextResponse.json({ error: api.danishTooLong }, { status: 400 })
 
   const instruction = mode === 'word'
     ? `The input is ONE Danish vocabulary word. Normalize it to its dictionary/base form without changing meaning. Finite, past, imperative, or participle verbs become the bare infinitive without a leading "at"; nouns become singular indefinite; adjectives become positive/base form; adverbs, pronouns, prepositions, proper nouns, and words already in base form stay unchanged. Preserve Danish spelling and diacritics. is_correct is true only when the input is already the appropriate base form.`
@@ -49,15 +51,15 @@ export async function POST(request: Request) {
     }, 'Danish normalization', { models: OPENROUTER_MODEL_ROUTES.danishCorrection })
 
     const result = String(parsed.result || '').trim()
-    if (!result) return NextResponse.json({ error: 'AI returned empty Danish text.' }, { status: 502 })
+    if (!result) return NextResponse.json({ error: api.emptyDanish }, { status: 502 })
 
     if (mode === 'phrase' && danish.split(/\s+/u).length > 1 && result.split(/\s+/u).length < 2) {
-      return NextResponse.json({ error: 'AI tried to collapse the phrase. Nothing was changed.' }, { status: 502 })
+      return NextResponse.json({ error: api.collapsedPhrase }, { status: 502 })
     }
 
     return NextResponse.json({ result, is_correct: Boolean(parsed.is_correct) })
   } catch (error) {
     console.error('OpenRouter Danish normalization failed', error)
-    return NextResponse.json({ error: 'AI could not check this Danish text.' }, { status: 502 })
+    return NextResponse.json({ error: api.couldNotCheckDanish }, { status: 502 })
   }
 }

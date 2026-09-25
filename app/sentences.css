@@ -112,9 +112,14 @@
     width: 100%;
   }
 
+  /* Tabs share the row and give up padding before a longer label (Russian "Предложения") can
+     push its count out of the control. */
   .material-kinds button {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
+    min-width: 0;
     justify-content: center;
+    gap: 4px;
     min-height: 38px;
+    padding: 0 8px;
   }
 }

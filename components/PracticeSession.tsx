@@ -8,7 +8,7 @@ import {
   DEFAULT_PRACTICE_MINUTES, isChoiceKind, isGroupKind, parsePlacement, isPracticeMinutes, isReportable, MAX_PRACTICE_MINUTES, PRACTICE_MINUTE_PRESETS, TYPED_KINDS,
   type PracticeResponse, type PracticeSessionState, type PracticeTask,
 } from '@/lib/practice'
-import { isFeedbackCode, PRACTICE_COPY, practiceLocale, type PracticeCopy } from '@/lib/practice-i18n'
+import { isFeedbackCode, PRACTICE_COPY, type PracticeCopy } from '@/lib/practice-i18n'
 import { isPracticeSession, isRecord } from '@/lib/practice-validation'
 import type { TranslationLanguage } from '@/lib/types'
 
@@ -43,7 +43,8 @@ export function PracticeSession({ learnerLanguage }: { learnerLanguage: Translat
   const task = active?.queue[0]
   const response = active?.current
   // The session's own language once it exists, so a mid-session settings change cannot mix two.
-  const t = PRACTICE_COPY[practiceLocale(active?.locale || learnerLanguage)]
+  // Interface text follows the current learner language; a session's content keeps its own.
+  const t = PRACTICE_COPY[learnerLanguage]
 
   const load = useCallback(async (): Promise<void> => {
     setNotice('')

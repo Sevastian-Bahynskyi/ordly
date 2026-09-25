@@ -9,6 +9,7 @@ import { MemoryRing } from '@/components/MemoryRing'
 import { WordAudio } from '@/components/WordAudio'
 import { WordStructure } from '@/components/WordStructure'
 import { requireUser } from '@/lib/auth'
+import { messagesFor } from '@/lib/i18n'
 import { definiteFormKey, fetchCorDefiniteForms } from '@/lib/cor'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { activeSenses, nounGenderOf, parseSenses } from '@/lib/senses'
@@ -54,6 +55,8 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
       : Promise.resolve({ data: [] as WordForm[] }),
   ])
 
+  const language = learnerLanguage(profile?.default_translation_language)
+  const t = messagesFor(language)
   const senses = activeSenses(parseSenses(typedEntry.senses))
   const backHref = typedEntry.entry_kind === 'sentence' ? '/words?kind=sentences' : '/words'
 
@@ -62,11 +65,11 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
   const definite = gender ? (await fetchCorDefiniteForms(supabase, [typedEntry.danish])).get(definiteFormKey(typedEntry.danish, gender)) : undefined
 
   return (
-    <AppShell>
+    <AppShell language={language}>
       <div className="page-wrap">
         <header className="page-header entry-page-header">
           <div>
-            <Link className="entry-back" href={backHref}><ArrowLeft size={14} /> {typedEntry.entry_kind === 'sentence' ? 'Sentences' : 'Material'}</Link>
+            <Link className="entry-back" href={backHref}><ArrowLeft size={14} /> {typedEntry.entry_kind === 'sentence' ? t.entry.back.sentences : t.entry.back.material}</Link>
             <h1>
               {typedEntry.entry_kind !== 'sentence' && (
                 <span className={`word-bubble small entry-page-bubble pos-${senses[0]?.pos || 'none'}`}>
@@ -78,20 +81,20 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
             </h1>
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}
-              {typedEntry.pronunciation || 'No pronunciation yet'}
-              {senses.length > 1 && ` · ${senses.length} meanings`}
+              {typedEntry.pronunciation || t.entry.noPronunciation}
+              {senses.length > 1 && ` · ${t.entry.meaningCount(senses.length)}`}
             </p>
           </div>
           <div className="entry-page-meta">
             {card && <MemoryRing item={card as ReviewCard} />}
-            <span className={`status-chip ${typedEntry.learning_status}`}>{typedEntry.learning_status}</span>
+            <span className={`status-chip ${typedEntry.learning_status}`}>{t.status[typedEntry.learning_status]}</span>
           </div>
         </header>
 
         <EntryEditor
           mode="edit"
           entry={typedEntry}
-          translationLanguage={learnerLanguage(profile?.default_translation_language)}
+          translationLanguage={language}
         />
 
         {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordStructure entry={typedEntry} initialForms={(typedEntry.canonical_entry_id ? canonicalForms || [] : forms || []) as WordForm[]} />}

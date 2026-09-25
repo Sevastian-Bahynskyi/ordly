@@ -3,21 +3,23 @@ import { fsrs, type Card, type Grade } from 'ts-fsrs'
 import { createClient } from '@/lib/supabase/server'
 import { matchingSenseIds } from '@/lib/answer'
 import { activeSenses, parseSenses } from '@/lib/senses'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 function copenhagenDate(date = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Copenhagen', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date)
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const { cardId, rating, answerResult, answerText } = await request.json()
-  if (!cardId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: 'Invalid rating' }, { status: 400 })
+  if (!cardId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: api.invalidRating }, { status: 400 })
 
   const { data: row, error } = await supabase.from('review_cards').select('*, vocabulary_entries(senses)').eq('id', cardId).single()
-  if (error || !row) return NextResponse.json({ error: 'Card not found' }, { status: 404 })
+  if (error || !row) return NextResponse.json({ error: api.cardNotFound }, { status: 404 })
 
   const card: Card = {
     due: new Date(row.due), stability: Number(row.stability), difficulty: Number(row.difficulty), elapsed_days: row.elapsed_days,
@@ -39,7 +41,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     scheduled_days: next.scheduled_days, reps: next.reps, lapses: next.lapses, learning_steps: next.learning_steps,
     state: next.state, last_review: next.last_review?.toISOString() || now.toISOString(),
   }).eq('id', cardId)
-  if (updateError) return NextResponse.json({ error: updateError.message }, { status: 500 })
+  if (updateError) return NextResponse.json({ error: api.couldNotSaveReview }, { status: 500 })
 
   const learningStatus = next.reps === 0 ? 'new' : next.reps >= 5 && next.stability >= 21 ? 'mastered' : 'learning'
   const studyDate = copenhagenDate(now)
@@ -48,7 +50,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     previous_state: card.state, previous_card: previousCard,
     stability: next.stability, difficulty: next.difficulty, scheduled_days: next.scheduled_days, reviewed_at: now.toISOString(), study_date: studyDate,
   }).select('id').single()
-  if (logError) return NextResponse.json({ error: logError.message }, { status: 500 })
+  if (logError) return NextResponse.json({ error: api.couldNotSaveReview }, { status: 500 })
 
   // Coverage (D9, D18): credit the senses a successful typed meaning named. Only a recognition
   // answer is a meaning; a Danish production answer never matches a translation sense. It is

@@ -12,5 +12,6 @@ export default async function PracticePage(): Promise<JSX.Element> {
   if (!guidedPracticeEnabled) redirect('/review')
   const { supabase } = await requireUser()
   const { data: profile } = await supabase.from('profiles').select('default_translation_language').single()
-  return <AppShell><div className="page-wrap practice-page"><PracticeSession learnerLanguage={learnerLanguage(profile?.default_translation_language)} /></div></AppShell>
+  const language = learnerLanguage(profile?.default_translation_language)
+  return <AppShell language={language}><div className="page-wrap practice-page"><PracticeSession learnerLanguage={language} /></div></AppShell>
 }
