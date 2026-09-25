@@ -1,0 +1,2220 @@
+[
+ {
+  "lemma": "omgå",
+  "kind": "word",
+  "sense_id": "552fa7fb-64af-52fc-9097-95273459f827",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} reglerne ved at flytte pengene til udlandet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Firmaet"
+    },
+    {
+     "da": "Virksomheden"
+    },
+    {
+     "da": "Banken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "omgik",
+    "en": "The company got around the rules by moving the money abroad.",
+    "ru": "Компания обошла правила, переместив деньги за границу.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "omgik",
+    "en": "The business got around the rules by moving the money abroad.",
+    "ru": "Предприятие обошло правила, переместив деньги за границу.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "omgik",
+    "en": "The bank got around the rules by moving the money abroad.",
+    "ru": "Банк обошёл правила, переместив деньги за границу.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "høring",
+  "kind": "word",
+  "sense_id": "83ecc604-ec6d-5175-acb7-e43a9c09513c",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} holder en {target} om {topic}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Kommunen"
+    },
+    {
+     "da": "Regeringen"
+    },
+    {
+     "da": "Ministeriet"
+    }
+   ],
+   "topic": [
+    {
+     "da": "den nye lov"
+    },
+    {
+     "da": "sagen"
+    },
+    {
+     "da": "byggeriet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "topic": 0
+    },
+    "target": "høring",
+    "en": "The municipality is holding a hearing about the new law.",
+    "ru": "Муниципалитет проводит слушание о новом законе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "topic": 1
+    },
+    "target": "høring",
+    "en": "The government is holding a hearing about the case.",
+    "ru": "Правительство проводит слушание по этому делу.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "topic": 2
+    },
+    "target": "høring",
+    "en": "The ministry is holding a hearing about the construction project.",
+    "ru": "Министерство проводит слушание по поводу строительства.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "telt",
+  "kind": "word",
+  "sense_id": "31a5605c-7156-5606-9aad-81090a0fa9db",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "frame": "{subject} sover i {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Flygtningene"
+    },
+    {
+     "da": "Redningsarbejderne"
+    },
+    {
+     "da": "Soldaterne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "teltet",
+    "en": "The refugees are sleeping in the tent.",
+    "ru": "Беженцы спят в палатке.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "teltet",
+    "en": "The rescue workers are sleeping in the tent.",
+    "ru": "Спасатели спят в палатке.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "teltet",
+    "en": "The soldiers are sleeping in the tent.",
+    "ru": "Солдаты спят в палатке.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "grave",
+  "kind": "word",
+  "sense_id": "6581788a-00a5-51b9-9ab7-11a25f8c146e",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} en dyb grøft langs vejen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Arbejderne"
+    },
+    {
+     "da": "Vejarbejderne"
+    },
+    {
+     "da": "Entreprenørerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "graver",
+    "en": "The workers are digging a deep ditch along the road.",
+    "ru": "Рабочие роют глубокую канаву вдоль дороги.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "graver",
+    "en": "The road workers are digging a deep ditch along the road.",
+    "ru": "Дорожные рабочие роют глубокую канаву вдоль дороги.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "graver",
+    "en": "The contractors are digging a deep ditch along the road.",
+    "ru": "Подрядчики роют глубокую канаву вдоль дороги.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "bryggeri",
+  "kind": "word",
+  "sense_id": "3beb8c14-b09c-5db6-baa9-07ae9d8dfb0f",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} arbejder på {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min onkel"
+    },
+    {
+     "da": "Hendes bror"
+    },
+    {
+     "da": "Vores nabo"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bryggeriet",
+    "en": "My uncle works at the brewery.",
+    "ru": "Мой дядя работает на пивоварне.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bryggeriet",
+    "en": "Her brother works at the brewery.",
+    "ru": "Её брат работает на пивоварне.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bryggeriet",
+    "en": "Our neighbor works at the brewery.",
+    "ru": "Наш сосед работает на пивоварне.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "flydende",
+  "kind": "word",
+  "sense_id": "c25c0ee2-1b63-536c-80da-ac8261681788",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} taler {target} {language}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Min kollega"
+    }
+   ],
+   "language": [
+    {
+     "da": "fransk"
+    },
+    {
+     "da": "tysk"
+    },
+    {
+     "da": "spansk"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "language": 0
+    },
+    "target": "flydende",
+    "en": "She speaks fluent French.",
+    "ru": "Она свободно говорит по-французски.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "language": 1
+    },
+    "target": "flydende",
+    "en": "He speaks fluent German.",
+    "ru": "Он свободно говорит по-немецки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "language": 2
+    },
+    "target": "flydende",
+    "en": "My colleague speaks fluent Spanish.",
+    "ru": "Мой коллега свободно говорит по-испански.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "præmie",
+  "kind": "word",
+  "sense_id": "6021d9b1-368c-56e2-861f-5b177fe6f704",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "{subject} vandt {target} for det bedste projekt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Studenten"
+    },
+    {
+     "da": "Forskeren"
+    },
+    {
+     "da": "Gruppen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "præmien",
+    "en": "The student won the prize for the best project.",
+    "ru": "Студент выиграл приз за лучший проект.",
+    "orders": [],
+    "accepted": [
+     "prisen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "præmien",
+    "en": "The researcher won the prize for the best project.",
+    "ru": "Исследователь выиграл приз за лучший проект.",
+    "orders": [],
+    "accepted": [
+     "prisen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "præmien",
+    "en": "The group won the prize for the best project.",
+    "ru": "Группа выиграла приз за лучший проект.",
+    "orders": [],
+    "accepted": [
+     "prisen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "overvåge",
+  "kind": "word",
+  "sense_id": "4b688831-2f35-5036-a15a-9fcef9d3398e",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {object} med kameraer.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Politiet"
+    },
+    {
+     "da": "Vagterne"
+    },
+    {
+     "da": "Kommunen"
+    }
+   ],
+   "object": [
+    {
+     "da": "området"
+    },
+    {
+     "da": "parkeringspladsen"
+    },
+    {
+     "da": "indgangen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "overvåger",
+    "en": "The police monitor the area with cameras.",
+    "ru": "Полиция наблюдает за территорией с помощью камер.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "overvåger",
+    "en": "The guards monitor the parking lot with cameras.",
+    "ru": "Охранники наблюдают за парковкой с помощью камер.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "overvåger",
+    "en": "The municipality monitors the entrance with cameras.",
+    "ru": "Муниципалитет наблюдает за входом с помощью камер.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "synd",
+  "kind": "word",
+  "sense_id": "3ddb259d-5875-513d-90c0-6d73543f7228",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "Det er {target}, at {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "han ikke kunne komme"
+    },
+    {
+     "da": "hun mistede jobbet"
+    },
+    {
+     "da": "de aflyste koncerten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "synd",
+    "en": "It's a pity that he couldn't come.",
+    "ru": "Жаль, что он не смог прийти.",
+    "orders": [],
+    "accepted": [
+     "ærgerligt"
+    ]
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "synd",
+    "en": "It's a shame that she lost her job.",
+    "ru": "Жаль, что она потеряла работу.",
+    "orders": [],
+    "accepted": [
+     "ærgerligt"
+    ]
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "synd",
+    "en": "It's a shame that they cancelled the concert.",
+    "ru": "Жаль, что они отменили концерт.",
+    "orders": [],
+    "accepted": [
+     "ærgerligt"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "kunstmuseum",
+  "kind": "word",
+  "sense_id": "7fc4113c-c271-56fd-a8ab-5e6471a7fb51",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "{subject} besøger {target} på skolerejsen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Klassen"
+    },
+    {
+     "da": "Eleverne"
+    },
+    {
+     "da": "Læreren og eleverne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "kunstmuseet",
+    "en": "The class visits the art museum on the school trip.",
+    "ru": "Класс посещает художественный музей во время школьной поездки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "kunstmuseet",
+    "en": "The students visit the art museum on the school trip.",
+    "ru": "Ученики посещают художественный музей во время школьной поездки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "kunstmuseet",
+    "en": "The teacher and the students visit the art museum on the school trip.",
+    "ru": "Учитель и ученики посещают художественный музей во время школьной поездки.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "nordjysk",
+  "kind": "word",
+  "sense_id": "94b3bd9f-93f5-59d6-b793-5a020169dcf6",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} taler med en {target} accent.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min bedstefar"
+    },
+    {
+     "da": "Værten"
+    },
+    {
+     "da": "Skuespilleren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "nordjysk",
+    "en": "My grandfather speaks with a North Jutlandic accent.",
+    "ru": "Мой дедушка говорит с северо-ютландским акцентом.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "nordjysk",
+    "en": "The host speaks with a North Jutlandic accent.",
+    "ru": "Ведущий говорит с северо-ютландским акцентом.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "nordjysk",
+    "en": "The actor speaks with a North Jutlandic accent.",
+    "ru": "Актёр говорит с северо-ютландским акцентом.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "høste",
+  "kind": "word",
+  "sense_id": "970086bc-8371-5ea7-bfbc-ae9acdeb0bda",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} kornet om efteråret.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Landmanden"
+    },
+    {
+     "da": "Familien på gården"
+    },
+    {
+     "da": "De ansatte på gården"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "høster",
+    "en": "The farmer harvests the grain in the autumn.",
+    "ru": "Фермер собирает урожай зерна осенью.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "høster",
+    "en": "The family on the farm harvests the grain in the autumn.",
+    "ru": "Семья на ферме собирает урожай зерна осенью.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "høster",
+    "en": "The workers on the farm harvest the grain in the autumn.",
+    "ru": "Работники на ферме собирают урожай зерна осенью.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "høste",
+  "kind": "word",
+  "sense_id": "db2d2dec-b527-5b52-91e5-b46d01ba1a22",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} frugterne af sit hårde arbejde.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Virksomheden"
+    },
+    {
+     "da": "Forskeren"
+    },
+    {
+     "da": "Holdet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "høstede",
+    "en": "The company reaped the fruits of its hard work.",
+    "ru": "Компания пожала плоды своего упорного труда.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "høstede",
+    "en": "The researcher reaped the fruits of their hard work.",
+    "ru": "Исследователь пожал плоды своего упорного труда.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "høstede",
+    "en": "The team reaped the fruits of its hard work.",
+    "ru": "Команда пожала плоды своего упорного труда.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "naiv",
+  "kind": "word",
+  "sense_id": "f30c5061-6dd5-5971-8ade-72daed292432",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "Det var {target} at tro, at {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "alt ville gå glat"
+    },
+    {
+     "da": "de ville acceptere tilbuddet med det samme"
+    },
+    {
+     "da": "planen ville lykkes uden problemer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "naivt",
+    "en": "It was naive to think that everything would go smoothly.",
+    "ru": "Было наивно думать, что всё пройдёт гладко.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "naivt",
+    "en": "It was naive to think that they would accept the offer right away.",
+    "ru": "Было наивно думать, что они сразу примут предложение.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "naivt",
+    "en": "It was naive to think that the plan would succeed without problems.",
+    "ru": "Было наивно думать, что план осуществится без проблем.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "annonce",
+  "kind": "word",
+  "sense_id": "71ff57ba-db0a-5602-b39c-98d8f18e3807",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} lægger en {target} på nettet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Firmaet"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Butikken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "annonce",
+    "en": "The company puts an ad online.",
+    "ru": "Компания размещает объявление в интернете.",
+    "orders": [],
+    "accepted": [
+     "reklame"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "annonce",
+    "en": "He puts an ad online.",
+    "ru": "Он размещает объявление в интернете.",
+    "orders": [],
+    "accepted": [
+     "reklame"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "annonce",
+    "en": "The shop puts an ad online.",
+    "ru": "Магазин размещает объявление в интернете.",
+    "orders": [],
+    "accepted": [
+     "reklame"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "sølv",
+  "kind": "word",
+  "sense_id": "6577294d-a249-5242-b6a4-a01be4a8c999",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} arbejder med {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Guldsmeden"
+    },
+    {
+     "da": "Kunstneren"
+    },
+    {
+     "da": "Håndværkeren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "sølv",
+    "en": "The goldsmith works with silver.",
+    "ru": "Ювелир работает с серебром.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "sølv",
+    "en": "The artist works with silver.",
+    "ru": "Художник работает с серебром.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "sølv",
+    "en": "The craftsman works with silver.",
+    "ru": "Ремесленник работает с серебром.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "plage",
+  "kind": "word",
+  "sense_id": "0bd19ed8-7f99-55af-9f8c-402c17a9e182",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} hende hver dag.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hovedpinen"
+    },
+    {
+     "da": "Smerten i ryggen"
+    },
+    {
+     "da": "Hosten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "plager",
+    "en": "The headache torments her every day.",
+    "ru": "Головная боль мучает её каждый день.",
+    "orders": [],
+    "accepted": [
+     "piner"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "plager",
+    "en": "The pain in her back torments her every day.",
+    "ru": "Боль в спине мучает её каждый день.",
+    "orders": [],
+    "accepted": [
+     "piner"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "plager",
+    "en": "The cough torments her every day.",
+    "ru": "Кашель мучает её каждый день.",
+    "orders": [],
+    "accepted": [
+     "piner"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "plage",
+  "kind": "word",
+  "sense_id": "1e22a016-2267-5084-ae19-67492a850cf6",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} konstant sine kolleger med spørgsmål.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Den nye medarbejder"
+    },
+    {
+     "da": "Praktikanten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "plager",
+    "en": "He constantly pesters his colleagues with questions.",
+    "ru": "Он постоянно докучает своим коллегам вопросами.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "plager",
+    "en": "The new employee constantly pesters their colleagues with questions.",
+    "ru": "Новый сотрудник постоянно докучает своим коллегам вопросами.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "plager",
+    "en": "The intern constantly pesters their colleagues with questions.",
+    "ru": "Стажёр постоянно докучает своим коллегам вопросами.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "filosof",
+  "kind": "word",
+  "sense_id": "033421ee-e186-5e65-8af5-df3943c895ee",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "{subject} har læst {target} bog om etik.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Studenterne"
+    },
+    {
+     "da": "Klassen"
+    },
+    {
+     "da": "Læreren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "filosoffens",
+    "en": "The students have read the philosopher's book on ethics.",
+    "ru": "Студенты прочитали книгу философа об этике.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "filosoffens",
+    "en": "The class has read the philosopher's book on ethics.",
+    "ru": "Класс прочитал книгу философа об этике.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "filosoffens",
+    "en": "The teacher has read the philosopher's book on ethics.",
+    "ru": "Учитель прочитал книгу философа об этике.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "menu",
+  "kind": "word",
+  "sense_id": "173f3bb6-2858-5482-9696-ddb5977120f0",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} anbefalede retten fra {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Tjeneren"
+    },
+    {
+     "da": "Kokken"
+    },
+    {
+     "da": "Ejeren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "menuen",
+    "en": "The waiter recommended the dish from the menu.",
+    "ru": "Официант порекомендовал блюдо из меню.",
+    "orders": [],
+    "accepted": [
+     "spisekortet"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "menuen",
+    "en": "The chef recommended the dish from the menu.",
+    "ru": "Повар порекомендовал блюдо из меню.",
+    "orders": [],
+    "accepted": [
+     "spisekortet"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "menuen",
+    "en": "The owner recommended the dish from the menu.",
+    "ru": "Владелец порекомендовал блюдо из меню.",
+    "orders": [],
+    "accepted": [
+     "spisekortet"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "skive",
+  "kind": "word",
+  "sense_id": "10c17305-aa3c-58df-9f25-32ddde431720",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} anbefalede en {target} fuldkornsbrød til morgenmaden.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Lægen"
+    },
+    {
+     "da": "Diætisten"
+    },
+    {
+     "da": "Sygeplejersken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "skive",
+    "en": "The doctor recommended a slice of wholegrain bread for breakfast.",
+    "ru": "Врач порекомендовал ломтик цельнозернового хлеба на завтрак.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "skive",
+    "en": "The dietitian recommended a slice of wholegrain bread for breakfast.",
+    "ru": "Диетолог порекомендовал ломтик цельнозернового хлеба на завтрак.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "skive",
+    "en": "The nurse recommended a slice of wholegrain bread for breakfast.",
+    "ru": "Медсестра порекомендовала ломтик цельнозернового хлеба на завтрак.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "skive",
+  "kind": "word",
+  "sense_id": "39a0f1a4-b0b0-5fc9-b697-eb0a9738ef76",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "noun-definite",
+  "frame": "{subject} drejede {target} på den gamle telefon.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Bedstemoren"
+    },
+    {
+     "da": "Barnet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "skiven",
+    "en": "He turned the dial on the old phone.",
+    "ru": "Он повернул диск на старом телефоне.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "skiven",
+    "en": "The grandmother turned the dial on the old phone.",
+    "ru": "Бабушка повернула диск на старом телефоне.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "skiven",
+    "en": "The child turned the dial on the old phone.",
+    "ru": "Ребёнок повернул диск на старом телефоне.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "englænder",
+  "kind": "word",
+  "sense_id": "bc58ffb2-8ebb-5761-8fda-2c4838c5e669",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} mødte en {target} på konferencen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min chef"
+    },
+    {
+     "da": "Vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "englænder",
+    "en": "I met an Englishman at the conference.",
+    "ru": "Я встретил англичанина на конференции.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "englænder",
+    "en": "My boss met an Englishman at the conference.",
+    "ru": "Мой начальник встретил англичанина на конференции.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "englænder",
+    "en": "We met an Englishman at the conference.",
+    "ru": "Мы встретили англичанина на конференции.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "brække",
+  "kind": "word",
+  "sense_id": "e07ae60e-ea0c-58a3-8b6c-05fe677b8fc9",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} armen efter et fald på isen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Drengen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "brækkede",
+    "en": "He broke his arm after a fall on the ice.",
+    "ru": "Он сломал руку после падения на льду.",
+    "orders": [],
+    "accepted": [
+     "knækkede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "brækkede",
+    "en": "She broke her arm after a fall on the ice.",
+    "ru": "Она сломала руку после падения на льду.",
+    "orders": [],
+    "accepted": [
+     "knækkede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "brækkede",
+    "en": "The boy broke his arm after a fall on the ice.",
+    "ru": "Мальчик сломал руку после падения на льду.",
+    "orders": [],
+    "accepted": [
+     "knækkede"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "brække",
+  "kind": "word",
+  "sense_id": "e7696038-684d-5c8e-87af-58357ec706e3",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} sig efter at have spist noget dårligt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Patienten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "brækkede",
+    "en": "He vomited after eating something bad.",
+    "ru": "Его вырвало после того, как он съел что-то плохое.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "brækkede",
+    "en": "She vomited after eating something bad.",
+    "ru": "Её вырвало после того, как она съела что-то плохое.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "brækkede",
+    "en": "The patient vomited after eating something bad.",
+    "ru": "Пациента вырвало после того, как он съел что-то плохое.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fleksibel",
+  "kind": "word",
+  "sense_id": "bbd908f9-04b2-5591-9b3e-8a4d6f747520",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} har {target} arbejdstider.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Medarbejderne"
+    },
+    {
+     "da": "Jeg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fleksible",
+    "en": "We have flexible working hours.",
+    "ru": "У нас гибкий график работы.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fleksible",
+    "en": "The employees have flexible working hours.",
+    "ru": "У сотрудников гибкий график работы.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fleksible",
+    "en": "I have flexible working hours.",
+    "ru": "У меня гибкий график работы.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "smelte",
+  "kind": "word",
+  "sense_id": "4a18a484-e5ce-579e-90f7-3e621d365754",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} på grund af klimaforandringer.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Isen ved Nordpolen"
+    },
+    {
+     "da": "Gletsjerne"
+    },
+    {
+     "da": "Sneen i bjergene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "smelter",
+    "en": "The ice at the North Pole is melting because of climate change.",
+    "ru": "Лёд на Северном полюсе тает из-за изменения климата.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "smelter",
+    "en": "The glaciers are melting because of climate change.",
+    "ru": "Ледники тают из-за изменения климата.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "smelter",
+    "en": "The snow in the mountains is melting because of climate change.",
+    "ru": "Снег в горах тает из-за изменения климата.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "specialisere",
+  "kind": "word",
+  "sense_id": "53588db6-72a4-5604-a54b-b11cd878dc5d",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-perfect",
+  "frame": "{subject} har {target} sig i {field}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Lægen"
+    },
+    {
+     "da": "Advokaten"
+    },
+    {
+     "da": "Firmaet"
+    }
+   ],
+   "field": [
+    {
+     "da": "børnesygdomme"
+    },
+    {
+     "da": "skilsmissesager"
+    },
+    {
+     "da": "eksport"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "field": 0
+    },
+    "target": "specialiseret",
+    "en": "The doctor has specialized in childhood diseases.",
+    "ru": "Врач специализируется на детских болезнях.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "field": 1
+    },
+    "target": "specialiseret",
+    "en": "The lawyer has specialized in divorce cases.",
+    "ru": "Адвокат специализируется на бракоразводных делах.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "field": 2
+    },
+    "target": "specialiseret",
+    "en": "The company has specialized in exports.",
+    "ru": "Компания специализируется на экспорте.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "desperat",
+  "kind": "word",
+  "sense_id": "2a47d1d3-fa4d-590a-89cb-a9e5e20ea9a8",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} var {target} efter en løsning.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Familien"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "desperat",
+    "en": "She was desperate for a solution.",
+    "ru": "Она отчаянно нуждалась в решении.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "desperat",
+    "en": "He was desperate for a solution.",
+    "ru": "Он отчаянно нуждался в решении.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "desperat",
+    "en": "The family was desperate for a solution.",
+    "ru": "Семья отчаянно нуждалась в решении.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "kristelig",
+  "kind": "word",
+  "sense_id": "7f245e18-edab-5716-94b1-3874a50dd063",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} bygger på {target} værdier.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Skolen"
+    },
+    {
+     "da": "Partiet"
+    },
+    {
+     "da": "Organisationen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "kristelige",
+    "en": "The school is built on Christian values.",
+    "ru": "Школа основана на христианских ценностях.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "kristelige",
+    "en": "The party is built on Christian values.",
+    "ru": "Партия основана на христианских ценностях.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "kristelige",
+    "en": "The organization is built on Christian values.",
+    "ru": "Организация основана на христианских ценностях.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "delvis",
+  "kind": "word",
+  "sense_id": "e4baf2e0-4611-50ef-93ed-738692e0155a",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} endte med en {target} {result}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Forhandlingerne"
+    },
+    {
+     "da": "Retssagen"
+    },
+    {
+     "da": "Undersøgelsen"
+    }
+   ],
+   "result": [
+    {
+     "da": "aftale"
+    },
+    {
+     "da": "løsning"
+    },
+    {
+     "da": "afklaring"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "result": 0
+    },
+    "target": "delvis",
+    "en": "The negotiations ended with a partial agreement.",
+    "ru": "Переговоры завершились частичным соглашением.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "result": 1
+    },
+    "target": "delvis",
+    "en": "The court case ended with a partial resolution.",
+    "ru": "Судебное дело завершилось частичным решением.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "result": 2
+    },
+    "target": "delvis",
+    "en": "The investigation ended with a partial clarification.",
+    "ru": "Расследование завершилось частичным прояснением.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "komedie",
+  "kind": "word",
+  "sense_id": "d1479da7-8df6-55b1-bcbc-ef2303380fab",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} så en {target} i teatret.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Klassen"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Familien"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "komedie",
+    "en": "The class watched a comedy at the theater.",
+    "ru": "Класс посмотрел комедию в театре.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "komedie",
+    "en": "We watched a comedy at the theater.",
+    "ru": "Мы посмотрели комедию в театре.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "komedie",
+    "en": "The family watched a comedy at the theater.",
+    "ru": "Семья посмотрела комедию в театре.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hovedkvarter",
+  "kind": "word",
+  "sense_id": "8015dbd9-45ff-52eb-89e8-ebf39c45be63",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} ligger i virksomhedens {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Mit kontor"
+    },
+    {
+     "da": "Direktørens kontor"
+    },
+    {
+     "da": "IT-afdelingen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "hovedkvarter",
+    "en": "My office is in the company's headquarters.",
+    "ru": "Мой офис находится в штаб-квартире компании.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "hovedkvarter",
+    "en": "The director's office is in the company's headquarters.",
+    "ru": "Кабинет директора находится в штаб-квартире компании.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "hovedkvarter",
+    "en": "The IT department is in the company's headquarters.",
+    "ru": "IT-отдел находится в штаб-квартире компании.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "instruktion",
+  "kind": "word",
+  "sense_id": "cdcc728f-360a-54f6-a144-6af2d2f4b0cb",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} fulgte {target} nøje under installationen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Medarbejderen"
+    },
+    {
+     "da": "Teknikeren"
+    },
+    {
+     "da": "Praktikanten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "instruktionen",
+    "en": "The employee followed the instructions carefully during the installation.",
+    "ru": "Сотрудник тщательно следовал инструкции во время установки.",
+    "orders": [],
+    "accepted": [
+     "vejledningen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "instruktionen",
+    "en": "The technician followed the instructions carefully during the installation.",
+    "ru": "Техник тщательно следовал инструкции во время установки.",
+    "orders": [],
+    "accepted": [
+     "vejledningen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "instruktionen",
+    "en": "The intern followed the instructions carefully during the installation.",
+    "ru": "Стажёр тщательно следовал инструкции во время установки.",
+    "orders": [],
+    "accepted": [
+     "vejledningen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "fremføre",
+  "kind": "word",
+  "sense_id": "b8279720-de89-5241-9115-5e78cc872868",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} sangen ved koncerten.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Koret"
+    },
+    {
+     "da": "Orkestret"
+    },
+    {
+     "da": "Eleverne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fremførte",
+    "en": "The choir performed the song at the concert.",
+    "ru": "Хор исполнил песню на концерте.",
+    "orders": [],
+    "accepted": [
+     "opførte"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fremførte",
+    "en": "The orchestra performed the song at the concert.",
+    "ru": "Оркестр исполнил песню на концерте.",
+    "orders": [],
+    "accepted": [
+     "opførte"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fremførte",
+    "en": "The students performed the song at the concert.",
+    "ru": "Ученики исполнили песню на концерте.",
+    "orders": [],
+    "accepted": [
+     "opførte"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "fremføre",
+  "kind": "word",
+  "sense_id": "73cc9c08-d273-503c-929a-147e07a5ad0e",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} et stærkt argument i retten.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Advokaten"
+    },
+    {
+     "da": "Anklageren"
+    },
+    {
+     "da": "Forsvareren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fremførte",
+    "en": "The lawyer put forward a strong argument in court.",
+    "ru": "Адвокат выдвинул веский аргумент в суде.",
+    "orders": [],
+    "accepted": [
+     "fremsatte"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fremførte",
+    "en": "The prosecutor put forward a strong argument in court.",
+    "ru": "Прокурор выдвинул веский аргумент в суде.",
+    "orders": [],
+    "accepted": [
+     "fremsatte"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fremførte",
+    "en": "The defender put forward a strong argument in court.",
+    "ru": "Защитник выдвинул веский аргумент в суде.",
+    "orders": [],
+    "accepted": [
+     "fremsatte"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "rapportere",
+  "kind": "word",
+  "sense_id": "87b558f0-188f-5d2f-8089-15f6b4f39021",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} om ulykken.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Journalisten"
+    },
+    {
+     "da": "Politiet"
+    },
+    {
+     "da": "Vidnet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "rapporterede",
+    "en": "The journalist reported on the accident.",
+    "ru": "Журналист сообщил об аварии.",
+    "orders": [],
+    "accepted": [
+     "berettede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "rapporterede",
+    "en": "The police reported on the accident.",
+    "ru": "Полиция сообщила об аварии.",
+    "orders": [],
+    "accepted": [
+     "berettede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "rapporterede",
+    "en": "The witness reported on the accident.",
+    "ru": "Свидетель сообщил об аварии.",
+    "orders": [],
+    "accepted": [
+     "berettede"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "gerningsmand",
+  "kind": "word",
+  "sense_id": "9d220f2a-7718-5ec8-adad-fd26c48ca1ab",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "frame": "{subject} har endnu ikke fundet {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Politiet"
+    },
+    {
+     "da": "Efterforskerne"
+    },
+    {
+     "da": "Anklagemyndigheden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "gerningsmanden",
+    "en": "The police have not yet found the perpetrator.",
+    "ru": "Полиция ещё не нашла преступника.",
+    "orders": [],
+    "accepted": [
+     "forbryderen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "gerningsmanden",
+    "en": "The investigators have not yet found the perpetrator.",
+    "ru": "Следователи ещё не нашли преступника.",
+    "orders": [],
+    "accepted": [
+     "forbryderen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "gerningsmanden",
+    "en": "The prosecution has not yet found the perpetrator.",
+    "ru": "Прокуратура ещё не нашла преступника.",
+    "orders": [],
+    "accepted": [
+     "forbryderen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "eksperimentere",
+  "kind": "word",
+  "sense_id": "2324895b-3657-5674-b2d1-9ff01d0c6236",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} med nye metoder i laboratoriet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Forskerne"
+    },
+    {
+     "da": "De studerende"
+    },
+    {
+     "da": "Videnskabsfolkene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "eksperimenterer",
+    "en": "The researchers experiment with new methods in the laboratory.",
+    "ru": "Исследователи экспериментируют с новыми методами в лаборатории.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "eksperimenterer",
+    "en": "The students experiment with new methods in the laboratory.",
+    "ru": "Студенты экспериментируют с новыми методами в лаборатории.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "eksperimenterer",
+    "en": "The scientists experiment with new methods in the laboratory.",
+    "ru": "Учёные экспериментируют с новыми методами в лаборатории.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "port",
+  "kind": "word",
+  "sense_id": "4886785c-72c0-5e7b-8009-363e4266b2be",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} lukkede {target} klokken ti.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vagten"
+    },
+    {
+     "da": "Portneren"
+    },
+    {
+     "da": "Chaufføren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "porten",
+    "en": "The guard closed the gate at ten o'clock.",
+    "ru": "Охранник закрыл ворота в десять часов.",
+    "orders": [],
+    "accepted": [
+     "lågen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "porten",
+    "en": "The porter closed the gate at ten o'clock.",
+    "ru": "Привратник закрыл ворота в десять часов.",
+    "orders": [],
+    "accepted": [
+     "lågen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "porten",
+    "en": "The driver closed the gate at ten o'clock.",
+    "ru": "Водитель закрыл ворота в десять часов.",
+    "orders": [],
+    "accepted": [
+     "lågen"
+    ]
+   }
+  ]
+ }
+]
