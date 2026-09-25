@@ -18,14 +18,20 @@ Work is committed in chunks on the working branch. To continue after an interrup
 | chunk | what | state |
 |---|---|---|
 | C0 | this plan and log | done |
-| C1 | coverage benchmark: frozen unseen set (`catalog/benchmark/unseen-tatoeba.tsv`), A1–B2 matrix (`cefr-matrix.json`), `scripts/coverage-report.ts` | done; report regenerated at the end |
-| C2 | English wording for every catalog sense (`catalog/locale-en.json`, 3,874 senses) | done; DB load in progress (`import-catalog-locale.ts --sql-dir`) |
-| C3 | sentence-family contract (`lib/catalog-families.ts`), gate (`check-family-batches.ts`), tables (migration `20260924213748`, applied) | done |
-| C4 | family pilot (batches 0001, 0050, 0099) + audit, then full generation | pilot running |
-| C5 | database load: repairs done; locale, families, expansion pending | in progress |
-| C6 | Practice uses catalog contexts for saved catalog-backed senses | done (`lib/practice-contexts.ts`) |
-| C7 | lexical expansion: 1,322 headwords, DSL ranks ≤ 4,300 (`catalog/expansion/`) | Russian pass running; English pass and families after |
+| C1 | coverage benchmark: frozen unseen set, A1–B2 matrix, `scripts/coverage-report.ts` | done; report regenerated at the end |
+| C2 | English wording for every catalog sense (`catalog/locale-en.json`, 3,872 + 57 pilot) | done; DB: statements 1–5 of 20 loaded, 6–20 loading |
+| C3 | sentence-family contract, gate, tables (migrations `20260924213748`, `20260924215731`, applied) | done |
+| C4 | family pilot round 1 audited **67.9% — STOP** (`catalog/families/audit/tally-925.md`); contract rewritten; round 2 (batches 0020, 0060, 0085) writing, then full audit | in progress |
+| C5 | database load: repairs done; locale partly; families and expansion pending | in progress |
+| C6 | Practice uses catalog contexts, with accepted gap answers | done |
+| C7 | expansion wave 1 (1,322 headwords, ranks ≤ 4,300) and wave 2 (781, ranks 4,301–5,100): Russian rows being written; then English pass (`write-locale-work.ts --out … --skip …/needs_review.jsonl`), gate quarantine, import | in progress |
 | C8 | final audit, published report, docs, review | pending |
+
+**Interrupted 2026-09-24 by the weekly usage limit** and resumed after it reset. To resume
+again: check which `catalog/*/out/batch-*.json` files exist against each `prompts/index.json`
+(or `families/work/`), and regenerate the locale SQL with
+`import-catalog-locale.ts catalog/locale-en.json --sql-dir <dir> --chunk 200`; the statements
+are idempotent, so re-running a loaded one is harmless.
 
 ### Loading data
 
@@ -42,6 +48,7 @@ Found by the English pass (flags) and applied to `catalog/out`, the English file
 - `rute` sense 2 "оконная рама" removed: its example (`revne i ruten`) is the word `rude`.
 - `hjørne` sense 2 "перекресток" removed: a mislabelled duplicate of sense 1 "угол".
 - `udvalg` split: sense 1 "комитет", new sense 2 "выбор, ассортимент".
+- `udtalelse` sense 2 "произношение" removed (that is `udtale`); `sær` sense 2 "своеобразный" removed (inverts the meaning). Found by the family pilot audit.
 - Kept after review: `svenske` "зеленушка" (the second audit of issue #6 restored it deliberately).
 
 ## Baseline (2026-09-24)
