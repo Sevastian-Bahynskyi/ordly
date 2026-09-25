@@ -1,156 +1,39 @@
 [
  {
-  "lemma": "sær",
-  "kind": "word",
-  "sense_id": "62631073-e7c6-5ffe-a590-3cf6051210cd",
-  "level": "B1",
-  "situation": "social",
-  "grammar": "adjective-agreement",
-  "frame": "{subject} opførte sig {target}.",
-  "slots": {
-   "subject": [
-    {
-     "da": "Han"
-    },
-    {
-     "da": "Naboen"
-    }
-   ]
-  },
-  "variants": [
-   {
-    "slots": {
-     "subject": 0
-    },
-    "target": "sært",
-    "en": "He behaved strangely.",
-    "ru": "Он вёл себя странно.",
-    "orders": []
-   },
-   {
-    "slots": {
-     "subject": 1
-    },
-    "target": "sært",
-    "en": "The neighbor behaved strangely.",
-    "ru": "Сосед вёл себя странно.",
-    "orders": []
-   }
-  ]
- },
- {
-  "lemma": "sær",
-  "kind": "word",
-  "sense_id": "9748ca6d-ca96-5d93-96c0-8900b68ac43d",
-  "level": "B1",
-  "situation": "feelings-opinions",
-  "grammar": "comparison",
-  "frame": "Denne {noun} er {target} end de andre.",
-  "slots": {
-   "noun": [
-    {
-     "da": "smag"
-    },
-    {
-     "da": "stil"
-    }
-   ]
-  },
-  "variants": [
-   {
-    "slots": {
-     "noun": 0
-    },
-    "target": "særere",
-    "en": "This taste is more peculiar than the others.",
-    "ru": "Этот вкус более своеобразный, чем остальные.",
-    "orders": []
-   },
-   {
-    "slots": {
-     "noun": 1
-    },
-    "target": "særere",
-    "en": "This style is more distinctive than the others.",
-    "ru": "Этот стиль более своеобразный, чем остальные.",
-    "orders": []
-   }
-  ]
- },
- {
-  "lemma": "kjole",
-  "kind": "word",
-  "sense_id": "572234eb-b9b5-544a-9000-53536426add7",
-  "level": "B1",
-  "situation": "shopping",
-  "grammar": "relative-clause",
-  "frame": "{target}, som hun havde på, var {adj}.",
-  "slots": {
-   "adj": [
-    {
-     "da": "rød"
-    },
-    {
-     "da": "ny"
-    }
-   ]
-  },
-  "variants": [
-   {
-    "slots": {
-     "adj": 0
-    },
-    "target": "kjolen",
-    "en": "The dress she was wearing was red.",
-    "ru": "Платье, которое было на ней надето, было красным.",
-    "orders": []
-   },
-   {
-    "slots": {
-     "adj": 1
-    },
-    "target": "kjolen",
-    "en": "The dress she was wearing was new.",
-    "ru": "Платье, которое было на ней надето, было новым.",
-    "orders": []
-   }
-  ]
- },
- {
   "lemma": "folketingsvalg",
   "kind": "word",
   "sense_id": "bbb41382-2078-5879-9d68-01a1b318d4cb",
   "level": "B1",
   "situation": "society",
-  "grammar": "passive",
-  "frame": "{target} blev afholdt i {month}.",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} venter et {target} i november.",
   "slots": {
-   "month": [
-    {
-     "da": "november"
-    },
-    {
-     "da": "juni"
-    }
+   "subject": [
+    { "da": "Analytikerne" },
+    { "da": "Journalisterne" },
+    { "da": "Vælgerne" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "month": 0
-    },
-    "target": "folketingsvalget",
-    "en": "The parliamentary election was held in November.",
-    "ru": "Парламентские выборы прошли в ноябре.",
+    "slots": { "subject": 0 },
+    "target": "folketingsvalg",
+    "en": "The analysts expect a parliamentary election in November.",
+    "ru": "Аналитики ожидают парламентских выборов в ноябре.",
+    "orders": ["I november venter analytikerne et folketingsvalg."]
+   },
+   {
+    "slots": { "subject": 1 },
+    "target": "folketingsvalg",
+    "en": "The journalists expect a parliamentary election in November.",
+    "ru": "Журналисты ожидают парламентских выборов в ноябре.",
     "orders": []
    },
    {
-    "slots": {
-     "month": 1
-    },
-    "target": "folketingsvalget",
-    "en": "The parliamentary election was held in June.",
-    "ru": "Парламентские выборы прошли в июне.",
+    "slots": { "subject": 2 },
+    "target": "folketingsvalg",
+    "en": "The voters expect a parliamentary election in November.",
+    "ru": "Избиратели ожидают парламентских выборов в ноябре.",
     "orders": []
    }
   ]
@@ -160,36 +43,36 @@
   "kind": "word",
   "sense_id": "7c5c651d-714c-5ea2-8723-1c80ed01f738",
   "level": "B1",
-  "situation": "food-drink",
-  "grammar": "fixed-expressions",
-  "frame": "Jeg købte en {target} {product}.",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} køber en {target} æg på markedet.",
   "slots": {
-   "product": [
-    {
-     "da": "æg"
-    },
-    {
-     "da": "æbler"
-    }
+   "subject": [
+    { "da": "Hun" },
+    { "da": "Bageren" },
+    { "da": "De" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "product": 0
-    },
+    "slots": { "subject": 0 },
     "target": "snes",
-    "en": "I bought a score of eggs.",
-    "ru": "Я купил два десятка яиц.",
+    "en": "She buys a score of eggs at the market.",
+    "ru": "Она покупает два десятка яиц на рынке.",
     "orders": []
    },
    {
-    "slots": {
-     "product": 1
-    },
+    "slots": { "subject": 1 },
     "target": "snes",
-    "en": "I bought a score of apples.",
-    "ru": "Я купил два десятка яблок.",
+    "en": "The baker buys a score of eggs at the market.",
+    "ru": "Пекарь покупает два десятка яиц на рынке.",
+    "orders": []
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "snes",
+    "en": "They buy a score of eggs at the market.",
+    "ru": "Они покупают два десятка яиц на рынке.",
     "orders": []
    }
   ]
@@ -199,36 +82,36 @@
   "kind": "word",
   "sense_id": "9ffddcab-5dbc-5f31-8e1b-7ce28076fd69",
   "level": "B1",
-  "situation": "leisure",
-  "grammar": "adjective-agreement",
-  "frame": "Bogen handlede om en {target} {noun}.",
+  "situation": "home",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} finder et {target} brev i postkassen.",
   "slots": {
-   "noun": [
-    {
-     "da": "historie"
-    },
-    {
-     "da": "begivenhed"
-    }
+   "subject": [
+    { "da": "Hun" },
+    { "da": "Naboen" },
+    { "da": "Han" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "noun": 0
-    },
+    "slots": { "subject": 0 },
     "target": "mystisk",
-    "en": "The book was about a mysterious story.",
-    "ru": "Книга была о таинственной истории.",
+    "en": "She finds a mysterious letter in the mailbox.",
+    "ru": "Она находит таинственное письмо в почтовом ящике.",
     "orders": []
    },
    {
-    "slots": {
-     "noun": 1
-    },
+    "slots": { "subject": 1 },
     "target": "mystisk",
-    "en": "The book was about a mysterious event.",
-    "ru": "Книга была о таинственном событии.",
+    "en": "The neighbor finds a mysterious letter in the mailbox.",
+    "ru": "Сосед находит таинственное письмо в почтовом ящике.",
+    "orders": []
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "mystisk",
+    "en": "He finds a mysterious letter in the mailbox.",
+    "ru": "Он находит таинственное письмо в почтовом ящике.",
     "orders": []
    }
   ]
@@ -238,37 +121,40 @@
   "kind": "word",
   "sense_id": "ebe5116e-07b4-56ff-b512-007fdac1e0ce",
   "level": "B1",
-  "situation": "communication-media",
-  "grammar": "adjective-agreement",
-  "frame": "Beskeden indeholdt nogle {target} {noun}.",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} opfører sig {target} i dag.",
   "slots": {
-   "noun": [
-    {
-     "da": "tegn"
-    },
-    {
-     "da": "fejl"
-    }
+   "subject": [
+    { "da": "Han" },
+    { "da": "Katten" },
+    { "da": "Naboen" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "noun": 0
-    },
-    "target": "mystiske",
-    "en": "The message contained some strange symbols.",
-    "ru": "Сообщение содержало какие-то непонятные знаки.",
-    "orders": []
+    "slots": { "subject": 0 },
+    "target": "mystisk",
+    "en": "He is behaving oddly today.",
+    "ru": "Он ведёт себя странно сегодня.",
+    "orders": [],
+    "accepted": ["underligt", "mærkeligt", "sært"]
    },
    {
-    "slots": {
-     "noun": 1
-    },
-    "target": "mystiske",
-    "en": "The message contained some strange errors.",
-    "ru": "Сообщение содержало какие-то непонятные ошибки.",
-    "orders": []
+    "slots": { "subject": 1 },
+    "target": "mystisk",
+    "en": "The cat is behaving oddly today.",
+    "ru": "Кот ведёт себя странно сегодня.",
+    "orders": [],
+    "accepted": ["underligt", "mærkeligt", "sært"]
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "mystisk",
+    "en": "The neighbor is behaving oddly today.",
+    "ru": "Сосед ведёт себя странно сегодня.",
+    "orders": [],
+    "accepted": ["underligt", "mærkeligt", "sært"]
    }
   ]
  },
@@ -277,46 +163,36 @@
   "kind": "word",
   "sense_id": "4f67f563-0202-52ee-896d-9c9e0a9781f6",
   "level": "B1",
-  "situation": "work",
-  "grammar": "subordinate-clause",
-  "frame": "{subject} arbejder med {target}, fordi {reason}.",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "frame": "{subject} studerer {target} på universitetet.",
   "slots": {
    "subject": [
-    {
-     "da": "Hun"
-    },
-    {
-     "da": "Han"
-    }
-   ],
-   "reason": [
-    {
-     "da": "hun er kreativ"
-    },
-    {
-     "da": "han elsker det"
-    }
+    { "da": "Hun" },
+    { "da": "Han" },
+    { "da": "Min søster" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "subject": 0,
-     "reason": 0
-    },
+    "slots": { "subject": 0 },
     "target": "markedsføring",
-    "en": "She works in marketing because she is creative.",
-    "ru": "Она занимается маркетингом, потому что она креативная.",
+    "en": "She studies marketing at university.",
+    "ru": "Она изучает маркетинг в университете.",
     "orders": []
    },
    {
-    "slots": {
-     "subject": 1,
-     "reason": 1
-    },
+    "slots": { "subject": 1 },
     "target": "markedsføring",
-    "en": "He works in marketing because he loves it.",
-    "ru": "Он занимается маркетингом, потому что он это любит.",
+    "en": "He studies marketing at university.",
+    "ru": "Он изучает маркетинг в университете.",
+    "orders": []
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "markedsføring",
+    "en": "My sister studies marketing at university.",
+    "ru": "Моя сестра изучает маркетинг в университете.",
     "orders": []
    }
   ]
@@ -326,36 +202,36 @@
   "kind": "word",
   "sense_id": "5c070122-eed5-5e0b-bdfa-af3008f84e38",
   "level": "B1",
-  "situation": "shopping",
-  "grammar": "relative-clause",
-  "frame": "{target}, som firmaet planlagde, var {adj}.",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} planlægger {target} af det nye produkt.",
   "slots": {
-   "adj": [
-    {
-     "da": "dyr"
-    },
-    {
-     "da": "effektiv"
-    }
+   "subject": [
+    { "da": "Virksomheden" },
+    { "da": "Teamet" },
+    { "da": "Chefen" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "adj": 0
-    },
+    "slots": { "subject": 0 },
     "target": "markedsføringen",
-    "en": "The marketing campaign that the company planned was expensive.",
-    "ru": "Продвижение товара, которое компания запланировала, было дорогим.",
+    "en": "The company plans the marketing of the new product.",
+    "ru": "Компания планирует продвижение нового продукта.",
     "orders": []
    },
    {
-    "slots": {
-     "adj": 1
-    },
+    "slots": { "subject": 1 },
     "target": "markedsføringen",
-    "en": "The marketing campaign that the company planned was effective.",
-    "ru": "Продвижение товара, которое компания запланировала, было эффективным.",
+    "en": "The team plans the marketing of the new product.",
+    "ru": "Команда планирует продвижение нового продукта.",
+    "orders": []
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "markedsføringen",
+    "en": "The boss plans the marketing of the new product.",
+    "ru": "Начальник планирует продвижение нового продукта.",
     "orders": []
    }
   ]
@@ -365,36 +241,36 @@
   "kind": "word",
   "sense_id": "60b79c55-1055-50bf-b824-03c00122eb7e",
   "level": "B1",
-  "situation": "society",
-  "grammar": "adjective-agreement",
-  "frame": "Partiet havde en {target} {noun}.",
+  "situation": "abstract",
+  "grammar": "adjective-meaning",
+  "frame": "Der er en {target} forskel mellem {groups}.",
   "slots": {
-   "noun": [
-    {
-     "da": "forskel til de andre"
-    },
-    {
-     "da": "holdning til sagen"
-    }
+   "groups": [
+    { "da": "de to partier" },
+    { "da": "de to bevægelser" },
+    { "da": "de to lejre" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "noun": 0
-    },
+    "slots": { "groups": 0 },
     "target": "ideologisk",
-    "en": "The party had an ideological difference from the others.",
-    "ru": "У партии было идеологическое отличие от остальных.",
+    "en": "There is an ideological difference between the two parties.",
+    "ru": "Между двумя партиями есть идеологическая разница.",
     "orders": []
    },
    {
-    "slots": {
-     "noun": 1
-    },
+    "slots": { "groups": 1 },
     "target": "ideologisk",
-    "en": "The party had an ideological stance on the matter.",
-    "ru": "У партии была идеологическая позиция по этому вопросу.",
+    "en": "There is an ideological difference between the two movements.",
+    "ru": "Между двумя движениями есть идеологическая разница.",
+    "orders": []
+   },
+   {
+    "slots": { "groups": 2 },
+    "target": "ideologisk",
+    "en": "There is an ideological difference between the two camps.",
+    "ru": "Между двумя лагерями есть идеологическая разница.",
     "orders": []
    }
   ]
@@ -404,37 +280,37 @@
   "kind": "word",
   "sense_id": "436d651a-261e-524b-959e-d0ace042d906",
   "level": "B1",
-  "situation": "society",
-  "grammar": "subordinate-clause",
-  "frame": "Vi gik en tur på {target}, da vejret var {adj}.",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{subject} går en tur på {target}.",
   "slots": {
-   "adj": [
-    {
-     "da": "flot"
-    },
-    {
-     "da": "koldt"
-    }
+   "subject": [
+    { "da": "Hun" },
+    { "da": "De ældre" },
+    { "da": "Vi" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "adj": 0
-    },
+    "slots": { "subject": 0 },
     "target": "kirkegården",
-    "en": "We took a walk in the cemetery when the weather was nice.",
-    "ru": "Мы гуляли по кладбищу, когда была хорошая погода.",
-    "orders": []
+    "en": "She takes a walk in the cemetery.",
+    "ru": "Она гуляет по кладбищу.",
+    "orders": ["På kirkegården går hun en tur."]
    },
    {
-    "slots": {
-     "adj": 1
-    },
+    "slots": { "subject": 1 },
     "target": "kirkegården",
-    "en": "We took a walk in the cemetery when the weather was cold.",
-    "ru": "Мы гуляли по кладбищу, когда было холодно.",
-    "orders": []
+    "en": "The elderly take a walk in the cemetery.",
+    "ru": "Пожилые люди гуляют по кладбищу.",
+    "orders": ["På kirkegården går de ældre en tur."]
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "kirkegården",
+    "en": "We take a walk in the cemetery.",
+    "ru": "Мы гуляем по кладбищу.",
+    "orders": ["På kirkegården går vi en tur."]
    }
   ]
  },
@@ -443,46 +319,36 @@
   "kind": "word",
   "sense_id": "0b0e9f9b-05c6-5fd0-ae7d-92a2ff1e0e76",
   "level": "B1",
-  "situation": "home",
+  "situation": "family",
   "grammar": "reflexive",
-  "frame": "{subject} {target} sig i {place}.",
+  "frame": "{subject} {target} sig sammen kort efter brylluppet.",
   "slots": {
    "subject": [
-    {
-     "da": "De"
-    },
-    {
-     "da": "Familien"
-    }
-   ],
-   "place": [
-    {
-     "da": "en ny by"
-    },
-    {
-     "da": "landsbyen"
-    }
+    { "da": "De" },
+    { "da": "Parret" },
+    { "da": "De unge" }
    ]
   },
   "variants": [
    {
-    "slots": {
-     "subject": 0,
-     "place": 0
-    },
+    "slots": { "subject": 0 },
     "target": "bosætter",
-    "en": "They are settling in a new town.",
-    "ru": "Они поселяются в новом городе.",
+    "en": "They settle down together shortly after the wedding.",
+    "ru": "Они поселяются вместе вскоре после свадьбы.",
     "orders": []
    },
    {
-    "slots": {
-     "subject": 1,
-     "place": 1
-    },
+    "slots": { "subject": 1 },
     "target": "bosætter",
-    "en": "The family is settling in the village.",
-    "ru": "Семья поселяется в деревне.",
+    "en": "The couple settles down together shortly after the wedding.",
+    "ru": "Пара поселяется вместе вскоре после свадьбы.",
+    "orders": []
+   },
+   {
+    "slots": { "subject": 2 },
+    "target": "bosætter",
+    "en": "The young people settle down together shortly after the wedding.",
+    "ru": "Молодые люди поселяются вместе вскоре после свадьбы.",
     "orders": []
    }
   ]
