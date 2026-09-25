@@ -19,12 +19,12 @@ Work is committed in chunks on the working branch. To continue after an interrup
 |---|---|---|
 | C0 | this plan and log | done |
 | C1 | coverage benchmark: frozen unseen set, A1–B2 matrix, `scripts/coverage-report.ts` | done; report regenerated at the end |
-| C2 | English wording for every catalog sense (`catalog/locale-en.json`, 3,872 + 57 pilot) | done; DB: statements 1–5 of 20 loaded, 6–20 loading |
+| C2 | English wording for every catalog sense (`catalog/locale-en.json`, 3,872 + 57 pilot) | done; loaded (5,990 en = 5,990 ru senses after C7) |
 | C3 | sentence-family contract, gate, tables (migrations `20260924213748`, `20260924215731`, applied) | done |
 | C4 | family pilot round 1 audited **67.9% — STOP** (`catalog/families/audit/tally-925.md`); contract rewritten; round 2 (batches 0020, 0060, 0085) writing, then full audit | in progress |
-| C5 | database load: repairs done; locale partly; families and expansion pending | in progress |
+| C5 | database load: repairs, English wording, expansion entries/senses/forms loaded 2026-09-25; families pending the round-2 audit | in progress |
 | C6 | Practice uses catalog contexts, with accepted gap answers | done |
-| C7 | expansion wave 1 (1,322 headwords, ranks ≤ 4,300) and wave 2 (781, ranks 4,301–5,100): Russian rows being written; then English pass (`write-locale-work.ts --out … --skip …/needs_review.jsonl`), gate quarantine, import | in progress |
+| C7 | expansion wave 1 (1,322 headwords, ranks ≤ 4,300) and wave 2 (781, ranks 4,301–5,100): 1,995 accepted (108 quarantined), 2,061 senses in Russian and English, 8,792 COR forms for 1,943 words (52 have no COR paradigm) | done; loaded |
 | C8 | final audit, published report, docs, review | pending |
 
 **Interrupted 2026-09-24 by the weekly usage limit** and resumed after it reset. To resume
@@ -36,7 +36,12 @@ are idempotent, so re-running a loaded one is harmless.
 ### Loading data
 
 The database write path for this pass is the Supabase MCP `execute_sql` tool with statements
-written by the import scripts' `--sql-dir` mode (the linked `supabase` CLI that
+written by the import scripts' `--sql-dir` mode. Large loads do not travel through the tool call:
+the statement files are committed under `catalog/load/`, pushed, fetched by the database with
+`net.http_get` (pg_net, already installed) from `raw.githubusercontent.com` **at that commit's
+SHA**, matched to the local `md5sum` of each file, and executed in path order inside one `do`
+block per step (entries and senses → English wording → forms). The files are deleted in the next
+commit; the history keeps them. First used at `633d47d` (56 statements) (the linked `supabase` CLI that
 `scripts/catalog-db.ts` uses is not available in the cloud session). A temporary token-gated edge
 function `catalog-import` was deployed and immediately retired (it now answers 410 to everything
 and requires a JWT); it never ran a query.
