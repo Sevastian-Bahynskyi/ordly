@@ -25,8 +25,44 @@ Work is committed in chunks on the working branch. To continue after an interrup
 | C5 | database load: repairs, English wording, expansion entries/senses/forms, approved families (snapshot `e5c2ac5e`) | done; re-run per family wave |
 | C6 | Practice uses catalog contexts, with accepted gap answers | done |
 | C7 | expansion wave 1 (1,322 headwords, ranks ≤ 4,300) and wave 2 (781, ranks 4,301–5,100): 1,995 accepted (108 quarantined), 2,061 senses in Russian and English, 8,792 COR forms for 1,943 words (52 have no COR paradigm) | done; loaded |
-| C9 | families for every remaining catalog batch (0004–0098) and the expansion (`catalog/expansion/families`, 52 batches): Sonnet writer → Opus reviewer → gate, one seeded audit per wave, `--approve`, merge, load | in progress |
-| C8 | final audit, published report, docs, review | pending |
+| C9 | families for every remaining catalog batch (0004–0098) and the expansion (`catalog/expansion/families`, 52 batches) | superseded by C10: coverage-driven batches replaced sequential catalog batches |
+| C10 | coverage-driven families (0100–0109) from plans naming each sense and matrix cell (`catalog/families/plans`, `scripts/write-target-family-work.ts`): DeepSeek writer → gate → DeepSeek review → full read → seeded audit → `--approve` | done; 461 families / 1,362 sentences; 147/147 matrix cells |
+| C11 | phrases (`catalog/phrases/README.md`): rights-cleared inventory, 129 phrases / 141 senses in both languages, 32 phrase families | done |
+| C8 | final audit, published report, docs, load | done 2026-09-25 (see **Acceptance evidence**); one open item: DDO audio rights |
+
+## Acceptance evidence (2026-09-25)
+
+Production (`pxnudtcqlmyaelfrdyfp`) after the load, read back with `supabase db query --linked`:
+5,063 catalog entries (129 phrases), 6,131 Russian = 6,131 English senses, 461 families /
+1,362 sentences (32 phrase families) in one snapshot (`ca4f6225b2bfa6a4`), 0 orphan families,
+0 variants missing a language, 0 duplicate ids. The load is additive: phrase entries, English
+wording and family chunks upsert; the family cleanup removed 0 rows, because every family of the
+previous snapshot (`e5c2ac5e`, commit `53ac2c0`) is in the new one. The same SQL was run twice on a
+disposable local stack with every migration applied first: identical counts, no duplicates.
+
+| criterion | evidence |
+|---|---|
+| EN/RU support for headwords, senses, phrases, forms, families; in Material and Practice | counts above; `docs/content-coverage-report.md`; local app journey below |
+| deterministic, rights-cleared source stage with provenance | COR (CC0), DSL Open lists, Danish FrameNet (notice in `catalog/phrases/NOTICE.md`), Wikidata (CC0); every phrase carries its source records; forms and genders only from COR/DDO |
+| audio / DDO website material rights check | **open** — see below |
+| constrained families, unsupported combinations excluded | explicit variants only (`lib/catalog-families.ts`); gate checks forms, contiguous phrase spans, V2 after fronting, the infinitive after `at` and modals, preposition case, adverb order; quarantine in `needs_review.jsonl` |
+| offline, versioned, resumable; automated gates + seeded audits; quarantine; idempotent import | per-batch replies, reviews, repairs and verdicts in `catalog/families/audit` and `catalog/phrases/audit`; seeds 300–314 at 100% after repair; import run twice locally without duplicates |
+| published report with denominators and limitations | `docs/content-coverage-report.md`: lexical 91.3% (89.2% direct + 2.1% via COR headwords), unseen set 93.0% tokens / 51.9% phrase occurrences, matrix 147/147 |
+| quality gate incl. severe-error repair and strata ≥95% | every batch stopped below 95% or on a severe finding and was repaired before approval (full reads, not only samples) |
+| save and practise a new item per level band and language | local stack, app at `localhost`: saved `stå op` (English, A1 learner) and `gå ind for` (Russian, B2 learner) from the catalog and practised them, including a typed multi-word gap from a phrase family; `supabase/tests/catalog-contexts.mjs` shows Practice's own context path gives ≥2 catalog sentences for a new phrase and a new word in every band × both languages (16/16) |
+
+**Open: DDO audio and IPA.** The catalog's recordings (2,931) and its DDO transcriptions were
+fetched from the ordnet.dk website by `download_ddo_audio.py` during issue #6. DSL Open covers the
+downloadable lists, not website material, and no rights check for those recordings is recorded.
+This pass added no audio and no DDO website content, but the existing assets need a decision:
+ask DSL for permission, or remove/replace them. Not changed here because it is a licensing
+decision and a destructive production change.
+
+**Known limits.** The round-trip translation check rejects some correct modal constructions
+(`være nødt til`, `kommer til at`, `have lyst til`), so they are skipped rather than published;
+phrase coverage counts contiguous occurrences only, and its denominator is the inventory's recall;
+the DeepSeek reviewer is noisy (it contradicts earlier fixes), so every published sentence was
+also read in full.
 
 **Interrupted 2026-09-24 by the weekly usage limit** and resumed after it reset. To resume
 again: check which `catalog/*/out/batch-*.json` files exist against each `prompts/index.json`
@@ -46,6 +82,10 @@ commit; the history keeps them. First used at `633d47d` (56 statements) (the lin
 `scripts/catalog-db.ts` uses is not available in the cloud session). A temporary token-gated edge
 function `catalog-import` was deployed and immediately retired (it now answers 410 to everything
 and requires a JWT); it never ran a query.
+
+The 2026-09-25 load ran from a local machine where the CLI is linked: each `--sql-dir` statement
+file through `supabase db query --linked`, after the same files had run twice on a disposable
+local stack (a scratch `supabase start` with every migration applied).
 
 ### Repairs to the existing catalog
 
