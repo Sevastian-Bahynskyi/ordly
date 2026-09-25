@@ -315,54 +315,6 @@
   ]
  },
  {
-  "lemma": "skulle",
-  "kind": "word",
-  "sense_id": "57c4736d-fc28-5a50-80a0-4fab80638de3",
-  "level": "B2",
-  "situation": "society",
-  "grammar": "modal-verbs",
-  "frame": "Ifølge den nye lov {subject} {target} have indsendt dokumentationen inden fristen.",
-  "slots": {
-   "subject": [
-    {
-     "da": "borgerne"
-    },
-    {
-     "da": "alle ansøgere"
-    },
-    {
-     "da": "virksomhederne"
-    }
-   ]
-  },
-  "variants": [
-   {
-    "slots": {
-     "subject": 0
-    },
-    "target": "skulle",
-    "en": "According to the new law, citizens should have submitted the documentation before the deadline.",
-    "ru": "Согласно новому закону, граждане должны были предоставить документы до установленного срока."
-   },
-   {
-    "slots": {
-     "subject": 1
-    },
-    "target": "skulle",
-    "en": "According to the new law, all applicants were required to submit the documentation before the deadline.",
-    "ru": "Согласно новому закону, все заявители должны были предоставить документы до установленного срока."
-   },
-   {
-    "slots": {
-     "subject": 2
-    },
-    "target": "skulle",
-    "en": "According to the new law, companies should have submitted the documentation before the deadline.",
-    "ru": "Согласно новому закону, компании должны были предоставить документы до установленного срока."
-   }
-  ]
- },
- {
   "lemma": "regering",
   "kind": "word",
   "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
@@ -487,15 +439,6 @@
    },
    {
     "slots": {
-     "subject": 2,
-     "result": 2
-    },
-    "target": "ringede",
-    "en": "When we called customer service, I got an automatic voicemail.",
-    "ru": "Когда мы звонили в службу поддержки, я получил автоматическое голосовое сообщение."
-   },
-   {
-    "slots": {
      "subject": 0,
      "result": 1
     },
@@ -568,6 +511,54 @@
     "target": "sagen",
     "en": "Although the committee has held several meetings, the matter remains unresolved.",
     "ru": "Хотя комитет провёл несколько заседаний, вопрос остаётся нерешённым."
+   }
+  ]
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "57c4736d-fc28-5a50-80a0-4fab80638de3",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "modal-verbs",
+  "frame": "Ifølge den nye lov {target} {subject} have indberettet alle udenlandske transaktioner inden fristen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "bankerne"
+    },
+    {
+     "da": "alle finansielle institutter"
+    },
+    {
+     "da": "revisorerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "skulle",
+    "en": "According to the new law, banks had to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, банки должны были отчитываться обо всех иностранных операциях до установленного срока."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "skulle",
+    "en": "Under the new law, all financial institutions were required to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, все финансовые учреждения должны были отчитываться обо всех иностранных операциях в установленный срок."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "skulle",
+    "en": "According to the new law, the auditors were required to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, аудиторы должны были отчитываться обо всех зарубежных операциях в установленный срок."
    }
   ]
  }

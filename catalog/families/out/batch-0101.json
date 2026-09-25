@@ -1,0 +1,943 @@
+[
+ {
+  "lemma": "uden",
+  "kind": "word",
+  "sense_id": "7c47daa4-2be6-5c1d-94fd-22f809434ebb",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "prepositions-other",
+  "frame": "Det er svært at forestille sig et liv {target} {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "musik"
+    },
+    {
+     "da": "kunst"
+    },
+    {
+     "da": "nære venner"
+    },
+    {
+     "da": "adgang til naturen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "uden",
+    "en": "It's hard to imagine a life without music.",
+    "ru": "Трудно представить жизнь без музыки."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "uden",
+    "en": "It's hard to imagine a life without art.",
+    "ru": "Трудно представить жизнь без искусства."
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "uden",
+    "en": "It's hard to imagine a life without close friends.",
+    "ru": "Трудно представить жизнь без близких друзей."
+   },
+   {
+    "slots": {
+     "object": 3
+    },
+    "target": "uden",
+    "en": "It's hard to imagine a life without access to nature.",
+    "ru": "Трудно представить жизнь без доступа к природе."
+   }
+  ]
+ },
+ {
+  "lemma": "ifølge",
+  "kind": "word",
+  "sense_id": "74841c52-2722-5652-bfb3-2d4864bf0212",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "prepositions-other",
+  "frame": "{target} {source} er situationen alvorlig.",
+  "slots": {
+   "source": [
+    {
+     "da": "en ny rapport fra Rigsrevisionen"
+    },
+    {
+     "da": "flere uafhængige medier"
+    },
+    {
+     "da": "en pressemeddelelse fra ministeriet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "source": 0
+    },
+    "target": "ifølge",
+    "en": "According to a new report from the National Audit Office, the situation is serious.",
+    "ru": "Согласно новому отчёту Национального аудиторского управления, ситуация серьёзная."
+   },
+   {
+    "slots": {
+     "source": 1
+    },
+    "target": "ifølge",
+    "en": "According to several independent media, the situation is serious.",
+    "ru": "По данным нескольких независимых СМИ, ситуация серьёзная."
+   },
+   {
+    "slots": {
+     "source": 2
+    },
+    "target": "ifølge",
+    "en": "According to a press release from the ministry, the situation is serious.",
+    "ru": "Согласно пресс-релизу министерства, ситуация серьёзная."
+   }
+  ]
+ },
+ {
+  "lemma": "omkring",
+  "kind": "word",
+  "sense_id": "fcd60dfe-4b78-5c25-a288-95b60154b46c",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "prepositions-other",
+  "frame": "Diskussionen drejede sig {target} {subject}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "begrebet bæredygtighed"
+    },
+    {
+     "da": "spørgsmålet om ansvar"
+    },
+    {
+     "da": "temaet identitet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "omkring",
+    "en": "The discussion revolved around the concept of sustainability.",
+    "ru": "Обсуждение вращалось вокруг концепции устойчивого развития."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "omkring",
+    "en": "The discussion revolved around the question of responsibility.",
+    "ru": "Обсуждение вращалось вокруг вопроса ответственности."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "omkring",
+    "en": "The discussion revolved around the theme of identity.",
+    "ru": "Обсуждение вращалось вокруг темы идентичности."
+   }
+  ]
+ },
+ {
+  "lemma": "lige",
+  "kind": "word",
+  "sense_id": "bcbe9302-0f8e-5aee-87dc-ccbcb5c57ce7",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "adverbs",
+  "frame": "Det var {target} den pointe, underviseren fremhævede i {slot1}.",
+  "slots": {
+   "slot1": [
+    {
+     "da": "forelæsningen"
+    },
+    {
+     "da": "sin gennemgang"
+    },
+    {
+     "da": "dagens lektion"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "slot1": 0
+    },
+    "target": "lige",
+    "en": "That was exactly the point the teacher emphasized in the lecture.",
+    "ru": "Именно на этом акцентировал учитель в лекции."
+   },
+   {
+    "slots": {
+     "slot1": 2
+    },
+    "target": "lige",
+    "en": "That was exactly the point the teacher emphasized in today's lesson.",
+    "ru": "Именно это и подчеркнул учитель на сегодняшнем уроке."
+   }
+  ]
+ },
+ {
+  "lemma": "tale",
+  "kind": "word",
+  "sense_id": "c378f4cf-58b0-5015-b429-1a14da999b81",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "noun-meaning",
+  "frame": "Statsministerens {target} blev transmitteret direkte på landsdækkende tv.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "tale",
+    "en": "The Prime Minister's speech was broadcast live on national television.",
+    "ru": "Речь премьер-министра транслировалась в прямом эфире по национальному телевидению."
+   },
+   {
+    "slots": {},
+    "target": "taler",
+    "en": "The Prime Minister's speeches were broadcast live on national television.",
+    "ru": "Речи премьер-министра транслировались в прямом эфире по национальному телевидению."
+   }
+  ]
+ },
+ {
+  "lemma": "verden",
+  "kind": "word",
+  "sense_id": "6a0a3af7-40e3-54c1-abae-f199e325261c",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "noun-meaning",
+  "frame": "Ifølge filosoffen udgør bevidstheden hele {target}.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "verden",
+    "en": "According to the philosopher, consciousness constitutes the whole world.",
+    "ru": "По философу, сознание составляет весь мир."
+   },
+   {
+    "slots": {},
+    "target": "verdener",
+    "en": "According to the philosopher, consciousness constitutes whole worlds.",
+    "ru": "По философу, сознание составляет целые миры."
+   }
+  ]
+ },
+ {
+  "lemma": "kommune",
+  "kind": "word",
+  "sense_id": "7407f1be-1db4-5c26-8c0f-d0dbb4d170fa",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-indefinite",
+  "frame": "Ifølge den nye reform skal en mindre {target} fusionere med en {partner}.",
+  "slots": {
+   "partner": [
+    {
+     "da": "nabokommune"
+    },
+    {
+     "da": "større enhed"
+    },
+    {
+     "da": "regional administration"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "partner": 0
+    },
+    "target": "kommune",
+    "en": "According to the new reform, a smaller municipality will merge with a neighboring municipality.",
+    "ru": "Согласно новой реформе, меньший муниципалитет объединится с соседним муниципалитетом."
+   },
+   {
+    "slots": {
+     "partner": 1
+    },
+    "target": "kommune",
+    "en": "According to the new reform, a smaller municipality must merge with a larger unit.",
+    "ru": "Согласно новой реформе, меньший муниципалитет должен объединиться с более крупной единицей."
+   },
+   {
+    "slots": {
+     "partner": 2
+    },
+    "target": "kommune",
+    "en": "According to the new reform, a smaller municipality will merge with a regional administration.",
+    "ru": "Согласно новой реформе, меньший муниципалитет объединится с региональной администрацией."
+   }
+  ]
+ },
+ {
+  "lemma": "minut",
+  "kind": "word",
+  "sense_id": "7783a147-0d16-51a2-8d3b-aff394b634b8",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "noun-indefinite",
+  "frame": "Eksamen varer {duration} {target}.",
+  "slots": {
+   "duration": [
+    {
+     "da": "halvfems"
+    },
+    {
+     "da": "femogfyrre"
+    },
+    {
+     "da": "tredive"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "duration": 0
+    },
+    "target": "minutter",
+    "en": "The exam lasts ninety minutes.",
+    "ru": "Экзамен длится девяносто минут."
+   },
+   {
+    "slots": {
+     "duration": 1
+    },
+    "target": "minutter",
+    "en": "The exam lasts forty-five minutes.",
+    "ru": "Экзамен длится сорок пять минут."
+   },
+   {
+    "slots": {
+     "duration": 2
+    },
+    "target": "minutter",
+    "en": "The exam lasts thirty minutes.",
+    "ru": "Экзамен длится тридцать минут."
+   }
+  ]
+ },
+ {
+  "lemma": "vise",
+  "kind": "word",
+  "sense_id": "30191ca6-aac6-5414-b1a6-d0c0f4c056c8",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "verb-future",
+  "frame": "Det vil {target} sig, at {subordinate}.",
+  "slots": {
+   "subordinate": [
+    {
+     "da": "projektet bliver en succes"
+    },
+    {
+     "da": "vi har taget fejl"
+    },
+    {
+     "da": "løsningen er mere kompleks end antaget"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subordinate": 0
+    },
+    "target": "vise",
+    "en": "It will turn out that the project will be a success.",
+    "ru": "В итоге проект будет успешным."
+   },
+   {
+    "slots": {
+     "subordinate": 1
+    },
+    "target": "vise",
+    "en": "It will turn out that we have been wrong.",
+    "ru": "Окажется, что мы ошибались."
+   },
+   {
+    "slots": {
+     "subordinate": 2
+    },
+    "target": "vise",
+    "en": "It will turn out that the solution is more complex than assumed.",
+    "ru": "Окажется, что решение сложнее, чем предполагалось."
+   }
+  ]
+ },
+ {
+  "lemma": "derfor",
+  "kind": "word",
+  "sense_id": "1449948e-71ef-595a-a72f-5ddf8e841cfd",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "sentence-adverbs",
+  "frame": "{situation}, {target} {action}.",
+  "slots": {
+   "situation": [
+    {
+     "da": "Projektet overskred budgettet"
+    },
+    {
+     "da": "Kunden var utilfreds med leveringen"
+    },
+    {
+     "da": "Virksomheden ønskede at reducere omkostningerne"
+    }
+   ],
+   "action": [
+    {
+     "da": "måtte vi genforhandle kontrakten"
+    },
+    {
+     "da": "tilbød vi en kompensation"
+    },
+    {
+     "da": "blev flere stillinger nedlagt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "situation": 0,
+     "action": 0
+    },
+    "target": "derfor",
+    "en": "The project exceeded the budget, so we had to renegotiate the contract.",
+    "ru": "Проект превысил бюджет, поэтому нам пришлось пересматривать контракт."
+   },
+   {
+    "slots": {
+     "situation": 1,
+     "action": 1
+    },
+    "target": "derfor",
+    "en": "The customer was dissatisfied with the delivery, therefore we offered a compensation.",
+    "ru": "Клиент остался недоволен доставкой, поэтому мы предложили компенсацию."
+   },
+   {
+    "slots": {
+     "situation": 2,
+     "action": 2
+    },
+    "target": "derfor",
+    "en": "The company wanted to reduce costs, so several positions were cut.",
+    "ru": "Компания хотела снизить расходы, поэтому несколько позиций были сокращены."
+   }
+  ]
+ },
+ {
+  "lemma": "holde",
+  "kind": "word",
+  "sense_id": "fba0d7b9-e985-5825-a3b7-e61195d8e2e8",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "verb-future",
+  "frame": "Ifølge planen vil bestyrelsen {target} en generalforsamling {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "i næste måned"
+    },
+    {
+     "da": "til efteråret"
+    },
+    {
+     "da": "inden udgangen af kvartalet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "holde",
+    "en": "According to the plan, the board will hold a general meeting next month.",
+    "ru": "Согласно плану, совет директоров проведёт общее собрание в следующем месяце."
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "holde",
+    "en": "According to the plan, the board will hold a general meeting in the autumn.",
+    "ru": "Согласно плану, совет проведёт общее собрание осенью."
+   },
+   {
+    "slots": {
+     "time": 2
+    },
+    "target": "holde",
+    "en": "According to the plan, the Board of Directors will hold a general meeting before the end of the quarter.",
+    "ru": "Согласно плану, Совет директоров проведёт общее собрание до конца квартала."
+   }
+  ]
+ },
+ {
+  "lemma": "menneske",
+  "kind": "word",
+  "sense_id": "b7d88e26-aa61-5d8c-bc78-7811feece55d",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "noun-indefinite",
+  "frame": "Ifølge forskningen har et {target} brug for {need} for at fungere optimalt.",
+  "slots": {
+   "need": [
+    {
+     "da": "mindst syv timers søvn"
+    },
+    {
+     "da": "regelmæssig motion"
+    },
+    {
+     "da": "social kontakt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "need": 0
+    },
+    "target": "menneske",
+    "en": "According to research, a human needs at least seven hours of sleep to function optimally.",
+    "ru": "Согласно исследованиям, человеку нужно не менее семи часов сна для оптимального функционирования."
+   },
+   {
+    "slots": {
+     "need": 1
+    },
+    "target": "menneske",
+    "en": "According to research, a human needs regular exercise to function optimally.",
+    "ru": "Согласно исследованиям, человеку необходимы регулярные физические упражнения для оптимального функционирования."
+   },
+   {
+    "slots": {
+     "need": 2
+    },
+    "target": "menneske",
+    "en": "According to research, a person needs social contact to function optimally.",
+    "ru": "Согласно исследованиям, человеку необходим социальный контакт для оптимального функционирования."
+   }
+  ]
+ },
+ {
+  "lemma": "sætte",
+  "kind": "word",
+  "sense_id": "a4fe1785-b300-57e4-a4b7-da86e0e21527",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "verb-future",
+  "frame": "Lægen vil {target} en officiel diagnose efter {undersoegelse}.",
+  "slots": {
+   "undersoegelse": [
+    {
+     "da": "undersøgelsen"
+    },
+    {
+     "da": "blodprøverne"
+    },
+    {
+     "da": "scanningen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "undersoegelse": 0
+    },
+    "target": "sætte",
+    "en": "The doctor will make an official diagnosis after the examination.",
+    "ru": "После осмотра врач поставит официальный диагноз."
+   },
+   {
+    "slots": {
+     "undersoegelse": 1
+    },
+    "target": "sætte",
+    "en": "The doctor will make an official diagnosis after the blood tests.",
+    "ru": "Врач поставит официальный диагноз после анализов крови."
+   },
+   {
+    "slots": {
+     "undersoegelse": 2
+    },
+    "target": "sætte",
+    "en": "The doctor will make an official diagnosis after the scan.",
+    "ru": "Врач поставит официальный диагноз после сканирования."
+   }
+  ]
+ },
+ {
+  "lemma": "dog",
+  "kind": "word",
+  "sense_id": "0ee9c695-c475-5fa1-8874-7cb36cd500c7",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "sentence-adverbs",
+  "frame": "{subject} {verb} {target} {rest}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Lægen"
+    },
+    {
+     "da": "Patienten"
+    },
+    {
+     "da": "Sygeplejersken"
+    }
+   ],
+   "verb": [
+    {
+     "da": "anbefalede"
+    },
+    {
+     "da": "nægtede"
+    },
+    {
+     "da": "indrømmede"
+    }
+   ],
+   "rest": [
+    {
+     "da": "en grundig undersøgelse",
+     "requires": {
+      "verb": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "at tage den ordinerede medicin",
+     "requires": {
+      "verb": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "at have sprunget dagens genoptræning over",
+     "requires": {
+      "verb": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "rest": 0
+    },
+    "target": "dog",
+    "en": "However, the doctor recommended a thorough examination.",
+    "ru": "Однако врач рекомендовал провести тщательное обследование."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "rest": 1
+    },
+    "target": "dog",
+    "en": "However, the patient refused to take the prescribed medication.",
+    "ru": "Однако пациент отказался принимать назначенное лекарство."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "rest": 2
+    },
+    "target": "dog",
+    "en": "However, the nurse admitted to skipping the day's rehabilitation.",
+    "ru": "Однако медсестра призналась, что пропустила реабилитацию в течение дня."
+   }
+  ]
+ },
+ {
+  "lemma": "selv",
+  "kind": "word",
+  "sense_id": "dfe6a3c1-beb1-50ec-a280-e3d03ba66167",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "adverbs",
+  "frame": "{target} {noun_phrase} kan {verb_phrase}.",
+  "slots": {
+   "noun_phrase": [
+    {
+     "da": "en kort periode med stress"
+    },
+    {
+     "da": "en mild infektion"
+    },
+    {
+     "da": "et mindre traume"
+    }
+   ],
+   "verb_phrase": [
+    {
+     "da": "udløse alvorlige komplikationer"
+    },
+    {
+     "da": "forværre en kronisk tilstand"
+    },
+    {
+     "da": "påvirke immunforsvaret negativt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun_phrase": 0,
+     "verb_phrase": 0
+    },
+    "target": "selv",
+    "en": "Even a short period of stress can trigger serious complications.",
+    "ru": "Даже короткий период стресса может вызвать серьёзные осложнения."
+   },
+   {
+    "slots": {
+     "noun_phrase": 1,
+     "verb_phrase": 1
+    },
+    "target": "selv",
+    "en": "Even a mild infection can worsen a chronic condition.",
+    "ru": "Даже лёгкая инфекция может усугубить хроническое состояние."
+   },
+   {
+    "slots": {
+     "noun_phrase": 2,
+     "verb_phrase": 2
+    },
+    "target": "selv",
+    "en": "Even a minor trauma can negatively affect the immune system.",
+    "ru": "Даже незначительная травма может негативно сказаться на иммунной системе."
+   }
+  ]
+ },
+ {
+  "lemma": "både",
+  "kind": "word",
+  "sense_id": "7fbfd777-c79a-5d07-8f9c-10342699eb74",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "adverbs",
+  "frame": "{subject} {verb} {target} {role1} og {role2}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Den nye medarbejder"
+    },
+    {
+     "da": "Projektlederen"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "verb": [
+    {
+     "da": "er"
+    },
+    {
+     "da": "fungerer som"
+    }
+   ],
+   "role1": [
+    {
+     "da": "koordinator"
+    },
+    {
+     "da": "rådgiver"
+    }
+   ],
+   "role2": [
+    {
+     "da": "sælger"
+    },
+    {
+     "da": "underviser"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "role1": 0,
+     "role2": 0
+    },
+    "target": "både",
+    "en": "The new employee is both coordinator and salesperson.",
+    "ru": "Новый сотрудник одновременно является координатором и продавцом."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 0,
+     "role1": 1,
+     "role2": 1
+    },
+    "target": "både",
+    "en": "The project manager is both an advisor and a teacher.",
+    "ru": "Менеджер проекта — это одновременно и научный руководитель, и преподаватель."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 1,
+     "role1": 0,
+     "role2": 1
+    },
+    "target": "både",
+    "en": "She acts as both coordinator and teacher.",
+    "ru": "Она выполняет функции координатора и учителя."
+   }
+  ]
+ },
+ {
+  "lemma": "bruge",
+  "kind": "word",
+  "sense_id": "1246fcb6-aba1-5034-a991-1b7985b41474",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "verb-future",
+  "frame": "Journalisten vil {target} {purpose}.",
+  "slots": {
+   "purpose": [
+    {
+     "da": "de nye data i sin artikel"
+    },
+    {
+     "da": "en mere direkte kilde til dokumentaren"
+    },
+    {
+     "da": "avisens arkiv til research"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "purpose": 0
+    },
+    "target": "bruge",
+    "en": "The journalist will use the new data in his article.",
+    "ru": "Журналист использует новые данные в своей статье."
+   },
+   {
+    "slots": {
+     "purpose": 1
+    },
+    "target": "bruge",
+    "en": "The journalist will use a more direct source for the documentary.",
+    "ru": "Журналист использует более прямой источник для документального фильма."
+   },
+   {
+    "slots": {
+     "purpose": 2
+    },
+    "target": "bruge",
+    "en": "The journalist will use the newspaper's archive for research.",
+    "ru": "Журналист будет использовать архив газеты для исследований."
+   }
+  ]
+ },
+ {
+  "lemma": "nok",
+  "kind": "word",
+  "sense_id": "6a7d48dc-1d44-5032-b438-532cf320521e",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "sentence-adverbs",
+  "frame": "{subject} {verb} {target} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Eleverne"
+    },
+    {
+     "da": "Studerende på første årgang"
+    },
+    {
+     "da": "De fleste ansøgere"
+    }
+   ],
+   "verb": [
+    {
+     "da": "afleverer"
+    },
+    {
+     "da": "forstår"
+    },
+    {
+     "da": "består"
+    }
+   ],
+   "object": [
+    {
+     "da": "opgaven til tiden"
+    },
+    {
+     "da": "pensum"
+    },
+    {
+     "da": "eksamen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0
+    },
+    "target": "nok",
+    "en": "The students will probably hand in the assignment on time.",
+    "ru": "Скорее всего, студенты сдадут задание вовремя."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "object": 2
+    },
+    "target": "nok",
+    "en": "Most applicants probably pass the exam.",
+    "ru": "Большинство абитуриентов, вероятно, сдают экзамен."
+   }
+  ]
+ }
+]

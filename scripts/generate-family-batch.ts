@@ -16,7 +16,7 @@
 import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { normalizeSentence, variantDanish, type FamilyWorkSense } from '../lib/catalog-families'
-import { emptySlotsNeedVaryingTarget, frontedSubordinateNeedsComma, invalidRequiresTarget, mixedSFormConstruction } from '../lib/catalog-families-style'
+import { emptySlotsNeedVaryingTarget, frontedSubordinateNeedsComma, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
 import { parseFullForms } from '../lib/ddo-fullform'
 import { findMisspellings } from '../lib/spelling'
 
@@ -124,7 +124,12 @@ Rules:
    correct sin/hans, der/som, en/et, adjective agreement, definite suffix vs article+adjective.
    No calques from English or Russian.
 3. frame has {target} exactly once and one lowercase {slot} per varying part, punctuation at the
-   end; the first letter is capitalised automatically, so do not capitalise it yourself.
+   end; the first letter is capitalised automatically, so do not capitalise it yourself. A slot
+   name is PLAIN ASCII ONLY — lowercase a-z, digits, underscore — never æ, ø or å, even though the
+   slot's own Danish CONTENT (its "da" options) obviously does use them freely. {formål} is
+   INVALID as a placeholder (the "å" breaks it — it silently stays as literal, unfilled text
+   instead of being replaced, and everything downstream, including the translation, breaks on it);
+   {purpose} or {formaal} naming the same slot is fine.
 4. slots: 1-6 Danish phrase options per slot. An option that only fits some partners declares it:
    {"da": "i går", "requires": {"verb": [1]}} — may appear only when the "verb" slot picks option 1.
    "requires" may only name OTHER SLOTS, never "target" — "target" is not a slot (rule 5) and does
@@ -144,10 +149,22 @@ Rules:
      "variants": [ { "slots": {}, "target": "blev" }, { "slots": {}, "target": "bliver" } ] }
 6. "target" is always exactly ONE of the given verified forms — a single word, never a phrase. A
    periphrastic construction (passive "blive" + past participle, perfect "have" + past participle,
-   a modal + infinitive) puts every OTHER word in its own named slot with the fitting option(s);
-   "target" stays only this lemma's own verified form. Example: for "blive" (passive auxiliary) in
-   "Huset {target} bygget i 1990.", target is "blev" (one word) and "bygget" is a fixed slot
-   option, not part of target.
+   future "vil"/"skal" + infinitive, a modal + infinitive) puts every OTHER word in its own named
+   slot or fixed frame text with the fitting option(s); "target" stays only this lemma's own
+   verified form. Example: for "blive" (passive auxiliary) in "Huset {target} bygget i 1990.",
+   target is "blev" (one word) and "bygget" is a fixed slot option, not part of target. The same
+   applies in reverse when the LEMMA itself is the one in the infinitive: if you want a future-
+   tense variant of a verb whose target is its bare infinitive, "vil" or "skal" MUST appear as
+   fixed text or a slot option immediately before {target} in that variant's frame position —
+   never drop it. "Ifølge planen {target} virksomheden mere personale." with target "ansætte" is
+   WRONG (a bare infinitive cannot be the finite verb of a main clause — this is ungrammatical,
+   not just informal); "Ifølge planen vil virksomheden {target} mere personale." with target
+   "ansætte" is correct. The same rule applies to an ARTICLE before a noun target: "et menneske"
+   or "en bil" is TWO words, not a verified form — the article ("en"/"et"/"den"/"det") goes in the
+   frame's fixed text or its own slot option, and target stays the bare noun form ("menneske",
+   "bil"). "har {target} brug for søvn" with target "et menneske" is WRONG; "har {article}
+   menneske brug for søvn" — or simply "{target} har brug for søvn" with the indefinite meaning
+   understood from context — with target "menneske" is correct.
 7. variants: 2-6 explicit combinations. Every slot in the frame must have a chosen option index.
    "target" must appear exactly once in the filled sentence. "orders" (optional) lists other
    complete Danish word orders using the exact same words that are equally natural — omit if none
@@ -161,13 +178,19 @@ Rules:
     picking one anyway just produces a same-meaning duplicate, which the gate rejects). If you
     truly cannot find 2+ target forms giving distinct meanings for this frame, add a slot that
     varies instead (a different subject/time/place), or skip the sense with a reason.
-10. If the frame's FIRST placeholder is a slot that fronts a subordinate clause (its options start
-    with selvom, hvis, da, fordi, når, mens, inden, før, siden, medmindre, uanset, idet...), the
-    literal text right after that placeholder's closing brace MUST begin with ", " (comma, space),
-    and the main clause after the comma must itself be in verb-subject order (inversion) — normal
-    Danish V2 word order after a fronted clause. Correct: "{subordinate}, fremlagde
-    statsministeren en reform." (comma, verb "fremlagde" before subject). Wrong, do not write this:
-    "{subordinate} statsministeren fremlagde en reform." (no comma, subject before verb).
+10. Danish main clauses are V2: whatever occupies first position, the FINITE VERB comes second,
+    before the subject. This applies to a fronted SUBORDINATE CLAUSE (its options start with
+    selvom, hvis, da, fordi, når, mens, inden, før, siden, medmindre, uanset, idet...) — the literal
+    text right after that placeholder's closing brace MUST begin with ", " (comma, space), and the
+    text right after the comma must be the verb, before the subject. Correct: "{subordinate},
+    fremlagde statsministeren en reform." Wrong: "{subordinate} statsministeren fremlagde en
+    reform." (no comma, subject before verb). It EQUALLY applies to any other fronted element —
+    a prepositional phrase, an adverb, a time expression — even with no comma needed. Correct:
+    "Ifølge den nye lov skal borgerne betale en afgift." (verb "skal" right after the fronted
+    phrase, before the subject "borgerne"). Wrong: "Ifølge den nye lov borgerne skal betale en
+    afgift." (subject before verb — ungrammatical, the single most common mistake here). Whenever
+    the frame's first words are not the grammatical subject, check that the very next thing is the
+    verb.
 11. An adjective target NEVER uses "slots": {} — always give it a real varying slot (a different
     subject/time/place). Nothing in an all-fixed frame could justify klar/klare/klarere/klarest
     disagreeing with a fixed subject, and if the target form stays the same too, the sentence
@@ -198,7 +221,27 @@ Rules:
     ad-hoc compound risks not being in the spelling source even when it is valid Danish, and a
     sentence otherwise ready to publish is quarantined over one uncommon word.
 15. Prefer B2-appropriate register when the target level is B2: subordinate clauses, passive,
-   abstract topics, longer sentences are welcome and expected, not just simple A1-style sentences.`
+   abstract topics, longer sentences are welcome and expected, not just simple A1-style sentences.
+16. If a slot's option embeds its own person/number (a pronoun or a person-specific phrase like
+   "fik jeg" — "I got"), every OTHER slot in the same combination must agree with that person —
+   either write only impersonal/agreement-free options in that slot (preferred, simplest), or
+   declare "requires" limiting the person-specific option to the matching {subject} option(s). A
+   sentence that opens "Da vi..." ("When we...") and continues "...fik jeg..." ("...I got...")
+   mixes two different people in one sentence, which is incoherent even though each half is
+   grammatical on its own.
+17. A Danish SENTENCE ADVERB (dog, nok, jo, vel, sikkert, måske, ikke as clause negation, and any
+   grammar "sentence-adverbs" target) goes AFTER the finite verb in a non-fronted main clause,
+   never between the subject and the verb. "Patienten dog nægtede at tage medicinen." is WRONG
+   (adverb before the verb); "Patienten nægtede dog at tage medicinen." is correct (verb, then the
+   adverb). If you front the adverb itself as {target} at the very start of the sentence, V2
+   inversion applies as usual (rule 10): "{target} nægtede patienten at tage medicinen."
+18. "verb-future" means the sentence must actually be in the future — "vil"/"skal" + the bare
+   infinitive target (rule 6). Present or past tense variants do not belong in this grammar cell,
+   even if the sentence is otherwise perfectly correct Danish — they simply demonstrate a
+   different grammar cell (verb-present/verb-past) and are filed wrong.
+19. "både X og Y" coordinating two NOUN predicates needs the copula "er" (or another appropriate
+   verb) between the subject and "både" — "Konsulenten både koordinator og sælger." is missing a
+   verb entirely and is ungrammatical; "Konsulenten er både koordinator og sælger." is correct.`
 
 interface DanishVariant { slots: Record<string, number>; target: string; orders?: string[]; accepted?: string[] }
 interface DanishFamily {
@@ -336,19 +379,26 @@ for (const row of work) {
       continue
     }
     const spellingErrors: string[] = []
+    const occurrenceErrors: string[] = []
     for (const variant of reply.variants) {
       const danish = variantDanish({ frame: reply.frame, slots: reply.slots }, variant)
       if (!danish) continue
+      occurrenceErrors.push(...targetMustOccurOnce(danish, variant.target))
       const misspellings = await findMisspellings(danish)
       if (misspellings === null) continue // source unavailable locally; the real gate still checks it
       const unknown = misspellings.map((m) => m.word).filter((word) => !known.has(word.toLocaleLowerCase('da-DK')))
       if (unknown.length) spellingErrors.push(`"${danish}" has unknown word(s) ${unknown.join(', ')}`)
     }
     const styleErrors = [
+      ...needsMinimumVariants(reply.variants),
+      ...nonAsciiSlotName(reply.frame),
+      ...sentenceAdverbBeforeVerb(reply.grammar, reply.frame),
       ...frontedSubordinateNeedsComma(reply.frame, reply.slots),
       ...emptySlotsNeedVaryingTarget(row.pos, reply.slots, reply.variants),
       ...mixedSFormConstruction(reply.variants),
       ...invalidRequiresTarget(reply.slots),
+      ...lemmaNotDuplicatedInFrame(row.lemma, reply.frame),
+      ...occurrenceErrors,
       ...spellingErrors,
     ]
     if (styleErrors.length) {

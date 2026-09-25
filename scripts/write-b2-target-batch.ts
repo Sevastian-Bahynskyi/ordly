@@ -51,8 +51,12 @@ const targets: Target[] = [
   { lemma: 'eksempel', pos: 'noun', gender: 'et', freq_rank: 127, ordinal: 1, ru: 'пример', en: 'example', situation: 'education', grammar: 'noun-definite' },
   // Rerun 2026-09-25, rubric audit repair: variant 1 used "skal" (plain "must"), which teaches a
   // different modal nuance than this sense (reported past obligation) actually is.
+  // Rerun 2026-09-25, second repair round: the earlier fix corrected the sense (skulle, not
+  // skal) but the frame itself was ungrammatical — "Ifølge den nye lov {subject} {target}..."
+  // put the subject before the verb after a fronted prepositional phrase, a V2 violation
+  // (rule 10). A formal seeded audit caught this; the earlier manual re-read missed it.
   { lemma: 'skulle', pos: 'verb', gender: null, freq_rank: 24, ordinal: 1, ru: 'должен был, следовало', en: 'should, to be supposed to', situation: 'society', grammar: 'modal-verbs',
-    note: 'This sense means specifically "should have / was supposed to" (reported past obligation), not plain "must". Use "skulle" as the target in every variant — never "skal". Since the target form must stay the same, add a real varying slot (a different subject or obligation) for the 2+ variants, per rule 11.' },
+    note: 'This sense means specifically "should have / was supposed to" (reported past obligation), not plain "must". Use "skulle" as the target in every variant — never "skal". Since the target form must stay the same, add a real varying slot (a different subject or obligation) for the 2+ variants, per rule 11. Also: whatever precedes {subject} in the frame (e.g. "Ifølge den nye lov") is a fronted phrase, not the subject — the verb ({target}, or an auxiliary right before it) must come immediately after it, BEFORE {subject}, per rule 10. "Ifølge den nye lov {subject} {target} have..." is wrong (subject before verb); "Ifølge den nye lov {target} {subject} have..." is correct (verb before subject).' },
   // Rerun 2026-09-25, rubric audit repair: one variant used the figurative "stejlt" ("stejle
   // fronter"), which Azure Translator renders as a literal, non-idiomatic "steeply" in both EN
   // and RU — real Danish, unfaithful translation.
