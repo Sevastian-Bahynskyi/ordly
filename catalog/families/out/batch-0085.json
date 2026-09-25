@@ -1,0 +1,602 @@
+[
+ {
+  "lemma": "bonde",
+  "kind": "word",
+  "sense_id": "b86c8840-4f75-5037-a1d1-b1dd4a5ceb07",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{target} dyrker korn på {place}.",
+  "slots": { "place": [ { "da": "den store mark" }, { "da": "landet" }, { "da": "sin jord" } ] },
+  "variants": [
+   { "slots": { "place": 0 }, "target": "bonden", "en": "The farmer grows grain in the big field.", "ru": "Фермер выращивает зерно на большом поле.", "orders": [] },
+   { "slots": { "place": 1 }, "target": "bonden", "en": "The farmer grows grain in the countryside.", "ru": "Фермер выращивает зерно в деревне.", "orders": [] },
+   { "slots": { "place": 2 }, "target": "bonden", "en": "The farmer grows grain on his land.", "ru": "Фермер выращивает зерно на своей земле.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "bonde",
+  "kind": "word",
+  "sense_id": "e964ab94-1e9c-5eef-99db-a713ba042378",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} flytter en {target} frem.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Skakspilleren" }, { "da": "Hun" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "bonde", "en": "He moves a pawn forward.", "ru": "Он двигает пешку вперёд.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "bonde", "en": "The chess player moves a pawn forward.", "ru": "Шахматист двигает пешку вперёд.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "bonde", "en": "She moves a pawn forward.", "ru": "Она двигает пешку вперёд.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "identificere",
+  "kind": "word",
+  "sense_id": "2ec900f1-f82c-5edd-ba70-d2091daa0210",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} manden på videooptagelsen.",
+  "slots": { "subject": [ { "da": "Politiet" }, { "da": "Vidnet" }, { "da": "Efterforskerne" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "identificerer", "en": "The police identify the man in the video recording.", "ru": "Полиция идентифицирует мужчину на видеозаписи.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "identificerer", "en": "The witness identifies the man in the video recording.", "ru": "Свидетель идентифицирует мужчину на видеозаписи.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "identificerer", "en": "The investigators identify the man in the video recording.", "ru": "Следователи идентифицируют мужчину на видеозаписи.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "kristendom",
+  "kind": "word",
+  "sense_id": "fbeb6a2c-b48e-5394-a6e1-d471bad216a1",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "frame": "{subject} underviser i {target}.",
+  "slots": { "subject": [ { "da": "Læreren" }, { "da": "Præsten" }, { "da": "Professoren" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "kristendommen", "en": "The teacher teaches about Christianity.", "ru": "Учитель преподаёт христианство.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "kristendommen", "en": "The priest teaches about Christianity.", "ru": "Священник преподаёт христианство.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "kristendommen", "en": "The professor teaches about Christianity.", "ru": "Профессор преподаёт христианство.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "håndværker",
+  "kind": "word",
+  "sense_id": "873e90bb-655f-542f-823d-6fdf1dc4da07",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "noun-meaning",
+  "frame": "{target} reparerer {object}.",
+  "slots": { "object": [ { "da": "taget" }, { "da": "køkkenet" }, { "da": "badeværelset" } ] },
+  "variants": [
+   { "slots": { "object": 0 }, "target": "håndværkeren", "en": "The tradesman repairs the roof.", "ru": "Мастер ремонтирует крышу.", "orders": [] },
+   { "slots": { "object": 1 }, "target": "håndværkeren", "en": "The tradesman repairs the kitchen.", "ru": "Мастер ремонтирует кухню.", "orders": [] },
+   { "slots": { "object": 2 }, "target": "håndværkeren", "en": "The tradesman repairs the bathroom.", "ru": "Мастер ремонтирует ванную комнату.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "guitar",
+  "kind": "word",
+  "sense_id": "2c927825-8071-52cd-a948-0dfb508c7ca5",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} spiller {target} til festen.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Min bror" }, { "da": "Hun" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "guitar", "en": "He plays guitar at the party.", "ru": "Он играет на гитаре на вечеринке.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "guitar", "en": "My brother plays guitar at the party.", "ru": "Мой брат играет на гитаре на вечеринке.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "guitar", "en": "She plays guitar at the party.", "ru": "Она играет на гитаре на вечеринке.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "flyde",
+  "kind": "word",
+  "sense_id": "45212c9a-56bb-5ae0-a2fd-3cd663ab0cce",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} på vandet.",
+  "slots": { "subject": [ { "da": "Båden" }, { "da": "Træstammen" }, { "da": "Isen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "flyder", "en": "The boat floats on the water.", "ru": "Лодка плавает на воде.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "flyder", "en": "The log floats on the water.", "ru": "Бревно плавает на воде.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "flyder", "en": "The ice floats on the water.", "ru": "Лёд плавает на воде.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "flyde",
+  "kind": "word",
+  "sense_id": "f7ff0545-ae34-576a-8964-af7e70a0afa5",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} ud over bordet.",
+  "slots": { "subject": [ { "da": "Mælken" }, { "da": "Vandet" }, { "da": "Kaffen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "flyder", "en": "The milk spills over the table.", "ru": "Молоко течёт по столу.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "flyder", "en": "The water spills over the table.", "ru": "Вода течёт по столу.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "flyder", "en": "The coffee spills over the table.", "ru": "Кофе течёт по столу.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "krydse",
+  "kind": "word",
+  "sense_id": "e1d51785-abe2-508a-a655-cb0a25722e49",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} vejen forsigtigt.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Børnene" }, { "da": "Han" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "krydser", "en": "She crosses the road carefully.", "ru": "Она осторожно переходит дорогу.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "krydser", "en": "The children cross the road carefully.", "ru": "Дети осторожно переходят дорогу.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "krydser", "en": "He crosses the road carefully.", "ru": "Он осторожно переходит дорогу.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "krydse",
+  "kind": "word",
+  "sense_id": "e9d5b5e4-1bf7-542a-91d9-2faff1c53f4d",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} det rigtige svar på skemaet.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Eleven" }, { "da": "Jeg" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "krydser", "en": "She ticks the correct answer on the form.", "ru": "Она отмечает крестиком правильный ответ в бланке.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "krydser", "en": "The student ticks the correct answer on the form.", "ru": "Ученик отмечает крестиком правильный ответ в бланке.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "krydser", "en": "I tick the correct answer on the form.", "ru": "Я отмечаю крестиком правильный ответ в бланке.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "oplæg",
+  "kind": "word",
+  "sense_id": "a97574f4-5009-55db-b0a8-e638575ba693",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "frame": "{subject} holder et {target} om klimaforandringer.",
+  "slots": { "subject": [ { "da": "Forskeren" }, { "da": "Hun" }, { "da": "Konsulenten" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "oplæg", "en": "The researcher gives a talk about climate change.", "ru": "Учёный делает доклад об изменении климата.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "oplæg", "en": "She gives a talk about climate change.", "ru": "Она делает доклад об изменении климата.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "oplæg", "en": "The consultant gives a talk about climate change.", "ru": "Консультант делает доклад об изменении климата.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "oplæg",
+  "kind": "word",
+  "sense_id": "3cd278b7-8600-579e-8e36-4e9ace503f0f",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} udarbejder et {target} til det nye projekt.",
+  "slots": { "subject": [ { "da": "Udvalget" }, { "da": "Direktionen" }, { "da": "Arbejdsgruppen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "oplæg", "en": "The committee draws up a proposal for the new project.", "ru": "Комитет разрабатывает предложение для нового проекта.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "oplæg", "en": "The management draws up a proposal for the new project.", "ru": "Руководство разрабатывает предложение для нового проекта.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "oplæg", "en": "The working group draws up a proposal for the new project.", "ru": "Рабочая группа разрабатывает предложение для нового проекта.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "sætning",
+  "kind": "word",
+  "sense_id": "ffdea72b-430f-5e1f-8aa0-2f23d7814259",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "frame": "{subject} skriver en lang {target} på tavlen.",
+  "slots": { "subject": [ { "da": "Læreren" }, { "da": "Eleven" }, { "da": "Hun" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "sætning", "en": "The teacher writes a long sentence on the board.", "ru": "Учитель пишет длинное предложение на доске.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "sætning", "en": "The student writes a long sentence on the board.", "ru": "Ученик пишет длинное предложение на доске.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "sætning", "en": "She writes a long sentence on the board.", "ru": "Она пишет длинное предложение на доске.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "kapital",
+  "kind": "word",
+  "sense_id": "230b18e4-0ecd-59aa-9e6d-09205398db92",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} investerer sin {target} i aktier.",
+  "slots": { "subject": [ { "da": "Virksomheden" }, { "da": "Han" }, { "da": "Investoren" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "kapital", "en": "The company invests its capital in stocks.", "ru": "Компания инвестирует свой капитал в акции.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "kapital", "en": "He invests his capital in stocks.", "ru": "Он инвестирует свой капитал в акции.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "kapital", "en": "The investor invests his capital in stocks.", "ru": "Инвестор инвестирует свой капитал в акции.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "problematisk",
+  "kind": "word",
+  "sense_id": "48a2e29a-82bf-5198-9325-a9f7c3eb7a13",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": { "subject": [ { "da": "Situationen" }, { "da": "Forslaget" }, { "da": "Resultaterne" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "problematisk", "en": "The situation is problematic.", "ru": "Ситуация проблематична.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "problematisk", "en": "The proposal is problematic.", "ru": "Предложение проблематично.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "problematiske", "en": "The results are problematic.", "ru": "Результаты проблематичны.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "skift",
+  "kind": "word",
+  "sense_id": "2de3c73b-79f0-5a85-b1ac-2bef8a9c0f57",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} gennemgår et stort {target} i denne tid.",
+  "slots": { "subject": [ { "da": "Virksomheden" }, { "da": "Branchen" }, { "da": "Samfundet" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "skift", "en": "The company is undergoing a major change right now.", "ru": "Компания переживает большие перемены в это время.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "skift", "en": "The industry is undergoing a major change right now.", "ru": "Отрасль переживает большие перемены в это время.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "skift", "en": "Society is undergoing a major change right now.", "ru": "Общество переживает большие перемены в это время.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "skift",
+  "kind": "word",
+  "sense_id": "b464f377-08e7-5871-a187-44b50a8d68f4",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} starter sit {target} klokken ti.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "Portneren" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "skift", "en": "He starts his shift at ten o'clock.", "ru": "Он начинает свою смену в десять часов.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "skift", "en": "She starts her shift at ten o'clock.", "ru": "Она начинает свою смену в десять часов.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "skift", "en": "The janitor starts his shift at ten o'clock.", "ru": "Дворник начинает свою смену в десять часов.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "melodi",
+  "kind": "word",
+  "sense_id": "6ad2ff0f-42b2-5847-8c14-b2370bd0eaff",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} synger en kendt {target}.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Koret" }, { "da": "Bandet" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "melodi", "en": "She sings a well-known melody.", "ru": "Она поёт известную мелодию.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "melodi", "en": "The choir sings a well-known melody.", "ru": "Хор поёт известную мелодию.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "melodi", "en": "The band sings a well-known melody.", "ru": "Группа поёт известную мелодию.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "bånd",
+  "kind": "word",
+  "sense_id": "86033422-8502-50d7-a917-c481541274f6",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-meaning",
+  "frame": "{subject} binder pakken med et rødt {target}.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Ekspedienten" }, { "da": "Han" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "bånd", "en": "She ties the package with a red ribbon.", "ru": "Она перевязывает посылку красной лентой.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "bånd", "en": "The shop assistant ties the package with a red ribbon.", "ru": "Продавец перевязывает посылку красной лентой.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "bånd", "en": "He ties the package with a red ribbon.", "ru": "Он перевязывает посылку красной лентой.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "bånd",
+  "kind": "word",
+  "sense_id": "2ae74a91-5f95-5cd2-97e0-a7e04496fea7",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har et stærkt {target} til hinanden.",
+  "slots": { "subject": [ { "da": "Søskende" }, { "da": "De to venner" }, { "da": "Mor og datter" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "bånd", "en": "Siblings have a strong bond with each other.", "ru": "У братьев и сестёр крепкая связь друг с другом.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "bånd", "en": "The two friends have a strong bond with each other.", "ru": "У этих двух друзей крепкая связь друг с другом.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "bånd", "en": "Mother and daughter have a strong bond with each other.", "ru": "У матери и дочери крепкая связь друг с другом.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "færd",
+  "kind": "word",
+  "sense_id": "9b6b643b-93ed-509a-b075-1251919fc32b",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-meaning",
+  "frame": "{subject} beskriver deres lange {target} gennem landet.",
+  "slots": { "subject": [ { "da": "Bogen" }, { "da": "Dagbogen" }, { "da": "Filmen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "færd", "en": "The book describes their long journey through the country.", "ru": "Книга описывает их долгий путь через страну.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "færd", "en": "The diary describes their long journey through the country.", "ru": "Дневник описывает их долгий путь через страну.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "færd", "en": "The film describes their long journey through the country.", "ru": "Фильм описывает их долгий путь через страну.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "langsigtet",
+  "kind": "word",
+  "sense_id": "05ec097d-fd1d-56b2-a1ba-08b0509546c9",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} kræver en {target} plan.",
+  "slots": { "subject": [ { "da": "Projektet" }, { "da": "Løsningen" }, { "da": "Investeringen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "langsigtet", "en": "The project requires a long-term plan.", "ru": "Проект требует долгосрочного плана.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "langsigtet", "en": "The solution requires a long-term plan.", "ru": "Решение требует долгосрочного плана.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "langsigtet", "en": "The investment requires a long-term plan.", "ru": "Инвестиция требует долгосрочного плана.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "rask",
+  "kind": "word",
+  "sense_id": "354939de-07ce-520f-9d5f-bd3ffcd02d97",
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target} igen efter sygdommen.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Barnet" }, { "da": "De" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "rask", "en": "He is well again after the illness.", "ru": "Он снова здоров после болезни.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "raskt", "en": "The child is well again after the illness.", "ru": "Ребёнок снова здоров после болезни.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "raske", "en": "They are well again after the illness.", "ru": "Они снова здоровы после болезни.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "rask",
+  "kind": "word",
+  "sense_id": "697f10ad-d617-55c1-b379-68188fa8334e",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} tager en {target} gåtur hver morgen.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Han" }, { "da": "Bedstefar" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "rask", "en": "She takes a brisk walk every morning.", "ru": "Она совершает бодрую прогулку каждое утро.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "rask", "en": "He takes a brisk walk every morning.", "ru": "Он совершает бодрую прогулку каждое утро.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "rask", "en": "Grandpa takes a brisk walk every morning.", "ru": "Дедушка совершает бодрую прогулку каждое утро.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "forebygge",
+  "kind": "word",
+  "sense_id": "c76e659b-b7a1-5d5d-8bfc-d31c28513a7e",
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} sygdomme ved at vaske hænder.",
+  "slots": { "subject": [ { "da": "Man" }, { "da": "Sygeplejersken" }, { "da": "Vi" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "forebygger", "en": "People prevent illness by washing their hands.", "ru": "Люди предотвращают болезни, моя руки.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "forebygger", "en": "The nurse prevents illness by washing her hands.", "ru": "Медсестра предотвращает болезни, моя руки.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "forebygger", "en": "We prevent illness by washing our hands.", "ru": "Мы предотвращаем болезни, моя руки.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "hvile",
+  "kind": "word",
+  "sense_id": "8e1e3c60-db07-50f7-83b4-657134eb8b12",
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "reflexive",
+  "frame": "{subject} {target} sig efter den lange tur.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "De" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "hviler", "en": "He rests after the long trip.", "ru": "Он отдыхает после долгой поездки.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "hviler", "en": "She rests after the long trip.", "ru": "Она отдыхает после долгой поездки.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "hviler", "en": "They rest after the long trip.", "ru": "Они отдыхают после долгой поездки.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "arkitektur",
+  "kind": "word",
+  "sense_id": "c11f87d1-e42e-5db0-8dec-71d33251c8e7",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} studerer byens gamle {target}.",
+  "slots": { "subject": [ { "da": "Turisterne" }, { "da": "Hun" }, { "da": "De studerende" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "arkitektur", "en": "The tourists study the city's old architecture.", "ru": "Туристы изучают старую архитектуру города.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "arkitektur", "en": "She studies the city's old architecture.", "ru": "Она изучает старую архитектуру города.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "arkitektur", "en": "The students study the city's old architecture.", "ru": "Студенты изучают старую архитектуру города.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "skikkelse",
+  "kind": "word",
+  "sense_id": "94deb026-2c75-5100-b836-86ec51801879",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-meaning",
+  "frame": "{subject} ser en mørk {target} i horisonten.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Vagten" }, { "da": "Vi" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "skikkelse", "en": "She sees a dark figure on the horizon.", "ru": "Она видит тёмную фигуру на горизонте.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "skikkelse", "en": "The guard sees a dark figure on the horizon.", "ru": "Охранник видит тёмную фигуру на горизонте.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "skikkelse", "en": "We see a dark figure on the horizon.", "ru": "Мы видим тёмную фигуру на горизонте.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "pulje",
+  "kind": "word",
+  "sense_id": "492ed58b-6cd9-5510-a154-80ae08b35800",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "Kommunen opretter en ny {target} til {purpose}.",
+  "slots": { "purpose": [ { "da": "kulturprojekter" }, { "da": "idrætsforeninger" }, { "da": "socialt arbejde" } ] },
+  "variants": [
+   { "slots": { "purpose": 0 }, "target": "pulje", "en": "The municipality sets up a new fund for cultural projects.", "ru": "Муниципалитет создаёт новый фонд для культурных проектов.", "orders": [] },
+   { "slots": { "purpose": 1 }, "target": "pulje", "en": "The municipality sets up a new fund for sports clubs.", "ru": "Муниципалитет создаёт новый фонд для спортивных клубов.", "orders": [] },
+   { "slots": { "purpose": 2 }, "target": "pulje", "en": "The municipality sets up a new fund for social work.", "ru": "Муниципалитет создаёт новый фонд для социальной работы.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "færge",
+  "kind": "word",
+  "sense_id": "0113704b-8578-5f99-bd83-a037cab9795f",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-meaning",
+  "frame": "{subject} sejler med {target} til øen.",
+  "slots": { "subject": [ { "da": "Vi" }, { "da": "Turisterne" }, { "da": "Familien" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "færgen", "en": "We sail on the ferry to the island.", "ru": "Мы плывём на пароме на остров.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "færgen", "en": "The tourists sail on the ferry to the island.", "ru": "Туристы плывут на пароме на остров.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "færgen", "en": "The family sails on the ferry to the island.", "ru": "Семья плывёт на пароме на остров.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "besejre",
+  "kind": "word",
+  "sense_id": "c7cde64b-ba5c-5beb-bca9-52af1b169b18",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} modstanderen i finalen.",
+  "slots": { "subject": [ { "da": "Holdet" }, { "da": "Landsholdet" }, { "da": "Hun" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "besejrer", "en": "The team defeats the opponent in the final.", "ru": "Команда побеждает соперника в финале.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "besejrer", "en": "The national team defeats the opponent in the final.", "ru": "Сборная побеждает соперника в финале.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "besejrer", "en": "She defeats the opponent in the final.", "ru": "Она побеждает соперника в финале.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "hjemland",
+  "kind": "word",
+  "sense_id": "9c507d16-369f-5ed8-b070-b56f53b49caa",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} vender tilbage til sit {target}.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "Flygtningen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "hjemland", "en": "He returns to his home country.", "ru": "Он возвращается на родину.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "hjemland", "en": "She returns to her home country.", "ru": "Она возвращается на родину.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "hjemland", "en": "The refugee returns to his home country.", "ru": "Беженец возвращается на родину.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "personlighed",
+  "kind": "word",
+  "sense_id": "6bf1975e-00fb-55b8-95cb-b1eb7fcbd5c1",
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "noun-meaning",
+  "frame": "{subject} er en kendt {target} i dansk tv.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Han" }, { "da": "Værten" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "personlighed", "en": "She is a well-known personality on Danish TV.", "ru": "Она известная личность на датском телевидении.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "personlighed", "en": "He is a well-known personality on Danish TV.", "ru": "Он известная личность на датском телевидении.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "personlighed", "en": "The host is a well-known personality on Danish TV.", "ru": "Ведущий — известная личность на датском телевидении.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "personlighed",
+  "kind": "word",
+  "sense_id": "6ecb8cbf-db78-52e8-a0a8-10f5cd54c011",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har en stærk {target}.",
+  "slots": { "subject": [ { "da": "Hun" }, { "da": "Min chef" }, { "da": "Han" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "personlighed", "en": "She has a strong personality.", "ru": "У неё сильный характер.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "personlighed", "en": "My boss has a strong personality.", "ru": "У моего начальника сильный характер.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "personlighed", "en": "He has a strong personality.", "ru": "У него сильный характер.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "inflation",
+  "kind": "word",
+  "sense_id": "f4b25f88-81f4-52eb-ae9f-5b74be0ecbe5",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} presser {target} op.",
+  "slots": { "subject": [ { "da": "Krigen" }, { "da": "Oliepriserne" }, { "da": "Krisen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "inflationen", "en": "The war pushes inflation up.", "ru": "Война разгоняет инфляцию.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "inflationen", "en": "Oil prices push inflation up.", "ru": "Цены на нефть разгоняют инфляцию.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "inflationen", "en": "The crisis pushes inflation up.", "ru": "Кризис разгоняет инфляцию.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "finansiering",
+  "kind": "word",
+  "sense_id": "9b346004-fc22-55c1-af6e-639b57064498",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} søger {target} til det nye byggeri.",
+  "slots": { "subject": [ { "da": "Kommunen" }, { "da": "Virksomheden" }, { "da": "Foreningen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "finansiering", "en": "The municipality seeks financing for the new building.", "ru": "Муниципалитет ищет финансирование для нового здания.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "finansiering", "en": "The company seeks financing for the new building.", "ru": "Компания ищет финансирование для нового здания.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "finansiering", "en": "The association seeks financing for the new building.", "ru": "Ассоциация ищет финансирование для нового здания.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "ansættelse",
+  "kind": "word",
+  "sense_id": "9a67e2ee-793e-5099-b881-c8103b6f90a5",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} fejrer sin nye {target}.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "Min ven" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "ansættelse", "en": "He celebrates his new employment.", "ru": "Он отмечает своё новое трудоустройство.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "ansættelse", "en": "She celebrates her new employment.", "ru": "Она отмечает своё новое трудоустройство.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "ansættelse", "en": "My friend celebrates his new employment.", "ru": "Мой друг отмечает своё новое трудоустройство.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "mælk",
+  "kind": "word",
+  "sense_id": "7708a0ad-1962-5e03-80c3-22aba1615208",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "noun-meaning",
+  "frame": "{subject} hælder {target} i kaffen.",
+  "slots": { "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "Jeg" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "mælken", "en": "He pours the milk into the coffee.", "ru": "Он наливает молоко в кофе.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "mælken", "en": "She pours the milk into the coffee.", "ru": "Она наливает молоко в кофе.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "mælken", "en": "I pour the milk into the coffee.", "ru": "Я наливаю молоко в кофе.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "brød",
+  "kind": "word",
+  "sense_id": "429fe4d4-273a-5b00-9706-98bfe6a80b34",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "noun-meaning",
+  "frame": "{subject} bager frisk {target} hver morgen.",
+  "slots": { "subject": [ { "da": "Bageren" }, { "da": "Hun" }, { "da": "Min mor" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "brød", "en": "The baker bakes fresh bread every morning.", "ru": "Пекарь печёт свежий хлеб каждое утро.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "brød", "en": "She bakes fresh bread every morning.", "ru": "Она печёт свежий хлеб каждое утро.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "brød", "en": "My mother bakes fresh bread every morning.", "ru": "Моя мама печёт свежий хлеб каждое утро.", "orders": [] }
+  ]
+ },
+ {
+  "lemma": "uro",
+  "kind": "word",
+  "sense_id": "a6a6ac69-e292-52a8-9ae5-b008506203be",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} skaber {target} i landet.",
+  "slots": { "subject": [ { "da": "Krigen" }, { "da": "Valget" }, { "da": "Krisen" } ] },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "uro", "en": "The war creates unrest in the country.", "ru": "Война порождает волнения в стране.", "orders": [] },
+   { "slots": { "subject": 1 }, "target": "uro", "en": "The election creates unrest in the country.", "ru": "Выборы порождают волнения в стране.", "orders": [] },
+   { "slots": { "subject": 2 }, "target": "uro", "en": "The crisis creates unrest in the country.", "ru": "Кризис порождает волнения в стране.", "orders": [] }
+  ]
+ }
+]
