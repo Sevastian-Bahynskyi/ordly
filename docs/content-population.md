@@ -21,10 +21,11 @@ Work is committed in chunks on the working branch. To continue after an interrup
 | C1 | coverage benchmark: frozen unseen set, A1–B2 matrix, `scripts/coverage-report.ts` | done; report regenerated at the end |
 | C2 | English wording for every catalog sense (`catalog/locale-en.json`, 3,872 + 57 pilot) | done; loaded (5,990 en = 5,990 ru senses after C7) |
 | C3 | sentence-family contract, gate, tables (migrations `20260924213748`, `20260924215731`, applied) | done |
-| C4 | family pilot round 1 audited **67.9% — STOP** (`catalog/families/audit/tally-925.md`); contract rewritten; round 2 (batches 0020, 0060, 0085) writing, then full audit | in progress |
-| C5 | database load: repairs, English wording, expansion entries/senses/forms loaded 2026-09-25; families pending the round-2 audit | in progress |
+| C4 | families: round 1 audited 67.9% (seed 925), round 2 80.7% (seed 926) — both STOP. Round 3 adds an independent reviewer (`catalog/families/REVIEW.md`) after the writer: 249/250 clean (seed 927), 8 batches approved, 289 families / 867 sentences loaded | done; scale-up in C9 |
+| C5 | database load: repairs, English wording, expansion entries/senses/forms, approved families (snapshot `e5c2ac5e`) | done; re-run per family wave |
 | C6 | Practice uses catalog contexts, with accepted gap answers | done |
 | C7 | expansion wave 1 (1,322 headwords, ranks ≤ 4,300) and wave 2 (781, ranks 4,301–5,100): 1,995 accepted (108 quarantined), 2,061 senses in Russian and English, 8,792 COR forms for 1,943 words (52 have no COR paradigm) | done; loaded |
+| C9 | families for every remaining catalog batch (0004–0098) and the expansion (`catalog/expansion/families`, 52 batches): Sonnet writer → Opus reviewer → gate, one seeded audit per wave, `--approve`, merge, load | in progress |
 | C8 | final audit, published report, docs, review | pending |
 
 **Interrupted 2026-09-24 by the weekly usage limit** and resumed after it reset. To resume
@@ -55,6 +56,17 @@ Found by the English pass (flags) and applied to `catalog/out`, the English file
 - `udvalg` split: sense 1 "комитет", new sense 2 "выбор, ассортимент".
 - `udtalelse` sense 2 "произношение" removed (that is `udtale`); `sær` sense 2 "своеобразный" removed (inverts the meaning). Found by the family pilot audit.
 - Kept after review: `svenske` "зеленушка" (the second audit of issue #6 restored it deliberately).
+
+### Family pipeline (from round 3)
+
+1. `write-family-work.ts` → `work/batch-NNNN.json` (expansion: `--target catalog/expansion/families/work`).
+2. A writer produces `out/batch-NNNN.json` under `README.md` and runs the gate with `--only`.
+3. An independent reviewer applies `REVIEW.md` in place and logs every change in `review/batch-NNNN.json`.
+4. The gate again; then `check-family-batches.ts --only a,b,… --candidates <pool>` and
+   `audit-families.ts --sample --seed N --published <pool>`; an auditor fills `verdicts-N.json`.
+5. `--tally N`; every finding repaired in the reply; `--approve N` pins each sampled reply's sha1
+   in `audit/passed.json`. `--merge` publishes approved replies only; an edited reply drops out
+   until an audit covers it again.
 
 ## Baseline (2026-09-24)
 
