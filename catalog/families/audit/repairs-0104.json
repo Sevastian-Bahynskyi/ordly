@@ -1,0 +1,69 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batch": "batch-0104",
+ "scope": "all 93 sentences",
+ "regenerated": {
+  "hus": "Audit: \"Soveværelset ligger i huset\" says nothing (every room is in the house). Write natural everyday sentences with \"huset\" as a real object or place: \"Huset har en stor have.\", \"Vi maler huset.\"",
+  "så": "Audit: \"tager hun jakke på\" is wrong — it needs an article or definite form (\"tager jakken på\"). Keep \"og så\" + inversion with complete, correct clauses."
+ },
+ "dropped_variants": [
+  {
+   "lemma": "tage",
+   "danish": "Tag et tæppe med, for det regner."
+  },
+  {
+   "lemma": "lukke",
+   "danish": "Mads, luk vinduet! Det trækker."
+  },
+  {
+   "lemma": "nu",
+   "danish": "Nu drikker jeg."
+  }
+ ],
+ "translation_corrections": [
+  {
+   "danish": "Hvorfor fortalte han det?",
+   "before": {
+    "en": "Why did he tell that?",
+    "ru": "Почему он это сказал?"
+   },
+   "after": {
+    "en": "Why did he tell them that?",
+    "ru": "Почему он это сказал?"
+   }
+  },
+  {
+   "danish": "Vi har en større reol i stuen.",
+   "before": {
+    "en": "We have a larger bookcase in the living room.",
+    "ru": "У нас в гостиной есть большая книжная шкафа."
+   },
+   "after": {
+    "en": "We have a larger bookcase in the living room.",
+    "ru": "У нас в гостиной стоит книжный шкаф побольше."
+   }
+  },
+  {
+   "danish": "Toget er hurtigere end bilen.",
+   "before": {
+    "en": "The train is faster than the car.",
+    "ru": "Поезд быстрее вагона."
+   },
+   "after": {
+    "en": "The train is faster than the car.",
+    "ru": "Поезд быстрее машины."
+   }
+  },
+  {
+   "danish": "Hvad drikker I til frokost?",
+   "before": {
+    "en": "What do you drink for lunch?",
+    "ru": "Что ты пьёшь на обед?"
+   },
+   "after": {
+    "en": "What do you drink for lunch?",
+    "ru": "Что вы пьёте на обед?"
+   }
+  }
+ ]
+}

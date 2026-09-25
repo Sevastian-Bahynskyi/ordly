@@ -1,0 +1,809 @@
+[
+ {
+  "lemma": "bil",
+  "kind": "word",
+  "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 224,
+  "min_level": "A1",
+  "ru": "машина, автомобиль",
+  "en": "car",
+  "forms": [
+   "bil",
+   "bilen",
+   "bilens",
+   "biler",
+   "bilerne",
+   "bilernes",
+   "bilers",
+   "bils"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "transport",
+   "grammar": "noun-definite"
+  },
+  "note": "An independent reviewer rejected the previous family: 'holder ved bilen' is unnatural Danish for 'is holding the car' (would be 'holder bilen' or 'holder fast i bilen'); the intended meaning is unclear and does not demonstrate 'bilen' as a natural definite object. English 'is holding the car' is unnatural (a person doesn't typically 'hold' a car); Russian 'держит машину' is similarly odd. The sentence fails to show a natural use of the definite form. 'holder ved bilen' is unnatural Danish for 'will stop by the car' (would be 'holder ind ved bilen' or 'stopper ved bilen'); the English 'will stop by the car' is unnatural (a taxi driver 'stops by' a place, not a car); Russian 'заедет у машины' is unnatural (would be 'остановится у машины' or 'подъедет к машине'). The sentence does not naturally demonstrate the definite form. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hus",
+  "kind": "word",
+  "sense_id": "6277cc53-fe22-57eb-90ce-d7ad5136ae11",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 226,
+  "min_level": "A1",
+  "ru": "дом",
+  "en": "house",
+  "forms": [
+   "hus",
+   "hus'",
+   "huse",
+   "husene",
+   "husenes",
+   "huses",
+   "huset",
+   "husets"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "home",
+   "grammar": "noun-definite"
+  },
+  "note": "Audit: \"Soveværelset ligger i huset\" says nothing (every room is in the house). Write natural everyday sentences with \"huset\" as a real object or place: \"Huset har en stor have.\", \"Vi maler huset.\""
+ },
+ {
+  "lemma": "barn",
+  "kind": "word",
+  "sense_id": "2342dc63-7bcb-5bef-a4ad-31a93c1a0e24",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 87,
+  "min_level": "A1",
+  "ru": "ребёнок",
+  "en": "child",
+  "forms": [
+   "barn",
+   "barnet",
+   "barnets",
+   "barns",
+   "børn",
+   "børnene",
+   "børnenes",
+   "børns"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "family",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "bog",
+  "kind": "word",
+  "sense_id": "7211953d-1b12-5385-a56e-f613e5cbcfd9",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 180,
+  "min_level": "A1",
+  "ru": "книга",
+  "en": "book",
+  "forms": [
+   "bog",
+   "bogen",
+   "bogene",
+   "bogenes",
+   "bogens",
+   "bogs",
+   "bøger",
+   "bøgerne",
+   "bøgernes",
+   "bøgers"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "leisure",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "stor",
+  "kind": "word",
+  "sense_id": "e5b5d2d0-5993-5f52-8f5d-adc9dd63f12e",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 37,
+  "min_level": "A1",
+  "ru": "большой",
+  "en": "big, large",
+  "forms": [
+   "stor",
+   "store",
+   "stort",
+   "større",
+   "størst",
+   "største"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "adjective-agreement"
+  },
+  "note": "An independent reviewer rejected the previous family: The English 'great' and Russian 'отличная' mean 'excellent/wonderful', not 'big/large'. The Danish 'stor' in this context means 'large', so the translations are unfaithful and the sense is misrepresented. Write a new family that avoids this."
+ },
+ {
+  "lemma": "ny",
+  "kind": "word",
+  "sense_id": "f89b98e0-6fbd-5323-b4ee-ceabaab99ca0",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 48,
+  "min_level": "A1",
+  "ru": "новый",
+  "en": "new",
+  "forms": [
+   "ny",
+   "nye",
+   "nyere",
+   "nyest",
+   "nyeste",
+   "nyt"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "shopping",
+   "grammar": "adjective-agreement"
+  }
+ },
+ {
+  "lemma": "god",
+  "kind": "word",
+  "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 35,
+  "min_level": "A1",
+  "ru": "хороший",
+  "en": "good",
+  "forms": [
+   "bedre",
+   "bedst",
+   "bedste",
+   "god",
+   "gode",
+   "godt"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "food-drink",
+   "grammar": "comparison"
+  },
+  "note": "Use the comparative or superlative form of god (bedre, bedst) in every variant."
+ },
+ {
+  "lemma": "lang",
+  "kind": "word",
+  "sense_id": "220a9e42-5d62-57d7-9c48-0e1a32595fa7",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 80,
+  "min_level": "A1",
+  "ru": "длинный, долгий",
+  "en": "long",
+  "forms": [
+   "lang",
+   "lange",
+   "langt",
+   "længere",
+   "længst",
+   "længste"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "comparison"
+  },
+  "note": "Use the comparative or superlative form (længere, længst) in every variant."
+ },
+ {
+  "lemma": "hurtig",
+  "kind": "word",
+  "sense_id": "39b1966a-a4d6-5e4c-b7f7-d7b651fa6ca7",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 230,
+  "min_level": "A1",
+  "ru": "быстрый",
+  "en": "fast, quick",
+  "forms": [
+   "hurtig",
+   "hurtige",
+   "hurtigere",
+   "hurtigst",
+   "hurtigste",
+   "hurtigt"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "comparison"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence uses 'hurtigst end' which is ungrammatical; the superlative 'hurtigst' cannot be used with 'end'. The correct comparative form is 'hurtigere end'. The English translation 'fastest than' is also ungrammatical and the Russian 'быстрее' is comparative, not superlative. This teaches a wrong model for the grammar cell 'comparison'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "gammel",
+  "kind": "word",
+  "sense_id": "4fb01daa-bd3b-5b35-a4b4-c3c8e41d6f24",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 111,
+  "min_level": "A1",
+  "ru": "старый",
+  "en": "old",
+  "forms": [
+   "gamle",
+   "gamles",
+   "gammel",
+   "gammels",
+   "gammelt",
+   "ældre",
+   "ældst",
+   "ældste"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "comparison"
+  }
+ },
+ {
+  "lemma": "svær",
+  "kind": "word",
+  "sense_id": "c0889b28-2ba6-5760-8e43-eece47ae1219",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 187,
+  "min_level": "A1",
+  "ru": "трудный, сложный",
+  "en": "difficult, hard",
+  "forms": [
+   "svær",
+   "svære",
+   "sværere",
+   "sværest",
+   "sværeste",
+   "svært"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "comparison"
+  }
+ },
+ {
+  "lemma": "bo",
+  "kind": "word",
+  "sense_id": "a69f46f0-d204-59bb-9076-f42da470732d",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 309,
+  "min_level": "A1",
+  "ru": "жить, проживать",
+  "en": "to live, to reside",
+  "forms": [
+   "bo",
+   "boede",
+   "boedes",
+   "boende",
+   "boet",
+   "bor"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "personal-info",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "læse",
+  "kind": "word",
+  "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 282,
+  "min_level": "A1",
+  "ru": "читать",
+  "en": "to read",
+  "forms": [
+   "læs",
+   "læse",
+   "læsende",
+   "læser",
+   "læses",
+   "læst",
+   "læste",
+   "læstes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "leisure",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "købe",
+  "kind": "word",
+  "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 239,
+  "min_level": "A1",
+  "ru": "покупать",
+  "en": "to buy",
+  "forms": [
+   "køb",
+   "købe",
+   "købende",
+   "køber",
+   "købes",
+   "købt",
+   "købte",
+   "købtes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "shopping",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "rejse",
+  "kind": "word",
+  "sense_id": "2f0b260b-3ef7-527d-856f-8c3c60032dc0",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 387,
+  "min_level": "A1",
+  "ru": "путешествовать",
+  "en": "to travel",
+  "forms": [
+   "rejs",
+   "rejse",
+   "rejsende",
+   "rejser",
+   "rejses",
+   "rejst",
+   "rejste",
+   "rejstes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "kunne",
+  "kind": "word",
+  "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 15,
+  "min_level": "A1",
+  "ru": "мочь, уметь",
+  "en": "can, to be able to",
+  "forms": [
+   "ka'",
+   "kan",
+   "ku'",
+   "kunne",
+   "kunnede",
+   "kunnet"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "weather-nature",
+   "grammar": "modal-verbs"
+  }
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 72,
+  "min_level": "A1",
+  "ru": "мог, имел разрешение",
+  "en": "was allowed to, could",
+  "forms": [
+   "må",
+   "måtte",
+   "måttede",
+   "måttet"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "modal-verbs"
+  }
+ },
+ {
+  "lemma": "komme",
+  "kind": "word",
+  "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 41,
+  "min_level": "A1",
+  "ru": "приходить, приезжать",
+  "en": "to come, to arrive",
+  "forms": [
+   "kom",
+   "komme",
+   "kommede",
+   "kommende",
+   "kommer",
+   "kommes",
+   "kommet"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "social",
+   "grammar": "imperative"
+  }
+ },
+ {
+  "lemma": "tage",
+  "kind": "word",
+  "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 62,
+  "min_level": "A1",
+  "ru": "брать",
+  "en": "to take",
+  "forms": [
+   "ta'",
+   "ta'r",
+   "tag",
+   "tage",
+   "tagen",
+   "tagende",
+   "tager",
+   "tages",
+   "taget",
+   "tagne",
+   "tog"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "weather-nature",
+   "grammar": "imperative"
+  },
+  "note": "Imperative of tage (tag). Keep any particle verb unsplit only if natural; prefer \"Tag en paraply med\"-type sentences only if the particle is after the object as Danish requires."
+ },
+ {
+  "lemma": "hjælpe",
+  "kind": "word",
+  "sense_id": "025b4d7d-56b0-584c-acd7-a9ae2d460993",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 314,
+  "min_level": "A1",
+  "ru": "помогать",
+  "en": "to help",
+  "forms": [
+   "hjalp",
+   "hjulpen",
+   "hjulpet",
+   "hjulpne",
+   "hjælp",
+   "hjælpe",
+   "hjælpende",
+   "hjælper",
+   "hjælpes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "imperative"
+  }
+ },
+ {
+  "lemma": "vente",
+  "kind": "word",
+  "sense_id": "328e9030-a486-5b2f-a2fe-a7061f09f9a2",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 275,
+  "min_level": "A1",
+  "ru": "ждать",
+  "en": "to wait",
+  "forms": [
+   "vent",
+   "vente",
+   "ventede",
+   "ventedes",
+   "ventende",
+   "venter",
+   "ventes",
+   "ventet"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "imperative"
+  }
+ },
+ {
+  "lemma": "lukke",
+  "kind": "word",
+  "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 399,
+  "min_level": "A1",
+  "ru": "закрывать",
+  "en": "to close",
+  "forms": [
+   "luk",
+   "lukke",
+   "lukkede",
+   "lukkedes",
+   "lukkende",
+   "lukker",
+   "lukkes",
+   "lukket"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "imperative"
+  }
+ },
+ {
+  "lemma": "nu",
+  "kind": "word",
+  "sense_id": "49239e18-c170-5e75-99bc-7af495e7b87e",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 49,
+  "min_level": "A1",
+  "ru": "сейчас",
+  "en": "now",
+  "forms": [
+   "nu"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "daily-routine",
+   "grammar": "word-order-v2"
+  },
+  "note": "Front nu and invert: \"Nu spiser vi.\""
+ },
+ {
+  "lemma": "her",
+  "kind": "word",
+  "sense_id": "cb0aed16-4840-54c8-a959-e4e4e2fbee26",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 64,
+  "min_level": "A1",
+  "ru": "здесь",
+  "en": "here",
+  "forms": [
+   "her"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "personal-info",
+   "grammar": "word-order-v2"
+  },
+  "note": "Front her and invert: \"Her bor jeg.\""
+ },
+ {
+  "lemma": "derfor",
+  "kind": "word",
+  "sense_id": "1449948e-71ef-595a-a72f-5ddf8e841cfd",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 90,
+  "min_level": "A1",
+  "ru": "поэтому",
+  "en": "therefore, that is why",
+  "forms": [
+   "derfor"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "work",
+   "grammar": "word-order-v2"
+  },
+  "note": "An independent reviewer rejected the previous family: Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor blev mødet aflyst.' Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor sendte chefen en mail.' Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor tog kollegaen en fridag.' Write a new family that avoids this."
+ },
+ {
+  "lemma": "så",
+  "kind": "word",
+  "sense_id": "4b9f4952-be71-5332-8f08-819327485fca",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 27,
+  "min_level": "A1",
+  "ru": "потом, затем",
+  "en": "then (next)",
+  "forms": [
+   "så"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "word-order-v2"
+  },
+  "note": "Audit: \"tager hun jakke på\" is wrong — it needs an article or definite form (\"tager jakken på\"). Keep \"og så\" + inversion with complete, correct clauses."
+ },
+ {
+  "lemma": "måske",
+  "kind": "word",
+  "sense_id": "ebb68a7a-7e1a-57a9-8ce6-b38e8e03fc8f",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 137,
+  "min_level": "A1",
+  "ru": "может быть",
+  "en": "maybe, perhaps",
+  "forms": [
+   "måske"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "word-order-v2"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish 'Måske kommer solen i morgen' is unnatural for describing the sun appearing; a native speaker would say 'Måske skinner solen i morgen' or 'Måske kommer solen frem i morgen'. The English 'Maybe the sun will come tomorrow' is a calque and unnatural; it should be 'Maybe the sun will come out tomorrow'. The Russian 'Может, завтра взойдёт солнце' is unnatural in this context; 'взойдёт' implies sunrise, not just appearing from behind clouds. A more natural rendering is 'Может, завтра выглянет солнце'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hvad",
+  "kind": "word",
+  "sense_id": "c3ccf28b-740b-510b-8a17-576fe64430f1",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 74,
+  "min_level": "A1",
+  "ru": "что",
+  "en": "what",
+  "forms": [
+   "hva'",
+   "hvad"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "food-drink",
+   "grammar": "questions"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence 'Spiser du hvad til aftensmad?' is ungrammatical and unnatural. In Danish, the question word 'hvad' must be placed at the beginning of the sentence (V2 rule for questions). The correct form is 'Hvad spiser du til aftensmad?'. The English translation 'Do you eat what for dinner?' is a direct calque of the incorrect Danish and is unnatural; it should be 'What do you eat for dinner?'. The Russian translation 'Что ты ешь на ужин?' is natural but translates the corrected, not the given, Danish. The sentence as given is a misleading model for learners. The Danish sentence 'Laver I hvad til aftensmad?' is ungrammatical and unnatural. The question word 'hvad' must be fronted. The correct form is 'Hvad laver I til aftensmad?'. The English translation 'Do you make what for dinner?' is a calque and unnatural; it should be 'What are you making for dinner?' or 'What do you make for dinner?'. The Russian translation 'Что ты готовишь на ужин?' uses the singular 'ты' instead of the plural 'вы' (for 'I'), which is a person mismatch. The Danish sentence 'Vil børnene have hvad til aftensmad?' is ungrammatical and unnatural. The question word 'hvad' must be fronted. The correct form is 'Hvad vil børnene have til aftensmad?'. The English translation 'Do the kids want what for dinner?' is a calque and unnatural; it should be 'What do the kids want for dinner?'. The Russian translation 'Дети хотят что на ужин?' is a calque and unnatural; it should be 'Что дети хотят на ужин?'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hvordan",
+  "kind": "word",
+  "sense_id": "3e90885c-306a-56e6-80b5-d3462f4e3452",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 133,
+  "min_level": "A1",
+  "ru": "как",
+  "en": "how",
+  "forms": [
+   "hvordan"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "questions"
+  }
+ },
+ {
+  "lemma": "hvornår",
+  "kind": "word",
+  "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 1049,
+  "min_level": "A2",
+  "ru": "когда",
+  "en": "when",
+  "forms": [
+   "hvornår"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "services",
+   "grammar": "questions"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish 'Hvornår lukker bussen?' is unnatural because a bus does not 'close'; a native speaker would say 'Hvornår går den sidste bus?' or similar. The English 'When does the bus close?' is a calque and unnatural. The Russian 'Когда закрывается автобус?' is also unnatural. The sentence does not demonstrate the meaning of 'hvornår' in a natural service context. Danish 'Hvornår ankommer posthuset?' is unnatural because a post office does not 'arrive'; a native speaker would say 'Hvornår åbner posthuset?' or 'Hvornår kommer posten?'. The English 'What time does the post office arrive?' is a calque and unnatural. The Russian 'Во сколько приезжает почтовое отделение?' is also unnatural. The sentence does not demonstrate the meaning of 'hvornår' in a natural service context. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hvorfor",
+  "kind": "word",
+  "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 294,
+  "min_level": "A1",
+  "ru": "почему",
+  "en": "why",
+  "forms": [
+   "hvorfor"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "social",
+   "grammar": "questions"
+  }
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 193,
+  "min_level": "A1",
+  "ru": "никогда",
+  "en": "never",
+  "forms": [
+   "aldrig"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "food-drink",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 13,
+  "min_level": "A1",
+  "ru": "частица перед инфинитивом глагола (не переводится отдельно)",
+  "en": "to (before a verb's infinitive)",
+  "forms": [
+   "at"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "leisure",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "prøve",
+  "kind": "word",
+  "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 398,
+  "min_level": "A1",
+  "ru": "пробовать, пытаться",
+  "en": "to try",
+  "forms": [
+   "prøv",
+   "prøve",
+   "prøvede",
+   "prøvedes",
+   "prøvende",
+   "prøver",
+   "prøves",
+   "prøvet"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "food-drink",
+   "grammar": "infinitive"
+  }
+ }
+]

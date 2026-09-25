@@ -17,7 +17,7 @@ import { existsSync } from 'node:fs'
 import { deepseekJson, spendLine, translate, translationFidelityOk, usage } from './azure-corpus'
 import { readFile, writeFile } from 'node:fs/promises'
 import { normalizeSentence, variantDanish, type FamilyWorkSense } from '../lib/catalog-families'
-import { emptySlotsNeedVaryingTarget, finitePhraseAfterFrontedAdverbial, frontedSubordinateNeedsComma, infinitiveAfterAtOrModal, subjectPronounAfterPreposition, ordersUseSameWords, slotsDeclaredInFrame, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
+import { adverbBeforeVerbInMainClause, emptySlotsNeedVaryingTarget, finitePhraseAfterFrontedAdverbial, frontedSubordinateNeedsComma, infinitiveAfterAtOrModal, subjectPronounAfterPreposition, ordersUseSameWords, slotsDeclaredInFrame, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
 import { countPhraseOccurrences } from '../lib/catalog-phrases'
 import { parseFullForms } from '../lib/ddo-fullform'
 import { findMisspellings } from '../lib/spelling'
@@ -262,7 +262,7 @@ for (const row of work) {
       occurrenceErrors.push(...targetMustOccurOnce(danish, variant.target))
       occurrenceErrors.push(...ordersUseSameWords(danish, variant.orders))
       if (row.pos === 'verb') occurrenceErrors.push(...infinitiveAfterAtOrModal(danish, variant.target, row.lemma.split(' ')[0]), ...finitePhraseAfterFrontedAdverbial(danish, variant.target, row.lemma.split(' ')[0]))
-      occurrenceErrors.push(...subjectPronounAfterPreposition(danish))
+      occurrenceErrors.push(...subjectPronounAfterPreposition(danish), ...adverbBeforeVerbInMainClause(danish))
       // A multi-word preposition with nothing after it is the one-word adverb (`uden for byen`, but
       // `vi stod udenfor`): the sense being taught is the preposition, so it needs its complement.
       if (row.kind === 'phrase' && row.pos === 'preposition' && new RegExp(`${variant.target.replace(/\s+/gu, '\\s+')}\\s*[.!?,]`, 'iu').test(danish)) occurrenceErrors.push(`"${variant.target}" is a preposition here and must be followed by its complement (uden for byen) — with nothing after it, it is the adverb, spelled as one word`)
@@ -282,6 +282,7 @@ for (const row of work) {
       ...mixedSFormConstruction(reply.variants),
       ...invalidRequiresTarget(reply.slots),
       ...slotsDeclaredInFrame(reply.frame, reply.slots),
+      ...((reply.frame.match(/\{target\}/gu) || []).length === 1 ? [] : ['the frame must contain {target} exactly once — the word being taught is always spelled {target}, never written out or repeated']),
       ...lemmaNotDuplicatedInFrame(row.lemma, reply.frame),
       ...occurrenceErrors,
       ...spellingErrors,

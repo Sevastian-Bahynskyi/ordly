@@ -1,0 +1,1719 @@
+[
+ {
+  "sense_id": "2342dc63-7bcb-5bef-a4ad-31a93c1a0e24",
+  "lemma": "barn",
+  "target": {
+   "level": "A1",
+   "situation": "family",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "bog",
+  "kind": "word",
+  "sense_id": "7211953d-1b12-5385-a56e-f613e5cbcfd9",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "noun-plural",
+  "frame": "Jeg læser {target} om aftenen.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "bøger",
+    "en": "I read books in the evenings.",
+    "ru": "Я читаю книги по вечерам."
+   },
+   {
+    "slots": {},
+    "target": "bøgerne",
+    "orders": [
+     "Om aftenen læser jeg bøgerne."
+    ],
+    "en": "I read the books in the evenings.",
+    "ru": "Я читаю эти книги по вечерам."
+   }
+  ]
+ },
+ {
+  "lemma": "ny",
+  "kind": "word",
+  "sense_id": "f89b98e0-6fbd-5323-b4ee-ceabaab99ca0",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "adjective-agreement",
+  "frame": "Jeg købte en {target} {item} i går.",
+  "slots": {
+   "item": [
+    {
+     "da": "kjole"
+    },
+    {
+     "da": "jakke"
+    },
+    {
+     "da": "taske"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "item": 0
+    },
+    "target": "ny",
+    "en": "I bought a new dress yesterday.",
+    "ru": "Вчера я купила новое платье."
+   },
+   {
+    "slots": {
+     "item": 1
+    },
+    "target": "ny",
+    "en": "I bought a new jacket yesterday.",
+    "ru": "Вчера я купил новую куртку."
+   },
+   {
+    "slots": {
+     "item": 2
+    },
+    "target": "ny",
+    "en": "I bought a new bag yesterday.",
+    "ru": "Вчера я купил новую сумку."
+   }
+  ]
+ },
+ {
+  "lemma": "god",
+  "kind": "word",
+  "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "comparison",
+  "frame": "Jeg synes, {subject} smager {target} end {comparison}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "friskpresset juice"
+    },
+    {
+     "da": "hjemmebagt brød"
+    },
+    {
+     "da": "frisk fisk"
+    }
+   ],
+   "comparison": [
+    {
+     "da": "den fra supermarkedet"
+    },
+    {
+     "da": "det fra bageren"
+    },
+    {
+     "da": "den fra fryseren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "comparison": 0
+    },
+    "target": "bedre",
+    "en": "I think freshly squeezed juice tastes better than the one from the supermarket.",
+    "ru": "Мне кажется, свежевыжатый сок вкуснее, чем тот, что из супермаркета."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "comparison": 1
+    },
+    "target": "bedre",
+    "en": "I think homemade bread tastes better than the one from the bakery.",
+    "ru": "Мне кажется, домашний хлеб вкуснее, чем тот, что из пекарни."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "comparison": 2
+    },
+    "target": "bedre",
+    "en": "I think fresh fish tastes better than the one from the freezer.",
+    "ru": "Мне кажется, свежая рыба вкуснее, чем та, что из морозилки."
+   }
+  ]
+ },
+ {
+  "sense_id": "220a9e42-5d62-57d7-9c48-0e1a32595fa7",
+  "lemma": "lang",
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "comparison"
+  },
+  "skip": "style check: \"Af alle rejsemulighederne er togrejsen længst.\" has unknown word(s) rejsemulighederne; \"Af alle mulighederne er færgeturen længst.\" has unknown word(s) færgeturen; \"Af alle rejsemulighederne er togrejsen længere.\" has unknown word(s) rejsemulighederne; \"Af alle mulighederne er færgeturen længere.\" has unknown word(s) færgeturen"
+ },
+ {
+  "lemma": "gammel",
+  "kind": "word",
+  "sense_id": "4fb01daa-bd3b-5b35-a4b4-c3c8e41d6f24",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "comparison",
+  "frame": "Min {relative} er {target} end mig.",
+  "slots": {
+   "relative": [
+    {
+     "da": "farfar"
+    },
+    {
+     "da": "mormor"
+    },
+    {
+     "da": "onkel"
+    },
+    {
+     "da": "moster"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "relative": 0
+    },
+    "target": "ældre",
+    "en": "My grandfather is older than me.",
+    "ru": "Мой дедушка старше меня."
+   },
+   {
+    "slots": {
+     "relative": 1
+    },
+    "target": "ældre",
+    "en": "My grandmother is older than me.",
+    "ru": "Моя бабушка старше меня."
+   },
+   {
+    "slots": {
+     "relative": 2
+    },
+    "target": "ældre",
+    "en": "My uncle is older than me.",
+    "ru": "Мой дядя старше меня."
+   },
+   {
+    "slots": {
+     "relative": 3
+    },
+    "target": "ældre",
+    "en": "My aunt is older than me.",
+    "ru": "Моя тётя старше меня."
+   }
+  ]
+ },
+ {
+  "lemma": "svær",
+  "kind": "word",
+  "sense_id": "c0889b28-2ba6-5760-8e43-eece47ae1219",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "comparison",
+  "frame": "Eleverne synes, at grammatik er {target} end {subject}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "ordforråd"
+    },
+    {
+     "da": "udtale"
+    },
+    {
+     "da": "læsning"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "sværere",
+    "en": "Students think that grammar is more difficult than vocabulary.",
+    "ru": "Студенты считают, что грамматика сложнее, чем словарный запас."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "sværere",
+    "en": "The students think that grammar is more difficult than pronunciation.",
+    "ru": "Студенты считают, что грамматика сложнее, чем произношение."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "sværere",
+    "en": "The students think that grammar is more difficult than reading.",
+    "ru": "Студенты считают, что грамматика сложнее, чем чтение."
+   }
+  ]
+ },
+ {
+  "lemma": "bo",
+  "kind": "word",
+  "sense_id": "a69f46f0-d204-59bb-9076-f42da470732d",
+  "level": "A2",
+  "situation": "personal-info",
+  "grammar": "verb-present",
+  "frame": "Min {relative} {target} i {place}.",
+  "slots": {
+   "relative": [
+    {
+     "da": "bror"
+    },
+    {
+     "da": "søster"
+    },
+    {
+     "da": "fætter"
+    }
+   ],
+   "place": [
+    {
+     "da": "København"
+    },
+    {
+     "da": "en lille lejlighed"
+    },
+    {
+     "da": "udlandet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "relative": 0,
+     "place": 0
+    },
+    "target": "bor",
+    "en": "My brother lives in Copenhagen.",
+    "ru": "Мой брат живёт в Копенгагене."
+   },
+   {
+    "slots": {
+     "relative": 1,
+     "place": 1
+    },
+    "target": "bor",
+    "en": "My sister lives in a small apartment.",
+    "ru": "Моя сестра живёт в маленькой квартире."
+   },
+   {
+    "slots": {
+     "relative": 2,
+     "place": 2
+    },
+    "target": "bor",
+    "en": "My cousin lives abroad.",
+    "ru": "Мой двоюродный брат живёт за границей."
+   }
+  ]
+ },
+ {
+  "lemma": "læse",
+  "kind": "word",
+  "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-perfect",
+  "frame": "Jeg har {target} {book} i dag.",
+  "slots": {
+   "book": [
+    {
+     "da": "en roman"
+    },
+    {
+     "da": "en avis"
+    },
+    {
+     "da": "et magasin"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "book": 0
+    },
+    "target": "læst",
+    "en": "I have read a novel today.",
+    "ru": "Сегодня я прочитал роман."
+   },
+   {
+    "slots": {
+     "book": 1
+    },
+    "target": "læst",
+    "en": "I have read a newspaper today.",
+    "ru": "Сегодня я читал газету."
+   },
+   {
+    "slots": {
+     "book": 2
+    },
+    "target": "læst",
+    "en": "I have read a magazine today.",
+    "ru": "Сегодня я читал журнал."
+   }
+  ]
+ },
+ {
+  "lemma": "købe",
+  "kind": "word",
+  "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "verb-perfect",
+  "frame": "Jeg har {target} en ny {item}.",
+  "slots": {
+   "item": [
+    {
+     "da": "jakke"
+    },
+    {
+     "da": "cykel"
+    },
+    {
+     "da": "bog"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "item": 0
+    },
+    "target": "købt",
+    "en": "I have bought a new jacket.",
+    "ru": "Я купил новую куртку."
+   },
+   {
+    "slots": {
+     "item": 1
+    },
+    "target": "købt",
+    "en": "I have bought a new bike.",
+    "ru": "Я купил новый велосипед."
+   },
+   {
+    "slots": {
+     "item": 2
+    },
+    "target": "købt",
+    "en": "I have bought a new book.",
+    "ru": "Я купил новую книгу."
+   }
+  ]
+ },
+ {
+  "sense_id": "2f0b260b-3ef7-527d-856f-8c3c60032dc0",
+  "lemma": "rejse",
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "verb-future"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "kunne",
+  "kind": "word",
+  "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "modal-verbs",
+  "frame": "Om vinteren {target} det {weather}.",
+  "slots": {
+   "weather": [
+    {
+     "da": "sne meget"
+    },
+    {
+     "da": "være meget koldt"
+    },
+    {
+     "da": "blæse kraftigt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "weather": 0
+    },
+    "target": "kan",
+    "en": "In winter, it can snow a lot.",
+    "ru": "Зимой может идти сильный снег."
+   },
+   {
+    "slots": {
+     "weather": 1
+    },
+    "target": "kan",
+    "en": "In winter it can be very cold.",
+    "ru": "Зимой может быть очень холодно."
+   },
+   {
+    "slots": {
+     "weather": 2
+    },
+    "target": "kan",
+    "en": "In winter, it can blow strongly.",
+    "ru": "Зимой может сильно дуть."
+   }
+  ]
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "modal-verbs",
+  "frame": "Jeg {target} ikke se fjernsyn efter klokken otte.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "må",
+    "en": "I am not allowed to watch television after eight o'clock.",
+    "ru": "Мне нельзя смотреть телевизор после восьми часов."
+   },
+   {
+    "slots": {},
+    "target": "måtte",
+    "en": "I wasn't allowed to watch TV after eight o'clock.",
+    "ru": "Мне не разрешали смотреть телевизор после восьми часов."
+   }
+  ]
+ },
+ {
+  "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+  "lemma": "komme",
+  "target": {
+   "level": "A1",
+   "situation": "social",
+   "grammar": "imperative"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot; the alternative order \"Kom til middag, er du sød!\" does not use exactly the words of \"Kom ind til middag!\" — omit it or fix it"
+ },
+ {
+  "lemma": "tage",
+  "kind": "word",
+  "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "imperative",
+  "frame": "{target} {article} {object} med, for det regner.",
+  "slots": {
+   "article": [
+    {
+     "da": "en"
+    },
+    {
+     "da": "et"
+    }
+   ],
+   "object": [
+    {
+     "da": "paraply",
+     "requires": {
+      "article": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "regnjakke",
+     "requires": {
+      "article": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "tæppe",
+     "requires": {
+      "article": [
+       1
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "article": 0,
+     "object": 0
+    },
+    "target": "Tag",
+    "en": "Bring an umbrella because it's raining.",
+    "ru": "Возьми зонт, потому что идёт дождь."
+   },
+   {
+    "slots": {
+     "article": 0,
+     "object": 1
+    },
+    "target": "Tag",
+    "en": "Bring a rain jacket because it's raining.",
+    "ru": "Возьми дождевик, потому что идёт дождь."
+   }
+  ]
+ },
+ {
+  "lemma": "vente",
+  "kind": "word",
+  "sense_id": "328e9030-a486-5b2f-a2fe-a7061f09f9a2",
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "imperative",
+  "frame": "{target} på {transport} ved {sted}.",
+  "slots": {
+   "transport": [
+    {
+     "da": "bussen"
+    },
+    {
+     "da": "toget"
+    },
+    {
+     "da": "færgen"
+    }
+   ],
+   "sted": [
+    {
+     "da": "stoppestedet"
+    },
+    {
+     "da": "perronen"
+    },
+    {
+     "da": "terminalen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "transport": 0,
+     "sted": 0
+    },
+    "target": "Vent",
+    "en": "Wait for the bus at the stop.",
+    "ru": "Жди автобус на остановке."
+   },
+   {
+    "slots": {
+     "transport": 1,
+     "sted": 1
+    },
+    "target": "Vent",
+    "en": "Wait for the train at the platform.",
+    "ru": "Ждите поезд на платформе."
+   },
+   {
+    "slots": {
+     "transport": 2,
+     "sted": 2
+    },
+    "target": "Vent",
+    "en": "Wait for the ferry at the terminal.",
+    "ru": "Ждите паром на терминале."
+   }
+  ]
+ },
+ {
+  "lemma": "lukke",
+  "kind": "word",
+  "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "imperative",
+  "frame": "{subject}, {target} vinduet! Det trækker.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Skat"
+    },
+    {
+     "da": "Mads"
+    },
+    {
+     "da": "Søde"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "luk",
+    "en": "Honey, close the window! There's a draught.",
+    "ru": "Дорогая, закрой окно! Сейчас сквозняк."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "luk",
+    "en": "Sweetie, close the window! There's a draught.",
+    "ru": "Дорогая, закрой окно! Сквозняк."
+   }
+  ]
+ },
+ {
+  "lemma": "nu",
+  "kind": "word",
+  "sense_id": "49239e18-c170-5e75-99bc-7af495e7b87e",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "word-order-v2",
+  "frame": "{target} {verb} {subject}.",
+  "slots": {
+   "verb": [
+    {
+     "da": "spiser"
+    },
+    {
+     "da": "drikker"
+    },
+    {
+     "da": "læser"
+    }
+   ],
+   "subject": [
+    {
+     "da": "vi"
+    },
+    {
+     "da": "jeg"
+    },
+    {
+     "da": "børnene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "subject": 0
+    },
+    "target": "nu",
+    "en": "Now we eat.",
+    "ru": "Теперь мы едим."
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "subject": 2
+    },
+    "target": "nu",
+    "en": "Now the children are reading.",
+    "ru": "Теперь дети читают."
+   }
+  ]
+ },
+ {
+  "lemma": "her",
+  "kind": "word",
+  "sense_id": "cb0aed16-4840-54c8-a959-e4e4e2fbee26",
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "word-order-v2",
+  "frame": "{target} bor {subject}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "jeg"
+    },
+    {
+     "da": "min familie"
+    },
+    {
+     "da": "vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "her",
+    "en": "This is where I live.",
+    "ru": "Здесь я живу."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "her",
+    "en": "This is where my family lives.",
+    "ru": "Здесь живёт моя семья."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "her",
+    "en": "This is where we live.",
+    "ru": "Здесь мы живём."
+   }
+  ]
+ },
+ {
+  "lemma": "hvordan",
+  "kind": "word",
+  "sense_id": "3e90885c-306a-56e6-80b5-d3462f4e3452",
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "questions",
+  "frame": "{target} kommer jeg til {place}?",
+  "slots": {
+   "place": [
+    {
+     "da": "banegården"
+    },
+    {
+     "da": "lufthavnen"
+    },
+    {
+     "da": "busterminalen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "Hvordan",
+    "en": "How do I get to the train station?",
+    "ru": "Как добраться до вокзала?"
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "Hvordan",
+    "en": "How do I get to the airport?",
+    "ru": "Как добраться до аэропорта?"
+   },
+   {
+    "slots": {
+     "place": 2
+    },
+    "target": "Hvordan",
+    "en": "How do I get to the bus terminal?",
+    "ru": "Как добраться до автовокзала?"
+   }
+  ]
+ },
+ {
+  "lemma": "hvorfor",
+  "kind": "word",
+  "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+  "level": "A2",
+  "situation": "social",
+  "grammar": "questions",
+  "frame": "{target} {verb} {subject} {object}?",
+  "slots": {
+   "verb": [
+    {
+     "da": "glemte"
+    },
+    {
+     "da": "aflyste"
+    },
+    {
+     "da": "fortalte"
+    }
+   ],
+   "subject": [
+    {
+     "da": "du"
+    },
+    {
+     "da": "I"
+    },
+    {
+     "da": "han"
+    }
+   ],
+   "object": [
+    {
+     "da": "vores aftale"
+    },
+    {
+     "da": "mødet"
+    },
+    {
+     "da": "det"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "subject": 0,
+     "object": 0
+    },
+    "target": "hvorfor",
+    "en": "Why did you forget our appointment?",
+    "ru": "Почему ты забыл нашу встречу?"
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "subject": 1,
+     "object": 1
+    },
+    "target": "hvorfor",
+    "en": "Why did you cancel the meeting?",
+    "ru": "Почему вы отменили встречу?"
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "subject": 2,
+     "object": 2
+    },
+    "target": "hvorfor",
+    "en": "Why did he tell them that?",
+    "ru": "Почему он это сказал?"
+   }
+  ]
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "frame": "Jeg drikker {target} {drink}.",
+  "slots": {
+   "drink": [
+    {
+     "da": "kaffe"
+    },
+    {
+     "da": "te"
+    },
+    {
+     "da": "mælk"
+    },
+    {
+     "da": "øl"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "drink": 0
+    },
+    "target": "aldrig",
+    "en": "I never drink coffee.",
+    "ru": "Я никогда не пью кофе."
+   },
+   {
+    "slots": {
+     "drink": 1
+    },
+    "target": "aldrig",
+    "en": "I never drink tea.",
+    "ru": "Я никогда не пью чай."
+   },
+   {
+    "slots": {
+     "drink": 2
+    },
+    "target": "aldrig",
+    "en": "I never drink milk.",
+    "ru": "Я никогда не пью молоко."
+   },
+   {
+    "slots": {
+     "drink": 3
+    },
+    "target": "aldrig",
+    "en": "I never drink beer.",
+    "ru": "Я никогда не пью пиво."
+   }
+  ]
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "frame": "Jeg kan godt lide {target} {activity}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "læse bøger"
+    },
+    {
+     "da": "se film"
+    },
+    {
+     "da": "spille fodbold"
+    },
+    {
+     "da": "høre musik"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "at",
+    "en": "I like to read books.",
+    "ru": "Мне нравится читать книги."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "at",
+    "en": "I like to watch movies.",
+    "ru": "Мне нравится смотреть фильмы."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "at",
+    "en": "I like to play football.",
+    "ru": "Мне нравится играть в футбол."
+   },
+   {
+    "slots": {
+     "activity": 3
+    },
+    "target": "at",
+    "en": "I like to listen to music.",
+    "ru": "Мне нравится слушать музыку."
+   }
+  ]
+ },
+ {
+  "lemma": "prøve",
+  "kind": "word",
+  "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "infinitive",
+  "frame": "Vil du {target} {food}?",
+  "slots": {
+   "food": [
+    {
+     "da": "osten"
+    },
+    {
+     "da": "suppen"
+    },
+    {
+     "da": "den nye kage"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "food": 0
+    },
+    "target": "prøve",
+    "en": "Want to try the cheese?",
+    "ru": "Хочешь попробовать сыр?"
+   },
+   {
+    "slots": {
+     "food": 1
+    },
+    "target": "prøve",
+    "en": "Want to try the soup?",
+    "ru": "Хочешь попробовать суп?"
+   },
+   {
+    "slots": {
+     "food": 2
+    },
+    "target": "prøve",
+    "en": "Want to try the new cake?",
+    "ru": "Хочешь попробовать новый торт?"
+   }
+  ]
+ },
+ {
+  "lemma": "hjælpe",
+  "kind": "word",
+  "sense_id": "025b4d7d-56b0-584c-acd7-a9ae2d460993",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "imperative",
+  "frame": "{target} mig med {task}!",
+  "slots": {
+   "task": [
+    {
+     "da": "opvasken"
+    },
+    {
+     "da": "aftensmaden"
+    },
+    {
+     "da": "rengøringen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "task": 0
+    },
+    "target": "Hjælp",
+    "en": "Help me with the dishes!",
+    "ru": "Помоги мне с посудой!"
+   },
+   {
+    "slots": {
+     "task": 1
+    },
+    "target": "Hjælp",
+    "en": "Help me with dinner!",
+    "ru": "Помоги мне с ужином!"
+   },
+   {
+    "slots": {
+     "task": 2
+    },
+    "target": "Hjælp",
+    "en": "Help me with the cleaning!",
+    "ru": "Помоги мне с уборкой!"
+   }
+  ]
+ },
+ {
+  "lemma": "bil",
+  "kind": "word",
+  "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "noun-definite",
+  "frame": "{subject} {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg vasker"
+    },
+    {
+     "da": "De parkerer"
+    },
+    {
+     "da": "Vi ser"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bilen",
+    "en": "I wash the car.",
+    "ru": "Я мою машину."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bilen",
+    "en": "They park the car.",
+    "ru": "Они паркуют машину."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bilen",
+    "en": "We see the car.",
+    "ru": "Мы видим машину."
+   }
+  ]
+ },
+ {
+  "lemma": "stor",
+  "kind": "word",
+  "sense_id": "e5b5d2d0-5993-5f52-8f5d-adc9dd63f12e",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "adjective-agreement",
+  "frame": "Vi har en {target} {noun} i stuen.",
+  "slots": {
+   "noun": [
+    {
+     "da": "sofa"
+    },
+    {
+     "da": "reol"
+    },
+    {
+     "da": "lænestol"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "stor",
+    "en": "We have a large sofa in the living room.",
+    "ru": "У нас большой диван в гостиной."
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "stor",
+    "en": "We have a large bookcase in the living room.",
+    "ru": "В гостиной у нас большой книжный шкаф."
+   },
+   {
+    "slots": {
+     "noun": 2
+    },
+    "target": "stor",
+    "en": "We have a large armchair in the living room.",
+    "ru": "У нас есть большое кресло в гостиной."
+   },
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "større",
+    "en": "We have a larger sofa in the living room.",
+    "ru": "У нас в гостиной есть диван больше."
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "større",
+    "en": "We have a larger bookcase in the living room.",
+    "ru": "У нас в гостиной стоит книжный шкаф побольше."
+   },
+   {
+    "slots": {
+     "noun": 2
+    },
+    "target": "større",
+    "en": "We have a larger armchair in the living room.",
+    "ru": "У нас есть кресло побольше в гостиной."
+   }
+  ]
+ },
+ {
+  "lemma": "hurtig",
+  "kind": "word",
+  "sense_id": "39b1966a-a4d6-5e4c-b7f7-d7b651fa6ca7",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "comparison",
+  "frame": "{subject} er {target} end {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Toget"
+    },
+    {
+     "da": "Cyklen"
+    },
+    {
+     "da": "Bussen"
+    }
+   ],
+   "object": [
+    {
+     "da": "bilen"
+    },
+    {
+     "da": "metroen"
+    },
+    {
+     "da": "færgen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "hurtigere",
+    "en": "The train is faster than the car.",
+    "ru": "Поезд быстрее машины."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "hurtigere",
+    "en": "The bike is faster than the subway.",
+    "ru": "Велосипед быстрее метро."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "hurtigere",
+    "en": "The bus is faster than the ferry.",
+    "ru": "Автобус быстрее парома."
+   }
+  ]
+ },
+ {
+  "lemma": "derfor",
+  "kind": "word",
+  "sense_id": "1449948e-71ef-595a-a72f-5ddf8e841cfd",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "word-order-v2",
+  "frame": "{target} {verb} {subject} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "mødet"
+    },
+    {
+     "da": "chefen"
+    },
+    {
+     "da": "kollegaen"
+    }
+   ],
+   "verb": [
+    {
+     "da": "blev"
+    },
+    {
+     "da": "sendte"
+    },
+    {
+     "da": "tog"
+    }
+   ],
+   "object": [
+    {
+     "da": "aflyst",
+     "requires": {
+      "verb": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "en mail",
+     "requires": {
+      "verb": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "en fridag",
+     "requires": {
+      "verb": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0
+    },
+    "target": "derfor",
+    "en": "Therefore, the meeting was cancelled.",
+    "ru": "Поэтому встреча была отменена."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1
+    },
+    "target": "derfor",
+    "en": "Therefore, the boss sent an email.",
+    "ru": "Поэтому начальник отправил электронное письмо."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "object": 2
+    },
+    "target": "derfor",
+    "en": "Therefore, the colleague took a day off.",
+    "ru": "Поэтому коллега взял выходной."
+   }
+  ]
+ },
+ {
+  "lemma": "måske",
+  "kind": "word",
+  "sense_id": "ebb68a7a-7e1a-57a9-8ce6-b38e8e03fc8f",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "word-order-v2",
+  "frame": "{target} {verb} {subject}.",
+  "slots": {
+   "verb": [
+    {
+     "da": "regner"
+    },
+    {
+     "da": "sner"
+    },
+    {
+     "da": "blæser"
+    }
+   ],
+   "subject": [
+    {
+     "da": "det"
+    },
+    {
+     "da": "det"
+    },
+    {
+     "da": "det"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "subject": 0
+    },
+    "target": "måske",
+    "en": "Maybe it's raining.",
+    "ru": "Может, идёт дождь."
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "subject": 1
+    },
+    "target": "måske",
+    "en": "Maybe it's snowing.",
+    "ru": "Может, идёт снег."
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "subject": 2
+    },
+    "target": "måske",
+    "en": "Maybe it's windy.",
+    "ru": "Может, ветер."
+   }
+  ]
+ },
+ {
+  "lemma": "hvad",
+  "kind": "word",
+  "sense_id": "c3ccf28b-740b-510b-8a17-576fe64430f1",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "questions",
+  "frame": "{target} {verb} {subject} til {meal}?",
+  "slots": {
+   "verb": [
+    {
+     "da": "spiser"
+    },
+    {
+     "da": "drikker"
+    },
+    {
+     "da": "laver"
+    }
+   ],
+   "subject": [
+    {
+     "da": "du"
+    },
+    {
+     "da": "I"
+    },
+    {
+     "da": "børnene"
+    }
+   ],
+   "meal": [
+    {
+     "da": "aftensmad"
+    },
+    {
+     "da": "frokost"
+    },
+    {
+     "da": "morgenmad"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "subject": 0,
+     "meal": 0
+    },
+    "target": "Hvad",
+    "en": "What do you eat for dinner?",
+    "ru": "Что ты ешь на ужин?"
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "subject": 1,
+     "meal": 1
+    },
+    "target": "Hvad",
+    "en": "What do you drink for lunch?",
+    "ru": "Что вы пьёте на обед?"
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "subject": 2,
+     "meal": 2
+    },
+    "target": "Hvad",
+    "en": "What do the kids make for breakfast?",
+    "ru": "Что дети готовят на завтрак?"
+   }
+  ]
+ },
+ {
+  "lemma": "hvornår",
+  "kind": "word",
+  "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+  "level": "A2",
+  "situation": "services",
+  "grammar": "questions",
+  "frame": "{target} {verb} {place}?",
+  "slots": {
+   "verb": [
+    {
+     "da": "åbner"
+    },
+    {
+     "da": "lukker"
+    },
+    {
+     "da": "ankommer"
+    }
+   ],
+   "place": [
+    {
+     "da": "apoteket"
+    },
+    {
+     "da": "biblioteket"
+    },
+    {
+     "da": "toget"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "place": 0
+    },
+    "target": "Hvornår",
+    "en": "When does the pharmacy open?",
+    "ru": "Когда открывается аптека?"
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "place": 1
+    },
+    "target": "Hvornår",
+    "en": "When does the library close?",
+    "ru": "Когда закрывается библиотека?"
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "place": 2
+    },
+    "target": "Hvornår",
+    "en": "What time does the train arrive?",
+    "ru": "Во сколько прибывает поезд?"
+   }
+  ]
+ },
+ {
+  "lemma": "hus",
+  "kind": "word",
+  "sense_id": "6277cc53-fe22-57eb-90ce-d7ad5136ae11",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "frame": "{subject} {verb} {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "De"
+    },
+    {
+     "da": "Jeg"
+    }
+   ],
+   "verb": [
+    {
+     "da": "maler"
+    },
+    {
+     "da": "renoverer"
+    },
+    {
+     "da": "sælger"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0
+    },
+    "target": "huset",
+    "en": "We paint the house.",
+    "ru": "Мы красим дом."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1
+    },
+    "target": "huset",
+    "en": "They are renovating the house.",
+    "ru": "Они делают ремонт в доме."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2
+    },
+    "target": "huset",
+    "en": "I am selling the house.",
+    "ru": "Я продаю дом."
+   }
+  ]
+ },
+ {
+  "lemma": "så",
+  "kind": "word",
+  "sense_id": "4b9f4952-be71-5332-8f08-819327485fca",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "word-order-v2",
+  "frame": "Først {activity}, og {target} {rest}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "spiser jeg morgenmad"
+    },
+    {
+     "da": "børster jeg tænder"
+    },
+    {
+     "da": "tager jeg et bad"
+    }
+   ],
+   "rest": [
+    {
+     "da": "går jeg ud ad døren"
+    },
+    {
+     "da": "tager jeg jakken på"
+    },
+    {
+     "da": "drikker jeg en kop kaffe"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0,
+     "rest": 0
+    },
+    "target": "så",
+    "en": "First I eat breakfast and then I walk out the door.",
+    "ru": "Сначала я завтракаю, а потом выхожу из дома."
+   },
+   {
+    "slots": {
+     "activity": 1,
+     "rest": 1
+    },
+    "target": "så",
+    "en": "First I brush my teeth, and then I put on the jacket.",
+    "ru": "Сначала я чищу зубы, а потом надеваю куртку."
+   },
+   {
+    "slots": {
+     "activity": 2,
+     "rest": 2
+    },
+    "target": "så",
+    "en": "First I take a shower, and then I drink a cup of coffee.",
+    "ru": "Сначала я принимаю душ, а потом пью чашку кофе."
+   }
+  ]
+ }
+]

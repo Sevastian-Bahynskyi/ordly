@@ -1,0 +1,407 @@
+{
+ "note": "Coverage chunk B (issue #16), 2026-09-25: A2/B1 matrix cells below 3 families; sense and cell chosen by hand for fit.",
+ "entries": [
+  {
+   "lemma": "ikke",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "work",
+     "grammar": "negation"
+    },
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "aldrig",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "leisure",
+     "grammar": "negation"
+    },
+    {
+     "level": "B1",
+     "situation": "feelings-opinions",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "ingen",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "shopping",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "endnu",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "negation",
+     "note": "Use endnu with ikke (\"endnu ikke\" / \"ikke endnu\") meaning \"not yet\"."
+    }
+   ]
+  },
+  {
+   "lemma": "sin",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "family",
+     "grammar": "pronouns"
+    },
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "pronouns",
+     "note": "Contrast reflexive sin/sit/sine with hans/hendes correctly: sin refers back to the subject of its own clause."
+    }
+   ]
+  },
+  {
+   "lemma": "hinanden",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "social",
+     "grammar": "pronouns"
+    }
+   ]
+  },
+  {
+   "lemma": "selv",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "pronouns"
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "education",
+     "grammar": "infinitive"
+    },
+    {
+     "level": "B1",
+     "situation": "abstract",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "begynde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "leisure",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "forsøge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "mene",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "betyde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "abstract",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "flytte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "verb-past"
+    }
+   ]
+  },
+  {
+   "lemma": "opleve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "leisure",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "ændre",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "lære",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "ville",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "weather-nature",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "skulle",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "komme",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "verb-future",
+     "note": "Future with \"kommer til at\" + infinitive; the target is the form of komme (kommer), \"til at\" and the infinitive are frame text."
+    }
+   ]
+  },
+  {
+   "lemma": "burde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "body-health",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "sætte",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "transport",
+     "grammar": "reflexive",
+     "note": "This sense is \"sætte sig\" (to sit down): the reflexive pronoun agrees with the subject (jeg sætter mig, vi satte os)."
+    }
+   ]
+  },
+  {
+   "lemma": "siden",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "prepositions-time",
+     "note": "\"for ... siden\" = ago: \"for to år siden\"."
+    }
+   ]
+  },
+  {
+   "lemma": "under",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "leisure",
+     "grammar": "prepositions-time"
+    }
+   ]
+  },
+  {
+   "lemma": "fordi",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "subordinate-clause",
+     "note": "Subordinate clause word order: a sentence adverb goes before the finite verb (fordi han ikke kom)."
+    }
+   ]
+  },
+  {
+   "lemma": "hvis",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "når",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "relative-clause",
+     "note": "Relative \"hvor\" after a place noun: \"huset, hvor jeg bor\"."
+    }
+   ]
+  },
+  {
+   "lemma": "hvis",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "relative-clause",
+     "note": "Relative \"hvis\" = whose: \"naboen, hvis hund gør\"."
+    }
+   ]
+  },
+  {
+   "lemma": "medens",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "conjunctions"
+    }
+   ]
+  },
+  {
+   "lemma": "eftersom",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "conjunctions"
+    }
+   ]
+  },
+  {
+   "lemma": "altid",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "daily-routine",
+     "grammar": "adverbs"
+    }
+   ]
+  },
+  {
+   "lemma": "god",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "food-drink",
+     "grammar": "adjective-meaning"
+    }
+   ]
+  },
+  {
+   "lemma": "lille",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "home",
+     "grammar": "adjective-meaning"
+    }
+   ]
+  }
+ ]
+}

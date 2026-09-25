@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { finitePhraseAfterFrontedAdverbial, infinitiveAfterAtOrModal, subjectPronounAfterPreposition } from './catalog-families-style'
+import { adverbBeforeVerbInMainClause, finitePhraseAfterFrontedAdverbial, infinitiveAfterAtOrModal, subjectPronounAfterPreposition } from './catalog-families-style'
 
 /**
  * Reusable sentence families (issue #16; spec #12 decisions 10, 14 and 16).
@@ -275,7 +275,7 @@ export function validateFamily(raw: unknown, work: FamilyWorkSense | undefined, 
     if (occurrences(danish, variant.target) !== 1) errors.push(`${v}: the target must occur exactly once in "${danish}"`)
     if (work.pos === 'noun' && articleMismatch(danish, variant.target, work.gender)) errors.push(`${v}: article does not agree with ${work.lemma} (${work.gender})`)
     if (work.pos === 'verb') for (const problem of [...infinitiveAfterAtOrModal(danish, variant.target, work.lemma.split(' ')[0]), ...finitePhraseAfterFrontedAdverbial(danish, variant.target, work.lemma.split(' ')[0])]) errors.push(`${v}: ${problem}`)
-    for (const problem of subjectPronounAfterPreposition(danish)) errors.push(`${v}: ${problem}`)
+    for (const problem of [...subjectPronounAfterPreposition(danish), ...adverbBeforeVerbInMainClause(danish)]) errors.push(`${v}: ${problem}`)
     const unknown = checks.unknownWords(danish)
     if (unknown === null) errors.push(`${v}: the spelling source could not be consulted`)
     else if (unknown.length) errors.push(`${v}: unknown word(s) ${unknown.join(', ')}`)

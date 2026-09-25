@@ -1,0 +1,18 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batch": "batch-0105",
+ "scope": "all 91 sentences",
+ "regenerated": {
+  "komme (verb-future)": "Audit: the previous family used plain \"kommer/kom til receptionen\" (come to), which is not the future and even had a past variant. Every variant must be the future construction \"kommer til at\" + infinitive (\"Priserne kommer til at stige.\"), target \"kommer\"; \"til at\" and the infinitive are fixed frame text; vary the subject or the infinitive, never the tense."
+ },
+ "dropped_variants": [
+  {
+   "lemma": "aldrig",
+   "danish": "Vi går i aldrig biografen alene."
+  },
+  {
+   "lemma": "ingen",
+   "danish": "Der var ingen ledige parkeringspladser tilbage i butikken."
+  }
+ ]
+}

@@ -6,10 +6,10 @@ added to another.
 
 ## Catalog size
 
-- 4,971 headwords (37 of them multi-word phrases), 6,028 senses with Russian wording, 6,028 with English wording.
-- 349 published sentence families, 1,041 distinct checked sentences, each with an English and a Russian translation.
+- 5,063 headwords (129 of them multi-word phrases), 6,131 senses with Russian wording, 6,131 with English wording.
+- 423 published sentence families, 1,255 distinct checked sentences, each with an English and a Russian translation.
   Each sentence can be offered as a typed gap and as a word-order task, so at most
-  2,082 distinct catalog exercises exist. That is the real count after constraints and
+  2,510 distinct catalog exercises exist. That is the real count after constraints and
   de-duplication; no combination is generated at runtime.
 
 ## 1. Weighted lemma coverage within DSL `freq-30k-ex`
@@ -59,7 +59,7 @@ before any sentence family was written; the family gate refuses any sentence cop
 | lemma coverage | 75.2% of 1,404 distinct lemmas |
 | sentences fully covered | 64.0% |
 | tokens no form list knows (names, foreign words), excluded | 174 |
-| phrase coverage | 9.7% of 185 occurrences of 115 distinct inventory phrases (11 of them in the catalog) |
+| phrase coverage | 51.9% of 185 occurrences of 115 distinct inventory phrases (51 of them in the catalog) |
 
 Limitation: a token is resolved to lemmas through the DDO full-form list, which cannot say which
 reading a homograph is; a token counts as covered when any of its readings is a catalog lemma, so
@@ -68,7 +68,7 @@ the lemma figure is an upper bound.
 Phrase coverage counts contiguous occurrences of phrases from the rights-cleared phrase inventory
 (`catalog/phrases/inventory.jsonl`: Danish FrameNet 1.0, Wikidata Lexemes, DDO full-form multi-word
 headwords) that were labelled learnable A1–B2 units (450 of the 600 most attested). The catalog has
-37 phrase entries. A split particle verb (`står han op`) is not counted, and the
+129 phrase entries. A split particle verb (`står han op`) is not counted, and the
 inventory's recall is that of its sources, so the denominator is a floor, not every multi-word unit
 in the sentences.
 
@@ -78,129 +78,129 @@ Matrix `cefr-matrix-2026-09-25` (`catalog/benchmark/cefr-matrix.json`): 19 situa
 functions, each at the levels it is taught, aligned to the CEFR companion volume. A cell is
 covered with at least 3 gated families (each usable in English and Russian).
 
-**92 of 147 cells covered.** Families by level: A1 73 · A2 98 · B1 142 · B2 36.
+**122 of 147 cells covered.** Families by level: A1 86 · A2 121 · B1 165 · B2 51.
 
 | axis | cell | level | families | sentences |
 |---|---|---|---|---|
-| situation | personal-info | A1 | 5 | 15 |
-| situation | personal-info | A2 | 2 | 9 |
+| situation | personal-info | A1 | 6 | 18 |
+| situation | personal-info | A2 | 3 | 12 |
 | situation | family | A1 | 4 | 12 |
-| situation | family | A2 | 4 | 12 |
-| situation | family | B1 | 3 | 9 |
-| situation | home | A1 | 18 | 54 |
-| situation | home | A2 | 10 | 29 |
-| situation | home | B1 | 10 | 30 |
-| situation | daily-routine | A1 | 17 | 51 |
-| situation | daily-routine | A2 | 12 | 34 |
+| situation | family | A2 | 5 | 17 |
+| situation | family | B1 | 6 | 18 |
+| situation | home | A1 | 20 | 63 |
+| situation | home | A2 | 13 | 40 |
+| situation | home | B1 | 14 | 43 |
+| situation | daily-routine | A1 | 18 | 53 |
+| situation | daily-routine | A2 | 14 | 40 |
 | situation | time-dates | A1 | 3 | 9 |
 | situation | time-dates | A2 | 3 | 9 |
-| situation | food-drink | A1 | 4 | 12 |
-| situation | food-drink | A2 | 9 | 27 |
+| situation | food-drink | A1 | 8 | 26 |
+| situation | food-drink | A2 | 10 | 30 |
 | situation | food-drink | B1 | 3 | 9 |
 | situation | shopping | A1 | 6 | 18 |
-| situation | shopping | A2 | 3 | 9 |
+| situation | shopping | A2 | 6 | 17 |
 | situation | shopping | B1 | 4 | 12 |
-| situation | transport | A1 | 5 | 15 |
-| situation | transport | A2 | 5 | 14 |
-| situation | transport | B1 | 8 | 24 |
-| situation | weather-nature | A1 | 2 | 6 |
-| situation | weather-nature | A2 | 6 | 17 |
-| situation | weather-nature | B1 | 7 | 21 |
+| situation | transport | A1 | 6 | 18 |
+| situation | transport | A2 | 7 | 20 |
+| situation | transport | B1 | 9 | 27 |
+| situation | weather-nature | A1 | 4 | 11 |
+| situation | weather-nature | A2 | 8 | 22 |
+| situation | weather-nature | B1 | 8 | 24 |
 | situation | body-health | A2 | 3 | 9 |
 | situation | body-health | B1 | 6 | 18 |
 | situation | body-health | B2 | 6 | 17 |
-| situation | work | A2 | 4 | 12 |
-| situation | work | B1 | 21 | 63 |
-| situation | work | B2 | 6 | 17 |
-| situation | education | A2 | 5 | 15 |
-| situation | education | B1 | 8 | 24 |
+| situation | work | A2 | 6 | 17 |
+| situation | work | B1 | 27 | 82 |
+| situation | work | B2 | 12 | 32 |
+| situation | education | A2 | 6 | 18 |
+| situation | education | B1 | 9 | 27 |
 | situation | education | B2 | 5 | 12 |
-| situation | leisure | A1 | 7 | 21 |
-| situation | leisure | A2 | 13 | 39 |
-| situation | leisure | B1 | 18 | 54 |
-| situation | services | A2 | 3 | 8 |
-| situation | services | B1 | 3 | 7 |
+| situation | leisure | A1 | 9 | 27 |
+| situation | leisure | A2 | 16 | 47 |
+| situation | leisure | B1 | 19 | 56 |
+| situation | services | A2 | 4 | 11 |
+| situation | services | B1 | 4 | 10 |
 | situation | social | A1 | 2 | 6 |
-| situation | social | A2 | 6 | 21 |
+| situation | social | A2 | 7 | 24 |
 | situation | social | B1 | 3 | 9 |
 | situation | feelings-opinions | A2 | 7 | 21 |
-| situation | feelings-opinions | B1 | 8 | 24 |
-| situation | feelings-opinions | B2 | 4 | 13 |
+| situation | feelings-opinions | B1 | 9 | 27 |
+| situation | feelings-opinions | B2 | 6 | 18 |
 | situation | communication-media | A2 | 3 | 9 |
 | situation | communication-media | B1 | 5 | 15 |
 | situation | communication-media | B2 | 5 | 17 |
-| situation | society | B1 | 27 | 80 |
-| situation | society | B2 | 5 | 16 |
-| situation | abstract | B1 | 8 | 24 |
-| situation | abstract | B2 | 5 | 13 |
+| situation | society | B1 | 29 | 85 |
+| situation | society | B2 | 10 | 27 |
+| situation | abstract | B1 | 10 | 28 |
+| situation | abstract | B2 | 7 | 18 |
 | grammar | noun-indefinite | A1 | 5 | 15 |
 | grammar | noun-indefinite | A2 | 11 | 33 |
 | grammar | noun-indefinite | B1 | 15 | 45 |
 | grammar | noun-indefinite | B2 | 3 | 9 |
-| grammar | noun-definite | A1 | 1 | 3 |
+| grammar | noun-definite | A1 | 3 | 9 |
 | grammar | noun-definite | A2 | 4 | 12 |
 | grammar | noun-definite | B1 | 20 | 60 |
-| grammar | noun-definite | B2 | 1 | 2 |
-| grammar | noun-plural | A1 | 1 | 3 |
+| grammar | noun-definite | B2 | 3 | 6 |
+| grammar | noun-plural | A1 | 2 | 5 |
 | grammar | noun-plural | A2 | 5 | 15 |
 | grammar | noun-plural | B1 | 4 | 12 |
 | grammar | noun-plural | B2 | 1 | 3 |
 | grammar | adjective-agreement | A1 | 7 | 21 |
-| grammar | adjective-agreement | A2 | 1 | 3 |
+| grammar | adjective-agreement | A2 | 3 | 12 |
 | grammar | adjective-agreement | B1 | 7 | 21 |
-| grammar | comparison | A2 | 1 | 3 |
-| grammar | comparison | B1 | 0 | 0 |
+| grammar | comparison | A2 | 2 | 6 |
+| grammar | comparison | B1 | 3 | 10 |
 | grammar | verb-present | A1 | 8 | 24 |
-| grammar | verb-present | A2 | 2 | 6 |
-| grammar | verb-present | B1 | 1 | 3 |
-| grammar | verb-present | B2 | 1 | 3 |
+| grammar | verb-present | A2 | 3 | 9 |
+| grammar | verb-present | B1 | 2 | 5 |
+| grammar | verb-present | B2 | 3 | 8 |
 | grammar | verb-past | A2 | 6 | 18 |
-| grammar | verb-past | B1 | 2 | 6 |
-| grammar | verb-past | B2 | 1 | 5 |
-| grammar | verb-perfect | A2 | 1 | 3 |
-| grammar | verb-perfect | B1 | 0 | 0 |
-| grammar | verb-perfect | B2 | 1 | 3 |
+| grammar | verb-past | B1 | 3 | 10 |
+| grammar | verb-past | B2 | 2 | 8 |
+| grammar | verb-perfect | A2 | 3 | 9 |
+| grammar | verb-perfect | B1 | 1 | 3 |
+| grammar | verb-perfect | B2 | 2 | 6 |
 | grammar | verb-future | A2 | 2 | 6 |
-| grammar | verb-future | B1 | 0 | 0 |
+| grammar | verb-future | B1 | 2 | 6 |
 | grammar | verb-future | B2 | 4 | 12 |
-| grammar | modal-verbs | A1 | 2 | 6 |
-| grammar | modal-verbs | A2 | 2 | 6 |
-| grammar | modal-verbs | B1 | 1 | 3 |
-| grammar | modal-verbs | B2 | 1 | 3 |
-| grammar | imperative | A1 | 1 | 3 |
-| grammar | imperative | A2 | 0 | 0 |
+| grammar | modal-verbs | A1 | 3 | 9 |
+| grammar | modal-verbs | A2 | 3 | 8 |
+| grammar | modal-verbs | B1 | 2 | 6 |
+| grammar | modal-verbs | B2 | 2 | 5 |
+| grammar | imperative | A1 | 2 | 5 |
+| grammar | imperative | A2 | 3 | 8 |
 | grammar | passive | B1 | 2 | 6 |
-| grammar | passive | B2 | 1 | 3 |
+| grammar | passive | B2 | 2 | 5 |
 | grammar | reflexive | A2 | 5 | 17 |
 | grammar | reflexive | B1 | 2 | 6 |
 | grammar | particle-verbs | A2 | 6 | 15 |
 | grammar | particle-verbs | B1 | 5 | 13 |
 | grammar | particle-verbs | B2 | 3 | 9 |
-| grammar | word-order-v2 | A1 | 1 | 3 |
-| grammar | word-order-v2 | A2 | 0 | 0 |
+| grammar | word-order-v2 | A1 | 3 | 8 |
+| grammar | word-order-v2 | A2 | 3 | 9 |
 | grammar | subordinate-clause | A2 | 4 | 12 |
-| grammar | subordinate-clause | B1 | 0 | 0 |
-| grammar | subordinate-clause | B2 | 1 | 3 |
-| grammar | questions | A1 | 2 | 6 |
-| grammar | questions | A2 | 0 | 0 |
+| grammar | subordinate-clause | B1 | 2 | 7 |
+| grammar | subordinate-clause | B2 | 3 | 8 |
+| grammar | questions | A1 | 3 | 9 |
+| grammar | questions | A2 | 3 | 9 |
 | grammar | questions | B1 | 0 | 0 |
-| grammar | negation | A1 | 2 | 6 |
-| grammar | negation | A2 | 0 | 0 |
-| grammar | negation | B1 | 0 | 0 |
+| grammar | negation | A1 | 3 | 10 |
+| grammar | negation | A2 | 3 | 6 |
+| grammar | negation | B1 | 2 | 6 |
 | grammar | pronouns | A1 | 11 | 33 |
-| grammar | pronouns | A2 | 2 | 6 |
-| grammar | pronouns | B1 | 0 | 0 |
+| grammar | pronouns | A2 | 3 | 11 |
+| grammar | pronouns | B1 | 2 | 5 |
 | grammar | prepositions-place | A1 | 10 | 30 |
 | grammar | prepositions-place | A2 | 3 | 9 |
 | grammar | prepositions-place | B1 | 3 | 9 |
 | grammar | prepositions-time | A1 | 5 | 15 |
 | grammar | prepositions-time | A2 | 3 | 9 |
-| grammar | prepositions-time | B1 | 1 | 3 |
-| grammar | relative-clause | B1 | 0 | 0 |
+| grammar | prepositions-time | B1 | 3 | 8 |
+| grammar | relative-clause | B1 | 2 | 6 |
 | grammar | relative-clause | B2 | 1 | 2 |
 | grammar | conjunctions | A2 | 6 | 18 |
-| grammar | conjunctions | B1 | 1 | 3 |
-| grammar | conjunctions | B2 | 1 | 6 |
+| grammar | conjunctions | B1 | 3 | 8 |
+| grammar | conjunctions | B2 | 3 | 11 |
 | grammar | fixed-expressions | A2 | 4 | 9 |
 | grammar | fixed-expressions | B1 | 3 | 9 |
 | grammar | fixed-expressions | B2 | 2 | 4 |
@@ -210,24 +210,24 @@ covered with at least 3 gated families (each usable in English and Russian).
 | grammar | prepositions-other | A2 | 3 | 9 |
 | grammar | prepositions-other | B1 | 4 | 12 |
 | grammar | prepositions-other | B2 | 3 | 10 |
-| grammar | infinitive | A1 | 1 | 3 |
-| grammar | infinitive | A2 | 1 | 6 |
-| grammar | infinitive | B1 | 0 | 0 |
+| grammar | infinitive | A1 | 3 | 10 |
+| grammar | infinitive | A2 | 3 | 12 |
+| grammar | infinitive | B1 | 2 | 5 |
 | grammar | adverbs | A1 | 4 | 12 |
-| grammar | adverbs | A2 | 2 | 7 |
+| grammar | adverbs | A2 | 3 | 10 |
 | grammar | adverbs | B1 | 3 | 8 |
 | grammar | adverbs | B2 | 3 | 8 |
 | grammar | verb-meaning | A1 | 3 | 9 |
 | grammar | verb-meaning | A2 | 9 | 27 |
 | grammar | verb-meaning | B1 | 16 | 48 |
-| grammar | verb-meaning | B2 | 2 | 5 |
+| grammar | verb-meaning | B2 | 3 | 7 |
 | grammar | noun-meaning | A1 | 3 | 9 |
 | grammar | noun-meaning | A2 | 9 | 27 |
 | grammar | noun-meaning | B1 | 36 | 108 |
 | grammar | noun-meaning | B2 | 2 | 4 |
-| grammar | adjective-meaning | A1 | 1 | 3 |
+| grammar | adjective-meaning | A1 | 3 | 13 |
 | grammar | adjective-meaning | A2 | 6 | 18 |
 | grammar | adjective-meaning | B1 | 12 | 36 |
-| grammar | adjective-meaning | B2 | 1 | 3 |
+| grammar | adjective-meaning | B2 | 3 | 8 |
 
-Cells below the threshold: personal-info A2, weather-nature A1, social A1, noun-definite A1, noun-definite B2, noun-plural A1, noun-plural B2, adjective-agreement A2, comparison A2, comparison B1, verb-present A2, verb-present B1, verb-present B2, verb-past B1, verb-past B2, verb-perfect A2, verb-perfect B1, verb-perfect B2, verb-future A2, verb-future B1, modal-verbs A1, modal-verbs A2, modal-verbs B1, modal-verbs B2, imperative A1, imperative A2, passive B1, passive B2, reflexive B1, word-order-v2 A1, word-order-v2 A2, subordinate-clause B1, subordinate-clause B2, questions A1, questions A2, questions B1, negation A1, negation A2, negation B1, pronouns A2, pronouns B1, prepositions-time B1, relative-clause B1, relative-clause B2, conjunctions B1, conjunctions B2, fixed-expressions B2, infinitive A1, infinitive A2, infinitive B1, adverbs A2, verb-meaning B2, noun-meaning B2, adjective-meaning A1, adjective-meaning B2.
+Cells below the threshold: social A1, noun-plural A1, noun-plural B2, comparison A2, verb-present B1, verb-past B2, verb-perfect B1, verb-perfect B2, verb-future A2, verb-future B1, modal-verbs B1, modal-verbs B2, imperative A1, passive B1, passive B2, reflexive B1, subordinate-clause B1, questions B1, negation B1, pronouns B1, relative-clause B1, relative-clause B2, fixed-expressions B2, infinitive B1, noun-meaning B2.

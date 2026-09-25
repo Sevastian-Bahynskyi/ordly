@@ -277,3 +277,18 @@ export function finitePhraseAfterFrontedAdverbial(danish: string, target: string
   }
   return []
 }
+
+const CLAUSE_START_SUBJECTS = new Set(['jeg', 'du', 'han', 'hun', 'vi', 'de', 'man'])
+const MIDFIELD_ADVERBS = new Set(['ikke', 'aldrig', 'altid', 'også', 'ofte', 'tit', 'sjældent', 'gerne', 'kun', 'bare', 'nok', 'måske', 'jo', 'vel', 'dog', 'allerede', 'stadig', 'næsten', 'snart', 'endnu', 'heller'])
+
+/**
+ * A main clause opened by its pronoun subject is V2: the finite verb comes next, then the sentence
+ * adverb (`Jeg spiller aldrig tennis`). `Jeg aldrig spiller` is the subordinate-clause order put in
+ * a main clause. Judged on the filled sentence, whatever cell the family is in.
+ */
+export function adverbBeforeVerbInMainClause(danish: string): string[] {
+  const words = danish.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  return CLAUSE_START_SUBJECTS.has(words[0]) && MIDFIELD_ADVERBS.has(words[1])
+    ? [`"${words[0]} ${words[1]} …" breaks V2 — in a main clause the finite verb follows the subject directly and "${words[1]}" comes after it ("${words[0]} <verb> ${words[1]}")`]
+    : []
+}

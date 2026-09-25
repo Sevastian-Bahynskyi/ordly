@@ -1,0 +1,598 @@
+[
+ {
+  "lemma": "regering",
+  "kind": "word",
+  "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 130,
+  "min_level": "A1",
+  "ru": "правительство",
+  "en": "government",
+  "forms": [
+   "regering",
+   "regeringen",
+   "regeringens",
+   "regeringer",
+   "regeringerne",
+   "regeringernes",
+   "regeringers",
+   "regerings"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-definite"
+  },
+  "note": "An independent reviewer rejected the previous family: Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial clause when the main clause follows directly. This violates V2 word order presentation. Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial clause when the main clause follows directly. This violates V2 word order presentation. Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial phrase when the main clause follows directly. This violates V2 word order presentation. Write a new family that avoids this."
+ },
+ {
+  "lemma": "virksomhed",
+  "kind": "word",
+  "sense_id": "29f98378-ee1e-5163-9402-a947bc264db0",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 168,
+  "min_level": "A1",
+  "ru": "компания, предприятие",
+  "en": "company, business",
+  "forms": [
+   "virksomhed",
+   "virksomheden",
+   "virksomhedens",
+   "virksomheder",
+   "virksomhederne",
+   "virksomhedernes",
+   "virksomheders",
+   "virksomheds"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-definite"
+  }
+ },
+ {
+  "lemma": "mulighed",
+  "kind": "word",
+  "sense_id": "7dc716de-68ed-57fb-8176-4c7fef5335f1",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 173,
+  "min_level": "A1",
+  "ru": "возможность",
+  "en": "opportunity, possibility",
+  "forms": [
+   "mulighed",
+   "muligheden",
+   "mulighedens",
+   "muligheder",
+   "mulighederne",
+   "mulighedernes",
+   "muligheders",
+   "muligheds"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "forhold",
+  "kind": "word",
+  "sense_id": "f508bcb1-684a-5a34-994f-842e7a8c89cd",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 167,
+  "min_level": "A1",
+  "ru": "обстоятельства, условия",
+  "en": "conditions, circumstances",
+  "forms": [
+   "forhold",
+   "forholdene",
+   "forholdenes",
+   "forholdet",
+   "forholdets",
+   "forholds"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "kræve",
+  "kind": "word",
+  "sense_id": "9de4d769-23e1-5598-8db4-b42064ce0bba",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 319,
+  "min_level": "A1",
+  "ru": "требовать",
+  "en": "to require, to demand",
+  "forms": [
+   "kræv",
+   "kræve",
+   "krævede",
+   "krævedes",
+   "krævende",
+   "kræver",
+   "kræves",
+   "krævet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "gælde",
+  "kind": "word",
+  "sense_id": "3f4f702b-e412-54e2-95c2-c774391558b8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 284,
+  "min_level": "A1",
+  "ru": "действовать, относиться",
+  "en": "to apply, to be valid",
+  "forms": [
+   "gjaldt",
+   "gjaldte",
+   "gæld",
+   "gælde",
+   "gældende",
+   "gælder",
+   "gældes",
+   "gældt",
+   "gældte"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "udvikle",
+  "kind": "word",
+  "sense_id": "e9672244-40eb-5352-aae7-b624531c6139",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 358,
+  "min_level": "A1",
+  "ru": "развивать",
+  "en": "to develop",
+  "forms": [
+   "udvikl",
+   "udvikle",
+   "udviklede",
+   "udvikledes",
+   "udviklende",
+   "udvikler",
+   "udvikles",
+   "udviklet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "ansætte",
+  "kind": "word",
+  "sense_id": "c7761142-4642-5b40-b479-7eb288d4ba32",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 311,
+  "min_level": "A1",
+  "ru": "нанимать на работу",
+  "en": "to hire, to employ",
+  "forms": [
+   "ansat",
+   "ansatte",
+   "ansattes",
+   "ansæt",
+   "ansætte",
+   "ansættende",
+   "ansætter",
+   "ansættes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "opleve",
+  "kind": "word",
+  "sense_id": "86861999-9a50-557d-b90b-43f050779eaf",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 301,
+  "min_level": "A1",
+  "ru": "переживать, испытывать",
+  "en": "to experience",
+  "forms": [
+   "oplev",
+   "opleve",
+   "oplevede",
+   "oplevedes",
+   "oplevende",
+   "oplever",
+   "opleves",
+   "oplevet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "verb-perfect"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish 'ikke tidligere ... før' is redundant and unnatural; English 'not ... before' is faithful but the Danish is not idiomatic. Russian 'никогда раньше не испытывал' is a natural rendering of the intended meaning but the Danish source is flawed. Write a new family that avoids this."
+ },
+ {
+  "lemma": "forklare",
+  "kind": "word",
+  "sense_id": "2274236f-20da-58f1-9d4f-f02336921493",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 291,
+  "min_level": "A1",
+  "ru": "объяснять",
+  "en": "to explain",
+  "forms": [
+   "forklar",
+   "forklare",
+   "forklarede",
+   "forklaredes",
+   "forklarende",
+   "forklarer",
+   "forklares",
+   "forklaret"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "burde",
+  "kind": "word",
+  "sense_id": "032e6590-b346-5574-b76d-81ae1b3abeb8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 225,
+  "min_level": "A1",
+  "ru": "следовало бы, должен",
+  "en": "ought to, should",
+  "forms": [
+   "burde",
+   "burdede",
+   "burdet",
+   "bør"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "modal-verbs"
+  }
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 72,
+  "min_level": "A1",
+  "ru": "пришлось, был вынужден",
+  "en": "had to (was forced to)",
+  "forms": [
+   "må",
+   "måtte",
+   "måttede",
+   "måttet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "modal-verbs"
+  }
+ },
+ {
+  "lemma": "bygge",
+  "kind": "word",
+  "sense_id": "83d0400f-ceda-5bfc-8670-096d90c9f744",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 344,
+  "min_level": "A1",
+  "ru": "строить",
+  "en": "to build",
+  "forms": [
+   "byg",
+   "bygge",
+   "byggede",
+   "byggedes",
+   "byggende",
+   "bygger",
+   "bygges",
+   "bygget"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "passive"
+  },
+  "note": "Audit: the past s-passive \"byggedes\" is archaic for a B1 model. Use the blive-passive for the past (\"Huset blev bygget i 1990.\" -> write the year in words or avoid it) and, if you vary the tense, the present s-passive or \"bliver bygget\" — the target is the form of bygge (bygget / bygges); \"blev\"/\"bliver\" are frame text."
+ },
+ {
+  "lemma": "sende",
+  "kind": "word",
+  "sense_id": "c09bbc9c-2396-5bf5-ab21-876494657a4b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 217,
+  "min_level": "A1",
+  "ru": "передавать (по радио, телевидению)",
+  "en": "to broadcast",
+  "forms": [
+   "send",
+   "sende",
+   "sendende",
+   "sender",
+   "sendes",
+   "sendt",
+   "sendte",
+   "sendtes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "passive"
+  }
+ },
+ {
+  "lemma": "oplyse",
+  "kind": "word",
+  "sense_id": "7e906b48-8372-53a9-8d21-b7a1cee02268",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 379,
+  "min_level": "A1",
+  "ru": "сообщать, информировать",
+  "en": "to inform",
+  "forms": [
+   "oplys",
+   "oplyse",
+   "oplysende",
+   "oplyser",
+   "oplyses",
+   "oplyst",
+   "oplyste",
+   "oplystes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "passive"
+  }
+ },
+ {
+  "lemma": "hvorvidt",
+  "kind": "word",
+  "sense_id": "8a351647-1752-5402-bdeb-cfa7d4035d57",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 1348,
+  "min_level": "A2",
+  "ru": "ли",
+  "en": "whether",
+  "forms": [
+   "hvorvidt"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "subordinate-clause"
+  }
+ },
+ {
+  "lemma": "idet",
+  "kind": "word",
+  "sense_id": "02b9badc-aeac-5d3b-87b8-39603d3ca2d2",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 922,
+  "min_level": "A2",
+  "ru": "поскольку, в то время как",
+  "en": "as, while (giving reason or simultaneity)",
+  "forms": [
+   "idet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "subordinate-clause"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence is ungrammatical and unnatural because 'præsenterede' is used intransitively without an object, which is not idiomatic. The English translation 'As the CEO presented' is also unnatural without an object. The Russian translation 'Когда генеральный директор выступал' uses 'когда' (when) instead of conveying the simultaneity/reason of 'idet', and 'выступал' is a different verb. The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason. The Danish sentence is ungrammatical and unnatural because 'gennemgik' is used intransitively without an object, which is not idiomatic. The English translation 'As the project manager reviewed' is also unnatural without an object. The Russian translation 'Пока менеджер проекта проверял' uses 'пока' (while) instead of 'idet', and 'проверял' is a different verb. The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason. The Danish sentence is ungrammatical and unnatural because 'fremlagde' is used intransitively without an object, which is not idiomatic. The English translation 'As the board presented' is also unnatural without an object. The Russian translation 'Во время презентации совета коллега задал важный вопрос' uses 'во время' (during) instead of 'idet', and 'важный' (important) instead of 'критический' (critical). The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 60,
+  "min_level": "A1",
+  "ru": "чей, чья, чьё",
+  "en": "whose",
+  "forms": [
+   "hvis"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "relative-clause"
+  },
+  "note": "Relative \"hvis\" = whose."
+ },
+ {
+  "lemma": "hvor",
+  "kind": "word",
+  "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 39,
+  "min_level": "A1",
+  "ru": "где",
+  "en": "where",
+  "forms": [
+   "hvor"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "relative-clause"
+  },
+  "note": "Relative \"hvor\" after an abstract noun of situation or time: \"en situation, hvor\"."
+ },
+ {
+  "lemma": "medmindre",
+  "kind": "word",
+  "sense_id": "481ecb58-42eb-5bcd-86af-50e829cc62db",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 2856,
+  "min_level": "B1",
+  "ru": "если не, за исключением случая когда",
+  "en": "unless",
+  "forms": [
+   "medmindre"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "conjunctions"
+  }
+ },
+ {
+  "lemma": "skønt",
+  "kind": "word",
+  "sense_id": "46709554-1c99-5cc6-aac5-3e9ec82f0d10",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 2595,
+  "min_level": "B1",
+  "ru": "хотя, несмотря на то что",
+  "en": "although, even though",
+  "forms": [
+   "skønt"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "conjunctions"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence 'fandt glæde ved udfordringen' means 'found joy in the challenge', which is a positive, enthusiastic reaction. This contradicts the concessive 'skønt' and the subsequent 'accepterede de den uden protest' (accepted it without protest), which implies a reluctant or neutral acceptance. The intended meaning 'enjoyed the challenge' is not accurately conveyed, making the sentence semantically odd. The English and Russian translations are faithful to the flawed Danish, but the underlying sense is defective. Write a new family that avoids this."
+ },
+ {
+  "lemma": "føre",
+  "kind": "word",
+  "sense_id": "a280bcfa-c25d-588f-b904-d132d1904c1a",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 280,
+  "min_level": "A1",
+  "ru": "вести, руководить",
+  "en": "to lead",
+  "forms": [
+   "før",
+   "føre",
+   "førende",
+   "fører",
+   "føres",
+   "ført",
+   "førte",
+   "førtes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-meaning"
+  }
+ },
+ {
+  "lemma": "grund",
+  "kind": "word",
+  "sense_id": "63e25a96-7c46-5607-93a6-9c5576a96fdf",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 175,
+  "min_level": "A1",
+  "ru": "причина",
+  "en": "reason",
+  "forms": [
+   "grund",
+   "grunde",
+   "grunden",
+   "grundene",
+   "grundenes",
+   "grundens",
+   "grundes",
+   "grunds"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "noun-meaning"
+  }
+ },
+ {
+  "lemma": "økonomisk",
+  "kind": "word",
+  "sense_id": "36e56159-7e8b-56f7-9212-871bd4f17a59",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 240,
+  "min_level": "A1",
+  "ru": "экономный, бережливый",
+  "en": "economical, thrifty",
+  "forms": [
+   "økonomisk",
+   "økonomiske"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "adjective-meaning"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence uses 'økonomisk' in the sense of 'financial' (relating to money/costs), but the target meaning is 'economical, thrifty' (sparing, avoiding waste). The English and Russian translations correctly render the Danish as 'financial' / 'финансовую', which does not match the stated target sense. The Danish sentence uses 'økonomisk' in the sense of 'economic' (relating to the economy or cost-effectiveness), but the target meaning is 'economical, thrifty'. The English 'economic' and Russian 'экономическую' are ambiguous but lean toward 'economic' rather than 'thrifty', and the Danish context ('reduce production costs') suggests a cost-cutting strategy, not necessarily a thrifty one. The translations do not clearly convey the target sense of 'thrifty'. The Danish sentence uses 'økonomisk' in the sense of 'economic' (cost-saving), but the target meaning is 'economical, thrifty'. The English 'economic' and Russian 'экономическую' are ambiguous but do not clearly mean 'thrifty'. The context (reducing energy consumption) could imply thriftiness, but the word choice does not explicitly match the target sense. Write a new family that avoids this."
+ },
+ {
+  "lemma": "offentlig",
+  "kind": "word",
+  "sense_id": "6009a9ae-b4c6-559d-910f-2ab833b8f020",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 277,
+  "min_level": "A1",
+  "ru": "общественный, публичный",
+  "en": "public",
+  "forms": [
+   "offentlig",
+   "offentlige",
+   "offentligt"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "adjective-meaning"
+  }
+ }
+]

@@ -42,7 +42,7 @@ pnpm exec tsx --env-file=.env.corpus.local scripts/review-deepseek.ts --phrases 
 ```
 
 Families for phrase senses go through the ordinary family pipeline:
-`scripts/write-phrase-family-work.ts --plan catalog/phrases/family-plan-NNNN.json --out catalog/families/work/batch-NNNN.json`,
+`scripts/write-target-family-work.ts --plan catalog/phrases/family-plan-NNNN.json --out catalog/families/work/batch-NNNN.json`,
 then `generate-family-batch.ts`, `review-deepseek.ts --families`, `check-family-batches.ts`,
 `audit-families.ts`.
 

@@ -1,0 +1,22 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batch": "batch-0106",
+ "scope": "all 40 sentences",
+ "regenerated": {
+  "bygge": "Audit: the past s-passive \"byggedes\" is archaic for a B1 model. Use the blive-passive for the past (\"Huset blev bygget i 1990.\" -> write the year in words or avoid it) and, if you vary the tense, the present s-passive or \"bliver bygget\" — the target is the form of bygge (bygget / bygges); \"blev\"/\"bliver\" are frame text."
+ },
+ "dropped_variants": [
+  "De nye regler gælder for alle borgere, også for udlændinge.",
+  "Hun er meget økonomisk og genbruger altid mapper."
+ ],
+ "translation_corrections": [
+  {
+   "danish": "Idet projektlederen præsenterede det nye budget, stillede kollegaen et kritisk spørgsmål.",
+   "before": "Когда руководитель проекта представлял новый бюджет, коллега задал важный вопрос.",
+   "after": "Когда руководитель проекта представлял новый бюджет, коллега задал критический вопрос."
+  }
+ ],
+ "skipped_after_audit": [
+  "bygge (passive B1): repeated byggedes"
+ ]
+}

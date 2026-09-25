@@ -1,0 +1,26 @@
+[
+ {
+  "phrase": "lade være",
+  "reason": "every example failed the translation fidelity check"
+ },
+ {
+  "phrase": "blive nødt til",
+  "reason": "every example failed the translation fidelity check"
+ },
+ {
+  "phrase": "trænge til",
+  "reason": "every example failed the translation fidelity check"
+ },
+ {
+  "phrase": "bryde sig om",
+  "reason": "sense 1: example must contain exactly one of the given forms as consecutive words (found 0)"
+ },
+ {
+  "phrase": "tage med",
+  "reason": "sense 1: example must contain exactly one of the given forms as consecutive words (found 0)"
+ },
+ {
+  "phrase": "stoppe med",
+  "reason": "model skipped: The expression is incomplete without an object; it requires an 'at'-infinitive or noun phrase, making it a fragment rather than a standalone multi-word expression for a dictionary entry."
+ }
+]

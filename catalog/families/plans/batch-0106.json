@@ -1,0 +1,282 @@
+{
+ "note": "Coverage chunk C (issue #16), 2026-09-25: B1/B2 matrix cells below 3 families; sense and cell chosen by hand for fit.",
+ "entries": [
+  {
+   "lemma": "regering",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "noun-definite"
+    }
+   ]
+  },
+  {
+   "lemma": "virksomhed",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "noun-definite"
+    }
+   ]
+  },
+  {
+   "lemma": "mulighed",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "education",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "forhold",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "kræve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "gælde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "udvikle",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "abstract",
+     "grammar": "verb-past"
+    }
+   ]
+  },
+  {
+   "lemma": "ansætte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "verb-past"
+    }
+   ]
+  },
+  {
+   "lemma": "opleve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "feelings-opinions",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "forklare",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "education",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "burde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "bygge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "passive"
+    }
+   ]
+  },
+  {
+   "lemma": "sende",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "communication-media",
+     "grammar": "passive"
+    }
+   ]
+  },
+  {
+   "lemma": "oplyse",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "passive"
+    }
+   ]
+  },
+  {
+   "lemma": "hvorvidt",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "abstract",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "idet",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "hvis",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "relative-clause",
+     "note": "Relative \"hvis\" = whose."
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "abstract",
+     "grammar": "relative-clause",
+     "note": "Relative \"hvor\" after an abstract noun of situation or time: \"en situation, hvor\"."
+    }
+   ]
+  },
+  {
+   "lemma": "medmindre",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "conjunctions"
+    }
+   ]
+  },
+  {
+   "lemma": "skønt",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "feelings-opinions",
+     "grammar": "conjunctions"
+    }
+   ]
+  },
+  {
+   "lemma": "føre",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "verb-meaning"
+    }
+   ]
+  },
+  {
+   "lemma": "grund",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "abstract",
+     "grammar": "noun-meaning"
+    }
+   ]
+  },
+  {
+   "lemma": "økonomisk",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "adjective-meaning"
+    }
+   ]
+  },
+  {
+   "lemma": "offentlig",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "adjective-meaning"
+    }
+   ]
+  }
+ ]
+}

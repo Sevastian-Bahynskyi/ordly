@@ -1,0 +1,1747 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:49:59.733Z",
+ "entries": [
+  {
+   "phrase": "i dag",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true
+    }
+   ]
+  },
+  {
+   "phrase": "i morgen",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "kunne lide",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "holde op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vente på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gifte sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå ud",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme til at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The meaning 'to be going to do' is incorrect for 'komme til at'. This expression indicates a future event that is certain, inevitable, or a prediction, not an intention. The Danish example 'Det kommer til at regne i morgen' means 'It is going to rain tomorrow' as a prediction, not a plan. The English meaning 'to be going to do' is ambiguous and can imply intention, which is wrong. The Russian meaning 'собираться сделать' explicitly means 'to intend to do', which is a mistranslation. The English and Russian example translations are faithful to the example but do not match the stated (incorrect) meaning, creating a pedagogical inconsistency.",
+     "danish_ok": false,
+     "en": "to be going to (prediction/certainty)",
+     "ru": "предстоит; будет (неизбежное событие)"
+    }
+   ]
+  },
+  {
+   "phrase": "over for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i aften",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Сегодня у нас пицца.' drops the temporal meaning 'вечером' and adds 'у нас', making it unfaithful to the Danish example 'Vi spiser pizza i aften.'",
+     "danish_ok": true,
+     "ru": "Сегодня вечером мы едим пиццу."
+    }
+   ]
+  },
+  {
+   "phrase": "i aften",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "We are having pizza tonight.",
+      "ru": "Сегодня у нас пицца."
+     },
+     "after": {
+      "en": "We are having pizza tonight.",
+      "ru": "Сегодня вечером мы едим пиццу."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "tro på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The meaning 'to trust' is too narrow and not a distinct sense from 'to believe in'. The Danish example 'Jeg tror på mine venner' means 'I believe in my friends' (i.e., I have faith in them), not 'I trust my friends' (which would be 'Jeg stoler på mine venner'). The English and Russian translations are therefore also incorrect for the given Danish example.",
+     "danish_ok": false,
+     "en": "I believe in my friends.",
+     "ru": "Я верю в своих друзей."
+    }
+   ]
+  },
+  {
+   "phrase": "holde af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vise sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tale om",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "sætte sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "en masse",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "takke for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish example 'Han takkede for tilbuddet' means 'He declined the offer' (sense 2). The English translation 'He thanked him for the offer' and Russian translation 'Он поблагодарил его за предложение' both incorrectly render it as sense 1 ('to thank for').",
+     "danish_ok": true,
+     "en": "He declined the offer.",
+     "ru": "Он отказался от предложения."
+    }
+   ]
+  },
+  {
+   "phrase": "stole på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "lede efter",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gifte sig med",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "der findes",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tage på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå en tur",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "blive gift",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "se ud til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå i seng",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme med",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The Danish example 'Må jeg komme med i biografen?' means 'May I come along to the cinema?', which matches the sense 'to come along with (sb/sth)'. The English translation 'Do I have to go to the cinema?' changes the meaning to obligation ('have to') and drops 'with', failing to demonstrate the target sense. The Russian translation 'Обязательно ли мне идти в кино?' makes the same error, translating 'Må jeg' as 'Обязательно ли' (obligation) instead of 'Можно' (permission).",
+     "danish_ok": true,
+     "en": "May I come along to the cinema?",
+     "ru": "Можно мне пойти с вами в кино?"
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true
+    }
+   ]
+  },
+  {
+   "phrase": "komme for sent",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English translation 'sitting' is a calque of the Danish 'møde' and is not idiomatic for a business context; 'meeting' is the correct term. The Russian translation 'заседание' is overly formal and bureaucratic for a general 'møde'; 'встреча' or 'собрание' would be more natural and faithful to the neutral Danish word.",
+     "danish_ok": true,
+     "en": "I will be late for tomorrow's meeting.",
+     "ru": "Я опоздаю на завтрашнюю встречу."
+    }
+   ]
+  },
+  {
+   "phrase": "komme for sent",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I will be late for tomorrow's sitting.",
+      "ru": "Я опоздаю на завтрашнее заседание."
+     },
+     "after": {
+      "en": "I will be late for tomorrow's meeting.",
+      "ru": "Я опоздаю на завтрашнюю встречу."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "tænke på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian example translations do not match the sense 'to remember, to keep in mind'. They translate 'tænke på' literally as 'think about' instead of using a natural equivalent for the stated meaning. The Danish example itself is slightly unnatural for the sense; 'huske på' is more idiomatic, but 'tænke på' is acceptable. The translations, however, are defective.",
+     "danish_ok": true,
+     "en": "Remember to remember to lock the door.",
+     "ru": "Не забудь запереть дверь."
+    }
+   ]
+  },
+  {
+   "phrase": "glæde sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish example 'Jeg glæder mig til ferien' means 'I am looking forward to the holiday', but the sense meaning is given as 'to be happy' (радоваться). The meaning 'to look forward to' requires the preposition 'til' and is a distinct sense from the general 'to be happy/rejoice'. The English and Russian translations of the example are correct for the example, but the example does not match the stated meaning. The meaning should be 'to look forward to' (ждать с нетерпением / радоваться предстоящему).",
+     "danish_ok": false,
+     "en": "I'm looking forward to the holiday.",
+     "ru": "Я с нетерпением жду отпуска/каникул."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Он рад за тебя' is natural and correct for the meaning 'to be happy for someone'. However, the Danish example 'Han glæder sig på din vegne' uses the specific construction 'på nogens vegne' (on someone's behalf). The Russian translation 'Он рад за тебя' is a perfect match for the meaning, but 'ferie' in the first example was translated as 'праздника' (holiday/festival) instead of 'отпуска' or 'каникул' (vacation/holiday from work/school). This is a defect in item 1's Russian translation.",
+     "danish_ok": true,
+     "en": "He is happy for you.",
+     "ru": "Он рад за тебя."
+    }
+   ]
+  },
+  {
+   "phrase": "opføre sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i morges",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "kigge på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i går aftes",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gemme sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "være i gang",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish meaning 'to be in progress' is correct, but the English translation 'The meeting is now underway.' is faithful and natural. However, the Russian translation 'Встреча уже началась.' means 'The meeting has already started', which changes the aspect from an ongoing state ('is in progress') to a completed action ('has started'). A faithful Russian translation would be 'Встреча сейчас идёт.' or 'Встреча сейчас в процессе.'",
+     "danish_ok": true,
+     "ru": "Встреча сейчас идёт."
+    }
+   ]
+  },
+  {
+   "phrase": "regne med",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я ожидаю прийти на вечеринку' is unnatural and ungrammatical. 'Ожидать' requires a clause with a different subject or a noun, not an infinitive. A natural rendering is 'Я рассчитываю прийти на вечеринку' or 'Я думаю, что приду на вечеринку'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я рассчитываю прийти на вечеринку."
+    }
+   ]
+  },
+  {
+   "phrase": "regne med",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I expect to come to the party.",
+      "ru": "Я ожидаю прийти на вечеринку."
+     },
+     "after": {
+      "en": "I expect to come to the party.",
+      "ru": "Я рассчитываю прийти на вечеринку."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "bede om",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "forelske sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "ønske sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian translations of the example use 'wants'/'хочет' (to want), but the Danish verb 'ønske sig' means 'to wish for'. The translations do not demonstrate the stated meaning and are not faithful to the Danish example. The meaning glosses are correct, but the example translations are not.",
+     "danish_ok": true,
+     "en": "She is wishing for a new bike for her birthday.",
+     "ru": "Она желает новый велосипед на день рождения."
+    }
+   ]
+  },
+  {
+   "phrase": "af sted",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The meaning 'to leave' is a verb, but 'af sted' is an adverb. The example 'Vi skal af sted nu' means 'We must be off now' / 'We have to get going now'. The English translation 'We have to go now' is acceptable but the Russian 'Нам нужно идти сейчас' is a calque and unnatural; a native would say 'Нам пора' or 'Нам нужно выходить/отправляться'. The sense gloss should reflect the adverbial nature, e.g., 'off, away'.",
+     "danish_ok": true,
+     "en": "We have to get going now.",
+     "ru": "Нам пора."
+    }
+   ]
+  },
+  {
+   "phrase": "se på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "frem for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish expression 'frem for' means 'rather than' or 'in preference to', not 'instead of' (which is 'i stedet for'). The English meaning 'instead of' and Russian meaning 'вместо' are incorrect. The example translations are also incorrect: 'I choose tea over coffee' and 'Я выбираю чай вместо кофе' do not match the Danish meaning. Correct English meaning: 'rather than' / 'in preference to'. Correct Russian meaning: 'а не' / 'предпочитая'. Correct example translations: 'I choose tea rather than coffee.' / 'Я выбираю чай, а не кофе.'",
+     "danish_ok": false,
+     "en": "I choose tea rather than coffee.",
+     "ru": "Я выбираю чай, а не кофе."
+    }
+   ]
+  },
+  {
+   "phrase": "være sikker på at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "lave mad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "ændre sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "få nok",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru",
+      "sense"
+     ],
+     "problem": "The Russian meaning 'насытиться, устать от чего-л.' lists two distinct senses ('to be satiated/full' and 'to be tired of something'), but the English meaning 'to have had enough' and the example only illustrate the second sense ('to be tired of'). The Russian example translation 'Сегодня мне надоел дождь.' is a natural rendering of the example but is not a faithful translation; it changes the structure and drops the direct correspondence to 'fået nok af' (lit. 'got enough of'), using the verb 'надоесть' instead. A more faithful and equally natural translation would be 'С меня хватит дождя на сегодня.' or 'Я сыт по горло сегодняшним дождём.'",
+     "danish_ok": true,
+     "ru": "С меня хватит дождя на сегодня."
+    }
+   ]
+  },
+  {
+   "phrase": "drømme om",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я мечтаю о отпуске в Испании.' contains a grammatical error: the preposition 'о' requires the prepositional case, so 'отпуск' should be 'отпуске'. The correct form is 'об отпуске'.",
+     "danish_ok": true,
+     "ru": "Я мечтаю об отпуске в Испании."
+    }
+   ]
+  },
+  {
+   "phrase": "drømme om",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I dream of a holiday in Spain.",
+      "ru": "Я мечтаю о отпуске в Испании."
+     },
+     "after": {
+      "en": "I dream of a holiday in Spain.",
+      "ru": "Я мечтаю об отпуске в Испании."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "beslutte sig for at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "blive ved",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English meaning 'to insist' and Russian meaning 'настаивать' do not match the example's sense. The example 'Han blev ved med at sige, at han havde ret' demonstrates persistence/repetition ('kept saying'), not an act of insisting/asserting a claim against opposition. The English translation 'He kept saying that he was right' is correct for the example but contradicts the stated meaning. The Russian translation 'Он всё повторял, что прав' is also correct for the example but means 'kept repeating', not 'настаивал'.",
+     "danish_ok": true,
+     "en": "He insisted that he was right.",
+     "ru": "Он настаивал на том, что прав."
+    }
+   ]
+  },
+  {
+   "phrase": "begynde på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vende tilbage",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå i stykker",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "bekymre sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'переживает' is a natural synonym, but the meaning_ru is 'беспокоиться'. The example_ru should use the same verb as the meaning to be consistent and pedagogically clear, or the meaning_ru should be changed to 'переживать'. Using different verbs for the meaning and the example is confusing for learners.",
+     "danish_ok": true,
+     "ru": "Она всегда беспокоится о своих детях."
+    }
+   ]
+  },
+  {
+   "phrase": "bekymre sig",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "She is always worrying about her children.",
+      "ru": "Она всегда переживает за своих детей."
+     },
+     "after": {
+      "en": "She is always worrying about her children.",
+      "ru": "Она всегда беспокоится о своих детях."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "have ondt i",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian translations of the example do not match the sense 'to pull oneself together' / 'взять себя в руки'. They translate 'komme sig' as 'recover' / 'восстановиться', which is sense 1. The example itself is also ambiguous, but the provided translations are wrong for the stated meaning.",
+     "danish_ok": true,
+     "en": "You have to pull yourself together and make a decision.",
+     "ru": "Ты должен взять себя в руки и принять решение."
+    }
+   ]
+  },
+  {
+   "phrase": "tænke over",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "løbe væk",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme forbi",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "have travlt",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish expression 'have travlt' means 'to be busy', not 'to hurry/rush' ('спешить'). The Russian meaning 'спешить' names a different meaning. The English meaning 'to be busy' is correct, but the Russian translation 'Сегодня я занят.' correctly renders the example, contradicting the incorrect Russian meaning gloss.",
+     "danish_ok": false,
+     "ru": "быть занятым"
+    }
+   ]
+  },
+  {
+   "phrase": "blive ved med at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "blive fyret",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "handle om",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tabe sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Она теряет вес, бегая каждое утро.' is unnatural. 'Терять вес' is a calque from English; the idiomatic Russian equivalent for 'to lose weight' is 'худеть'. A native translator would write 'Она худеет, бегая каждое утро.'",
+     "danish_ok": true,
+     "ru": "Она худеет, бегая каждое утро."
+    }
+   ]
+  },
+  {
+   "phrase": "tabe sig",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "She loses weight by running every morning.",
+      "ru": "Она теряет вес, бегая каждое утро."
+     },
+     "after": {
+      "en": "She loses weight by running every morning.",
+      "ru": "Она худеет, бегая каждое утро."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "skamme sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "rejse sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English translation uses future tense 'will rise' but the Danish example 'rejser sig' is present tense. The Russian translation also uses future tense 'будет подниматься' and contains a typo 'мисе' instead of 'миске'.",
+     "danish_ok": true,
+     "en": "The dough rises slowly in the bowl.",
+     "ru": "Тесто медленно поднимается в миске."
+    }
+   ]
+  },
+  {
+   "phrase": "rejse sig",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "The dough will slowly rise in the bowl.",
+      "ru": "Тесто будет медленно подниматься в мисе."
+     },
+     "after": {
+      "en": "The dough rises slowly in the bowl.",
+      "ru": "Тесто медленно поднимается в миске."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "gå galt",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "forestille sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish example 'Han forestiller sig altid med et smil' does not mean 'to introduce oneself'. The reflexive verb 'at forestille sig' means 'to imagine'. The meaning 'to introduce oneself' is expressed by 'at præsentere sig'. The provided example actually means 'He always imagines himself with a smile', which matches the English and Russian translations given, but contradicts the stated meaning. This creates a misleading model for learners.",
+     "danish_ok": false,
+     "en": "He always introduces himself with a smile.",
+     "ru": "Он всегда представляется с улыбкой."
+    }
+   ]
+  },
+  {
+   "phrase": "til stede",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gøre rent",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "sige fra",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The meaning 'to opt out' is too narrow. 'sige fra' means to decline an invitation or to say you will not participate, but 'opt out' implies withdrawing from a pre-existing arrangement or system. The example 'Jeg siger fra til festen i morgen' means 'I'm declining the party tomorrow' (saying I won't come). The English translation 'I'll say no to the party tomorrow' is a calque and unnatural; a native speaker would say 'I'm not going to the party tomorrow' or 'I've decided not to go to the party tomorrow'. The Russian translation 'Я скажу «нет» вечеринке завтра' is also a calque and unnatural; a native speaker would say 'Я не пойду на вечеринку завтра'.",
+     "danish_ok": true,
+     "en": "I'm not going to the party tomorrow.",
+     "ru": "Я не пойду на вечеринку завтра."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "ru"
+     ],
+     "problem": "The Russian translation 'Она заговорила, когда начальник был несправедлив' is unnatural and inaccurate. 'Заговорила' means 'started speaking', not 'spoke up' in the sense of objecting or protesting. A correct translation would be 'Она возразила, когда начальник был несправедлив' or 'Она высказалась против несправедливости начальника'.",
+     "danish_ok": true,
+     "ru": "Она возразила, когда начальник был несправедлив."
+    }
+   ]
+  },
+  {
+   "phrase": "finde på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English translation 'I can't think of saying no to her' is unnatural and does not faithfully render the Danish meaning 'to bring oneself to'. The Russian translation 'Я не могу сказать ей «нет»' drops the nuance of 'finde på' (to bring oneself to/resolve to) and simply states 'I cannot say no to her', which is a different meaning. A faithful translation should convey the idea of not being able to bring oneself to do it.",
+     "danish_ok": true,
+     "en": "I can't bring myself to say no to her.",
+     "ru": "Я не могу заставить себя сказать ей «нет»."
+    }
+   ]
+  },
+  {
+   "phrase": "følge efter",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "fare vild",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "The Danish example uses 'farede' as the past tense of 'fare vild', but the correct past tense is 'for vild' (from 'fare vild' as a strong verb). 'Farede' is not a standard form.",
+     "danish_ok": false,
+     "en": null,
+     "ru": null
+    }
+   ]
+  },
+  {
+   "phrase": "nærme sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tvivle på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "inden for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "være imod",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "melde sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'доложили охране' means 'reported to the guard' (as in giving a report), but the Danish 'meldte sig hos vagten' means 'reported their presence/checked in with the guard'. A more faithful and natural translation would be 'отметились у охраны' or 'явились к охране'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Солдаты отметились у охраны у ворот."
+    }
+   ]
+  },
+  {
+   "phrase": "melde sig",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "The soldiers reported to the guard at the gate.",
+      "ru": "Солдаты доложили охране у ворот."
+     },
+     "after": {
+      "en": "The soldiers reported to the guard at the gate.",
+      "ru": "Солдаты отметились у охраны у ворот."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "være ked af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Извини, что забыл твой день рождения.' uses the imperative 'Извини' (Sorry/Excuse me) which is a different speech act from the declarative 'Jeg er ked af' (I am sorry/I regret). A faithful translation would be 'Мне жаль, что я забыл твой день рождения.' or 'Сожалею, что забыл твой день рождения.'",
+     "danish_ok": true,
+     "ru": "Мне жаль, что я забыл твой день рождения."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'После просмотра фильма ей было грустно.' adds the word 'просмотра' (watching/viewing), which is not present in the Danish 'efter filmen' (after the film). A faithful translation is 'Ей было грустно после фильма.'",
+     "danish_ok": true,
+     "ru": "Ей было грустно после фильма."
+    }
+   ]
+  },
+  {
+   "phrase": "være ked af",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I'm sorry I forgot your birthday.",
+      "ru": "Извини, что забыл твой день рождения."
+     },
+     "after": {
+      "en": "I'm sorry I forgot your birthday.",
+      "ru": "Мне жаль, что я забыл твой день рождения."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "She was sad after the film.",
+      "ru": "После просмотра фильма ей было грустно."
+     },
+     "after": {
+      "en": "She was sad after the film.",
+      "ru": "Ей было грустно после фильма."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "lægge sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "fortsætte med at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "stoppe med",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru",
+      "sense"
+     ],
+     "problem": "The Russian meaning 'прекращать' is misspelled (should be 'прекращать'? Actually, the correct verb is 'прекращать' but it's imperfective; the example uses perfective 'брошу'. The meaning should be 'прекращать/бросить' or just 'бросать/бросить' to match the example. Also, the Russian example translation 'Завтра брошу курить.' is natural but drops the subject 'я', which is acceptable in Russian, but the English translation 'I'll stop smoking tomorrow.' is faithful. However, the Russian meaning 'прекращать' is a misspelling of 'прекращать' (should be 'прекращать'? Actually, it's 'прекращать' - no, it's 'прекращать' is correct? Wait, the verb is 'прекращать' (imperfective) / 'прекратить' (perfective). The given 'прекращать' is misspelled; it should be 'прекращать'. But the example uses 'брошу' which is a different verb. The meaning should reflect the verb used in the example or be a more general equivalent. 'Stoppe med' can be translated as 'прекращать/прекратить' or 'бросать/бросить'. The Russian meaning is misspelled and mismatched with the example verb.",
+     "danish_ok": true,
+     "ru": "прекращать, бросать"
+    }
+   ]
+  },
+  {
+   "phrase": "dreje sig om",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "bevæge sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "held og lykke",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vaske op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "have på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "ud over",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "følge med",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "stå for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "høre fra",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'слышу от брата' is a calque from English/Danish and is not idiomatic. A native Russian speaker would say 'получаю вести от брата' or 'брат даёт о себе знать'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Каждую неделю я получаю вести от брата."
+    }
+   ]
+  },
+  {
+   "phrase": "høre fra",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I hear from my brother every week.",
+      "ru": "Каждую неделю я слышу от брата."
+     },
+     "after": {
+      "en": "I hear from my brother every week.",
+      "ru": "Каждую неделю я получаю вести от брата."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "banke på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

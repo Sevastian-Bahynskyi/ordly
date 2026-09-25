@@ -1,0 +1,83 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batch": "phrases batch-0002",
+ "scope": "all 92 phrases / 110 senses",
+ "dropped_senses": [
+  "få nok#2",
+  "finde på#2",
+  "dreje sig om#2",
+  "sige fra#1 (renumbered #2 to #1)"
+ ],
+ "corrections": [
+  {
+   "phrase": "takke for",
+   "ordinal": 1,
+   "before": {
+    "ru_text": "отказываться от",
+    "en_text": "to decline",
+    "ru": "Она поблагодарила её за предложение помощи.",
+    "en": "She thanked her for the offer of help."
+   },
+   "after": {
+    "ru_text": "благодарить за",
+    "en_text": "to thank for",
+    "en": "She said thank you for the offer of help."
+   }
+  },
+  {
+   "phrase": "komme med",
+   "ordinal": 1,
+   "before": {
+    "ru_text": "пойти с (кем-л./куда-л.)",
+    "en_text": "to come along (with sb/to a place)",
+    "ru": "Хочешь прийти на пляж завтра?",
+    "en": "Would you like to come to the beach tomorrow?"
+   },
+   "after": {
+    "en": "Would you like to come along to the beach tomorrow?",
+    "ru": "Хочешь пойти с нами на пляж завтра?"
+   }
+  },
+  {
+   "phrase": "komme til at",
+   "ordinal": 2,
+   "before": {
+    "ru_text": "случайно сделать что-то",
+    "en_text": "to accidentally do something",
+    "ru": "Я случайно сказал не то.",
+    "en": "I happened to say the wrong thing."
+   },
+   "after": {
+    "en": "I accidentally said the wrong thing."
+   }
+  },
+  {
+   "phrase": "få nok",
+   "ordinal": 1,
+   "before": {
+    "ru_text": "насытиться, получить достаточно",
+    "en_text": "to have enough, to get one's fill",
+    "ru": "Дети наели достаточно торта на вечеринку.",
+    "en": "The children had enough cake for the party."
+   },
+   "after": {
+    "en": "The children had plenty of cake at the party.",
+    "ru": "На празднике дети вдоволь наелись торта."
+   }
+  },
+  {
+   "phrase": "have på",
+   "ordinal": 1,
+   "before": {
+    "ru_text": "надевать"
+   },
+   "after": {
+    "ru_text": "носить, быть одетым в"
+   }
+  }
+ ],
+ "regenerated": {
+  "en masse": "Audit: \"Der kom mennesker en masse\" is a marked, old-fashioned order. Use the everyday \"en masse\" + noun: \"Der kom en masse mennesker til koncerten.\"",
+  "have på": "Audit: \"Jeg har på en varm jakke\" is wrong — with an object the particle follows it (\"har en jakke på\"), which splits the phrase. Use a sentence where \"have på\" stays together naturally: a question with the object fronted (\"Hvad skal jeg have på i aften?\") or no object (\"Hun havde ikke noget varmt på\" is split too — avoid it)."
+ }
+}

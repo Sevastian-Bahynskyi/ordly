@@ -30,10 +30,33 @@ export const SAFETY_MARGIN = 5
 
 const usagePath = 'catalog/families/azure-usage.json'
 interface Usage { modelUsd: number; translatorChars: number; calls: { op: string; model?: string; inputTokens?: number; outputTokens?: number; usd?: number; chars?: number; at: string }[] }
-export const usage: Usage = existsSync(usagePath) ? JSON.parse(await readFile(usagePath, 'utf8')) as Usage : { modelUsd: 0, translatorChars: 0, calls: [] }
+async function readUsage(): Promise<Usage> {
+  return existsSync(usagePath) ? JSON.parse(await readFile(usagePath, 'utf8')) as Usage : { modelUsd: 0, translatorChars: 0, calls: [] }
+}
+/** The ledger as of the last save; the budget check reads it. */
+export const usage: Usage = await readUsage()
+// Calls made by this process and not yet written. Several stages run at once, so a save re-reads
+// the ledger and adds only this process's own calls: writing a whole in-memory copy would erase
+// whatever another process recorded in between (observed: the total went down).
+let unsaved: Usage['calls'] = []
+let saving: Promise<void> = Promise.resolve()
 
-async function saveUsage(): Promise<void> {
-  await writeFile(usagePath, `${JSON.stringify(usage, null, 1)}\n`)
+function record(call: Usage['calls'][number]): Promise<void> {
+  unsaved.push(call)
+  saving = saving.then(async () => {
+    const batch = unsaved
+    unsaved = []
+    if (!batch.length) return
+    const ledger = await readUsage()
+    for (const entry of batch) {
+      ledger.modelUsd += entry.usd ?? 0
+      ledger.translatorChars += entry.chars ?? 0
+      ledger.calls.push(entry)
+    }
+    await writeFile(usagePath, `${JSON.stringify(ledger, null, 1)}\n`)
+    Object.assign(usage, ledger)
+  })
+  return saving
 }
 
 function assertBudget(): void {
@@ -92,9 +115,7 @@ export async function deepseekJson(op: string, label: string, system: string, us
     if (!content) throw new Error('empty completion')
     if (body.usage) {
       const usd = body.usage.prompt_tokens * PRICE_PER_TOKEN_IN + body.usage.completion_tokens * PRICE_PER_TOKEN_OUT
-      usage.modelUsd += usd
-      usage.calls.push({ op, model: MODEL, inputTokens: body.usage.prompt_tokens, outputTokens: body.usage.completion_tokens, usd, at: new Date().toISOString() })
-      await saveUsage()
+      await record({ op, model: MODEL, inputTokens: body.usage.prompt_tokens, outputTokens: body.usage.completion_tokens, usd, at: new Date().toISOString() })
     }
     return extractJson(content, options.open ?? '{')
   })
@@ -103,6 +124,8 @@ export async function deepseekJson(op: string, label: string, system: string, us
 const translationCachePath = 'catalog/families/translation-cache.json'
 const translationCache: Record<string, string> = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
 async function saveTranslationCache(): Promise<void> {
+  const onDisk = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
+  Object.assign(translationCache, { ...onDisk, ...translationCache })
   await writeFile(translationCachePath, `${JSON.stringify(translationCache, null, 1)}\n`)
 }
 
@@ -122,9 +145,7 @@ export async function translate(text: string, to: string, from = 'da'): Promise<
     if (!out) throw new Error('empty translation')
     return out
   })
-  usage.translatorChars += text.length
-  usage.calls.push({ op: `translator.${from}-${to}`, chars: text.length, at: new Date().toISOString() })
-  await saveUsage()
+  await record({ op: `translator.${from}-${to}`, chars: text.length, at: new Date().toISOString() })
   translationCache[key] = result
   await saveTranslationCache()
   return result

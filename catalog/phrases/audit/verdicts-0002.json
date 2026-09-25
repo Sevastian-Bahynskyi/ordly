@@ -1,0 +1,553 @@
+{
+ "auditor": "claude-opus-5-5 (full read, not a sample)",
+ "rubric": [
+  "grammar",
+  "natural",
+  "sense",
+  "en",
+  "ru",
+  "pedagogy"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "audited": 110,
+   "clean": 100,
+   "defects": [
+    "takke for gloss decline (severe)",
+    "have på word order (severe)",
+    "få nok #2 mistranslated",
+    "finde på #2 gloss/translation",
+    "dreje sig om #2 ambiguous",
+    "sige fra #1 unnatural",
+    "komme med #1 translations",
+    "komme til at #2 EN",
+    "få nok #1 translations",
+    "en masse marked word order"
+   ]
+  },
+  {
+   "round": 2,
+   "audited": 103,
+   "clean": 103,
+   "defects": []
+  }
+ ],
+ "final": [
+  {
+   "phrase": "i dag",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i morgen",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "kunne lide",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "holde op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vente på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gifte sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå ud",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "over for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i aften",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "holde af",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vise sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vise sig",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tale om",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "sætte sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "sætte sig",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "stole på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "lede efter",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gifte sig med",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "der findes",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tage på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå en tur",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "blive gift",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "se ud til",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå i seng",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme for sent",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "opføre sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i morges",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "kigge på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i går aftes",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gemme sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "regne med",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "regne med",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "bede om",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "forelske sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "se på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "se på",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "være sikker på at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "lave mad",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "ændre sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "drømme om",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "beslutte sig for at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "begynde på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vende tilbage",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå i stykker",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "bekymre sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "have ondt i",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tænke over",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "løbe væk",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme forbi",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "blive ved med at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "blive fyret",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "handle om",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tabe sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "skamme sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå galt",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "til stede",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gøre rent",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "følge efter",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "nærme sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tvivle på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "inden for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "være imod",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "melde sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "melde sig",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "være ked af",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "være ked af",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "lægge sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "lægge sig",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "fortsætte med at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "dreje sig om",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "bevæge sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "held og lykke",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vaske op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "ud over",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "følge med",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "følge med",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "stå for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "høre fra",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "banke på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tro på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme med",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme med",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "glæde sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "af sted",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "frem for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "blive ved",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "have travlt",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "forestille sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "sige fra",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "fare vild",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme til at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme til at",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "takke for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tænke på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "være i gang",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "ønske sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "få nok",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "rejse sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "rejse sig",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "finde på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "en masse",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "have på",
+   "ordinal": 1,
+   "verdict": "clean"
+  }
+ ]
+}
