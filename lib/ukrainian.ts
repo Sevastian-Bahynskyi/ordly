@@ -33,7 +33,7 @@ const MIXED_WORD = /(?=[\p{L}'’ʼ-]*\p{Script=Latin})(?=[\p{L}'’ʼ-]*\p{Scri
  * against a Ukrainian dictionary before it was added. Without them the Russian dictionary, which
  * does list them, would call them Russian.
  */
-const UKRAINIAN_EXTRA = new Set(['клятва', 'доставка'])
+const UKRAINIAN_EXTRA = new Set(['клятва', 'доставка', 'доставки', 'доставці', 'доставку', 'доставкою'])
 /**
  * Standard Ukrainian abbreviations, which Hunspell does not list. Only these, and only whole
  * words: a guess from "short word before a full stop" read the end of `комп'ютер.` as one.

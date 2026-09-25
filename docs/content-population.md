@@ -30,6 +30,7 @@ Work is committed in chunks on the working branch. To continue after an interrup
 | C11 | phrases (`catalog/phrases/README.md`): rights-cleared inventory, 129 phrases / 141 senses in both languages, 32 phrase families | done |
 | C8 | final audit, published report, docs, load | done 2026-09-25 (see **Acceptance evidence**) |
 | C12 | audio: DDO website recordings moved to `legacy/ddo/`, Azure Speech recordings for every word and phrase | done 2026-09-25 |
+| C13 | Ukrainian (issue #24): wording for every sense, example and family sentence translations, seeded audit, load | done 2026-09-26 (see **Ukrainian**) |
 
 ## Acceptance evidence (2026-09-25)
 
@@ -111,6 +112,39 @@ Found by the English pass (flags) and applied to `catalog/out`, the English file
 5. `--tally N`; every finding repaired in the reply; `--approve N` pins each sampled reply's sha1
    in `audit/passed.json`. `--merge` publishes approved replies only; an edited reply drops out
    until an audit covers it again.
+
+## Ukrainian (issue #24, 2026-09-26)
+
+Ukrainian is a full learner language (AGENTS.md §26). Pipeline and evidence:
+
+```
+pnpm exec tsx scripts/write-locale-work.ts --lang uk --from-db --target catalog/locale-uk/work   # 6,131 senses, 123 batches
+pnpm exec tsx --env-file=.env.corpus.local scripts/generate-locale-batch.ts --lang uk --workers 8
+pnpm exec tsx --env-file=.env.corpus.local scripts/generate-locale-batch.ts --lang uk --repair
+pnpm exec tsx scripts/check-locale-batches.ts --lang uk --root catalog/locale-uk --merge   # → catalog/locale-uk.json
+pnpm exec tsx --env-file=.env.corpus.local scripts/translate-families.ts                   # → catalog/families/translations-uk.json
+pnpm exec tsx scripts/audit-locale.ts --draw --seed 2401 --size 240 && … --tally 2401
+pnpm exec tsx scripts/import-catalog-locale.ts catalog/locale-uk.json --sql-dir <dir> --chunk 200
+pnpm exec tsx scripts/import-catalog-families.ts --sql-dir <dir>   # merges the overlay
+```
+
+- **Gate.** 123/123 batches clean; 21 had flagged rows after the first run (the reviewer skipped a
+  sentence, or a dictionary gap), 18 fixed by `--repair`, 3 by hand; one family sentence accepted
+  by hand (`catalog/locale-uk/REPAIRS.md`).
+- **Language check** (`scripts/measure-ukrainian-check.ts`): every Ukrainian wording (5,868 unique),
+  example (6,013) and family sentence (1,358) accepted; filed as Ukrainian, 88.4% of the Russian
+  wordings, 99.8% of Russian examples and 99.5% of Russian family sentences are rejected. The rest
+  are spelled identically in both languages (`завтра`, `адвокат`, `альбом`).
+- **Audit** (seed 2401, 240 items, every stratum read, `catalog/locale-uk/audit/report-2401.md`):
+  98.3% clean overall (±1.6), no unresolved severe finding; 4 findings, all repaired before loading.
+- **Load** (production, `supabase db query --linked`, after the same SQL ran twice on a local stack
+  holding a copy of the production catalog): 6,131 uk = 6,131 en = 6,131 ru senses, 6,094 uk example
+  translations (= en), 1,362/1,362 family sentences with `translations.uk`, one snapshot
+  (`ca4f6225b2bfa6a4`, cleanup removed 0), 0 duplicate rows.
+  `supabase/tests/catalog-contexts.mjs` passes 24/24 (every band × en/ru/uk × word/phrase) locally.
+- **Spend** (local ledger `catalog/families/azure-usage.json`, not committed; list price): DeepSeek $3.70 for this issue
+  ($9.14 cumulative); Azure Translator 477,064 characters for this issue (≈$4.77; 641,968 cumulative,
+  ≈$6.42); Azure Speech not used. All well under the $70-per-service budget.
 
 ## Baseline (2026-09-24)
 

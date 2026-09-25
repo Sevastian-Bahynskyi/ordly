@@ -6,8 +6,8 @@ added to another.
 
 ## Catalog size
 
-- 5,063 headwords (129 of them multi-word phrases), 6,131 senses with Russian wording, 6,131 with English wording.
-- 461 published sentence families, 1,362 distinct checked sentences, each with an English and a Russian translation.
+- 5,063 headwords (129 of them multi-word phrases), 6,131 senses with Russian wording, 6,131 with English wording, 6,131 with Ukrainian wording.
+- 461 published sentence families, 1,362 distinct checked sentences, each with an English and a Russian translation; 1,362 also carry a Ukrainian one.
   Each sentence can be offered as a typed gap and as a word-order task, so at most
   2,724 distinct catalog exercises exist. That is the real count after constraints and
   de-duplication; no combination is generated at runtime.
@@ -24,7 +24,9 @@ sense is worded in the learner language.
 |---|---|---|---|---|---|
 | Russian | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
 | English | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
-| both | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
+| Ukrainian | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
+| English and Russian | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
+| all three | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
 
 "Via headword": the list names a word COR files as a form of another headword in the same class
 (`det` → `den`, `far` → `fader`, `mens` → `medens`); the catalog saves words under COR's
@@ -76,7 +78,7 @@ in the sentences.
 
 Matrix `cefr-matrix-2026-09-25` (`catalog/benchmark/cefr-matrix.json`): 19 situations and 31 grammar
 functions, each at the levels it is taught, aligned to the CEFR companion volume. A cell is
-covered with at least 3 gated families (each usable in English and Russian).
+covered with at least 3 gated families (each usable in English, Russian and Ukrainian).
 
 **147 of 147 cells covered.** Families by level: A1 91 · A2 123 · B1 185 · B2 62.
 

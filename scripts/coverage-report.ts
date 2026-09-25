@@ -216,7 +216,7 @@ in the sentences.
 
 Matrix \`${matrix.version}\` (\`catalog/benchmark/cefr-matrix.json\`): ${matrix.situations.length} situations and ${matrix.grammar.length} grammar
 functions, each at the levels it is taught, aligned to the CEFR companion volume. A cell is
-covered with at least ${CELL_MIN} gated families (each usable in English and Russian, and in Ukrainian once its sentences carry a Ukrainian translation).
+covered with at least ${CELL_MIN} gated families (each usable in ${ukrainianVariants === variants ? 'English, Russian and Ukrainian' : 'English and Russian'}).
 
 **${coveredCells.length} of ${cells.length} cells covered.** Families by level: ${byLevel.map((row) => `${row.level} ${row.families.toLocaleString('en-US')}`).join(' · ')}.
 
