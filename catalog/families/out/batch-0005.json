@@ -309,7 +309,9 @@
     "ru": "Ошибка имела малое значение для результата.",
     "orders": [],
     "accepted": [
-     "lille"
+     "ringe",
+     "lille",
+     "mindre"
     ]
    },
    {
@@ -323,7 +325,7 @@
     "ru": "Его извинение мало помогло пострадавшим.",
     "orders": [],
     "accepted": [
-     "lille"
+     "ringe"
     ]
    },
    {
@@ -333,11 +335,12 @@
      "predicate2": 2
     },
     "target": "lidet",
-    "en": "There was only little hope left for the survivors.",
+    "en": "There was only a little hope left for the survivors.",
     "ru": "У выживших оставалось лишь немного надежды.",
     "orders": [],
     "accepted": [
-     "lille"
+     "lidt",
+     "ringe"
     ]
    }
   ]
@@ -418,13 +421,13 @@
   "slots": {
    "subject": [
     {
-     "da": "Det"
-    },
-    {
-     "da": "Hun"
-    },
-    {
      "da": "Mødet"
+    },
+    {
+     "da": "Chefen"
+    },
+    {
+     "da": "Projektet"
     }
    ],
    "verb": [
@@ -440,13 +443,13 @@
    ],
    "complement": [
     {
-     "da": "koldt i morgen"
+     "da": "aflyst"
     },
     {
      "da": "træt efter rejsen"
     },
     {
-     "da": "aflyst"
+     "da": "færdigt i næste uge"
     }
    ]
   },
@@ -458,11 +461,14 @@
      "complement": 0
     },
     "target": "nok",
-    "en": "It will probably be cold tomorrow.",
-    "ru": "Завтра, наверное, будет холодно.",
+    "en": "The meeting will probably be cancelled.",
+    "ru": "Встречу, наверное, отменят.",
     "orders": [],
     "accepted": [
-     "sikkert"
+     "sikkert",
+     "sandsynligvis",
+     "formentlig",
+     "vel"
     ]
    },
    {
@@ -472,11 +478,14 @@
      "complement": 1
     },
     "target": "nok",
-    "en": "She is probably tired after the trip.",
-    "ru": "Она, наверное, устала после поездки.",
+    "en": "The boss is probably tired after the trip.",
+    "ru": "Начальник, наверное, устал после поездки.",
     "orders": [],
     "accepted": [
-     "sikkert"
+     "sikkert",
+     "sandsynligvis",
+     "formentlig",
+     "vel"
     ]
    },
    {
@@ -486,11 +495,14 @@
      "complement": 2
     },
     "target": "nok",
-    "en": "The meeting will probably be cancelled.",
-    "ru": "Встреча, наверное, будет отменена.",
+    "en": "The project will probably be finished next week.",
+    "ru": "Проект, наверное, будет готов на следующей неделе.",
     "orders": [],
     "accepted": [
-     "sikkert"
+     "sikkert",
+     "sandsynligvis",
+     "formentlig",
+     "vel"
     ]
    }
   ]
@@ -538,7 +550,8 @@
     "ru": "Я просто хочу спать.",
     "orders": [],
     "accepted": [
-     "kun"
+     "kun",
+     "blot"
     ]
    },
    {
@@ -551,7 +564,8 @@
     "ru": "Она просто хочет помочь.",
     "orders": [],
     "accepted": [
-     "kun"
+     "kun",
+     "blot"
     ]
    },
    {
@@ -564,7 +578,8 @@
     "ru": "Мы просто хотим есть.",
     "orders": [],
     "accepted": [
-     "kun"
+     "kun",
+     "blot"
     ]
    }
   ]
@@ -600,7 +615,8 @@
     "ru": "Если бы у меня было больше денег!",
     "orders": [],
     "accepted": [
-     "gid"
+     "gid",
+     "hvis bare"
     ]
    },
    {
@@ -612,7 +628,8 @@
     "ru": "Если бы он приехал вовремя!",
     "orders": [],
     "accepted": [
-     "gid"
+     "gid",
+     "hvis bare"
     ]
    },
    {
@@ -624,7 +641,8 @@
     "ru": "Если бы мы могли поехать завтра!",
     "orders": [],
     "accepted": [
-     "gid"
+     "gid",
+     "hvis bare"
     ]
    }
   ]
@@ -684,10 +702,10 @@
   "lemma": "høj",
   "kind": "word",
   "sense_id": "fba199b5-1f10-5829-9e17-d68f5f6752a6",
-  "level": "A1",
+  "level": "A2",
   "situation": "home",
   "grammar": "adjective-meaning",
-  "frame": "{subject} er {target}.",
+  "frame": "{subject} er {target}, så jeg kan ikke sove.",
   "slots": {
    "subject": [
     {
@@ -697,7 +715,7 @@
      "da": "Fjernsynet"
     },
     {
-     "da": "Lydene"
+     "da": "Naboernes stemmer"
     }
    ]
   },
@@ -707,8 +725,8 @@
      "subject": 0
     },
     "target": "høj",
-    "en": "The music is loud.",
-    "ru": "Музыка громкая.",
+    "en": "The music is loud, so I can't sleep.",
+    "ru": "Музыка громкая, так что я не могу уснуть.",
     "orders": []
    },
    {
@@ -716,8 +734,8 @@
      "subject": 1
     },
     "target": "højt",
-    "en": "The television is loud.",
-    "ru": "Телевизор громкий.",
+    "en": "The television is loud, so I can't sleep.",
+    "ru": "Телевизор громкий, так что я не могу уснуть.",
     "orders": []
    },
    {
@@ -725,8 +743,8 @@
      "subject": 2
     },
     "target": "høje",
-    "en": "The sounds are loud.",
-    "ru": "Звуки громкие.",
+    "en": "The neighbours' voices are loud, so I can't sleep.",
+    "ru": "Голоса соседей громкие, так что я не могу уснуть.",
     "orders": []
    }
   ]
@@ -902,7 +920,7 @@
     },
     "target": "hos",
     "en": "We are at our parents'.",
-    "ru": "Мы у наших родителей.",
+    "ru": "Мы у своих родителей.",
     "orders": []
    }
   ]
@@ -940,7 +958,7 @@
    ],
    "complement": [
     {
-     "da": "til Danmark i morgen"
+     "da": "til sin hjemby i morgen"
     },
     {
      "da": "til hotellet sent om aftenen"
@@ -958,8 +976,8 @@
      "complement": 0
     },
     "target": "tilbage",
-    "en": "He is returning to Denmark tomorrow.",
-    "ru": "Он возвращается в Данию завтра.",
+    "en": "He is returning to his hometown tomorrow.",
+    "ru": "Завтра он возвращается в родной город.",
     "orders": []
    },
    {
@@ -1086,10 +1104,11 @@
     },
     "target": "igen",
     "en": "He called again.",
-    "ru": "Он позвонил снова.",
+    "ru": "Он снова позвонил.",
     "orders": [],
     "accepted": [
-     "en gang til"
+     "en gang til",
+     "atter"
     ]
    },
    {
@@ -1099,10 +1118,11 @@
     },
     "target": "igen",
     "en": "She read the book again.",
-    "ru": "Она прочитала книгу снова.",
+    "ru": "Она снова прочитала книгу.",
     "orders": [],
     "accepted": [
-     "en gang til"
+     "en gang til",
+     "atter"
     ]
    },
    {
@@ -1112,10 +1132,11 @@
     },
     "target": "igen",
     "en": "We tried again.",
-    "ru": "Мы попробовали снова.",
+    "ru": "Мы снова попробовали.",
     "orders": [],
     "accepted": [
-     "en gang til"
+     "en gang til",
+     "atter"
     ]
    }
   ]
@@ -1137,7 +1158,7 @@
      "da": "ikke noget spændende i går"
     },
     {
-     "da": "en fejl under mødet"
+     "da": "noget mærkeligt i nat"
     }
    ]
   },
@@ -1163,7 +1184,8 @@
     "ru": "Вчера ничего интересного не произошло.",
     "orders": [],
     "accepted": [
-     "hændte"
+     "hændte",
+     "foregik"
     ]
    },
    {
@@ -1171,11 +1193,12 @@
      "complement": 2
     },
     "target": "skete",
-    "en": "A mistake happened during the meeting.",
-    "ru": "Во время встречи произошла ошибка.",
+    "en": "Something strange happened last night.",
+    "ru": "Ночью произошло что-то странное.",
     "orders": [],
     "accepted": [
-     "hændte"
+     "hændte",
+     "foregik"
     ]
    }
   ]
@@ -1205,7 +1228,7 @@
      "da": "ligger"
     },
     {
-     "da": "rører kaffen med"
+     "da": "rører rundt i kaffen med"
     },
     {
      "da": "mangler"
@@ -1276,7 +1299,7 @@
      "da": "Hun begyndte i det nye job i januar"
     },
     {
-     "da": "Vi mistede kontakten efter skolen,"
+     "da": "Vi mistede kontakten efter skolen"
     }
    ],
    "conj": [
@@ -1287,7 +1310,7 @@
      "da": "og"
     },
     {
-     "da": "men"
+     "da": "og"
     }
    ],
    "continuation": [
@@ -1298,7 +1321,7 @@
      "da": "har trivedes"
     },
     {
-     "da": "vi har ikke talt sammen"
+     "da": "har ikke talt sammen"
     }
    ]
   },
@@ -1312,7 +1335,10 @@
     "target": "siden",
     "en": "He quit smoking last year and has felt better since.",
     "ru": "Он бросил курить в прошлом году и с тех пор чувствует себя лучше.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sidenhen"
+    ]
    },
    {
     "slots": {
@@ -1322,8 +1348,11 @@
     },
     "target": "siden",
     "en": "She started the new job in January and has thrived since.",
-    "ru": "Она начала новую работу в январе и с тех пор преуспевает.",
-    "orders": []
+    "ru": "Она начала на новой работе в январе и с тех пор ей там хорошо.",
+    "orders": [],
+    "accepted": [
+     "sidenhen"
+    ]
    },
    {
     "slots": {
@@ -1332,9 +1361,12 @@
      "continuation": 2
     },
     "target": "siden",
-    "en": "We lost contact after school, but we haven't talked since.",
-    "ru": "Мы потеряли связь после школы, но с тех пор не общались.",
-    "orders": []
+    "en": "We lost touch after school and haven't talked since.",
+    "ru": "Мы потеряли связь после школы и с тех пор не общались.",
+    "orders": [],
+    "accepted": [
+     "sidenhen"
+    ]
    }
   ]
  },
@@ -1379,7 +1411,9 @@
     "target": "siden",
     "en": "I moved here three years ago.",
     "ru": "Я переехал сюда три года назад.",
-    "orders": []
+    "orders": [
+     "For tre år siden flyttede jeg hertil."
+    ]
    },
    {
     "slots": {
@@ -1463,7 +1497,7 @@
     },
     "target": "eksempel",
     "en": "The book contains an interesting example.",
-    "ru": "Книга содержит интересный пример.",
+    "ru": "В книге есть интересный пример.",
     "orders": []
    }
   ]
@@ -1539,7 +1573,7 @@
   "sense_id": "6a0a3af7-40e3-54c1-abae-f199e325261c",
   "level": "A1",
   "situation": "leisure",
-  "grammar": "noun-definite",
+  "grammar": "noun-meaning",
   "frame": "{clause} {target}.",
   "slots": {
    "clause": [
@@ -1547,7 +1581,7 @@
      "da": "Han har rejst rundt i"
     },
     {
-     "da": "Hun ønsker at se mere af"
+     "da": "Hun vil gerne se mere af"
     },
     {
      "da": "De har rejst meget rundt i"
@@ -1561,7 +1595,7 @@
     },
     "target": "verden",
     "en": "He has traveled around the world.",
-    "ru": "Он путешествовал по всему миру.",
+    "ru": "Он путешествовал по миру.",
     "orders": []
    },
    {
@@ -1569,8 +1603,8 @@
      "clause": 1
     },
     "target": "verden",
-    "en": "She wants to see more of the world.",
-    "ru": "Она хочет увидеть больше мира.",
+    "en": "She would like to see more of the world.",
+    "ru": "Она хотела бы повидать больше мира.",
     "orders": []
    },
    {
@@ -1579,7 +1613,7 @@
     },
     "target": "verden",
     "en": "They have traveled a lot around the world.",
-    "ru": "Они много попутешествовали по миру.",
+    "ru": "Они много путешествовали по миру.",
     "orders": []
    }
   ]
@@ -1621,7 +1655,7 @@
     },
     "target": "regeringen",
     "en": "The government is holding a press conference today.",
-    "ru": "Правительство проводит пресс-конференцию сегодня.",
+    "ru": "Сегодня правительство проводит пресс-конференцию.",
     "orders": []
    },
    {
@@ -1640,30 +1674,30 @@
   "kind": "word",
   "sense_id": "64046b9c-628b-516f-81e0-3fe400e9453d",
   "level": "A2",
-  "situation": "social",
+  "situation": "transport",
   "grammar": "particle-verbs",
-  "frame": "{subject} ser {target} til {object}.",
+  "frame": "{subject} {verbphrase} {target}.",
   "slots": {
    "subject": [
     {
-     "da": "Jeg"
+     "da": "Bilerne i køen"
     },
     {
-     "da": "Vi"
+     "da": "Chaufføren"
     },
     {
-     "da": "Hun"
+     "da": "Passagererne"
     }
    ],
-   "object": [
+   "verbphrase": [
     {
-     "da": "ferien"
+     "da": "kørte langsomt"
     },
     {
-     "da": "at se dig igen"
+     "da": "kørte bussen lidt"
     },
     {
-     "da": "weekenden"
+     "da": "rykkede lidt"
     }
    ]
   },
@@ -1671,32 +1705,41 @@
    {
     "slots": {
      "subject": 0,
-     "object": 0
+     "verbphrase": 0
     },
     "target": "frem",
-    "en": "I am looking forward to the holiday.",
-    "ru": "Я с нетерпением жду отпуска.",
-    "orders": []
+    "en": "The cars in the queue moved slowly forward.",
+    "ru": "Машины в пробке медленно ехали вперёд.",
+    "orders": [],
+    "accepted": [
+     "fremad"
+    ]
    },
    {
     "slots": {
      "subject": 1,
-     "object": 1
+     "verbphrase": 1
     },
     "target": "frem",
-    "en": "We are looking forward to seeing you again.",
-    "ru": "Мы с нетерпением ждём встречи с тобой снова.",
-    "orders": []
+    "en": "The driver moved the bus forward a little.",
+    "ru": "Водитель немного подал автобус вперёд.",
+    "orders": [],
+    "accepted": [
+     "fremad"
+    ]
    },
    {
     "slots": {
      "subject": 2,
-     "object": 2
+     "verbphrase": 2
     },
     "target": "frem",
-    "en": "She is looking forward to the weekend.",
-    "ru": "Она с нетерпением ждёт выходных.",
-    "orders": []
+    "en": "The passengers moved forward a little.",
+    "ru": "Пассажиры немного продвинулись вперёд.",
+    "orders": [],
+    "accepted": [
+     "fremad"
+    ]
    }
   ]
  },
@@ -1706,7 +1749,7 @@
   "sense_id": "d0b61aa1-5fce-5dff-b682-19dc043d5ec6",
   "level": "A2",
   "situation": "social",
-  "grammar": "noun-indefinite",
+  "grammar": "fixed-expressions",
   "frame": "Det er ikke {possessive} {target}.",
   "slots": {
    "possessive": [
@@ -1743,7 +1786,8 @@
     "ru": "Это не его дело.",
     "orders": [],
     "accepted": [
-     "affære"
+     "affære",
+     "anliggende"
     ]
    },
    {
@@ -1755,7 +1799,8 @@
     "ru": "Это не их дело.",
     "orders": [],
     "accepted": [
-     "affære"
+     "affære",
+     "anliggende"
     ]
    }
   ]
@@ -1789,7 +1834,10 @@
     "target": "hvordan",
     "en": "How are you?",
     "ru": "Как у тебя дела?",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hvorledes"
+    ]
    },
    {
     "slots": {
@@ -1798,7 +1846,10 @@
     "target": "hvordan",
     "en": "How do we get to the station?",
     "ru": "Как нам добраться до вокзала?",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hvorledes"
+    ]
    },
    {
     "slots": {
@@ -1807,7 +1858,10 @@
     "target": "hvordan",
     "en": "How does the soup taste?",
     "ru": "Какой суп на вкус?",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hvorledes"
+    ]
    }
   ]
  },
@@ -1917,7 +1971,10 @@
     "target": "taler",
     "en": "I speak Danish at home.",
     "ru": "Я говорю по-датски дома.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "snakker"
+    ]
    },
    {
     "slots": {
@@ -1927,7 +1984,10 @@
     "target": "taler",
     "en": "She is talking to her boss about the project.",
     "ru": "Она разговаривает со своим начальником о проекте.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "snakker"
+    ]
    },
    {
     "slots": {
@@ -1935,9 +1995,12 @@
      "complement": 2
     },
     "target": "taler",
-    "en": "We talk on the phone often.",
+    "en": "We often talk on the phone.",
     "ru": "Мы часто разговариваем по телефону.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "snakker"
+    ]
    }
   ]
  },
@@ -2071,7 +2134,10 @@
     "target": "laver",
     "en": "She is making coffee for the guests.",
     "ru": "Она готовит кофе для гостей.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "brygger"
+    ]
    },
    {
     "slots": {
@@ -2080,7 +2146,7 @@
     },
     "target": "laver",
     "en": "We do homework together.",
-    "ru": "Мы делаем домашнее задание вместе.",
+    "ru": "Мы вместе делаем домашнее задание.",
     "orders": []
    }
   ]
@@ -2091,7 +2157,7 @@
   "sense_id": "ebb68a7a-7e1a-57a9-8ce6-b38e8e03fc8f",
   "level": "A1",
   "situation": "leisure",
-  "grammar": "adverbs",
+  "grammar": "negation",
   "frame": "{clause1} {target} {clause2}.",
   "slots": {
    "clause1": [
@@ -2102,7 +2168,7 @@
      "da": "Han kommer"
     },
     {
-     "da": "Det bliver"
+     "da": "De spiller"
     }
    ],
    "clause2": [
@@ -2110,10 +2176,10 @@
      "da": "i biografen i aften"
     },
     {
-     "da": "for sent"
+     "da": "til koncerten"
     },
     {
-     "da": "regnvejr i morgen"
+     "da": "tennis i weekenden"
     }
    ]
   },
@@ -2126,7 +2192,9 @@
     "target": "måske",
     "en": "We might go to the cinema tonight.",
     "ru": "Возможно, мы сегодня вечером пойдём в кино.",
-    "orders": [],
+    "orders": [
+     "Måske tager vi i biografen i aften."
+    ],
     "accepted": [
      "muligvis"
     ]
@@ -2137,9 +2205,11 @@
      "clause2": 1
     },
     "target": "måske",
-    "en": "He might be late.",
-    "ru": "Возможно, он опоздает.",
-    "orders": [],
+    "en": "He might come to the concert.",
+    "ru": "Возможно, он придёт на концерт.",
+    "orders": [
+     "Måske kommer han til koncerten."
+    ],
     "accepted": [
      "muligvis"
     ]
@@ -2150,9 +2220,11 @@
      "clause2": 2
     },
     "target": "måske",
-    "en": "It might rain tomorrow.",
-    "ru": "Возможно, завтра будет дождь.",
-    "orders": [],
+    "en": "They might play tennis at the weekend.",
+    "ru": "Возможно, в выходные они поиграют в теннис.",
+    "orders": [
+     "Måske spiller de tennis i weekenden."
+    ],
     "accepted": [
      "muligvis"
     ]
@@ -2198,7 +2270,7 @@
      "da": "værelse"
     },
     {
-     "da": "meninger"
+     "da": "nøgler"
     }
    ]
   },
@@ -2232,8 +2304,8 @@
      "noun": 2
     },
     "target": "egne",
-    "en": "We have our own opinions.",
-    "ru": "У нас есть собственные мнения.",
+    "en": "We have our own keys.",
+    "ru": "У нас есть собственные ключи.",
     "orders": []
    }
   ]
@@ -2269,7 +2341,8 @@
     "ru": "Люди любят мороженое летом.",
     "orders": [],
     "accepted": [
-     "mennesker"
+     "mennesker",
+     "man"
     ]
    },
    {
@@ -2281,7 +2354,8 @@
     "ru": "Люди стояли в очереди у магазина.",
     "orders": [],
     "accepted": [
-     "mennesker"
+     "mennesker",
+     "man"
     ]
    },
    {
@@ -2293,7 +2367,8 @@
     "ru": "Люди много говорят о погоде.",
     "orders": [],
     "accepted": [
-     "mennesker"
+     "mennesker",
+     "man"
     ]
    }
   ]
@@ -2329,7 +2404,8 @@
     "ru": "Народ поддержал решение правительства.",
     "orders": [],
     "accepted": [
-     "nationen"
+     "nationen",
+     "befolkningen"
     ]
    },
    {
@@ -2341,7 +2417,8 @@
     "ru": "Народ потребовал свободных выборов.",
     "orders": [],
     "accepted": [
-     "nationen"
+     "nationen",
+     "befolkningen"
     ]
    },
    {
@@ -2353,7 +2430,8 @@
     "ru": "Народ отпраздновал освобождение речами и музыкой.",
     "orders": [],
     "accepted": [
-     "nationen"
+     "nationen",
+     "befolkningen"
     ]
    }
   ]
@@ -2464,7 +2542,10 @@
     "target": "ved",
     "en": "I don't know the answer.",
     "ru": "Я не знаю ответа.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "kender"
+    ]
    },
    {
     "slots": {
@@ -2553,7 +2634,7 @@
      "da": "Jeg har aldrig set"
     },
     {
-     "da": "Vi oplever"
+     "da": "Vi oplever sjældent"
     },
     {
      "da": "Jeg kan ikke lide"
@@ -2564,7 +2645,7 @@
      "da": "en bil"
     },
     {
-     "da": "vejr sjældent"
+     "da": "vejr"
     },
     {
      "da": "kommentarer"
@@ -2579,8 +2660,11 @@
     },
     "target": "sådan",
     "en": "I have never seen such a car.",
-    "ru": "Я никогда не видел такую машину.",
-    "orders": []
+    "ru": "Я никогда не видел такой машины.",
+    "orders": [],
+    "accepted": [
+     "så'n"
+    ]
    },
    {
     "slots": {
@@ -2590,7 +2674,12 @@
     "target": "sådant",
     "en": "We rarely experience such weather.",
     "ru": "Мы редко сталкиваемся с такой погодой.",
-    "orders": []
+    "orders": [
+     "Sådant vejr oplever vi sjældent."
+    ],
+    "accepted": [
+     "den slags"
+    ]
    },
    {
     "slots": {
@@ -2600,7 +2689,10 @@
     "target": "sådanne",
     "en": "I don't like such comments.",
     "ru": "Мне не нравятся такие комментарии.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "den slags"
+    ]
    }
   ]
  }

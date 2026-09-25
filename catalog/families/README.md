@@ -153,6 +153,7 @@ Label what the sentence actually exercises; the nearest familiar id is not good 
 | the infinitive marker *at*, or a verb in an infinitive construction | `infinitive` |
 | an adverb of degree, frequency or manner (*meget, for* "too", *ofte, næsten*) | `adverbs` |
 | a modal particle or sentence adverb (*jo, vel, nok, dog*) | `sentence-adverbs` |
+| the placement of *ikke, aldrig, også, måske* in a simple A1–B1 sentence | `negation` (the matrix's "negation and sentence adverb placement") |
 | a conjunction | `conjunctions` or `subordinate-clause` (when the clause order is the point) |
 | a noun whose form is the point (indefinite, definite, plural) | `noun-indefinite` / `noun-definite` / `noun-plural` |
 | a noun whose meaning in context is the point | `noun-meaning` |
