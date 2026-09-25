@@ -1,0 +1,349 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T17:46:48.532Z",
+ "entries": [
+  {
+   "lemma": "bil",
+   "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "land",
+   "sense_id": "6406569e-0748-58f2-a34d-82f3e2a61b20",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "køre",
+   "sense_id": "1fd1bc9c-4d13-5421-ab34-13913d02d4e9",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation adds 'на машине' (by car) which is not in the Danish original, making it less faithful.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Каждое утро большинство пассажиров ездят на работу, но сегодня они берут велосипед."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "English translation uses 'rides' which implies a bicycle or motorcycle, but the Danish 'kører' here means 'drives' (by car), as in the other sentences. This changes the meaning.",
+     "danish_ok": true,
+     "en": "Every morning my wife drives to work, but today she takes the bike.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "køre",
+   "sense_id": "1fd1bc9c-4d13-5421-ab34-13913d02d4e9",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "Every morning, most commuters drive to work, but today they take the bike.",
+      "ru": "Каждое утро большинство пассажиров ездят на работу на машине, но сегодня они берут велосипед."
+     },
+     "after": {
+      "en": "Every morning, most commuters drive to work, but today they take the bike.",
+      "ru": "Каждое утро большинство пассажиров ездят на работу, но сегодня они берут велосипед."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "Every morning my wife rides to work, but today she takes the bike.",
+      "ru": "Каждое утро моя жена едет на работу, но сегодня она берёт велосипед."
+     },
+     "after": {
+      "en": "Every morning my wife drives to work, but today she takes the bike.",
+      "ru": "Каждое утро моя жена едет на работу, но сегодня она берёт велосипед."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "læse",
+   "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'har læst' (present perfect) with 'da' (when) in a present-tense context, which is grammatically incorrect for expressing anteriority in a present-time frame; it should be 'har læst' only if the main clause is also present perfect or future, but here 'spørger' is simple present, so the perfect is unmotivated and unnatural. The intended meaning 'has already read' is not correctly demonstrated. The English and Russian translations match the flawed Danish, so they are also incorrect.",
+     "danish_ok": false,
+     "en": "The student already read the chapter when the teacher asks.",
+     "ru": "Ученик уже читает главу, когда учитель спрашивает."
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "flytte",
+   "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Tense mismatch: 'flytter' (present) conflicts with 'ventede' (past) in the subordinate clause. The sentence does not demonstrate the stated grammar cell 'verb-perfect' (which requires a perfect tense, e.g., 'har flyttet'). The English and Russian translations also mix present and past, making them unnatural and unfaithful.",
+     "danish_ok": false,
+     "en": "The family moved to a larger apartment because they were expecting a child.",
+     "ru": "Семья переехала в большую квартиру, потому что ждала ребёнка."
+    }
+   ]
+  },
+  {
+   "lemma": "hvem",
+   "sense_id": "62169ccd-a757-510e-8ae9-b724433b16fc",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation is not faithful: 'indkalde til mødet' means 'convene the meeting' (i.e., call/schedule it), but 'проведение собрания' means 'conducting/holding the meeting'. A faithful translation would be 'созыв собрания' or 'организацию собрания'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Кто отвечает за созыв собрания?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvem",
+   "sense_id": "62169ccd-a757-510e-8ae9-b724433b16fc",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "Who is responsible for convening the meeting?",
+      "ru": "Кто отвечает за проведение собрания?"
+     },
+     "after": {
+      "en": "Who is responsible for convening the meeting?",
+      "ru": "Кто отвечает за созыв собрания?"
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "hvilken",
+   "sense_id": "82ab6c03-7414-5a46-b7af-81742d35cc79",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "måde",
+   "sense_id": "49f699f6-a6bc-5ecc-8353-9bb58a576b0c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Danish is ungrammatical: 'på hvilken måder' has a singular determiner 'hvilken' with a plural noun 'måder'. It should be 'på hvilke måder'.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "kamp",
+   "sense_id": "bd568410-6288-5b68-9800-03c63071361f",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

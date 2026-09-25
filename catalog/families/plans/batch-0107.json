@@ -1,0 +1,245 @@
+{
+ "note": "Fill-up round (issue #16), 2026-09-25: the 25 matrix cells still below 3 families after batches 0104-0106, over-provisioned because about a quarter of targets end as skips (mostly the round-trip translation check).",
+ "entries": [
+  {
+   "lemma": "hedde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "social",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "tale",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "social",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "dag",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "time-dates",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "uge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "time-dates",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "problem",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "medlem",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "område",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "billig",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "shopping",
+     "grammar": "comparison"
+    }
+   ]
+  },
+  {
+   "lemma": "varm",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "weather-nature",
+     "grammar": "comparison"
+    }
+   ]
+  },
+  {
+   "lemma": "forstå",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "education",
+     "grammar": "verb-present"
+    },
+    {
+     "level": "B1",
+     "situation": "education",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "vælge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "shopping",
+     "grammar": "verb-present"
+    },
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "verb-past"
+    }
+   ]
+  },
+  {
+   "lemma": "stige",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "verb-past"
+    },
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "betale",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "glemme",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "verb-perfect"
+    },
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "deltage",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "flytte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "home",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "købe",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "shopping",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "starte",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "åbne",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "verb-future"
+    },
+    {
+     "level": "A1",
+     "situation": "home",
+     "grammar": "imperative"
+    },
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "passive",
+     "note": "Passive: either the present s-passive (target the -s form, e.g. \"åbnes\") or blive + past participle (target the participle, \"åbnet\"; \"blev\"/\"bliver\" is frame text). Never the past s-passive (\"åbnedes\"), which is archaic."
+    }
+   ]
+  }
+ ]
+}

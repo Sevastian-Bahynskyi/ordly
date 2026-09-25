@@ -1,0 +1,54 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batches": [
+  "batch-0107",
+  "batch-0108"
+ ],
+ "scope": "all 86 sentences",
+ "regenerated": {
+  "0107 problem|noun-plural": "Audit: \"Ifølge rapporten er problemer vokset\" — a bare plural subject is unnatural here. Use determiners or natural contexts: \"Mange af problemerne er blevet løst.\", \"Kommunen har store problemer med trafikken.\"",
+  "0107 deltage|verb-perfect": "Audit: the cell is verb-perfect, so every variant uses har + participle (target \"deltaget\"): \"Hun har deltaget i mange konferencer.\" Never deltog/deltager.",
+  "0108 kunne|modal-verbs|B1": "Audit: tenses clashed (\"kunne ikke deltage, fordi hun er syg\"). Keep every clause in the same tense as the target.",
+  "0108 måtte|modal-verbs|B2": "Audit: tenses clashed (\"måtte først gå, når direktøren har godkendt\") and one Russian translation was garbled. Keep every clause in the target's tense (\"måtte … efter at direktøren havde godkendt\").",
+  "0108 gælde|relative-clause": "Audit: \"skal kende de love, der gjaldt\" mixed tenses. Keep the target in the tense the main clause needs; vary a slot instead of the tense.",
+  "0108 leve|relative-clause": "Audit: \"de mennesker, der levede i yderområderne, kæmper ofte\" mixed tenses. Keep the target and main clause in the same tense; vary a slot instead.",
+  "0108 have travlt|fixed-expressions": "Audit: \"Selvom kalenderen er fuld, har travlt jeg\" breaks V2, and \"busy right away\" made no sense. Start the main clause with the subject and put any subordinate clause last: \"Jeg har travlt i denne uge, fordi vi skal aflevere projektet.\"",
+  "0108 hvornår|questions": "Audit: \"Hvornår har ledelsen besluttet …?\" — with hvornår Danish asks about a past point in the simple past (\"Hvornår besluttede ledelsen …?\"). Use present or simple past consistently.",
+  "0108 lukke|passive": "Audit: the past s-passive \"lukkedes\" is archaic at B1 and the clock time was in digits. Use the present s-passive (\"lukkes\") with varying subjects and times written in words, or blive + participle with target \"lukket\"."
+ },
+ "translation_corrections": [
+  {
+   "danish": "Lejligheden, som vi boede i, ligger i centrum.",
+   "before": {
+    "en": "The apartment that we stayed in is located in the center.",
+    "ru": "Квартира, в которой мы останавливались, находится в центре."
+   },
+   "after": {
+    "en": "The apartment that we lived in is in the centre.",
+    "ru": "Квартира, в которой мы жили, находится в центре."
+   }
+  }
+ ],
+ "round2": {
+  "dropped_variants": [
+   "Medarbejderne må først forlade kontoret, efter at direktøren havde godkendt ferieplanen."
+  ],
+  "translation_corrections": [
+   {
+    "danish": "Posthuset lukkes klokken halv syv.",
+    "before": {
+     "en": "The post office closes at half past seven.",
+     "ru": "Почтовое отделение закрывается в половине шестого."
+    },
+    "after": {
+     "en": "The post office closes at half past six.",
+     "ru": "Почтовое отделение закрывается в половине седьмого."
+    },
+    "why": "halv syv is 6:30"
+   }
+  ],
+  "skipped_after_audit": [
+   "gælde (relative-clause B2): past variant implausible, one variant left"
+  ]
+ }
+}

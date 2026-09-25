@@ -1,0 +1,447 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T17:27:25.676Z",
+ "entries": [
+  {
+   "lemma": "hedde",
+   "sense_id": "d8760299-ff2e-5ce3-a589-64dcca75db62",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "jeres is plural 'your (pl.)', but Russian uses singular 'твоего' (your sg.). Should be 'вашего'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Как зовут вашего учителя?"
+    }
+   ]
+  },
+  {
+   "lemma": "hedde",
+   "sense_id": "d8760299-ff2e-5ce3-a589-64dcca75db62",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "What is your teacher's name?",
+      "ru": "Как зовут твоего учителя?"
+     },
+     "after": {
+      "en": "What is your teacher's name?",
+      "ru": "Как зовут вашего учителя?"
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "tale",
+   "sense_id": "d1e5a436-db6f-5a45-9ac3-bba337d21f1c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "problem",
+   "sense_id": "6080fc1f-7393-5992-9e86-9254aaec5a09",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "billig",
+   "sense_id": "cebf9fec-0d5d-5eb9-9f73-2db31b10c3e7",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Danish 'billigst end' is ungrammatical; superlative cannot be used with 'end'. English 'the cheapest than' is ungrammatical and does not match the Danish. Russian 'Одна сумка дешевле другой' translates a comparative, not a superlative, and does not match the Danish target 'billigst'.",
+     "danish_ok": false,
+     "en": "This bag is the cheapest.",
+     "ru": "Эта сумка самая дешёвая."
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Danish 'billigst end' is ungrammatical; superlative cannot be used with 'end'. English 'the cheapest than' is ungrammatical and does not match the Danish. Russian 'Одна блузка дешевле другой' translates a comparative, not a superlative, and does not match the Danish target 'billigst'.",
+     "danish_ok": false,
+     "en": "This blouse is the cheapest.",
+     "ru": "Эта блузка самая дешёвая."
+    }
+   ]
+  },
+  {
+   "lemma": "stige",
+   "sense_id": "aa51ccd3-f449-5b62-a810-918dbba0e165",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "glemme",
+   "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "glemme",
+   "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "deltage",
+   "sense_id": "6ed8c34d-289f-5059-896f-9819a81f0e27",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation is unnatural: 'во всех недельных встречах' is clumsy; a native would say 'во всех совещаниях на этой неделе' or 'во всех встречах за неделю'.",
+     "danish_ok": true,
+     "ru": "Руководитель проекта участвовал во всех совещаниях на этой неделе."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "English 'all meetings of the week' is unnatural; Russian 'во всех собраниях недели' is also unnatural and 'собраниях' is less fitting than 'совещаниях' for a project manager's meetings.",
+     "danish_ok": true,
+     "en": "The project manager participates in all the week's meetings.",
+     "ru": "Менеджер проекта участвует во всех совещаниях на этой неделе."
+    }
+   ]
+  },
+  {
+   "lemma": "deltage",
+   "sense_id": "6ed8c34d-289f-5059-896f-9819a81f0e27",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "The project manager participated in all the week's meetings.",
+      "ru": "Руководитель проекта участвовал во всех недельных встречах."
+     },
+     "after": {
+      "en": "The project manager participated in all the week's meetings.",
+      "ru": "Руководитель проекта участвовал во всех совещаниях на этой неделе."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "The project manager participates in all meetings of the week.",
+      "ru": "Менеджер проекта участвует во всех собраниях недели."
+     },
+     "after": {
+      "en": "The project manager participates in all the week's meetings.",
+      "ru": "Менеджер проекта участвует во всех совещаниях на этой неделе."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "flytte",
+   "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The grammar cell is 'verb-future', but the target 'flyttede' is past tense. The Danish sentence is ungrammatical because 'næste år' (next year) conflicts with past tense. The English translation uses past tense with 'the next year', which does not match the Danish 'næste år' (next year from now). The Russian translation also uses past tense with 'в следующем году', which is unnatural for a past event from the present perspective. This teaches a wrong model.",
+     "danish_ok": false,
+     "en": "My family is moving to a bigger apartment next year.",
+     "ru": "Моя семья переезжает в большую квартиру в следующем году."
+    }
+   ]
+  },
+  {
+   "lemma": "købe",
+   "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The grammar cell is 'verb-future', but the Danish sentence uses present tense 'køber' to express a future meaning. While this is a natural way to express future in Danish, the exercise should explicitly teach the future tense (e.g., 'vil købe' or 'skal købe') to match the stated grammar point. The English translation 'I'm buying' is present continuous, not future, and the Russian 'Я покупаю' is present tense, not future. Both translations should reflect a future meaning, e.g., 'I will buy' and 'Я куплю'.",
+     "danish_ok": false,
+     "en": "I will buy a new jacket this weekend.",
+     "ru": "Я куплю новую куртку в эти выходные."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The grammar cell is 'verb-future', but the Danish sentence uses past tense 'købte', which does not demonstrate future tense. The English translation 'I bought' is past tense, and the Russian 'Я купил' is past tense. The sentence does not exercise the stated grammar point.",
+     "danish_ok": false,
+     "en": "I will buy a new jacket this weekend.",
+     "ru": "Я куплю новую куртку в эти выходные."
+    }
+   ]
+  },
+  {
+   "lemma": "åbne",
+   "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "åbne",
+   "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

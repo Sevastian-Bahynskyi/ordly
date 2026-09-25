@@ -233,7 +233,8 @@ export function infinitiveAfterAtOrModal(danish: string, target: string, infinit
 }
 
 /** Prepositions that are never also conjunctions (so not `for`, `om`, `efter`, `siden`). */
-const PURE_PREPOSITIONS = new Set(['til', 'på', 'af', 'med', 'fra', 'hos', 'mod', 'imod', 'ved', 'uden', 'gennem', 'igennem', 'mellem', 'over', 'under', 'blandt'])
+// Not `ved`: it is also the present of `vide` (`Hvornår ved du det?`).
+const PURE_PREPOSITIONS = new Set(['til', 'på', 'af', 'med', 'fra', 'hos', 'mod', 'imod', 'uden', 'gennem', 'igennem', 'mellem', 'over', 'under', 'blandt'])
 // Not `de`: it is also the plural article (`mod de nye regler`).
 const SUBJECT_PRONOUNS = new Set(['jeg', 'du', 'han', 'hun', 'vi'])
 
@@ -251,6 +252,7 @@ export function subjectPronounAfterPreposition(danish: string): string[] {
   return errors
 }
 
+const FRONTED_SUBORDINATORS = new Set(['selvom', 'når', 'hvis', 'da', 'fordi', 'mens', 'medens', 'efter', 'før', 'inden', 'siden', 'eftersom', 'skønt', 'medmindre', 'idet', 'uanset'])
 const FRONTED_OPENERS = new Set(['i', 'på', 'til', 'med', 'efter', 'under', 'om', 'fra', 'ved', 'over', 'uden', 'inden', 'siden', 'før', 'hos', 'nu', 'så', 'derfor', 'endelig', 'pludselig', 'bagefter', 'senere', 'igen', 'tit', 'ofte', 'altid', 'aldrig', 'heldigvis', 'desværre', 'måske', 'her', 'der', 'dengang', 'snart'])
 const NON_FINITE_BEFORE = new Set(['at', 'har', 'havde', 'er', 'var', 'blev', 'bliver', 'være', 'været', 'have', 'haft', ...MODALS])
 const CLAUSE_OPENERS = new Set(['at', 'som', 'der', 'når', 'hvis', 'fordi', 'da', 'mens', 'selvom', 'om', 'hvor', 'hvad', 'hvem', 'og', 'men', 'eller'])
@@ -266,6 +268,13 @@ export function finitePhraseAfterFrontedAdverbial(danish: string, target: string
   const wanted = target.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
   if (wanted.length < 2 || wanted[0] === infinitive.toLocaleLowerCase('da-DK')) return []
   const clauses = danish.toLocaleLowerCase('da-DK').split(/[,;:]/u).map((clause) => clause.split(/[^a-zæøå]+/u).filter(Boolean))
+  // A main clause after a fronted subordinate clause is V2 too: `Selvom X, har travlt jeg` is wrong.
+  for (let index = 1; index < clauses.length; index += 1) {
+    const words = clauses[index]
+    if (FRONTED_SUBORDINATORS.has(clauses[index - 1][0]) && index === 1 && wanted.every((word, offset) => words[offset] === word)) {
+      return [`"${target}" opens the main clause after the fronted "${clauses[0].join(' ')}" — V2 puts the subject between the verb and its particle there; put the subject first or the subordinate clause last`]
+    }
+  }
   for (const words of clauses) {
     for (let at = 1; at + wanted.length <= words.length; at += 1) {
       if (!wanted.every((word, offset) => words[at + offset] === word)) continue

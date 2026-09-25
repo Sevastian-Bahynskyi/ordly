@@ -1,0 +1,654 @@
+[
+ {
+  "lemma": "hedde",
+  "kind": "word",
+  "sense_id": "d8760299-ff2e-5ce3-a589-64dcca75db62",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 395,
+  "min_level": "A1",
+  "ru": "называться, зваться",
+  "en": "to be called",
+  "forms": [
+   "hed",
+   "hedde",
+   "heddede",
+   "heddende",
+   "hedder",
+   "heddes",
+   "heddet"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "social",
+   "grammar": "questions"
+  }
+ },
+ {
+  "lemma": "tale",
+  "kind": "word",
+  "sense_id": "d1e5a436-db6f-5a45-9ac3-bba337d21f1c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 135,
+  "min_level": "A1",
+  "ru": "говорить, разговаривать",
+  "en": "to talk, to speak",
+  "forms": [
+   "tal",
+   "tale",
+   "talende",
+   "taler",
+   "tales",
+   "talt",
+   "talte",
+   "taltes"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "social",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "dag",
+  "kind": "word",
+  "sense_id": "11760f40-490e-54d2-aa95-ecbd9976aace",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 59,
+  "min_level": "A1",
+  "ru": "день",
+  "en": "day",
+  "forms": [
+   "dag",
+   "dage",
+   "dagen",
+   "dagene",
+   "dagenes",
+   "dagens",
+   "dages",
+   "dags"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "time-dates",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "uge",
+  "kind": "word",
+  "sense_id": "456a6508-5e9d-58c5-8eb1-2e9c981a04a9",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 152,
+  "min_level": "A1",
+  "ru": "неделя",
+  "en": "week",
+  "forms": [
+   "uge",
+   "ugen",
+   "ugens",
+   "uger",
+   "ugerne",
+   "ugernes",
+   "ugers",
+   "uges"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "time-dates",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "problem",
+  "kind": "word",
+  "sense_id": "6080fc1f-7393-5992-9e86-9254aaec5a09",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 153,
+  "min_level": "A1",
+  "ru": "проблема",
+  "en": "problem",
+  "forms": [
+   "problem",
+   "problemer",
+   "problemerne",
+   "problemernes",
+   "problemers",
+   "problemet",
+   "problemets",
+   "problems"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  },
+  "note": "Audit: \"Ifølge rapporten er problemer vokset\" — a bare plural subject is unnatural here. Use determiners or natural contexts: \"Mange af problemerne er blevet løst.\", \"Kommunen har store problemer med trafikken.\""
+ },
+ {
+  "lemma": "medlem",
+  "kind": "word",
+  "sense_id": "f1c7ff63-1256-5c81-b125-c9bd623d78a2",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 228,
+  "min_level": "A1",
+  "ru": "член, участник",
+  "en": "member",
+  "forms": [
+   "medlem",
+   "medlemmer",
+   "medlemmerne",
+   "medlemmernes",
+   "medlemmers",
+   "medlemmet",
+   "medlemmets",
+   "medlems"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "område",
+  "kind": "word",
+  "sense_id": "8be70117-abf9-5999-9e44-d3f546231bb1",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 179,
+  "min_level": "A1",
+  "ru": "район, область",
+  "en": "area, district",
+  "forms": [
+   "område",
+   "områder",
+   "områderne",
+   "områdernes",
+   "områders",
+   "områdes",
+   "området",
+   "områdets"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "billig",
+  "kind": "word",
+  "sense_id": "cebf9fec-0d5d-5eb9-9f73-2db31b10c3e7",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 719,
+  "min_level": "A1",
+  "ru": "дешёвый",
+  "en": "cheap",
+  "forms": [
+   "billig",
+   "billige",
+   "billigere",
+   "billigst",
+   "billigste",
+   "billigt"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "shopping",
+   "grammar": "comparison"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish 'billigst end' is ungrammatical; superlative cannot be used with 'end'. English 'the cheapest than' is ungrammatical and does not match the Danish. Russian 'Одна сумка дешевле другой' translates a comparative, not a superlative, and does not match the Danish target 'billigst'. Danish 'billigst end' is ungrammatical; superlative cannot be used with 'end'. English 'the cheapest than' is ungrammatical and does not match the Danish. Russian 'Одна блузка дешевле другой' translates a comparative, not a superlative, and does not match the Danish target 'billigst'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "varm",
+  "kind": "word",
+  "sense_id": "ad0780d2-5ac1-5897-9f93-dcc221b778c1",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 848,
+  "min_level": "A2",
+  "ru": "тёплый, горячий",
+  "en": "warm, hot",
+  "forms": [
+   "varm",
+   "varme",
+   "varmere",
+   "varmest",
+   "varmeste",
+   "varmt"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "comparison"
+  }
+ },
+ {
+  "lemma": "forstå",
+  "kind": "word",
+  "sense_id": "2e919631-f750-57b4-8754-751576f69194",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 316,
+  "min_level": "A1",
+  "ru": "понимать",
+  "en": "to understand",
+  "forms": [
+   "forstod",
+   "forstå",
+   "forståede",
+   "forstående",
+   "forstået",
+   "forstår",
+   "forstås"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "forstå",
+  "kind": "word",
+  "sense_id": "2e919631-f750-57b4-8754-751576f69194",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 316,
+  "min_level": "A1",
+  "ru": "понимать",
+  "en": "to understand",
+  "forms": [
+   "forstod",
+   "forstå",
+   "forståede",
+   "forstående",
+   "forstået",
+   "forstår",
+   "forstås"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "vælge",
+  "kind": "word",
+  "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 182,
+  "min_level": "A1",
+  "ru": "выбирать",
+  "en": "to choose",
+  "forms": [
+   "valgt",
+   "valgte",
+   "valgtes",
+   "vælg",
+   "vælge",
+   "vælgende",
+   "vælger",
+   "vælges"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "shopping",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "vælge",
+  "kind": "word",
+  "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 182,
+  "min_level": "A1",
+  "ru": "выбирать",
+  "en": "to choose",
+  "forms": [
+   "valgt",
+   "valgte",
+   "valgtes",
+   "vælg",
+   "vælge",
+   "vælgende",
+   "vælger",
+   "vælges"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "stige",
+  "kind": "word",
+  "sense_id": "aa51ccd3-f449-5b62-a810-918dbba0e165",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 257,
+  "min_level": "A1",
+  "ru": "расти, повышаться",
+  "en": "to rise, to increase",
+  "forms": [
+   "steg",
+   "stegen",
+   "steget",
+   "stegne",
+   "stig",
+   "stige",
+   "stigende",
+   "stiger",
+   "stiges"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "stige",
+  "kind": "word",
+  "sense_id": "aa51ccd3-f449-5b62-a810-918dbba0e165",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 257,
+  "min_level": "A1",
+  "ru": "расти, повышаться",
+  "en": "to rise, to increase",
+  "forms": [
+   "steg",
+   "stegen",
+   "steget",
+   "stegne",
+   "stig",
+   "stige",
+   "stigende",
+   "stiger",
+   "stiges"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "betale",
+  "kind": "word",
+  "sense_id": "0cf29185-e6f0-5d9e-b4c1-eb1160fe6c5b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 258,
+  "min_level": "A1",
+  "ru": "платить",
+  "en": "to pay",
+  "forms": [
+   "betal",
+   "betale",
+   "betalende",
+   "betaler",
+   "betales",
+   "betalt",
+   "betalte",
+   "betaltes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "glemme",
+  "kind": "word",
+  "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2726,
+  "min_level": "B1",
+  "ru": "забывать",
+  "en": "to forget",
+  "forms": [
+   "glem",
+   "glemme",
+   "glemmende",
+   "glemmer",
+   "glemmes",
+   "glemt",
+   "glemte",
+   "glemtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "glemme",
+  "kind": "word",
+  "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2726,
+  "min_level": "B1",
+  "ru": "забывать",
+  "en": "to forget",
+  "forms": [
+   "glem",
+   "glemme",
+   "glemmende",
+   "glemmer",
+   "glemmes",
+   "glemt",
+   "glemte",
+   "glemtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "deltage",
+  "kind": "word",
+  "sense_id": "6ed8c34d-289f-5059-896f-9819a81f0e27",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 411,
+  "min_level": "A1",
+  "ru": "участвовать",
+  "en": "to take part, to participate",
+  "forms": [
+   "deltag",
+   "deltage",
+   "deltagede",
+   "deltagende",
+   "deltager",
+   "deltages",
+   "deltaget",
+   "deltog"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "verb-perfect"
+  },
+  "note": "Audit: the cell is verb-perfect, so every variant uses har + participle (target \"deltaget\"): \"Hun har deltaget i mange konferencer.\" Never deltog/deltager."
+ },
+ {
+  "lemma": "flytte",
+  "kind": "word",
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 335,
+  "min_level": "A1",
+  "ru": "переезжать, перемещать",
+  "en": "to move",
+  "forms": [
+   "flyt",
+   "flytte",
+   "flyttede",
+   "flyttedes",
+   "flyttende",
+   "flytter",
+   "flyttes",
+   "flyttet"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "verb-future"
+  },
+  "note": "An independent reviewer rejected the previous family: The grammar cell is 'verb-future', but the target 'flyttede' is past tense. The Danish sentence is ungrammatical because 'næste år' (next year) conflicts with past tense. The English translation uses past tense with 'the next year', which does not match the Danish 'næste år' (next year from now). The Russian translation also uses past tense with 'в следующем году', which is unnatural for a past event from the present perspective. This teaches a wrong model. Write a new family that avoids this."
+ },
+ {
+  "lemma": "købe",
+  "kind": "word",
+  "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 239,
+  "min_level": "A1",
+  "ru": "покупать",
+  "en": "to buy",
+  "forms": [
+   "køb",
+   "købe",
+   "købende",
+   "køber",
+   "købes",
+   "købt",
+   "købte",
+   "købtes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "shopping",
+   "grammar": "verb-future"
+  },
+  "note": "An independent reviewer rejected the previous family: The grammar cell is 'verb-future', but the Danish sentence uses present tense 'køber' to express a future meaning. While this is a natural way to express future in Danish, the exercise should explicitly teach the future tense (e.g., 'vil købe' or 'skal købe') to match the stated grammar point. The English translation 'I'm buying' is present continuous, not future, and the Russian 'Я покупаю' is present tense, not future. Both translations should reflect a future meaning, e.g., 'I will buy' and 'Я куплю'. The grammar cell is 'verb-future', but the Danish sentence uses past tense 'købte', which does not demonstrate future tense. The English translation 'I bought' is past tense, and the Russian 'Я купил' is past tense. The sentence does not exercise the stated grammar point. Write a new family that avoids this."
+ },
+ {
+  "lemma": "starte",
+  "kind": "word",
+  "sense_id": "15a25fdd-7210-5ab4-a5a7-45dcbda20aeb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 408,
+  "min_level": "A1",
+  "ru": "начинать",
+  "en": "to start, to begin",
+  "forms": [
+   "start",
+   "starte",
+   "startede",
+   "startedes",
+   "startende",
+   "startendes",
+   "starter",
+   "startes",
+   "startet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "åbne",
+  "kind": "word",
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 373,
+  "min_level": "A1",
+  "ru": "открывать",
+  "en": "to open",
+  "forms": [
+   "åbn",
+   "åbne",
+   "åbnede",
+   "åbnedes",
+   "åbnende",
+   "åbner",
+   "åbnes",
+   "åbnet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "åbne",
+  "kind": "word",
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 373,
+  "min_level": "A1",
+  "ru": "открывать",
+  "en": "to open",
+  "forms": [
+   "åbn",
+   "åbne",
+   "åbnede",
+   "åbnedes",
+   "åbnende",
+   "åbner",
+   "åbnes",
+   "åbnet"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "home",
+   "grammar": "imperative"
+  }
+ },
+ {
+  "lemma": "åbne",
+  "kind": "word",
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 373,
+  "min_level": "A1",
+  "ru": "открывать",
+  "en": "to open",
+  "forms": [
+   "åbn",
+   "åbne",
+   "åbnede",
+   "åbnedes",
+   "åbnende",
+   "åbner",
+   "åbnes",
+   "åbnet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "passive"
+  },
+  "note": "Passive: either the present s-passive (target the -s form, e.g. \"åbnes\") or blive + past participle (target the participle, \"åbnet\"; \"blev\"/\"bliver\" is frame text). Never the past s-passive (\"åbnedes\"), which is archaic."
+ }
+]

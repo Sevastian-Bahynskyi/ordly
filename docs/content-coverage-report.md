@@ -7,9 +7,9 @@ added to another.
 ## Catalog size
 
 - 5,063 headwords (129 of them multi-word phrases), 6,131 senses with Russian wording, 6,131 with English wording.
-- 423 published sentence families, 1,255 distinct checked sentences, each with an English and a Russian translation.
+- 461 published sentence families, 1,362 distinct checked sentences, each with an English and a Russian translation.
   Each sentence can be offered as a typed gap and as a word-order task, so at most
-  2,510 distinct catalog exercises exist. That is the real count after constraints and
+  2,724 distinct catalog exercises exist. That is the real count after constraints and
   de-duplication; no combination is generated at runtime.
 
 ## 1. Weighted lemma coverage within DSL `freq-30k-ex`
@@ -22,13 +22,13 @@ sense is worded in the learner language.
 
 | learner language | weighted coverage | of which via headword | lemmas covered | open classes (NC V A D) | closed classes |
 |---|---|---|---|---|---|
-| Russian | 89.2% | 0.0% | 5,003 | 87.4% | 92.3% |
-| English | 89.2% | 0.0% | 5,003 | 87.4% | 92.3% |
-| both | 89.2% | 0.0% | 5,003 | 87.4% | 92.3% |
+| Russian | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
+| English | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
+| both | 91.3% | 2.1% | 5,199 | 87.7% | 97.2% |
 
 "Via headword": the list names a word COR files as a form of another headword in the same class
 (`det` → `den`, `far` → `fader`, `mens` → `medens`); the catalog saves words under COR's
-headword, so it teaches them there. **COR was not supplied to this run, so nothing was credited this way.**
+headword, so it teaches them there. 
 Direct coverage alone is the overall figure minus that column.
 
 Lemma-string match without the class check (the baseline's method): 90.7%.
@@ -37,12 +37,12 @@ By frequency band (both languages):
 
 | rank band | lemmas covered | weighted coverage |
 |---|---|---|
-| 1–1,000 | 963/1000 | 95.8% |
-| 1,001–2,000 | 960/1000 | 95.9% |
-| 2,001–3,000 | 942/1000 | 94.0% |
-| 3,001–5,000 | 1817/2000 | 91.3% |
-| 5,001–10,000 | 302/5000 | 9.6% |
-| 10,001–30,000 | 19/19906 | 0.1% |
+| 1–1,000 | 967/1000 | 98.2% |
+| 1,001–2,000 | 967/1000 | 96.6% |
+| 2,001–3,000 | 951/1000 | 94.9% |
+| 3,001–5,000 | 1854/2000 | 93.1% |
+| 5,001–10,000 | 340/5000 | 10.4% |
+| 10,001–30,000 | 120/19906 | 0.7% |
 
 This is coverage **of the list**, which aggregates inflected forms over DSL's corpus; it is not
 the share of all Danish text a learner will understand. The approximately 90% target is read
@@ -78,7 +78,7 @@ Matrix `cefr-matrix-2026-09-25` (`catalog/benchmark/cefr-matrix.json`): 19 situa
 functions, each at the levels it is taught, aligned to the CEFR companion volume. A cell is
 covered with at least 3 gated families (each usable in English and Russian).
 
-**122 of 147 cells covered.** Families by level: A1 86 · A2 121 · B1 165 · B2 51.
+**147 of 147 cells covered.** Families by level: A1 91 · A2 123 · B1 185 · B2 62.
 
 | axis | cell | level | families | sentences |
 |---|---|---|---|---|
@@ -86,23 +86,23 @@ covered with at least 3 gated families (each usable in English and Russian).
 | situation | personal-info | A2 | 3 | 12 |
 | situation | family | A1 | 4 | 12 |
 | situation | family | A2 | 5 | 17 |
-| situation | family | B1 | 6 | 18 |
-| situation | home | A1 | 20 | 63 |
+| situation | family | B1 | 8 | 23 |
+| situation | home | A1 | 21 | 66 |
 | situation | home | A2 | 13 | 40 |
-| situation | home | B1 | 14 | 43 |
+| situation | home | B1 | 17 | 51 |
 | situation | daily-routine | A1 | 18 | 53 |
 | situation | daily-routine | A2 | 14 | 40 |
 | situation | time-dates | A1 | 3 | 9 |
 | situation | time-dates | A2 | 3 | 9 |
-| situation | food-drink | A1 | 8 | 26 |
+| situation | food-drink | A1 | 9 | 29 |
 | situation | food-drink | A2 | 10 | 30 |
 | situation | food-drink | B1 | 3 | 9 |
 | situation | shopping | A1 | 6 | 18 |
-| situation | shopping | A2 | 6 | 17 |
-| situation | shopping | B1 | 4 | 12 |
-| situation | transport | A1 | 6 | 18 |
+| situation | shopping | A2 | 8 | 23 |
+| situation | shopping | B1 | 5 | 16 |
+| situation | transport | A1 | 7 | 20 |
 | situation | transport | A2 | 7 | 20 |
-| situation | transport | B1 | 9 | 27 |
+| situation | transport | B1 | 10 | 30 |
 | situation | weather-nature | A1 | 4 | 11 |
 | situation | weather-nature | A2 | 8 | 22 |
 | situation | weather-nature | B1 | 8 | 24 |
@@ -110,27 +110,27 @@ covered with at least 3 gated families (each usable in English and Russian).
 | situation | body-health | B1 | 6 | 18 |
 | situation | body-health | B2 | 6 | 17 |
 | situation | work | A2 | 6 | 17 |
-| situation | work | B1 | 27 | 82 |
-| situation | work | B2 | 12 | 32 |
+| situation | work | B1 | 33 | 103 |
+| situation | work | B2 | 16 | 42 |
 | situation | education | A2 | 6 | 18 |
-| situation | education | B1 | 9 | 27 |
+| situation | education | B1 | 10 | 30 |
 | situation | education | B2 | 5 | 12 |
 | situation | leisure | A1 | 9 | 27 |
 | situation | leisure | A2 | 16 | 47 |
-| situation | leisure | B1 | 19 | 56 |
+| situation | leisure | B1 | 21 | 63 |
 | situation | services | A2 | 4 | 11 |
-| situation | services | B1 | 4 | 10 |
-| situation | social | A1 | 2 | 6 |
+| situation | services | B1 | 6 | 16 |
+| situation | social | A1 | 4 | 11 |
 | situation | social | A2 | 7 | 24 |
-| situation | social | B1 | 3 | 9 |
+| situation | social | B1 | 4 | 11 |
 | situation | feelings-opinions | A2 | 7 | 21 |
 | situation | feelings-opinions | B1 | 9 | 27 |
 | situation | feelings-opinions | B2 | 6 | 18 |
 | situation | communication-media | A2 | 3 | 9 |
 | situation | communication-media | B1 | 5 | 15 |
 | situation | communication-media | B2 | 5 | 17 |
-| situation | society | B1 | 29 | 85 |
-| situation | society | B2 | 10 | 27 |
+| situation | society | B1 | 30 | 87 |
+| situation | society | B2 | 17 | 44 |
 | situation | abstract | B1 | 10 | 28 |
 | situation | abstract | B2 | 7 | 18 |
 | grammar | noun-indefinite | A1 | 5 | 15 |
@@ -141,69 +141,69 @@ covered with at least 3 gated families (each usable in English and Russian).
 | grammar | noun-definite | A2 | 4 | 12 |
 | grammar | noun-definite | B1 | 20 | 60 |
 | grammar | noun-definite | B2 | 3 | 6 |
-| grammar | noun-plural | A1 | 2 | 5 |
+| grammar | noun-plural | A1 | 3 | 7 |
 | grammar | noun-plural | A2 | 5 | 15 |
 | grammar | noun-plural | B1 | 4 | 12 |
-| grammar | noun-plural | B2 | 1 | 3 |
+| grammar | noun-plural | B2 | 3 | 8 |
 | grammar | adjective-agreement | A1 | 7 | 21 |
 | grammar | adjective-agreement | A2 | 3 | 12 |
 | grammar | adjective-agreement | B1 | 7 | 21 |
-| grammar | comparison | A2 | 2 | 6 |
+| grammar | comparison | A2 | 3 | 9 |
 | grammar | comparison | B1 | 3 | 10 |
-| grammar | verb-present | A1 | 8 | 24 |
+| grammar | verb-present | A1 | 9 | 27 |
 | grammar | verb-present | A2 | 3 | 9 |
-| grammar | verb-present | B1 | 2 | 5 |
+| grammar | verb-present | B1 | 3 | 8 |
 | grammar | verb-present | B2 | 3 | 8 |
 | grammar | verb-past | A2 | 6 | 18 |
 | grammar | verb-past | B1 | 3 | 10 |
-| grammar | verb-past | B2 | 2 | 8 |
+| grammar | verb-past | B2 | 3 | 11 |
 | grammar | verb-perfect | A2 | 3 | 9 |
-| grammar | verb-perfect | B1 | 1 | 3 |
-| grammar | verb-perfect | B2 | 2 | 6 |
-| grammar | verb-future | A2 | 2 | 6 |
-| grammar | verb-future | B1 | 2 | 6 |
+| grammar | verb-perfect | B1 | 3 | 9 |
+| grammar | verb-perfect | B2 | 3 | 9 |
+| grammar | verb-future | A2 | 3 | 9 |
+| grammar | verb-future | B1 | 3 | 9 |
 | grammar | verb-future | B2 | 4 | 12 |
 | grammar | modal-verbs | A1 | 3 | 9 |
 | grammar | modal-verbs | A2 | 3 | 8 |
-| grammar | modal-verbs | B1 | 2 | 6 |
-| grammar | modal-verbs | B2 | 2 | 5 |
-| grammar | imperative | A1 | 2 | 5 |
+| grammar | modal-verbs | B1 | 4 | 16 |
+| grammar | modal-verbs | B2 | 4 | 9 |
+| grammar | imperative | A1 | 4 | 11 |
 | grammar | imperative | A2 | 3 | 8 |
-| grammar | passive | B1 | 2 | 6 |
-| grammar | passive | B2 | 2 | 5 |
+| grammar | passive | B1 | 3 | 9 |
+| grammar | passive | B2 | 3 | 7 |
 | grammar | reflexive | A2 | 5 | 17 |
-| grammar | reflexive | B1 | 2 | 6 |
+| grammar | reflexive | B1 | 3 | 8 |
 | grammar | particle-verbs | A2 | 6 | 15 |
 | grammar | particle-verbs | B1 | 5 | 13 |
 | grammar | particle-verbs | B2 | 3 | 9 |
 | grammar | word-order-v2 | A1 | 3 | 8 |
 | grammar | word-order-v2 | A2 | 3 | 9 |
 | grammar | subordinate-clause | A2 | 4 | 12 |
-| grammar | subordinate-clause | B1 | 2 | 7 |
+| grammar | subordinate-clause | B1 | 4 | 13 |
 | grammar | subordinate-clause | B2 | 3 | 8 |
-| grammar | questions | A1 | 3 | 9 |
+| grammar | questions | A1 | 4 | 11 |
 | grammar | questions | A2 | 3 | 9 |
-| grammar | questions | B1 | 0 | 0 |
+| grammar | questions | B1 | 4 | 12 |
 | grammar | negation | A1 | 3 | 10 |
 | grammar | negation | A2 | 3 | 6 |
-| grammar | negation | B1 | 2 | 6 |
+| grammar | negation | B1 | 3 | 9 |
 | grammar | pronouns | A1 | 11 | 33 |
 | grammar | pronouns | A2 | 3 | 11 |
-| grammar | pronouns | B1 | 2 | 5 |
+| grammar | pronouns | B1 | 3 | 7 |
 | grammar | prepositions-place | A1 | 10 | 30 |
 | grammar | prepositions-place | A2 | 3 | 9 |
 | grammar | prepositions-place | B1 | 3 | 9 |
 | grammar | prepositions-time | A1 | 5 | 15 |
 | grammar | prepositions-time | A2 | 3 | 9 |
 | grammar | prepositions-time | B1 | 3 | 8 |
-| grammar | relative-clause | B1 | 2 | 6 |
-| grammar | relative-clause | B2 | 1 | 2 |
+| grammar | relative-clause | B1 | 4 | 11 |
+| grammar | relative-clause | B2 | 3 | 7 |
 | grammar | conjunctions | A2 | 6 | 18 |
 | grammar | conjunctions | B1 | 3 | 8 |
 | grammar | conjunctions | B2 | 3 | 11 |
 | grammar | fixed-expressions | A2 | 4 | 9 |
 | grammar | fixed-expressions | B1 | 3 | 9 |
-| grammar | fixed-expressions | B2 | 2 | 4 |
+| grammar | fixed-expressions | B2 | 3 | 6 |
 | grammar | sentence-adverbs | B1 | 4 | 12 |
 | grammar | sentence-adverbs | B2 | 3 | 8 |
 | grammar | prepositions-other | A1 | 5 | 15 |
@@ -212,7 +212,7 @@ covered with at least 3 gated families (each usable in English and Russian).
 | grammar | prepositions-other | B2 | 3 | 10 |
 | grammar | infinitive | A1 | 3 | 10 |
 | grammar | infinitive | A2 | 3 | 12 |
-| grammar | infinitive | B1 | 2 | 5 |
+| grammar | infinitive | B1 | 4 | 11 |
 | grammar | adverbs | A1 | 4 | 12 |
 | grammar | adverbs | A2 | 3 | 10 |
 | grammar | adverbs | B1 | 3 | 8 |
@@ -224,10 +224,10 @@ covered with at least 3 gated families (each usable in English and Russian).
 | grammar | noun-meaning | A1 | 3 | 9 |
 | grammar | noun-meaning | A2 | 9 | 27 |
 | grammar | noun-meaning | B1 | 36 | 108 |
-| grammar | noun-meaning | B2 | 2 | 4 |
+| grammar | noun-meaning | B2 | 3 | 7 |
 | grammar | adjective-meaning | A1 | 3 | 13 |
 | grammar | adjective-meaning | A2 | 6 | 18 |
 | grammar | adjective-meaning | B1 | 12 | 36 |
 | grammar | adjective-meaning | B2 | 3 | 8 |
 
-Cells below the threshold: social A1, noun-plural A1, noun-plural B2, comparison A2, verb-present B1, verb-past B2, verb-perfect B1, verb-perfect B2, verb-future A2, verb-future B1, modal-verbs B1, modal-verbs B2, imperative A1, passive B1, passive B2, reflexive B1, subordinate-clause B1, questions B1, negation B1, pronouns B1, relative-clause B1, relative-clause B2, fixed-expressions B2, infinitive B1, noun-meaning B2.
+Cells below the threshold: none.

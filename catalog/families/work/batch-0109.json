@@ -1,0 +1,307 @@
+[
+ {
+  "lemma": "hus",
+  "kind": "word",
+  "sense_id": "6277cc53-fe22-57eb-90ce-d7ad5136ae11",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 226,
+  "min_level": "A1",
+  "ru": "дом",
+  "en": "house",
+  "forms": [
+   "hus",
+   "hus'",
+   "huse",
+   "husene",
+   "husenes",
+   "huses",
+   "huset",
+   "husets"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "home",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "bil",
+  "kind": "word",
+  "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 224,
+  "min_level": "A1",
+  "ru": "машина, автомобиль",
+  "en": "car",
+  "forms": [
+   "bil",
+   "bilen",
+   "bilens",
+   "biler",
+   "bilerne",
+   "bilernes",
+   "bilers",
+   "bils"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "transport",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "virksomhed",
+  "kind": "word",
+  "sense_id": "29f98378-ee1e-5163-9402-a947bc264db0",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 168,
+  "min_level": "A1",
+  "ru": "компания, предприятие",
+  "en": "company, business",
+  "forms": [
+   "virksomhed",
+   "virksomheden",
+   "virksomhedens",
+   "virksomheder",
+   "virksomhederne",
+   "virksomhedernes",
+   "virksomheders",
+   "virksomheds"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "land",
+  "kind": "word",
+  "sense_id": "6406569e-0748-58f2-a34d-82f3e2a61b20",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 84,
+  "min_level": "A1",
+  "ru": "страна",
+  "en": "country",
+  "forms": [
+   "land",
+   "lande",
+   "landene",
+   "landenes",
+   "landes",
+   "landet",
+   "landets",
+   "lands",
+   "landsens"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "betale",
+  "kind": "word",
+  "sense_id": "0cf29185-e6f0-5d9e-b4c1-eb1160fe6c5b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 258,
+  "min_level": "A1",
+  "ru": "платить",
+  "en": "to pay",
+  "forms": [
+   "betal",
+   "betale",
+   "betalende",
+   "betaler",
+   "betales",
+   "betalt",
+   "betalte",
+   "betaltes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "køre",
+  "kind": "word",
+  "sense_id": "1fd1bc9c-4d13-5421-ab34-13913d02d4e9",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 183,
+  "min_level": "A1",
+  "ru": "ехать",
+  "en": "to drive, to go (by vehicle)",
+  "forms": [
+   "kør",
+   "køre",
+   "kørende",
+   "kørendes",
+   "kører",
+   "køres",
+   "kørt",
+   "kørte",
+   "kørtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "læse",
+  "kind": "word",
+  "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 282,
+  "min_level": "A1",
+  "ru": "читать",
+  "en": "to read",
+  "forms": [
+   "læs",
+   "læse",
+   "læsende",
+   "læser",
+   "læses",
+   "læst",
+   "læste",
+   "læstes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence uses 'har læst' (present perfect) with 'da' (when) in a present-tense context, which is grammatically incorrect for expressing anteriority in a present-time frame; it should be 'har læst' only if the main clause is also present perfect or future, but here 'spørger' is simple present, so the perfect is unmotivated and unnatural. The intended meaning 'has already read' is not correctly demonstrated. The English and Russian translations match the flawed Danish, so they are also incorrect. Write a new family that avoids this."
+ },
+ {
+  "lemma": "flytte",
+  "kind": "word",
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 335,
+  "min_level": "A1",
+  "ru": "переезжать, перемещать",
+  "en": "to move",
+  "forms": [
+   "flyt",
+   "flytte",
+   "flyttede",
+   "flyttedes",
+   "flyttende",
+   "flytter",
+   "flyttes",
+   "flyttet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "verb-perfect"
+  },
+  "note": "An independent reviewer rejected the previous family: Tense mismatch: 'flytter' (present) conflicts with 'ventede' (past) in the subordinate clause. The sentence does not demonstrate the stated grammar cell 'verb-perfect' (which requires a perfect tense, e.g., 'har flyttet'). The English and Russian translations also mix present and past, making them unnatural and unfaithful. Write a new family that avoids this."
+ },
+ {
+  "lemma": "hvem",
+  "kind": "word",
+  "sense_id": "62169ccd-a757-510e-8ae9-b724433b16fc",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 305,
+  "min_level": "A1",
+  "ru": "кто",
+  "en": "who",
+  "forms": [
+   "hvem"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "questions"
+  }
+ },
+ {
+  "lemma": "hvilken",
+  "kind": "word",
+  "sense_id": "82ab6c03-7414-5a46-b7af-81742d35cc79",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 321,
+  "min_level": "A1",
+  "ru": "какой, который",
+  "en": "which, what",
+  "forms": [
+   "hvilke",
+   "hvilken",
+   "hvilket"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "shopping",
+   "grammar": "questions"
+  }
+ },
+ {
+  "lemma": "måde",
+  "kind": "word",
+  "sense_id": "49f699f6-a6bc-5ecc-8353-9bb58a576b0c",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 164,
+  "min_level": "A1",
+  "ru": "способ",
+  "en": "way, manner",
+  "forms": [
+   "måde",
+   "måden",
+   "mådens",
+   "måder",
+   "måderne",
+   "mådernes",
+   "måders",
+   "mådes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "noun-meaning"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish is ungrammatical: 'på hvilken måder' has a singular determiner 'hvilken' with a plural noun 'måder'. It should be 'på hvilke måder'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "kamp",
+  "kind": "word",
+  "sense_id": "bd568410-6288-5b68-9800-03c63071361f",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 154,
+  "min_level": "A1",
+  "ru": "борьба, сражение",
+  "en": "battle, fight",
+  "forms": [
+   "kamp",
+   "kampe",
+   "kampen",
+   "kampene",
+   "kampenes",
+   "kampens",
+   "kampes",
+   "kamps"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-meaning"
+  }
+ }
+]

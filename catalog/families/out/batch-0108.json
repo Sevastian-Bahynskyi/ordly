@@ -1,0 +1,1070 @@
+[
+ {
+  "lemma": "kunne",
+  "kind": "word",
+  "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "modal-verbs",
+  "frame": "For at mindske uligheden {target} regeringen hæve skatten for de rigeste.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "kan",
+    "en": "To reduce inequality, the government can raise taxes for the richest.",
+    "ru": "Чтобы сократить неравенство, правительство может повысить налоги для самых богатых."
+   },
+   {
+    "slots": {},
+    "target": "kunne",
+    "en": "To reduce inequality, the government could raise taxes for the richest.",
+    "ru": "Чтобы сократить неравенство, правительство могло бы повысить налоги для самых богатых."
+   }
+  ]
+ },
+ {
+  "lemma": "vælge",
+  "kind": "word",
+  "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "passive",
+  "frame": "I et demokrati {target} repræsentanterne af folket.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "vælges",
+    "en": "In a democracy, the representatives are elected by the people.",
+    "ru": "В демократии представителей избирает народ."
+   },
+   {
+    "slots": {},
+    "target": "valgtes",
+    "en": "In a democracy, the representatives were elected by the people.",
+    "ru": "В демократии представители избирались народом."
+   }
+  ]
+ },
+ {
+  "lemma": "bekymre sig",
+  "kind": "phrase",
+  "sense_id": "28496d90-d5db-54c8-8a9d-c0257373290d",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "reflexive",
+  "frame": "Min mor {target} altid for meget om os.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "bekymrer sig",
+    "en": "My mother always worries too much about us.",
+    "ru": "Моя мама всегда слишком переживает за нас."
+   },
+   {
+    "slots": {},
+    "target": "bekymrede sig",
+    "en": "My mother always worried too much about us.",
+    "ru": "Моя мама всегда слишком переживала за нас."
+   }
+  ]
+ },
+ {
+  "sense_id": "9c34845c-f342-5d4c-97b2-4563b70a2c40",
+  "lemma": "tabe sig",
+  "target": {
+   "level": "B1",
+   "situation": "body-health",
+   "grammar": "reflexive"
+  },
+  "skip": "style check: \"har tabt sig\" is not one of the given forms — copy a form exactly"
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f40cac6a-e21f-5bfd-9761-7b7dc33646ff",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "frame": "{subject} understregede, {target} {rest}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Direktøren"
+    },
+    {
+     "da": "Projektlederen"
+    },
+    {
+     "da": "Konsulenten"
+    }
+   ],
+   "rest": [
+    {
+     "da": "deadline er på fredag"
+    },
+    {
+     "da": "budgettet er overskredet"
+    },
+    {
+     "da": "alle skal deltage i mødet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "rest": 0
+    },
+    "target": "at",
+    "en": "The director emphasized that the deadline is on Friday.",
+    "ru": "Директор подчеркнул, что крайний срок — пятница."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "rest": 1
+    },
+    "target": "at",
+    "en": "The project manager emphasized that the budget has been exceeded.",
+    "ru": "Руководитель проекта подчеркнул, что бюджет превышен."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "rest": 2
+    },
+    "target": "at",
+    "en": "The consultant emphasized that everyone must participate in the meeting.",
+    "ru": "Консультант подчеркнул, что все должны участвовать в совещании."
+   }
+  ]
+ },
+ {
+  "lemma": "hvorfor",
+  "kind": "word",
+  "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "questions",
+  "frame": "{target} {verb} regeringen {object}?",
+  "slots": {
+   "verb": [
+    {
+     "da": "indførte"
+    },
+    {
+     "da": "ændrede"
+    },
+    {
+     "da": "foreslog"
+    }
+   ],
+   "object": [
+    {
+     "da": "denne reform"
+    },
+    {
+     "da": "skattepolitikken"
+    },
+    {
+     "da": "de nye regler"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "object": 0
+    },
+    "target": "hvorfor",
+    "en": "Why did the government introduce this reform?",
+    "ru": "Почему правительство ввело эту реформу?"
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "object": 2
+    },
+    "target": "hvorfor",
+    "en": "Why did the government propose the new rules?",
+    "ru": "Почему правительство предложило новые правила?"
+   }
+  ]
+ },
+ {
+  "sense_id": "3e90885c-306a-56e6-80b5-d3462f4e3452",
+  "lemma": "hvordan",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "questions"
+  },
+  "skip": "style check: \"Hvordan fungerer booking-systemet?\" has unknown word(s) booking-systemet"
+ },
+ {
+  "sense_id": "87a80440-22b5-51f1-aadc-0169fd912aff",
+  "lemma": "ingen",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "negation"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "negation",
+  "frame": "{subject} har {target} {object} endnu.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Kollegaen"
+    },
+    {
+     "da": "Chefen"
+    },
+    {
+     "da": "Projektlederen"
+    }
+   ],
+   "object": [
+    {
+     "da": "færdiggjort rapporten"
+    },
+    {
+     "da": "sendt fakturaen"
+    },
+    {
+     "da": "besvaret mailen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "ikke",
+    "en": "The colleague has not completed the report yet.",
+    "ru": "Коллега ещё не закончил отчёт."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "ikke",
+    "en": "The boss hasn't sent the invoice yet.",
+    "ru": "Начальник ещё не отправил счёт."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "ikke",
+    "en": "The project manager has not answered the email yet.",
+    "ru": "Менеджер проекта пока не ответил на письмо."
+   }
+  ]
+ },
+ {
+  "sense_id": "87a0b609-60e4-56c9-9c38-df64d1276c8d",
+  "lemma": "min",
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "pronouns"
+  },
+  "skip": "translation fidelity: 1 of 3 variants survived"
+ },
+ {
+  "lemma": "nogen",
+  "kind": "word",
+  "sense_id": "551f0dfd-51db-5a83-9732-5526d0006804",
+  "level": "B1",
+  "situation": "social",
+  "grammar": "pronouns",
+  "frame": "Jeg håber, at {target} vil tage initiativ til at mødes.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "nogen",
+    "en": "I hope that someone will take the initiative to meet.",
+    "ru": "Надеюсь, кто-то проявит инициативу и встретится."
+   },
+   {
+    "slots": {},
+    "target": "nogle",
+    "en": "I hope that some people will take the initiative to meet.",
+    "ru": "Я надеюсь, что некоторые проявят инициативу и встретятся."
+   }
+  ]
+ },
+ {
+  "lemma": "arbejde",
+  "kind": "word",
+  "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "relative-clause",
+  "frame": "Virksomheden, {subject} {target}, har netop lanceret et nyt produkt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "hvor jeg"
+    },
+    {
+     "da": "hvor min søster"
+    },
+    {
+     "da": "hvor de fleste medarbejdere"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "arbejder",
+    "en": "The company where I work has just launched a new product.",
+    "ru": "Компания, в которой я работаю, только что выпустила новый продукт."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "arbejdede",
+    "en": "The company where my sister worked has just launched a new product.",
+    "ru": "Компания, где работала моя сестра, только что выпустила новый продукт."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "arbejder",
+    "en": "The company where most employees work has just launched a new product.",
+    "ru": "Компания, где работает большинство сотрудников, только что выпустила новый продукт."
+   }
+  ]
+ },
+ {
+  "lemma": "prøve",
+  "kind": "word",
+  "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "frame": "Jeg vil {target} at {activity}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "lære at spille guitar"
+    },
+    {
+     "da": "løbe en tur hver morgen"
+    },
+    {
+     "da": "læse en bog på dansk"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "prøve",
+    "en": "I want to try to learn how to play the guitar.",
+    "ru": "Я хочу попробовать научиться играть на гитаре."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "prøve",
+    "en": "I will try to go for a run every morning.",
+    "ru": "Я попробую бегать каждое утро."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "prøve",
+    "en": "I will try to read a book in Danish.",
+    "ru": "Я попробую прочитать книгу на датском."
+   }
+  ]
+ },
+ {
+  "sense_id": "0779ee96-747f-5be0-9211-07cc6a0b7b83",
+  "lemma": "forhold",
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "noun-meaning"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "952de503-2c1f-576a-a147-e8092715a6c7",
+  "lemma": "plads",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-meaning"
+  },
+  "skip": "style check: \"Hun søgte en plads som økonomiansvarlig.\" has unknown word(s) økonomiansvarlig; \"Hun søgte en plads som kommunikationskonsulent.\" has unknown word(s) kommunikationskonsulent"
+ },
+ {
+  "lemma": "ville",
+  "kind": "word",
+  "sense_id": "34d26da1-5714-517b-8bee-aa65309e7377",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "modal-verbs",
+  "frame": "Jeg {target} gerne {activity}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "prøve at dykke"
+    },
+    {
+     "da": "se den nye film"
+    },
+    {
+     "da": "tage på vandretur i Norge"
+    },
+    {
+     "da": "lære at spille guitar"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "vil",
+    "en": "I would like to try diving.",
+    "ru": "Я бы хотел попробовать дайвинг."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "vil",
+    "en": "I want to see the new movie.",
+    "ru": "Я хочу посмотреть новый фильм."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "ville",
+    "en": "I wanted to go hiking in Norway.",
+    "ru": "Я хотел отправиться в поход по Норвегии."
+   },
+   {
+    "slots": {
+     "activity": 3
+    },
+    "target": "ville",
+    "en": "I wanted to learn to play the guitar.",
+    "ru": "Я хотел научиться играть на гитаре."
+   }
+  ]
+ },
+ {
+  "sense_id": "83d0400f-ceda-5bfc-8670-096d90c9f744",
+  "lemma": "bygge",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "passive"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "da",
+  "kind": "word",
+  "sense_id": "2583cff2-cd4f-5f43-ad2e-ec0f28052dbf",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "subordinate-clause",
+  "frame": "{target} {subject} {verb}, {main_clause}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "min søster"
+    },
+    {
+     "da": "mine forældre"
+    },
+    {
+     "da": "min bedstemor"
+    }
+   ],
+   "verb": [
+    {
+     "da": "var barn"
+    },
+    {
+     "da": "blev gift"
+    },
+    {
+     "da": "boede i udlandet"
+    }
+   ],
+   "main_clause": [
+    {
+     "da": "havde familien ikke mange penge"
+    },
+    {
+     "da": "fejrede hele familien sammen"
+    },
+    {
+     "da": "savnede vi hende meget"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "main_clause": 0
+    },
+    "target": "da",
+    "en": "When my sister was a child, the family didn't have much money.",
+    "ru": "Когда моя сестра была ребёнком, у семьи было мало денег."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "main_clause": 1
+    },
+    "target": "da",
+    "en": "When my parents got married, the whole family celebrated together.",
+    "ru": "Когда мои родители поженились, вся семья праздновала вместе."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "main_clause": 2
+    },
+    "target": "da",
+    "en": "When my grandmother lived abroad, we missed her a lot.",
+    "ru": "Когда моя бабушка жила за границей, мы очень скучали по ней."
+   }
+  ]
+ },
+ {
+  "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+  "lemma": "hvor",
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "questions"
+  },
+  "skip": "style check: \"ved du\" is ungrammatical — a preposition takes the object form, and a subject never follows it; if the verb phrase was kept together after a fronted element, V2 is broken: start the clause with its subject; \"ved du\" is ungrammatical — a preposition takes the object form, and a subject never follows it; if the verb phrase was kept together after a fronted element, V2 is broken: start the clause with its subject; \"ved du\" is ungrammatical — a preposition takes the object form, and a subject never follows it; if the verb phrase was kept together after a fronted element, V2 is broken: start the clause with its subject"
+ },
+ {
+  "lemma": "bo",
+  "kind": "word",
+  "sense_id": "a69f46f0-d204-59bb-9076-f42da470732d",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "relative-clause",
+  "frame": "Lejligheden, {relative_pronoun} vi {target} i, ligger i centrum.",
+  "slots": {
+   "relative_pronoun": [
+    {
+     "da": "som"
+    },
+    {
+     "da": "der"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "relative_pronoun": 0
+    },
+    "target": "bor",
+    "en": "The apartment that we live in is located in the center.",
+    "ru": "Квартира, в которой мы живём, находится в центре."
+   },
+   {
+    "slots": {
+     "relative_pronoun": 0
+    },
+    "target": "boede",
+    "en": "The apartment that we lived in is in the centre.",
+    "ru": "Квартира, в которой мы жили, находится в центре."
+   }
+  ]
+ },
+ {
+  "lemma": "arbejde",
+  "kind": "word",
+  "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "relative-clause",
+  "frame": "Virksomheden, {relative}, {target} på et nyt projekt.",
+  "slots": {
+   "relative": [
+    {
+     "da": "som jeg er ansat i"
+    },
+    {
+     "da": "der har hovedsæde i Aarhus"
+    },
+    {
+     "da": "hvis direktør netop er gået på pension"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "relative": 0
+    },
+    "target": "arbejder",
+    "en": "The company that I am employed by is working on a new project.",
+    "ru": "Компания, в которой я работаю, работает над новым проектом."
+   },
+   {
+    "slots": {
+     "relative": 1
+    },
+    "target": "arbejdede",
+    "en": "The company, which is headquartered in Aarhus, was working on a new project.",
+    "ru": "Компания, штаб-квартира которой находится в Орхусе, работала над новым проектом."
+   },
+   {
+    "slots": {
+     "relative": 2
+    },
+    "target": "arbejder",
+    "en": "The company, whose director has just retired, is working on a new project.",
+    "ru": "Компания, директор которой только что ушёл на пенсию, работает над новым проектом."
+   }
+  ]
+ },
+ {
+  "lemma": "gå i stykker",
+  "kind": "phrase",
+  "sense_id": "75f119a1-b4ad-5f46-85b3-f4c6d5c37b3f",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "frame": "{subject} {target} {time}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Projektoren"
+    },
+    {
+     "da": "Kopimaskinen"
+    },
+    {
+     "da": "Serveren"
+    }
+   ],
+   "time": [
+    {
+     "da": "lige inden det vigtige møde"
+    },
+    {
+     "da": "midt under præsentationen"
+    },
+    {
+     "da": "i går aftes"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "time": 0
+    },
+    "target": "gik i stykker",
+    "en": "The projector broke just before the important meeting.",
+    "ru": "Проектор сломался прямо перед важной встречей."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "time": 1
+    },
+    "target": "går i stykker",
+    "en": "The copier breaks down in the middle of the presentation.",
+    "ru": "Копир ломается посреди презентации."
+   }
+  ]
+ },
+ {
+  "lemma": "spise",
+  "kind": "word",
+  "sense_id": "e170c899-90e6-5155-9718-31eabe963eb2",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "imperative",
+  "frame": "{target} din {meal}!",
+  "slots": {
+   "meal": [
+    {
+     "da": "mad"
+    },
+    {
+     "da": "suppe"
+    },
+    {
+     "da": "grød"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "meal": 0
+    },
+    "target": "Spis",
+    "en": "Eat your food!",
+    "ru": "Ешь свою еду!"
+   },
+   {
+    "slots": {
+     "meal": 1
+    },
+    "target": "Spis",
+    "en": "Eat your soup!",
+    "ru": "Ешь свой суп!"
+   },
+   {
+    "slots": {
+     "meal": 2
+    },
+    "target": "Spis",
+    "en": "Eat your porridge!",
+    "ru": "Ешь свою кашу!"
+   }
+  ]
+ },
+ {
+  "lemma": "kunne",
+  "kind": "word",
+  "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "frame": "Medarbejderen {target} {reason}.",
+  "slots": {
+   "reason": [
+    {
+     "da": "ikke deltage i mødet"
+    },
+    {
+     "da": "ikke nå deadline"
+    },
+    {
+     "da": "ikke finde den relevante rapport"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "reason": 0
+    },
+    "target": "kunne",
+    "en": "The employee was unable to attend the meeting.",
+    "ru": "Сотрудник не смог присутствовать на встрече."
+   },
+   {
+    "slots": {
+     "reason": 1
+    },
+    "target": "kunne",
+    "en": "The employee could not meet the deadline.",
+    "ru": "Сотрудник не смог уложиться в срок."
+   },
+   {
+    "slots": {
+     "reason": 2
+    },
+    "target": "kunne",
+    "en": "The employee could not find the relevant report.",
+    "ru": "Сотрудник не смог найти соответствующий отчёт."
+   },
+   {
+    "slots": {
+     "reason": 0
+    },
+    "target": "kan",
+    "en": "The employee can't join the meeting.",
+    "ru": "Сотрудник не может присутствовать на встрече."
+   },
+   {
+    "slots": {
+     "reason": 1
+    },
+    "target": "kan",
+    "en": "The employee cannot meet the deadline.",
+    "ru": "Сотрудник не может уложиться в срок."
+   },
+   {
+    "slots": {
+     "reason": 2
+    },
+    "target": "kan",
+    "en": "The employee cannot find the relevant report.",
+    "ru": "Сотрудник не может найти соответствующий отчёт."
+   }
+  ]
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "frame": "Medarbejderne {target} først forlade kontoret, efter at direktøren havde godkendt {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "rapporten"
+    },
+    {
+     "da": "projektplanen"
+    },
+    {
+     "da": "ferieplanen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "måtte",
+    "en": "Employees were only allowed to leave the office after the director had approved the report.",
+    "ru": "Сотрудникам разрешалось покидать офис только после одобрения отчёта директором."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "måtte",
+    "en": "Employees were only allowed to leave the office after the director had approved the project plan.",
+    "ru": "Сотрудникам разрешалось покидать офис только после утверждения директором плана проекта."
+   }
+  ]
+ },
+ {
+  "lemma": "lukke",
+  "kind": "word",
+  "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "passive",
+  "frame": "{subject} {target} klokken {time}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Butikken"
+    },
+    {
+     "da": "Bageriet"
+    },
+    {
+     "da": "Posthuset"
+    }
+   ],
+   "time": [
+    {
+     "da": "fem"
+    },
+    {
+     "da": "seks"
+    },
+    {
+     "da": "halv syv"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "time": 0
+    },
+    "target": "lukkes",
+    "en": "The store closes at five o'clock.",
+    "ru": "Магазин закрывается в пять часов."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "time": 1
+    },
+    "target": "lukkes",
+    "en": "The bakery closes at six o'clock.",
+    "ru": "Пекарня закрывается в шесть часов."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "time": 2
+    },
+    "target": "lukkes",
+    "en": "The post office closes at half past six.",
+    "ru": "Почтовое отделение закрывается в половине седьмого."
+   }
+  ]
+ },
+ {
+  "lemma": "hvornår",
+  "kind": "word",
+  "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "questions",
+  "frame": "{target} {verb} {subject} {object}?",
+  "slots": {
+   "verb": [
+    {
+     "da": "afleverer"
+    },
+    {
+     "da": "afleverede"
+    }
+   ],
+   "subject": [
+    {
+     "da": "du"
+    },
+    {
+     "da": "konsulenten"
+    }
+   ],
+   "object": [
+    {
+     "da": "rapporten"
+    },
+    {
+     "da": "udkastet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "subject": 0,
+     "object": 0
+    },
+    "target": "hvornår",
+    "en": "When do you hand in the report?",
+    "ru": "Когда вы сдаёте отчёт?"
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "subject": 0,
+     "object": 1
+    },
+    "target": "hvornår",
+    "en": "When did you hand in the draft?",
+    "ru": "Когда вы сдали черновик?"
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "subject": 1,
+     "object": 0
+    },
+    "target": "hvornår",
+    "en": "When did the consultant submit the report?",
+    "ru": "Когда консультант подал отчёт?"
+   }
+  ]
+ },
+ {
+  "lemma": "leve",
+  "kind": "word",
+  "sense_id": "3538eb04-e549-5b1c-82d9-cee89f1fd119",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "relative-clause",
+  "frame": "De mennesker, der {target} i yderområderne, {oplever} ofte begrænset adgang til offentlige tjenester.",
+  "slots": {
+   "oplever": [
+    {
+     "da": "oplever"
+    },
+    {
+     "da": "oplevede"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "oplever": 0
+    },
+    "target": "lever",
+    "en": "People living in peripheral areas often experience limited access to public services.",
+    "ru": "Люди, живущие в периферийных районах, часто имеют ограниченный доступ к общественным услугам."
+   },
+   {
+    "slots": {
+     "oplever": 1
+    },
+    "target": "levede",
+    "en": "People living in the outlying areas often experienced limited access to public services.",
+    "ru": "Жители отдалённых районов часто испытывали ограниченный доступ к общественным услугам."
+   }
+  ]
+ },
+ {
+  "sense_id": "3f4f702b-e412-54e2-95c2-c774391558b8",
+  "lemma": "gælde",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "relative-clause"
+  },
+  "skip": "audit: \"a law passed yesterday had applied\" is implausible; too few variants left"
+ },
+ {
+  "sense_id": "a359acaf-1458-5519-94b0-d9cd56615181",
+  "lemma": "have travlt",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "fixed-expressions"
+  },
+  "skip": "translation fidelity: 1 of 3 variants survived"
+ }
+]

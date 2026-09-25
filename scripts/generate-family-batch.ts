@@ -203,7 +203,12 @@ Rules:
    "glæder os til", hun → "glæder sig til"): if the subject varies, the target form varies with it,
    and a subject option that does not agree with a variant's target is never combined with it.
    "grammar" "particle-verbs", "reflexive" or "fixed-expressions" means the sentence exercises the
-   expression itself; a time, place or other cell means it exercises that function of the expression.`
+   expression itself; a time, place or other cell means it exercises that function of the expression.
+21. Tenses must agree across the clauses of EVERY variant. When a variant changes the target's tense,
+   every other clause in that sentence must still fit it: "kunne ikke komme, fordi hun VAR syg" (not
+   "er"), "måtte vente, indtil direktøren HAVDE godkendt" (not "har"), "de mennesker, der levede
+   dengang, KÆMPEDE" (not "kæmper"). If a fixed part of the frame only fits one tense, keep the
+   target in that tense and vary a slot instead.`
 
 interface DanishVariant { slots: Record<string, number>; target: string; orders?: string[]; accepted?: string[] }
 interface DanishFamily {

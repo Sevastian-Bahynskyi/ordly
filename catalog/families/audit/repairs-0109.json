@@ -1,0 +1,19 @@
+{
+ "auditor": "claude-opus-5-5",
+ "batch": "batch-0109",
+ "scope": "all sentences",
+ "dropped_variants": [
+  "Der holder mange biler på motorvejen."
+ ],
+ "translation_corrections": [
+  {
+   "danish": "Hver morgen kører de fleste pendlere til arbejde, men i dag tager de cyklen.",
+   "before": "Каждое утро большинство пассажиров ездят на работу, но сегодня они берут велосипед.",
+   "after": "Каждое утро большинство жителей пригородов едут на работу на машине, но сегодня они берут велосипед.",
+   "why": "pendlere who drive are commuters, not passengers"
+  }
+ ],
+ "skipped_after_audit": [
+  "måde: \"på hvilken måder\" (hvilke needed) repeated after regeneration"
+ ]
+}

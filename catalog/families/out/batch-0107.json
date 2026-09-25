@@ -1,0 +1,693 @@
+[
+ {
+  "lemma": "hedde",
+  "kind": "word",
+  "sense_id": "d8760299-ff2e-5ce3-a589-64dcca75db62",
+  "level": "A1",
+  "situation": "social",
+  "grammar": "questions",
+  "frame": "Hvad {target} {person}?",
+  "slots": {
+   "person": [
+    {
+     "da": "du"
+    },
+    {
+     "da": "din hund"
+    },
+    {
+     "da": "jeres lærer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 1
+    },
+    "target": "hedder",
+    "en": "What is your dog's name?",
+    "ru": "Как зовут вашу собаку?"
+   },
+   {
+    "slots": {
+     "person": 2
+    },
+    "target": "hedder",
+    "en": "What is your teacher's name?",
+    "ru": "Как зовут вашего учителя?"
+   }
+  ]
+ },
+ {
+  "lemma": "tale",
+  "kind": "word",
+  "sense_id": "d1e5a436-db6f-5a45-9ac3-bba337d21f1c",
+  "level": "A1",
+  "situation": "social",
+  "grammar": "verb-present",
+  "frame": "Jeg {target} med min {person}.",
+  "slots": {
+   "person": [
+    {
+     "da": "ven"
+    },
+    {
+     "da": "mor"
+    },
+    {
+     "da": "søster"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0
+    },
+    "target": "taler",
+    "en": "I talk to my friend.",
+    "ru": "Я разговариваю с другом."
+   },
+   {
+    "slots": {
+     "person": 1
+    },
+    "target": "taler",
+    "en": "I talk to my mother.",
+    "ru": "Я разговариваю с мамой."
+   },
+   {
+    "slots": {
+     "person": 2
+    },
+    "target": "taler",
+    "en": "I talk to my sister.",
+    "ru": "Я разговариваю с сестрой."
+   }
+  ]
+ },
+ {
+  "sense_id": "11760f40-490e-54d2-aa95-ecbd9976aace",
+  "lemma": "dag",
+  "target": {
+   "level": "A1",
+   "situation": "time-dates",
+   "grammar": "noun-plural"
+  },
+  "skip": "model skipped: Only one plural form 'dage' exists for this noun, and no other slot varies, so it is impossible to create two genuinely different sentences for this grammar cell."
+ },
+ {
+  "sense_id": "456a6508-5e9d-58c5-8eb1-2e9c981a04a9",
+  "lemma": "uge",
+  "target": {
+   "level": "A1",
+   "situation": "time-dates",
+   "grammar": "noun-plural"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "sense_id": "f1c7ff63-1256-5c81-b125-c9bd623d78a2",
+  "lemma": "medlem",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "8be70117-abf9-5999-9e44-d3f546231bb1",
+  "lemma": "område",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "ad0780d2-5ac1-5897-9f93-dcc221b778c1",
+  "lemma": "varm",
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "comparison"
+  },
+  "skip": "style check: adjective target with \"slots\": {} — an adjective family always needs a real varying slot (subject/time/place); its own inflection cannot safely vary with nothing to agree with, and cannot safely repeat with nothing else to vary either"
+ },
+ {
+  "sense_id": "2e919631-f750-57b4-8754-751576f69194",
+  "lemma": "forstå",
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "verb-present"
+  },
+  "skip": "style check: \"Eleven forstår ikke grammatikreglen.\" has unknown word(s) grammatikreglen"
+ },
+ {
+  "sense_id": "2e919631-f750-57b4-8754-751576f69194",
+  "lemma": "forstå",
+  "target": {
+   "level": "B1",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+  "lemma": "vælge",
+  "target": {
+   "level": "B1",
+   "situation": "shopping",
+   "grammar": "verb-present"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+  "lemma": "vælge",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-past"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (valgte, valgtes) — pick one construction and stay in it for every variant"
+ },
+ {
+  "lemma": "stige",
+  "kind": "word",
+  "sense_id": "aa51ccd3-f449-5b62-a810-918dbba0e165",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-past",
+  "frame": "Ifølge den nye rapport {target} {indicator} markant i løbet af årtiet.",
+  "slots": {
+   "indicator": [
+    {
+     "da": "arbejdsløsheden"
+    },
+    {
+     "da": "boligpriserne"
+    },
+    {
+     "da": "antallet af indvandrere"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "indicator": 0
+    },
+    "target": "steg",
+    "en": "According to the new report, unemployment increased significantly over the decade.",
+    "ru": "Согласно новому отчету, уровень безработицы значительно вырос за десятилетие."
+   },
+   {
+    "slots": {
+     "indicator": 1
+    },
+    "target": "steg",
+    "en": "According to the new report, house prices rose significantly over the course of the decade.",
+    "ru": "Согласно новому отчету, цены на жильё значительно выросли за десятилетие."
+   },
+   {
+    "slots": {
+     "indicator": 2
+    },
+    "target": "steg",
+    "en": "According to the new report, the number of immigrants increased significantly over the course of the decade.",
+    "ru": "Согласно новому отчету, количество иммигрантов значительно выросло за десятилетие."
+   }
+  ]
+ },
+ {
+  "sense_id": "aa51ccd3-f449-5b62-a810-918dbba0e165",
+  "lemma": "stige",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "verb-perfect"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "0cf29185-e6f0-5d9e-b4c1-eb1160fe6c5b",
+  "lemma": "betale",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "verb-perfect"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot; \"havde betalt\" is not one of the given forms — copy a form exactly; \"havde betalt\" is not one of the given forms — copy a form exactly"
+ },
+ {
+  "lemma": "glemme",
+  "kind": "word",
+  "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-perfect",
+  "frame": "Jeg har {target} {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "nøglerne"
+    },
+    {
+     "da": "min pung"
+    },
+    {
+     "da": "at slukke lyset"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "glemt",
+    "en": "I forgot the keys.",
+    "ru": "Я забыл ключи."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "glemt",
+    "en": "I forgot my wallet.",
+    "ru": "Я забыл кошелёк."
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "glemt",
+    "en": "I forgot to turn off the light.",
+    "ru": "Я забыл выключить свет."
+   }
+  ]
+ },
+ {
+  "lemma": "glemme",
+  "kind": "word",
+  "sense_id": "befe8b83-658d-5c1f-b2a6-f185feca6151",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "infinitive",
+  "frame": "Jeg må ikke {target} at {activity}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "låse hoveddøren"
+    },
+    {
+     "da": "slukke komfuret"
+    },
+    {
+     "da": "tage nøglerne med"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "glemme",
+    "en": "I must not forget to lock the front door.",
+    "ru": "Я не должен забыть запереть входную дверь."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "glemme",
+    "en": "I must not forget to turn off the stove.",
+    "ru": "Я не должен забыть выключить плиту."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "glemme",
+    "en": "I must not forget to bring the keys.",
+    "ru": "Я не должен забыть взять ключи."
+   }
+  ]
+ },
+ {
+  "sense_id": "15a25fdd-7210-5ab4-a5a7-45dcbda20aeb",
+  "lemma": "starte",
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-future"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "åbne",
+  "kind": "word",
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "verb-future",
+  "frame": "Ifølge planen vil butikken {target} {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "klokken ti"
+    },
+    {
+     "da": "om en time"
+    },
+    {
+     "da": "snart"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "åbne",
+    "en": "According to the plan, the store will open at ten o'clock.",
+    "ru": "Согласно плану, магазин откроется в десять часов."
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "åbne",
+    "en": "According to the plan, the store will open in an hour.",
+    "ru": "Согласно плану, магазин откроется через час."
+   },
+   {
+    "slots": {
+     "time": 2
+    },
+    "target": "åbne",
+    "en": "According to the plan, the store will open soon.",
+    "ru": "Согласно плану, магазин скоро откроется."
+   }
+  ]
+ },
+ {
+  "lemma": "åbne",
+  "kind": "word",
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "imperative",
+  "frame": "{target} {object}!",
+  "slots": {
+   "object": [
+    {
+     "da": "døren"
+    },
+    {
+     "da": "vinduet"
+    },
+    {
+     "da": "køleskabet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "Åbn",
+    "en": "Open the door!",
+    "ru": "Открой дверь!"
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "Åbn",
+    "en": "Open the window!",
+    "ru": "Открой окно!"
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "Åbn",
+    "en": "Open the fridge!",
+    "ru": "Открой холодильник!"
+   }
+  ]
+ },
+ {
+  "sense_id": "7665fa49-2eaa-5bc4-aa86-99504d1b31c3",
+  "lemma": "åbne",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "passive"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "billig",
+  "kind": "word",
+  "sense_id": "cebf9fec-0d5d-5eb9-9f73-2db31b10c3e7",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "comparison",
+  "frame": "{subject} er {target} end {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Denne kjole"
+    },
+    {
+     "da": "De sko"
+    },
+    {
+     "da": "Tasken"
+    }
+   ],
+   "object": [
+    {
+     "da": "den anden"
+    },
+    {
+     "da": "dem i vinduet"
+    },
+    {
+     "da": "min gamle"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "billigere",
+    "en": "This dress is cheaper than the other one.",
+    "ru": "Это платье дешевле другого."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "billigere",
+    "en": "The shoes are cheaper than the ones in the window.",
+    "ru": "Обувь дешевле, чем на витрине."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "billigere",
+    "en": "The bag is cheaper than my old one.",
+    "ru": "Сумка дешевле моей старой."
+   }
+  ]
+ },
+ {
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "lemma": "flytte",
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "verb-future"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "lemma": "købe",
+  "kind": "word",
+  "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "verb-future",
+  "frame": "Jeg {modal} {target} en ny {item} i morgen.",
+  "slots": {
+   "modal": [
+    {
+     "da": "vil"
+    },
+    {
+     "da": "skal"
+    }
+   ],
+   "item": [
+    {
+     "da": "jakke"
+    },
+    {
+     "da": "cykel"
+    },
+    {
+     "da": "telefon"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "modal": 0,
+     "item": 0
+    },
+    "target": "købe",
+    "en": "I want to buy a new jacket tomorrow.",
+    "ru": "Я хочу завтра купить новую куртку."
+   },
+   {
+    "slots": {
+     "modal": 1,
+     "item": 1
+    },
+    "target": "købe",
+    "en": "I'm going to buy a new bike tomorrow.",
+    "ru": "Завтра я собираюсь купить новый велосипед."
+   },
+   {
+    "slots": {
+     "modal": 0,
+     "item": 2
+    },
+    "target": "købe",
+    "en": "I want to buy a new phone tomorrow.",
+    "ru": "Я хочу завтра купить новый телефон."
+   }
+  ]
+ },
+ {
+  "lemma": "problem",
+  "kind": "word",
+  "sense_id": "6080fc1f-7393-5992-9e86-9254aaec5a09",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-plural",
+  "frame": "Kommunen har {adj} {target} med trafikken.",
+  "slots": {
+   "adj": [
+    {
+     "da": "store"
+    },
+    {
+     "da": "alvorlige"
+    },
+    {
+     "da": "voksende"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adj": 0
+    },
+    "target": "problemer",
+    "en": "The municipality has major problems with traffic.",
+    "ru": "В муниципалитете серьёзные проблемы с транспортом."
+   },
+   {
+    "slots": {
+     "adj": 2
+    },
+    "target": "problemer",
+    "en": "The municipality has growing problems with traffic.",
+    "ru": "В муниципалитете возникают растущие проблемы с транспортом."
+   }
+  ]
+ },
+ {
+  "lemma": "deltage",
+  "kind": "word",
+  "sense_id": "6ed8c34d-289f-5059-896f-9819a81f0e27",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-perfect",
+  "frame": "{subject} har {target} i {event}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Den nye projektleder"
+    },
+    {
+     "da": "Flere af vores konsulenter"
+    }
+   ],
+   "event": [
+    {
+     "da": "forhandlingerne med leverandøren"
+    },
+    {
+     "da": "udviklingen af den nye strategi"
+    },
+    {
+     "da": "det internationale symposium om bæredygtighed"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "event": 0
+    },
+    "target": "deltaget",
+    "en": "She has participated in the negotiations with the supplier.",
+    "ru": "Она участвовала в переговорах с поставщиком."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "event": 1
+    },
+    "target": "deltaget",
+    "en": "The new project manager has participated in the development of the new strategy.",
+    "ru": "Новый руководитель проекта участвовал в разработке новой стратегии."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "event": 2
+    },
+    "target": "deltaget",
+    "en": "Several of our consultants have participated in the international symposium on sustainability.",
+    "ru": "Несколько наших консультантов приняли участие в международном симпозиуме по устойчивому развитию."
+   }
+  ]
+ }
+]
