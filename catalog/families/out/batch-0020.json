@@ -130,7 +130,10 @@
     "target": "stilling",
     "en": "The team is in a good position.",
     "ru": "Команда в хорошем положении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "position"
+    ]
    },
    {
     "slots": {
@@ -139,7 +142,10 @@
     "target": "stilling",
     "en": "Our team is in a good position.",
     "ru": "Наша команда в хорошем положении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "position"
+    ]
    },
    {
     "slots": {
@@ -148,7 +154,10 @@
     "target": "stilling",
     "en": "The other team is in a good position.",
     "ru": "Другая команда в хорошем положении.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "position"
+    ]
    }
   ]
  },
@@ -589,7 +598,10 @@
     "target": "egentlig",
     "en": "Actually, I would quite like to travel abroad.",
     "ru": "На самом деле я бы с удовольствием поехал за границу.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "faktisk"
+    ]
    },
    {
     "slots": {
@@ -598,7 +610,10 @@
     "target": "egentlig",
     "en": "Actually, she would quite like to travel abroad.",
     "ru": "На самом деле она бы с удовольствием поехала за границу.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "faktisk"
+    ]
    },
    {
     "slots": {
@@ -607,7 +622,10 @@
     "target": "egentlig",
     "en": "Actually, we would quite like to travel abroad.",
     "ru": "На самом деле мы бы с удовольствием поехали за границу.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "faktisk"
+    ]
    }
   ]
  },
@@ -640,7 +658,10 @@
     "target": "egentlige",
     "en": "That is not the real reason.",
     "ru": "Это не настоящая причина.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sande"
+    ]
    },
    {
     "slots": {
@@ -649,7 +670,10 @@
     "target": "egentlige",
     "en": "That is not the real cause.",
     "ru": "Это не истинная причина.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sande"
+    ]
    },
    {
     "slots": {
@@ -658,7 +682,10 @@
     "target": "egentlige",
     "en": "That is not the real solution.",
     "ru": "Это не настоящее решение.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sande"
+    ]
    }
   ]
  },
@@ -900,7 +927,10 @@
     "target": "værk",
     "en": "I have aches in my legs after the run.",
     "ru": "У меня ломота в ногах после пробежки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "smerter"
+    ]
    },
    {
     "slots": {
@@ -909,7 +939,10 @@
     "target": "værk",
     "en": "She has aches in her legs after the run.",
     "ru": "У неё ломота в ногах после пробежки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "smerter"
+    ]
    },
    {
     "slots": {
@@ -918,7 +951,10 @@
     "target": "værk",
     "en": "He has aches in his legs after the run.",
     "ru": "У него ломота в ногах после пробежки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "smerter"
+    ]
    }
   ]
  },
@@ -951,7 +987,10 @@
     "target": "kigger",
     "en": "I look out of the window.",
     "ru": "Я смотрю в окно.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "ser"
+    ]
    },
    {
     "slots": {
@@ -960,7 +999,10 @@
     "target": "kigger",
     "en": "The cat looks out of the window.",
     "ru": "Кошка смотрит в окно.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "ser"
+    ]
    },
    {
     "slots": {
@@ -969,7 +1011,10 @@
     "target": "kigger",
     "en": "She looks out of the window.",
     "ru": "Она смотрит в окно.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "ser"
+    ]
    }
   ]
  },
@@ -979,7 +1024,7 @@
   "sense_id": "3bedca00-6772-5c42-8027-923221d25cc7",
   "level": "A2",
   "situation": "home",
-  "grammar": "verb-meaning",
+  "grammar": "verb-present",
   "frame": "{subject} {target} ikke længere.",
   "slots": {
    "subject": [
@@ -1002,7 +1047,10 @@
     "target": "fungerer",
     "en": "The TV doesn't work anymore.",
     "ru": "Телевизор больше не работает.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "virker"
+    ]
    },
    {
     "slots": {
@@ -1011,7 +1059,10 @@
     "target": "fungerer",
     "en": "The dishwasher doesn't work anymore.",
     "ru": "Посудомоечная машина больше не работает.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "virker"
+    ]
    },
    {
     "slots": {
@@ -1020,7 +1071,10 @@
     "target": "fungerer",
     "en": "The car doesn't work anymore.",
     "ru": "Машина больше не работает.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "virker"
+    ]
    }
   ]
  },
@@ -1053,7 +1107,10 @@
     "target": "mærker",
     "en": "I feel the pain in my back.",
     "ru": "Я чувствую боль в спине.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "føler"
+    ]
    },
    {
     "slots": {
@@ -1062,7 +1119,10 @@
     "target": "mærker",
     "en": "He feels the pain in his back.",
     "ru": "Он чувствует боль в спине.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "føler"
+    ]
    },
    {
     "slots": {
@@ -1071,7 +1131,10 @@
     "target": "mærker",
     "en": "She feels the pain in her back.",
     "ru": "Она чувствует боль в спине.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "føler"
+    ]
    }
   ]
  },
@@ -1257,7 +1320,10 @@
     "target": "smuk",
     "en": "The living room is beautiful.",
     "ru": "Гостиная красивая.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "flot"
+    ]
    },
    {
     "slots": {
@@ -1266,7 +1332,10 @@
     "target": "smukt",
     "en": "The kitchen is beautiful.",
     "ru": "Кухня красивая.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "flot"
+    ]
    },
    {
     "slots": {
@@ -1275,7 +1344,10 @@
     "target": "smukke",
     "en": "The curtains are beautiful.",
     "ru": "Занавески красивые.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "flotte"
+    ]
    }
   ]
  },
@@ -1410,7 +1482,10 @@
     "target": "unger",
     "en": "They have three kids at home.",
     "ru": "У них дома трое сорванцов.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "børn"
+    ]
    },
    {
     "slots": {
@@ -1419,7 +1494,10 @@
     "target": "unger",
     "en": "The neighbors have three kids at home.",
     "ru": "У соседей дома трое сорванцов.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "børn"
+    ]
    },
    {
     "slots": {
@@ -1428,7 +1506,10 @@
     "target": "unger",
     "en": "My friends have three kids at home.",
     "ru": "У моих друзей дома трое сорванцов.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "børn"
+    ]
    }
   ]
  },
@@ -1614,7 +1695,10 @@
     "target": "henter",
     "en": "I download the file from the internet.",
     "ru": "Я скачиваю файл из интернета.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "downloader"
+    ]
    },
    {
     "slots": {
@@ -1623,7 +1707,10 @@
     "target": "henter",
     "en": "He downloads the file from the internet.",
     "ru": "Он скачивает файл из интернета.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "downloader"
+    ]
    },
    {
     "slots": {
@@ -1632,7 +1719,10 @@
     "target": "henter",
     "en": "We download the file from the internet.",
     "ru": "Мы скачиваем файл из интернета.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "downloader"
+    ]
    }
   ]
  },
@@ -1642,7 +1732,7 @@
   "sense_id": "7568660d-ca46-5608-90d1-869625a58079",
   "level": "A2",
   "situation": "communication-media",
-  "grammar": "noun-meaning",
+  "grammar": "noun-indefinite",
   "frame": "Det er et {desc} dansk {target}.",
   "slots": {
    "desc": [
@@ -1767,7 +1857,10 @@
     "target": "myndighed",
     "en": "The director has the authority to make decisions.",
     "ru": "Директор обладает полномочиями принимать решения.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "magt"
+    ]
    },
    {
     "slots": {
@@ -1776,7 +1869,10 @@
     "target": "myndighed",
     "en": "The manager has the authority to make decisions.",
     "ru": "Руководитель обладает полномочиями принимать решения.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "magt"
+    ]
    },
    {
     "slots": {
@@ -1785,7 +1881,10 @@
     "target": "myndighed",
     "en": "The board has the authority to make decisions.",
     "ru": "Правление обладает полномочиями принимать решения.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "magt"
+    ]
    }
   ]
  },
@@ -1795,7 +1894,7 @@
   "sense_id": "9b8138ac-a386-5b73-b986-005a64f8c9ae",
   "level": "B1",
   "situation": "society",
-  "grammar": "noun-meaning",
+  "grammar": "noun-definite",
   "frame": "{subject} interviewer {target} i aften.",
   "slots": {
    "subject": [
@@ -1948,7 +2047,7 @@
   "sense_id": "a444e5ee-eb1c-5fbb-a560-01a9be50b118",
   "level": "B1",
   "situation": "society",
-  "grammar": "noun-meaning",
+  "grammar": "noun-definite",
   "frame": "{subject} har {target} i landet.",
   "slots": {
    "subject": [
