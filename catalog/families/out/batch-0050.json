@@ -71,14 +71,14 @@
   "level": "A2",
   "situation": "food-drink",
   "grammar": "verb-present",
-  "frame": "{subject} {target} {dish} til gæsterne.",
+  "frame": "{subject} {target} {dish} for gæsterne.",
   "slots": {
    "subject": [
     {
      "da": "Tjeneren"
     },
     {
-     "da": "Kokken"
+     "da": "Værten"
     },
     {
      "da": "Vi"
@@ -113,8 +113,8 @@
      "dish": 1
     },
     "target": "serverer",
-    "en": "The cook serves the cake to the guests.",
-    "ru": "Повар подаёт торт гостям.",
+    "en": "The host serves the cake to the guests.",
+    "ru": "Хозяин подаёт торт гостям.",
     "orders": []
    },
    {
@@ -168,7 +168,7 @@
      "topic": 0
     },
     "target": "udtalelse",
-    "en": "The minister issued a statement about the case.",
+    "en": "The minister made a statement about the case.",
     "ru": "Министр сделал заявление по делу.",
     "orders": [],
     "accepted": [
@@ -181,7 +181,7 @@
      "topic": 1
     },
     "target": "udtalelse",
-    "en": "The director issued a statement about the crisis.",
+    "en": "The director made a statement about the crisis.",
     "ru": "Директор сделал заявление о кризисе.",
     "orders": [],
     "accepted": [
@@ -194,7 +194,7 @@
      "topic": 2
     },
     "target": "udtalelse",
-    "en": "The spokesperson issued a statement about the result.",
+    "en": "The spokesperson made a statement about the result.",
     "ru": "Пресс-секретарь сделал заявление о результате.",
     "orders": [],
     "accepted": [
@@ -209,29 +209,29 @@
   "sense_id": "4f3e59fb-65ce-5e56-95fb-1936e5ccfe00",
   "level": "B1",
   "situation": "society",
-  "grammar": "noun-indefinite",
-  "frame": "{subject} fører en {adjective} {target} op til valget.",
+  "grammar": "noun-definite",
+  "frame": "Under {target} lovede {subject} {promise}.",
   "slots": {
    "subject": [
     {
-     "da": "Partiet"
+     "da": "partiet"
     },
     {
-     "da": "Kandidaten"
+     "da": "kandidaten"
     },
     {
-     "da": "Oppositionen"
+     "da": "statsministeren"
     }
    ],
-   "adjective": [
+   "promise": [
     {
-     "da": "hård"
+     "da": "lavere skat"
     },
     {
-     "da": "intens"
+     "da": "flere cykelstier"
     },
     {
-     "da": "lang"
+     "da": "bedre sygehuse"
     }
    ]
   },
@@ -239,32 +239,47 @@
    {
     "slots": {
      "subject": 0,
-     "adjective": 0
+     "promise": 0
     },
-    "target": "valgkamp",
-    "en": "The party is running a tough election campaign ahead of the election.",
-    "ru": "Партия ведёт жёсткую предвыборную кампанию перед выборами.",
-    "orders": []
+    "target": "valgkampen",
+    "en": "During the election campaign, the party promised lower taxes.",
+    "ru": "Во время предвыборной кампании партия обещала снизить налоги.",
+    "orders": [
+     "Partiet lovede lavere skat under valgkampen."
+    ],
+    "accepted": [
+     "valgkampagnen"
+    ]
    },
    {
     "slots": {
      "subject": 1,
-     "adjective": 1
+     "promise": 1
     },
-    "target": "valgkamp",
-    "en": "The candidate is running an intense election campaign ahead of the election.",
-    "ru": "Кандидат ведёт напряжённую предвыборную кампанию перед выборами.",
-    "orders": []
+    "target": "valgkampen",
+    "en": "During the election campaign, the candidate promised more cycle paths.",
+    "ru": "Во время предвыборной кампании кандидат обещал больше велодорожек.",
+    "orders": [
+     "Kandidaten lovede flere cykelstier under valgkampen."
+    ],
+    "accepted": [
+     "valgkampagnen"
+    ]
    },
    {
     "slots": {
      "subject": 2,
-     "adjective": 2
+     "promise": 2
     },
-    "target": "valgkamp",
-    "en": "The opposition is running a long election campaign ahead of the election.",
-    "ru": "Оппозиция ведёт длительную предвыборную кампанию перед выборами.",
-    "orders": []
+    "target": "valgkampen",
+    "en": "During the election campaign, the prime minister promised better hospitals.",
+    "ru": "Во время предвыборной кампании премьер-министр обещал более качественные больницы.",
+    "orders": [
+     "Statsministeren lovede bedre sygehuse under valgkampen."
+    ],
+    "accepted": [
+     "valgkampagnen"
+    ]
    }
   ]
  },
@@ -290,7 +305,7 @@
    ],
    "object": [
     {
-     "da": "en kæmpe kage"
+     "da": "en kæmpestor kage"
     },
     {
      "da": "et gammelt hus"
@@ -308,8 +323,10 @@
     },
     "target": "drømte",
     "en": "I dreamed about a giant cake last night.",
-    "ru": "Мне приснился огромный торт этой ночью.",
-    "orders": []
+    "ru": "Этой ночью мне приснился огромный торт.",
+    "orders": [
+     "I nat drømte jeg om en kæmpestor kage."
+    ]
    },
    {
     "slots": {
@@ -318,8 +335,10 @@
     },
     "target": "drømte",
     "en": "My brother dreamed about an old house last night.",
-    "ru": "Моему брату приснился старый дом этой ночью.",
-    "orders": []
+    "ru": "Этой ночью моему брату приснился старый дом.",
+    "orders": [
+     "I nat drømte min bror om et gammelt hus."
+    ]
    },
    {
     "slots": {
@@ -328,8 +347,10 @@
     },
     "target": "drømte",
     "en": "She dreamed about her childhood last night.",
-    "ru": "Ей приснилось её детство этой ночью.",
-    "orders": []
+    "ru": "Этой ночью ей приснилось детство.",
+    "orders": [
+     "I nat drømte hun om sin barndom."
+    ]
    }
   ]
  },
@@ -338,7 +359,7 @@
   "kind": "word",
   "sense_id": "ba2e3bed-f52e-51af-9da1-eec5aec68bb5",
   "level": "A2",
-  "situation": "work",
+  "situation": "feelings-opinions",
   "grammar": "verb-meaning",
   "frame": "{subject} {target} om at {infinitive}.",
   "slots": {
@@ -404,7 +425,7 @@
   "sense_id": "52f2d23c-c0cb-5a82-864e-9b95f569e2fc",
   "level": "B1",
   "situation": "society",
-  "grammar": "noun-indefinite",
+  "grammar": "noun-meaning",
   "frame": "{subject} og hans {target} deltog i {event}.",
   "slots": {
    "subject": [
@@ -441,7 +462,8 @@
     "ru": "Посол и его жена присутствовали на приёме.",
     "orders": [],
     "accepted": [
-     "kone"
+     "kone",
+     "frue"
     ]
    },
    {
@@ -454,7 +476,8 @@
     "ru": "Министр и его жена присутствовали на церемонии.",
     "orders": [],
     "accepted": [
-     "kone"
+     "kone",
+     "frue"
     ]
    },
    {
@@ -467,7 +490,8 @@
     "ru": "Директор и его жена присутствовали на траурной церемонии.",
     "orders": [],
     "accepted": [
-     "kone"
+     "kone",
+     "frue"
     ]
    }
   ]
@@ -477,7 +501,7 @@
   "kind": "word",
   "sense_id": "0497273e-05b6-58b0-a9de-fc9cd904b121",
   "level": "B1",
-  "situation": "work",
+  "situation": "society",
   "grammar": "adjective-meaning",
   "frame": "{subject} har ikke {target} kapital til {object}.",
   "slots": {
@@ -587,7 +611,9 @@
     "target": "træning",
     "en": "The football team has training every Tuesday.",
     "ru": "У футбольной команды тренировка каждый вторник.",
-    "orders": []
+    "orders": [
+     "Hver tirsdag har fodboldholdet træning."
+    ]
    },
    {
     "slots": {
@@ -597,7 +623,9 @@
     "target": "træning",
     "en": "The swimmers have training three times a week.",
     "ru": "У пловцов тренировка три раза в неделю.",
-    "orders": []
+    "orders": [
+     "Tre gange om ugen har svømmerne træning."
+    ]
    },
    {
     "slots": {
@@ -607,7 +635,9 @@
     "target": "træning",
     "en": "He has training every morning.",
     "ru": "У него тренировка каждое утро.",
-    "orders": []
+    "orders": [
+     "Hver morgen har han træning."
+    ]
    }
   ]
  },
@@ -615,31 +645,31 @@
   "lemma": "træning",
   "kind": "word",
   "sense_id": "9caf5d9b-095c-5221-8c3b-e6fab48eedeb",
-  "level": "A2",
+  "level": "B1",
   "situation": "work",
-  "grammar": "noun-indefinite",
-  "frame": "{subject} får {target} i {topic}, før de starter.",
+  "grammar": "noun-meaning",
+  "frame": "{subject} får {target} i {skill} hvert år.",
   "slots": {
    "subject": [
     {
-     "da": "Nye medarbejdere"
+     "da": "piloterne"
     },
     {
-     "da": "Praktikanterne"
+     "da": "sygeplejerskerne"
     },
     {
-     "da": "Alle ansatte"
+     "da": "personalet"
     }
    ],
-   "topic": [
+   "skill": [
     {
-     "da": "sikkerhed"
+     "da": "førstehjælp"
     },
     {
-     "da": "kundeservice"
+     "da": "genoplivning"
     },
     {
-     "da": "det nye system"
+     "da": "brandslukning"
     }
    ]
   },
@@ -647,32 +677,53 @@
    {
     "slots": {
      "subject": 0,
-     "topic": 0
+     "skill": 0
     },
     "target": "træning",
-    "en": "New employees get training in safety before they start.",
-    "ru": "Новые сотрудники получают подготовку по технике безопасности, прежде чем приступить к работе.",
-    "orders": []
+    "en": "The pilots get training in first aid every year.",
+    "ru": "Пилоты каждый год проходят подготовку по оказанию первой помощи.",
+    "orders": [
+     "Hvert år får piloterne træning i førstehjælp."
+    ],
+    "accepted": [
+     "undervisning",
+     "uddannelse",
+     "oplæring"
+    ]
    },
    {
     "slots": {
      "subject": 1,
-     "topic": 1
+     "skill": 1
     },
     "target": "træning",
-    "en": "The interns get training in customer service before they start.",
-    "ru": "Стажёры получают обучение по обслуживанию клиентов, прежде чем приступить к работе.",
-    "orders": []
+    "en": "The nurses get training in resuscitation every year.",
+    "ru": "Медсёстры каждый год проходят обучение реанимации.",
+    "orders": [
+     "Hvert år får sygeplejerskerne træning i genoplivning."
+    ],
+    "accepted": [
+     "undervisning",
+     "uddannelse",
+     "oplæring"
+    ]
    },
    {
     "slots": {
      "subject": 2,
-     "topic": 2
+     "skill": 2
     },
     "target": "træning",
-    "en": "All employees get training on the new system before they start.",
-    "ru": "Все сотрудники получают обучение по новой системе, прежде чем приступить к работе.",
-    "orders": []
+    "en": "The staff get training in firefighting every year.",
+    "ru": "Персонал каждый год проходит подготовку по тушению пожаров.",
+    "orders": [
+     "Hvert år får personalet træning i brandslukning."
+    ],
+    "accepted": [
+     "undervisning",
+     "uddannelse",
+     "oplæring"
+    ]
    }
   ]
  },
@@ -682,7 +733,7 @@
   "sense_id": "e287316b-7c86-53fb-90b3-d1c765e0fc56",
   "level": "A2",
   "situation": "work",
-  "grammar": "noun-indefinite",
+  "grammar": "noun-meaning",
   "frame": "{possessive} {target} betaler for {thing}.",
   "slots": {
    "possessive": [
@@ -745,7 +796,7 @@
   "lemma": "ukendt",
   "kind": "word",
   "sense_id": "1f35f37c-1903-576c-905f-0d4342f1a9c0",
-  "level": "A2",
+  "level": "B1",
   "situation": "communication-media",
   "grammar": "adjective-meaning",
   "frame": "{subject} er stadig {target}.",
@@ -758,7 +809,7 @@
      "da": "Offerets identitet"
     },
     {
-     "da": "Resultatet af valget"
+     "da": "Motivet bag overfaldet"
     }
    ]
   },
@@ -770,7 +821,10 @@
     "target": "ukendt",
     "en": "The cause of the fire is still unknown.",
     "ru": "Причина пожара до сих пор неизвестна.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "uvis"
+    ]
    },
    {
     "slots": {
@@ -779,16 +833,22 @@
     "target": "ukendt",
     "en": "The victim's identity is still unknown.",
     "ru": "Личность жертвы до сих пор неизвестна.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "uvis"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
     "target": "ukendt",
-    "en": "The result of the election is still unknown.",
-    "ru": "Результат выборов до сих пор неизвестен.",
-    "orders": []
+    "en": "The motive behind the assault is still unknown.",
+    "ru": "Мотив нападения до сих пор неизвестен.",
+    "orders": [],
+    "accepted": [
+     "uvist"
+    ]
    }
   ]
  },
@@ -796,86 +856,77 @@
   "lemma": "ukendt",
   "kind": "word",
   "sense_id": "585ca7cd-e1e2-590b-ba2b-3217d25e0e33",
-  "level": "A2",
-  "situation": "social",
-  "grammar": "adjective-meaning",
-  "frame": "En {target} {person} hjalp {object} med at bære {item}.",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} {reaction} i {target} omgivelser.",
   "slots": {
-   "person": [
+   "subject": [
     {
-     "da": "mand"
+     "da": "katten"
     },
     {
-     "da": "kvinde"
+     "da": "hunden"
     },
     {
-     "da": "dreng"
+     "da": "min lille søn"
     }
    ],
-   "object": [
+   "reaction": [
     {
-     "da": "mig"
+     "da": "bliver nervøs"
     },
     {
-     "da": "min mor"
+     "da": "sover dårligt"
     },
     {
-     "da": "den gamle dame"
-    }
-   ],
-   "item": [
-    {
-     "da": "kufferten"
-    },
-    {
-     "da": "indkøbsposerne"
-    },
-    {
-     "da": "cyklen"
+     "da": "bliver genert",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "person": 0,
-     "object": 0,
-     "item": 0
+     "subject": 0,
+     "reaction": 0
     },
-    "target": "ukendt",
-    "en": "An unfamiliar man helped me carry the suitcase.",
-    "ru": "Незнакомый мужчина помог мне нести чемодан.",
+    "target": "ukendte",
+    "en": "The cat gets nervous in unfamiliar surroundings.",
+    "ru": "Кошка нервничает в незнакомой обстановке.",
     "orders": [],
     "accepted": [
-     "fremmed"
+     "fremmede"
     ]
    },
    {
     "slots": {
-     "person": 1,
-     "object": 1,
-     "item": 1
+     "subject": 1,
+     "reaction": 1
     },
-    "target": "ukendt",
-    "en": "An unfamiliar woman helped my mother carry the shopping bags.",
-    "ru": "Незнакомая женщина помогла моей маме нести сумки с покупками.",
+    "target": "ukendte",
+    "en": "The dog sleeps badly in unfamiliar surroundings.",
+    "ru": "Собака плохо спит в незнакомой обстановке.",
     "orders": [],
     "accepted": [
-     "fremmed"
+     "fremmede"
     ]
    },
    {
     "slots": {
-     "person": 2,
-     "object": 2,
-     "item": 2
+     "subject": 2,
+     "reaction": 2
     },
-    "target": "ukendt",
-    "en": "An unfamiliar boy helped the old lady carry the bike.",
-    "ru": "Незнакомый мальчик помог пожилой женщине нести велосипед.",
+    "target": "ukendte",
+    "en": "My little son becomes shy in unfamiliar surroundings.",
+    "ru": "Мой маленький сын робеет в незнакомой обстановке.",
     "orders": [],
     "accepted": [
-     "fremmed"
+     "fremmede"
     ]
    }
   ]
@@ -909,7 +960,12 @@
     "target": "premierministeren",
     "en": "The prime minister gave a speech about the economy last night.",
     "ru": "Премьер-министр выступил с речью об экономике вчера вечером.",
-    "orders": []
+    "orders": [
+     "I aftes holdt premierministeren en tale om økonomien."
+    ],
+    "accepted": [
+     "statsministeren"
+    ]
    },
    {
     "slots": {
@@ -918,7 +974,12 @@
     "target": "premierministeren",
     "en": "The prime minister gave a speech about the climate last night.",
     "ru": "Премьер-министр выступил с речью о климате вчера вечером.",
-    "orders": []
+    "orders": [
+     "I aftes holdt premierministeren en tale om klimaet."
+    ],
+    "accepted": [
+     "statsministeren"
+    ]
    },
    {
     "slots": {
@@ -927,7 +988,12 @@
     "target": "premierministeren",
     "en": "The prime minister gave a speech about the healthcare system last night.",
     "ru": "Премьер-министр выступил с речью о системе здравоохранения вчера вечером.",
-    "orders": []
+    "orders": [
+     "I aftes holdt premierministeren en tale om sundhedsvæsenet."
+    ],
+    "accepted": [
+     "statsministeren"
+    ]
    }
   ]
  },
@@ -938,7 +1004,7 @@
   "level": "A2",
   "situation": "shopping",
   "grammar": "noun-definite",
-  "frame": "{subject} elsker {target} af {object}.",
+  "frame": "{subject} elsker {target} på {object}.",
   "slots": {
    "subject": [
     {
@@ -971,7 +1037,7 @@
     },
     "target": "designet",
     "en": "I love the design of the new phone.",
-    "ru": "Мне нравится дизайн нового телефона.",
+    "ru": "Я обожаю дизайн нового телефона.",
     "orders": []
    },
    {
@@ -981,7 +1047,7 @@
     },
     "target": "designet",
     "en": "My friend loves the design of the new car.",
-    "ru": "Моему другу нравится дизайн новой машины.",
+    "ru": "Мой друг обожает дизайн новой машины.",
     "orders": []
    },
    {
@@ -991,7 +1057,7 @@
     },
     "target": "designet",
     "en": "We love the design of the new kitchen.",
-    "ru": "Нам нравится дизайн новой кухни.",
+    "ru": "Мы обожаем дизайн новой кухни.",
     "orders": []
    }
   ]
@@ -1002,7 +1068,7 @@
   "sense_id": "ee23c57c-86c0-5739-925e-830c4a1a97d0",
   "level": "B1",
   "situation": "society",
-  "grammar": "noun-indefinite",
+  "grammar": "noun-meaning",
   "frame": "{possessive} {target} af {thing} er faldet de seneste år.",
   "slots": {
    "possessive": [
@@ -1013,7 +1079,7 @@
      "da": "Husstandenes"
     },
     {
-     "da": "Butikkernes"
+     "da": "Befolkningens"
     }
    ],
    "thing": [
@@ -1021,10 +1087,10 @@
      "da": "kød"
     },
     {
-     "da": "sukker"
+     "da": "plastik"
     },
     {
-     "da": "plastik"
+     "da": "sukker"
     }
    ]
   },
@@ -1037,7 +1103,10 @@
     "target": "forbrug",
     "en": "Danes' consumption of meat has fallen in recent years.",
     "ru": "Потребление мяса датчанами снизилось за последние годы.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "indtag"
+    ]
    },
    {
     "slots": {
@@ -1045,8 +1114,8 @@
      "thing": 1
     },
     "target": "forbrug",
-    "en": "Households' consumption of sugar has fallen in recent years.",
-    "ru": "Потребление сахара домохозяйствами снизилось за последние годы.",
+    "en": "Households' consumption of plastic has fallen in recent years.",
+    "ru": "Потребление пластика домохозяйствами снизилось за последние годы.",
     "orders": []
    },
    {
@@ -1055,9 +1124,12 @@
      "thing": 2
     },
     "target": "forbrug",
-    "en": "Stores' consumption of plastic has fallen in recent years.",
-    "ru": "Потребление пластика магазинами снизилось за последние годы.",
-    "orders": []
+    "en": "The population's consumption of sugar has fallen in recent years.",
+    "ru": "Потребление сахара населением снизилось за последние годы.",
+    "orders": [],
+    "accepted": [
+     "indtag"
+    ]
    }
   ]
  },
@@ -1065,10 +1137,10 @@
   "lemma": "forbrug",
   "kind": "word",
   "sense_id": "6c3a646a-ed35-5400-8536-9f9f2adda10a",
-  "level": "A2",
+  "level": "B1",
   "situation": "transport",
-  "grammar": "noun-definite",
-  "frame": "{target} på {vehicle} er {adjective}.",
+  "grammar": "noun-indefinite",
+  "frame": "{vehicle} har et {adjective} {target}.",
   "slots": {
    "vehicle": [
     {
@@ -1099,30 +1171,41 @@
      "vehicle": 0,
      "adjective": 0
     },
-    "target": "forbruget",
-    "en": "The fuel consumption of the new car is low.",
-    "ru": "Расход топлива у новой машины низкий.",
-    "orders": []
+    "target": "forbrug",
+    "en": "The new car has low fuel consumption.",
+    "ru": "У новой машины низкий расход топлива.",
+    "orders": [],
+    "accepted": [
+     "brændstofforbrug",
+     "benzinforbrug"
+    ]
    },
    {
     "slots": {
      "vehicle": 1,
      "adjective": 1
     },
-    "target": "forbruget",
-    "en": "The fuel consumption of the old truck is high.",
-    "ru": "Расход топлива у старого грузовика высокий.",
-    "orders": []
+    "target": "forbrug",
+    "en": "The old truck has high fuel consumption.",
+    "ru": "У старого грузовика высокий расход топлива.",
+    "orders": [],
+    "accepted": [
+     "brændstofforbrug"
+    ]
    },
    {
     "slots": {
      "vehicle": 2,
      "adjective": 2
     },
-    "target": "forbruget",
-    "en": "The fuel consumption of the motorcycle is very low.",
-    "ru": "Расход топлива у мотоцикла очень низкий.",
-    "orders": []
+    "target": "forbrug",
+    "en": "The motorcycle has very low fuel consumption.",
+    "ru": "У мотоцикла очень низкий расход топлива.",
+    "orders": [],
+    "accepted": [
+     "brændstofforbrug",
+     "benzinforbrug"
+    ]
    }
   ]
  },
@@ -1155,7 +1238,11 @@
     "target": "fed",
     "en": "The cheese is very fatty.",
     "ru": "Сыр очень жирный.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fedtholdig",
+     "fedtet"
+    ]
    },
    {
     "slots": {
@@ -1164,7 +1251,11 @@
     "target": "fed",
     "en": "The roast pork is very fatty.",
     "ru": "Жареная свинина очень жирная.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fedtholdig",
+     "fedtet"
+    ]
    },
    {
     "slots": {
@@ -1173,7 +1264,11 @@
     "target": "fed",
     "en": "The sauce is very fatty.",
     "ru": "Соус очень жирный.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "fedtholdig",
+     "fedtet"
+    ]
    }
   ]
  },
@@ -1206,7 +1301,13 @@
     "target": "fed",
     "en": "The new movie was really cool!",
     "ru": "Новый фильм был действительно классный!",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sej",
+     "cool",
+     "super",
+     "fantastisk"
+    ]
    },
    {
     "slots": {
@@ -1215,7 +1316,13 @@
     "target": "fed",
     "en": "The concert was really awesome!",
     "ru": "Концерт был действительно классный!",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sej",
+     "cool",
+     "super",
+     "fantastisk"
+    ]
    },
    {
     "slots": {
@@ -1224,7 +1331,13 @@
     "target": "fed",
     "en": "The trip was really awesome!",
     "ru": "Поездка была действительно классная!",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "sej",
+     "cool",
+     "super",
+     "fantastisk"
+    ]
    }
   ]
  },
@@ -1234,61 +1347,65 @@
   "sense_id": "91508edb-7d1c-5e54-85f3-1fcead2bedfa",
   "level": "A2",
   "situation": "leisure",
-  "grammar": "noun-definite",
-  "frame": "{target} på {animal} foregår {time}.",
+  "grammar": "fixed-expressions",
+  "frame": "{subject} går på {target} {extra}.",
   "slots": {
-   "animal": [
+   "subject": [
     {
-     "da": "hjorte"
+     "da": "min far"
     },
     {
-     "da": "harer"
+     "da": "min onkel"
     },
     {
-     "da": "fasaner"
+     "da": "naboen"
     }
    ],
-   "time": [
+   "extra": [
     {
      "da": "om efteråret"
     },
     {
-     "da": "om vinteren"
+     "da": "hver lørdag"
     },
     {
-     "da": "i september"
+     "da": "med sin hund"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "animal": 0,
-     "time": 0
+     "subject": 0,
+     "extra": 0
     },
-    "target": "jagten",
-    "en": "The hunting of deer takes place in autumn.",
-    "ru": "Охота на оленей проходит осенью.",
-    "orders": []
+    "target": "jagt",
+    "en": "My father goes hunting in the autumn.",
+    "ru": "Мой отец ходит на охоту осенью.",
+    "orders": [
+     "Om efteråret går min far på jagt."
+    ]
    },
    {
     "slots": {
-     "animal": 1,
-     "time": 1
+     "subject": 1,
+     "extra": 1
     },
-    "target": "jagten",
-    "en": "The hunting of hares takes place in winter.",
-    "ru": "Охота на зайцев проходит зимой.",
-    "orders": []
+    "target": "jagt",
+    "en": "My uncle goes hunting every Saturday.",
+    "ru": "Мой дядя ходит на охоту каждую субботу.",
+    "orders": [
+     "Hver lørdag går min onkel på jagt."
+    ]
    },
    {
     "slots": {
-     "animal": 2,
-     "time": 2
+     "subject": 2,
+     "extra": 2
     },
-    "target": "jagten",
-    "en": "The hunting of pheasants takes place in September.",
-    "ru": "Охота на фазанов проходит в сентябре.",
+    "target": "jagt",
+    "en": "The neighbour goes hunting with his dog.",
+    "ru": "Сосед ходит на охоту со своей собакой.",
     "orders": []
    }
   ]
@@ -1375,18 +1492,30 @@
      "da": "god"
     },
     {
-     "da": "meget dårlig"
+     "da": "næsten ingen"
     }
    ],
    "condition": [
     {
-     "da": "i tågen"
+     "da": "i tågen",
+     "requires": {
+      "adjective": [
+       0,
+       2
+      ]
+     }
     },
     {
-     "da": "på vejen i regnvejr"
+     "da": "i dag"
     },
     {
-     "da": "i mørket"
+     "da": "på grund af sneen",
+     "requires": {
+      "adjective": [
+       0,
+       2
+      ]
+     }
     }
    ]
   },
@@ -1399,7 +1528,12 @@
     "target": "sigt",
     "en": "There is poor visibility in the fog.",
     "ru": "В тумане плохая видимость.",
-    "orders": []
+    "orders": [
+     "I tågen er der dårlig sigt."
+    ],
+    "accepted": [
+     "sigtbarhed"
+    ]
    },
    {
     "slots": {
@@ -1407,9 +1541,14 @@
      "condition": 1
     },
     "target": "sigt",
-    "en": "There is good visibility on the road in rainy weather.",
-    "ru": "На дороге хорошая видимость в дождь.",
-    "orders": []
+    "en": "There is good visibility today.",
+    "ru": "Сегодня хорошая видимость.",
+    "orders": [
+     "I dag er der god sigt."
+    ],
+    "accepted": [
+     "sigtbarhed"
+    ]
    },
    {
     "slots": {
@@ -1417,9 +1556,14 @@
      "condition": 2
     },
     "target": "sigt",
-    "en": "There is very poor visibility in the dark.",
-    "ru": "В темноте очень плохая видимость.",
-    "orders": []
+    "en": "There is almost no visibility because of the snow.",
+    "ru": "Из-за снега почти нет видимости.",
+    "orders": [
+     "På grund af sneen er der næsten ingen sigt."
+    ],
+    "accepted": [
+     "sigtbarhed"
+    ]
    }
   ]
  },
@@ -1430,58 +1574,53 @@
   "level": "B1",
   "situation": "abstract",
   "grammar": "fixed-expressions",
-  "frame": "På {duration} {target} vil {plan} betale sig.",
+  "frame": "På langt {target} vil {plan} betale sig.",
   "slots": {
-   "duration": [
-    {
-     "da": "langt"
-    },
-    {
-     "da": "kort"
-    }
-   ],
    "plan": [
     {
      "da": "investeringen"
     },
     {
-     "da": "besparelsen"
+     "da": "uddannelsen"
     },
     {
-     "da": "planen"
+     "da": "solcellerne"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "duration": 0,
      "plan": 0
     },
     "target": "sigt",
     "en": "In the long term, the investment will pay off.",
     "ru": "В долгосрочной перспективе инвестиция окупится.",
-    "orders": []
+    "orders": [
+     "Investeringen vil betale sig på langt sigt."
+    ]
    },
    {
     "slots": {
-     "duration": 1,
      "plan": 1
     },
     "target": "sigt",
-    "en": "In the short term, the savings will pay off.",
-    "ru": "В краткосрочной перспективе экономия окупится.",
-    "orders": []
+    "en": "In the long term, the education will pay off.",
+    "ru": "В долгосрочной перспективе образование окупится.",
+    "orders": [
+     "Uddannelsen vil betale sig på langt sigt."
+    ]
    },
    {
     "slots": {
-     "duration": 0,
      "plan": 2
     },
     "target": "sigt",
-    "en": "In the long term, the plan will pay off.",
-    "ru": "В долгосрочной перспективе план окупится.",
-    "orders": []
+    "en": "In the long term, the solar panels will pay off.",
+    "ru": "В долгосрочной перспективе солнечные панели окупятся.",
+    "orders": [
+     "Solcellerne vil betale sig på langt sigt."
+    ]
    }
   ]
  },
@@ -1502,7 +1641,7 @@
      "da": "flyet"
     },
     {
-     "da": "plastikposen"
+     "da": "bussen"
     }
    ]
   },
@@ -1530,8 +1669,8 @@
      "thing": 2
     },
     "target": "alternativ",
-    "en": "There is no good alternative to the plastic bag.",
-    "ru": "Нет хорошей альтернативы пластиковому пакету.",
+    "en": "There is no good alternative to the bus.",
+    "ru": "Нет хорошей альтернативы автобусу.",
     "orders": []
    }
   ]
@@ -1540,7 +1679,7 @@
   "lemma": "alternativ",
   "kind": "word",
   "sense_id": "12794b52-f8e9-5c3e-bebf-f6eadc6f0943",
-  "level": "A2",
+  "level": "B1",
   "situation": "education",
   "grammar": "adjective-meaning",
   "frame": "Skolen tilbyder en {target} {noun} for elever med {need}.",
@@ -1607,7 +1746,7 @@
   "sense_id": "0acf5c22-98e2-5c7d-b613-f049ac671bd1",
   "level": "A2",
   "situation": "daily-routine",
-  "grammar": "noun-indefinite",
+  "grammar": "noun-meaning",
   "frame": "{subject} børster sit {target} hver morgen.",
   "slots": {
    "subject": [
@@ -1659,7 +1798,7 @@
   "level": "A2",
   "situation": "food-drink",
   "grammar": "noun-meaning",
-  "frame": "Der lå et {target} i {food}.",
+  "frame": "Der var et {target} i {food}.",
   "slots": {
    "food": [
     {
@@ -1681,7 +1820,10 @@
     "target": "hår",
     "en": "There was a hair in the soup.",
     "ru": "В супе был волос.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hårstrå"
+    ]
    },
    {
     "slots": {
@@ -1690,7 +1832,10 @@
     "target": "hår",
     "en": "There was a hair in the salad.",
     "ru": "В салате был волос.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hårstrå"
+    ]
    },
    {
     "slots": {
@@ -1699,7 +1844,10 @@
     "target": "hår",
     "en": "There was a hair in the cake.",
     "ru": "В торте был волос.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "hårstrå"
+    ]
    }
   ]
  },
@@ -1707,7 +1855,7 @@
   "lemma": "dagsorden",
   "kind": "word",
   "sense_id": "71dfe483-a4f9-5c4c-8c7c-1b8c0d44481e",
-  "level": "A2",
+  "level": "B1",
   "situation": "work",
   "grammar": "noun-definite",
   "frame": "Det næste punkt på {target} handler om {topic}.",
@@ -1732,7 +1880,10 @@
     "target": "dagsordenen",
     "en": "The next item on the agenda is about the budget.",
     "ru": "Следующий пункт повестки дня касается бюджета.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "agendaen"
+    ]
    },
    {
     "slots": {
@@ -1741,7 +1892,10 @@
     "target": "dagsordenen",
     "en": "The next item on the agenda is about the accounts.",
     "ru": "Следующий пункт повестки дня касается отчётности.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "agendaen"
+    ]
    },
    {
     "slots": {
@@ -1750,7 +1904,10 @@
     "target": "dagsordenen",
     "en": "The next item on the agenda is about the new project.",
     "ru": "Следующий пункт повестки дня касается нового проекта.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "agendaen"
+    ]
    }
   ]
  },
@@ -1776,13 +1933,28 @@
    ],
    "adjective": [
     {
-     "da": "den bedste"
+     "da": "den bedste",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
     },
     {
-     "da": "det rigtige"
+     "da": "det rigtige",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
     },
     {
-     "da": "den korteste"
+     "da": "den korteste",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
     }
    ]
   },
@@ -1824,8 +1996,8 @@
   "kind": "word",
   "sense_id": "f01ae85e-58ca-5b14-8408-a0b024e40396",
   "level": "A2",
-  "situation": "work",
-  "grammar": "noun-indefinite",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
   "frame": "{possessive} {target} er at {infinitive}.",
   "slots": {
    "possessive": [
@@ -1859,7 +2031,7 @@
     },
     "target": "ambition",
     "en": "Her ambition is to become a director.",
-    "ru": "Её амбиция — стать директором.",
+    "ru": "Её стремление — стать директором.",
     "orders": []
    },
    {
@@ -1869,7 +2041,7 @@
     },
     "target": "ambition",
     "en": "His ambition is to open his own restaurant.",
-    "ru": "Его амбиция — открыть свой ресторан.",
+    "ru": "Его стремление — открыть свой ресторан.",
     "orders": []
    },
    {
@@ -1879,7 +2051,7 @@
     },
     "target": "ambition",
     "en": "My ambition is to win the competition.",
-    "ru": "Моя амбиция — выиграть конкурс.",
+    "ru": "Моё стремление — выиграть конкурс.",
     "orders": []
    }
   ]
@@ -1966,7 +2138,7 @@
      "da": "Hun"
     },
     {
-     "da": "Det danske landshold"
+     "da": "Hjemmeholdet"
     }
    ],
    "object": [
@@ -1990,7 +2162,10 @@
     "target": "dominerede",
     "en": "The team dominated the match from start to finish.",
     "ru": "Команда доминировала в матче от начала до конца.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "beherskede"
+    ]
    },
    {
     "slots": {
@@ -2000,7 +2175,10 @@
     "target": "dominerede",
     "en": "She dominated the tournament from start to finish.",
     "ru": "Она доминировала в турнире от начала до конца.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "beherskede"
+    ]
    },
    {
     "slots": {
@@ -2008,9 +2186,12 @@
      "object": 2
     },
     "target": "dominerede",
-    "en": "The Danish national team dominated the final from start to finish.",
-    "ru": "Сборная Дании доминировала в финале от начала до конца.",
-    "orders": []
+    "en": "The home team dominated the final from start to finish.",
+    "ru": "Команда хозяев доминировала в финале от начала до конца.",
+    "orders": [],
+    "accepted": [
+     "beherskede"
+    ]
    }
   ]
  },
@@ -2019,41 +2200,30 @@
   "kind": "word",
   "sense_id": "b5a5670b-1bff-5b2b-889b-5d223bf0fb67",
   "level": "A2",
-  "situation": "shopping",
-  "grammar": "comparison",
-  "frame": "{subject} er {target} så {adjective} som {comparison}.",
+  "situation": "food-drink",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} bestilte en {target} {item}.",
   "slots": {
    "subject": [
     {
-     "da": "Prisen"
+     "da": "min far"
     },
     {
-     "da": "Huslejen"
+     "da": "hun"
     },
     {
-     "da": "Regningen"
+     "da": "gæsten"
     }
    ],
-   "adjective": [
+   "item": [
     {
-     "da": "høj"
+     "da": "espresso"
     },
     {
-     "da": "dyr"
+     "da": "whisky"
     },
     {
-     "da": "stor"
-    }
-   ],
-   "comparison": [
-    {
-     "da": "sidste år"
-    },
-    {
-     "da": "i nabobyen"
-    },
-    {
-     "da": "sidste måned"
+     "da": "portion is"
     }
    ]
   },
@@ -2061,44 +2231,32 @@
    {
     "slots": {
      "subject": 0,
-     "adjective": 0,
-     "comparison": 0
+     "item": 0
     },
     "target": "dobbelt",
-    "en": "The price is twice as high as last year.",
-    "ru": "Цена вдвое выше, чем в прошлом году.",
-    "orders": [],
-    "accepted": [
-     "to gange"
-    ]
+    "en": "My father ordered a double espresso.",
+    "ru": "Мой отец заказал двойной эспрессо.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 1,
-     "adjective": 1,
-     "comparison": 1
+     "item": 1
     },
     "target": "dobbelt",
-    "en": "The rent is twice as expensive as in the neighboring town.",
-    "ru": "Аренда вдвое дороже, чем в соседнем городе.",
-    "orders": [],
-    "accepted": [
-     "to gange"
-    ]
+    "en": "She ordered a double whisky.",
+    "ru": "Она заказала двойной виски.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 2,
-     "adjective": 2,
-     "comparison": 2
+     "item": 2
     },
     "target": "dobbelt",
-    "en": "The bill is twice as large as last month.",
-    "ru": "Счёт вдвое больше, чем в прошлом месяце.",
-    "orders": [],
-    "accepted": [
-     "to gange"
-    ]
+    "en": "The guest ordered a double portion of ice cream.",
+    "ru": "Гость заказал двойную порцию мороженого.",
+    "orders": []
    }
   ]
  },
@@ -2107,7 +2265,7 @@
   "kind": "word",
   "sense_id": "10455c43-abdb-5bee-9d84-8ce9427d0c47",
   "level": "A2",
-  "situation": "services",
+  "situation": "shopping",
   "grammar": "noun-indefinite",
   "frame": "{subject} har {adjective} {target}.",
   "slots": {
@@ -2143,7 +2301,10 @@
     "target": "service",
     "en": "The restaurant has good service.",
     "ru": "В ресторане хорошее обслуживание.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "betjening"
+    ]
    },
    {
     "slots": {
@@ -2153,7 +2314,10 @@
     "target": "service",
     "en": "The hotel has poor service.",
     "ru": "В отеле плохое обслуживание.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "betjening"
+    ]
    },
    {
     "slots": {
@@ -2163,7 +2327,10 @@
     "target": "service",
     "en": "The store has excellent service.",
     "ru": "В магазине отличное обслуживание.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "betjening"
+    ]
    }
   ]
  },
@@ -2203,10 +2370,22 @@
      "da": "vores mormor"
     },
     {
-     "da": "sin bedstemor"
+     "da": "sin bedstemor",
+     "requires": {
+      "subject": [
+       1,
+       2
+      ]
+     }
     },
     {
-     "da": "sine forældre"
+     "da": "sine forældre",
+     "requires": {
+      "subject": [
+       1,
+       2
+      ]
+     }
     }
    ]
   },
@@ -2220,7 +2399,11 @@
     "target": "service",
     "en": "We inherited an old dinner set from our grandmother.",
     "ru": "Мы унаследовали старый сервиз от нашей бабушки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stel",
+     "spisestel"
+    ]
    },
    {
     "slots": {
@@ -2231,7 +2414,11 @@
     "target": "service",
     "en": "My sister inherited a beautiful dinner set from her grandmother.",
     "ru": "Моя сестра унаследовала красивый сервиз от своей бабушки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stel",
+     "spisestel"
+    ]
    },
    {
     "slots": {
@@ -2242,7 +2429,11 @@
     "target": "service",
     "en": "He inherited a white dinner set from his parents.",
     "ru": "Он унаследовал белый сервиз от своих родителей.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stel",
+     "spisestel"
+    ]
    }
   ]
  },
@@ -2263,18 +2454,18 @@
      "da": "Aftenen"
     },
     {
-     "da": "Betingelserne"
+     "da": "Forholdene"
     }
    ],
    "activity": [
     {
-     "da": "stranden"
+     "da": "en dag på stranden"
     },
     {
      "da": "en gåtur"
     },
     {
-     "da": "en tur i skoven"
+     "da": "en sejltur"
     }
    ]
   },
@@ -2285,9 +2476,12 @@
      "activity": 0
     },
     "target": "perfekt",
-    "en": "The weather was perfect for the beach.",
-    "ru": "Погода была идеальной для пляжа.",
-    "orders": []
+    "en": "The weather was perfect for a day at the beach.",
+    "ru": "Погода была идеальной для дня на пляже.",
+    "orders": [],
+    "accepted": [
+     "ideelt"
+    ]
    },
    {
     "slots": {
@@ -2297,7 +2491,10 @@
     "target": "perfekt",
     "en": "The evening was perfect for a walk.",
     "ru": "Вечер был идеальным для прогулки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "ideel"
+    ]
    },
    {
     "slots": {
@@ -2305,9 +2502,12 @@
      "activity": 2
     },
     "target": "perfekte",
-    "en": "The conditions were perfect for a walk in the woods.",
-    "ru": "Условия были идеальными для прогулки в лесу.",
-    "orders": []
+    "en": "The conditions were perfect for a sailing trip.",
+    "ru": "Условия были идеальными для морской прогулки.",
+    "orders": [],
+    "accepted": [
+     "ideelle"
+    ]
    }
   ]
  },
@@ -2316,41 +2516,45 @@
   "kind": "word",
   "sense_id": "04bcf577-5ac8-51f3-9448-b61f2361ebf5",
   "level": "B1",
-  "situation": "work",
-  "grammar": "verb-present",
-  "frame": "{subject} {target} {position} i {context}.",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {position}.",
   "slots": {
    "subject": [
     {
-     "da": "Holdet"
+     "da": "virksomheden"
     },
     {
-     "da": "Landet"
+     "da": "partiet"
     },
     {
-     "da": "Virksomheden"
+     "da": "universitetet"
     }
    ],
    "position": [
     {
-     "da": "førstepladsen"
+     "da": "en førende position på markedet",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
     },
     {
-     "da": "en central rolle"
+     "da": "en central plads i forhandlingerne",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
     },
     {
-     "da": "en vigtig position"
-    }
-   ],
-   "context": [
-    {
-     "da": "ligaen"
-    },
-    {
-     "da": "forhandlingerne"
-    },
-    {
-     "da": "branchen"
+     "da": "førstepladsen på ranglisten",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
     }
    ]
   },
@@ -2358,39 +2562,43 @@
    {
     "slots": {
      "subject": 0,
-     "position": 0,
-     "context": 0
+     "position": 0
     },
     "target": "indtager",
-    "en": "The team holds first place in the league.",
-    "ru": "Команда занимает первое место в лиге.",
-    "orders": []
+    "en": "The company holds a leading position on the market.",
+    "ru": "Компания занимает лидирующую позицию на рынке.",
+    "orders": [],
+    "accepted": [
+     "har",
+     "besidder",
+     "indehar"
+    ]
    },
    {
     "slots": {
      "subject": 1,
-     "position": 1,
-     "context": 1
+     "position": 1
     },
     "target": "indtager",
-    "en": "The country holds a central role in the negotiations.",
-    "ru": "Страна занимает центральную роль в переговорах.",
+    "en": "The party occupies a central place in the negotiations.",
+    "ru": "Партия занимает центральное место в переговорах.",
     "orders": [],
     "accepted": [
-     "besidder"
+     "har"
     ]
    },
    {
     "slots": {
      "subject": 2,
-     "position": 2,
-     "context": 2
+     "position": 2
     },
     "target": "indtager",
-    "en": "The company holds an important position in the industry.",
-    "ru": "Компания занимает важную позицию в отрасли.",
+    "en": "The university holds first place in the ranking.",
+    "ru": "Университет занимает первое место в рейтинге.",
     "orders": [],
     "accepted": [
+     "har",
+     "indehar",
      "besidder"
     ]
    }
@@ -2403,69 +2611,87 @@
   "level": "B1",
   "situation": "body-health",
   "grammar": "verb-meaning",
-  "frame": "{target} {dose} {frequency}.",
+  "frame": "{subject} må ikke {target} {thing} {time}.",
   "slots": {
-   "dose": [
+   "subject": [
     {
-     "da": "to tabletter"
+     "da": "patienten"
     },
     {
-     "da": "en kapsel"
-    },
-    {
-     "da": "en ske sirup"
+     "da": "du"
     }
    ],
-   "frequency": [
+   "thing": [
     {
-     "da": "morgen og aften"
+     "da": "mad eller drikke"
     },
     {
-     "da": "en gang dagligt"
+     "da": "alkohol"
     },
     {
-     "da": "tre gange dagligt"
+     "da": "fast føde"
+    }
+   ],
+   "time": [
+    {
+     "da": "før operationen"
+    },
+    {
+     "da": "under behandlingen"
+    },
+    {
+     "da": "de første dage"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "dose": 0,
-     "frequency": 0
+     "subject": 0,
+     "thing": 0,
+     "time": 0
     },
-    "target": "indtag",
-    "en": "Take two tablets morning and evening.",
-    "ru": "Принимайте две таблетки утром и вечером.",
-    "orders": [],
+    "target": "indtage",
+    "en": "The patient must not consume food or drink before the operation.",
+    "ru": "Пациенту нельзя принимать пищу или напитки перед операцией.",
+    "orders": [
+     "Før operationen må patienten ikke indtage mad eller drikke."
+    ],
     "accepted": [
-     "tag"
+     "få"
     ]
    },
    {
     "slots": {
-     "dose": 1,
-     "frequency": 1
+     "subject": 1,
+     "thing": 1,
+     "time": 1
     },
-    "target": "indtag",
-    "en": "Take one capsule once daily.",
-    "ru": "Принимайте одну капсулу один раз в день.",
-    "orders": [],
+    "target": "indtage",
+    "en": "You must not consume alcohol during the treatment.",
+    "ru": "Вам нельзя употреблять алкоголь во время лечения.",
+    "orders": [
+     "Under behandlingen må du ikke indtage alkohol."
+    ],
     "accepted": [
-     "tag"
+     "drikke"
     ]
    },
    {
     "slots": {
-     "dose": 2,
-     "frequency": 2
+     "subject": 0,
+     "thing": 2,
+     "time": 2
     },
-    "target": "indtag",
-    "en": "Take one spoonful of syrup three times daily.",
-    "ru": "Принимайте одну ложку сиропа три раза в день.",
-    "orders": [],
+    "target": "indtage",
+    "en": "The patient must not consume solid food for the first few days.",
+    "ru": "Пациенту нельзя принимать твёрдую пищу в первые дни.",
+    "orders": [
+     "De første dage må patienten ikke indtage fast føde."
+    ],
     "accepted": [
-     "tag"
+     "spise",
+     "få"
     ]
    }
   ]
@@ -2474,9 +2700,9 @@
   "lemma": "drift",
   "kind": "word",
   "sense_id": "04c32e54-6021-5515-af61-21b6ed424ddf",
-  "level": "A2",
+  "level": "B1",
   "situation": "work",
-  "grammar": "noun-indefinite",
+  "grammar": "fixed-expressions",
   "frame": "{subject} er i {target} {time}.",
   "slots": {
    "subject": [
@@ -2487,7 +2713,7 @@
      "da": "Kraftværket"
     },
     {
-     "da": "Maskinen"
+     "da": "Færgen"
     }
    ],
    "time": [
@@ -2498,7 +2724,7 @@
      "da": "dag og nat"
     },
     {
-     "da": "om sommeren"
+     "da": "hele året"
     }
    ]
   },
@@ -2510,10 +2736,10 @@
     },
     "target": "drift",
     "en": "The factory is in operation around the clock.",
-    "ru": "Завод находится в эксплуатации круглосуточно.",
+    "ru": "Завод работает круглосуточно.",
     "orders": [],
     "accepted": [
-     "funktion"
+     "gang"
     ]
    },
    {
@@ -2523,9 +2749,10 @@
     },
     "target": "drift",
     "en": "The power plant is in operation day and night.",
-    "ru": "Электростанция находится в эксплуатации день и ночь.",
+    "ru": "Электростанция работает днём и ночью.",
     "orders": [],
     "accepted": [
+     "gang",
      "funktion"
     ]
    },
@@ -2535,11 +2762,11 @@
      "time": 2
     },
     "target": "drift",
-    "en": "The machine is in operation during the summer.",
-    "ru": "Машина находится в эксплуатации летом.",
+    "en": "The ferry is in operation all year round.",
+    "ru": "Паром ходит круглый год.",
     "orders": [],
     "accepted": [
-     "funktion"
+     "fart"
     ]
    }
   ]
@@ -2550,40 +2777,26 @@
   "sense_id": "7f9bd475-73ae-5f94-8228-51cf5762fb06",
   "level": "B1",
   "situation": "abstract",
-  "grammar": "noun-meaning",
-  "frame": "{subject} har en {adjective} {target} efter at {infinitive}.",
+  "grammar": "noun-plural",
+  "frame": "{subject} er en af {who} stærkeste {target}.",
   "slots": {
    "subject": [
     {
-     "da": "Mennesker"
+     "da": "sult"
     },
     {
-     "da": "Dyr"
+     "da": "tørst"
     },
     {
-     "da": "Alle levende væsener"
+     "da": "trangen til at overleve"
     }
    ],
-   "adjective": [
+   "who": [
     {
-     "da": "naturlig"
+     "da": "menneskets"
     },
     {
-     "da": "stærk"
-    },
-    {
-     "da": "medfødt"
-    }
-   ],
-   "infinitive": [
-    {
-     "da": "overleve"
-    },
-    {
-     "da": "formere sig"
-    },
-    {
-     "da": "beskytte deres unger"
+     "da": "dyrenes"
     }
    ]
   },
@@ -2591,44 +2804,32 @@
    {
     "slots": {
      "subject": 0,
-     "adjective": 0,
-     "infinitive": 0
+     "who": 0
     },
-    "target": "drift",
-    "en": "Humans have a natural drive to survive.",
-    "ru": "У людей есть естественный инстинкт к выживанию.",
-    "orders": [],
-    "accepted": [
-     "instinkt"
-    ]
+    "target": "drifter",
+    "en": "Hunger is one of the strongest human drives.",
+    "ru": "Голод — одно из сильнейших влечений человека.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 1,
-     "adjective": 1,
-     "infinitive": 1
+     "who": 1
     },
-    "target": "drift",
-    "en": "Animals have a strong drive to reproduce.",
-    "ru": "У животных есть сильный инстинкт к размножению.",
-    "orders": [],
-    "accepted": [
-     "instinkt"
-    ]
+    "target": "drifter",
+    "en": "Thirst is one of the strongest drives in animals.",
+    "ru": "Жажда — одно из сильнейших влечений у животных.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 2,
-     "adjective": 2,
-     "infinitive": 2
+     "who": 0
     },
-    "target": "drift",
-    "en": "All living beings have an innate drive to protect their young.",
-    "ru": "У всех живых существ есть врождённый инстинкт защищать своё потомство.",
-    "orders": [],
-    "accepted": [
-     "instinkt"
-    ]
+    "target": "drifter",
+    "en": "The urge to survive is one of the strongest human drives.",
+    "ru": "Стремление выжить — одно из сильнейших влечений человека.",
+    "orders": []
    }
   ]
  }
