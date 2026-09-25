@@ -19,12 +19,12 @@
  */
 import { createHash } from 'node:crypto'
 import { execFile } from 'node:child_process'
-import { readFile, readdir } from 'node:fs/promises'
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
 import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
-import { catalogCleanupSql, senseId } from '../lib/catalog-import'
+import { catalogCleanupSql, catalogEntriesJsonSql, catalogSensesJsonSql, senseId, type CatalogEntryRow, type CatalogSenseRow } from '../lib/catalog-import'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
 import { literal, query } from './catalog-db'
 
@@ -167,6 +167,33 @@ async function main(): Promise<void> {
   console.log(`${withAudio.toLocaleString('en-US')} carry a recording · ${rejected.size} rejected rows left out`)
   if (dryRun) {
     console.log('\nDry run: nothing written.')
+    return
+  }
+
+  // `--sql-dir` writes the upserts as JSON-payload statement files instead of running them, for a
+  // session with no linked CLI. It is additive only: an expansion directory is not the whole
+  // catalog, so the snapshot synchronization below (which deletes whatever the snapshot lacks)
+  // never runs there, and neither does the paradigm sync (`scripts/catalog-paradigms-sql.ts`).
+  const sqlDir = valueAfter(argv, '--sql-dir')
+  if (sqlDir) {
+    const entryRows: CatalogEntryRow[] = entries.map(({ fact, row, audioPath }) => ({
+      lemma: fact.lemma, kind: fact.kind, freq_rank: fact.freq_rank, pos: fact.pos, gender: fact.gender,
+      definite_singular: fact.definite_singular, indefinite_plural: fact.indefinite_plural, ipa: fact.ipa,
+      ipa_source: fact.ipa ? fact.ipa_source ?? null : null, pronunciation: row.pronunciation, audio_path: audioPath,
+      example_sentence: row.senses[0].example, example_translation: row.senses[0].example_translation, generator,
+    }))
+    const senseRows: CatalogSenseRow[] = entries.flatMap(({ fact, row }) => row.senses.map((sense) => ({
+      lemma: fact.lemma, kind: fact.kind, sense_id: senseId(fact.lemma, fact.kind, sense.ordinal), ordinal: sense.ordinal, lang: 'ru',
+      text: sense.text, pos: sense.pos, gender: sense.gender,
+      // The primary sense's example lives on the entry (D10).
+      example: sense.ordinal === 1 ? null : sense.example, example_translation: sense.ordinal === 1 ? null : sense.example_translation,
+    })))
+    const statements: string[] = []
+    for (let start = 0; start < entryRows.length; start += BATCH_SIZE) statements.push(catalogEntriesJsonSql(entryRows.slice(start, start + BATCH_SIZE)))
+    for (let start = 0; start < senseRows.length; start += BATCH_SIZE) statements.push(catalogSensesJsonSql(senseRows.slice(start, start + BATCH_SIZE)))
+    await mkdir(sqlDir, { recursive: true })
+    for (const [index, statement] of statements.entries()) await writeFile(join(sqlDir, `catalog-${String(index + 1).padStart(4, '0')}.sql`), `${statement};\n`)
+    console.log(`Wrote ${statements.length} additive statements to ${sqlDir}; no snapshot synchronization.`)
     return
   }
 

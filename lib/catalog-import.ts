@@ -56,3 +56,48 @@ where not exists (
 );
 commit;`
 }
+
+/** A dollar-quote tag that cannot occur inside the payload. */
+function dollarQuoted(value: string): string {
+  let n = 0
+  while (value.includes(`$j${n}$`)) n += 1
+  return `$j${n}$${value}$j${n}$`
+}
+
+export interface CatalogEntryRow {
+  lemma: string; kind: string; freq_rank: number | null; pos: string | null; gender: string | null
+  definite_singular: string | null; indefinite_plural: string | null; ipa: string | null; ipa_source: string | null
+  pronunciation: string | null; audio_path: string | null; example_sentence: string | null; example_translation: string | null; generator: string
+}
+
+export interface CatalogSenseRow {
+  lemma: string; kind: string; sense_id: string; ordinal: number; lang: string; text: string
+  pos: string | null; gender: string | null; example: string | null; example_translation: string | null
+}
+
+/**
+ * The same upserts `scripts/import-catalog.ts` runs, as one JSON payload per statement: a
+ * statement that has to travel through a tool call should carry data, not quoting. Additive only.
+ */
+export function catalogEntriesJsonSql(rows: readonly CatalogEntryRow[]): string {
+  return `insert into public.word_catalog (lemma, kind, freq_rank, pos, gender, definite_singular, indefinite_plural, ipa, ipa_source, pronunciation, audio_path, example_sentence, example_translation, generator)
+select * from jsonb_to_recordset(${dollarQuoted(JSON.stringify(rows))}::jsonb) as r(lemma text, kind text, freq_rank integer, pos text, gender text, definite_singular text, indefinite_plural text, ipa text, ipa_source text, pronunciation text, audio_path text, example_sentence text, example_translation text, generator text)
+on conflict (lemma, kind) do update set freq_rank = excluded.freq_rank, pos = excluded.pos, gender = excluded.gender,
+  definite_singular = excluded.definite_singular, indefinite_plural = excluded.indefinite_plural, ipa = excluded.ipa, ipa_source = excluded.ipa_source,
+  pronunciation = excluded.pronunciation, audio_path = excluded.audio_path, example_sentence = excluded.example_sentence,
+  example_translation = excluded.example_translation, built_at = now(), generator = excluded.generator`
+}
+
+export function catalogSensesJsonSql(rows: readonly CatalogSenseRow[]): string {
+  return `insert into public.word_catalog_sense (lemma, kind, sense_id, ordinal, lang, text, pos, gender, example, example_translation)
+select * from jsonb_to_recordset(${dollarQuoted(JSON.stringify(rows))}::jsonb) as r(lemma text, kind text, sense_id uuid, ordinal integer, lang text, text text, pos text, gender text, example text, example_translation text)
+on conflict (lemma, kind, sense_id, lang) do update set ordinal = excluded.ordinal, text = excluded.text, pos = excluded.pos,
+  gender = excluded.gender, example = excluded.example, example_translation = excluded.example_translation`
+}
+
+/** Verified forms as `[lemma, form_key, form_text, gender]` tuples. */
+export function catalogFormsJsonSql(rows: readonly [string, string, string, string][]): string {
+  return `insert into public.word_catalog_form (lemma, kind, form_key, form_text, gender)
+select f ->> 0, 'word', f ->> 1, f ->> 2, f ->> 3 from jsonb_array_elements(${dollarQuoted(JSON.stringify(rows))}::jsonb) f
+on conflict do nothing`
+}
