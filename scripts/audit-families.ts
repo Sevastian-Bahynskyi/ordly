@@ -4,16 +4,24 @@
  *   pnpm exec tsx scripts/audit-families.ts --sample --seed 2609 [--size 200] [--published catalog/families/published.jsonl]
  *   # an auditor fills `failures` in catalog/families/audit/verdicts-<seed>.json, then:
  *   pnpm exec tsx scripts/audit-families.ts --tally 2609
+ *   # repair every finding in the replies, then:
+ *   pnpm exec tsx scripts/audit-families.ts --approve 2609
  *
  * The sample, the verdicts and the tally are committed, so an audit can be redrawn, re-read by a
  * second auditor, or checked against the sentences it judged. The tally exits non-zero when a
  * stratum is below 95% clean: repair and redraw with a new seed, do not publish around it.
+ *
+ * `--approve` records, in `audit/passed.json`, the exact bytes of every batch reply the sample
+ * was drawn from, and only when the tally passes and no finding is left as judged.
+ * `check-family-batches.ts --merge` publishes approved batches only, so a reply edited after its
+ * audit is not published until an audit covers it again.
  */
+import { createHash } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import type { PublishedFamily } from '../lib/catalog-families'
-import { drawFamilyAudit, failingStrata, FAMILY_AUDIT_FAILURES, FAMILY_AUDIT_LABELS, tallyFamilyAudit, type FamilyAuditItem, type FamilyAuditVerdict } from '../lib/family-audit'
+import { publishFamily, type FamilyReply, type PublishedFamily } from '../lib/catalog-families'
+import { drawFamilyAudit, failingStrata, FAMILY_AUDIT_FAILURES, FAMILY_AUDIT_LABELS, tallyFamilyAudit, unrepairedFindings, type FamilyAuditApprovals, type FamilyAuditItem, type FamilyAuditVerdict } from '../lib/family-audit'
 
 const argv = process.argv.slice(2)
 const option = (flag: string): string | null => (argv.includes(flag) ? argv[argv.indexOf(flag) + 1] : null)
@@ -71,7 +79,39 @@ if (argv.includes('--sample')) {
   await writeFile(join(dir, `tally-${seed}.md`), report)
   console.log(report)
   process.exitCode = failing.length ? 1 : 0
+} else if (option('--approve')) {
+  const seed = Number(option('--approve'))
+  const items = JSON.parse(await readFile(join(dir, `sample-${seed}.json`), 'utf8')) as FamilyAuditItem[]
+  const verdicts = JSON.parse(await readFile(join(dir, `verdicts-${seed}.json`), 'utf8')) as FamilyAuditVerdict[]
+  if (verdicts.length !== items.length) throw new Error(`verdicts-${seed}.json judges ${verdicts.length} of ${items.length} sentences`)
+  const failing = failingStrata(tallyFamilyAudit(items, verdicts))
+  if (failing.length) {
+    console.error(`Refusing: ${failing.map((row) => row.stratum).join(', ')} below 95%. Repair and redraw with a new seed.`)
+    process.exit(1)
+  }
+  const replyPath = (item: FamilyAuditItem) => join(item.source === 'expansion' ? 'catalog/expansion/families' : 'catalog/families', 'out', item.batch)
+  const paths = [...new Set(items.map(replyPath))].sort()
+  const current = new Map<string, string>()
+  const approvals: FamilyAuditApprovals = existsSync(join(dir, 'passed.json')) ? JSON.parse(await readFile(join(dir, 'passed.json'), 'utf8')) as FamilyAuditApprovals : {}
+  const shas = new Map<string, string>()
+  for (const path of paths) {
+    const text = await readFile(path, 'utf8')
+    shas.set(path, createHash('sha1').update(text).digest('hex'))
+    for (const raw of JSON.parse(text) as FamilyReply[]) {
+      if (!Array.isArray(raw?.variants)) continue
+      try { for (const variant of publishFamily(raw).variants) current.set(variant.id, variant.version) } catch { /* malformed: the gate quarantines it */ }
+    }
+  }
+  const open = unrepairedFindings(items, verdicts, current)
+  if (open.length) {
+    console.error(`Refusing: ${open.length} finding(s) still as judged:\n${open.map((item) => `  ${item.batch} ${item.lemma}: ${item.variant.danish}`).join('\n')}`)
+    process.exit(1)
+  }
+  for (const path of paths) approvals[path] = { seed, sha1: shas.get(path) as string }
+  const sorted = Object.fromEntries(Object.entries(approvals).sort(([a], [b]) => a.localeCompare(b)))
+  await writeFile(join(dir, 'passed.json'), `${JSON.stringify(sorted, null, 1)}\n`)
+  console.log(`Approved ${paths.length} batch replies under seed ${seed}.`)
 } else {
-  console.error('Usage: audit-families.ts --sample --seed N [--size 200] | --tally N')
+  console.error('Usage: audit-families.ts --sample --seed N [--size 200] [--published a,b] [--all] | --tally N | --approve N')
   process.exit(1)
 }

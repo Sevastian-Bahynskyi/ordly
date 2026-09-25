@@ -3,8 +3,11 @@
  *
  *   pnpm exec tsx scripts/import-catalog-families.ts                    # load through the linked CLI
  *   pnpm exec tsx scripts/import-catalog-families.ts --sql-dir <dir>    # write the chunk statements only
+ *   … --published catalog/families/published.jsonl,catalog/expansion/families/published.jsonl
  *
- * Reads `catalog/families/published.jsonl`, which only ever holds families the gate accepted.
+ * Reads `catalog/families/published.jsonl` (or every snapshot named, as one), which only ever holds
+ * families the gate accepted and an audit approved. One snapshot covers everything loaded: the
+ * cleanup deletes whatever it lacks, so the catalog's and the expansion's families load together.
  * Chunks are idempotent upserts; the final cleanup removes families an older snapshot had, and
  * refuses to run unless every family of this snapshot is in the database.
  */
@@ -22,7 +25,8 @@ const chunkSize = Number(option('--chunk') || 50)
 const generator = option('--generator') || 'families-2026-09-25'
 const GATE = 'check-family-batches v1'
 
-const lines = (await readFile(path, 'utf8')).split(/\r?\n/u).filter((line) => line.trim())
+const lines: string[] = []
+for (const file of path.split(',')) lines.push(...(await readFile(file, 'utf8')).split(/\r?\n/u).filter((line) => line.trim()))
 if (!lines.length) {
   console.error('Refusing to load an empty snapshot.')
   process.exit(1)

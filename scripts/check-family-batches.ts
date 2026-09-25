@@ -1,7 +1,7 @@
 /**
  * The sentence-family gate (issue #16; spec #12 decision 16).
  *
- *   pnpm exec tsx scripts/check-family-batches.ts --fullforms <ddo-fullforms.csv> [--only batch-0007.json] [--merge]
+ *   pnpm exec tsx scripts/check-family-batches.ts --fullforms <ddo-fullforms.csv> [--only batch-0007.json[,…]] [--candidates <file>] [--merge]
  *
  * Every family in every reply is checked against its work file, the published A1–B2 matrix, the
  * verified forms, Danish spelling (DDO full-form list, then the Hunspell dictionary) and the
@@ -12,25 +12,32 @@
  * A reply may skip a sense it cannot write a safe family for, with a reason
  * (`{ "sense_id": "…", "skip": "…" }`). Skips are counted and reported, never hidden.
  *
- * `--merge` writes every clean family of every passing batch to
- * `catalog/families/published.jsonl`, the snapshot the importer loads. Re-running is idempotent:
- * ids are derived from content, so the same reply publishes the same rows.
+ * `--candidates <file>` writes every clean family of every passing batch, the pool a seeded audit
+ * is drawn from (`scripts/audit-families.ts --sample --published <file>`).
+ *
+ * `--merge` writes the clean families of every passing batch **that an audit approved in exactly
+ * its current state** (`audit/passed.json`, written by `audit-families.ts --approve`) to
+ * `published.jsonl`, the snapshot the importer loads. Re-running is idempotent: ids are derived
+ * from content, so the same reply publishes the same rows.
  */
+import { createHash } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { normalizeSentence, publishFamily, validateFamily, variantDanish, type CefrMatrix, type FamilyReply, type FamilyWorkSense } from '../lib/catalog-families'
 import { parseFullForms } from '../lib/ddo-fullform'
+import type { FamilyAuditApprovals } from '../lib/family-audit'
 import { findMisspellings } from '../lib/spelling'
 
 const argv = process.argv.slice(2)
 const option = (flag: string): string | null => (argv.includes(flag) ? argv[argv.indexOf(flag) + 1] : null)
 const fullFormsPath = option('--fullforms')
-const only = option('--only')
+const only = option('--only')?.split(',') ?? null
 const merge = argv.includes('--merge')
+const candidatesPath = option('--candidates')
 const root = option('--root') || 'catalog/families'
 if (!fullFormsPath) {
-  console.error('Usage: check-family-batches.ts --fullforms <ddo-fullforms.csv> [--only batch-NNNN.json] [--merge] [--root dir]')
+  console.error('Usage: check-family-batches.ts --fullforms <ddo-fullforms.csv> [--only batch-NNNN.json[,…]] [--candidates file] [--merge] [--root dir]')
   process.exit(1)
 }
 const GATE = 0.95
@@ -42,16 +49,19 @@ const benchmark = new Set((await readFile('catalog/benchmark/unseen-tatoeba.tsv'
 
 const workDir = join(root, 'work')
 const replyDir = join(root, 'out')
-const names = (await readdir(workDir)).filter((name) => /^batch-\d+\.json$/.test(name) && (!only || name === only)).sort()
+const names = (await readdir(workDir)).filter((name) => /^batch-\d+\.json$/.test(name) && (!only || only.includes(name))).sort()
 
 // Spelling is asynchronous; every sentence is checked once up front and the answers passed in.
 const replies = new Map<string, unknown[]>()
+const replyShas = new Map<string, string>()
 const sentences = new Set<string>()
 for (const name of names) {
   const path = join(replyDir, name)
   if (!existsSync(path)) continue
   let value: unknown
-  try { value = JSON.parse(await readFile(path, 'utf8')) } catch { value = null }
+  const text = await readFile(path, 'utf8')
+  replyShas.set(name, createHash('sha1').update(text).digest('hex'))
+  try { value = JSON.parse(text) } catch { value = null }
   const list = Array.isArray(value) ? value : []
   replies.set(name, list)
   for (const raw of list) {
@@ -87,6 +97,10 @@ let pending = 0
 let failedBatches = 0
 const quarantined: string[] = []
 const published: string[] = []
+const candidates: string[] = []
+const approvalsPath = 'catalog/families/audit/passed.json'
+const approvals: FamilyAuditApprovals = existsSync(approvalsPath) ? JSON.parse(await readFile(approvalsPath, 'utf8')) as FamilyAuditApprovals : {}
+let unapproved = 0
 const covered = new Set<string>()
 const totals = { families: 0, clean: 0, variants: 0, skipped: 0, uncovered: 0 }
 for (const name of names) {
@@ -129,8 +143,13 @@ for (const name of names) {
     }
   }
   quarantined.push(...batchQuarantined)
-  // A batch below the gate publishes nothing: its clean rows are suspect too.
-  if (ok) published.push(...batchPublished)
+  // A batch below the gate publishes nothing: its clean rows are suspect too. A passing batch is
+  // an audit candidate, and published only once an audit approved this exact reply.
+  if (ok) {
+    candidates.push(...batchPublished)
+    if (approvals[join(replyDir, name)]?.sha1 === replyShas.get(name)) published.push(...batchPublished)
+    else unapproved += 1
+  }
 }
 for (const name of names) {
   if (!replies.has(name)) continue
@@ -142,7 +161,12 @@ console.log(`${names.length - pending}/${names.length} batches answered · ${fai
 console.log(`${totals.clean}/${totals.families} families clean · ${totals.variants} sentences · ${totals.skipped} skipped · ${totals.uncovered} senses not answered · ${quarantined.length} quarantined`)
 
 if (!only) await writeFile(join(root, 'needs_review.jsonl'), quarantined.length ? `${quarantined.join('\n')}\n` : '')
+if (candidatesPath) {
+  await writeFile(candidatesPath, candidates.length ? `${candidates.join('\n')}\n` : '')
+  console.log(`${candidates.length} candidate families → ${candidatesPath}`)
+}
 if (merge) {
+  console.log(`${unapproved} passing batch(es) not approved by an audit in their current state; left out`)
   if (!published.length) {
     console.error('Refusing to write an empty snapshot.')
     process.exit(1)

@@ -158,3 +158,22 @@ export function tallyFamilyAudit(items: readonly FamilyAuditItem[], verdicts: re
 export function failingStrata(rows: readonly StratumTally[], minimum = 10): StratumTally[] {
   return rows.filter((row) => row.reviewed >= minimum && row.rate < 0.95)
 }
+
+/**
+ * A batch reply that passed a seeded audit, pinned to the exact bytes that were approved. Keyed by
+ * the reply's path (`catalog/families/out/batch-0001.json`). Editing the reply afterwards voids
+ * the approval, so a batch can never be published in a state no audit covered.
+ */
+export interface FamilyAuditApproval { seed: number; sha1: string }
+export type FamilyAuditApprovals = Record<string, FamilyAuditApproval>
+
+/**
+ * Sampled sentences with a finding that are still in the current replies exactly as judged: the
+ * same variant id (same Danish) with the same version (same translations, orders and accepted
+ * answers). Repairing a finding changes one of those, so an empty list means every finding was
+ * acted on — rewritten, or its family dropped.
+ */
+export function unrepairedFindings(items: readonly FamilyAuditItem[], verdicts: readonly FamilyAuditVerdict[], current: ReadonlyMap<string, string>): FamilyAuditItem[] {
+  const flagged = new Set(verdicts.filter((verdict) => verdict.failures.length).map((verdict) => verdict.id))
+  return items.filter((item) => flagged.has(item.id) && current.get(item.variant.id) === item.variant.version)
+}

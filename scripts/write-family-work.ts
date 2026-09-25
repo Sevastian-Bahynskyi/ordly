@@ -2,12 +2,17 @@
  * Work files for the sentence-family pass (issue #16).
  *
  *   pnpm exec tsx scripts/write-family-work.ts --fullforms <ddo-fullforms.csv> [--size 40]
+ *   pnpm exec tsx scripts/write-family-work.ts --fullforms <csv> --out catalog/expansion/out,catalog/expansion2/out \
+ *     --facts catalog/expansion/facts.jsonl,catalog/expansion2/facts.jsonl \
+ *     --skip catalog/expansion/needs_review.jsonl,catalog/expansion2/needs_review.jsonl \
+ *     --locale catalog/expansion/locale-en.json,catalog/expansion2/locale-en.json --target catalog/expansion/families/work
  *
  * One entry per catalog sense: its identity, the Russian (and, once written, English) wording that
  * says which meaning it is, the lowest level it may be taught at, and **every verified form** of
  * the word in that part of speech — from DSL's DDO full-form list and the COR forms already in
  * the facts. A family may put only one of those forms into a sentence, so the generator is shown
- * them rather than asked to inflect.
+ * them rather than asked to inflect. Rows the catalog gate quarantined (`--skip`) are not in the
+ * catalog, so they get no work row.
  *
  * Writes `catalog/families/work/batch-NNNN.json` and `index.json`. Re-running rewrites the work
  * files but never touches a reply.
@@ -28,8 +33,10 @@ const size = Number(option('--size') || 40)
 const outDirs = (option('--out') || 'catalog/out').split(',')
 const factsPaths = (option('--facts') || 'catalog/facts.jsonl').split(',')
 const target = option('--target') || 'catalog/families/work'
+const skipPaths = (option('--skip') || '').split(',').filter(Boolean)
+const extraLocales = (option('--locale') || '').split(',').filter(Boolean)
 if (!fullFormsPath) {
-  console.error('Usage: write-family-work.ts --fullforms <ddo-fullforms.csv> [--size 40] [--out dir,dir] [--facts file,file] [--target dir]')
+  console.error('Usage: write-family-work.ts --fullforms <ddo-fullforms.csv> [--size 40] [--out dir,dir] [--facts file,file] [--skip file,file] [--locale file,file] [--target dir]')
   process.exit(1)
 }
 
@@ -48,7 +55,12 @@ const english = new Map<string, string>()
 const localeFiles = [
   ...(existsSync('catalog/locale-pilot.en.json') ? ['catalog/locale-pilot.en.json'] : []),
   ...(existsSync('catalog/locale/en') ? (await readdir('catalog/locale/en')).filter((name) => /^batch-\d+\.json$/.test(name)).map((name) => join('catalog/locale/en', name)) : []),
+  ...extraLocales,
 ]
+const skipped = new Set<string>()
+for (const path of skipPaths) {
+  for (const line of (await readFile(path, 'utf8')).split(/\r?\n/u)) if (line.trim()) skipped.add(String((JSON.parse(line) as { lemma?: unknown }).lemma))
+}
 for (const path of localeFiles) {
   const file = JSON.parse(await readFile(path, 'utf8')) as { senses?: { sense_id: string; text: string }[] }
   for (const sense of file.senses || []) english.set(sense.sense_id, sense.text)
@@ -58,7 +70,7 @@ const senses: FamilyWorkSense[] = []
 for (const dir of outDirs) {
   for (const name of (await readdir(dir)).filter((file) => /^batch-\d+\.json$/.test(file)).sort()) {
     for (const value of parseCatalogGeneratorText(await readFile(join(dir, name), 'utf8'))) {
-      if (!isGeneratedCatalogRow(value)) continue
+      if (!isGeneratedCatalogRow(value) || skipped.has(value.lemma)) continue
       const fact = facts.get(`${value.lemma}|${value.kind}`)
       if (!fact) continue
       for (const sense of value.senses) {
