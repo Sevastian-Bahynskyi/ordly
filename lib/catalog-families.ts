@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { finitePhraseAfterFrontedAdverbial, infinitiveAfterAtOrModal, subjectPronounAfterPreposition } from './catalog-families-style'
 
 /**
  * Reusable sentence families (issue #16; spec #12 decisions 10, 14 and 16).
@@ -167,10 +168,20 @@ function text(value: unknown, max = 300): value is string {
   return typeof value === 'string' && value.trim().length > 0 && value.length <= max
 }
 
-/** A word-bounded, case-insensitive count of `word` in `sentence`. */
-function occurrences(sentence: string, word: string): number {
-  const target = word.toLocaleLowerCase('da-DK')
-  return sentenceWords(sentence).filter((token) => token === target).length
+/**
+ * A word-bounded, case-insensitive count of `target` in `sentence`. A phrase target (`står op`)
+ * counts only where its words stand together in order: a gap is one contiguous span, so a split
+ * phrase (`står han op`) is not an occurrence of it.
+ */
+function occurrences(sentence: string, target: string): number {
+  const words = sentenceWords(sentence)
+  const wanted = sentenceWords(target)
+  if (!wanted.length) return 0
+  let count = 0
+  for (let at = 0; at + wanted.length <= words.length; at += 1) {
+    if (wanted.every((word, offset) => words[at + offset] === word)) count += 1
+  }
+  return count
 }
 
 function sameWords(a: string, b: string): boolean {
@@ -263,6 +274,8 @@ export function validateFamily(raw: unknown, work: FamilyWorkSense | undefined, 
     if (!END.test(danish)) errors.push(`${v}: the sentence must end with . ! or ?`)
     if (occurrences(danish, variant.target) !== 1) errors.push(`${v}: the target must occur exactly once in "${danish}"`)
     if (work.pos === 'noun' && articleMismatch(danish, variant.target, work.gender)) errors.push(`${v}: article does not agree with ${work.lemma} (${work.gender})`)
+    if (work.pos === 'verb') for (const problem of [...infinitiveAfterAtOrModal(danish, variant.target, work.lemma.split(' ')[0]), ...finitePhraseAfterFrontedAdverbial(danish, variant.target, work.lemma.split(' ')[0])]) errors.push(`${v}: ${problem}`)
+    for (const problem of subjectPronounAfterPreposition(danish)) errors.push(`${v}: ${problem}`)
     const unknown = checks.unknownWords(danish)
     if (unknown === null) errors.push(`${v}: the spelling source could not be consulted`)
     else if (unknown.length) errors.push(`${v}: unknown word(s) ${unknown.join(', ')}`)

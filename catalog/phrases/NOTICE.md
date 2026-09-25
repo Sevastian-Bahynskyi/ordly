@@ -1,0 +1,52 @@
+# Notices for catalog/phrases
+
+`inventory.jsonl` and the phrase entries built from it are derived in part from the Danish FrameNet
+Lexicon, whose licence requires this notice on every copy and modification:
+
+```
+Commercial Use of the Danish FrameNet Lexicon
+
+The Danish FrameNet Lexicon (database) may be used in commercial applications 
+in accordance with the following license agreement. An attorney representing 
+the commercial interest should review this license with respect to the intended use.
+
+Danish FrameNet 1.0 License
+
+Danish FrameNet Release 2018.0
+
+The Danish FrameNet database is being provided to you, the LICENSEE, by the 
+University of Copenhagen and the Society for Danish Language and Literature 
+under the following license. By obtaining, using and/or copying this database, 
+you agree that you have read, understood, and will comply with these terms and
+conditions.
+
+Permission to use, copy, modify and distribute this database and its documentation 
+for any purpose and without fee or royalty is hereby granted, provided that you 
+agree to comply with the following copyright notice and statements, including 
+the disclaimer, and that the same appear on ALL copies of the database and documentation, 
+including modifications that you make for internal use or for distribution.
+
+THIS DATABASE IS PROVIDED "AS IS" AND THE UNIVERSITY OF COPENHAGEN AND
+THE SOCIETY FOR DANISH LANGUAGE AND LITERATURE MAKE NO REPRESENTATIONS OR
+WARRANTIES, EXPRESS OR IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION,
+THE UNIVERSITY OF COPENHAGEN AND THE SOCIETY FOR DANISH LANGUAGE AND LITERATURE 
+MAKE NO REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY 
+PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED DATABASE OR DOCUMENTATION WILL
+NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+
+The names of the University of Copenhagen and the Society for Danish Language and
+Literature may not be used in advertising or publicity pertaining to
+distribution of the database. Title to copyright in this database and 
+any associated documentation shall at all times remain with the 
+University of Copenhagen and Society for Danish Language and Literature and
+LICENSEE agrees to preserve same.
+
+Danish FrameNet 2018.0 Copyright 2018 by the University of Copenhagen and 
+the Society for Danish Language and Literature.
+```
+
+Source: <https://github.com/dsldk/dansk-frame-net> (framenetdata_1_0.csv).
+
+Also used: Wikidata Lexemes (CC0 1.0, no notice required; `sources/wikidata-da-multiword.tsv`);
+the DDO full-form list (Society for Danish Language and Literature, DSL Open terms — credit:
+<https://dsl.dk>); Tatoeba (CC BY 2.0 FR) for attestation counts only — no sentence is copied.

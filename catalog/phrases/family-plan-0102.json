@@ -1,0 +1,203 @@
+{
+ "note": "Phrase families, pilot chunk (issue #16), 2026-09-25. Cells chosen from the live coverage report: particle-verbs A2/B1/B2, reflexive A2/B1, fixed-expressions A2/B2, prepositions-time A2/B1, negation A1/A2/B1, infinitive A2, prepositions-place B1, adverbs A2/B1 are below 3 families; situations prefer the deficient ones (personal-info A2, family B1, time-dates A2, services A2/B1, social A1/B1).",
+ "entries": [
+  {
+   "phrase": "stå op",
+   "min_level": "A1",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "daily-routine",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "vågne op",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "time-dates",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "rydde op",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "home",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "give op",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "education",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "finde ud af",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "services",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "vokse op",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "dukke op",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "social",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "løbe tør for",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "stikke af",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "gå ind for",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "se ned på",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "feelings-opinions",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "komme ind på",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "communication-media",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "give efter",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "particle-verbs"
+    }
+   ]
+  },
+  {
+   "phrase": "glæde sig til",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "social",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "phrase": "skynde sig",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "transport",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "phrase": "kede sig",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "leisure",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "phrase": "vænne sig til",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "phrase": "tage sig af",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "reflexive"
+    }
+   ]
+  }
+ ]
+}

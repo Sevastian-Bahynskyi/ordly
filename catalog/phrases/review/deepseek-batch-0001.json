@@ -1,0 +1,586 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T15:34:51.316Z",
+ "entries": [
+  {
+   "phrase": "stå op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vågne op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "give op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "rydde op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vokse op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "løbe tør for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "stikke af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå ud fra",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå ind for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English and Russian example translations are not faithful to the Danish example. The Danish 'går ind for' means 'support/am in favour of', but the English adds 'am in favor of' which is a different phrasing, and the Russian 'выступаю за' is a different verb (advocate for) and adds 'более активную' (more active) which is not in the Danish. The translations should be literal and faithful.",
+     "danish_ok": true,
+     "en": "I support more recycling in everyday life.",
+     "ru": "Я поддерживаю более активную переработку отходов в повседневной жизни."
+    }
+   ]
+  },
+  {
+   "phrase": "gå ind for",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I am in favor of more recycling in everyday life.",
+      "ru": "Я выступаю за более активную переработку отходов в повседневной жизни."
+     },
+     "after": {
+      "en": "I support more recycling in everyday life.",
+      "ru": "Я поддерживаю более активную переработку отходов в повседневной жизни."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "se ned på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme ind på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "glæde sig til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "skynde sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "kede sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vænne sig til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tage sig af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "falde i søvn",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "lægge mærke til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå i opfyldelse",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tage for givet",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian example translation 'Я считаю само собой разумеющимся, что автобус приедет вовремя' is a valid translation but is not the most natural, idiomatic rendering of 'Jeg tager for givet at bussen kommer til tiden' using the given meaning 'принимать как должное'. A native Russian speaker would more naturally say 'Я принимаю как должное, что автобус приедет вовремя' to match the meaning and the Danish structure. The provided translation is a stylistic mismatch for the target meaning.",
+     "danish_ok": true,
+     "ru": "Я принимаю как должное, что автобус приедет вовремя."
+    }
+   ]
+  },
+  {
+   "phrase": "tage for givet",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I take it for granted that the bus will arrive on time.",
+      "ru": "Я считаю само собой разумеющимся, что автобус приедет вовремя."
+     },
+     "after": {
+      "en": "I take it for granted that the bus will arrive on time.",
+      "ru": "Я принимаю как должное, что автобус приедет вовремя."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "have til hensigt",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "finde sted",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i aftes",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i lang tid",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я уже давно жду автобус.' adds 'уже' (already) which is not present in the Danish 'Jeg har ventet i lang tid på bussen.' and changes the nuance. A faithful translation would be 'Я долго жду автобус.' or 'Я жду автобус уже долгое время.'",
+     "danish_ok": true,
+     "ru": "Я долго жду автобус."
+    }
+   ]
+  },
+  {
+   "phrase": "i lang tid",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I've been waiting for the bus for a long time.",
+      "ru": "Я уже давно жду автобус."
+     },
+     "after": {
+      "en": "I've been waiting for the bus for a long time.",
+      "ru": "Я долго жду автобус."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "hele tiden",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i morgen tidlig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "heller ikke",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "pleje at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "uden for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "på forhånd",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true
+    }
+   ]
+  },
+  {
+   "phrase": "på grund af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "finde ud af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian translations do not match the Danish example's meaning. The example 'Barnet kan godt finde ud af at tage tøj på selv' means the child is capable of managing the task, not figuring out a method. The English translation 'figure out how to' implies a cognitive process of discovery, which is a different meaning (sense 1). The Russian translation 'разберётся' (will figure out) also implies a future cognitive process, not a present ability. The sense meaning 'to manage' is correct, but the example translations are wrong.",
+     "danish_ok": true,
+     "en": "The child can manage to get dressed on their own.",
+     "ru": "Ребёнок может сам справиться с одеванием."
+    }
+   ]
+  },
+  {
+   "phrase": "alle sammen",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true
+    }
+   ]
+  },
+  {
+   "phrase": "dukke op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "give efter",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'провалился' (collapsed/fell through) is not faithful to the Danish 'gav efter' (gave way/yielded/buckled). The floor yielding under weight does not mean it collapsed. A more accurate translation would be 'прогнулся' (buckled/sagged) or 'не выдержал' (gave way).",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Под тяжёлым диваном пол прогнулся."
+    }
+   ]
+  },
+  {
+   "phrase": "give efter",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "The floor gave way under the heavy sofa.",
+      "ru": "Под тяжёлым диваном пол провалился."
+     },
+     "after": {
+      "en": "The floor gave way under the heavy sofa.",
+      "ru": "Под тяжёлым диваном пол прогнулся."
+     }
+    }
+   ]
+  },
+  {
+   "phrase": "tage fejl",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "oven på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

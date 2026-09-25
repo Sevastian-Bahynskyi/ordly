@@ -1,0 +1,540 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:01:31.148Z",
+ "entries": [
+  {
+   "lemma": "stå op",
+   "sense_id": "9b875b47-8821-57ca-a4d0-fa449a15fd1e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "vågne op",
+   "sense_id": "6536f02e-1de4-54ab-8c04-2389244f1101",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "English says 'half past eight' but Danish 'halv otte' means half past seven (7:30). Russian 'в половине девятого' means half past eight (8:30). Both translations mismatch the Danish time.",
+     "danish_ok": true,
+     "en": "I woke up at half past seven.",
+     "ru": "Я проснулся в половине восьмого."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "vågne op",
+   "sense_id": "6536f02e-1de4-54ab-8c04-2389244f1101",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I woke up at half past eight.",
+      "ru": "Я проснулся в половине девятого."
+     },
+     "after": {
+      "en": "I woke up at half past seven.",
+      "ru": "Я проснулся в половине восьмого."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "rydde op",
+   "sense_id": "3669af2f-dee2-5dab-b74d-2db25746874e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation uses masculine past tense 'убирался', which implies a male speaker, while the Danish 'jeg' is gender-neutral. A faithful and natural translation should be gender-neutral or match the likely default, e.g., 'Я убирала' (female) or 'Я убирал(а)' is not ideal. Better: 'Я убирался/убиралась' or simply 'Я убирал' is masculine. Since no gender is specified, a common neutral option is to use the infinitive or rephrase, but the most natural is to use the past tense without specifying gender if possible? In Russian, past tense verbs are gendered. 'Я убирал' is masculine, 'Я убирала' is feminine. The English 'I cleaned up' is gender-neutral. The Danish 'jeg ryddede op' is gender-neutral. The Russian should be gender-neutral or at least not assume a gender. A common solution is to use the plural 'мы' or rephrase, but here it's 'я'. The provided 'Я убирался' is masculine. This is a defect because it adds gender information not present in the source. A better translation would be 'Я убирал(а)' or to avoid the issue, but since it's a course, they might use a default. However, the rubric says 'faithful' and 'nothing added'. Adding masculine gender is adding information. So it's a defect.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я убирал(а) каждую субботу."
+    }
+   ]
+  },
+  {
+   "lemma": "rydde op",
+   "sense_id": "3669af2f-dee2-5dab-b74d-2db25746874e",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I cleaned up every Saturday.",
+      "ru": "Я убирался каждую субботу."
+     },
+     "after": {
+      "en": "I cleaned up every Saturday.",
+      "ru": "Я убирал(а) каждую субботу."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "finde ud af",
+   "sense_id": "6eb4b8a3-8e1d-5635-bc43-69c13a599466",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation uses future tense 'will find out' but the Danish 'finder ud af' is present tense. The English should be present tense to match.",
+     "danish_ok": true,
+     "en": "I find out the price of the repair.",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "finde ud af",
+   "sense_id": "6eb4b8a3-8e1d-5635-bc43-69c13a599466",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I will find out the price of the repair.",
+      "ru": "Я узнаю стоимость ремонта."
+     },
+     "after": {
+      "en": "I find out the price of the repair.",
+      "ru": "Я узнаю стоимость ремонта."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "løbe tør for",
+   "sense_id": "52d6ea24-bcfa-5ecf-b85a-9d3d9ec789e8",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "stikke af",
+   "sense_id": "ff89af01-860f-5f6e-8cba-b6e21957942e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "skynde sig",
+   "sense_id": "96308c4f-6d20-5946-99f5-b1b431f26eea",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я поспешил на автобус.' means 'I hurried to the bus' (directional), not 'I hurried to catch the bus' (purpose). It drops the purpose clause 'успеть' and changes the meaning.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я поспешил, чтобы успеть на автобус."
+    }
+   ]
+  },
+  {
+   "lemma": "skynde sig",
+   "sense_id": "96308c4f-6d20-5946-99f5-b1b431f26eea",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I hurried to catch the bus.",
+      "ru": "Я поспешил на автобус."
+     },
+     "after": {
+      "en": "I hurried to catch the bus.",
+      "ru": "Я поспешил, чтобы успеть на автобус."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "kede sig",
+   "sense_id": "ae8b25f2-6227-54a9-8348-e46ed609d0af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage sig af",
+   "sense_id": "af2f1160-0609-5554-b675-120eacf1d720",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish tense mismatch: 'tog sig af' (past) clashes with 'når hun er syg' (present habitual). The sentence does not demonstrate a natural past-tense use of the reflexive phrase. English and Russian translations are faithful to the faulty Danish but are themselves unnatural or mismatched in tense.",
+     "danish_ok": false,
+     "en": "My mother took care of my grandmother when she was sick.",
+     "ru": "Моя мама заботилась о бабушке, когда та болела."
+    }
+   ]
+  },
+  {
+   "lemma": "give op",
+   "sense_id": "624b374e-c1e1-5904-91fc-55b1b057095c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish 'give op med' is not idiomatic for 'give up on' in this context; a native speaker would say 'give op over for' or 'opgive'. The English translation 'gave up on' is unnatural for a specific task set; 'gave up on the most difficult tasks' implies abandoning them, but the Danish 'gav op med' is a calque. The Russian 'отказался от' means 'refused' or 'renounced', not 'gave up' in the sense of ceasing effort. The sense of 'give op' is to stop trying, but the sentence with 'med' distorts this.",
+     "danish_ok": false,
+     "en": "The student gave up on the most difficult tasks.",
+     "ru": "Студент сдался, решая самые сложные задачи."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Same issue as item 1: 'giver op med' is not idiomatic Danish. The English 'gives up on' is a calque and unnatural. The Russian 'отказывается от' means 'refuses/renounces', not 'gives up' in the sense of stopping effort. The sense of 'give op' is not correctly demonstrated.",
+     "danish_ok": false,
+     "en": "The student gives up on the most difficult tasks.",
+     "ru": "Ученик сдаётся, решая самые сложные задачи."
+    }
+   ]
+  },
+  {
+   "lemma": "glæde sig til",
+   "sense_id": "16c261fe-dc32-579d-bc8b-5ad7a16c40a0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 5,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 6,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "dukke op",
+   "sense_id": "813a71f5-40aa-513a-b8d9-e1de2fe5374a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "gå ind for",
+   "sense_id": "3a8873b5-682e-58c4-99e1-151dfb042be0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "se ned på",
+   "sense_id": "264f18db-d819-57cb-9f1f-14a92456018c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "komme ind på",
+   "sense_id": "2ea3de40-373b-542b-9065-edd92839827c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Word order is wrong: the finite verb 'kom' must be in second position, but the sentence starts with an adverbial phrase 'I sin artikel' and the subject 'journalisten' is placed after the verb phrase 'kom ind på', which is not a single finite verb. Correct V2 order: 'I sin artikel kom journalisten ind på et kontroversielt emne.' This also means the sentence does not correctly exercise the particle verb in a main clause with inversion, which is essential for the grammar cell 'particle-verbs' at B2. The current order is ungrammatical and misleading.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Word order is wrong: the finite verb 'kommer' must be in second position, but the sentence starts with an adverbial phrase 'I sin artikel' and the subject 'journalisten' is placed after the verb phrase 'kommer ind på', which is not a single finite verb. Correct V2 order: 'I sin artikel kommer journalisten ind på et kontroversielt emne.' This also means the sentence does not correctly exercise the particle verb in a main clause with inversion, which is essential for the grammar cell 'particle-verbs' at B2. The current order is ungrammatical and misleading.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

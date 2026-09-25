@@ -13,6 +13,7 @@ import { existsSync } from 'node:fs'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { parseCatalogGeneratorText } from '../lib/catalog-contract'
+import { countPhraseOccurrences, type PhraseCandidate, type PhraseLabel } from '../lib/catalog-phrases'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
 import { corPartsOfSpeech } from '../lib/cor'
 import { parseCorTsv, type CorRow } from '../lib/cor-tsv'
@@ -28,14 +29,15 @@ if (!freqPath || !fullFormsPath) {
   console.error('Usage: coverage-report.ts --freq <freq-30k-ex.txt> --fullforms <ddo-fullforms.csv> [--out dirs] [--locale files] [--report file]')
   process.exit(1)
 }
-const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out'].filter(existsSync).join(',')).split(',')
-const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json'].filter(existsSync).join(',')).split(',')
+const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out', 'catalog/phrases/out'].filter(existsSync).join(',')).split(',')
+const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json', 'catalog/phrases/locale-en.json'].filter(existsSync).join(',')).split(',')
 const reportPath = option('--report') || 'docs/content-coverage-report.md'
 
 // What the catalog supports, per learner language: `lemma|pos` with a worded sense.
 const ru = new Set<string>()
 const en = new Set<string>()
 const lemmas = new Set<string>()
+const phrases = new Set<string>()
 let entries = 0
 let senses = 0
 for (const dir of outDirs) {
@@ -46,7 +48,8 @@ for (const dir of outDirs) {
     for (const value of parseCatalogGeneratorText(await readFile(join(dir, name), 'utf8'))) {
       if (!isGeneratedCatalogRow(value) || quarantined.has(value.lemma)) continue
       entries += 1
-      lemmas.add(value.lemma.toLocaleLowerCase('da-DK'))
+      if (value.kind === 'phrase') phrases.add(value.lemma.toLocaleLowerCase('da-DK'))
+      else lemmas.add(value.lemma.toLocaleLowerCase('da-DK'))
       for (const sense of value.senses) { senses += 1; if (sense.pos) ru.add(supportKey(value.lemma, sense.pos)) }
     }
   }
@@ -87,6 +90,29 @@ for (const line of (await readFile(fullFormsPath, 'utf8')).split(/\r?\n/u)) {
 const unseen = (await readFile('catalog/benchmark/unseen-tatoeba.tsv', 'utf8')).split(/\r?\n/u).filter((line) => line && !line.startsWith('#')).map((line) => line.split('\t')[1])
 const text = textCoverage(unseen, (form) => lemmasByForm.get(form), lemmas)
 
+// Phrase coverage: occurrences, in the same unseen sentences, of the rights-cleared inventory's
+// phrases that were labelled learnable A1–B2 units (catalog/phrases). The inventory's attestation
+// counts excluded these sentences, and the labels were made without reading them.
+const phraseInventoryPath = 'catalog/phrases/inventory.jsonl'
+const phraseLabelsPath = 'catalog/phrases/classified.json'
+const phraseMeasure = existsSync(phraseInventoryPath) && existsSync(phraseLabelsPath) ? await (async () => {
+  const labels = (JSON.parse(await readFile(phraseLabelsPath, 'utf8')) as { labels: (PhraseLabel & { phrase: string })[] }).labels
+  const units = new Set(labels.filter((label) => label.unit && label.type !== 'free' && label.level !== 'C1').map((label) => label.phrase))
+  const inventory = (await readFile(phraseInventoryPath, 'utf8')).split('\n').filter(Boolean).map((line) => JSON.parse(line) as PhraseCandidate).filter((candidate) => units.has(candidate.phrase))
+  let occurrences = 0
+  let covered = 0
+  const seen = new Set<string>()
+  const seenCovered = new Set<string>()
+  for (const sentence of unseen) for (const candidate of inventory) {
+    const hits = countPhraseOccurrences(sentence, candidate.forms)
+    if (!hits) continue
+    occurrences += hits
+    seen.add(candidate.phrase)
+    if (phrases.has(candidate.phrase)) { covered += hits; seenCovered.add(candidate.phrase) }
+  }
+  return { units: units.size, labelled: labels.length, occurrences, covered, seen: seen.size, seenCovered: seenCovered.size }
+})() : null
+
 // Learning coverage from the published families.
 const matrix = JSON.parse(await readFile('catalog/benchmark/cefr-matrix.json', 'utf8')) as { version: string; situations: { id: string; levels: string[]; label: string }[]; grammar: { id: string; levels: string[]; label: string }[] }
 type Published = { level: string; situation: string; grammar: string; lemma: string; sense_id: string; variants: unknown[] }
@@ -111,7 +137,7 @@ added to another.
 
 ## Catalog size
 
-- ${entries.toLocaleString('en-US')} headwords, ${senses.toLocaleString('en-US')} senses with Russian wording, ${englishSenses.toLocaleString('en-US')} with English wording.
+- ${entries.toLocaleString('en-US')} headwords (${phrases.size.toLocaleString('en-US')} of them multi-word phrases), ${senses.toLocaleString('en-US')} senses with Russian wording, ${englishSenses.toLocaleString('en-US')} with English wording.
 - ${families.length.toLocaleString('en-US')} published sentence families, ${variants.toLocaleString('en-US')} distinct checked sentences, each with an English and a Russian translation.
   Each sentence can be offered as a typed gap and as a word-order task, so at most
   ${(variants * 2).toLocaleString('en-US')} distinct catalog exercises exist. That is the real count after constraints and
@@ -159,11 +185,18 @@ before any sentence family was written; the family gate refuses any sentence cop
 | lemma coverage | ${pct(text.lemmaCoverage)} of ${text.lemmas.toLocaleString('en-US')} distinct lemmas |
 | sentences fully covered | ${pct(text.sentenceCoverage)} |
 | tokens no form list knows (names, foreign words), excluded | ${text.unknownTokens.toLocaleString('en-US')} |
-| phrase coverage | not measured: the catalog has no multi-word entries yet and there is no independent phrase inventory to count against |
+| phrase coverage | ${phraseMeasure ? `${phraseMeasure.occurrences ? pct(phraseMeasure.covered / phraseMeasure.occurrences) : 'n/a'} of ${phraseMeasure.occurrences} occurrences of ${phraseMeasure.seen} distinct inventory phrases (${phraseMeasure.seenCovered} of them in the catalog)` : 'not measured: no phrase inventory'} |
 
 Limitation: a token is resolved to lemmas through the DDO full-form list, which cannot say which
 reading a homograph is; a token counts as covered when any of its readings is a catalog lemma, so
 the lemma figure is an upper bound.
+
+Phrase coverage counts contiguous occurrences of phrases from the rights-cleared phrase inventory
+(\`catalog/phrases/inventory.jsonl\`: Danish FrameNet 1.0, Wikidata Lexemes, DDO full-form multi-word
+headwords) that were labelled learnable A1–B2 units${phraseMeasure ? ` (${phraseMeasure.units} of the ${phraseMeasure.labelled} most attested)` : ''}. The catalog has
+${phrases.size} phrase entries. A split particle verb (\`står han op\`) is not counted, and the
+inventory's recall is that of its sources, so the denominator is a floor, not every multi-word unit
+in the sentences.
 
 ## 3. A1–B2 learning coverage
 

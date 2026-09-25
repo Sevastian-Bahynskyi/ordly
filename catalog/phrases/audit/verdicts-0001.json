@@ -1,0 +1,242 @@
+{
+ "auditor": "claude-opus-5-5 (full read, not a sample)",
+ "rubric": [
+  "grammar",
+  "natural",
+  "sense",
+  "en",
+  "ru",
+  "pedagogy"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "audited": 42,
+   "clean": 28,
+   "defects": [
+    "pos: hele tiden/heller ikke/uden for/oven på/alle sammen (inventory heuristic; fixed at source)",
+    "dukke op #2 padded sense",
+    "oven på #2 wrong sense",
+    "tage fejl example/translations disagree",
+    "alle sammen gloss + translation",
+    "glæde sig til RU ferien→праздника",
+    "vænne sig til RU звучанию + dropped person",
+    "skynde sig RU dropped person",
+    "komme ind på EN/RU discuss≠touch upon",
+    "give efter #2 gloss",
+    "have lyst til gloss too narrow",
+    "i lang tid RU aspect",
+    "falde i søvn RU/EN evening→night",
+    "stå op RU redundant"
+   ]
+  },
+  {
+   "round": 2,
+   "audited": 37,
+   "clean": 34,
+   "defects": [
+    "vågne op RU repair dropped hver morgen",
+    "alle sammen sentence-initial bare subject unnatural",
+    "tage fejl example logically odd"
+   ]
+  },
+  {
+   "round": 3,
+   "audited": 38,
+   "clean": 38,
+   "defects": []
+  }
+ ],
+ "final": [
+  {
+   "phrase": "stå op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vågne op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "give op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "rydde op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vokse op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "løbe tør for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "stikke af",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå ud fra",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå ind for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "se ned på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "komme ind på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "glæde sig til",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "skynde sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "kede sig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "vænne sig til",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tage sig af",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "falde i søvn",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "lægge mærke til",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "gå i opfyldelse",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tage for givet",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "have til hensigt",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "finde sted",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i aftes",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i lang tid",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "hele tiden",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "i morgen tidlig",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "heller ikke",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "pleje at",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "uden for",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "på forhånd",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "på grund af",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "dukke op",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "give efter",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "give efter",
+   "ordinal": 2,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "oven på",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "tage fejl",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "alle sammen",
+   "ordinal": 1,
+   "verdict": "clean"
+  },
+  {
+   "phrase": "finde ud af",
+   "ordinal": 1,
+   "verdict": "clean"
+  }
+ ]
+}

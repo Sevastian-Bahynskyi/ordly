@@ -1,0 +1,610 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T15:28:06.622Z",
+ "entries": [
+  {
+   "phrase": "stå op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "vågne op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я просыпаюсь в семь утра каждое утро.' is redundant and unnatural due to the repetition of 'утра' and 'каждое утро'. A native translator would write 'Я просыпаюсь в семь утра.' or 'Я просыпаюсь в семь часов каждое утро.'",
+     "danish_ok": true,
+     "ru": "Я просыпаюсь в семь утра."
+    }
+   ]
+  },
+  {
+   "phrase": "give op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "finde ud af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish example 'Kan du finde ud af at bruge den nye app?' is unidiomatic for the meaning 'to figure out'. The construction 'finde ud af at [verb]' means 'to manage to do' or 'to be capable of doing', not 'to figure out how to'. The correct construction for 'figure out how to' is 'finde ud af, hvordan man [verb]'. The example and its translations are therefore misleading.",
+     "danish_ok": false,
+     "en": "Can you figure out how to use the new app?",
+     "ru": "Можешь разобраться, как пользоваться новым приложением?"
+    }
+   ]
+  },
+  {
+   "phrase": "rydde op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "dukke op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian example translations do not match the Danish example. The Danish example uses 'dukker op igen' (surfaces again), but the English translation is 'reappears' and the Russian is 'появляется снова'. The meaning 'to surface' is correct, but the example translations should reflect the Danish 'igen' (again). Also, the Russian meaning 'всплывать' is a good match for 'to surface' in a figurative sense, but the example translation uses 'появляется' (appears) instead of 'всплывает' (surfaces), which is inconsistent with the stated meaning.",
+     "danish_ok": true,
+     "en": "The problem surfaces again every winter.",
+     "ru": "Проблема всплывает снова каждую зиму."
+    }
+   ]
+  },
+  {
+   "phrase": "vokse op",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "løbe tør for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "stikke af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå ud fra",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian example translation 'Полагаю, ты придёшь завтра.' uses the verb 'полагать' which means 'to suppose/believe', while the meaning_ru is given as 'исходить из' (to proceed from the assumption). The translation should match the stated meaning. A faithful translation would be 'Я исхожу из того, что ты придёшь завтра.'",
+     "danish_ok": true,
+     "ru": "Я исхожу из того, что ты придёшь завтра."
+    }
+   ]
+  },
+  {
+   "phrase": "gå ind for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Я выступаю за большее количество переработки в повседневной жизни.' is unnatural and contains a calque. 'большее количество переработки' is a clumsy, literal rendering of 'more recycling'. A native Russian speaker would say 'более активную переработку' or 'увеличение переработки'. A more natural translation for the whole sentence is: 'Я выступаю за более активную переработку отходов в повседневной жизни.'",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я выступаю за более активную переработку отходов в повседневной жизни."
+    }
+   ]
+  },
+  {
+   "phrase": "give efter",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "se ned på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "komme ind på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian example translations use 'discuss'/'обсудим', which is a different, broader meaning than the sense 'touch upon'/'затрагивать'. The Danish example 'kommer ind på' means 'will touch upon', not 'will discuss'. The translations should reflect the specific meaning given.",
+     "danish_ok": true,
+     "en": "We will touch upon this later in the meeting.",
+     "ru": "Мы затронем это позже на встрече."
+    }
+   ]
+  },
+  {
+   "phrase": "glæde sig til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru",
+      "sense"
+     ],
+     "problem": "The Russian translation 'праздника' means 'holiday/celebration', but the Danish 'ferien' means 'holiday/vacation'. The English correctly says 'holiday' (which can mean vacation in British English), but the Russian narrows the meaning incorrectly. Also, the Russian meaning 'ждать с нетерпением' is a verb phrase, but the example translation 'Я с нетерпением жду праздника' uses a different structure and the wrong noun.",
+     "danish_ok": true,
+     "ru": "Я с нетерпением жду отпуска."
+    }
+   ]
+  },
+  {
+   "phrase": "skynde sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation changes the person from 'du' (ты/тебе) to an impersonal construction 'Нужно' and omits 'dig'/'себя'. A faithful translation would be 'Тебе нужно поторопиться, чтобы успеть на автобус.'",
+     "danish_ok": true,
+     "ru": "Тебе нужно поторопиться, чтобы успеть на автобус."
+    }
+   ]
+  },
+  {
+   "phrase": "kede sig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Мне всегда скучно на уроках математики' uses an impersonal construction ('Мне скучно'), while the Danish original 'Jeg keder mig' is personal ('I am bored'). A faithful and natural translation should preserve the personal subject, e.g., 'Я всегда скучаю на уроках математики.'",
+     "danish_ok": true,
+     "ru": "Я всегда скучаю на уроках математики."
+    }
+   ]
+  },
+  {
+   "phrase": "vænne sig til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English translation changes 'du skal' (you must/have to) to an impersonal 'you have to', which is acceptable, but the Russian translation uses the impersonal 'Нужно' instead of the personal 'Тебе нужно' or 'Ты должен', dropping the person. Also, 'звучанию' is a calque and unnatural; 'звуку' is the correct translation for 'lyd' (sound/noise).",
+     "danish_ok": true,
+     "en": "You have to get used to the new sound.",
+     "ru": "Тебе нужно привыкнуть к новому звуку."
+    }
+   ]
+  },
+  {
+   "phrase": "tage sig af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "falde i søvn",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tage fejl",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The Danish example 'Jeg tager fejl af vejen nogle gange.' means 'I mistake the road sometimes' (i.e., I take the wrong road). The English translation 'I get it wrong sometimes.' drops 'the road' and changes the meaning to a general mistake. The Russian translation 'Иногда я ошибаюсь.' also drops 'дорогу' and becomes a general mistake. The sense glosses 'to be mistaken' and 'ошибаться' are too broad; the example demonstrates the specific construction 'tage fejl af noget' (to mistake something).",
+     "danish_ok": true,
+     "en": "I take the wrong road sometimes.",
+     "ru": "Иногда я ошибаюсь дорогой."
+    }
+   ]
+  },
+  {
+   "phrase": "have lyst til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English and Russian translations of the example do not match the Danish example. The Danish says 'en kop kaffe' (a cup of coffee), but the Russian translates it as 'чашку кофе' (a cup of coffee) while the English translates it as 'a cup of coffee'. However, the Russian translation 'Мне хочется выпить чашку кофе' adds the verb 'выпить' (to drink) which is not in the Danish example. The Danish example is 'Jeg har lyst til en kop kaffe.' which literally means 'I want a cup of coffee' or 'I feel like a cup of coffee.' The English translation 'I feel like a cup of coffee.' is natural and faithful. The Russian translation 'Мне хочется выпить чашку кофе.' means 'I feel like drinking a cup of coffee.' which adds the action of drinking. A more faithful Russian translation would be 'Мне хочется чашку кофе.' or 'Я хочу чашку кофе.' The sense meaning 'to want to' is correct for the phrase, but the example translations are inconsistent.",
+     "danish_ok": true,
+     "ru": "Мне хочется чашку кофе."
+    }
+   ]
+  },
+  {
+   "phrase": "lægge mærke til",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "gå i opfyldelse",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "tage for givet",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian example translation 'Я считаю само собой разумеющимся, что автобус приедет вовремя' is a valid translation but is not the most natural, idiomatic rendering of 'Jeg tager for givet at bussen kommer til tiden' using the given meaning 'принимать как должное'. A native Russian speaker would more naturally say 'Я принимаю как должное, что автобус приедет вовремя' to match the meaning and the Danish structure.",
+     "danish_ok": true,
+     "ru": "Я принимаю как должное, что автобус приедет вовремя."
+    }
+   ]
+  },
+  {
+   "phrase": "have til hensigt",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "finde sted",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i aftes",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i lang tid",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "hele tiden",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "i morgen tidlig",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "heller ikke",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "pleje at",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "uden for",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "oven på",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish example 'Oven på en lang dag fik hun en hovedpine' does not demonstrate the meaning 'in addition to' (вдобавок к). It means 'after' or 'following'. The English and Russian translations correctly reflect the example's meaning ('After a long day...' / 'После долгого дня...'), but they do not match the stated sense 'on top of (in addition to)' / 'вдобавок к'. Either the sense meaning or the example and its translations must be changed.",
+     "danish_ok": true,
+     "en": "On top of a long day, she got a headache.",
+     "ru": "Вдобавок к долгому дню у неё разболелась голова."
+    }
+   ]
+  },
+  {
+   "phrase": "alle sammen",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The meaning 'all together' is too narrow; 'alle sammen' simply means 'all' or 'everyone'. The example 'Vi tager af sted alle sammen' means 'We are all leaving', not 'We all go'. The English translation 'We all go' is unnatural and drops the sense of departure. The Russian translation 'Мы все идём' means 'We are all walking/going (on foot)', which is not faithful to 'tager af sted' (leave/depart).",
+     "danish_ok": true,
+     "en": "We are all leaving.",
+     "ru": "Мы все уходим."
+    }
+   ]
+  },
+  {
+   "phrase": "på forhånd",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "phrase": "på grund af",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

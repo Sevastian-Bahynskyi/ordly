@@ -14,9 +14,11 @@
  *     --work catalog/families/work/batch-0100.json --out catalog/families/out/batch-0100.json
  */
 import { existsSync } from 'node:fs'
+import { deepseekJson, spendLine, translate, translationFidelityOk, usage } from './azure-corpus'
 import { readFile, writeFile } from 'node:fs/promises'
 import { normalizeSentence, variantDanish, type FamilyWorkSense } from '../lib/catalog-families'
-import { emptySlotsNeedVaryingTarget, frontedSubordinateNeedsComma, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
+import { emptySlotsNeedVaryingTarget, finitePhraseAfterFrontedAdverbial, frontedSubordinateNeedsComma, infinitiveAfterAtOrModal, subjectPronounAfterPreposition, ordersUseSameWords, slotsDeclaredInFrame, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
+import { countPhraseOccurrences } from '../lib/catalog-phrases'
 import { parseFullForms } from '../lib/ddo-fullform'
 import { findMisspellings } from '../lib/spelling'
 
@@ -33,64 +35,6 @@ if (!workPath || !outPath || !fullFormsPath) {
 // sentence is checked against exactly the word list the gate will judge it by, before Translator
 // budget is spent on it.
 const known = parseFullForms(await readFile(fullFormsPath, 'utf8')).known
-
-const FOUNDRY_ENDPOINT = requireEnv('AZURE_FOUNDRY_ENDPOINT')
-const FOUNDRY_KEY = requireEnv('AZURE_FOUNDRY_API_KEY')
-const MODEL = requireEnv('AZURE_CORPUS_MODEL')
-const TRANSLATOR_KEY = requireEnv('AZURE_TRANSLATOR_KEY')
-const TRANSLATOR_ENDPOINT = requireEnv('AZURE_TRANSLATOR_ENDPOINT')
-const BUDGET_USD = Number(process.env.AZURE_CORPUS_BUDGET_USD || '100')
-
-function requireEnv(name: string): string {
-  const value = process.env[name]
-  if (!value) { console.error(`Missing ${name} — is --env-file=.env.corpus.local set?`); process.exit(1) }
-  return value
-}
-
-// Azure AI Foundry list price for DeepSeek-V4-Pro, 2026-09-25 (input/output per token). A
-// Microsoft Q&A thread reports live billing running up to ~4.5x list on this route, so the
-// running budget check applies SAFETY_MARGIN on top of this estimate rather than trusting it bare.
-const PRICE_PER_TOKEN_IN = 1.74 / 1_000_000
-const PRICE_PER_TOKEN_OUT = 3.48 / 1_000_000
-const SAFETY_MARGIN = 5
-
-const usagePath = 'catalog/families/azure-usage.json'
-interface Usage { modelUsd: number; translatorChars: number; calls: { op: string; model?: string; inputTokens?: number; outputTokens?: number; usd?: number; chars?: number; at: string }[] }
-const usage: Usage = existsSync(usagePath) ? JSON.parse(await readFile(usagePath, 'utf8')) as Usage : { modelUsd: 0, translatorChars: 0, calls: [] }
-
-async function saveUsage(): Promise<void> {
-  await writeFile(usagePath, `${JSON.stringify(usage, null, 1)}\n`)
-}
-
-function budgetRemaining(): number {
-  return BUDGET_USD - usage.modelUsd * SAFETY_MARGIN
-}
-
-function assertBudget(): void {
-  if (budgetRemaining() <= 0) {
-    console.error(`Budget exhausted: $${usage.modelUsd.toFixed(4)} spent (×${SAFETY_MARGIN} safety margin) of $${BUDGET_USD} ceiling. Stopping.`)
-    process.exit(1)
-  }
-}
-
-async function sleep(ms: number): Promise<void> {
-  await new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-async function withRetry<T>(label: string, fn: () => Promise<T>, attempts = 4): Promise<T> {
-  let lastError: unknown
-  for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    try {
-      return await fn()
-    } catch (error) {
-      lastError = error
-      const wait = Math.min(30_000, 1000 * 2 ** (attempt - 1))
-      console.error(`${label} attempt ${attempt}/${attempts} failed: ${error instanceof Error ? error.message : String(error)} — retrying in ${wait}ms`)
-      if (attempt < attempts) await sleep(wait)
-    }
-  }
-  throw lastError
-}
 
 // ---- DeepSeek: Danish only -------------------------------------------------
 
@@ -147,7 +91,7 @@ Rules:
    out. Example, a verb sense with nothing else varying:
    { "frame": "Huset {target} bygget i 1990.", "slots": {},
      "variants": [ { "slots": {}, "target": "blev" }, { "slots": {}, "target": "bliver" } ] }
-6. "target" is always exactly ONE of the given verified forms — a single word, never a phrase. A
+6. For kind "word", "target" is always exactly ONE of the given verified forms — a single word, never a phrase (kind "phrase": rule 20). A
    periphrastic construction (passive "blive" + past participle, perfect "have" + past participle,
    future "vil"/"skal" + infinitive, a modal + infinitive) puts every OTHER word in its own named
    slot or fixed frame text with the fitting option(s); "target" stays only this lemma's own
@@ -241,7 +185,25 @@ Rules:
    different grammar cell (verb-present/verb-past) and are filed wrong.
 19. "både X og Y" coordinating two NOUN predicates needs the copula "er" (or another appropriate
    verb) between the subject and "både" — "Konsulenten både koordinator og sælger." is missing a
-   verb entirely and is ungrammatical; "Konsulenten er både koordinator og sælger." is correct.`
+   verb entirely and is ungrammatical; "Konsulenten er både koordinator og sælger." is correct.
+20. When "kind" is "phrase", the lemma is a multi-word expression and "target" is exactly ONE of the
+   given forms, copied exactly — a multi-word string such as "står op" or "glæder mig til". The
+   expression's words must stand together in the sentence as one unbroken span: never split it by
+   inversion ("Jeg står op klokken syv." — not "Klokken syv står jeg op.") or by an object or adverb
+   placed inside it. Use a subject-first main clause, a subordinate clause, or an infinitive or
+   perfect construction in which the expression stays together; an auxiliary (vil, skal, kan, har,
+   er) is frame text before {target}. Never repeat one of the expression's words next to {target}.
+   Keeping the words together NEVER overrides V2: if anything other than the subject opens a main
+   clause, the finite verb comes second and the subject third, which splits a finite particle verb —
+   so do not front anything then. "I morgen finder sted mødet." and "I sin artikel kom ind på
+   journalisten emnet." are WRONG (subject after the whole expression); write "Mødet finder sted i
+   morgen." / "Journalisten kom ind på emnet i sin artikel." instead. Likewise "pleje at" takes no
+   modal ("Jeg plejer at løbe", never "Jeg vil pleje at løbe").
+   A form containing a reflexive pronoun must agree with the subject (jeg → "glæder mig til", vi →
+   "glæder os til", hun → "glæder sig til"): if the subject varies, the target form varies with it,
+   and a subject option that does not agree with a variant's target is never combined with it.
+   "grammar" "particle-verbs", "reflexive" or "fixed-expressions" means the sentence exercises the
+   expression itself; a time, place or other cell means it exercises that function of the expression.`
 
 interface DanishVariant { slots: Record<string, number>; target: string; orders?: string[]; accepted?: string[] }
 interface DanishFamily {
@@ -252,119 +214,33 @@ interface DanishFamily {
 }
 type DanishReply = DanishFamily | { sense_id: string; lemma: string; skip: string }
 
-function extractJson(text: string): unknown {
-  const start = text.indexOf('{')
-  const end = text.lastIndexOf('}')
-  if (start < 0 || end < start) throw new Error(`no JSON object in reply: ${text.slice(0, 200)}`)
-  return JSON.parse(text.slice(start, end + 1))
-}
-
 async function generateDanish(row: FamilyWorkSense & { target: { level: string; situation: string; grammar: string } }, correction: string | null): Promise<DanishReply> {
   const user = JSON.stringify({
     lemma: row.lemma, kind: row.kind, sense_id: row.sense_id, pos: row.pos, gender: row.gender,
     ru: row.ru, en: row.en, min_level: row.min_level, forms: row.forms, required_target: row.target,
     ...(correction ? { required_correction: correction } : {}),
   })
-  return withRetry(`DeepSeek ${row.lemma}`, async () => {
-    assertBudget()
-    const res = await fetch(`${FOUNDRY_ENDPOINT}/chat/completions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'api-key': FOUNDRY_KEY },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [{ role: 'system', content: RULES }, { role: 'user', content: user }],
-        temperature: 0.4,
-        max_tokens: 1200,
-      }),
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`)
-    const body = await res.json() as { choices: { message: { content: string } }[]; usage?: { prompt_tokens: number; completion_tokens: number } }
-    const content = body.choices?.[0]?.message?.content
-    if (!content) throw new Error('empty completion')
-    if (body.usage) {
-      const usd = body.usage.prompt_tokens * PRICE_PER_TOKEN_IN + body.usage.completion_tokens * PRICE_PER_TOKEN_OUT
-      usage.modelUsd += usd
-      usage.calls.push({ op: 'deepseek.generate', model: MODEL, inputTokens: body.usage.prompt_tokens, outputTokens: body.usage.completion_tokens, usd, at: new Date().toISOString() })
-      await saveUsage()
-    }
-    return extractJson(content) as DanishReply
-  })
-}
-
-// ---- Azure Translator: mechanical EN/RU on the finished Danish sentence ---
-
-const translationCachePath = 'catalog/families/translation-cache.json'
-const translationCache: Record<string, string> = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
-async function saveTranslationCache(): Promise<void> {
-  await writeFile(translationCachePath, `${JSON.stringify(translationCache, null, 1)}\n`)
-}
-
-async function translate(text: string, to: string, from = 'da'): Promise<string> {
-  const key = `${from}>${to}:${text.trim().toLocaleLowerCase('da-DK')}`
-  const cached = translationCache[key]
-  if (cached) return cached
-  const result = await withRetry(`Translator ${from}->${to} "${text.slice(0, 30)}…"`, async () => {
-    const res = await fetch(`${TRANSLATOR_ENDPOINT}/translate?api-version=3.0&from=${from}&to=${to}`, {
-      method: 'POST',
-      headers: { 'Ocp-Apim-Subscription-Key': TRANSLATOR_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify([{ Text: text }]),
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`)
-    const body = await res.json() as { translations: { text: string }[] }[]
-    const out = body[0]?.translations?.[0]?.text
-    if (!out) throw new Error('empty translation')
-    return out
-  })
-  usage.translatorChars += text.length
-  usage.calls.push({ op: `translator.${from}-${to}`, chars: text.length, at: new Date().toISOString() })
-  await saveUsage()
-  translationCache[key] = result
-  await saveTranslationCache()
-  return result
-}
-
-/**
- * Mechanical translation-fidelity check (issue #16 rerun, 2026-09-25): back-translate the
- * generated en/ru through Translator into Danish and compare word overlap against the original
- * Danish sentence. Round-tripping through machine translation always paraphrases somewhat, so
- * this is deliberately lenient — it exists to catch the observed defect (a translation that
- * structurally diverged from the Danish: wrong tense, dropped verb, wrong noun), not to demand a
- * literal match. Below-threshold variants are dropped rather than published; the family is
- * completed on the next run once it has enough surviving variants, or flagged for regeneration.
- */
-const FIDELITY_MIN_OVERLAP = 0.35
-function wordOverlap(a: string, b: string): number {
-  const left = new Set(a.split(' ').filter(Boolean))
-  const right = new Set(b.split(' ').filter(Boolean))
-  if (!left.size || !right.size) return 0
-  let shared = 0
-  for (const word of left) if (right.has(word)) shared += 1
-  return shared / Math.max(left.size, right.size)
-}
-async function translationFidelityOk(danish: string, en: string, ru: string): Promise<boolean> {
-  const backFromEn = await translate(en, 'da', 'en')
-  const backFromRu = await translate(ru, 'da', 'ru')
-  const original = normalizeSentence(danish)
-  const enScore = wordOverlap(original, normalizeSentence(backFromEn))
-  const ruScore = wordOverlap(original, normalizeSentence(backFromRu))
-  if (enScore < FIDELITY_MIN_OVERLAP || ruScore < FIDELITY_MIN_OVERLAP) {
-    console.log(`  fidelity check failed (en overlap ${enScore.toFixed(2)}, ru overlap ${ruScore.toFixed(2)}): "${danish}" vs back "${backFromEn}" / "${backFromRu}"`)
-    return false
-  }
-  return true
+  return await deepseekJson('deepseek.generate', row.lemma, RULES, user) as DanishReply
 }
 
 // ---- Orchestration ----------------------------------------------------------
 
 const work = JSON.parse(await readFile(workPath, 'utf8')) as (FamilyWorkSense & { target: { level: string; situation: string; grammar: string } })[]
 const existingOut: unknown[] = existsSync(outPath) ? JSON.parse(await readFile(outPath, 'utf8')) as unknown[] : []
-const done = new Set(existingOut.map((row) => (row as { sense_id?: string }).sense_id))
+// One sense may get several families (one per target cell), so a reply is matched to its work row
+// by sense and cell. A skip written before skips carried their cell matches by sense alone.
+const cellKey = (senseId: string, target: { level: string; situation: string; grammar: string }): string => `${senseId}|${target.level}|${target.situation}|${target.grammar}`
+const done = new Set(existingOut.map((raw) => {
+  const row = raw as { sense_id?: string; level?: string; situation?: string; grammar?: string; target?: { level: string; situation: string; grammar: string } }
+  if (row.level && row.situation && row.grammar) return cellKey(String(row.sense_id), { level: row.level, situation: row.situation, grammar: row.grammar })
+  return row.target ? cellKey(String(row.sense_id), row.target) : String(row.sense_id)
+}))
 const results: unknown[] = [...existingOut]
 
 const GENERATE_ATTEMPTS = 3
 
 for (const row of work) {
-  if (done.has(row.sense_id)) { console.log(`· ${row.lemma}: already generated, skipping`); continue }
+  if (done.has(cellKey(row.sense_id, row.target)) || done.has(row.sense_id)) { console.log(`· ${row.lemma}: already generated, skipping`); continue }
   console.log(`… ${row.lemma} → ${row.target.level}/${row.target.situation}/${row.target.grammar}`)
 
   let accepted: DanishFamily | null = null
@@ -384,6 +260,14 @@ for (const row of work) {
       const danish = variantDanish({ frame: reply.frame, slots: reply.slots }, variant)
       if (!danish) continue
       occurrenceErrors.push(...targetMustOccurOnce(danish, variant.target))
+      occurrenceErrors.push(...ordersUseSameWords(danish, variant.orders))
+      if (row.pos === 'verb') occurrenceErrors.push(...infinitiveAfterAtOrModal(danish, variant.target, row.lemma.split(' ')[0]), ...finitePhraseAfterFrontedAdverbial(danish, variant.target, row.lemma.split(' ')[0]))
+      occurrenceErrors.push(...subjectPronounAfterPreposition(danish))
+      // A multi-word preposition with nothing after it is the one-word adverb (`uden for byen`, but
+      // `vi stod udenfor`): the sense being taught is the preposition, so it needs its complement.
+      if (row.kind === 'phrase' && row.pos === 'preposition' && new RegExp(`${variant.target.replace(/\s+/gu, '\\s+')}\\s*[.!?,]`, 'iu').test(danish)) occurrenceErrors.push(`"${variant.target}" is a preposition here and must be followed by its complement (uden for byen) — with nothing after it, it is the adverb, spelled as one word`)
+      if (!row.forms.includes(variant.target.toLocaleLowerCase('da-DK'))) occurrenceErrors.push(`"${variant.target}" is not one of the given forms — copy a form exactly`)
+      else if (countPhraseOccurrences(danish, [variant.target]) === 0) occurrenceErrors.push(`the target "${variant.target}" does not appear as one unbroken span in "${danish}"`)
       const misspellings = await findMisspellings(danish)
       if (misspellings === null) continue // source unavailable locally; the real gate still checks it
       const unknown = misspellings.map((m) => m.word).filter((word) => !known.has(word.toLocaleLowerCase('da-DK')))
@@ -397,6 +281,7 @@ for (const row of work) {
       ...emptySlotsNeedVaryingTarget(row.pos, reply.slots, reply.variants),
       ...mixedSFormConstruction(reply.variants),
       ...invalidRequiresTarget(reply.slots),
+      ...slotsDeclaredInFrame(reply.frame, reply.slots),
       ...lemmaNotDuplicatedInFrame(row.lemma, reply.frame),
       ...occurrenceErrors,
       ...spellingErrors,
@@ -410,18 +295,30 @@ for (const row of work) {
   }
   if (!accepted) {
     console.log(`  giving up after ${GENERATE_ATTEMPTS} attempts: ${lastReason}`)
-    results.push({ sense_id: row.sense_id, lemma: row.lemma, skip: lastReason })
+    results.push({ sense_id: row.sense_id, lemma: row.lemma, target: row.target, skip: lastReason })
     await writeFile(outPath, `${JSON.stringify(results, null, 1)}\n`)
     continue
   }
-  const variants = []
+  const variants: (DanishVariant & { en: string; ru: string })[] = []
   for (const variant of accepted.variants) {
     const danish = variantDanish({ frame: accepted.frame, slots: accepted.slots }, variant)
     if (!danish) { console.log(`  variant unfillable, dropping`); continue }
     const en = await translate(danish, 'en')
     const ru = await translate(danish, 'ru')
     if (!(await translationFidelityOk(danish, en, ru))) continue
+    // Two Danish sentences the translation cannot tell apart (`voksede op` / `er vokset op`, both
+    // "grew up") are one exercise to a learner, and the gate refuses the repeat: keep the first.
+    const seen = (text: string): string => normalizeSentence(text)
+    if (variants.some((kept) => seen(kept.en) === seen(en) || seen(kept.ru) === seen(ru))) { console.log(`  "${danish}" translates like an earlier variant — dropped`); continue }
     variants.push({ ...variant, en, ru })
+  }
+  if (variants.length < 2) {
+    // Too few sentences survived the round-trip check to make a family: a reported skip, which a
+    // later run can regenerate, rather than a malformed family the gate would count as a failure.
+    console.log(`  only ${variants.length} variant(s) survived the translation check — skipped`)
+    results.push({ sense_id: row.sense_id, lemma: row.lemma, target: row.target, skip: `translation fidelity: ${variants.length} of ${accepted.variants.length} variants survived` })
+    await writeFile(outPath, `${JSON.stringify(results, null, 1)}\n`)
+    continue
   }
   results.push({ ...accepted, variants })
   await writeFile(outPath, `${JSON.stringify(results, null, 1)}\n`)
@@ -429,4 +326,4 @@ for (const row of work) {
 }
 
 console.log(`Done. ${results.length} row(s) → ${outPath}`)
-console.log(`Model spend: $${usage.modelUsd.toFixed(4)} (×${SAFETY_MARGIN} margin = $${(usage.modelUsd * SAFETY_MARGIN).toFixed(4)} of $${BUDGET_USD} budget) · Translator: ${usage.translatorChars} characters`)
+console.log(spendLine())

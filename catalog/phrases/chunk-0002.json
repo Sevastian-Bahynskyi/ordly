@@ -1,0 +1,593 @@
+{
+ "note": "Phrase chunk 2 (issue #16), 2026-09-25: the next DeepSeek-labelled units by Tatoeba attestation (benchmark excluded), after a hand veto of vague heads (give sig, komme til, tage til), compositional motion phrases (gå med, sidde på, køre til), duplicates of a longer entry (løbe tør, gemme sig bag) and vulgar items.",
+ "phrases": [
+  {
+   "phrase": "i dag",
+   "type": "time-expression",
+   "level": "A1",
+   "gloss_en": "today"
+  },
+  {
+   "phrase": "i morgen",
+   "type": "time-expression",
+   "level": "A1",
+   "gloss_en": "tomorrow"
+  },
+  {
+   "phrase": "kunne lide",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "like"
+  },
+  {
+   "phrase": "holde op",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "stop"
+  },
+  {
+   "phrase": "vente på",
+   "type": "prepositional-verb",
+   "level": "A1",
+   "gloss_en": "wait for"
+  },
+  {
+   "phrase": "lade være",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "leave alone, refrain"
+  },
+  {
+   "phrase": "gifte sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "get married"
+  },
+  {
+   "phrase": "gå ud",
+   "type": "particle-verb",
+   "level": "A1",
+   "gloss_en": "go out"
+  },
+  {
+   "phrase": "komme til at",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "happen to, come to"
+  },
+  {
+   "phrase": "over for",
+   "type": "complex-preposition",
+   "level": "A2",
+   "gloss_en": "opposite, towards"
+  },
+  {
+   "phrase": "i aften",
+   "type": "time-expression",
+   "level": "A1",
+   "gloss_en": "this evening"
+  },
+  {
+   "phrase": "tro på",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "believe in"
+  },
+  {
+   "phrase": "holde af",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "like, be fond of"
+  },
+  {
+   "phrase": "vise sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "appear, turn out"
+  },
+  {
+   "phrase": "tale om",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "talk about"
+  },
+  {
+   "phrase": "sætte sig",
+   "type": "reflexive-verb",
+   "level": "A1",
+   "gloss_en": "sit down"
+  },
+  {
+   "phrase": "en masse",
+   "type": "adverbial",
+   "level": "A2",
+   "gloss_en": "a lot"
+  },
+  {
+   "phrase": "takke for",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "thank for"
+  },
+  {
+   "phrase": "stole på",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "trust"
+  },
+  {
+   "phrase": "lede efter",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "look for"
+  },
+  {
+   "phrase": "gifte sig med",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "marry"
+  },
+  {
+   "phrase": "der findes",
+   "type": "idiom",
+   "level": "A2",
+   "gloss_en": "there is/are"
+  },
+  {
+   "phrase": "tage på",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "put on"
+  },
+  {
+   "phrase": "gå en tur",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "go for a walk"
+  },
+  {
+   "phrase": "blive gift",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "get married"
+  },
+  {
+   "phrase": "se ud til",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "seem"
+  },
+  {
+   "phrase": "gå i seng",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "go to bed"
+  },
+  {
+   "phrase": "komme med",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "come along"
+  },
+  {
+   "phrase": "komme for sent",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "be late"
+  },
+  {
+   "phrase": "tænke på",
+   "type": "prepositional-verb",
+   "level": "A1",
+   "gloss_en": "think about"
+  },
+  {
+   "phrase": "glæde sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "look forward"
+  },
+  {
+   "phrase": "opføre sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "behave"
+  },
+  {
+   "phrase": "i morges",
+   "type": "time-expression",
+   "level": "A1",
+   "gloss_en": "this morning"
+  },
+  {
+   "phrase": "kigge på",
+   "type": "prepositional-verb",
+   "level": "A1",
+   "gloss_en": "look at"
+  },
+  {
+   "phrase": "i går aftes",
+   "type": "time-expression",
+   "level": "A1",
+   "gloss_en": "last night"
+  },
+  {
+   "phrase": "gemme sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "hide"
+  },
+  {
+   "phrase": "være i gang",
+   "type": "idiom",
+   "level": "A2",
+   "gloss_en": "be in progress"
+  },
+  {
+   "phrase": "regne med",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "expect"
+  },
+  {
+   "phrase": "bede om",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "ask for"
+  },
+  {
+   "phrase": "forelske sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "fall in love"
+  },
+  {
+   "phrase": "ønske sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "wish for"
+  },
+  {
+   "phrase": "af sted",
+   "type": "adverbial",
+   "level": "A2",
+   "gloss_en": "off, away"
+  },
+  {
+   "phrase": "se på",
+   "type": "prepositional-verb",
+   "level": "A1",
+   "gloss_en": "look at"
+  },
+  {
+   "phrase": "frem for",
+   "type": "complex-preposition",
+   "level": "B1",
+   "gloss_en": "rather than"
+  },
+  {
+   "phrase": "være sikker på at",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "be sure that"
+  },
+  {
+   "phrase": "lave mad",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "cook"
+  },
+  {
+   "phrase": "ændre sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "change"
+  },
+  {
+   "phrase": "få nok",
+   "type": "idiom",
+   "level": "B1",
+   "gloss_en": "have enough"
+  },
+  {
+   "phrase": "drømme om",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "dream about"
+  },
+  {
+   "phrase": "beslutte sig for at",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "decide to"
+  },
+  {
+   "phrase": "blive ved",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "keep going, continue"
+  },
+  {
+   "phrase": "begynde på",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "start on"
+  },
+  {
+   "phrase": "blive nødt til",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "have to"
+  },
+  {
+   "phrase": "vende tilbage",
+   "type": "particle-verb",
+   "level": "B1",
+   "gloss_en": "return"
+  },
+  {
+   "phrase": "gå i stykker",
+   "type": "idiom",
+   "level": "B1",
+   "gloss_en": "break down"
+  },
+  {
+   "phrase": "bekymre sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "worry"
+  },
+  {
+   "phrase": "have ondt i",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "have a pain in"
+  },
+  {
+   "phrase": "trænge til",
+   "type": "prepositional-verb",
+   "level": "B1",
+   "gloss_en": "need"
+  },
+  {
+   "phrase": "komme sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "recover"
+  },
+  {
+   "phrase": "tænke over",
+   "type": "prepositional-verb",
+   "level": "B1",
+   "gloss_en": "think about, consider"
+  },
+  {
+   "phrase": "løbe væk",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "run away"
+  },
+  {
+   "phrase": "komme forbi",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "come by, pass"
+  },
+  {
+   "phrase": "have travlt",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "be busy"
+  },
+  {
+   "phrase": "blive ved med at",
+   "type": "idiom",
+   "level": "B1",
+   "gloss_en": "keep on"
+  },
+  {
+   "phrase": "blive fyret",
+   "type": "collocation",
+   "level": "B1",
+   "gloss_en": "get fired"
+  },
+  {
+   "phrase": "handle om",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "be about"
+  },
+  {
+   "phrase": "tabe sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "lose weight"
+  },
+  {
+   "phrase": "skamme sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "be ashamed"
+  },
+  {
+   "phrase": "rejse sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "stand up"
+  },
+  {
+   "phrase": "bryde sig om",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "like, care for"
+  },
+  {
+   "phrase": "gå galt",
+   "type": "idiom",
+   "level": "A2",
+   "gloss_en": "go wrong"
+  },
+  {
+   "phrase": "forestille sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "imagine"
+  },
+  {
+   "phrase": "til stede",
+   "type": "adverbial",
+   "level": "B1",
+   "gloss_en": "present"
+  },
+  {
+   "phrase": "gøre rent",
+   "type": "collocation",
+   "level": "A1",
+   "gloss_en": "clean"
+  },
+  {
+   "phrase": "sige fra",
+   "type": "particle-verb",
+   "level": "B1",
+   "gloss_en": "opt out, say no"
+  },
+  {
+   "phrase": "tage med",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "bring along"
+  },
+  {
+   "phrase": "finde på",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "come up with"
+  },
+  {
+   "phrase": "følge efter",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "follow"
+  },
+  {
+   "phrase": "fare vild",
+   "type": "idiom",
+   "level": "A2",
+   "gloss_en": "get lost"
+  },
+  {
+   "phrase": "nærme sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "approach"
+  },
+  {
+   "phrase": "tvivle på",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "doubt"
+  },
+  {
+   "phrase": "inden for",
+   "type": "complex-preposition",
+   "level": "A2",
+   "gloss_en": "within"
+  },
+  {
+   "phrase": "være imod",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "be against"
+  },
+  {
+   "phrase": "melde sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "sign up, register"
+  },
+  {
+   "phrase": "være ked af",
+   "type": "collocation",
+   "level": "A2",
+   "gloss_en": "be sorry about"
+  },
+  {
+   "phrase": "lægge sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "gloss_en": "lie down"
+  },
+  {
+   "phrase": "fortsætte med at",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "continue to"
+  },
+  {
+   "phrase": "stoppe med",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "stop (doing something)"
+  },
+  {
+   "phrase": "dreje sig om",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "be about, revolve around"
+  },
+  {
+   "phrase": "bevæge sig",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "gloss_en": "move (oneself)"
+  },
+  {
+   "phrase": "held og lykke",
+   "type": "interjection",
+   "level": "A2",
+   "gloss_en": "good luck"
+  },
+  {
+   "phrase": "vaske op",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "wash up, do the dishes"
+  },
+  {
+   "phrase": "have på",
+   "type": "particle-verb",
+   "level": "A1",
+   "gloss_en": "wear, have on"
+  },
+  {
+   "phrase": "ud over",
+   "type": "complex-preposition",
+   "level": "B1",
+   "gloss_en": "beyond, in addition to"
+  },
+  {
+   "phrase": "følge med",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "follow along, keep up"
+  },
+  {
+   "phrase": "stå for",
+   "type": "particle-verb",
+   "level": "B1",
+   "gloss_en": "be in charge of"
+  },
+  {
+   "phrase": "høre fra",
+   "type": "particle-verb",
+   "level": "A2",
+   "gloss_en": "hear from"
+  },
+  {
+   "phrase": "banke på",
+   "type": "prepositional-verb",
+   "level": "A2",
+   "gloss_en": "knock on"
+  }
+ ]
+}

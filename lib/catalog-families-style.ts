@@ -163,7 +163,12 @@ export function needsMinimumVariants(variants: readonly unknown[], minimum = 2):
  * fusionere med en anden kommune") is caught before Translator spend, not after.
  */
 export function targetMustOccurOnce(danish: string, target: string): string[] {
-  const count = danish.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter((word) => word === target.toLocaleLowerCase('da-DK')).length
+  const words = danish.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  const wanted = target.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  let count = 0
+  for (let at = 0; wanted.length && at + wanted.length <= words.length; at += 1) {
+    if (wanted.every((word, offset) => words[at + offset] === word)) count += 1
+  }
   return count > 1 ? [`target "${target}" occurs ${count} times in "${danish}" — it must occur exactly once; do not reuse the target word elsewhere in the same sentence`] : []
 }
 
@@ -179,4 +184,96 @@ export function lemmaNotDuplicatedInFrame(lemma: string, frame: string): string[
   return words.includes(lemma.toLocaleLowerCase('da-DK'))
     ? [`the frame's fixed text already contains "${lemma}" as a literal word, in addition to {target} — {target} already represents this word; remove the duplicate`]
     : []
+}
+
+/**
+ * Every slot the reply declares must appear in its frame — the gate rejects an unused slot
+ * ("slot parti is not in the frame"), so it is caught before any translation is paid for.
+ */
+export function slotsDeclaredInFrame(frame: string, slots: Record<string, unknown>): string[] {
+  const named = new Set([...frame.matchAll(/\{([a-z][a-z0-9_]*)\}/gu)].map((match) => match[1]))
+  const unused = Object.keys(slots || {}).filter((name) => !named.has(name))
+  return unused.length ? [`slot(s) ${unused.join(', ')} are declared but never used in the frame — every slot must appear as {name} in "frame", or be removed`] : []
+}
+
+/**
+ * An alternative word order is a complete sentence with exactly the variant's words, rearranged —
+ * never a template with {target} left in it, never a sentence with other words.
+ */
+export function ordersUseSameWords(danish: string, orders: readonly unknown[] | undefined): string[] {
+  const key = (value: string): string => value.toLocaleLowerCase('da-DK').replace(/[.,!?;:«»"“”()]/gu, ' ').split(/\s+/u).filter(Boolean).sort().join(' ')
+  const errors: string[] = []
+  for (const order of orders || []) {
+    if (typeof order !== 'string' || /[{}]/u.test(order)) errors.push(`"orders" must hold complete Danish sentences, never a template with {placeholders}: ${JSON.stringify(order)}`)
+    else if (key(order) !== key(danish)) errors.push(`the alternative order "${order}" does not use exactly the words of "${danish}" — omit it or fix it`)
+  }
+  return errors
+}
+
+const MODALS = new Set(['skal', 'skulle', 'vil', 'ville', 'kan', 'kunne', 'må', 'måtte', 'bør', 'burde', 'tør', 'turde'])
+
+/**
+ * A verb standing directly after the infinitive marker `at` or a modal is an infinitive: `skal
+ * vænne sig`, `at give efter` — never `skal vænnede mig`, `at givet efter`. `at` as the conjunction
+ * "that" is followed by a subject, not a verb, so the rule holds for both readings. `infinitive` is
+ * the verb's dictionary form (for a phrase, its head verb); a target not headed by it is not judged.
+ */
+export function infinitiveAfterAtOrModal(danish: string, target: string, infinitive: string): string[] {
+  const words = danish.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  const wanted = target.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  const errors: string[] = []
+  for (let at = 1; wanted.length && at + wanted.length <= words.length; at += 1) {
+    if (!wanted.every((word, offset) => words[at + offset] === word)) continue
+    const before = words[at - 1]
+    if ((before === 'at' || MODALS.has(before)) && wanted[0] !== infinitive.toLocaleLowerCase('da-DK')) {
+      errors.push(`"${before} ${target}" is ungrammatical — after "${before}" the verb must be the infinitive "${infinitive}"`)
+    }
+  }
+  return errors
+}
+
+/** Prepositions that are never also conjunctions (so not `for`, `om`, `efter`, `siden`). */
+const PURE_PREPOSITIONS = new Set(['til', 'på', 'af', 'med', 'fra', 'hos', 'mod', 'imod', 'ved', 'uden', 'gennem', 'igennem', 'mellem', 'over', 'under', 'blandt'])
+// Not `de`: it is also the plural article (`mod de nye regler`).
+const SUBJECT_PRONOUNS = new Set(['jeg', 'du', 'han', 'hun', 'vi'])
+
+/**
+ * A preposition governs the object form: `til os`, never `til vi`. A subject pronoun straight after
+ * a preposition is the mark of a clause broken to keep a particle verb together (`Da solen skinnede,
+ * lagde mærke til vi regnbuen`).
+ */
+export function subjectPronounAfterPreposition(danish: string): string[] {
+  const words = danish.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  const errors: string[] = []
+  for (let at = 1; at < words.length; at += 1) {
+    if (SUBJECT_PRONOUNS.has(words[at]) && PURE_PREPOSITIONS.has(words[at - 1])) errors.push(`"${words[at - 1]} ${words[at]}" is ungrammatical — a preposition takes the object form, and a subject never follows it; if the verb phrase was kept together after a fronted element, V2 is broken: start the clause with its subject`)
+  }
+  return errors
+}
+
+const FRONTED_OPENERS = new Set(['i', 'på', 'til', 'med', 'efter', 'under', 'om', 'fra', 'ved', 'over', 'uden', 'inden', 'siden', 'før', 'hos', 'nu', 'så', 'derfor', 'endelig', 'pludselig', 'bagefter', 'senere', 'igen', 'tit', 'ofte', 'altid', 'aldrig', 'heldigvis', 'desværre', 'måske', 'her', 'der', 'dengang', 'snart'])
+const NON_FINITE_BEFORE = new Set(['at', 'har', 'havde', 'er', 'var', 'blev', 'bliver', 'være', 'været', 'have', 'haft', ...MODALS])
+const CLAUSE_OPENERS = new Set(['at', 'som', 'der', 'når', 'hvis', 'fordi', 'da', 'mens', 'selvom', 'om', 'hvor', 'hvad', 'hvem', 'og', 'men', 'eller'])
+
+/**
+ * A main clause opened by an adverbial puts the finite verb second and the subject third, so a
+ * finite particle or phrasal verb cannot stand unbroken there: `I sin artikel kom ind på
+ * journalisten emnet` is wrong, `I sin artikel kom journalisten ind på emnet` is right. Flags a
+ * finite multi-word verb target standing in the clause that a preposition or fronted adverb opens,
+ * with no subordinating word between them. `infinitive` is the phrase's head verb.
+ */
+export function finitePhraseAfterFrontedAdverbial(danish: string, target: string, infinitive: string): string[] {
+  const wanted = target.toLocaleLowerCase('da-DK').split(/[^a-zæøå]+/u).filter(Boolean)
+  if (wanted.length < 2 || wanted[0] === infinitive.toLocaleLowerCase('da-DK')) return []
+  const clauses = danish.toLocaleLowerCase('da-DK').split(/[,;:]/u).map((clause) => clause.split(/[^a-zæøå]+/u).filter(Boolean))
+  for (const words of clauses) {
+    for (let at = 1; at + wanted.length <= words.length; at += 1) {
+      if (!wanted.every((word, offset) => words[at + offset] === word)) continue
+      // An auxiliary, modal or `at` earlier in the clause makes the target non-finite (`I går har hun givet op`).
+      if (words.slice(0, at).some((word) => NON_FINITE_BEFORE.has(word))) continue
+      if (!FRONTED_OPENERS.has(words[0]) || words.slice(1, at).some((word) => CLAUSE_OPENERS.has(word))) continue
+      return [`"${target}" stands unbroken after the fronted "${words.slice(0, at).join(' ')}" — V2 puts the subject between the verb and its particle there; start the clause with its subject instead`]
+    }
+  }
+  return []
 }

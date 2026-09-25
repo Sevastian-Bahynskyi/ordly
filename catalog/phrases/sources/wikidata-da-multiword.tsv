@@ -1,0 +1,636 @@
+# Wikidata Lexemes (CC0 1.0), Danish (Q9035) lexemes whose lemma contains a space. Retrieved 2026-09-25 via https://qlever.dev/api/wikidata with:
+# SELECT ?l ?lemma ?cat WHERE { ?l dct:language wd:Q9035 ; wikibase:lemma ?lemma ; wikibase:lexicalCategory ?cat . FILTER(CONTAINS(STR(?lemma), " ")) }
+<http://www.wikidata.org/entity/L1010948>	"male fanden på væggen"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L1012180>	"andre boller på suppen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1012202>	"man skal ikke flyve højere end vingerne kan bære"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1012205>	"tage munden for fuld"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1012253>	"historisk tid"@da	<http://www.wikidata.org/entity/Q5456361>
+<http://www.wikidata.org/entity/L1013930>	"at ryge op i det røde felt"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1073522>	"Mardi Gras"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1077908>	"up to date"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1079854>	"World Wide Web"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1079959>	"en bar røv at trutte i"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1079960>	"at have julelys i øjnene"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1080051>	"sous vide"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1097213>	"ikke mange sure sild værd"@da	<http://www.wikidata.org/entity/Q357760>
+<http://www.wikidata.org/entity/L1097453>	"ikke et øje"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097454>	"ugler i mosen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097456>	"løbe med en halv vind"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097457>	"dele sol og vind lige"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097842>	"på nul komma fem"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097849>	"i tide og utide"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097865>	"nissen flytter med"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097879>	"være in"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097928>	"hold på hat og briller"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1097930>	"gå galt"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1098842>	"hvis og hvis min rød er spids"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1098849>	"is i maven"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1116973>	"splitte mine bramsejl"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1117990>	"gammel gris"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1120301>	"hænge med mulen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1124421>	"New Zealand"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1124775>	"gud fader bevares"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1130644>	"nogen sinde"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1132047>	"at sende aben videre"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1139631>	"være kold i røven"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1139652>	"skide i noget"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1140401>	"glimt i øjet"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1142131>	"have huden fuld"@da	<http://www.wikidata.org/entity/Q10976085>
+<http://www.wikidata.org/entity/L1144721>	"in natura"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1144722>	"a conto"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1144724>	"en suite"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1144752>	"gå i vasken"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1149264>	"Politiets Efterretningstjeneste"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1149601>	"den er let at lokke, som gerne vil hoppe"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1153143>	"jord til jord-missil"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1153533>	"åbent hus-arrangement"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1153914>	"fait accompli"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154090>	"perpetuum mobile"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154113>	"nomen actionis"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154116>	"sine qua non"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154130>	"poste restante-brev"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154345>	"børn og unge-udvalg"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154383>	"frys selv-is"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1154453>	"hotel garni"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1159185>	"sejle sin egen sø"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1159437>	"rock and roll-band"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1159549>	"a conto-beløb"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1159978>	"golden delicious-æble"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1161746>	"røv og nøgler"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1162092>	"holde gode miner"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1162093>	"holde masken"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1162298>	"chili con carne"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1162340>	"curriculum vitae"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1162973>	"put and take-fiskeri"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1163208>	"sous vide"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1175186>	"knæk og bræk"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1182476>	"jord til luft-missil"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1182844>	"missing link"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1182849>	"bel canto"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1182894>	"carte blanche"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1182909>	"tag selv-bord"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1182999>	"tænd og sluk-ur"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183251>	"delirium tremens"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183292>	"væg til væg-tæppe"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183296>	"pop op-vindue"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183539>	"børne- og ungeudvalg"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183682>	"gå hjem-møde"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183854>	"faux pas"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1183996>	"broderie anglaise"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1184477>	"nomen agentis"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1184488>	"laissez faire"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1184629>	"memento mori"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1184883>	"castrum doloris"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185019>	"belle de boskoop"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185279>	"open source-program"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185378>	"enfant terrible"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185535>	"først til mølle-princip"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185747>	"aber dabei"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185858>	"fuldt stop-skilt"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1185930>	"hold kæft-bolsje"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1186069>	"vugge til grav-princip"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1186420>	"joint venture"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1186490>	"alter ego"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1187982>	"knytte sylten"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L1191836>	"løbe spidsrod"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1191837>	"tage sig sammen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1196732>	"øvelse gør mester"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1207800>	"pakke ind i vat og bomuld"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1214280>	"dyt i bamsen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1214368>	"være skudt i nogen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1214408>	"ikke den skarpeste kniv i skuffen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1215800>	"være på røven"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1216127>	"være på skideren"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1216944>	"Alzheimers sygdom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1216945>	"Parkinsons syge"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1216946>	"Parkinsons sygdom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1217297>	"være på trapperne"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217462>	"have både til gården og gaden"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217534>	"filmen knækker"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217906>	"at have sommerfugle i maven"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217907>	"at gå som katten om den varme grød"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217908>	"ligne en hængt kat"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217910>	"ligne noget, som katten har slæbt ind"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217916>	"sidde lårene af"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1217933>	"flaske sig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218343>	"det var kattens"@da	<http://www.wikidata.org/entity/Q104692917>
+<http://www.wikidata.org/entity/L1218345>	"da fanden blev gammel, gik han i kloster"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218346>	"fanden og hans pumpestok"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218377>	"før fanden får sko på"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218378>	"give fanden i noget"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218379>	"hvad fanden"@da	<http://www.wikidata.org/entity/Q104692917>
+<http://www.wikidata.org/entity/L1218441>	"fanden stejle mig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218443>	"fanden gale mig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218444>	"købe katten i sækken"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218445>	"i pose og i sæk"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218447>	"have ben i næsen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218448>	"du må have spist søm"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1218492>	"læse noget som fanden læser bibelen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218495>	"brændt barn skyr ilden"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218501>	"held og lykke"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1218534>	"lediggang er roden til alt ondt"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1218844>	"det ved den søde grød"@da	<http://www.wikidata.org/entity/Q3257782>
+<http://www.wikidata.org/entity/L1218850>	"være helt fremme i skoene"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1218851>	"spidsen af en jetjager"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1218933>	"piben får en anden lyd"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219582>	"rolig nu"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219584>	"ah ja ja ja ja"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1219591>	"knalde brikker"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219670>	"kaste perler for svin"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219674>	"gå agurk"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219676>	"ingen ko på isen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1219700>	"kold som en brøndgravers røv"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1220040>	"på dupperne"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1220468>	"for at narre fjenden i Ålborg"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1220691>	"intet nyt under solen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1220903>	"tage sorgerne på forskud"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1221036>	"ævl og kævl"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1221037>	"ævl og bævl"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1222843>	"ikke stikke op for bollemælk"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1222844>	"stikke op"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L1222846>	"lave en scene"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1222847>	"tage bolig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1224139>	"en ulykke kommer sjældent alene"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1224269>	"en skrue uden ende"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1225471>	"ikke ville røre nogen med en ildtang"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1225658>	"jyske dollar"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1225659>	"sorte penge"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1226649>	"som man reder ligger man"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1226650>	"så er den ged barberet"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L1226651>	"sommerfugle i maven"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1226652>	"skelet i skabet"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1226661>	"elefanten i rummet"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1227061>	"arbejde som en hest"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1227933>	"Gud og hvermand"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L1229637>	"for øvrigt"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1229638>	"con amore"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1229661>	"al dente"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1229662>	"all right"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1230118>	"rive den af"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1230561>	"dyrke sex"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1233404>	"raison d'etre"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1235779>	"røv og nøgler"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L1235805>	"ryge ud på røv og albuer"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1236628>	"være gak i låget"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1237508>	"high impact"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1238060>	"køb og smid væk-samfund"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1238160>	"new look"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1238210>	"golden goal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1238228>	"petit mal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1238261>	"grand mal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1238370>	"gør det selv-arbejde"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1239165>	"put and take"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1239932>	"svangre- og mødrehjem"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1240542>	"learning by doing"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1241299>	"bygge- og anlægsarbejde"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1241782>	"golden delicious"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1242284>	"novel food"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1242856>	"herbes de Provence"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1243088>	"corpus delicti"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1243378>	"jus practicandi"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1243409>	"low impact"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1243486>	"high society"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1259935>	"brasiliansk portugisisk"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L1263834>	"dag til dag-levering"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1264046>	"don juan"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1264488>	"de facto-anerkendelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1264950>	"lit de parade"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1265864>	"a la grecque-bort"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1266719>	"persona non grata"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1266910>	"falde på halen-komedie"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1267227>	"a vista-veksel"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1267399>	"gør det selv-mand"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1267682>	"lapis lazuli"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268065>	"slå om-nederdel"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268079>	"public service"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268263>	"irish coffee"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268699>	"death metal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268815>	"a priori-antagelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1268891>	"tro og love-erklæring"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269158>	"åbent hus-dag"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269175>	"executor testamenti"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269362>	"rector magnificus"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269364>	"homo sapiens"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269604>	"crepe de chine"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1269740>	"social- og sundhedsassistent"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1270595>	"nature morte"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1270742>	"mixed grill"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1270743>	"deus ex machina"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1270987>	"concerto grosso"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1271282>	"pater familias"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1271564>	"port salut"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1271602>	"earl grey-te"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1271606>	"eau de toilette"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1272048>	"happy end"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1272104>	"new age"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1272338>	"public service-kanal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1272716>	"mund til mund-metode"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273070>	"caffe latte"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273304>	"negro spiritual"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273573>	"crepe georgette"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273677>	"to minus en-vej"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273856>	"pro rata-hæftelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1273969>	"hors d'oeuvre"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1274410>	"social- og sundhedsforvaltning"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1274792>	"pas de deux"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1275136>	"femme fatale"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1275477>	"jord- og betonarbejder"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1275543>	"fromage frais"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1275761>	"bøf stroganoff"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1275783>	"golden retriever"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1276031>	"haricots verts"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1276640>	"virtual reality"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1276697>	"hjemme hos-pædagog"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1276835>	"force majeure"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1277006>	"foie gras"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1277329>	"panna cotta"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1277360>	"droit moral"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1277378>	"tre i en-negleklipper"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1278385>	"lollo rosso"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1278420>	"au pair-pige"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1278686>	"mund til næse-metode"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1278767>	"ud af kroppen-oplevelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279084>	"de jure-anerkendelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279166>	"practical joke"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279446>	"tast selv-service"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279497>	"cherry brandy"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279516>	"haute couture"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279531>	"luft til jord-raket"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279593>	"second opinion"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279637>	"de facto-flygtning"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279740>	"multiple choice-opgave"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1279909>	"in vitro-befrugtning"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1280242>	"art deco-stil"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1280418>	"commedia dell'arte"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1280745>	"gør det selv-metode"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1280841>	"duc d'albe"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1281233>	"viola da gamba"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1281688>	"notarius publicus"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1281719>	"diner transportable"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1282245>	"science fiction"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1282535>	"laisser faire"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1282756>	"dag til dag-rente"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1283457>	"persona grata"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1283654>	"indian summer"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1283768>	"klassens time-kage"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1283870>	"social- og sundhedshjælper"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284116>	"angina pectoris"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284528>	"happy hour"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284542>	"thousand island-dressing"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284612>	"folde ud-pige"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284665>	"gas- og vandmester"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1284704>	"syns- og skønsmand"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285017>	"tour de force"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285106>	"cordon bleu"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285459>	"kør selv-ferie"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285597>	"solar plexus"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285849>	"pop op-shop"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285883>	"public relation"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1285934>	"primus motor"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1286344>	"joint venture-basis"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287079>	"dags dato-kvittering"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287091>	"dark horse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287301>	"postillon d'amour"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287672>	"nasi goreng"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287708>	"heavy metal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287811>	"pil selv-reje"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287863>	"a la carte-ret"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1287961>	"sarah bernhardt"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1288230>	"mixed double"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1288255>	"eau de cologne"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1288352>	"pop op-bog"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1288992>	"science fiction-roman"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1289456>	"graphic novel"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1289656>	"børne- og ungeydelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1291501>	"eau de vie"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1291745>	"skalten og valten"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1291790>	"2. g'er"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1292160>	"agent provocateur"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1292653>	"modus operandi"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1292997>	"skov- og landskabsingeniør"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1293551>	"grand old man"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1294778>	"doctor honoris causa"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1294846>	"bygge- og anlægsvirksomhed"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1295107>	"menage a trois"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1296186>	"3. g'er"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1297097>	"direct mail"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1297474>	"ernærings- og husholdningsøkonom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1297556>	"pinot blanc"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1297733>	"chapeau claque"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1298434>	"modus vivendi"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1298540>	"laterna magica"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1298871>	"blind date"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1298907>	"functional food"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1299305>	"art nouveau"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1300334>	"på fode"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1300350>	"pinot noir"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1300678>	"direct marketing"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1300750>	"special effect"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1301282>	"danse macabre"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1301990>	"flying dutchman"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302034>	"sarah bernhardt-kage"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302085>	"skatte- og afgiftsminister"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302206>	"multiple choice"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302426>	"børne- og ungdomsforsorg"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302642>	"grand old lady"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302744>	"cabernet sauvignon"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1302844>	"rhythm and blues"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1303373>	"new journalism"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1303454>	"eau de parfum"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1303597>	"sudden death"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1303825>	"put and take-sø"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1303881>	"1. g'er"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1304727>	"social- og sundhedsuddannelse"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1305131>	"gelée royale"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1305894>	"electric boogie"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1305911>	"by- og landzonelov"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1306410>	"bad taste"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1306584>	"primus inter pares"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1308344>	"Mariæ bebudelsesdag"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1308349>	"Kristi blodsdråbe"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1308367>	"Kristi himmelfartsdag"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1308371>	"Jomfru Marias sengehalm"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1309738>	"Aspergers syndrom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1309740>	"Tourettes syndrom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1309748>	"Downs syndrom"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1310096>	"man skal ikke sælge skindet før bjørnen er skudt"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1313534>	"ind ad"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1313535>	"frem ad"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1313556>	"döner kebab"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1313691>	"gå i tænkeboks"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L1313692>	"sove på det"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1313761>	"have rent mel i posen"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1313762>	"have rene hænder"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1313781>	"en gros"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1314465>	"flad som en pandekage"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1314473>	"med hensyn til"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1314481>	"på trods af"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L1314692>	"man skal sæd følge eller land fly"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1314693>	"skik følge eller land fly"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1314694>	"man må hyle med de ulve man er iblandt"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1314695>	"hvor der er hjerterum, er der husrum"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1319090>	"siden hen"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1321000>	"sætte tæring efter næring"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1321062>	"Als Sund"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1327776>	"gå i for små sko"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1329103>	"to go"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1329223>	"være med på vognen"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1329361>	"noget for noget"@da	<http://www.wikidata.org/entity/Q63348589>
+<http://www.wikidata.org/entity/L1330158>	"Red Barnet"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1330709>	"Hells Angels"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1333815>	"lugte lunten"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L1336549>	"fåre- og gedepest"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1346593>	"crepes suzette"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1347913>	"Øvre Volta"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1353848>	"rød- og hvidternet"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1354896>	"blå- og hvidternet"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1356000>	"fit for fight"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1356486>	"Sydafrikanske Republik"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356491>	"Nissum Fjord"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356499>	"Trinidad og Tobago"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356502>	"Ålbæk Bugt"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356522>	"Kap Verde"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356523>	"Ejer Bavnehøj"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356533>	"Kaspiske Hav"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356544>	"Sankt Petersborg"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356545>	"Saint Kitts og Nevis"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356546>	"Saint Vincent og Grenadinerne"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356557>	"Store Heddinge"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356566>	"Costa Rica"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356570>	"Dominikanske Republik"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356586>	"Puerto Rico"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356606>	"Sierra Leone"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356613>	"Yding Skovhøj"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356617>	"Stevns Klint"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356629>	"Papua Ny Guinea"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356637>	"Saint Lucia"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356640>	"Femern Bælt"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356642>	"Brøndby Strand"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356655>	"Møns Klint"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356669>	"El Salvador"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356685>	"Burkina Faso"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356692>	"Centralafrikanske Republik"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356709>	"Sao Tome og Principe"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356711>	"San Marino"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356714>	"Guldborg Sund"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356716>	"Sri Lanka"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356717>	"Juvre Dyb"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356722>	"Salling Sund"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356723>	"Antigua og Barbuda"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1356732>	"Nissum Bredning"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1360547>	"Røde Hav"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1373954>	"Nykøbing Falster"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1400787>	"gå over åen efter vand"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1402299>	"gør det selv-bog"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L1407765>	"hvid januar"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1408749>	"mange bække små gør en stor å"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L1411908>	"a cappella-kor"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1417795>	"Saltbæk Vig"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417797>	"Rold Skov"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417805>	"Klosterhede Plantage"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417809>	"Republikken Congo"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417827>	"Stadil Fjord"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417829>	"Forenede Arabiske Emirater"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1417830>	"Demokratiske Republik Congo"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1453905>	"Esrum Sø"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1454087>	"comme il faut"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1454200>	"mur- og nagelfast"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1455015>	"Høje Tåstrup"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1455016>	"Nykøbing Sjælland"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1455017>	"Nykøbing Mors"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1455546>	"spot on"@da	<http://www.wikidata.org/entity/Q34698>
+<http://www.wikidata.org/entity/L1463250>	"poste restante"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1465778>	"Nykøbing F"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1465779>	"Nykøbing M"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1465780>	"Nykøbing S"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1473408>	"ris til egen røv"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473665>	"få sved på panden"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473666>	"den der kommer først til mølle, får først malet"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473667>	"fri fugl"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473668>	"én fugl i hånden er bedre end ti på taget"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473685>	"man skal ikke gå over åen efter vand"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473686>	"når katten er ude, spiller musene på bordet"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473688>	"liden tue kan vælte stort læs"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1473689>	"lille og vågen er bedre end stor og doven"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1474302>	"gå bersærkergang"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1474343>	"tale er sølv, men tavshed er guld"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1474953>	"feje for sin egen dør"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1474954>	"fej selv for din egen dør, før du fejer for andres"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475031>	"den man tugter, elsker man"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475032>	"bedre sent end aldrig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475033>	"sælg ikke skindet, før bjørnen er skudt"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475052>	"holde mange bolde i luften"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475053>	"tung at danse med"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475056>	"uden mad og drikke duer helten ikke"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1475059>	"man skal kravle, før man kan gå"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1500745>	"da capo"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1500765>	"in absentia"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1500768>	"summa summarum"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1500770>	"in persona"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1502983>	"par excellence"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1502988>	"en miniature"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1502990>	"for resten"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1502995>	"i mente"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1503014>	"her til lands"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1503305>	"et cetera"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1504411>	"take it or leave it"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1504419>	"gyng gang"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L1531802>	"post festum"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1531915>	"in triplo"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1531946>	"in extenso"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1531947>	"a la carte"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1553192>	"nerver af stål"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1556620>	"være så klog at man kan undvære hovedet"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1559216>	"Gamle Lillebæltsbro"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1559218>	"Ny Lillebæltsbro"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L1562107>	"en passant"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1562120>	"vande høns"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L1565281>	"gør det selv-kvinde"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1565295>	"in spe"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566426>	"gud hjælpe mig"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566453>	"in duplo"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566454>	"in solidum"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566457>	"pro persona"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566490>	"en detail"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1566498>	"in medias res"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L1582786>	"public domain"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1588032>	"rock and roll"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1589792>	"cire perdue"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1597502>	"art deco"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1597518>	"thrash metal"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L1624661>	"country og western"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L226724>	"heller ikke"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L226741>	"tage fat"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L228637>	"falde til patten"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L228681>	"hele tiden"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L228862>	"Det Radikale Venstre"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L228864>	"Dansk Folkeparti"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L228872>	"blande op"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L228883>	"au pair"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L228900>	"gå ud"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L229382>	"du godeste"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L230306>	"den lille fyr"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L235253>	"på hug"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L235599>	"på forhånd"@da	<http://www.wikidata.org/entity/Q3734650>
+<http://www.wikidata.org/entity/L235712>	"urent trav"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L252559>	"skyde sig selv i foden"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L252587>	"barn på gule plader"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L253025>	"slå op"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L253026>	"gøre slut"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L253157>	"kaste op"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L253163>	"brække sig"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L298555>	"en kold skulder"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L298938>	"a cappella"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L298939>	"a cappella-arie"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L314526>	"ligge som man har redt"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L314527>	"alt godt kommer til den, der venter"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L342699>	"hænge med røven i vandskorpen"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L345527>	"man ligger som man har redt"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L346883>	"fino bambino"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L346898>	"hokus pokus"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L347126>	"tab og vind med samme sind"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L347127>	"have alt at vinde og intet at tabe"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347128>	"ingen roser uden torne"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347129>	"stikke folk blår i øjnene"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347130>	"af den gamle skole"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347132>	"stå ned i stænger"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347371>	"kæp i hjulet"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347373>	"på grund af"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347382>	"på grund af at"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347419>	"en sludder for en sladder"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L347542>	"stå ned"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347781>	"køre død"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L347786>	"lege med ilden"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L347788>	"klippe ud"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L347795>	"koge ind"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L347801>	"sutte dig selv"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L349054>	"ryge i svinget"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L349062>	"være på skideren"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L349068>	"give slip"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L349072>	"gå i baglås"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L349289>	"feje for din egen dør"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L36654>	"plus at"@da	<http://www.wikidata.org/entity/Q36484>
+<http://www.wikidata.org/entity/L401357>	"goddag mand økseskaft"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L40706>	"godt nytår"@da	<http://www.wikidata.org/entity/Q10319520>
+<http://www.wikidata.org/entity/L41764>	"hestens fødselsdag"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L42212>	"hvem som helst"@da	<http://www.wikidata.org/entity/Q5978303>
+<http://www.wikidata.org/entity/L42980>	"røde hunde"@da	<http://www.wikidata.org/entity/Q5456361>
+<http://www.wikidata.org/entity/L464789>	"bland selv-slik"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L525206>	"spidssnudet frø"@da	<http://www.wikidata.org/entity/Q503992>
+<http://www.wikidata.org/entity/L525225>	"grønbroget tudse"@da	<http://www.wikidata.org/entity/Q503992>
+<http://www.wikidata.org/entity/L580557>	"tomme tønder buldrer mest"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L583339>	"vaske op"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L584698>	"Odense Boldklub"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L588402>	"ude i kulissen"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L588409>	"gå rigtigt galt"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L588413>	"syv-syv fordeling"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L588414>	"ni-syv fordeling"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L589763>	"få kolde fødder"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589764>	"få nok"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589765>	"give baghjul"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L589766>	"slå hovedet på sømmet"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589768>	"knyt sylten"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589769>	"tak for kaffe"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589770>	"knald i låget"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589771>	"fis i kasketten"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589772>	"ude og sejle"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589773>	"få en olfert"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589774>	"tage benene på nakken"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589775>	"hård nyser"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L589776>	"slå under bæltestedet"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589777>	"få huden fuld"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589778>	"få en på sinkadusen"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L589779>	"man skal ikke kaste med sten når man selv bor i et glashus"@da	<http://www.wikidata.org/entity/Q35102>
+<http://www.wikidata.org/entity/L590612>	"sortplettet blåfugl"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L590620>	"tykskallet malermusling"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L590625>	"grøn kølleguldsmed"@da	<http://www.wikidata.org/entity/Q1401131>
+<http://www.wikidata.org/entity/L591359>	"gal i skralden"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L591360>	"ond i sulet"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L592109>	"sove i timen"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L593074>	"røven af fjerde division"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L613634>	"Brandts flagermus"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L613635>	"Bechsteins flagermus"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L613649>	"bredøret flagermus"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L613651>	"langøret flagermus"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L618836>	"have hovedet under armen"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L618837>	"skåret i dørren"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L618839>	"dum i nakken"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L620414>	"pøj pøj"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L621266>	"tage noget i stiv arm"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L622164>	"tage hatten af for noget"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L623317>	"tømme ryggen"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L623407>	"få hovedet ud af røven"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L623408>	"kæmpe røven ud af bukserne"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L630834>	"i lang tid"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630835>	"i dag"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630836>	"i morgen"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630837>	"i aften"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630838>	"i morges"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L630839>	"i aftes"@da	<http://www.wikidata.org/entity/Q1469454>
+<http://www.wikidata.org/entity/L630840>	"i går morges"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630841>	"i går aftes"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630842>	"i morgen aften"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630843>	"i morgen formiddag"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630844>	"i morgen eftermiddag"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L630845>	"i morgen tidlig"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L673697>	"New York"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L680009>	"tik tak"@da	<http://www.wikidata.org/entity/Q170239>
+<http://www.wikidata.org/entity/L682910>	"somme tider"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L684734>	"ad hoc"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L689005>	"a la"@da	<http://www.wikidata.org/entity/Q4833830>
+<http://www.wikidata.org/entity/L689192>	"quiche lorraine"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L689193>	"status quo"@da	<http://www.wikidata.org/entity/Q1084>
+<http://www.wikidata.org/entity/L704506>	"snakke fanden et øre af"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L706551>	"træde i spinaten"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L706585>	"gå op i hat og briller"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L706586>	"gå sin skæve gang"@da	<http://www.wikidata.org/entity/Q184511>
+<http://www.wikidata.org/entity/L713719>	"hold kæft"@da	<http://www.wikidata.org/entity/Q83034>
+<http://www.wikidata.org/entity/L740106>	"male sig selv op i et hjørne"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L743669>	"Valby Bakke"@da	<http://www.wikidata.org/entity/Q147276>
+<http://www.wikidata.org/entity/L942514>	"frisk som en havørn"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L984316>	"til stede"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L988539>	"lade vand"@da	<http://www.wikidata.org/entity/Q24905>
+<http://www.wikidata.org/entity/L988655>	"gå i ged"@da	<http://www.wikidata.org/entity/Q1778442>
+<http://www.wikidata.org/entity/L988658>	"gå i ged"@da	<http://www.wikidata.org/entity/Q187931>
+<http://www.wikidata.org/entity/L994937>	"per se"@da	<http://www.wikidata.org/entity/Q380057>
+<http://www.wikidata.org/entity/L999027>	"Vor Herre"@da	<http://www.wikidata.org/entity/Q147276>
