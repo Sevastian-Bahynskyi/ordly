@@ -27,8 +27,10 @@
     },
     "target": "april",
     "en": "We are on vacation in April.",
-    "ru": "Мы в отпуске в апреле.",
-    "orders": []
+    "ru": "У нас отпуск в апреле.",
+    "orders": [
+     "I april holder vi ferie."
+    ]
    },
    {
     "slots": {
@@ -36,8 +38,10 @@
     },
     "target": "april",
     "en": "They are on vacation in April.",
-    "ru": "Они в отпуске в апреле.",
-    "orders": []
+    "ru": "У них отпуск в апреле.",
+    "orders": [
+     "I april holder de ferie."
+    ]
    },
    {
     "slots": {
@@ -45,8 +49,10 @@
     },
     "target": "april",
     "en": "My brother is on vacation in April.",
-    "ru": "Мой брат в отпуске в апреле.",
-    "orders": []
+    "ru": "У моего брата отпуск в апреле.",
+    "orders": [
+     "I april holder min bror ferie."
+    ]
    }
   ]
  },
@@ -79,7 +85,11 @@
     "target": "stilling",
     "en": "She has gotten a new position at the company.",
     "ru": "Она получила новую должность в компании.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "post",
+     "position"
+    ]
    },
    {
     "slots": {
@@ -88,7 +98,11 @@
     "target": "stilling",
     "en": "My neighbor has gotten a new position at the company.",
     "ru": "Мой сосед получил новую должность в компании.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "post",
+     "position"
+    ]
    },
    {
     "slots": {
@@ -97,7 +111,11 @@
     "target": "stilling",
     "en": "He has gotten a new position at the company.",
     "ru": "Он получил новую должность в компании.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "post",
+     "position"
+    ]
    }
   ]
  },
@@ -105,20 +123,20 @@
   "lemma": "stilling",
   "kind": "word",
   "sense_id": "5ab814ab-96f1-5a92-91ba-abfe495e956b",
-  "level": "A2",
+  "level": "B1",
   "situation": "leisure",
   "grammar": "noun-meaning",
-  "frame": "{subject} er i en god {target}.",
+  "frame": "Efter ti træk har {subject} en stærk {target} på brættet.",
   "slots": {
    "subject": [
     {
-     "da": "Holdet"
+     "da": "min bror"
     },
     {
-     "da": "Vores hold"
+     "da": "hvid"
     },
     {
-     "da": "Det andet hold"
+     "da": "computeren"
     }
    ]
   },
@@ -128,9 +146,11 @@
      "subject": 0
     },
     "target": "stilling",
-    "en": "The team is in a good position.",
-    "ru": "Команда в хорошем положении.",
-    "orders": [],
+    "en": "After ten moves, my brother has a strong position on the board.",
+    "ru": "После десяти ходов у моего брата сильная позиция на доске.",
+    "orders": [
+     "Min bror har en stærk stilling på brættet efter ti træk."
+    ],
     "accepted": [
      "position"
     ]
@@ -140,9 +160,11 @@
      "subject": 1
     },
     "target": "stilling",
-    "en": "Our team is in a good position.",
-    "ru": "Наша команда в хорошем положении.",
-    "orders": [],
+    "en": "After ten moves, White has a strong position on the board.",
+    "ru": "После десяти ходов у белых сильная позиция на доске.",
+    "orders": [
+     "Hvid har en stærk stilling på brættet efter ti træk."
+    ],
     "accepted": [
      "position"
     ]
@@ -152,9 +174,11 @@
      "subject": 2
     },
     "target": "stilling",
-    "en": "The other team is in a good position.",
-    "ru": "Другая команда в хорошем положении.",
-    "orders": [],
+    "en": "After ten moves, the computer has a strong position on the board.",
+    "ru": "После десяти ходов у компьютера сильная позиция на доске.",
+    "orders": [
+     "Computeren har en stærk stilling på brættet efter ti træk."
+    ],
     "accepted": [
      "position"
     ]
@@ -190,7 +214,9 @@
     "target": "trods",
     "en": "We went for a walk despite the rain.",
     "ru": "Мы пошли гулять, несмотря на дождь.",
-    "orders": []
+    "orders": [
+     "Trods regnen gik vi en tur."
+    ]
    },
    {
     "slots": {
@@ -199,7 +225,9 @@
     "target": "trods",
     "en": "He went for a walk despite the rain.",
     "ru": "Он пошёл гулять, несмотря на дождь.",
-    "orders": []
+    "orders": [
+     "Trods regnen gik han en tur."
+    ]
    },
    {
     "slots": {
@@ -208,7 +236,9 @@
     "target": "trods",
     "en": "They went for a walk despite the rain.",
     "ru": "Они пошли гулять, несмотря на дождь.",
-    "orders": []
+    "orders": [
+     "Trods regnen gik de en tur."
+    ]
    }
   ]
  },
@@ -241,7 +271,10 @@
     "target": "trods",
     "en": "She did it out of pure defiance.",
     "ru": "Она сделала это из чистого упрямства.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stædighed"
+    ]
    },
    {
     "slots": {
@@ -250,7 +283,10 @@
     "target": "trods",
     "en": "The boy did it out of pure defiance.",
     "ru": "Мальчик сделал это из чистого упрямства.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stædighed"
+    ]
    },
    {
     "slots": {
@@ -259,7 +295,10 @@
     "target": "trods",
     "en": "The child did it out of pure defiance.",
     "ru": "Ребёнок сделал это из чистого упрямства.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "stædighed"
+    ]
    }
   ]
  },
@@ -325,13 +364,13 @@
   "slots": {
    "pair": [
     {
-     "da": "de to huse"
+     "da": "de to jakker"
     },
     {
-     "da": "søstrene"
+     "da": "de to telefoner"
     },
     {
-     "da": "prisen på de to produkter"
+     "da": "priserne i de to butikker"
     }
    ]
   },
@@ -341,8 +380,8 @@
      "pair": 0
     },
     "target": "forskel",
-    "en": "There is a big difference between the two houses.",
-    "ru": "Между двумя домами есть большая разница.",
+    "en": "There is a big difference between the two jackets.",
+    "ru": "Между двумя куртками большая разница.",
     "orders": []
    },
    {
@@ -350,8 +389,8 @@
      "pair": 1
     },
     "target": "forskel",
-    "en": "There is a big difference between the sisters.",
-    "ru": "Между сёстрами есть большая разница.",
+    "en": "There is a big difference between the two phones.",
+    "ru": "Между двумя телефонами большая разница.",
     "orders": []
    },
    {
@@ -359,8 +398,8 @@
      "pair": 2
     },
     "target": "forskel",
-    "en": "There is a big difference in the price of the two products.",
-    "ru": "Есть большая разница в цене двух товаров.",
+    "en": "There is a big difference between the prices in the two shops.",
+    "ru": "Между ценами в двух магазинах большая разница.",
     "orders": []
    }
   ]
@@ -372,7 +411,7 @@
   "level": "A1",
   "situation": "family",
   "grammar": "noun-meaning",
-  "frame": "{subject} blev født i {target}.",
+  "frame": "{subject} er født i {target}.",
   "slots": {
    "subject": [
     {
@@ -423,7 +462,7 @@
   "level": "B1",
   "situation": "work",
   "grammar": "verb-meaning",
-  "frame": "{subject} {target} en aftale med leverandøren.",
+  "frame": "{subject} har {target} en aftale med leverandøren.",
   "slots": {
    "subject": [
     {
@@ -442,28 +481,37 @@
     "slots": {
      "subject": 0
     },
-    "target": "indgår",
-    "en": "The company enters into an agreement with the supplier.",
-    "ru": "Компания заключает соглашение с поставщиком.",
-    "orders": []
+    "target": "indgået",
+    "en": "The company has entered into an agreement with the supplier.",
+    "ru": "Компания заключила соглашение с поставщиком.",
+    "orders": [],
+    "accepted": [
+     "sluttet"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "indgår",
-    "en": "The business enters into an agreement with the supplier.",
-    "ru": "Предприятие заключает соглашение с поставщиком.",
-    "orders": []
+    "target": "indgået",
+    "en": "The business has entered into an agreement with the supplier.",
+    "ru": "Предприятие заключило соглашение с поставщиком.",
+    "orders": [],
+    "accepted": [
+     "sluttet"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
-    "target": "indgår",
-    "en": "The municipality enters into an agreement with the supplier.",
-    "ru": "Муниципалитет заключает соглашение с поставщиком.",
-    "orders": []
+    "target": "indgået",
+    "en": "The municipality has entered into an agreement with the supplier.",
+    "ru": "Муниципалитет заключил соглашение с поставщиком.",
+    "orders": [],
+    "accepted": [
+     "sluttet"
+    ]
    }
   ]
  },
@@ -598,7 +646,9 @@
     "target": "egentlig",
     "en": "Actually, I would quite like to travel abroad.",
     "ru": "На самом деле я бы с удовольствием поехал за границу.",
-    "orders": [],
+    "orders": [
+     "Egentlig vil jeg gerne rejse til udlandet."
+    ],
     "accepted": [
      "faktisk"
     ]
@@ -610,7 +660,9 @@
     "target": "egentlig",
     "en": "Actually, she would quite like to travel abroad.",
     "ru": "На самом деле она бы с удовольствием поехала за границу.",
-    "orders": [],
+    "orders": [
+     "Egentlig vil hun gerne rejse til udlandet."
+    ],
     "accepted": [
      "faktisk"
     ]
@@ -622,7 +674,9 @@
     "target": "egentlig",
     "en": "Actually, we would quite like to travel abroad.",
     "ru": "На самом деле мы бы с удовольствием поехали за границу.",
-    "orders": [],
+    "orders": [
+     "Egentlig vil vi gerne rejse til udlandet."
+    ],
     "accepted": [
      "faktisk"
     ]
@@ -634,57 +688,63 @@
   "kind": "word",
   "sense_id": "17fb9932-3cd0-5baf-b4bc-89281f54547b",
   "level": "B1",
-  "situation": "abstract",
-  "grammar": "adjective-agreement",
-  "frame": "Det er ikke den {target} {noun}.",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "frame": "Det {target} arbejde begynder først {time}.",
   "slots": {
-   "noun": [
+   "time": [
     {
-     "da": "grund"
+     "da": "i morgen"
     },
     {
-     "da": "årsag"
+     "da": "efter frokost"
     },
     {
-     "da": "løsning"
+     "da": "på mandag"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "noun": 0
+     "time": 0
     },
     "target": "egentlige",
-    "en": "That is not the real reason.",
-    "ru": "Это не настоящая причина.",
+    "en": "The actual work only starts tomorrow.",
+    "ru": "Настоящая работа начинается только завтра.",
     "orders": [],
     "accepted": [
-     "sande"
+     "rigtige",
+     "virkelige",
+     "faktiske"
     ]
    },
    {
     "slots": {
-     "noun": 1
+     "time": 1
     },
     "target": "egentlige",
-    "en": "That is not the real cause.",
-    "ru": "Это не истинная причина.",
+    "en": "The actual work only starts after lunch.",
+    "ru": "Настоящая работа начинается только после обеда.",
     "orders": [],
     "accepted": [
-     "sande"
+     "rigtige",
+     "virkelige",
+     "faktiske"
     ]
    },
    {
     "slots": {
-     "noun": 2
+     "time": 2
     },
     "target": "egentlige",
-    "en": "That is not the real solution.",
-    "ru": "Это не настоящее решение.",
+    "en": "The actual work only starts on Monday.",
+    "ru": "Настоящая работа начинается только в понедельник.",
     "orders": [],
     "accepted": [
-     "sande"
+     "rigtige",
+     "virkelige",
+     "faktiske"
     ]
    }
   ]
@@ -715,35 +775,96 @@
     "slots": {
      "subject": 0
     },
-    "target": "klarer",
-    "en": "She handles the exam without any problems.",
-    "ru": "Она справляется с экзаменом без проблем.",
-    "orders": []
+    "target": "klarede",
+    "en": "She got through the exam without any problems.",
+    "ru": "Она без проблем справилась с экзаменом.",
+    "orders": [],
+    "accepted": [
+     "bestod"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "klarer",
-    "en": "He handles the exam without any problems.",
-    "ru": "Он справляется с экзаменом без проблем.",
-    "orders": []
+    "target": "klarede",
+    "en": "He got through the exam without any problems.",
+    "ru": "Он без проблем справился с экзаменом.",
+    "orders": [],
+    "accepted": [
+     "bestod"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
-    "target": "klarer",
-    "en": "My daughter handles the exam without any problems.",
-    "ru": "Моя дочь справляется с экзаменом без проблем.",
-    "orders": []
+    "target": "klarede",
+    "en": "My daughter got through the exam without any problems.",
+    "ru": "Моя дочь без проблем справилась с экзаменом.",
+    "orders": [],
+    "accepted": [
+     "bestod"
+    ]
    }
   ]
  },
  {
-  "sense_id": "9b5b28fd-6668-503c-a9c8-e5d3d1574ebb",
   "lemma": "klare",
-  "skip": "klare 'to clear up (of weather)' is idiomatic mainly as the particle verb klare op; I could not confidently write a natural sentence using bare klare (without op) for weather clearing, and op is not offered as a separate lemma here. Skipping rather than risking an unnatural sentence."
+  "sense_id": "9b5b28fd-6668-503c-a9c8-e5d3d1574ebb",
+  "kind": "word",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "particle-verbs",
+  "frame": "Det {target} op {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "i eftermiddag"
+    },
+    {
+     "da": "i morgen"
+    },
+    {
+     "da": "efter frokost"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "klarer",
+    "en": "It will clear up this afternoon.",
+    "ru": "Сегодня во второй половине дня прояснится.",
+    "orders": [
+     "I eftermiddag klarer det op."
+    ]
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "klarer",
+    "en": "It will clear up tomorrow.",
+    "ru": "Завтра прояснится.",
+    "orders": [
+     "I morgen klarer det op."
+    ]
+   },
+   {
+    "slots": {
+     "time": 2
+    },
+    "target": "klarede",
+    "en": "It cleared up after lunch.",
+    "ru": "После обеда прояснилось.",
+    "orders": [
+     "Efter frokost klarede det op."
+    ]
+   }
+  ]
  },
  {
   "lemma": "afgørende",
@@ -772,27 +893,39 @@
      "subject": 0
     },
     "target": "afgørende",
-    "en": "His effort was decisive for the result.",
-    "ru": "Его усилия были решающими для результата.",
-    "orders": []
+    "en": "His effort was crucial to the result.",
+    "ru": "Его усилия имели решающее значение для результата.",
+    "orders": [],
+    "accepted": [
+     "altafgørende",
+     "udslagsgivende"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
     "target": "afgørende",
-    "en": "This decision was decisive for the result.",
-    "ru": "Это решение было решающим для результата.",
-    "orders": []
+    "en": "This decision was crucial to the result.",
+    "ru": "Это решение имело решающее значение для результата.",
+    "orders": [],
+    "accepted": [
+     "altafgørende",
+     "udslagsgivende"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
     "target": "afgørende",
-    "en": "The weather was decisive for the result.",
-    "ru": "Погода была решающей для результата.",
-    "orders": []
+    "en": "The weather was crucial to the result.",
+    "ru": "Погода имела решающее значение для результата.",
+    "orders": [],
+    "accepted": [
+     "altafgørende",
+     "udslagsgivende"
+    ]
    }
   ]
  },
@@ -854,7 +987,7 @@
   "level": "B1",
   "situation": "leisure",
   "grammar": "noun-meaning",
-  "frame": "{subject} opfører et berømt {target} af komponisten.",
+  "frame": "{subject} opfører et berømt {target} af en dansk komponist.",
   "slots": {
    "subject": [
     {
@@ -864,7 +997,7 @@
      "da": "Koret"
     },
     {
-     "da": "Symfoniorkestret"
+     "da": "Musikerne"
     }
    ]
   },
@@ -874,27 +1007,36 @@
      "subject": 0
     },
     "target": "værk",
-    "en": "The orchestra performs a famous work by the composer.",
-    "ru": "Оркестр исполняет знаменитое произведение композитора.",
-    "orders": []
+    "en": "The orchestra performs a famous work by a Danish composer.",
+    "ru": "Оркестр исполняет знаменитое произведение датского композитора.",
+    "orders": [],
+    "accepted": [
+     "stykke"
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
     "target": "værk",
-    "en": "The choir performs a famous work by the composer.",
-    "ru": "Хор исполняет знаменитое произведение композитора.",
-    "orders": []
+    "en": "The choir performs a famous work by a Danish composer.",
+    "ru": "Хор исполняет знаменитое произведение датского композитора.",
+    "orders": [],
+    "accepted": [
+     "stykke"
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
     "target": "værk",
-    "en": "The symphony orchestra performs a famous work by the composer.",
-    "ru": "Симфонический оркестр исполняет знаменитое произведение композитора.",
-    "orders": []
+    "en": "The musicians perform a famous work by a Danish composer.",
+    "ru": "Музыканты исполняют знаменитое произведение датского композитора.",
+    "orders": [],
+    "accepted": [
+     "stykke"
+    ]
    }
   ]
  },
@@ -902,20 +1044,20 @@
   "lemma": "værk",
   "kind": "word",
   "sense_id": "f863a220-482b-5a58-8dec-a09a17357e03",
-  "level": "A2",
+  "level": "B1",
   "situation": "body-health",
   "grammar": "noun-meaning",
-  "frame": "{subject} har {target} i benene efter løbeturen.",
+  "frame": "{subject} har {target} i knæene, når det er koldt.",
   "slots": {
    "subject": [
     {
-     "da": "Jeg"
+     "da": "Min bedstemor"
     },
     {
-     "da": "Hun"
+     "da": "Min far"
     },
     {
-     "da": "Han"
+     "da": "Den gamle mand"
     }
    ]
   },
@@ -925,10 +1067,11 @@
      "subject": 0
     },
     "target": "værk",
-    "en": "I have aches in my legs after the run.",
-    "ru": "У меня ломота в ногах после пробежки.",
+    "en": "My grandmother has aches in her knees when it is cold.",
+    "ru": "У моей бабушки ломота в коленях, когда холодно.",
     "orders": [],
     "accepted": [
+     "ondt",
      "smerter"
     ]
    },
@@ -937,10 +1080,11 @@
      "subject": 1
     },
     "target": "værk",
-    "en": "She has aches in her legs after the run.",
-    "ru": "У неё ломота в ногах после пробежки.",
+    "en": "My father has aches in his knees when it is cold.",
+    "ru": "У моего отца ломота в коленях, когда холодно.",
     "orders": [],
     "accepted": [
+     "ondt",
      "smerter"
     ]
    },
@@ -949,10 +1093,11 @@
      "subject": 2
     },
     "target": "værk",
-    "en": "He has aches in his legs after the run.",
-    "ru": "У него ломота в ногах после пробежки.",
+    "en": "The old man has aches in his knees when it is cold.",
+    "ru": "У старика ломота в коленях, когда холодно.",
     "orders": [],
     "accepted": [
+     "ondt",
      "smerter"
     ]
    }
@@ -989,7 +1134,8 @@
     "ru": "Я смотрю в окно.",
     "orders": [],
     "accepted": [
-     "ser"
+     "ser",
+     "kikker"
     ]
    },
    {
@@ -1001,7 +1147,8 @@
     "ru": "Кошка смотрит в окно.",
     "orders": [],
     "accepted": [
-     "ser"
+     "ser",
+     "kikker"
     ]
    },
    {
@@ -1013,7 +1160,8 @@
     "ru": "Она смотрит в окно.",
     "orders": [],
     "accepted": [
-     "ser"
+     "ser",
+     "kikker"
     ]
    }
   ]
@@ -1073,7 +1221,8 @@
     "ru": "Машина больше не работает.",
     "orders": [],
     "accepted": [
-     "virker"
+     "virker",
+     "kører"
     ]
    }
   ]
@@ -1085,7 +1234,7 @@
   "level": "A2",
   "situation": "body-health",
   "grammar": "verb-meaning",
-  "frame": "{subject} {target} smerten i ryggen.",
+  "frame": "{subject} {target} stadig smerten i ryggen.",
   "slots": {
    "subject": [
     {
@@ -1105,8 +1254,8 @@
      "subject": 0
     },
     "target": "mærker",
-    "en": "I feel the pain in my back.",
-    "ru": "Я чувствую боль в спине.",
+    "en": "I still feel the pain in my back.",
+    "ru": "Я всё ещё чувствую боль в спине.",
     "orders": [],
     "accepted": [
      "føler"
@@ -1117,8 +1266,8 @@
      "subject": 1
     },
     "target": "mærker",
-    "en": "He feels the pain in his back.",
-    "ru": "Он чувствует боль в спине.",
+    "en": "He still feels the pain in his back.",
+    "ru": "Он всё ещё чувствует боль в спине.",
     "orders": [],
     "accepted": [
      "føler"
@@ -1129,8 +1278,8 @@
      "subject": 2
     },
     "target": "mærker",
-    "en": "She feels the pain in her back.",
-    "ru": "Она чувствует боль в спине.",
+    "en": "She still feels the pain in her back.",
+    "ru": "Она всё ещё чувствует боль в спине.",
     "orders": [],
     "accepted": [
      "føler"
@@ -1167,7 +1316,11 @@
     "target": "mærke",
     "en": "She always buys clothes from a well-known brand.",
     "ru": "Она всегда покупает одежду известной марки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "varemærke",
+     "brand"
+    ]
    },
    {
     "slots": {
@@ -1176,7 +1329,11 @@
     "target": "mærke",
     "en": "My sister always buys clothes from a well-known brand.",
     "ru": "Моя сестра всегда покупает одежду известной марки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "varemærke",
+     "brand"
+    ]
    },
    {
     "slots": {
@@ -1185,7 +1342,11 @@
     "target": "mærke",
     "en": "They always buy clothes from a well-known brand.",
     "ru": "Они всегда покупают одежду известной марки.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "varemærke",
+     "brand"
+    ]
    }
   ]
  },
@@ -1247,14 +1408,14 @@
   "level": "B1",
   "situation": "weather-nature",
   "grammar": "noun-meaning",
-  "frame": "Videnskabsmænd undersøger {aspect} på {target}.",
+  "frame": "Forskere undersøger {aspect} på {target}.",
   "slots": {
    "aspect": [
     {
      "da": "klimaet"
     },
     {
-     "da": "vejret"
+     "da": "livet"
     },
     {
      "da": "temperaturen"
@@ -1269,16 +1430,22 @@
     "target": "Jorden",
     "en": "Scientists are studying the climate on Earth.",
     "ru": "Учёные изучают климат на Земле.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "kloden"
+    ]
    },
    {
     "slots": {
      "aspect": 1
     },
     "target": "Jorden",
-    "en": "Scientists are studying the weather on Earth.",
-    "ru": "Учёные изучают погоду на Земле.",
-    "orders": []
+    "en": "Scientists are studying life on Earth.",
+    "ru": "Учёные изучают жизнь на Земле.",
+    "orders": [],
+    "accepted": [
+     "kloden"
+    ]
    },
    {
     "slots": {
@@ -1287,7 +1454,10 @@
     "target": "Jorden",
     "en": "Scientists are studying the temperature on Earth.",
     "ru": "Учёные изучают температуру на Земле.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "kloden"
+    ]
    }
   ]
  },
@@ -1322,7 +1492,9 @@
     "ru": "Гостиная красивая.",
     "orders": [],
     "accepted": [
-     "flot"
+     "flot",
+     "køn",
+     "pæn"
     ]
    },
    {
@@ -1334,7 +1506,9 @@
     "ru": "Кухня красивая.",
     "orders": [],
     "accepted": [
-     "flot"
+     "flot",
+     "kønt",
+     "pænt"
     ]
    },
    {
@@ -1346,7 +1520,9 @@
     "ru": "Занавески красивые.",
     "orders": [],
     "accepted": [
-     "flotte"
+     "flotte",
+     "kønne",
+     "pæne"
     ]
    }
   ]
@@ -1357,48 +1533,54 @@
   "sense_id": "2ecc3a62-14d6-5031-bcd8-246774b316a2",
   "level": "A2",
   "situation": "shopping",
-  "grammar": "noun-meaning",
-  "frame": "{subject} har {target} i denne uge.",
+  "grammar": "noun-definite",
+  "frame": "{target} af {product} stiger om sommeren.",
   "slots": {
-   "subject": [
+   "product": [
     {
-     "da": "Tøjbutikken"
+     "da": "is"
     },
     {
-     "da": "Supermarkedet"
+     "da": "solcreme"
     },
     {
-     "da": "Boghandlen"
+     "da": "badetøj"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "product": 0
     },
-    "target": "salg",
-    "en": "The clothing store has a sale this week.",
-    "ru": "В магазине одежды распродажа на этой неделе.",
-    "orders": []
+    "target": "salget",
+    "en": "Sales of ice cream go up in the summer.",
+    "ru": "Продажи мороженого растут летом.",
+    "orders": [
+     "Om sommeren stiger salget af is."
+    ]
    },
    {
     "slots": {
-     "subject": 1
+     "product": 1
     },
-    "target": "salg",
-    "en": "The supermarket has a sale this week.",
-    "ru": "В супермаркете распродажа на этой неделе.",
-    "orders": []
+    "target": "salget",
+    "en": "Sales of sunscreen go up in the summer.",
+    "ru": "Продажи солнцезащитного крема растут летом.",
+    "orders": [
+     "Om sommeren stiger salget af solcreme."
+    ]
    },
    {
     "slots": {
-     "subject": 2
+     "product": 2
     },
-    "target": "salg",
-    "en": "The bookshop has a sale this week.",
-    "ru": "В книжном магазине распродажа на этой неделе.",
-    "orders": []
+    "target": "salget",
+    "en": "Sales of swimwear go up in the summer.",
+    "ru": "Продажи купальников растут летом.",
+    "orders": [
+     "Om sommeren stiger salget af badetøj."
+    ]
    }
   ]
  },
@@ -1408,18 +1590,18 @@
   "sense_id": "d0e59022-41e0-596b-80d8-d60c0b8a6914",
   "level": "A2",
   "situation": "weather-nature",
-  "grammar": "noun-meaning",
-  "frame": "{subject} passer godt på sin {target}.",
+  "grammar": "noun-plural",
+  "frame": "{subject} fodrer sine {target} i reden.",
   "slots": {
    "subject": [
     {
-     "da": "Løven"
+     "da": "Fuglen"
     },
     {
-     "da": "Bjørnen"
+     "da": "Den lille fugl"
     },
     {
-     "da": "Ræven"
+     "da": "Mågen"
     }
    ]
   },
@@ -1428,27 +1610,27 @@
     "slots": {
      "subject": 0
     },
-    "target": "unge",
-    "en": "The lion takes good care of her cub.",
-    "ru": "Львица хорошо заботится о своём детёныше.",
+    "target": "unger",
+    "en": "The bird feeds its young in the nest.",
+    "ru": "Птица кормит своих птенцов в гнезде.",
     "orders": []
    },
    {
     "slots": {
      "subject": 1
     },
-    "target": "unge",
-    "en": "The bear takes good care of her cub.",
-    "ru": "Медведица хорошо заботится о своём детёныше.",
+    "target": "unger",
+    "en": "The little bird feeds its young in the nest.",
+    "ru": "Маленькая птичка кормит своих птенцов в гнезде.",
     "orders": []
    },
    {
     "slots": {
      "subject": 2
     },
-    "target": "unge",
-    "en": "The fox takes good care of her cub.",
-    "ru": "Лисица хорошо заботится о своём детёныше.",
+    "target": "unger",
+    "en": "The gull feeds its young in the nest.",
+    "ru": "Чайка кормит своих птенцов в гнезде.",
     "orders": []
    }
   ]
@@ -1481,7 +1663,7 @@
     },
     "target": "unger",
     "en": "They have three kids at home.",
-    "ru": "У них дома трое сорванцов.",
+    "ru": "У них дома трое ребятишек.",
     "orders": [],
     "accepted": [
      "børn"
@@ -1493,7 +1675,7 @@
     },
     "target": "unger",
     "en": "The neighbors have three kids at home.",
-    "ru": "У соседей дома трое сорванцов.",
+    "ru": "У соседей дома трое ребятишек.",
     "orders": [],
     "accepted": [
      "børn"
@@ -1505,7 +1687,7 @@
     },
     "target": "unger",
     "en": "My friends have three kids at home.",
-    "ru": "У моих друзей дома трое сорванцов.",
+    "ru": "У моих друзей дома трое ребятишек.",
     "orders": [],
     "accepted": [
      "børn"
@@ -1542,7 +1724,10 @@
     "target": "oplysninger",
     "en": "We need more information.",
     "ru": "Нам нужно больше сведений.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "informationer"
+    ]
    },
    {
     "slots": {
@@ -1551,7 +1736,10 @@
     "target": "oplysninger",
     "en": "The police need more information.",
     "ru": "Полиции нужно больше сведений.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "informationer"
+    ]
    },
    {
     "slots": {
@@ -1560,7 +1748,10 @@
     "target": "oplysninger",
     "en": "The bank needs more information.",
     "ru": "Банку нужно больше сведений.",
-    "orders": []
+    "orders": [],
+    "accepted": [
+     "informationer"
+    ]
    }
   ]
  },
@@ -1835,17 +2026,17 @@
   "level": "B1",
   "situation": "society",
   "grammar": "noun-meaning",
-  "frame": "{subject} har {target} til at træffe beslutninger.",
+  "frame": "{subject} misbrugte sin {target}.",
   "slots": {
    "subject": [
     {
-     "da": "Direktøren"
+     "da": "Politibetjenten"
     },
     {
-     "da": "Lederen"
+     "da": "Borgmesteren"
     },
     {
-     "da": "Bestyrelsen"
+     "da": "Chefen"
     }
    ]
   },
@@ -1855,11 +2046,12 @@
      "subject": 0
     },
     "target": "myndighed",
-    "en": "The director has the authority to make decisions.",
-    "ru": "Директор обладает полномочиями принимать решения.",
+    "en": "The police officer abused his authority.",
+    "ru": "Полицейский злоупотребил своими полномочиями.",
     "orders": [],
     "accepted": [
-     "magt"
+     "magt",
+     "autoritet"
     ]
    },
    {
@@ -1867,11 +2059,12 @@
      "subject": 1
     },
     "target": "myndighed",
-    "en": "The manager has the authority to make decisions.",
-    "ru": "Руководитель обладает полномочиями принимать решения.",
+    "en": "The mayor abused his authority.",
+    "ru": "Мэр злоупотребил своими полномочиями.",
     "orders": [],
     "accepted": [
-     "magt"
+     "magt",
+     "autoritet"
     ]
    },
    {
@@ -1879,11 +2072,12 @@
      "subject": 2
     },
     "target": "myndighed",
-    "en": "The board has the authority to make decisions.",
-    "ru": "Правление обладает полномочиями принимать решения.",
+    "en": "The boss abused his authority.",
+    "ru": "Начальник злоупотребил своими полномочиями.",
     "orders": [],
     "accepted": [
-     "magt"
+     "magt",
+     "autoritet"
     ]
    }
   ]
@@ -1915,27 +2109,33 @@
      "subject": 0
     },
     "target": "ministeren",
-    "en": "The journalist interviews the minister tonight.",
+    "en": "The journalist is interviewing the minister tonight.",
     "ru": "Журналист берёт интервью у министра сегодня вечером.",
-    "orders": []
+    "orders": [
+     "I aften interviewer journalisten ministeren."
+    ]
    },
    {
     "slots": {
      "subject": 1
     },
     "target": "ministeren",
-    "en": "The radio host interviews the minister tonight.",
+    "en": "The radio host is interviewing the minister tonight.",
     "ru": "Радиоведущий берёт интервью у министра сегодня вечером.",
-    "orders": []
+    "orders": [
+     "I aften interviewer radioværten ministeren."
+    ]
    },
    {
     "slots": {
      "subject": 2
     },
     "target": "ministeren",
-    "en": "The TV host interviews the minister tonight.",
+    "en": "The TV host is interviewing the minister tonight.",
     "ru": "Телеведущий берёт интервью у министра сегодня вечером.",
-    "orders": []
+    "orders": [
+     "I aften interviewer tv-værten ministeren."
+    ]
    }
   ]
  },
@@ -2007,7 +2207,7 @@
      "da": "Månen"
     },
     {
-     "da": "Raketten"
+     "da": "Rumstationen"
     }
    ]
   },
@@ -2018,7 +2218,7 @@
     },
     "target": "bane",
     "en": "The satellite follows a fixed orbit around the Earth.",
-    "ru": "Спутник движется по фиксированной орбите вокруг Земли.",
+    "ru": "Спутник движется по постоянной орбите вокруг Земли.",
     "orders": []
    },
    {
@@ -2027,7 +2227,7 @@
     },
     "target": "bane",
     "en": "The moon follows a fixed orbit around the Earth.",
-    "ru": "Луна движется по фиксированной орбите вокруг Земли.",
+    "ru": "Луна движется по постоянной орбите вокруг Земли.",
     "orders": []
    },
    {
@@ -2035,8 +2235,8 @@
      "subject": 2
     },
     "target": "bane",
-    "en": "The rocket follows a fixed orbit around the Earth.",
-    "ru": "Ракета движется по фиксированной орбите вокруг Земли.",
+    "en": "The space station follows a fixed orbit around the Earth.",
+    "ru": "Космическая станция движется по постоянной орбите вокруг Земли.",
     "orders": []
    }
   ]
@@ -2068,7 +2268,7 @@
      "subject": 0
     },
     "target": "magten",
-    "en": "The government holds the power in the country.",
+    "en": "The government holds power in the country.",
     "ru": "Правительство обладает властью в стране.",
     "orders": []
    },
@@ -2077,7 +2277,7 @@
      "subject": 1
     },
     "target": "magten",
-    "en": "The king holds the power in the country.",
+    "en": "The king holds power in the country.",
     "ru": "Король обладает властью в стране.",
     "orders": []
    },
@@ -2086,7 +2286,7 @@
      "subject": 2
     },
     "target": "magten",
-    "en": "The party holds the power in the country.",
+    "en": "The party holds power in the country.",
     "ru": "Партия обладает властью в стране.",
     "orders": []
    }
