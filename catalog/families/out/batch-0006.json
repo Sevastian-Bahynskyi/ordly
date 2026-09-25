@@ -128,7 +128,7 @@
   "level": "A2",
   "situation": "weather-nature",
   "grammar": "prepositions-other",
-  "frame": "Ifølge {source} bliver det {weather} i morgen.",
+  "frame": "{target} {source} bliver det {weather} i morgen.",
   "slots": {
    "source": [ { "da": "vejrudsigten" }, { "da": "radioen" }, { "da": "nyhederne" } ],
    "weather": [ { "da": "koldt" }, { "da": "varmt" }, { "da": "solrigt" } ]
@@ -233,7 +233,7 @@
   "level": "A1",
   "situation": "leisure",
   "grammar": "prepositions-place",
-  "frame": "{subject} løber omkring {place}.",
+  "frame": "{subject} løber {target} {place}.",
   "slots": {
    "subject": [ { "da": "Børnene" }, { "da": "Hunden" }, { "da": "Vi" } ],
    "place": [ { "da": "huset" }, { "da": "træet" }, { "da": "bordet" } ]
@@ -251,7 +251,7 @@
   "level": "A1",
   "situation": "shopping",
   "grammar": "adverbs",
-  "frame": "{subject} kostede omkring {amount} kroner.",
+  "frame": "{subject} kostede {target} {amount} kroner.",
   "slots": {
    "subject": [ { "da": "Bogen" }, { "da": "Cyklen" }, { "da": "Billetten" } ],
    "amount": [ { "da": "hundrede" }, { "da": "to hundrede" }, { "da": "tres" } ]
@@ -425,7 +425,7 @@
   "level": "A2",
   "situation": "daily-routine",
   "grammar": "verb-meaning",
-  "frame": "{subject} tror, at {clause}.",
+  "frame": "{subject} {target}, at {clause}.",
   "slots": {
    "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
    "clause": [ { "da": "hun kommer for sent" }, { "da": "vejret bliver bedre" }, { "da": "bussen kommer snart" } ]
@@ -599,7 +599,7 @@
   "level": "A2",
   "situation": "work",
   "grammar": "verb-present",
-  "frame": "{subject} arbejder som {profession}.",
+  "frame": "{subject} {target} som {profession}.",
   "slots": {
    "subject": [ { "da": "Jeg" }, { "da": "Min mor" }, { "da": "Han" } ],
    "profession": [ { "da": "lærer" }, { "da": "sygeplejerske" }, { "da": "tømrer" } ]
@@ -652,7 +652,7 @@
   "level": "A1",
   "situation": "transport",
   "grammar": "prepositions-time",
-  "frame": "{subject} kommer først klokken {time}.",
+  "frame": "{subject} kommer {target} klokken {time}.",
   "slots": {
    "subject": [ { "da": "Toget" }, { "da": "Bussen" }, { "da": "Færgen" } ],
    "time": [ { "da": "ni" }, { "da": "ti" }, { "da": "otte" } ]
