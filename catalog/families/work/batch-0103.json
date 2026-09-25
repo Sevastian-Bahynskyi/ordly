@@ -1,0 +1,471 @@
+[
+ {
+  "lemma": "falde i søvn",
+  "kind": "phrase",
+  "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "засыпать",
+  "en": "to fall asleep",
+  "forms": [
+   "fald i søvn",
+   "falde i søvn",
+   "falden i søvn",
+   "falder i søvn",
+   "faldet i søvn",
+   "faldne i søvn",
+   "faldt i søvn"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "fixed-expressions"
+  }
+ },
+ {
+  "lemma": "tage fejl",
+  "kind": "phrase",
+  "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "ошибаться",
+  "en": "to be wrong",
+  "forms": [
+   "tag fejl",
+   "tage fejl",
+   "tagen fejl",
+   "tager fejl",
+   "taget fejl",
+   "tagne fejl",
+   "tog fejl"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "social",
+   "grammar": "fixed-expressions"
+  }
+ },
+ {
+  "lemma": "lægge mærke til",
+  "kind": "phrase",
+  "sense_id": "3b128180-c106-5899-9e52-7ea5453095df",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "замечать",
+  "en": "to notice",
+  "forms": [
+   "lagde mærke til",
+   "lagt mærke til",
+   "lagte mærke til",
+   "læg mærke til",
+   "lægge mærke til",
+   "lægger mærke til"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "fixed-expressions"
+  },
+  "note": "An independent reviewer rejected the previous family: Word order is wrong: 'lagde mærke til vi regnbuen' violates V2 and subordinate clause structure. Correct: 'Da solen skinnede, lagde vi mærke til regnbuen.' The target form 'lagde mærke til' is also incorrectly split and the subject 'vi' is misplaced. This is not a safe model for learners. Incorrect past tense form 'lagte' (should be 'lagde') and wrong word order: 'lagte mærke til vi regnbuen' violates V2 and subordinate clause structure. Correct: 'Da solen skinnede, lagde vi mærke til regnbuen.' The target form is misspelled and the sentence is ungrammatical, making it unsafe to teach. Write a new family that avoids this."
+ },
+ {
+  "lemma": "gå i opfyldelse",
+  "kind": "phrase",
+  "sense_id": "48f176c6-6908-51bc-99af-0e56b09a76f0",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "сбываться",
+  "en": "to come true",
+  "forms": [
+   "gak i opfyldelse",
+   "gik i opfyldelse",
+   "gå i opfyldelse",
+   "gåede i opfyldelse",
+   "gået i opfyldelse",
+   "går i opfyldelse"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "fixed-expressions"
+  },
+  "note": "An independent reviewer rejected the previous family: Adverb placement 'endelig' at the end is unnatural; a native speaker would place it earlier, e.g., 'gik endelig i opfyldelse' or 'endelig gik i opfyldelse'. Adverb placement 'endelig' at the end is unnatural; a native speaker would place it earlier, e.g., 'går endelig i opfyldelse' or 'endelig går i opfyldelse'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "tage for givet",
+  "kind": "phrase",
+  "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "принимать как должное",
+  "en": "to take for granted",
+  "forms": [
+   "tag for givet",
+   "tage for givet",
+   "tagen for givet",
+   "tager for givet",
+   "taget for givet",
+   "tagne for givet",
+   "tog for givet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "fixed-expressions"
+  }
+ },
+ {
+  "lemma": "have til hensigt",
+  "kind": "phrase",
+  "sense_id": "074047ba-6a6e-5a9a-8285-967913997234",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B2",
+  "ru": "намереваться",
+  "en": "to intend",
+  "forms": [
+   "haft til hensigt",
+   "hafte til hensigt",
+   "har til hensigt",
+   "hav til hensigt",
+   "havde til hensigt",
+   "have til hensigt"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "fixed-expressions"
+  }
+ },
+ {
+  "lemma": "finde sted",
+  "kind": "phrase",
+  "sense_id": "207951ee-2e1f-504a-ad23-861f7ac023b5",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "происходить",
+  "en": "to take place",
+  "forms": [
+   "fandt sted",
+   "find sted",
+   "finde sted",
+   "finder sted",
+   "funden sted",
+   "fundet sted",
+   "fundne sted"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "fixed-expressions"
+  },
+  "note": "An independent reviewer rejected the previous family: Word order is ungrammatical: 'finder sted mødet' violates V2 rule; the finite verb must be in second position. Correct: 'finder mødet sted'. This also makes the sentence unnatural and fails to demonstrate the fixed expression correctly, misleading learners. Word order is ungrammatical: 'fandt sted mødet' violates V2 rule. Additionally, the tense is contradictory: 'fandt sted' (past) with 'i næste uge' (next week) is nonsensical. English and Russian translations also mismatch the Danish tense (past vs. future). Write a new family that avoids this."
+ },
+ {
+  "lemma": "i aftes",
+  "kind": "phrase",
+  "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "вчера вечером",
+  "en": "last night",
+  "forms": [
+   "i aftes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "time-dates",
+   "grammar": "prepositions-time"
+  },
+  "note": "An independent reviewer rejected the previous family: 'De talte i telefon i aftes' is not idiomatic Danish; the natural phrasing is 'De talte i telefon i går aftes' or 'De snakkede i telefon i aftes', but 'i aftes' alone with 'talte i telefon' is awkward. Alternatively, 'De talte i telefon i går aftes' would be more natural. Write a new family that avoids this."
+ },
+ {
+  "lemma": "i morgen tidlig",
+  "kind": "phrase",
+  "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "завтра утром",
+  "en": "tomorrow morning",
+  "forms": [
+   "i morgen tidlig"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "prepositions-time"
+  }
+ },
+ {
+  "lemma": "i morgen tidlig",
+  "kind": "phrase",
+  "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "завтра утром",
+  "en": "tomorrow morning",
+  "forms": [
+   "i morgen tidlig"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "prepositions-time"
+  }
+ },
+ {
+  "lemma": "i lang tid",
+  "kind": "phrase",
+  "sense_id": "f2067672-46dd-5991-812b-31170d554097",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "долго",
+  "en": "for a long time",
+  "forms": [
+   "i lang tid"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "prepositions-time"
+  }
+ },
+ {
+  "lemma": "hele tiden",
+  "kind": "phrase",
+  "sense_id": "e8fe2b36-160b-587e-a89d-764c194b360f",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "всё время",
+  "en": "all the time",
+  "forms": [
+   "hele tiden"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "prepositions-time"
+  },
+  "note": "An independent reviewer rejected the previous family: \"hele tiden\" means 'constantly/continuously', not 'all the time since'. The Danish sentence is unnatural because 'hele tiden' clashes with 'siden i morges' — it should be 'lige siden i morges' or similar. The English and Russian translations also misinterpret the meaning. Same issue: 'hele tiden' means 'constantly', not 'all the time since'. The Danish is unnatural with 'siden frokosten'. Translations are wrong. Same issue: 'hele tiden' means 'constantly', not 'all the time since'. The Danish is unnatural with 'siden sidste uge'. Translations are wrong. Write a new family that avoids this."
+ },
+ {
+  "lemma": "heller ikke",
+  "kind": "phrase",
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "тоже не",
+  "en": "neither",
+  "forms": [
+   "heller ikke"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "food-drink",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "heller ikke",
+  "kind": "phrase",
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "тоже не",
+  "en": "neither",
+  "forms": [
+   "heller ikke"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "heller ikke",
+  "kind": "phrase",
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "тоже не",
+  "en": "neither",
+  "forms": [
+   "heller ikke"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "feelings-opinions",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "pleje at",
+  "kind": "phrase",
+  "sense_id": "bf4765cc-8a9f-5cea-9def-6cf10ff1f1ad",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "иметь обыкновение",
+  "en": "to usually do",
+  "forms": [
+   "plej at",
+   "pleje at",
+   "plejede at",
+   "plejer at",
+   "plejet at"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "personal-info",
+   "grammar": "infinitive"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence 'Jeg vil pleje at løbe en tur om morgenen.' is ungrammatical and unnatural because 'pleje at' is a modal-like phrase that does not combine with 'vil' in this way; it means 'I want to usually run', which is nonsensical. The English translation 'I usually go for a run in the morning.' does not match the Danish, which includes 'vil' (want to). The Russian translation 'Обычно я выхожу на пробежку утром.' also omits 'vil'. The sentence does not exercise the infinitive after 'pleje at' correctly because 'pleje at' itself is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure. The Danish sentence 'Jeg vil pleje at læse en bog inden sengetid.' is ungrammatical and unnatural because 'pleje at' does not combine with 'vil' in this way; it means 'I want to usually read a book before bedtime', which is nonsensical. The English translation 'I usually want to read a book before bedtime.' is a literal rendering of the flawed Danish but is unnatural and does not match the intended meaning of 'pleje at'. The Russian translation 'Обычно я хочу прочитать книгу перед сном.' also reflects the flawed structure. The sentence does not correctly exercise the infinitive after 'pleje at' because 'pleje at' is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure. The Danish sentence 'Jeg vil pleje at drikke kaffe efter frokost.' is ungrammatical and unnatural because 'pleje at' does not combine with 'vil' in this way; it means 'I want to usually drink coffee after lunch', which is nonsensical. The English translation 'I usually drink coffee after lunch.' does not match the Danish, which includes 'vil' (want to). The Russian translation 'Обычно я пью кофе после обеда.' also omits 'vil'. The sentence does not correctly exercise the infinitive after 'pleje at' because 'pleje at' is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure. Write a new family that avoids this."
+ },
+ {
+  "lemma": "uden for",
+  "kind": "phrase",
+  "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "за пределами",
+  "en": "outside of",
+  "forms": [
+   "uden for"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "prepositions-place"
+  }
+ },
+ {
+  "lemma": "uden for",
+  "kind": "phrase",
+  "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "за пределами",
+  "en": "outside of",
+  "forms": [
+   "uden for"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "weather-nature",
+   "grammar": "prepositions-place"
+  },
+  "note": "Audit: \"uden for\" must be the preposition with its complement right after it (uden for byen, uden for huset, uden for vinduet); \"vi stod uden for.\" is the adverb, spelled udenfor. Previous attempts also used an unnatural collocation (uden for skovgrænsen)."
+ },
+ {
+  "lemma": "oven på",
+  "kind": "phrase",
+  "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "на, поверх",
+  "en": "on top of",
+  "forms": [
+   "oven på"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "prepositions-place"
+  }
+ },
+ {
+  "lemma": "alle sammen",
+  "kind": "phrase",
+  "sense_id": "379311a2-3a43-5852-b76e-6992597e6fc4",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "все (до одного)",
+  "en": "all (of us/you/them)",
+  "forms": [
+   "alle sammen"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "social",
+   "grammar": "adverbs"
+  },
+  "note": "An independent reviewer rejected the previous family: The phrase 'alle sammen' is placed after the noun, which is unidiomatic and grammatically awkward in Danish. The natural position is immediately after the verb or at the end of the clause, e.g., 'Mine venner kommer alle sammen til festen.' This misplacement also fails to clearly exercise the adverb grammar cell. Same issue as item 1: 'alle sammen' is placed after the noun, which is unidiomatic. Should be 'Dine kolleger kommer alle sammen til festen.' This misplacement fails to clearly exercise the adverb grammar cell. The Danish sentence has the same unidiomatic placement of 'alle sammen' after the noun. Additionally, the English translation uses simple present 'come' instead of present continuous 'are coming', which does not match the Danish present tense used for future meaning. The Russian translation uses 'приходят' (present habitual) instead of future 'придут', and the word order is less natural than 'Все её братья и сёстры придут на вечеринку.' Write a new family that avoids this."
+ },
+ {
+  "lemma": "på forhånd",
+  "kind": "phrase",
+  "sense_id": "4784a291-3cdd-5521-8525-a7bf03022cf5",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "заранее",
+  "en": "in advance",
+  "forms": [
+   "på forhånd"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "adverbs"
+  }
+ },
+ {
+  "lemma": "på grund af",
+  "kind": "phrase",
+  "sense_id": "21832b47-a527-55cb-8226-5c2d0dbf2d73",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "из-за",
+  "en": "because of",
+  "forms": [
+   "på grund af"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "weather-nature",
+   "grammar": "prepositions-other"
+  }
+ }
+]

@@ -1,0 +1,820 @@
+[
+ {
+  "id": "d351dab1-48ae-5ca6-a8d9-10fb67db9d34",
+  "family_id": "f14ea0b6-88a7-5501-a72f-4869ec1a0db1",
+  "lemma": "hedde",
+  "sense": {
+   "ru": "называться, зваться",
+   "en": "to be called"
+  },
+  "level": "A1",
+  "situation": "social",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Hvad {target} {person}?",
+  "variant": {
+   "id": "d351dab1-48ae-5ca6-a8d9-10fb67db9d34",
+   "version": "fd7ecd6226e42c03",
+   "danish": "Hvad hedder din hund?",
+   "target": "hedder",
+   "en": "What is your dog's name?",
+   "ru": "Как зовут вашу собаку?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "83e38d96-ca90-5bf6-b5e7-5bec54b58e93",
+  "family_id": "fb28d3bd-7737-5745-b5da-d73f2156cc9d",
+  "lemma": "spise",
+  "sense": {
+   "ru": "есть",
+   "en": "to eat"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{target} din {meal}!",
+  "variant": {
+   "id": "83e38d96-ca90-5bf6-b5e7-5bec54b58e93",
+   "version": "a26c98caf52e6174",
+   "danish": "Spis din mad!",
+   "target": "Spis",
+   "en": "Eat your food!",
+   "ru": "Ешь свою еду!",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3a228a3d-5306-5d37-a8c0-ea860b82763d",
+  "family_id": "7692e0fc-213f-5c66-8f6b-548448aa6fde",
+  "lemma": "åbne",
+  "sense": {
+   "ru": "открывать",
+   "en": "to open"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "{target} {object}!",
+  "variant": {
+   "id": "3a228a3d-5306-5d37-a8c0-ea860b82763d",
+   "version": "df08674948d29afc",
+   "danish": "Åbn vinduet!",
+   "target": "Åbn",
+   "en": "Open the window!",
+   "ru": "Открой окно!",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e57ac25d-dbe0-5158-b04d-980bdbea7b3b",
+  "family_id": "3d7a5e2c-495f-5e46-bf1a-0485c61b7bd0",
+  "lemma": "tale",
+  "sense": {
+   "ru": "говорить, разговаривать",
+   "en": "to talk, to speak"
+  },
+  "level": "A1",
+  "situation": "social",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Jeg {target} med min {person}.",
+  "variant": {
+   "id": "e57ac25d-dbe0-5158-b04d-980bdbea7b3b",
+   "version": "914e14f3e73a2cf5",
+   "danish": "Jeg taler med min søster.",
+   "target": "taler",
+   "en": "I talk to my sister.",
+   "ru": "Я разговариваю с сестрой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a8a7ecaa-9498-503f-a743-aa1bf9ff6f86",
+  "family_id": "2c6ee449-ee0a-5c0d-bd42-da9e4e61b028",
+  "lemma": "billig",
+  "sense": {
+   "ru": "дешёвый",
+   "en": "cheap"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "{subject} er {target} end {object}.",
+  "variant": {
+   "id": "a8a7ecaa-9498-503f-a743-aa1bf9ff6f86",
+   "version": "c481b20e851073eb",
+   "danish": "Tasken er billigere end min gamle.",
+   "target": "billigere",
+   "en": "The bag is cheaper than my old one.",
+   "ru": "Сумка дешевле моей старой.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7d9bc095-b6f5-5a4c-a7bb-acdf7dd81849",
+  "family_id": "2c725988-59b4-522c-9a96-d77332592975",
+  "lemma": "købe",
+  "sense": {
+   "ru": "покупать",
+   "en": "to buy"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "verb-future",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Jeg {modal} {target} en ny {item} i morgen.",
+  "variant": {
+   "id": "7d9bc095-b6f5-5a4c-a7bb-acdf7dd81849",
+   "version": "f0e6d7f218531ea6",
+   "danish": "Jeg vil købe en ny jakke i morgen.",
+   "target": "købe",
+   "en": "I want to buy a new jacket tomorrow.",
+   "ru": "Я хочу завтра купить новую куртку.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "92da9ab8-5a70-5464-bb58-6e222c9cbb4a",
+  "family_id": "8ee7f5b3-eae9-5855-8d48-31a6148236f0",
+  "lemma": "nogen",
+  "sense": {
+   "ru": "кто-нибудь, кто-то",
+   "en": "someone, anyone"
+  },
+  "level": "B1",
+  "situation": "social",
+  "grammar": "pronouns",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Jeg håber, at {target} vil tage initiativ til at mødes.",
+  "variant": {
+   "id": "92da9ab8-5a70-5464-bb58-6e222c9cbb4a",
+   "version": "5987bd737c415846",
+   "danish": "Jeg håber, at nogle vil tage initiativ til at mødes.",
+   "target": "nogle",
+   "en": "I hope that some people will take the initiative to meet.",
+   "ru": "Я надеюсь, что некоторые проявят инициативу и встретятся.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6407db77-734e-5f1b-b365-f0fb168cd9a1",
+  "family_id": "500c7c12-8b69-5f46-9207-c1011bc90928",
+  "lemma": "ville",
+  "sense": {
+   "ru": "хотел бы",
+   "en": "to want to"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Jeg {target} gerne {activity}.",
+  "variant": {
+   "id": "6407db77-734e-5f1b-b365-f0fb168cd9a1",
+   "version": "79f66f6b74006161",
+   "danish": "Jeg vil gerne prøve at dykke.",
+   "target": "vil",
+   "en": "I would like to try diving.",
+   "ru": "Я бы хотел попробовать дайвинг.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "744f3c8d-1503-5737-9ba2-cd19fccf480c",
+  "family_id": "99ad778a-bd61-5235-b7fb-910d26e88052",
+  "lemma": "glemme",
+  "sense": {
+   "ru": "забывать",
+   "en": "to forget"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Jeg må ikke {target} at {activity}.",
+  "variant": {
+   "id": "744f3c8d-1503-5737-9ba2-cd19fccf480c",
+   "version": "c92547044bb15fa5",
+   "danish": "Jeg må ikke glemme at låse hoveddøren.",
+   "target": "glemme",
+   "en": "I must not forget to lock the front door.",
+   "ru": "Я не должен забыть запереть входную дверь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "c9471ba4-b3c8-500a-adce-68605ce7bb39",
+  "family_id": "95cac525-b939-5a60-8f29-27726db1f4e5",
+  "lemma": "arbejde",
+  "sense": {
+   "ru": "работать",
+   "en": "to work"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "relative-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Virksomheden, {subject} {target}, har netop lanceret et nyt produkt.",
+  "variant": {
+   "id": "c9471ba4-b3c8-500a-adce-68605ce7bb39",
+   "version": "a62f62762daaf0ad",
+   "danish": "Virksomheden, hvor jeg arbejder, har netop lanceret et nyt produkt.",
+   "target": "arbejder",
+   "en": "The company where I work has just launched a new product.",
+   "ru": "Компания, в которой я работаю, только что выпустила новый продукт.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e2255edf-b4b2-5248-a074-2a5d1b84619a",
+  "family_id": "45b89803-4ccc-5fbd-b91f-5caac949f7f8",
+  "lemma": "da",
+  "sense": {
+   "ru": "когда (в прошлом)",
+   "en": "when (in the past)"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{target} {subject} {verb}, {main_clause}.",
+  "variant": {
+   "id": "e2255edf-b4b2-5248-a074-2a5d1b84619a",
+   "version": "fd1f75c667b21172",
+   "danish": "Da min bedstemor boede i udlandet, savnede vi hende meget.",
+   "target": "da",
+   "en": "When my grandmother lived abroad, we missed her a lot.",
+   "ru": "Когда моя бабушка жила за границей, мы очень скучали по ней.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "086d7ddc-a51b-5fa8-917e-b5cc2c0b926f",
+  "family_id": "48f690f4-8796-57ab-a207-966b4d23f081",
+  "lemma": "bo",
+  "sense": {
+   "ru": "жить, проживать",
+   "en": "to live, to reside"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "relative-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Lejligheden, {relative_pronoun} vi {target} i, ligger i centrum.",
+  "variant": {
+   "id": "086d7ddc-a51b-5fa8-917e-b5cc2c0b926f",
+   "version": "945c6c05612a9007",
+   "danish": "Lejligheden, som vi bor i, ligger i centrum.",
+   "target": "bor",
+   "en": "The apartment that we live in is located in the center.",
+   "ru": "Квартира, в которой мы живём, находится в центре.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "be8aeeab-601a-59bd-9d24-686c37f52ea7",
+  "family_id": "1accd370-53db-5575-8688-a63bff547f98",
+  "lemma": "ikke",
+  "sense": {
+   "ru": "не",
+   "en": "not"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "negation",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{subject} har {target} {object} endnu.",
+  "variant": {
+   "id": "be8aeeab-601a-59bd-9d24-686c37f52ea7",
+   "version": "fd78f77e7197fb7b",
+   "danish": "Chefen har ikke sendt fakturaen endnu.",
+   "target": "ikke",
+   "en": "The boss hasn't sent the invoice yet.",
+   "ru": "Начальник ещё не отправил счёт.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a804e187-0f7d-5275-ab04-0bd6bb140d9b",
+  "family_id": "73253960-b96e-569b-be36-ebffa8691128",
+  "lemma": "bekymre sig",
+  "sense": {
+   "ru": "беспокоиться",
+   "en": "to worry"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Min mor {target} altid for meget om os.",
+  "variant": {
+   "id": "a804e187-0f7d-5275-ab04-0bd6bb140d9b",
+   "version": "7eb2bac25ab31dc0",
+   "danish": "Min mor bekymrede sig altid for meget om os.",
+   "target": "bekymrede sig",
+   "en": "My mother always worried too much about us.",
+   "ru": "Моя мама всегда слишком переживала за нас.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "c163039a-5584-55af-94e6-2d72b7ce1f77",
+  "family_id": "24b0d46e-a011-5c28-a3be-252ed72285a7",
+  "lemma": "kunne",
+  "sense": {
+   "ru": "мочь, уметь",
+   "en": "can, to be able to"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Medarbejderen {target} {reason}.",
+  "variant": {
+   "id": "c163039a-5584-55af-94e6-2d72b7ce1f77",
+   "version": "8ae31638bbbf804b",
+   "danish": "Medarbejderen kunne ikke nå deadline.",
+   "target": "kunne",
+   "en": "The employee could not meet the deadline.",
+   "ru": "Сотрудник не смог уложиться в срок.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5b7871eb-10df-596a-9305-d304fa02ee70",
+  "family_id": "59d0f04b-6123-59dc-bfc0-0a873f830ee9",
+  "lemma": "glemme",
+  "sense": {
+   "ru": "забывать",
+   "en": "to forget"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Jeg har {target} {object}.",
+  "variant": {
+   "id": "5b7871eb-10df-596a-9305-d304fa02ee70",
+   "version": "08e820ecd556224f",
+   "danish": "Jeg har glemt at slukke lyset.",
+   "target": "glemt",
+   "en": "I forgot to turn off the light.",
+   "ru": "Я забыл выключить свет.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e1b982dc-bebc-5925-86a5-00e0453c0372",
+  "family_id": "5cbc955a-a7c2-5c61-8e3f-aefea3439bc9",
+  "lemma": "lukke",
+  "sense": {
+   "ru": "закрывать",
+   "en": "to close"
+  },
+  "level": "B1",
+  "situation": "services",
+  "grammar": "passive",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{subject} {target} klokken {time}.",
+  "variant": {
+   "id": "e1b982dc-bebc-5925-86a5-00e0453c0372",
+   "version": "136084f684bf8448",
+   "danish": "Bageriet lukkes klokken seks.",
+   "target": "lukkes",
+   "en": "The bakery closes at six o'clock.",
+   "ru": "Пекарня закрывается в шесть часов.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e263f114-550c-5766-845e-ebaeea0ad94e",
+  "family_id": "71389ad6-93e4-58a5-880a-1c3b9b56934e",
+  "lemma": "prøve",
+  "sense": {
+   "ru": "пробовать, пытаться",
+   "en": "to try"
+  },
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Jeg vil {target} at {activity}.",
+  "variant": {
+   "id": "e263f114-550c-5766-845e-ebaeea0ad94e",
+   "version": "096f94856c6c9874",
+   "danish": "Jeg vil prøve at lære at spille guitar.",
+   "target": "prøve",
+   "en": "I want to try to learn how to play the guitar.",
+   "ru": "Я хочу попробовать научиться играть на гитаре.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cb22eb00-c0c2-55e8-81a4-63e521790efc",
+  "family_id": "593e9c3b-3bdf-543c-8bb7-90c29b209f04",
+  "lemma": "at",
+  "sense": {
+   "ru": "что",
+   "en": "that"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{subject} understregede, {target} {rest}.",
+  "variant": {
+   "id": "cb22eb00-c0c2-55e8-81a4-63e521790efc",
+   "version": "a4248f27cf30f363",
+   "danish": "Projektlederen understregede, at budgettet er overskredet.",
+   "target": "at",
+   "en": "The project manager emphasized that the budget has been exceeded.",
+   "ru": "Руководитель проекта подчеркнул, что бюджет превышен.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a2aa102b-dc51-57b7-b9f5-98d904ddb86a",
+  "family_id": "afc0449a-e3a7-5984-ae98-a42bf119ebf1",
+  "lemma": "hvorfor",
+  "sense": {
+   "ru": "почему",
+   "en": "why"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{target} {verb} regeringen {object}?",
+  "variant": {
+   "id": "a2aa102b-dc51-57b7-b9f5-98d904ddb86a",
+   "version": "1f05dbdaa37a4d56",
+   "danish": "Hvorfor foreslog regeringen de nye regler?",
+   "target": "hvorfor",
+   "en": "Why did the government propose the new rules?",
+   "ru": "Почему правительство предложило новые правила?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e4a5fe5f-3d43-585a-9108-f53db80ef5c4",
+  "family_id": "45032fad-ceba-572f-bc7b-2eb3c549d94e",
+  "lemma": "åbne",
+  "sense": {
+   "ru": "открывать",
+   "en": "to open"
+  },
+  "level": "B1",
+  "situation": "services",
+  "grammar": "verb-future",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Ifølge planen vil butikken {target} {time}.",
+  "variant": {
+   "id": "e4a5fe5f-3d43-585a-9108-f53db80ef5c4",
+   "version": "a21185f23fd6b3cd",
+   "danish": "Ifølge planen vil butikken åbne snart.",
+   "target": "åbne",
+   "en": "According to the plan, the store will open soon.",
+   "ru": "Согласно плану, магазин скоро откроется.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6323db5a-44d6-5d8f-819d-c96f9dd5dbc1",
+  "family_id": "913bf192-05ca-5e0c-b8bf-64dd65c38128",
+  "lemma": "hvornår",
+  "sense": {
+   "ru": "когда",
+   "en": "when"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{target} {verb} {subject} {object}?",
+  "variant": {
+   "id": "6323db5a-44d6-5d8f-819d-c96f9dd5dbc1",
+   "version": "7215fa3019b49a72",
+   "danish": "Hvornår afleverede konsulenten rapporten?",
+   "target": "hvornår",
+   "en": "When did the consultant submit the report?",
+   "ru": "Когда консультант подал отчёт?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "99d15f02-eadb-5b38-83c0-971b8ffc38cf",
+  "family_id": "8d1a9501-8d67-531c-b5dc-c462807eac4a",
+  "lemma": "stige",
+  "sense": {
+   "ru": "расти, повышаться",
+   "en": "to rise, to increase"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Ifølge den nye rapport {target} {indicator} markant i løbet af årtiet.",
+  "variant": {
+   "id": "99d15f02-eadb-5b38-83c0-971b8ffc38cf",
+   "version": "82ce76a83d160ee7",
+   "danish": "Ifølge den nye rapport steg boligpriserne markant i løbet af årtiet.",
+   "target": "steg",
+   "en": "According to the new report, house prices rose significantly over the course of the decade.",
+   "ru": "Согласно новому отчету, цены на жильё значительно выросли за десятилетие.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "1fbaaf96-ce6b-5270-a92a-b7923f5c5296",
+  "family_id": "b840f6d7-53d3-5e57-b843-e93dd41bd5c6",
+  "lemma": "deltage",
+  "sense": {
+   "ru": "участвовать",
+   "en": "to take part, to participate"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "{subject} har {target} i {event}.",
+  "variant": {
+   "id": "1fbaaf96-ce6b-5270-a92a-b7923f5c5296",
+   "version": "8947ba6d9670bc64",
+   "danish": "Flere af vores konsulenter har deltaget i det internationale symposium om bæredygtighed.",
+   "target": "deltaget",
+   "en": "Several of our consultants have participated in the international symposium on sustainability.",
+   "ru": "Несколько наших консультантов приняли участие в международном симпозиуме по устойчивому развитию.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "d9e82c06-f183-507c-bfb4-110cb2e13309",
+  "family_id": "077c4741-50e6-5807-abc1-cf09cf65ea8c",
+  "lemma": "måtte",
+  "sense": {
+   "ru": "мог, имел разрешение",
+   "en": "was allowed to, could"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Medarbejderne {target} først forlade kontoret, efter at direktøren havde godkendt {object}.",
+  "variant": {
+   "id": "d9e82c06-f183-507c-bfb4-110cb2e13309",
+   "version": "6fd65e37737846fa",
+   "danish": "Medarbejderne måtte først forlade kontoret, efter at direktøren havde godkendt projektplanen.",
+   "target": "måtte",
+   "en": "Employees were only allowed to leave the office after the director had approved the project plan.",
+   "ru": "Сотрудникам разрешалось покидать офис только после утверждения директором плана проекта.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "6b7cfc83-c2a1-5638-ae4a-8ba6e3eea987",
+  "family_id": "3d530065-1b81-5940-acdc-2eacbae2eb53",
+  "lemma": "leve",
+  "sense": {
+   "ru": "жить",
+   "en": "to live"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "relative-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "De mennesker, der {target} i yderområderne, {oplever} ofte begrænset adgang til offentlige tjenester.",
+  "variant": {
+   "id": "6b7cfc83-c2a1-5638-ae4a-8ba6e3eea987",
+   "version": "88e2313f0d7c58b4",
+   "danish": "De mennesker, der levede i yderområderne, oplevede ofte begrænset adgang til offentlige tjenester.",
+   "target": "levede",
+   "en": "People living in the outlying areas often experienced limited access to public services.",
+   "ru": "Жители отдалённых районов часто испытывали ограниченный доступ к общественным услугам.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "0f5afa9a-f2b1-5d36-82d4-66402090165a",
+  "family_id": "01975781-afc5-5b1c-ab3c-2de7a44c50aa",
+  "lemma": "kunne",
+  "sense": {
+   "ru": "мочь, уметь",
+   "en": "can, to be able to"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "For at mindske uligheden {target} regeringen hæve skatten for de rigeste.",
+  "variant": {
+   "id": "0f5afa9a-f2b1-5d36-82d4-66402090165a",
+   "version": "22e90c3469fe8f13",
+   "danish": "For at mindske uligheden kunne regeringen hæve skatten for de rigeste.",
+   "target": "kunne",
+   "en": "To reduce inequality, the government could raise taxes for the richest.",
+   "ru": "Чтобы сократить неравенство, правительство могло бы повысить налоги для самых богатых.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "732387d8-40e1-5f36-af27-a86ef0508c3b",
+  "family_id": "41827def-0f11-5318-bd08-6c9ec3c37f86",
+  "lemma": "arbejde",
+  "sense": {
+   "ru": "работать",
+   "en": "to work"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "relative-clause",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "Virksomheden, {relative}, {target} på et nyt projekt.",
+  "variant": {
+   "id": "732387d8-40e1-5f36-af27-a86ef0508c3b",
+   "version": "30f9357feed447c2",
+   "danish": "Virksomheden, der har hovedsæde i Aarhus, arbejdede på et nyt projekt.",
+   "target": "arbejdede",
+   "en": "The company, which is headquartered in Aarhus, was working on a new project.",
+   "ru": "Компания, штаб-квартира которой находится в Орхусе, работала над новым проектом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "6349d69f-492a-57b5-acae-8b4932c877a5",
+  "family_id": "869a22fe-882b-5653-ab60-9c88219abde2",
+  "lemma": "problem",
+  "sense": {
+   "ru": "проблема",
+   "en": "problem"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0107.json",
+  "frame": "Kommunen har {adj} {target} med trafikken.",
+  "variant": {
+   "id": "6349d69f-492a-57b5-acae-8b4932c877a5",
+   "version": "6f4fcebc8010d51f",
+   "danish": "Kommunen har voksende problemer med trafikken.",
+   "target": "problemer",
+   "en": "The municipality has growing problems with traffic.",
+   "ru": "В муниципалитете возникают растущие проблемы с транспортом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "46074ce3-fe39-565d-b99a-4d265708fc44",
+  "family_id": "05cb8d66-76af-52be-8f78-6f8972fc19da",
+  "lemma": "gå i stykker",
+  "sense": {
+   "ru": "ломаться",
+   "en": "to break"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "{subject} {target} {time}.",
+  "variant": {
+   "id": "46074ce3-fe39-565d-b99a-4d265708fc44",
+   "version": "db727969c421fc40",
+   "danish": "Projektoren gik i stykker lige inden det vigtige møde.",
+   "target": "gik i stykker",
+   "en": "The projector broke just before the important meeting.",
+   "ru": "Проектор сломался прямо перед важной встречей.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "4aa0f4c1-ae6b-5d40-a14d-553c04cb48cd",
+  "family_id": "bdfec028-5383-5135-90c1-20cc767f6863",
+  "lemma": "vælge",
+  "sense": {
+   "ru": "выбирать",
+   "en": "to choose"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "passive",
+  "source": "catalog",
+  "batch": "batch-0108.json",
+  "frame": "I et demokrati {target} repræsentanterne af folket.",
+  "variant": {
+   "id": "4aa0f4c1-ae6b-5d40-a14d-553c04cb48cd",
+   "version": "a0f67c08d7d8708c",
+   "danish": "I et demokrati valgtes repræsentanterne af folket.",
+   "target": "valgtes",
+   "en": "In a democracy, the representatives were elected by the people.",
+   "ru": "В демократии представители избирались народом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ }
+]

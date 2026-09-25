@@ -1,0 +1,723 @@
+[
+ {
+  "lemma": "plads",
+  "kind": "word",
+  "sense_id": "952de503-2c1f-576a-a147-e8092715a6c7",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har fået en ny {target} som {job}.",
+  "slots": {
+   "subject": [ { "da": "Hun" }, { "da": "Han" }, { "da": "Min ven" } ],
+   "job": [ { "da": "lærer på skolen" }, { "da": "chauffør hos et transportfirma" }, { "da": "sygeplejerske på hospitalet" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "job": 0 }, "target": "plads", "en": "She has gotten a new position as a teacher at the school.", "ru": "Она получила новую должность учителя в школе.", "orders": [], "accepted": ["stilling"] },
+   { "slots": { "subject": 1, "job": 1 }, "target": "plads", "en": "He has gotten a new position as a driver at a transport company.", "ru": "Он получил новую должность водителя в транспортной компании.", "orders": [], "accepted": ["stilling"] },
+   { "slots": { "subject": 2, "job": 2 }, "target": "plads", "en": "My friend has gotten a new position as a nurse at the hospital.", "ru": "Мой друг получил новую должность медсестры в больнице.", "orders": [], "accepted": ["stilling"] }
+  ]
+ },
+ {
+  "lemma": "netop",
+  "kind": "word",
+  "sense_id": "49438de3-7c02-51c1-8335-8f715576bd13",
+  "level": "A1",
+  "situation": "social",
+  "grammar": "adverbs",
+  "frame": "Det var {target} {thought}.",
+  "slots": {
+   "thought": [ { "da": "det, jeg tænkte på" }, { "da": "det, jeg ville sige" }, { "da": "det, jeg havde brug for" } ]
+  },
+  "variants": [
+   { "slots": { "thought": 0 }, "target": "netop", "en": "That was exactly what I was thinking of.", "ru": "Это было именно то, о чём я думал.", "orders": [], "accepted": ["præcis"] },
+   { "slots": { "thought": 1 }, "target": "netop", "en": "That was exactly what I wanted to say.", "ru": "Это было именно то, что я хотел сказать.", "orders": [], "accepted": ["præcis"] },
+   { "slots": { "thought": 2 }, "target": "netop", "en": "That was exactly what I needed.", "ru": "Это было именно то, что мне было нужно.", "orders": [], "accepted": ["præcis"] }
+  ]
+ },
+ {
+  "lemma": "netop",
+  "kind": "word",
+  "sense_id": "191920ee-8bdd-561e-a4cc-7a437032b959",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "adverbs",
+  "frame": "{subject} er {target} kommet {place}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "place": [ { "da": "hjem" }, { "da": "hjem fra arbejde" }, { "da": "tilbage fra ferie" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "place": 0 }, "target": "netop", "en": "I have just come home.", "ru": "Я только что пришёл домой.", "orders": [], "accepted": ["lige"] },
+   { "slots": { "subject": 1, "place": 1 }, "target": "netop", "en": "She has just come home from work.", "ru": "Она только что пришла домой с работы.", "orders": [], "accepted": ["lige"] },
+   { "slots": { "subject": 2, "place": 2 }, "target": "netop", "en": "We have just come back from vacation.", "ru": "Мы только что вернулись из отпуска.", "orders": [], "accepted": ["lige"] }
+  ]
+ },
+ {
+  "lemma": "forskellig",
+  "kind": "word",
+  "sense_id": "5e10fdca-9493-5804-9494-abfa217c33a0",
+  "level": "A1",
+  "situation": "family",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} har meget {target} interesser.",
+  "slots": {
+   "subject": [ { "da": "Mine to sønner" }, { "da": "Mine to døtre" }, { "da": "Hendes to brødre" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0 }, "target": "forskellige", "en": "My two sons have very different interests.", "ru": "У моих двух сыновей очень разные интересы.", "orders": [], "accepted": ["anderledes"] },
+   { "slots": { "subject": 1 }, "target": "forskellige", "en": "My two daughters have very different interests.", "ru": "У моих двух дочерей очень разные интересы.", "orders": [], "accepted": ["anderledes"] },
+   { "slots": { "subject": 2 }, "target": "forskellige", "en": "Her two brothers have very different interests.", "ru": "У её двух братьев очень разные интересы.", "orders": [], "accepted": ["anderledes"] }
+  ]
+ },
+ {
+  "lemma": "forskellig",
+  "kind": "word",
+  "sense_id": "3e2e7151-3b3f-53a9-93e3-fac1a192ceef",
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "adjective-meaning",
+  "frame": "Butikken sælger {target} typer {product}.",
+  "slots": {
+   "product": [ { "da": "brød" }, { "da": "ost" }, { "da": "frugt" } ]
+  },
+  "variants": [
+   { "slots": { "product": 0 }, "target": "forskellige", "en": "The shop sells various types of bread.", "ru": "Магазин продаёт разные виды хлеба.", "orders": [], "accepted": ["diverse"] },
+   { "slots": { "product": 1 }, "target": "forskellige", "en": "The shop sells various types of cheese.", "ru": "Магазин продаёт разные виды сыра.", "orders": [], "accepted": ["diverse"] },
+   { "slots": { "product": 2 }, "target": "forskellige", "en": "The shop sells various types of fruit.", "ru": "Магазин продаёт разные виды фруктов.", "orders": [], "accepted": ["diverse"] }
+  ]
+ },
+ {
+  "lemma": "kende",
+  "kind": "word",
+  "sense_id": "40fa01d5-17ea-5871-bcca-6344cb7b2bec",
+  "level": "A1",
+  "situation": "social",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {person} godt.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Vi" }, { "da": "Han" } ],
+   "person": [ { "da": "min nabo" }, { "da": "hendes forældre" }, { "da": "den nye kollega" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "person": 0 }, "target": "kender", "en": "I know my neighbor well.", "ru": "Я хорошо знаю своего соседа.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "person": 1 }, "target": "kender", "en": "We know her parents well.", "ru": "Мы хорошо знаем её родителей.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "person": 2 }, "target": "kender", "en": "He knows the new colleague well.", "ru": "Он хорошо знает нового коллегу.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "kende",
+  "kind": "word",
+  "sense_id": "02a687c6-f3c3-5ce1-b7b5-db708da76519",
+  "level": "A2",
+  "situation": "social",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {person} med det samme, selvom {change}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "person": [ { "da": "ham" }, { "da": "hende" }, { "da": "vores gamle ven" } ],
+   "change": [ { "da": "han havde fået skæg" }, { "da": "hun havde klippet håret kort" }, { "da": "han var blevet gammel" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "person": 0, "change": 0 }, "target": "kendte", "en": "I recognized him right away, even though he had grown a beard.", "ru": "Я сразу узнал его, хотя у него выросла борода.", "orders": [], "accepted": ["genkendte"] },
+   { "slots": { "subject": 1, "person": 1, "change": 1 }, "target": "kendte", "en": "She recognized her right away, even though she had cut her hair short.", "ru": "Она сразу узнала её, хотя та коротко подстригла волосы.", "orders": [], "accepted": ["genkendte"] },
+   { "slots": { "subject": 2, "person": 2, "change": 2 }, "target": "kendte", "en": "We recognized our old friend right away, even though he had grown old.", "ru": "Мы сразу узнали нашего старого друга, хотя он постарел.", "orders": [], "accepted": ["genkendte"] }
+  ]
+ },
+ {
+  "lemma": "høre",
+  "kind": "word",
+  "sense_id": "148caab8-1b43-5583-81b2-d7ed3396aef6",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {sound} {time}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Vi" }, { "da": "Hun" } ],
+   "sound": [ { "da": "musik fra naboen" }, { "da": "en bil udenfor" }, { "da": "fugle udenfor" } ],
+   "time": [ { "da": "hver morgen" }, { "da": "om aftenen" }, { "da": "tidligt om morgenen" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "sound": 0, "time": 0 }, "target": "hører", "en": "I hear music from the neighbor every morning.", "ru": "Я слышу музыку от соседа каждое утро.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "sound": 1, "time": 1 }, "target": "hører", "en": "We hear a car outside in the evening.", "ru": "Мы слышим машину на улице вечером.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "sound": 2, "time": 2 }, "target": "hører", "en": "She hears birds outside early in the morning.", "ru": "Она слышит птиц на улице рано утром.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "høre",
+  "kind": "word",
+  "sense_id": "61973029-ba1f-575d-b570-8279d284c893",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {medium} hver {time}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Han" }, { "da": "Vi" } ],
+   "medium": [ { "da": "radio" }, { "da": "en podcast" }, { "da": "nyhederne" } ],
+   "time": [ { "da": "morgen" }, { "da": "aften" }, { "da": "dag" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "medium": 0, "time": 0 }, "target": "hører", "en": "I listen to the radio every morning.", "ru": "Я слушаю радио каждое утро.", "orders": ["Hver morgen hører jeg radio."], "accepted": [] },
+   { "slots": { "subject": 1, "medium": 1, "time": 1 }, "target": "hører", "en": "He listens to a podcast every evening.", "ru": "Он слушает подкаст каждый вечер.", "orders": ["Hver aften hører han en podcast."], "accepted": [] },
+   { "slots": { "subject": 2, "medium": 2, "time": 2 }, "target": "hører", "en": "We listen to the news every day.", "ru": "Мы слушаем новости каждый день.", "orders": ["Hver dag hører vi nyhederne."], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "høre",
+  "kind": "word",
+  "sense_id": "89631818-cc74-5682-9e7f-cca9490dbebb",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "particle-verbs",
+  "frame": "{subject} {target} til {group}.",
+  "slots": {
+   "subject": [ { "da": "Han" }, { "da": "Hun" }, { "da": "Bogen" } ],
+   "group": [ { "da": "den bedste klasse på skolen" }, { "da": "fodboldholdet" }, { "da": "en gammel samling på biblioteket" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "group": 0 }, "target": "hører", "en": "He belongs to the best class at school.", "ru": "Он принадлежит к лучшему классу в школе.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "group": 1 }, "target": "hører", "en": "She belongs to the football team.", "ru": "Она принадлежит к футбольной команде.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "group": 2 }, "target": "hører", "en": "The book belongs to an old collection at the library.", "ru": "Эта книга принадлежит старой коллекции в библиотеке.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "slå",
+  "kind": "word",
+  "sense_id": "ae1947fc-b1e7-57f8-806e-d6c7fc95d0ea",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} bolden med {tool}.",
+  "slots": {
+   "subject": [ { "da": "Drengen" }, { "da": "Pigen" }, { "da": "Han" } ],
+   "tool": [ { "da": "battet" }, { "da": "køllen" }, { "da": "ketsjeren" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "tool": 0 }, "target": "slår", "en": "The boy hits the ball with the bat.", "ru": "Мальчик бьёт по мячу битой.", "orders": [], "accepted": ["rammer"] },
+   { "slots": { "subject": 1, "tool": 1 }, "target": "slår", "en": "The girl hits the ball with the club.", "ru": "Девочка бьёт по мячу клюшкой.", "orders": [], "accepted": ["rammer"] },
+   { "slots": { "subject": 2, "tool": 2 }, "target": "slår", "en": "He hits the ball with the racket.", "ru": "Он бьёт по мячу ракеткой.", "orders": [], "accepted": ["rammer"] }
+  ]
+ },
+ {
+  "lemma": "slå",
+  "kind": "word",
+  "sense_id": "b6db5b99-2c81-594d-bbff-72e5aeee41f9",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} {opponent} i {event}.",
+  "slots": {
+   "subject": [ { "da": "Vores hold" }, { "da": "Hun" }, { "da": "Landsholdet" } ],
+   "opponent": [ { "da": "modstanderen" }, { "da": "sin lillebror" }, { "da": "det tyske hold" } ],
+   "event": [ { "da": "finalen" }, { "da": "et skakparti" }, { "da": "kampen" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "opponent": 0, "event": 0 }, "target": "slog", "en": "Our team beat the opponent in the final.", "ru": "Наша команда обыграла соперника в финале.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "opponent": 1, "event": 1 }, "target": "slog", "en": "She beat her little brother in a game of chess.", "ru": "Она обыграла своего младшего брата в партии в шахматы.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "opponent": 2, "event": 2 }, "target": "slog", "en": "The national team beat the German team in the match.", "ru": "Сборная обыграла немецкую команду в матче.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "slå",
+  "kind": "word",
+  "sense_id": "65b20dbd-e061-5c34-bc2f-c5d52559aee6",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "verb-meaning",
+  "frame": "{clock} {target} {hour}.",
+  "slots": {
+   "clock": [ { "da": "Kirkeklokken" }, { "da": "Uret på væggen" }, { "da": "Det gamle ur" } ],
+   "hour": [ { "da": "tolv" }, { "da": "seks" }, { "da": "ni" } ]
+  },
+  "variants": [
+   { "slots": { "clock": 0, "hour": 0 }, "target": "slår", "en": "The church bell strikes twelve.", "ru": "Церковный колокол бьёт двенадцать.", "orders": [], "accepted": [] },
+   { "slots": { "clock": 1, "hour": 1 }, "target": "slår", "en": "The clock on the wall strikes six.", "ru": "Часы на стене бьют шесть.", "orders": [], "accepted": [] },
+   { "slots": { "clock": 2, "hour": 2 }, "target": "slår", "en": "The old clock strikes nine.", "ru": "Старые часы бьют девять.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "tænke",
+  "kind": "word",
+  "sense_id": "6e12958d-b054-5e6a-a4e6-f7ea28b13b77",
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} meget på {topic}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "topic": [ { "da": "fremtiden" }, { "da": "sin barndom", "requires": { "subject": [1] } }, { "da": "den kommende ferie" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "topic": 0 }, "target": "tænker", "en": "I think a lot about the future.", "ru": "Я много думаю о будущем.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "topic": 1 }, "target": "tænker", "en": "She thinks a lot about her childhood.", "ru": "Она много думает о своём детстве.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "topic": 2 }, "target": "tænker", "en": "We think a lot about the upcoming vacation.", "ru": "Мы много думаем о предстоящем отпуске.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "møde",
+  "kind": "word",
+  "sense_id": "54ba006b-62b2-5e96-8a05-be5f16182581",
+  "level": "A1",
+  "situation": "social",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {person} {place} klokken tre.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Vi" }, { "da": "Hun" } ],
+   "person": [ { "da": "min ven" }, { "da": "vores kollega" }, { "da": "sin gamle klassekammerat" } ],
+   "place": [ { "da": "på caféen" }, { "da": "i parken" }, { "da": "foran biografen" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "person": 0, "place": 0 }, "target": "møder", "en": "I am meeting my friend at the café at three o'clock.", "ru": "Я встречаюсь со своим другом в кафе в три часа.", "orders": ["Klokken tre møder jeg min ven på caféen."], "accepted": [] },
+   { "slots": { "subject": 1, "person": 1, "place": 1 }, "target": "møder", "en": "We are meeting our colleague in the park at three o'clock.", "ru": "Мы встречаемся с нашим коллегой в парке в три часа.", "orders": ["Klokken tre møder vi vores kollega i parken."], "accepted": [] },
+   { "slots": { "subject": 2, "person": 2, "place": 2 }, "target": "møder", "en": "She is meeting her old classmate in front of the cinema at three o'clock.", "ru": "Она встречается со своим старым одноклассником перед кинотеатром в три часа.", "orders": ["Klokken tre møder hun sin gamle klassekammerat foran biografen."], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "møde",
+  "kind": "word",
+  "sense_id": "a218c16c-0393-5323-8256-d4b0c1105dac",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} deltager i {target} {time}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi alle" } ],
+   "time": [ { "da": "klokken ti" }, { "da": "efter frokost" }, { "da": "i eftermiddag" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "time": 0 }, "target": "mødet", "en": "I am attending the meeting at ten o'clock.", "ru": "Я участвую во встрече в десять часов.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "time": 1 }, "target": "mødet", "en": "She is attending the meeting after lunch.", "ru": "Она участвует во встрече после обеда.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "time": 2 }, "target": "mødet", "en": "We are all attending the meeting this afternoon.", "ru": "Мы все участвуем во встрече сегодня днём.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "min",
+  "kind": "word",
+  "sense_id": "87a0b609-60e4-56c9-9c38-df64d1276c8d",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "pronouns",
+  "frame": "Har du set {target} {noun}?",
+  "slots": {
+   "noun": [ { "da": "telefon" }, { "da": "hus" }, { "da": "nøgler" } ]
+  },
+  "variants": [
+   { "slots": { "noun": 0 }, "target": "min", "en": "Have you seen my phone?", "ru": "Ты видел мой телефон?", "orders": [], "accepted": [] },
+   { "slots": { "noun": 1 }, "target": "mit", "en": "Have you seen my house?", "ru": "Ты видел мой дом?", "orders": [], "accepted": [] },
+   { "slots": { "noun": 2 }, "target": "mine", "en": "Have you seen my keys?", "ru": "Ты видел мои ключи?", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "million",
+  "kind": "word",
+  "sense_id": "9e1b1310-9d44-5411-b96f-e6d45c5251b0",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "frame": "{item} kostede over en {target} kroner.",
+  "slots": {
+   "item": [ { "da": "Huset" }, { "da": "Bilen" }, { "da": "Lejligheden" } ]
+  },
+  "variants": [
+   { "slots": { "item": 0 }, "target": "million", "en": "The house cost over a million kroner.", "ru": "Дом стоил больше миллиона крон.", "orders": [], "accepted": [] },
+   { "slots": { "item": 1 }, "target": "million", "en": "The car cost over a million kroner.", "ru": "Машина стоила больше миллиона крон.", "orders": [], "accepted": [] },
+   { "slots": { "item": 2 }, "target": "million", "en": "The apartment cost over a million kroner.", "ru": "Квартира стоила больше миллиона крон.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "ting",
+  "kind": "word",
+  "sense_id": "0893f172-9a2d-534c-bd8f-6773deaced72",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-plural",
+  "frame": "{subject} har mange {target} i {place}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "place": [ { "da": "skabet" }, { "da": "kufferten" }, { "da": "garagen" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "place": 0 }, "target": "ting", "en": "I have a lot of things in the closet.", "ru": "У меня много вещей в шкафу.", "orders": [], "accepted": ["sager"] },
+   { "slots": { "subject": 1, "place": 1 }, "target": "ting", "en": "She has a lot of things in the suitcase.", "ru": "У неё много вещей в чемодане.", "orders": [], "accepted": ["sager"] },
+   { "slots": { "subject": 2, "place": 2 }, "target": "ting", "en": "We have a lot of things in the garage.", "ru": "У нас много вещей в гараже.", "orders": [], "accepted": ["sager"] }
+  ]
+ },
+ {
+  "lemma": "ting",
+  "kind": "word",
+  "sense_id": "60ba5ad5-d8b2-5da0-bd9e-d16b4a20cd52",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-meaning",
+  "frame": "{target} har ændret sig meget, siden {event}.",
+  "slots": {
+   "event": [ { "da": "vi flyttede hertil" }, { "da": "hun begyndte i det nye job" }, { "da": "de fik børn" } ]
+  },
+  "variants": [
+   { "slots": { "event": 0 }, "target": "tingene", "en": "Things have changed a lot since we moved here.", "ru": "Ситуация сильно изменилась с тех пор, как мы сюда переехали.", "orders": [], "accepted": [] },
+   { "slots": { "event": 1 }, "target": "tingene", "en": "Things have changed a lot since she started the new job.", "ru": "Ситуация сильно изменилась с тех пор, как она начала новую работу.", "orders": [], "accepted": [] },
+   { "slots": { "event": 2 }, "target": "tingene", "en": "Things have changed a lot since they had children.", "ru": "Ситуация сильно изменилась с тех пор, как у них появились дети.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "film",
+  "kind": "word",
+  "sense_id": "d997e440-4819-53df-b949-ade9f23d7c66",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} så en {adj} {target} i går aftes.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Vi" }, { "da": "Hun" } ],
+   "adj": [ { "da": "spændende" }, { "da": "sjov" }, { "da": "trist" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "adj": 0 }, "target": "film", "en": "I saw an exciting movie last night.", "ru": "Вчера вечером я посмотрел захватывающий фильм.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "adj": 1 }, "target": "film", "en": "We watched a funny movie last night.", "ru": "Вчера вечером мы посмотрели смешной фильм.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "adj": 2 }, "target": "film", "en": "She watched a sad movie last night.", "ru": "Вчера вечером она посмотрела грустный фильм.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "film",
+  "kind": "word",
+  "sense_id": "ade85fcc-8dc9-5c65-b2bf-34f1e02e65d8",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} skal købe en ny {target} til {camera}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Han" }, { "da": "Min far" } ],
+   "camera": [ { "da": "kameraet" }, { "da": "sit gamle kamera", "requires": { "subject": [1] } }, { "da": "det analoge kamera" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "camera": 0 }, "target": "film", "en": "I need to buy new film for the camera.", "ru": "Мне нужно купить новую плёнку для фотоаппарата.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "camera": 1 }, "target": "film", "en": "He needs to buy new film for his old camera.", "ru": "Ему нужно купить новую плёнку для своего старого фотоаппарата.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "camera": 2 }, "target": "film", "en": "My father needs to buy new film for the analog camera.", "ru": "Моему отцу нужно купить новую плёнку для аналогового фотоаппарата.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "parti",
+  "kind": "word",
+  "sense_id": "e4dffdd7-44d9-57bd-acb2-d6e7c94bbb89",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} stemmer på et {adj} {target} ved valget.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "adj": [ { "da": "nyt" }, { "da": "grønt" }, { "da": "lille" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "adj": 0 }, "target": "parti", "en": "I vote for a new party in the election.", "ru": "Я голосую за новую партию на выборах.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "adj": 1 }, "target": "parti", "en": "She votes for a green party in the election.", "ru": "Она голосует за зелёную партию на выборах.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "adj": 2 }, "target": "parti", "en": "We vote for a small party in the election.", "ru": "Мы голосуем за небольшую партию на выборах.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "parti",
+  "kind": "word",
+  "sense_id": "79f205ea-a518-5200-9b0f-7d2605fd5771",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "Skal vi spille et {target} {game} efter middagen?",
+  "slots": {
+   "game": [ { "da": "skak" }, { "da": "kort" }, { "da": "backgammon" } ]
+  },
+  "variants": [
+   { "slots": { "game": 0 }, "target": "parti", "en": "Shall we play a game of chess after dinner?", "ru": "Сыграем партию в шахматы после ужина?", "orders": [], "accepted": [] },
+   { "slots": { "game": 1 }, "target": "parti", "en": "Shall we play a game of cards after dinner?", "ru": "Сыграем партию в карты после ужина?", "orders": [], "accepted": [] },
+   { "slots": { "game": 2 }, "target": "parti", "en": "Shall we play a game of backgammon after dinner?", "ru": "Сыграем партию в нарды после ужина?", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "klokke",
+  "kind": "word",
+  "sense_id": "036d3b8b-63fb-567d-a142-c483cde812c0",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "noun-meaning",
+  "frame": "{place} gamle {target} ringer {time}.",
+  "slots": {
+   "place": [ { "da": "Kirkens" }, { "da": "Skolens" }, { "da": "Klosterets" } ],
+   "time": [ { "da": "hver søndag" }, { "da": "hver morgen" }, { "da": "ved middagstid" } ]
+  },
+  "variants": [
+   { "slots": { "place": 0, "time": 0 }, "target": "klokke", "en": "The church's old bell rings every Sunday.", "ru": "Старый колокол церкви звонит каждое воскресенье.", "orders": ["Hver søndag ringer kirkens gamle klokke."], "accepted": [] },
+   { "slots": { "place": 1, "time": 1 }, "target": "klokke", "en": "The school's old bell rings every morning.", "ru": "Старый звонок школы звонит каждое утро.", "orders": ["Hver morgen ringer skolens gamle klokke."], "accepted": [] },
+   { "slots": { "place": 2, "time": 2 }, "target": "klokke", "en": "The monastery's old bell rings at midday.", "ru": "Старый колокол монастыря звонит в полдень.", "orders": ["Ved middagstid ringer klosterets gamle klokke."], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "klokke",
+  "kind": "word",
+  "sense_id": "2ec6fbac-a118-5f07-9438-c9d183a5e2ec",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "noun-meaning",
+  "frame": "{target} er {hour}.",
+  "slots": {
+   "hour": [ { "da": "ti" }, { "da": "otte" }, { "da": "tolv" } ]
+  },
+  "variants": [
+   { "slots": { "hour": 0 }, "target": "klokken", "en": "It is ten o'clock.", "ru": "Сейчас десять часов.", "orders": [], "accepted": [] },
+   { "slots": { "hour": 1 }, "target": "klokken", "en": "It is eight o'clock.", "ru": "Сейчас восемь часов.", "orders": [], "accepted": [] },
+   { "slots": { "hour": 2 }, "target": "klokken", "en": "It is twelve o'clock.", "ru": "Сейчас двенадцать часов.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "næste",
+  "kind": "word",
+  "sense_id": "e4c883cd-c85f-51d6-805f-0b0df1d74088",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "adjective-meaning",
+  "frame": "Vi mødes {target} {day}.",
+  "slots": {
+   "day": [ { "da": "mandag" }, { "da": "uge" }, { "da": "måned" } ]
+  },
+  "variants": [
+   { "slots": { "day": 0 }, "target": "næste", "en": "We are meeting next Monday.", "ru": "Мы встречаемся в следующий понедельник.", "orders": [], "accepted": [] },
+   { "slots": { "day": 1 }, "target": "næste", "en": "We are meeting next week.", "ru": "Мы встречаемся на следующей неделе.", "orders": [], "accepted": [] },
+   { "slots": { "day": 2 }, "target": "næste", "en": "We are meeting next month.", "ru": "Мы встречаемся в следующем месяце.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "sende",
+  "kind": "word",
+  "sense_id": "829d18d9-a34c-5f93-b023-7b161681b290",
+  "level": "A2",
+  "situation": "services",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {object} til {recipient}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Hun" }, { "da": "Vi" } ],
+   "object": [ { "da": "en pakke" }, { "da": "et brev" }, { "da": "penge" } ],
+   "recipient": [ { "da": "min mor" }, { "da": "sin ven", "requires": { "subject": [1] } }, { "da": "familien" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "object": 0, "recipient": 0 }, "target": "sender", "en": "I am sending a package to my mother.", "ru": "Я отправляю посылку своей маме.", "orders": [], "accepted": ["afsender"] },
+   { "slots": { "subject": 1, "object": 1, "recipient": 1 }, "target": "sender", "en": "She is sending a letter to her friend.", "ru": "Она отправляет письмо своему другу.", "orders": [], "accepted": ["afsender"] },
+   { "slots": { "subject": 2, "object": 2, "recipient": 2 }, "target": "sender", "en": "We are sending money to the family.", "ru": "Мы отправляем деньги семье.", "orders": [], "accepted": ["afsender"] }
+  ]
+ },
+ {
+  "lemma": "sende",
+  "kind": "word",
+  "sense_id": "c09bbc9c-2396-5bf5-ab21-876494657a4b",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "frame": "{channel} {target} {program} {time}.",
+  "slots": {
+   "channel": [ { "da": "Kanalen" }, { "da": "Radioen" }, { "da": "Den lokale radiostation" } ],
+   "program": [ { "da": "nyhederne" }, { "da": "en koncert" }, { "da": "en fodboldkamp" } ],
+   "time": [ { "da": "klokken seks" }, { "da": "om aftenen" }, { "da": "hver søndag" } ]
+  },
+  "variants": [
+   { "slots": { "channel": 0, "program": 0, "time": 0 }, "target": "sender", "en": "The channel broadcasts the news at six o'clock.", "ru": "Канал транслирует новости в шесть часов.", "orders": ["Klokken seks sender kanalen nyhederne."], "accepted": ["udsender"] },
+   { "slots": { "channel": 1, "program": 1, "time": 1 }, "target": "sender", "en": "The radio broadcasts a concert in the evening.", "ru": "Радио транслирует концерт вечером.", "orders": ["Om aftenen sender radioen en koncert."], "accepted": ["udsender"] },
+   { "slots": { "channel": 2, "program": 2, "time": 2 }, "target": "sender", "en": "The local radio station broadcasts a football match every Sunday.", "ru": "Местная радиостанция транслирует футбольный матч каждое воскресенье.", "orders": ["Hver søndag sender den lokale radiostation en fodboldkamp."], "accepted": ["udsender"] }
+  ]
+ },
+ {
+  "lemma": "pris",
+  "kind": "word",
+  "sense_id": "f532d814-46dc-5ae1-9163-000d7dd3524b",
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "{item} har en høj {target}.",
+  "slots": {
+   "item": [ { "da": "Billetten" }, { "da": "Hotellet" }, { "da": "Middagen" } ]
+  },
+  "variants": [
+   { "slots": { "item": 0 }, "target": "pris", "en": "The ticket has a high price.", "ru": "У билета высокая цена.", "orders": [], "accepted": [] },
+   { "slots": { "item": 1 }, "target": "pris", "en": "The hotel has a high price.", "ru": "У отеля высокая цена.", "orders": [], "accepted": [] },
+   { "slots": { "item": 2 }, "target": "pris", "en": "The dinner has a high price.", "ru": "У ужина высокая цена.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "pris",
+  "kind": "word",
+  "sense_id": "e8d12371-79ad-5ade-bb0a-6a84cd31e17f",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} vandt en {adj} {target} for {work}.",
+  "slots": {
+   "subject": [ { "da": "Hun" }, { "da": "Han" }, { "da": "Fotografen" } ],
+   "adj": [ { "da": "fin" }, { "da": "stor" }, { "da": "flot" } ],
+   "work": [ { "da": "sit maleri" }, { "da": "sin bog" }, { "da": "sit billede" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "adj": 0, "work": 0 }, "target": "pris", "en": "She won a nice prize for her painting.", "ru": "Она выиграла хороший приз за свою картину.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "adj": 1, "work": 1 }, "target": "pris", "en": "He won a big prize for his book.", "ru": "Он выиграл большую премию за свою книгу.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "adj": 2, "work": 2 }, "target": "pris", "en": "The photographer won a nice prize for their picture.", "ru": "Фотограф выиграл отличный приз за свою фотографию.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "syne",
+  "kind": "word",
+  "sense_id": "cdb21f56-e424-5de8-b1e8-0d41749e1672",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {adj} {time}.",
+  "slots": {
+   "subject": [ { "da": "Himlen" }, { "da": "Havet" }, { "da": "Skoven" } ],
+   "adj": [ { "da": "mørk", "requires": { "subject": [0] } }, { "da": "uroligt", "requires": { "subject": [1] } }, { "da": "tæt", "requires": { "subject": [2] } } ],
+   "time": [ { "da": "før stormen" }, { "da": "i dag" }, { "da": "om vinteren" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "adj": 0, "time": 0 }, "target": "syner", "en": "The sky looks dark before the storm.", "ru": "Небо кажется тёмным перед бурей.", "orders": [], "accepted": ["virker"] },
+   { "slots": { "subject": 1, "adj": 1, "time": 1 }, "target": "syner", "en": "The sea looks turbulent today.", "ru": "Море сегодня кажется неспокойным.", "orders": [], "accepted": ["virker"] },
+   { "slots": { "subject": 2, "adj": 2, "time": 2 }, "target": "syner", "en": "The forest looks dense in winter.", "ru": "Лес зимой кажется густым.", "orders": [], "accepted": ["virker"] }
+  ]
+ },
+ {
+  "lemma": "syne",
+  "kind": "word",
+  "sense_id": "cdf93528-7b30-5e2a-bb2a-6641bb21a648",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} tydeligt fra {place}.",
+  "slots": {
+   "subject": [ { "da": "Fyrtårnet" }, { "da": "Bjergtoppen" }, { "da": "Kirketårnet" } ],
+   "place": [ { "da": "stranden" }, { "da": "dalen" }, { "da": "markerne" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "place": 0 }, "target": "synes", "en": "The lighthouse is clearly visible from the beach.", "ru": "Маяк чётко виден с пляжа.", "orders": [], "accepted": ["ses"] },
+   { "slots": { "subject": 1, "place": 1 }, "target": "synes", "en": "The mountain peak is clearly visible from the valley.", "ru": "Вершина горы чётко видна из долины.", "orders": [], "accepted": ["ses"] },
+   { "slots": { "subject": 2, "place": 2 }, "target": "synes", "en": "The church tower is clearly visible from the fields.", "ru": "Церковная башня чётко видна с полей.", "orders": [], "accepted": ["ses"] }
+  ]
+ },
+ {
+  "lemma": "syne",
+  "kind": "word",
+  "sense_id": "2101faf2-94b4-5fa8-ac65-b68f50402107",
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "verb-meaning",
+  "frame": "{subject} skal have {target} {vehicle} {deadline}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Han" }, { "da": "Vi" } ],
+   "vehicle": [ { "da": "min bil", "requires": { "subject": [0] } }, { "da": "sin bil", "requires": { "subject": [1] } }, { "da": "vores gamle bil", "requires": { "subject": [2] } } ],
+   "deadline": [ { "da": "inden fredag" }, { "da": "i denne måned" }, { "da": "inden sommerferien" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "vehicle": 0, "deadline": 0 }, "target": "synet", "en": "I need to have my car inspected by Friday.", "ru": "Мне нужно пройти техосмотр моей машины до пятницы.", "orders": ["Inden fredag skal jeg have synet min bil."], "accepted": ["tjekket"] },
+   { "slots": { "subject": 1, "vehicle": 1, "deadline": 1 }, "target": "synet", "en": "He needs to have his car inspected this month.", "ru": "Ему нужно пройти техосмотр своей машины в этом месяце.", "orders": ["I denne måned skal han have synet sin bil."], "accepted": ["tjekket"] },
+   { "slots": { "subject": 2, "vehicle": 2, "deadline": 2 }, "target": "synet", "en": "We need to have our old car inspected before the summer vacation.", "ru": "Нам нужно пройти техосмотр нашей старой машины до летних каникул.", "orders": ["Inden sommerferien skal vi have synet vores gamle bil."], "accepted": ["tjekket"] }
+  ]
+ },
+ {
+  "lemma": "vinde",
+  "kind": "word",
+  "sense_id": "13b9fd62-1adc-54f2-b7f1-a5a0b9963160",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {competition}.",
+  "slots": {
+   "subject": [ { "da": "Vi" }, { "da": "Hun" }, { "da": "Holdet" } ],
+   "competition": [ { "da": "kampen" }, { "da": "konkurrencen" }, { "da": "turneringen" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "competition": 0 }, "target": "vinder", "en": "We win the match.", "ru": "Мы выигрываем матч.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "competition": 1 }, "target": "vinder", "en": "She wins the competition.", "ru": "Она выигрывает конкурс.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "competition": 2 }, "target": "vinder", "en": "The team wins the tournament.", "ru": "Команда выигрывает турнир.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "samle",
+  "kind": "word",
+  "sense_id": "b4d6ce20-52a2-526a-ac0f-ac32ec1d04a2",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {object} {place}.",
+  "slots": {
+   "subject": [ { "da": "Børnene" }, { "da": "Jeg" }, { "da": "Vi" } ],
+   "object": [ { "da": "blomster" }, { "da": "æbler" }, { "da": "skaller" } ],
+   "place": [ { "da": "i haven" }, { "da": "i haven" }, { "da": "på stranden" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "object": 0, "place": 0 }, "target": "samler", "en": "The children are gathering flowers in the garden.", "ru": "Дети собирают цветы в саду.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "object": 1, "place": 1 }, "target": "samler", "en": "I am gathering apples in the garden.", "ru": "Я собираю яблоки в саду.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "object": 2, "place": 2 }, "target": "samler", "en": "We are gathering shells on the beach.", "ru": "Мы собираем ракушки на пляже.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "nemlig",
+  "kind": "word",
+  "sense_id": "df1d7b1b-835e-5746-a260-b71de50f62e5",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "sentence-adverbs",
+  "frame": "Vi mangler to ting, {target} {item1} og {item2}.",
+  "slots": {
+   "item1": [ { "da": "mel" }, { "da": "smør" }, { "da": "olie" } ],
+   "item2": [ { "da": "sukker" }, { "da": "æg" }, { "da": "eddike" } ]
+  },
+  "variants": [
+   { "slots": { "item1": 0, "item2": 0 }, "target": "nemlig", "en": "We are missing two things, namely flour and sugar.", "ru": "Нам не хватает двух вещей, а именно муки и сахара.", "orders": [], "accepted": ["det vil sige"] },
+   { "slots": { "item1": 1, "item2": 1 }, "target": "nemlig", "en": "We are missing two things, namely butter and eggs.", "ru": "Нам не хватает двух вещей, а именно сливочного масла и яиц.", "orders": [], "accepted": ["det vil sige"] },
+   { "slots": { "item1": 2, "item2": 2 }, "target": "nemlig", "en": "We are missing two things, namely oil and vinegar.", "ru": "Нам не хватает двух вещей, а именно растительного масла и уксуса.", "orders": [], "accepted": ["det vil sige"] }
+  ]
+ },
+ {
+  "lemma": "nemlig",
+  "kind": "word",
+  "sense_id": "b7903e50-9c2c-5441-9e60-7638b7673595",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "sentence-adverbs",
+  "frame": "Jeg tager bussen i dag. {vehicle} er {target} {problem}.",
+  "slots": {
+   "vehicle": [ { "da": "Bilen" }, { "da": "Cyklen" }, { "da": "Motorcyklen" } ],
+   "problem": [ { "da": "i værksted" }, { "da": "gået i stykker" }, { "da": "blevet stjålet" } ]
+  },
+  "variants": [
+   { "slots": { "vehicle": 0, "problem": 0 }, "target": "nemlig", "en": "I'm taking the bus today. You see, the car is in the shop.", "ru": "Сегодня я еду на автобусе. Дело в том, что машина в мастерской.", "orders": [], "accepted": ["jo"] },
+   { "slots": { "vehicle": 1, "problem": 1 }, "target": "nemlig", "en": "I'm taking the bus today. You see, the bike has broken down.", "ru": "Сегодня я еду на автобусе. Дело в том, что велосипед сломался.", "orders": [], "accepted": ["jo"] },
+   { "slots": { "vehicle": 2, "problem": 2 }, "target": "nemlig", "en": "I'm taking the bus today. You see, the motorcycle has been stolen.", "ru": "Сегодня я еду на автобусе. Дело в том, что мотоцикл украли.", "orders": [], "accepted": ["jo"] }
+  ]
+ },
+ {
+  "lemma": "falde",
+  "kind": "word",
+  "sense_id": "471d0953-abd2-5946-9d5d-11a10ad71e3b",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} på {surface}.",
+  "slots": {
+   "subject": [ { "da": "Drengen" }, { "da": "Hun" }, { "da": "Jeg" } ],
+   "surface": [ { "da": "isen" }, { "da": "trappen" }, { "da": "gulvet" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "surface": 0 }, "target": "faldt", "en": "The boy fell on the ice.", "ru": "Мальчик упал на льду.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 1, "surface": 1 }, "target": "faldt", "en": "She fell on the stairs.", "ru": "Она упала на лестнице.", "orders": [], "accepted": [] },
+   { "slots": { "subject": 2, "surface": 2 }, "target": "faldt", "en": "I fell on the floor.", "ru": "Я упал на пол.", "orders": [], "accepted": [] }
+  ]
+ },
+ {
+  "lemma": "bil",
+  "kind": "word",
+  "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} har en {adj} {target}.",
+  "slots": {
+   "subject": [ { "da": "Jeg" }, { "da": "Han" }, { "da": "Vi" } ],
+   "adj": [ { "da": "ny" }, { "da": "rød" }, { "da": "hurtig" } ]
+  },
+  "variants": [
+   { "slots": { "subject": 0, "adj": 0 }, "target": "bil", "en": "I have a new car.", "ru": "У меня новая машина.", "orders": [], "accepted": ["vogn"] },
+   { "slots": { "subject": 1, "adj": 1 }, "target": "bil", "en": "He has a red car.", "ru": "У него красная машина.", "orders": [], "accepted": ["vogn"] },
+   { "slots": { "subject": 2, "adj": 2 }, "target": "bil", "en": "We have a fast car.", "ru": "У нас быстрая машина.", "orders": [], "accepted": ["vogn"] }
+  ]
+ }
+]

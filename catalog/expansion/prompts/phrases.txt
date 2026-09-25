@@ -1,0 +1,17 @@
+You are building a list of Danish multi-word expressions for a learner's vocabulary app.
+
+Return a bare JSON array of strings and nothing else: no Markdown, no code fences, no explanation.
+
+Include, in roughly this order of usefulness to an intermediate learner:
+1. Particle and separable verbs whose meaning is not the sum of their parts — tage på, slå op, finde ud af, holde op, give op, komme i gang.
+2. Fixed expressions — godt lide, synes om, have lyst til, være ved at.
+3. Common prepositional and adverbial phrases — uden for byen, om eftermiddagen, i går, på den anden side.
+
+Rules:
+- Every entry is Danish, lowercase, and contains at least one space.
+- Dictionary form: the infinitive for verbs (tage på, not tager på).
+- No full sentences, no proverbs, no rare or literary expressions.
+- No duplicates, and no entry that is really one word.
+- Aim for 1500 entries. Fewer good ones is better than padding.
+
+Save the array as catalog/phrases.json.

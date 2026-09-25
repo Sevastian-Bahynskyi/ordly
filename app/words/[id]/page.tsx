@@ -47,7 +47,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
     supabase.from('review_cards').select('*').eq('entry_id', typedEntry.id).maybeSingle(),
     typedEntry.catalog_lemma
       ? supabase.from('word_catalog').select('audio_path').eq('lemma', typedEntry.catalog_lemma)
-        .eq('kind', typedEntry.entry_kind === 'sentence' ? 'phrase' : 'word').maybeSingle()
+        .eq('kind', inferDanishInputKind(typedEntry.danish) === 'phrase' ? 'phrase' : 'word').maybeSingle()
       : Promise.resolve({ data: null }),
     typedEntry.canonical_entry_id
       ? supabase.from('word_forms').select('*').eq('entry_id', typedEntry.canonical_entry_id)
@@ -74,7 +74,7 @@ export default async function EntryPage({ params }: { params: Promise<{ id: stri
                 </span>
               )}
               {typedEntry.danish}
-              {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) === 'word' && <WordAudio audioPath={typedEntry.audio_path ?? (typedEntry.catalog_lemma === typedEntry.danish ? (catalog as { audio_path: string | null } | null)?.audio_path : null) ?? null} label={typedEntry.danish} />}
+              {typedEntry.entry_kind === 'word' && inferDanishInputKind(typedEntry.danish) !== 'sentence' && <WordAudio audioPath={typedEntry.audio_path ?? (typedEntry.catalog_lemma === typedEntry.danish ? (catalog as { audio_path: string | null } | null)?.audio_path : null) ?? null} label={typedEntry.danish} />}
             </h1>
             <p>
               {gender && definite && <><DefiniteNoun definite={definite} gender={gender} /> · </>}

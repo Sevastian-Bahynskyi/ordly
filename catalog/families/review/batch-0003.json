@@ -1,0 +1,256 @@
+[
+ {
+  "sense_id": "d79d0c98-29bd-5d92-ae1b-481efd56fb11",
+  "lemma": "mangen",
+  "changes": [
+   "grammar adjective-meaning → fixed-expressions ('mangen gang' is a fixed phrase)"
+  ]
+ },
+ {
+  "sense_id": "11760f40-490e-54d2-aa95-ecbd9976aace",
+  "lemma": "dag",
+  "changes": [
+   "frame 'Dagen har været {adj}' → 'Det har været en {adj} dag' ('Dagen har været kort/solrig' is unidiomatic)",
+   "situation weather-nature → daily-routine",
+   "grammar noun-definite → noun-indefinite"
+  ]
+ },
+ {
+  "sense_id": "af5ca027-0f2e-57ff-91a8-3edabefab676",
+  "lemma": "hvis",
+  "changes": [
+   "accepted +såfremt",
+   "orders + main clause first for every variant"
+  ]
+ },
+ {
+  "sense_id": "2583cff2-cd4f-5f43-ad2e-ec0f28052dbf",
+  "lemma": "da",
+  "changes": [
+   "orders + main clause first for every variant"
+  ]
+ },
+ {
+  "sense_id": "9610ff6d-9332-546a-a769-dd8db6e18339",
+  "lemma": "da",
+  "changes": [
+   "rewrote: resumptive 'Hvis …, da tager vi …' is archaic; now 'Hvis …, hvad gør vi da?' (natural modern use of 'then, in that case')",
+   "situation abstract → transport",
+   "requires added so conditions and questions pair"
+  ]
+ },
+ {
+  "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+  "lemma": "tage",
+  "changes": [
+   "'Jeg tager bogen' → 'Jeg tager en bog fra hylden' (bare 'tager bogen' reads as 'I'll buy the book')",
+   "'Han tager en kop kaffe' → 'Han tager et stykke kage fra tallerkenen' ('tage en kop kaffe' = have a coffee)"
+  ]
+ },
+ {
+  "sense_id": "49a715f4-b01b-5528-9e64-e82d2d99b191",
+  "lemma": "tage",
+  "changes": [
+   "rewrote: 'tager bussen/toget' is the 'take (a vehicle)' sense; now 'tage i sommerhus / til udlandet / på ferie' (= go, travel)",
+   "level A1 → A2",
+   "accepted +kører, +rejser, +går",
+   "orders + time phrase last"
+  ]
+ },
+ {
+  "sense_id": "97bcb815-8c71-50a1-8e32-f134d8f5a24a",
+  "lemma": "mange",
+  "changes": [
+   "nouns bøger/spørgsmål → søskende/naboer to fit the family situation"
+  ]
+ },
+ {
+  "sense_id": "cb0aed16-4840-54c8-a959-e4e4e2fbee26",
+  "lemma": "her",
+  "changes": [
+   "'{object} er her' → position verbs ('Nøglerne ligger her', 'Min cykel står her') and 'Jeg bor her'; Danes do not say 'Bogen er her' for objects"
+  ]
+ },
+ {
+  "sense_id": "f4afb220-ede6-50c9-a96e-d218a8de0f8a",
+  "lemma": "her",
+  "changes": [
+   "dropped 'Løb her!' (unidiomatic; needs 'herhen') → 'Læg bogen her!'",
+   "accepted +herhen, +herover, +hid"
+  ]
+ },
+ {
+  "sense_id": "1b3c0d1b-d4f0-5a1f-a319-a4ef96a841b5",
+  "lemma": "krone",
+  "changes": [
+   "'Kongen bærer en krone' (also reads 'carries a krone coin') → '… har en krone på hovedet' in a fairy-tale setting",
+   "Kejseren → Prinsessen"
+  ]
+ },
+ {
+  "sense_id": "428a8e4d-a93a-58fc-9e50-0ec733644721",
+  "lemma": "krone",
+  "changes": [
+   "rewrote flat 'Egetræets krone var grøn/stor' (and the '{tree}s' frame hack) into natural scenes: nest, cat, wind in the crown"
+  ]
+ },
+ {
+  "sense_id": "b7a0066f-6502-5823-aafd-46b59dd84d47",
+  "lemma": "gang",
+  "changes": [
+   "activities 'prøvet denne ret / den tur / spillet' ('tried that trip') → 'kun været i udlandet / set filmen / læst bogen'"
+  ]
+ },
+ {
+  "sense_id": "fc437696-1ba0-5200-8085-bc62fc34d345",
+  "lemma": "gang",
+  "changes": [
+   "frame without end punctuation and '.' suffix slot → '{clause} {target}.'; v1 'Jeg stod i gangen og ventede' → 'Jeg ventede på dig i gangen'",
+   "accepted +korridoren (RU 'коридор'), +entréen"
+  ]
+ },
+ {
+  "sense_id": "889de0ff-3746-5cfe-9513-54aaa210c41f",
+  "lemma": "gang",
+  "changes": [
+   "'Løberen har en let gang' (runner/stride) → 'Danseren'; en 'stride' → 'gait'",
+   "accepted +gangart",
+   "situation leisure → body-health"
+  ]
+ },
+ {
+  "sense_id": "74de5e55-e4a2-57df-878e-a0ed291ef799",
+  "lemma": "tid",
+  "changes": [
+   "v3 'Vi' → 'Hun'; ru 'на приём к парикмахеру' → 'записалась к парикмахеру'",
+   "accepted +aftale, +konsultation"
+  ]
+ },
+ {
+  "sense_id": "55bb0142-67c2-5a98-826f-032cf4ad8b88",
+  "lemma": "mod",
+  "changes": [
+   "'går mod vinduet/skoven' with ru 'к окну' also admits 'til'/'hen til' → 'kører mod nord', 'flyver mod syd', 'går mod stationen' (ru 'в сторону')",
+   "accepted +imod"
+  ]
+ },
+ {
+  "sense_id": "c36a5fd6-331d-52f7-94eb-1142033a0442",
+  "lemma": "mod",
+  "changes": [
+   "'nye regler' → 'de nye regler'"
+  ]
+ },
+ {
+  "sense_id": "8854b5c6-3ff8-58ee-8502-3078ad970e00",
+  "lemma": "mod",
+  "changes": [
+   "'fandt mod til' → 'fandt modet til' (idiomatic, matches 'the courage')",
+   "ru v2 made natural",
+   "accepted +mandsmod, +tapperhed"
+  ]
+ },
+ {
+  "sense_id": "7bc613ad-fa93-58fa-b51f-f766fb5b20f3",
+  "lemma": "give",
+  "changes": [
+   "'Han giver ham et brev' (ambiguous ham) → 'Han giver sin søster en bog'",
+   "'hende en gave' → 'hende nøglen' (ru 'даю подарок' unnatural)"
+  ]
+ },
+ {
+  "sense_id": "41fd3bcb-69c2-5a40-ab65-bfffe15c32f5",
+  "lemma": "give",
+  "changes": [
+   "en/ru 'treating us' added 'us' → 'Dinner is on him tonight'",
+   "'Jeg giver denne omgang' → 'Jeg giver kaffen i dag'; 'Vi giver kaffen' → 'Mormor giver isen'",
+   "accepted +betaler, +spenderer",
+   "orders + fronted time"
+  ]
+ },
+ {
+  "sense_id": "5d704fde-2f0c-588d-aeb2-77993b54afda",
+  "lemma": "finde",
+  "changes": [
+   "bare present 'Jeg finder nøglerne' (unnatural) → past with context 'fandt nøglerne under sofaen' etc.",
+   "level A1 → A2, grammar verb-present → verb-past"
+  ]
+ },
+ {
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "lemma": "måtte",
+  "changes": [
+   "ru 'заболела' → 'была больна' (var syg)",
+   "orders + main clause first"
+  ]
+ },
+ {
+  "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+  "lemma": "måtte",
+  "changes": [
+   "added 'gerne' ('at vi måtte gå tidligt' also reads 'had to')",
+   "ru 'нам разрешили' (someone else permitted) → 'нам можно'",
+   "grammar subordinate-clause → modal-verbs"
+  ]
+ },
+ {
+  "sense_id": "3f03eaf2-c555-5ab6-bfea-f9bd4a284ad0",
+  "lemma": "end",
+  "changes": [
+   "'Han er højere end sin klassekammerat' (disputed sin/hans after end) → 'Matematik er sværere end dansk'",
+   "requires added"
+  ]
+ },
+ {
+  "sense_id": "9686cdc4-74fd-5dea-b0a1-f4754edc3bfa",
+  "lemma": "kun",
+  "changes": [
+   "accepted +blot"
+  ]
+ },
+ {
+  "sense_id": "6270c1e4-9660-5f6d-89dc-cd365dea7c90",
+  "lemma": "ind",
+  "changes": [
+   "grammar particle-verbs → prepositions-place (directional 'ind i')"
+  ]
+ },
+ {
+  "sense_id": "c9fe714f-0131-5b26-9d20-888604347017",
+  "lemma": "stå",
+  "changes": [
+   "'Der står forbudt at ryge på plakaten' (not what a sign says) → 'Der står din adresse på pakken'"
+  ]
+ },
+ {
+  "sense_id": "5a33990b-43b5-5e3d-8d51-38b702784dcd",
+  "lemma": "blandt",
+  "changes": [
+   "accepted +iblandt",
+   "orders + 'blandt medarbejderne' last"
+  ]
+ },
+ {
+  "sense_id": "220a9e42-5d62-57d7-9c48-0e1a32595fa7",
+  "lemma": "lang",
+  "changes": [
+   "ru 'Встреча длинная' → 'Встреча долгая'"
+  ]
+ },
+ {
+  "sense_id": "08b250ac-9c18-5f50-9f2e-1b7171b154bc",
+  "lemma": "under",
+  "changes": [
+   "'Hun læste under koncerten' (odd) → 'Min telefon ringede under koncerten'",
+   "'Vi talte sammen under pausen' (admits 'i pausen') → 'Det begyndte at regne under kampen'"
+  ]
+ },
+ {
+  "sense_id": "3b4f4af6-e0bc-5108-a967-006aca263af2",
+  "lemma": "første",
+  "changes": [
+   "context-free 'Den første bog/gang' → school setting (dag i skolen, lektion, opgave)",
+   "situation daily-routine → education, level A1 → A2"
+  ]
+ }
+]

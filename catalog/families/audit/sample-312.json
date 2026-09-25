@@ -1,0 +1,398 @@
+[
+ {
+  "id": "57316ac6-b377-5529-931d-2c164f23d725",
+  "family_id": "07b15581-05e4-5635-8acd-f427d0b16293",
+  "lemma": "måtte",
+  "sense": {
+   "ru": "пришлось, был вынужден",
+   "en": "had to (was forced to)"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "På grund af en deadline {target} medarbejderne arbejde over i weekenden.",
+  "variant": {
+   "id": "57316ac6-b377-5529-931d-2c164f23d725",
+   "version": "475f160bd54021c4",
+   "danish": "På grund af en deadline måtte medarbejderne arbejde over i weekenden.",
+   "target": "måtte",
+   "en": "Due to a deadline, the employees had to work overtime that weekend.",
+   "ru": "Из-за срока сотрудникам пришлось работать сверхурочно в те выходные.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "53140b2d-ef3e-5232-a7c6-3687cd2ea7ab",
+  "family_id": "09aa3095-1318-57ae-9880-33f4c64f1742",
+  "lemma": "skønt",
+  "sense": {
+   "ru": "хотя, несмотря на то что",
+   "en": "although, even though"
+  },
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "{target} {subject} {verb} {object}, {main_clause}.",
+  "variant": {
+   "id": "53140b2d-ef3e-5232-a7c6-3687cd2ea7ab",
+   "version": "851d347cd99860f2",
+   "danish": "Skønt han var uenig i sagen, lyttede alle respektfuldt til hans argumenter.",
+   "target": "skønt",
+   "en": "Although he disagreed on the matter, everyone listened respectfully to his arguments.",
+   "ru": "Хотя он не соглашался с этим вопросом, все уважительно слушали его аргументы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "2d3cc521-6dc6-556f-8af9-dcb5f18d736d",
+  "family_id": "3a3961ee-86d1-52aa-8cb1-69cebe88dfe1",
+  "lemma": "medmindre",
+  "sense": {
+   "ru": "если не, за исключением случая когда",
+   "en": "unless"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "conjunctions",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "{target} {subordinate}, {main_clause}.",
+  "variant": {
+   "id": "2d3cc521-6dc6-556f-8af9-dcb5f18d736d",
+   "version": "6d08fe0d160199ba",
+   "danish": "Medmindre der indgås et forlig inden fredag, må afdelingen afskedige tre medarbejdere.",
+   "target": "medmindre",
+   "en": "Unless a settlement is reached before Friday, the department will have to dismiss three employees.",
+   "ru": "Если соглашение не будет достигнуто до пятницы, департаменту придётся уволить трёх сотрудников.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "b5050ac1-ec98-5546-82e4-263ef7166633",
+  "family_id": "8e6c7cc9-b4b2-5b81-a2bd-0bf57c247925",
+  "lemma": "virksomhed",
+  "sense": {
+   "ru": "компания, предприятие",
+   "en": "company, business"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Ifølge årsrapporten har {target} opnået et solidt resultat i år.",
+  "variant": {
+   "id": "b5050ac1-ec98-5546-82e4-263ef7166633",
+   "version": "ad24d9f65d13a8dc",
+   "danish": "Ifølge årsrapporten har virksomheden opnået et solidt resultat i år.",
+   "target": "virksomheden",
+   "en": "According to the annual report, the company has achieved a solid result this year.",
+   "ru": "Согласно годовому отчёту, компания добилась солидных результатов в этом году.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "4d91cbee-5acd-59af-a7b2-b276966abb1d",
+  "family_id": "929b7a69-7cf0-5853-904b-c4fb45e068ce",
+  "lemma": "hvorvidt",
+  "sense": {
+   "ru": "ли",
+   "en": "whether"
+  },
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "{subject} diskuterer, {target} {object}.",
+  "variant": {
+   "id": "4d91cbee-5acd-59af-a7b2-b276966abb1d",
+   "version": "67080a35394b1a87",
+   "danish": "Juristerne diskuterer, hvorvidt lovforslaget er i strid med grundloven.",
+   "target": "hvorvidt",
+   "en": "The lawyers are discussing whether the bill is in conflict with the Constitution.",
+   "ru": "Юристы обсуждают, противоречит ли законопроект Конституции.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "e62d43c4-ed47-5f3a-aef8-46ad8c654697",
+  "family_id": "c2c39ba6-926d-5dcd-9c57-550309d24f1b",
+  "lemma": "oplyse",
+  "sense": {
+   "ru": "сообщать, информировать",
+   "en": "to inform"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "passive",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Ifølge rapporten {target} borgerne om deres rettigheder.",
+  "variant": {
+   "id": "e62d43c4-ed47-5f3a-aef8-46ad8c654697",
+   "version": "ea26ef4c997f60a2",
+   "danish": "Ifølge rapporten oplyses borgerne om deres rettigheder.",
+   "target": "oplyses",
+   "en": "According to the report, citizens are informed about their rights.",
+   "ru": "Согласно докладу, граждан информируют об их правах.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "404b9848-ed1e-5058-b82d-953757dab890",
+  "family_id": "2eadd2c0-3de1-5e7c-a71c-f42e3b69d685",
+  "lemma": "idet",
+  "sense": {
+   "ru": "поскольку, в то время как",
+   "en": "as, while (giving reason or simultaneity)"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "{target} {subject} {verb} {object}, {main_clause}.",
+  "variant": {
+   "id": "404b9848-ed1e-5058-b82d-953757dab890",
+   "version": "69a36bac101911bb",
+   "danish": "Idet bestyrelsen diskuterede strategien, indså vi et alvorligt problem.",
+   "target": "idet",
+   "en": "As the board discussed the strategy, we realized a serious problem.",
+   "ru": "Когда совет обсуждал стратегию, мы осознали серьёзную проблему.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "10d04c0d-0b07-5b68-ada3-5f1d7ac8c448",
+  "family_id": "eda13cf6-02a4-508f-a05a-14d47c3faefd",
+  "lemma": "kræve",
+  "sense": {
+   "ru": "требовать",
+   "en": "to require, to demand"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Stillingen {target} {experience}.",
+  "variant": {
+   "id": "10d04c0d-0b07-5b68-ada3-5f1d7ac8c448",
+   "version": "88dab4818fbbec50",
+   "danish": "Stillingen kræver mindst fem års erfaring.",
+   "target": "kræver",
+   "en": "The position requires at least five years of experience.",
+   "ru": "Для работы требуется не менее пяти лет опыта.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "49bc628d-effd-536c-957c-b7eb46760266",
+  "family_id": "20d853c1-0cdb-58fc-aaf8-b0e43c37c88a",
+  "lemma": "føre",
+  "sense": {
+   "ru": "вести, руководить",
+   "en": "to lead"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Den nye direktør {target} virksomheden gennem en svær tid.",
+  "variant": {
+   "id": "49bc628d-effd-536c-957c-b7eb46760266",
+   "version": "3e455b4952187b34",
+   "danish": "Den nye direktør fører virksomheden gennem en svær tid.",
+   "target": "fører",
+   "en": "The new CEO is leading the company through a difficult time.",
+   "ru": "Новый генеральный директор ведёт компанию через трудное время.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b9417ee4-c3ae-5ea8-b44f-3d32e8ca6b4b",
+  "family_id": "f4f8b107-2df8-54e4-b609-5e05ebeee12f",
+  "lemma": "opleve",
+  "sense": {
+   "ru": "переживать, испытывать",
+   "en": "to experience"
+  },
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Jeg har aldrig {target} en så dyb følelse af {emotion}.",
+  "variant": {
+   "id": "b9417ee4-c3ae-5ea8-b44f-3d32e8ca6b4b",
+   "version": "482c9875b0e7c10a",
+   "danish": "Jeg har aldrig oplevet en så dyb følelse af taknemmelighed.",
+   "target": "oplevet",
+   "en": "I have never experienced such a deep feeling of gratitude.",
+   "ru": "Я никогда не испытывал такого глубокого чувства благодарности.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d1d388b2-15be-5e41-b32a-2803899e78ff",
+  "family_id": "c9ec9cdf-040c-521f-bbee-2bc853be72c9",
+  "lemma": "offentlig",
+  "sense": {
+   "ru": "общественный, публичный",
+   "en": "public"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Debatten om {subject} er blevet mere {target}.",
+  "variant": {
+   "id": "d1d388b2-15be-5e41-b32a-2803899e78ff",
+   "version": "4f94d923946e10ee",
+   "danish": "Debatten om sundhedsvæsenets fremtid er blevet mere offentlig.",
+   "target": "offentlig",
+   "en": "The debate about the future of the health service has become more public.",
+   "ru": "Дебаты о будущем системы здравоохранения стали более публичными.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "9ad41a41-8a6b-502e-a86f-1910de1febb7",
+  "family_id": "557d2f08-778b-5bf4-98d0-477b9bcb81f4",
+  "lemma": "udvikle",
+  "sense": {
+   "ru": "развивать",
+   "en": "to develop"
+  },
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "verb-past",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "I løbet af det 20. århundrede {target} {subject} sig markant.",
+  "variant": {
+   "id": "9ad41a41-8a6b-502e-a86f-1910de1febb7",
+   "version": "ab63d3d9df48b5fc",
+   "danish": "I løbet af det 20. århundrede udviklede medicinen sig markant.",
+   "target": "udviklede",
+   "en": "During the 20th century, medicine developed significantly.",
+   "ru": "В XX веке медицина значительно развилась.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "34e91bf5-3d94-50de-b949-8f9d902b4406",
+  "family_id": "83147dda-745e-5ef8-bbae-ccac0c992218",
+  "lemma": "regering",
+  "sense": {
+   "ru": "правительство",
+   "en": "government"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Ifølge den nye rapport har {target} undervurderet problemets omfang.",
+  "variant": {
+   "id": "34e91bf5-3d94-50de-b949-8f9d902b4406",
+   "version": "da948a3cea7cacac",
+   "danish": "Ifølge den nye rapport har regeringen undervurderet problemets omfang.",
+   "target": "regeringen",
+   "en": "According to the new report, the government has underestimated the extent of the problem.",
+   "ru": "Согласно новому докладу, правительство недооценило масштаб проблемы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "9dcf8169-54e4-5847-a0ac-921656ea0659",
+  "family_id": "e3c99345-4939-53b9-89ee-557abf32993d",
+  "lemma": "økonomisk",
+  "sense": {
+   "ru": "экономный, бережливый",
+   "en": "economical, thrifty"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "Hun er meget {target} og genbruger altid {object}.",
+  "variant": {
+   "id": "9dcf8169-54e4-5847-a0ac-921656ea0659",
+   "version": "29fdef4377217ffa",
+   "danish": "Hun er meget økonomisk og genbruger altid papir.",
+   "target": "økonomisk",
+   "en": "She is very economical and always recycles paper.",
+   "ru": "Она очень экономна и всегда перерабатывает бумагу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "4c37a549-af0a-5617-9662-6b679484c025",
+  "family_id": "c72b0a28-d19c-58b9-8f61-042d5e45f7c4",
+  "lemma": "gælde",
+  "sense": {
+   "ru": "действовать, относиться",
+   "en": "to apply, to be valid"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0106.json",
+  "frame": "De nye regler {target} for alle borgere, {adverb}.",
+  "variant": {
+   "id": "4c37a549-af0a-5617-9662-6b679484c025",
+   "version": "ba89b322ef196839",
+   "danish": "De nye regler gælder for alle borgere, uanset indkomst.",
+   "target": "gælder",
+   "en": "The new rules apply to all citizens, regardless of income.",
+   "ru": "Новые правила применяются ко всем гражданам, независимо от дохода.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ }
+]

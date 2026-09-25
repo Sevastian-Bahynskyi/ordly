@@ -1,0 +1,419 @@
+[
+ {
+  "lemma": "menneske",
+  "kind": "word",
+  "sense_id": "b7d88e26-aa61-5d8c-bc78-7811feece55d",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 121,
+  "min_level": "A1",
+  "ru": "человек",
+  "en": "person, human being",
+  "forms": [
+   "menneske",
+   "menneskene",
+   "menneskenes",
+   "mennesker",
+   "menneskerne",
+   "menneskernes",
+   "menneskers",
+   "menneskes",
+   "mennesket",
+   "menneskets"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "noun-indefinite"
+  },
+  "note": "Two earlier attempts both failed. First: \"et menneske\" was used as the target — that is two words, not a verified form; the article goes in fixed frame text directly before {target} instead. Second: \"menneske\" (singular, generic) and \"mennesker\" (plural, generic) ended up meaning the same thing in a generic statement like \"a human/humans need(s) sleep\" — Translator collapsed them to identical English. Add a REAL varying slot (a different context/reason each variant) instead of relying on singular-vs-plural alone for variety, the same way \"kommune\" and \"minut\" succeeded elsewhere in this batch."
+ },
+ {
+  "lemma": "kommune",
+  "kind": "word",
+  "sense_id": "7407f1be-1db4-5c26-8c0f-d0dbb4d170fa",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 115,
+  "min_level": "A1",
+  "ru": "коммуна, муниципалитет",
+  "en": "municipality",
+  "forms": [
+   "kommune",
+   "kommunen",
+   "kommunens",
+   "kommuner",
+   "kommunerne",
+   "kommunernes",
+   "kommuners",
+   "kommunes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-indefinite"
+  }
+ },
+ {
+  "lemma": "minut",
+  "kind": "word",
+  "sense_id": "7783a147-0d16-51a2-8d3b-aff394b634b8",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 128,
+  "min_level": "A1",
+  "ru": "минута",
+  "en": "minute",
+  "forms": [
+   "minut",
+   "minuts",
+   "minutter",
+   "minutterne",
+   "minutternes",
+   "minutters",
+   "minuttet",
+   "minuttets"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "noun-indefinite"
+  }
+ },
+ {
+  "lemma": "vise",
+  "kind": "word",
+  "sense_id": "30191ca6-aac6-5414-b1a6-d0c0f4c056c8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 102,
+  "min_level": "A1",
+  "ru": "оказываться, проявляться",
+  "en": "to turn out, to prove (to be)",
+  "forms": [
+   "vis",
+   "vise",
+   "visende",
+   "viser",
+   "vises",
+   "vist",
+   "viste",
+   "vistes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "bruge",
+  "kind": "word",
+  "sense_id": "1246fcb6-aba1-5034-a991-1b7985b41474",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 100,
+  "min_level": "A1",
+  "ru": "использовать",
+  "en": "to use",
+  "forms": [
+   "brug",
+   "bruge",
+   "brugende",
+   "bruger",
+   "bruges",
+   "brugt",
+   "brugte",
+   "brugtes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "verb-future"
+  },
+  "note": "Three issues in previous attempts: (1) \"vil bruge\" / \"skal bruge\" was used as the target — that is two words, not a verified form; target must be exactly \"bruge\" (the bare infinitive), with \"vil\"/\"skal\" as fixed frame text immediately BEFORE {target}. (2) the accepted reply used \"bruger\" (present) and \"brugte\" (past) — neither is future tense, so the family did not actually belong in \"verb-future\". (3) the next attempt varied only \"vil\" vs \"skal\" as a slot — both translate to the same English \"will\", so the two variants ended up meaning the same thing. Use \"vil\" (or \"skal\") consistently as fixed frame text, and instead add a real varying slot for something else — a different purpose/object — the way \"holde\" (elsewhere in this batch) varied its object across variants."
+ },
+ {
+  "lemma": "holde",
+  "kind": "word",
+  "sense_id": "fba0d7b9-e985-5825-a3b7-e61195d8e2e8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 104,
+  "min_level": "A1",
+  "ru": "проводить, устраивать",
+  "en": "to hold, to throw (an event)",
+  "forms": [
+   "hold",
+   "holde",
+   "holdende",
+   "holder",
+   "holdes",
+   "holdt",
+   "holdte",
+   "holdtes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "verb-future"
+  },
+  "note": "Previous attempt used \"vil holde\" as the target — that is two words, not a verified form. target must be exactly \"holde\" (the bare infinitive); \"vil\" is fixed frame text placed immediately BEFORE {target}, e.g. \"Næste år vil kommunen {target} en konference...\" with target \"holde\", never inside target itself."
+ },
+ {
+  "lemma": "sætte",
+  "kind": "word",
+  "sense_id": "a4fe1785-b300-57e4-a4b7-da86e0e21527",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 103,
+  "min_level": "A1",
+  "ru": "устанавливать, назначать",
+  "en": "to set, to establish",
+  "forms": [
+   "sat",
+   "satte",
+   "sattes",
+   "sæt",
+   "sætte",
+   "sættende",
+   "sætter",
+   "sættes"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "verb-future"
+  },
+  "note": "Previous attempt used \"sætter\" (present) and bare \"sætte\" with no auxiliary — the second is ungrammatical (a bare infinitive cannot be a main-clause verb) and neither is future tense. Every variant must genuinely be future tense: \"vil\"/\"skal\" as fixed frame text immediately before {target}, with target the bare infinitive \"sætte\", e.g. \"Lægen vil {target} en diagnose efter prøverne.\""
+ },
+ {
+  "lemma": "dog",
+  "kind": "word",
+  "sense_id": "0ee9c695-c475-5fa1-8874-7cb36cd500c7",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 113,
+  "min_level": "A1",
+  "ru": "однако, всё же",
+  "en": "though, still (however)",
+  "forms": [
+   "dog"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "sentence-adverbs"
+  },
+  "note": "Previous attempt placed \"dog\" between the subject and the finite verb (\"Patienten dog nægtede...\") — wrong. A Danish sentence adverb goes AFTER the finite verb: \"Patienten nægtede dog at tage medicinen.\" (verb \"nægtede\", then \"dog\"). Every variant must follow this order."
+ },
+ {
+  "lemma": "derfor",
+  "kind": "word",
+  "sense_id": "1449948e-71ef-595a-a72f-5ddf8e841cfd",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 90,
+  "min_level": "A1",
+  "ru": "поэтому",
+  "en": "therefore, that is why",
+  "forms": [
+   "derfor"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "sentence-adverbs"
+  }
+ },
+ {
+  "lemma": "nok",
+  "kind": "word",
+  "sense_id": "6a7d48dc-1d44-5032-b438-532cf320521e",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 117,
+  "min_level": "A1",
+  "ru": "наверное, пожалуй",
+  "en": "probably",
+  "forms": [
+   "nok"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "sentence-adverbs"
+  },
+  "note": "This adverb does not inflect, so it must keep the exact same spelling \"nok\" in every variant — add a real varying slot instead of varying the target. Also: previous attempt placed \"nok\" between the subject and the finite verb (\"Eleverne nok afleverer...\") — wrong. A Danish sentence adverb goes AFTER the finite verb: \"Eleverne afleverer nok opgaven til tiden.\" (verb \"afleverer\", then \"nok\"). If a variant uses a COMPOUND verb (an auxiliary + participle, like \"har læst\"), do NOT put \"nok\" after the whole phrase (\"har læst nok X\") — that reads as \"nok\" = \"enough\" (a real ambiguity with this word), not \"probably\". Put \"nok\" BETWEEN the auxiliary and the participle instead: \"har nok læst\" — or simply avoid compound-tense verb options for this slot and use only simple-tense verbs (afleverer, forstår, består...)."
+ },
+ {
+  "lemma": "uden",
+  "kind": "word",
+  "sense_id": "7c47daa4-2be6-5c1d-94fd-22f809434ebb",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 140,
+  "min_level": "A1",
+  "ru": "без",
+  "en": "without",
+  "forms": [
+   "uden"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "prepositions-other"
+  }
+ },
+ {
+  "lemma": "ifølge",
+  "kind": "word",
+  "sense_id": "74841c52-2722-5652-bfb3-2d4864bf0212",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 151,
+  "min_level": "A1",
+  "ru": "согласно",
+  "en": "according to",
+  "forms": [
+   "ifølge"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "prepositions-other"
+  }
+ },
+ {
+  "lemma": "omkring",
+  "kind": "word",
+  "sense_id": "fcd60dfe-4b78-5c25-a288-95b60154b46c",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 157,
+  "min_level": "A1",
+  "ru": "вокруг",
+  "en": "around",
+  "forms": [
+   "omkring"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "prepositions-other"
+  }
+ },
+ {
+  "lemma": "selv",
+  "kind": "word",
+  "sense_id": "dfe6a3c1-beb1-50ec-a280-e3d03ba66167",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 86,
+  "min_level": "A1",
+  "ru": "даже",
+  "en": "even",
+  "forms": [
+   "selv"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "adverbs"
+  },
+  "note": "Previous attempt demonstrated the WRONG sense of \"selv\": \"Lægen kunne selv mærke...\" means \"the doctor himself could feel...\" (reflexive intensifier, \"-self\"), not this sense. This sense is the concessive \"even\" — \"selv\" modifying a noun phrase to mean \"even X\", e.g. \"Selv de mest erfarne læger kan tage fejl.\" (Even the most experienced doctors can be wrong.) or \"Selv en mindre infektion kan være farlig for en svækket patient.\" (Even a minor infection can be dangerous for a weakened patient.) Every variant must use this concessive \"even\" reading, not the reflexive one."
+ },
+ {
+  "lemma": "både",
+  "kind": "word",
+  "sense_id": "7fbfd777-c79a-5d07-8f9c-10342699eb74",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 108,
+  "min_level": "A1",
+  "ru": "как один, так и другой",
+  "en": "both",
+  "forms": [
+   "både"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "adverbs"
+  },
+  "note": "Previous attempt dropped the verb: \"Konsulenten både koordinator og sælger.\" has no verb at all and is ungrammatical. \"både X og Y\" coordinating two noun predicates needs a linking verb (usually \"er\") between the subject and \"både\": \"Konsulenten er både koordinator og sælger.\" Every variant needs its verb."
+ },
+ {
+  "lemma": "lige",
+  "kind": "word",
+  "sense_id": "bcbe9302-0f8e-5aee-87dc-ccbcb5c57ce7",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 93,
+  "min_level": "A1",
+  "ru": "как раз, именно",
+  "en": "exactly, just",
+  "forms": [
+   "lige"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "adverbs"
+  }
+ },
+ {
+  "lemma": "tale",
+  "kind": "word",
+  "sense_id": "c378f4cf-58b0-5015-b429-1a14da999b81",
+  "pos": "noun",
+  "gender": null,
+  "freq_rank": 135,
+  "min_level": "A1",
+  "ru": "речь, выступление",
+  "en": "speech",
+  "forms": [
+   "tale",
+   "talen",
+   "talens",
+   "taler",
+   "talerne",
+   "talernes",
+   "talers",
+   "tales"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "noun-meaning"
+  }
+ },
+ {
+  "lemma": "verden",
+  "kind": "word",
+  "sense_id": "6a0a3af7-40e3-54c1-abae-f199e325261c",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 129,
+  "min_level": "A1",
+  "ru": "мир",
+  "en": "world",
+  "forms": [
+   "verden",
+   "verdener",
+   "verdenerne",
+   "verdenernes",
+   "verdeners",
+   "verdens",
+   "verdner",
+   "verdnerne",
+   "verdnernes",
+   "verdners"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "noun-meaning"
+  }
+ }
+]

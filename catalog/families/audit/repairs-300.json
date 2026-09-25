@@ -1,0 +1,86 @@
+{
+ "auditor": "claude-opus-5-5",
+ "seed": 300,
+ "scope": "all 84 sentences of batch-0102/0103, not only the 30 sampled",
+ "regenerated": {
+  "komme ind på": "Audit: every sentence of the previous family broke V2 (\"I sin artikel kom ind på journalisten emnet\"). Start each main clause with its subject: \"Journalisten kom ind på emnet i sin artikel.\"",
+  "uden for (weather-nature)": "Audit: \"slå teltet op uden for skovgrænsen\" was an unnatural collocation. Use plain everyday settings where \"uden for\" is natural (uden for byen, uden for huset, uden for vinduet) with weather content."
+ },
+ "translation_corrections": [
+  {
+   "lemma": "kede sig",
+   "before": "Моя подруга скучает в кино.",
+   "after": "Мой друг скучает в кино.",
+   "why": "ven is a (male) friend; подруга is veninde"
+  },
+  {
+   "lemma": "dukke op",
+   "before": "На вечеринке пришло много старых друзей.",
+   "after": "На вечеринку пришло много старых друзей.",
+   "why": "case: direction takes на + accusative"
+  }
+ ],
+ "round2": {
+  "translation_corrections": [
+   {
+    "lemma": "komme ind på",
+    "before": {
+     "en": "The chronicler touched on the environmental crisis in his article.",
+     "ru": "Хронист затронул экологический кризис в своей статье."
+    },
+    "after": {
+     "en": "The columnist touched on the environmental crisis in his article.",
+     "ru": "Колумнист затронул экологический кризис в своей статье."
+    },
+    "why": "kronikør is a columnist/op-ed writer"
+   },
+   {
+    "lemma": "komme ind på",
+    "before": {
+     "en": "The reviewer discusses the financial consequences in his article.",
+     "ru": "Рецензент обсуждает финансовые последствия в своей статье."
+    },
+    "after": {
+     "en": "The reviewer touches on the financial consequences in his article.",
+     "ru": "Рецензент затрагивает финансовые последствия в своей статье."
+    },
+    "why": "komme ind på is touch on, not discuss"
+   }
+  ],
+  "regenerated": {
+   "uden for (weather-nature)": "Audit: \"uden for\" must be the preposition with its complement right after it (uden for byen, uden for huset, uden for vinduet); \"vi stod uden for.\" is the adverb, spelled udenfor. Previous attempts also used an unnatural collocation (uden for skovgrænsen)."
+  }
+ },
+ "seed301": {
+  "translation_corrections": [
+   {
+    "lemma": "alle sammen",
+    "before": {
+     "en": "My friends all go to the party.",
+     "ru": "Мои друзья все ходят на вечеринку."
+    },
+    "after": {
+     "en": "My friends are all going to the party.",
+     "ru": "Мои друзья все идут на вечеринку."
+    },
+    "why": "definite festen is one specific party, not a habit"
+   }
+  ]
+ },
+ "seed302": {
+  "translation_corrections": [
+   {
+    "lemma": "alle sammen",
+    "before": {
+     "en": "Her siblings all come to the party.",
+     "ru": "На вечеринку приходят все её братья и сёстры."
+    },
+    "after": {
+     "en": "Her siblings are all coming to the party.",
+     "ru": "Все её братья и сёстры придут на вечеринку."
+    },
+    "why": "definite festen is one specific party, not a habit"
+   }
+  ]
+ }
+}

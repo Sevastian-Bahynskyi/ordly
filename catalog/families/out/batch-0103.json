@@ -1,0 +1,777 @@
+[
+ {
+  "lemma": "falde i søvn",
+  "kind": "phrase",
+  "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "fixed-expressions",
+  "frame": "Jeg {target} foran fjernsynet.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "faldt i søvn",
+    "en": "I fell asleep in front of the TV.",
+    "ru": "Я уснул перед телевизором."
+   },
+   {
+    "slots": {},
+    "target": "falder i søvn",
+    "en": "I fall asleep in front of the TV.",
+    "ru": "Я засыпаю перед телевизором."
+   }
+  ]
+ },
+ {
+  "lemma": "tage fejl",
+  "kind": "phrase",
+  "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+  "level": "A2",
+  "situation": "social",
+  "grammar": "fixed-expressions",
+  "frame": "Jeg tror, du {target}.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "tager fejl",
+    "en": "I think you're wrong.",
+    "ru": "Думаю, вы ошибаетесь."
+   },
+   {
+    "slots": {},
+    "target": "tog fejl",
+    "en": "I think you were wrong.",
+    "ru": "Думаю, вы ошиблись."
+   }
+  ]
+ },
+ {
+  "lemma": "tage for givet",
+  "kind": "phrase",
+  "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "fixed-expressions",
+  "frame": "Mange borgere {target}, at staten altid sørger for rent drikkevand.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "tager for givet",
+    "en": "Many citizens take for granted that the state always provides clean drinking water.",
+    "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевую воду."
+   },
+   {
+    "slots": {},
+    "target": "tog for givet",
+    "en": "Many citizens took for granted that the state always provides clean drinking water.",
+    "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду."
+   }
+  ]
+ },
+ {
+  "lemma": "have til hensigt",
+  "kind": "phrase",
+  "sense_id": "074047ba-6a6e-5a9a-8285-967913997234",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "frame": "Direktøren {target} at gennemføre reformen.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "har til hensigt",
+    "en": "The Director intends to implement the reform.",
+    "ru": "Директор намерен реализовать реформу."
+   },
+   {
+    "slots": {},
+    "target": "havde til hensigt",
+    "en": "The Director intended to implement the reform.",
+    "ru": "Директор намеревался реализовать реформу."
+   }
+  ]
+ },
+ {
+  "lemma": "i morgen tidlig",
+  "kind": "phrase",
+  "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "prepositions-time",
+  "frame": "{subject} {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Toget afgår"
+    },
+    {
+     "da": "Bussen kører"
+    },
+    {
+     "da": "Færgen sejler"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "i morgen tidlig",
+    "en": "The train departs tomorrow morning.",
+    "ru": "Поезд отправляется завтра утром."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "i morgen tidlig",
+    "en": "The bus leaves tomorrow morning.",
+    "ru": "Автобус отправляется завтра утром."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "i morgen tidlig",
+    "en": "The ferry leaves tomorrow morning.",
+    "ru": "Паром отправляется завтра утром."
+   }
+  ]
+ },
+ {
+  "lemma": "i morgen tidlig",
+  "kind": "phrase",
+  "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "prepositions-time",
+  "frame": "{target} skal jeg mødes med {person}.",
+  "slots": {
+   "person": [
+    {
+     "da": "min chef"
+    },
+    {
+     "da": "en kunde"
+    },
+    {
+     "da": "projektlederen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0
+    },
+    "target": "i morgen tidlig",
+    "en": "Tomorrow morning I'm going to meet with my boss.",
+    "ru": "Завтра утром я встречусь с начальником."
+   },
+   {
+    "slots": {
+     "person": 1
+    },
+    "target": "i morgen tidlig",
+    "en": "Tomorrow morning I will meet with a customer.",
+    "ru": "Завтра утром я встречусь с клиентом."
+   },
+   {
+    "slots": {
+     "person": 2
+    },
+    "target": "i morgen tidlig",
+    "orders": [
+     "Jeg skal mødes med projektlederen i morgen tidlig."
+    ],
+    "en": "Tomorrow morning I will meet with the project manager.",
+    "ru": "Завтра утром я встречусь с руководителем проекта."
+   }
+  ]
+ },
+ {
+  "sense_id": "f2067672-46dd-5991-812b-31170d554097",
+  "lemma": "i lang tid",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "prepositions-time"
+  },
+  "skip": "style check: \"tog\" is not one of the given forms — copy a form exactly; \"vil tage\" is not one of the given forms — copy a form exactly"
+ },
+ {
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "lemma": "heller ikke",
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "negation"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "lemma": "oven på",
+  "kind": "phrase",
+  "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "frame": "Jeg lagde bogen {target} {furniture}.",
+  "slots": {
+   "furniture": [
+    {
+     "da": "reolen"
+    },
+    {
+     "da": "kommoden"
+    },
+    {
+     "da": "skrivebordet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "furniture": 0
+    },
+    "target": "oven på",
+    "en": "I put the book on top of the bookcase.",
+    "ru": "Я положил книгу на шкаф."
+   },
+   {
+    "slots": {
+     "furniture": 1
+    },
+    "target": "oven på",
+    "en": "I put the book on top of the dresser.",
+    "ru": "Я положил книгу на комод."
+   },
+   {
+    "slots": {
+     "furniture": 2
+    },
+    "target": "oven på",
+    "en": "I put the book on top of the desk.",
+    "ru": "Я положил книгу на стол."
+   }
+  ]
+ },
+ {
+  "lemma": "på forhånd",
+  "kind": "phrase",
+  "sense_id": "4784a291-3cdd-5521-8525-a7bf03022cf5",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "adverbs",
+  "frame": "Du bør {target} bestille {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "bord"
+    },
+    {
+     "da": "en tid hos frisøren"
+    },
+    {
+     "da": "billetter til forestillingen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "på forhånd",
+    "en": "You should book an appointment with the hairdresser in advance.",
+    "ru": "Вам стоит заранее записаться на приём к парикмахеру."
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "på forhånd",
+    "en": "You should book tickets for the show in advance.",
+    "ru": "Билеты на шоу стоит заранее забронировать."
+   }
+  ]
+ },
+ {
+  "lemma": "på grund af",
+  "kind": "phrase",
+  "sense_id": "21832b47-a527-55cb-8226-5c2d0dbf2d73",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-other",
+  "frame": "Festivalen blev aflyst {target} {weather}.",
+  "slots": {
+   "weather": [
+    {
+     "da": "kraftig regn"
+    },
+    {
+     "da": "en storm"
+    },
+    {
+     "da": "oversvømmelser i området"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "weather": 0
+    },
+    "target": "på grund af",
+    "en": "The festival was cancelled due to heavy rain.",
+    "ru": "Фестиваль был отменён из-за сильного дождя."
+   },
+   {
+    "slots": {
+     "weather": 1
+    },
+    "target": "på grund af",
+    "en": "The festival was cancelled due to a storm.",
+    "ru": "Фестиваль был отменён из-за шторма."
+   },
+   {
+    "slots": {
+     "weather": 2
+    },
+    "target": "på grund af",
+    "en": "The festival was cancelled due to flooding in the area.",
+    "ru": "Фестиваль был отменён из-за наводнений в этом районе."
+   }
+  ]
+ },
+ {
+  "lemma": "heller ikke",
+  "kind": "phrase",
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "frame": "{person} kan {target} lide {food}.",
+  "slots": {
+   "person": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min bror"
+    },
+    {
+     "da": "Børnene"
+    }
+   ],
+   "food": [
+    {
+     "da": "fisk"
+    },
+    {
+     "da": "kaffe"
+    },
+    {
+     "da": "stærk mad"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0,
+     "food": 0
+    },
+    "target": "heller ikke",
+    "en": "I don't like fish either.",
+    "ru": "Я тоже не люблю рыбу."
+   },
+   {
+    "slots": {
+     "person": 1,
+     "food": 1
+    },
+    "target": "heller ikke",
+    "en": "My brother doesn't like coffee either.",
+    "ru": "Мой брат тоже не любит кофе."
+   },
+   {
+    "slots": {
+     "person": 2,
+     "food": 2
+    },
+    "target": "heller ikke",
+    "en": "The kids don't like spicy food either.",
+    "ru": "Дети тоже не любят острую еду."
+   }
+  ]
+ },
+ {
+  "lemma": "uden for",
+  "kind": "phrase",
+  "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "frame": "Bussen holder {target} {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "stationen"
+    },
+    {
+     "da": "lufthavnen"
+    },
+    {
+     "da": "hovedindgangen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "uden for",
+    "en": "The bus stops outside the station.",
+    "ru": "Автобус останавливается у вокзала."
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "uden for",
+    "en": "The bus stops outside the airport.",
+    "ru": "Автобус останавливается у аэропорта."
+   },
+   {
+    "slots": {
+     "place": 2
+    },
+    "target": "uden for",
+    "en": "The bus stops outside the main entrance.",
+    "ru": "Автобус останавливается у главного входа."
+   }
+  ]
+ },
+ {
+  "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+  "lemma": "heller ikke",
+  "target": {
+   "level": "B1",
+   "situation": "feelings-opinions",
+   "grammar": "negation"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot; \"orders\" must hold complete Danish sentences, never a template with {placeholders}: \"Jeg synes ikke, at filmen var særlig god, og min ven synes {target} det.\""
+ },
+ {
+  "sense_id": "48f176c6-6908-51bc-99af-0e56b09a76f0",
+  "lemma": "gå i opfyldelse",
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "fixed-expressions"
+  },
+  "skip": "style check: the alternative order \"På en måde, ingen havde forestillet sig, er hendes forudsigelse gået i opfyldelse.\" does not use exactly the words of \"Hendes forudsigelse gået i opfyldelse på en måde, ingen havde forestillet sig.\" — omit it or fix it"
+ },
+ {
+  "sense_id": "207951ee-2e1f-504a-ad23-861f7ac023b5",
+  "lemma": "finde sted",
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "fixed-expressions"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "i aftes",
+  "kind": "phrase",
+  "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "frame": "{subject} {verb} {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "De"
+    }
+   ],
+   "verb": [
+    {
+     "da": "så en film"
+    },
+    {
+     "da": "spiste middag"
+    },
+    {
+     "da": "gik en tur"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0
+    },
+    "target": "i aftes",
+    "en": "I saw a movie last night.",
+    "ru": "Вчера вечером я смотрел фильм."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1
+    },
+    "target": "i aftes",
+    "en": "We had dinner last night.",
+    "ru": "Вчера вечером мы ужинали."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2
+    },
+    "target": "i aftes",
+    "en": "They went for a walk last night.",
+    "ru": "Вчера вечером они гуляли."
+   }
+  ]
+ },
+ {
+  "lemma": "pleje at",
+  "kind": "phrase",
+  "sense_id": "bf4765cc-8a9f-5cea-9def-6cf10ff1f1ad",
+  "level": "A2",
+  "situation": "personal-info",
+  "grammar": "infinitive",
+  "frame": "Jeg {target} {activity}.",
+  "slots": {
+   "activity": [
+    {
+     "da": "løbe en tur om morgenen"
+    },
+    {
+     "da": "læse en bog inden sengetid"
+    },
+    {
+     "da": "drikke kaffe efter frokost"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "plejer at",
+    "en": "I usually go for a run in the morning.",
+    "ru": "Обычно я выхожу на пробежку утром."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "plejer at",
+    "en": "I usually read a book before bedtime.",
+    "ru": "Обычно я читаю книгу перед сном."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "plejer at",
+    "en": "I usually drink coffee after lunch.",
+    "ru": "Обычно я пью кофе после обеда."
+   },
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "plejede at",
+    "en": "I used to go for a run in the morning.",
+    "ru": "Раньше я ходил на пробежку по утрам."
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "plejede at",
+    "en": "I used to read a book before bed.",
+    "ru": "Раньше я читал книгу перед сном."
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "plejede at",
+    "en": "I used to drink coffee after lunch.",
+    "ru": "Раньше я пил кофе после обеда."
+   }
+  ]
+ },
+ {
+  "lemma": "lægge mærke til",
+  "kind": "phrase",
+  "sense_id": "3b128180-c106-5899-9e52-7ea5453095df",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "fixed-expressions",
+  "frame": "Vi {target} en regnbue over marken.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "lagde mærke til",
+    "en": "We noticed a rainbow over the field.",
+    "ru": "Мы заметили радугу над полем."
+   },
+   {
+    "slots": {},
+    "target": "lægger mærke til",
+    "en": "We notice a rainbow over the field.",
+    "ru": "Мы замечаем радугу над полем."
+   }
+  ]
+ },
+ {
+  "sense_id": "e8fe2b36-160b-587e-a89d-764c194b360f",
+  "lemma": "hele tiden",
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "prepositions-time"
+  },
+  "skip": "style check: slot(s) time are declared but never used in the frame — every slot must appear as {name} in \"frame\", or be removed"
+ },
+ {
+  "lemma": "alle sammen",
+  "kind": "phrase",
+  "sense_id": "379311a2-3a43-5852-b76e-6992597e6fc4",
+  "level": "A2",
+  "situation": "social",
+  "grammar": "adverbs",
+  "frame": "{subject} {verb} {target} til festen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Mine venner"
+    },
+    {
+     "da": "Dine kolleger"
+    },
+    {
+     "da": "Hendes søskende"
+    }
+   ],
+   "verb": [
+    {
+     "da": "kommer"
+    },
+    {
+     "da": "tager"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0
+    },
+    "target": "alle sammen",
+    "en": "My friends are all coming to the party.",
+    "ru": "Мои друзья все придут на вечеринку."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 0
+    },
+    "target": "alle sammen",
+    "en": "Your colleagues are all coming to the party.",
+    "ru": "Ваши коллеги все придут на вечеринку."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 0
+    },
+    "target": "alle sammen",
+    "en": "Her siblings are all coming to the party.",
+    "ru": "Все её братья и сёстры придут на вечеринку."
+   },
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 1
+    },
+    "target": "alle sammen",
+    "en": "My friends are all going to the party.",
+    "ru": "Мои друзья все идут на вечеринку."
+   }
+  ]
+ },
+ {
+  "lemma": "uden for",
+  "kind": "phrase",
+  "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-place",
+  "frame": "Temperaturen er lavere {target} {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "byen"
+    },
+    {
+     "da": "skoven"
+    },
+    {
+     "da": "drivhuset"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "uden for",
+    "en": "The temperature is lower outside the city.",
+    "ru": "Температура за пределами города ниже."
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "uden for",
+    "en": "The temperature is lower outside the forest.",
+    "ru": "Температура за пределами леса ниже."
+   },
+   {
+    "slots": {
+     "place": 2
+    },
+    "target": "uden for",
+    "en": "The temperature is lower outside the greenhouse.",
+    "ru": "Температура за пределами теплицы ниже."
+   }
+  ]
+ }
+]

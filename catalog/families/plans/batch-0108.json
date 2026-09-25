@@ -1,0 +1,331 @@
+{
+ "note": "Fill-up round (issue #16), 2026-09-25: the 25 matrix cells still below 3 families after batches 0104-0106, over-provisioned because about a quarter of targets end as skips (mostly the round-trip translation check).",
+ "entries": [
+  {
+   "lemma": "kunne",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "modal-verbs"
+    },
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "ville",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "leisure",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "spise",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "food-drink",
+     "grammar": "imperative"
+    }
+   ]
+  },
+  {
+   "lemma": "lukke",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "passive",
+     "note": "Passive: either the present s-passive (target the -s form, e.g. \"åbnes\") or blive + past participle (target the participle, \"åbnet\"; \"blev\"/\"bliver\" is frame text). Never the past s-passive (\"åbnedes\"), which is archaic."
+    }
+   ]
+  },
+  {
+   "lemma": "vælge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "passive",
+     "note": "Passive: either the present s-passive (target the -s form, e.g. \"åbnes\") or blive + past participle (target the participle, \"åbnet\"; \"blev\"/\"bliver\" is frame text). Never the past s-passive (\"åbnedes\"), which is archaic."
+    }
+   ]
+  },
+  {
+   "lemma": "bygge",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "passive",
+     "note": "Passive: either the present s-passive (target the -s form, e.g. \"åbnes\") or blive + past participle (target the participle, \"åbnet\"; \"blev\"/\"bliver\" is frame text). Never the past s-passive (\"åbnedes\"), which is archaic."
+    }
+   ]
+  },
+  {
+   "phrase": "bekymre sig",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "phrase": "tabe sig",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "body-health",
+     "grammar": "reflexive"
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "da",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "subordinate-clause"
+    }
+   ]
+  },
+  {
+   "lemma": "hvorfor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "society",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvordan",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "transport",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvornår",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "ingen",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "services",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "ikke",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "min",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "pronouns"
+    }
+   ]
+  },
+  {
+   "lemma": "nogen",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "social",
+     "grammar": "pronouns"
+    }
+   ]
+  },
+  {
+   "lemma": "bo",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "home",
+     "grammar": "relative-clause",
+     "note": "The target sits inside a relative clause introduced by som/der/hvor: \"huset, som vi bor i\"."
+    }
+   ]
+  },
+  {
+   "lemma": "arbejde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "work",
+     "grammar": "relative-clause",
+     "note": "The target sits inside a relative clause: \"firmaet, hvor jeg arbejder\"."
+    },
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "relative-clause",
+     "note": "The target sits inside a relative clause."
+    }
+   ]
+  },
+  {
+   "lemma": "leve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "relative-clause",
+     "note": "The target sits inside a relative clause: \"mennesker, der lever i fattigdom\"."
+    }
+   ]
+  },
+  {
+   "lemma": "gælde",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "society",
+     "grammar": "relative-clause",
+     "note": "The target sits inside a relative clause: \"de regler, der gælder\"."
+    }
+   ]
+  },
+  {
+   "phrase": "gå i stykker",
+   "min_level": "B1",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "fixed-expressions"
+    }
+   ]
+  },
+  {
+   "phrase": "have travlt",
+   "min_level": "A2",
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "fixed-expressions"
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "leisure",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "forhold",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "feelings-opinions",
+     "grammar": "noun-meaning"
+    }
+   ]
+  },
+  {
+   "lemma": "plads",
+   "ordinal": 3,
+   "targets": [
+    {
+     "level": "B2",
+     "situation": "work",
+     "grammar": "noun-meaning"
+    }
+   ]
+  }
+ ]
+}

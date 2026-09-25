@@ -1,0 +1,1378 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:45:11.404Z",
+ "entries": [
+  {
+   "lemma": "ikke",
+   "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "ikke",
+   "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian is ungrammatical and unnatural. 'не было проинформировано' uses wrong gender/agreement (neuter singular with plural 'гражданам') and passive construction is clumsy. A natural rendering: 'Граждане не были проинформированы о новом законе.'",
+     "danish_ok": true,
+     "ru": "Граждане не были проинформированы о новом законе."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "English 'change by the government' is ambiguous and unnatural; Danish 'ændringen af regeringen' means 'change of government', not 'change by the government'. Russian 'Граждане не были проинформированы правительством о переменах' is unnatural and mistranslates 'ændringen af regeringen' as 'переменах' (changes) and adds agent 'правительством' not in Danish.",
+     "danish_ok": true,
+     "en": "Citizens have not been informed about the change of government.",
+     "ru": "Граждане не были проинформированы о смене правительства."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'не было проинформировано' is ungrammatical (neuter singular with plural 'гражданам') and unnatural. A natural rendering: 'Граждане не были проинформированы о росте налогов.'",
+     "danish_ok": true,
+     "ru": "Граждане не были проинформированы о росте налогов."
+    }
+   ]
+  },
+  {
+   "lemma": "ikke",
+   "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "Citizens have not been informed about the new law.",
+      "ru": "Гражданам не было проинформировано о новом законе."
+     },
+     "after": {
+      "en": "Citizens have not been informed about the new law.",
+      "ru": "Граждане не были проинформированы о новом законе."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "Citizens have not been informed about the change by the government.",
+      "ru": "Граждане не были проинформированы правительством о переменах."
+     },
+     "after": {
+      "en": "Citizens have not been informed about the change of government.",
+      "ru": "Граждане не были проинформированы о смене правительства."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "Citizens have not been informed about the rising taxes.",
+      "ru": "Гражданам не было проинформировано о росте налогов."
+     },
+     "after": {
+      "en": "Citizens have not been informed about the rising taxes.",
+      "ru": "Граждане не были проинформированы о росте налогов."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "aldrig",
+   "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural"
+     ],
+     "problem": "Word order is wrong: 'Jeg aldrig spiller tennis' violates V2 rule; adverb 'aldrig' must follow the finite verb in a main clause. Correct: 'Jeg spiller aldrig tennis.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural"
+     ],
+     "problem": "Word order is wrong: 'Jeg aldrig ser fjernsyn' violates V2 rule; adverb 'aldrig' must follow the finite verb. Correct: 'Jeg ser aldrig fjernsyn om aftenen.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural"
+     ],
+     "problem": "Word order is wrong: 'Jeg aldrig går i biografen alene' violates V2 rule; adverb 'aldrig' must follow the finite verb. Correct: 'Jeg går aldrig i biografen alene.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "aldrig",
+   "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "ingen",
+   "sense_id": "87a80440-22b5-51f1-aadc-0169fd912aff",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Target is 'intet' but the lemma is 'ingen' and the grammar cell is 'negation'. 'intet' is the neuter form of 'ingen', but the sentence uses 'brød' (neuter), so 'intet' is grammatically correct. However, the exercise is for the lemma 'ingen', and 'intet' is a different word form that may confuse learners at A2. The sense gloss is 'no one, none', but 'intet' means 'nothing' or 'no' (neuter). The pedagogy is compromised because the target does not match the lemma being taught, and the sentence does not exercise 'ingen' as intended.",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "sin",
+   "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "\"sit børn\" is ungrammatical because \"børn\" is plural, requiring \"sine\". The target \"sit\" is neuter singular, so the sentence does not demonstrate the stated meaning of the reflexive possessive correctly. This is a misleading model for learners.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "\"Mine bedsteforældre\" is plural, so the reflexive possessive must be \"deres\", not \"sin\". The English \"her garden\" and Russian \"её сад\" are non-reflexive and refer to a female singular possessor, which does not match the Danish subject. The sentence fails to demonstrate the reflexive possessive and is misleading.",
+     "danish_ok": false,
+     "en": "My grandparents love their garden.",
+     "ru": "Мои бабушка и дедушка любят свой сад."
+    }
+   ]
+  },
+  {
+   "lemma": "sin",
+   "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation drops 'свой' (his own), making it less faithful to the reflexive possessive meaning. A more accurate translation would be 'Мой брат забыл свой паспорт.'",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Мой брат забыл свой паспорт."
+    }
+   ]
+  },
+  {
+   "lemma": "sin",
+   "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "My brother has forgotten his passport.",
+      "ru": "Мой брат забыл паспорт."
+     },
+     "after": {
+      "en": "My brother has forgotten his passport.",
+      "ru": "Мой брат забыл свой паспорт."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "selv",
+   "sense_id": "52a6e67e-150b-5dff-b8ef-6b1e322c0553",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian verb 'нарисовал' means 'drew/painted (a picture)', not 'painted (a wall/room)'. The correct verb for painting a kitchen is 'покрасил'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Мой отец сам покрасил кухню."
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "selv",
+   "sense_id": "52a6e67e-150b-5dff-b8ef-6b1e322c0553",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "My father painted the kitchen himself.",
+      "ru": "Мой отец сам нарисовал кухню."
+     },
+     "after": {
+      "en": "My father painted the kitchen himself.",
+      "ru": "Мой отец сам покрасил кухню."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "begynde",
+   "sense_id": "25ab7e1a-fbfb-5c63-ac42-92fa9f606801",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation uses 'праздников' (holidays/festivals) instead of 'каникул' (vacation/holidays from school/work), which does not match the Danish 'ferien' in the context of leisure time off.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Во время каникул они начнут играть в теннис."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation uses 'праздников' (holidays/festivals) instead of 'каникул' (vacation/holidays from school/work), which does not match the Danish 'ferien' in the context of leisure time off.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Во время каникул мой брат начнёт учиться серфингу."
+    }
+   ]
+  },
+  {
+   "lemma": "begynde",
+   "sense_id": "25ab7e1a-fbfb-5c63-ac42-92fa9f606801",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "During the holidays, they will start playing tennis.",
+      "ru": "Во время праздников они начнут играть в теннис."
+     },
+     "after": {
+      "en": "During the holidays, they will start playing tennis.",
+      "ru": "Во время каникул они начнут играть в теннис."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "During the holidays, my brother will start learning to surf.",
+      "ru": "Во время праздников мой брат начнёт учиться серфингу."
+     },
+     "after": {
+      "en": "During the holidays, my brother will start learning to surf.",
+      "ru": "Во время каникул мой брат начнёт учиться серфингу."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "forsøge",
+   "sense_id": "6f4e5092-1f71-580f-8335-90361855e9f2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "betyde",
+   "sense_id": "411daa08-0194-5606-81ea-8ac33779ae8d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "flytte",
+   "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural"
+     ],
+     "problem": "In 'for at børnene kunne få', the subordinate clause after 'for at' requires inversion: 'for at børnene kunne få' should be 'for at børnene kunne få' is actually correct? Wait, 'for at' is a conjunction that introduces a subordinate clause with normal word order (subject before verb). However, 'for at' normally takes an infinitive, not a finite clause. To express purpose with a different subject, Danish uses 'for at' + infinitive only when the subject is the same; with a different subject, 'så at' or 'så' is used. 'For at børnene kunne få' is ungrammatical; it should be 'så børnene kunne få' or 'så at børnene kunne få'.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lære",
+   "sense_id": "8b416909-1683-51a9-bb0c-38cbe12cf680",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'научился о новом программном обеспечении' is ungrammatical and unnatural. The verb 'научиться' does not take the preposition 'о' with an object; it requires a dative or an infinitive. A correct rendering would be 'узнал много нового о программном обеспечении' or 'многому научился в работе с новым программным обеспечением'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "За последний год я много узнал о новом программном обеспечении."
+    }
+   ]
+  },
+  {
+   "lemma": "lære",
+   "sense_id": "8b416909-1683-51a9-bb0c-38cbe12cf680",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "I've learned a lot about the new software over the past year.",
+      "ru": "За последний год я многому научился о новом программном обеспечении."
+     },
+     "after": {
+      "en": "I've learned a lot about the new software over the past year.",
+      "ru": "За последний год я много узнал о новом программном обеспечении."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "ville",
+   "sense_id": "f1a0b83a-edd6-52ec-a175-a5318be6e87a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "skulle",
+   "sense_id": "1a6f60ce-55b7-549e-9cf1-16a648a17811",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "komme",
+   "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'kommer der til at ankomme' is unnatural and redundant; a native speaker would say 'vil der ankomme' or 'kommer der til at være'. The target 'kommer' is part of the future construction 'kommer til at', but the main verb 'ankomme' duplicates the meaning of 'komme', making it unidiomatic and potentially confusing for learners. It does not clearly demonstrate the stated meaning 'to come, to arrive' in a natural way.",
+     "danish_ok": false
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'kommer der til at rejse' is unnatural; 'rejse' means 'to travel', not 'to come/arrive'. The construction 'kommer til at rejse' would mean 'will travel' (as in 'will end up traveling'), which does not match the intended meaning of 'to come/arrive'. The target 'kommer' is part of the future construction, but the overall sentence does not demonstrate the lemma's meaning naturally.",
+     "danish_ok": false
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The target 'må' means 'must/has to' (obligation), but the lemma and sense gloss specify 'måtte' meaning 'had to (was forced to)'. The sentence does not exercise the stated lemma or meaning. The English and Russian translations also reflect obligation, not past forced necessity, making them unfaithful to the intended target.",
+     "danish_ok": false,
+     "en": "The customer had to pay a fee because the booking was cancelled too late.",
+     "ru": "Клиенту пришлось заплатить комиссию, потому что бронирование было отменено слишком поздно."
+    }
+   ]
+  },
+  {
+   "lemma": "siden",
+   "sense_id": "73726a32-ed83-5865-8253-34e7d0bcbc57",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "under",
+   "sense_id": "08b250ac-9c18-5f50-9f2e-1b7171b154bc",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "fordi",
+   "sense_id": "4751a42a-b4d5-52b9-ba21-f20487d8c032",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation is unnatural: 'поставил вовремя' is not idiomatic; a native would say 'не осуществил поставку вовремя' or 'не доставил вовремя'. Also 'из-за того, что' is slightly heavy; 'потому что' is more natural here.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Проект был задержан, потому что поставщик не доставил вовремя."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation is slightly unnatural: 'из-за того, что' is heavy; 'потому что' is more natural. 'так и не' is acceptable but 'никогда не' would be more direct for 'never'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Проект был задержан, потому что заказчик никогда не одобрял изменения."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation changes voice: 'Проект задержали' (active, impersonal) vs Danish passive 'blev forsinket'. Should be 'Проект был задержан' to match.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Проект был задержан, потому что наш начальник редко отвечал на наши запросы."
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation is slightly unnatural: 'из-за того, что' is heavy; 'потому что' is more natural. 'так и не' is acceptable but 'никогда не' would be more direct for 'never'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Проект был задержан, потому что поставщик никогда не отвечал на наши запросы."
+    }
+   ]
+  },
+  {
+   "lemma": "fordi",
+   "sense_id": "4751a42a-b4d5-52b9-ba21-f20487d8c032",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "The project was delayed because the supplier did not deliver on time.",
+      "ru": "Проект был задержан из-за того, что поставщик не поставил вовремя."
+     },
+     "after": {
+      "en": "The project was delayed because the supplier did not deliver on time.",
+      "ru": "Проект был задержан, потому что поставщик не доставил вовремя."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "The project was delayed because the customer never approved the changes.",
+      "ru": "Проект был задержан из-за того, что заказчик так и не одобрил изменения."
+     },
+     "after": {
+      "en": "The project was delayed because the customer never approved the changes.",
+      "ru": "Проект был задержан, потому что заказчик никогда не одобрял изменения."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "The project was delayed because our boss rarely responded to our inquiries.",
+      "ru": "Проект задержали, потому что наш начальник редко отвечал на наши запросы."
+     },
+     "after": {
+      "en": "The project was delayed because our boss rarely responded to our inquiries.",
+      "ru": "Проект был задержан, потому что наш начальник редко отвечал на наши запросы."
+     }
+    },
+    {
+     "item": 4,
+     "before": {
+      "en": "The project was delayed because the supplier never responded to our inquiries.",
+      "ru": "Проект был задержан из-за того, что поставщик так и не ответил на наши запросы."
+     },
+     "after": {
+      "en": "The project was delayed because the supplier never responded to our inquiries.",
+      "ru": "Проект был задержан, потому что поставщик никогда не отвечал на наши запросы."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "når",
+   "sense_id": "bd9c67aa-29d0-5375-8304-b768d31c835e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation adds the verb 'стоит' (stands), which is not present in the Danish original. The Danish 'der er' simply means 'there is', so a faithful translation would be 'есть' or a construction without an extra verb. 'где стоит посудомоечная машина' implies the dishwasher is standing there, which is an added nuance not in the source.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Мои родители живут в квартире, где есть посудомоечная машина."
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "My parents live in an apartment where there is a dishwasher.",
+      "ru": "Мои родители живут в квартире, где стоит посудомоечная машина."
+     },
+     "after": {
+      "en": "My parents live in an apartment where there is a dishwasher.",
+      "ru": "Мои родители живут в квартире, где есть посудомоечная машина."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "hvis",
+   "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "medens",
+   "sense_id": "8f2dcb43-27aa-5dbb-b916-457fd6066e59",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence is ungrammatical and unnatural: 'Mens ... medens ...' is a double conjunction with no main clause. 'medens' is an archaic/formal variant of 'mens' meaning 'while', not a correlative 'while...while'. The English and Russian translations are unnatural and do not reflect idiomatic usage. The sentence does not demonstrate the target word correctly and is misleading for learners.",
+     "danish_ok": false,
+     "en": "While the boss negotiated the contract, the intern answered emails.",
+     "ru": "Пока начальник вел переговоры по контракту, стажёр отвечал на письма."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Same structural defect as item 1: 'Mens ... medens ...' is ungrammatical and unnatural. The English and Russian translations are unnatural and do not reflect idiomatic usage. The sentence does not demonstrate the target word correctly and is misleading for learners.",
+     "danish_ok": false,
+     "en": "While the colleague wrote the report, the secretary took care of the practicalities.",
+     "ru": "Пока коллега писал отчёт, секретарь занимался практическими вопросами."
+    }
+   ]
+  },
+  {
+   "lemma": "eftersom",
+   "sense_id": "8ac59b8a-93a5-58a8-84a9-39dbe8dcb590",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses 'граждане' which is a misspelling of 'граждане' (correct: 'граждане'). Also 'собрание граждан' is slightly unnatural; a more idiomatic rendering would be 'общественные слушания' or 'встречу с гражданами', but the main defect is the spelling error.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Поскольку граждане хотели большего влияния, они организовали собрание граждан."
+    }
+   ]
+  },
+  {
+   "lemma": "eftersom",
+   "sense_id": "8ac59b8a-93a5-58a8-84a9-39dbe8dcb590",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "Since the citizens wanted more influence, they organized a citizens' meeting.",
+      "ru": "Поскольку граждане хотели большего влияния, они организовали собрание граждан."
+     },
+     "after": {
+      "en": "Since the citizens wanted more influence, they organized a citizens' meeting.",
+      "ru": "Поскольку граждане хотели большего влияния, они организовали собрание граждан."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "altid",
+   "sense_id": "000e931b-b207-5f88-85ab-4ed12fc102c8",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "pedagogy"
+     ],
+     "problem": "Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg spiser altid havregryn om morgenen.' This is a fundamental error for an A2 adverb exercise.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "pedagogy"
+     ],
+     "problem": "Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg drikker altid kaffe om morgenen.' This is a fundamental error for an A2 adverb exercise.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "pedagogy"
+     ],
+     "problem": "Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg læser altid avisen om morgenen.' This is a fundamental error for an A2 adverb exercise.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "god",
+   "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'вкусный' means 'tasty/delicious', which is narrower than the Danish 'god' (good). The meaning_ru is 'хороший', so the translation should be 'хороший' to match the target sense.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Этот суп хороший."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'вкусный' means 'tasty/delicious', which is narrower than the Danish 'god' (good). The meaning_ru is 'хороший', so the translation should be 'хороший' to match the target sense.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Этот кофе хороший."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'вкусное' means 'tasty/delicious', which is narrower than the Danish 'god' (good). The meaning_ru is 'хороший', so the translation should be 'хорошее' to match the target sense.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Это мороженое хорошее."
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'вкусный' means 'tasty/delicious', which is narrower than the Danish 'god' (good). The meaning_ru is 'хороший', so the translation should be 'хороший' to match the target sense.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Этот торт хороший."
+    }
+   ]
+  },
+  {
+   "lemma": "god",
+   "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "This soup is good.",
+      "ru": "Этот суп вкусный."
+     },
+     "after": {
+      "en": "This soup is good.",
+      "ru": "Этот суп хороший."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "This coffee is good.",
+      "ru": "Этот кофе вкусный."
+     },
+     "after": {
+      "en": "This coffee is good.",
+      "ru": "Этот кофе хороший."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "This ice cream is good.",
+      "ru": "Это мороженое вкусное."
+     },
+     "after": {
+      "en": "This ice cream is good.",
+      "ru": "Это мороженое хорошее."
+     }
+    },
+    {
+     "item": 4,
+     "before": {
+      "en": "This cake is good.",
+      "ru": "Этот торт вкусный."
+     },
+     "after": {
+      "en": "This cake is good.",
+      "ru": "Этот торт хороший."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "lille",
+   "sense_id": "ab59fc25-cfc6-5dc7-9ed2-1fdc9e3d0360",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 5,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 6,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation adds 'стала' (became), which is not in the Danish 'er mindre' (is smaller). The Danish is a simple statement of current state, not a change of state.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Ванная меньше."
+    }
+   ]
+  },
+  {
+   "lemma": "lille",
+   "sense_id": "ab59fc25-cfc6-5dc7-9ed2-1fdc9e3d0360",
+   "repairs": [
+    {
+     "item": 6,
+     "before": {
+      "en": "The bathroom is smaller.",
+      "ru": "Ванная стала меньше."
+     },
+     "after": {
+      "en": "The bathroom is smaller.",
+      "ru": "Ванная меньше."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "hvis",
+   "sense_id": "af5ca027-0f2e-57ff-91a8-3edabefab676",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish has a person mismatch: 'kunden' (3rd person) in the subordinate clause but 'du' (2nd person) in the main clause, making it ungrammatical and nonsensical. English and Russian translations are faithful to the Danish but inherit the same mismatch.",
+     "danish_ok": false,
+     "en": "If the customer returns the item before 4 p.m., they will get their money back within a week.",
+     "ru": "Если покупатель вернёт товар до 16:00, он получит свои деньги обратно в течение недели."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish has a person mismatch: 'I' (2nd person plural) in the subordinate clause but 'du' (2nd person singular) in the main clause, making it ungrammatical and nonsensical. English and Russian translations are faithful to the Danish but inherit the same mismatch.",
+     "danish_ok": false,
+     "en": "If you pay the bill before 4 p.m., you avoid a reminder fee.",
+     "ru": "Если вы оплатите счёт до 16:00, вы избегаете платы за напоминание."
+    }
+   ]
+  }
+ ]
+}

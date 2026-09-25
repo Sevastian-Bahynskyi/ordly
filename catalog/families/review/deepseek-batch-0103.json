@@ -1,0 +1,534 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:11:49.851Z",
+ "entries": [
+  {
+   "lemma": "falde i søvn",
+   "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage fejl",
+   "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage for givet",
+   "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation is missing 'it' before 'for granted'. The correct idiomatic form is 'take it for granted'.",
+     "danish_ok": true,
+     "en": "Many citizens take it for granted that the state always provides clean drinking water.",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation is missing 'it' before 'for granted'. The correct idiomatic form is 'took it for granted'.",
+     "danish_ok": true,
+     "en": "Many citizens took it for granted that the state always provides clean drinking water.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "have til hensigt",
+   "sense_id": "074047ba-6a6e-5a9a-8285-967913997234",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "oven på",
+   "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "på forhånd",
+   "sense_id": "4784a291-3cdd-5521-8525-a7bf03022cf5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "på grund af",
+   "sense_id": "21832b47-a527-55cb-8226-5c2d0dbf2d73",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "heller ikke",
+   "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у вокзала' means 'by/near the station', not 'outside of' (снаружи / за пределами). The Danish 'uden for' explicitly means 'outside', not just 'near'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи вокзала."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у аэропорта' means 'by/near the airport', not 'outside of' (снаружи / за пределами). The Danish 'uden for' explicitly means 'outside', not just 'near'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи аэропорта."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у главного входа' means 'by/near the main entrance', not 'outside of' (снаружи / за пределами). The Danish 'uden for' explicitly means 'outside', not just 'near'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи главного входа."
+    }
+   ]
+  },
+  {
+   "lemma": "i aftes",
+   "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "pleje at",
+   "sense_id": "bf4765cc-8a9f-5cea-9def-6cf10ff1f1ad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 5,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 6,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lægge mærke til",
+   "sense_id": "3b128180-c106-5899-9e52-7ea5453095df",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "alle sammen",
+   "sense_id": "379311a2-3a43-5852-b76e-6992597e6fc4",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "English uses simple present 'come' but Danish 'kommer' is present tense, which can be future or habitual. The Russian 'приходят' is habitual, but the Danish sentence with 'til festen' and 'alle sammen' strongly implies a specific future event (like the others). The English and Russian should match the future meaning. Also, Russian 'На вечеринку приходят все её братья и сёстры' changes word order and adds 'братья и сёстры' instead of just 'søskende' (siblings), which is acceptable but the habitual aspect is wrong. The sense is not demonstrated as a specific event like the other sentences.",
+     "danish_ok": true,
+     "en": "Her siblings are all coming to the party.",
+     "ru": "Её братья и сёстры все придут на вечеринку."
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "Danish 'tager' is present tense, often used for future events, but English 'go' and Russian 'ходят' are habitual, which does not match the specific event implied by 'til festen' with 'alle sammen'. The English and Russian should reflect a future event, not a habitual action. The sense is not demonstrated as a specific event.",
+     "danish_ok": true,
+     "en": "My friends are all going to the party.",
+     "ru": "Мои друзья все пойдут на вечеринку."
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

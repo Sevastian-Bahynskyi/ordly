@@ -1,0 +1,788 @@
+[
+ {
+  "id": "8299257e-698c-5be3-b303-064a57088a97",
+  "family_id": "d30f31c5-3330-5f89-9d14-aec724eee36c",
+  "lemma": "tage",
+  "sense": {
+   "ru": "брать",
+   "en": "to take"
+  },
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {article} {object} med, for det regner.",
+  "variant": {
+   "id": "8299257e-698c-5be3-b303-064a57088a97",
+   "version": "c6456c9f408cd8d7",
+   "danish": "Tag en regnjakke med, for det regner.",
+   "target": "Tag",
+   "en": "Bring a rain jacket because it's raining.",
+   "ru": "Возьми дождевик, потому что идёт дождь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "b6e25a71-2dd0-5823-a344-e227446a2572",
+  "family_id": "9a02c543-7117-5567-a570-02cbbe1a8344",
+  "lemma": "nu",
+  "sense": {
+   "ru": "сейчас",
+   "en": "now"
+  },
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {subject}.",
+  "variant": {
+   "id": "b6e25a71-2dd0-5823-a344-e227446a2572",
+   "version": "02bd4f7f311b8abb",
+   "danish": "Nu spiser vi.",
+   "target": "nu",
+   "en": "Now we eat.",
+   "ru": "Теперь мы едим.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "de62a5ff-8975-5397-a3dc-17e6b4e1ac65",
+  "family_id": "9138990e-55db-5200-91cc-cda59892f3be",
+  "lemma": "prøve",
+  "sense": {
+   "ru": "пробовать, пытаться",
+   "en": "to try"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Vil du {target} {food}?",
+  "variant": {
+   "id": "de62a5ff-8975-5397-a3dc-17e6b4e1ac65",
+   "version": "584bb3fdf28183a6",
+   "danish": "Vil du prøve osten?",
+   "target": "prøve",
+   "en": "Want to try the cheese?",
+   "ru": "Хочешь попробовать сыр?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "f07de89f-eb82-5a57-abbc-30f260c04339",
+  "family_id": "28ff7bf1-bba9-58cc-beb7-0462a4fcc952",
+  "lemma": "her",
+  "sense": {
+   "ru": "здесь",
+   "en": "here"
+  },
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} bor {subject}.",
+  "variant": {
+   "id": "f07de89f-eb82-5a57-abbc-30f260c04339",
+   "version": "1408e5be3d4f0592",
+   "danish": "Her bor min familie.",
+   "target": "her",
+   "en": "This is where my family lives.",
+   "ru": "Здесь живёт моя семья.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d157c0dd-7161-5a7a-aa71-9e8210eed7bd",
+  "family_id": "be493c75-4de4-51e7-bed1-fa089e4fc0be",
+  "lemma": "bil",
+  "sense": {
+   "ru": "машина, автомобиль",
+   "en": "car"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{subject} {target}.",
+  "variant": {
+   "id": "d157c0dd-7161-5a7a-aa71-9e8210eed7bd",
+   "version": "5fa797abb1de3eec",
+   "danish": "Vi ser bilen.",
+   "target": "bilen",
+   "en": "We see the car.",
+   "ru": "Мы видим машину.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "94ff82c4-19df-5fa7-9383-9e7dc3b77c39",
+  "family_id": "a6cc02fd-4cde-5e52-b6f4-36adcd286763",
+  "lemma": "hus",
+  "sense": {
+   "ru": "дом",
+   "en": "house"
+  },
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{subject} {verb} {target}.",
+  "variant": {
+   "id": "94ff82c4-19df-5fa7-9383-9e7dc3b77c39",
+   "version": "633da25c3b00328c",
+   "danish": "Jeg sælger huset.",
+   "target": "huset",
+   "en": "I am selling the house.",
+   "ru": "Я продаю дом.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6ebbc9c0-f967-52e3-9e09-ac1fd275a326",
+  "family_id": "7be4ad65-ac63-56f6-b8f9-a44e75254767",
+  "lemma": "kunne",
+  "sense": {
+   "ru": "мочь, уметь",
+   "en": "can, to be able to"
+  },
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Om vinteren {target} det {weather}.",
+  "variant": {
+   "id": "6ebbc9c0-f967-52e3-9e09-ac1fd275a326",
+   "version": "5f027d9c3a3c617c",
+   "danish": "Om vinteren kan det blæse kraftigt.",
+   "target": "kan",
+   "en": "In winter, it can blow strongly.",
+   "ru": "Зимой может сильно дуть.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "6434598a-39ef-5a6b-876b-6a7aed036752",
+  "family_id": "6b9e7db0-5f4f-589e-b433-42bcba16ad4c",
+  "lemma": "aldrig",
+  "sense": {
+   "ru": "никогда",
+   "en": "never"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg drikker {target} {drink}.",
+  "variant": {
+   "id": "6434598a-39ef-5a6b-876b-6a7aed036752",
+   "version": "0db424813b212a09",
+   "danish": "Jeg drikker aldrig kaffe.",
+   "target": "aldrig",
+   "en": "I never drink coffee.",
+   "ru": "Я никогда не пью кофе.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "8b43a87c-1765-5d59-87c7-bbb32a9d5851",
+  "family_id": "a04e9239-a7cf-51ca-bc7d-723ae747a9f5",
+  "lemma": "at",
+  "sense": {
+   "ru": "частица перед инфинитивом глагола (не переводится отдельно)",
+   "en": "to (before a verb's infinitive)"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg kan godt lide {target} {activity}.",
+  "variant": {
+   "id": "8b43a87c-1765-5d59-87c7-bbb32a9d5851",
+   "version": "5f682468e7577c78",
+   "danish": "Jeg kan godt lide at se film.",
+   "target": "at",
+   "en": "I like to watch movies.",
+   "ru": "Мне нравится смотреть фильмы.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d27356c3-4b05-565e-9eda-64679d852dd6",
+  "family_id": "03ba6e45-53f0-5c11-bdde-19a2f4a4b80a",
+  "lemma": "bog",
+  "sense": {
+   "ru": "книга",
+   "en": "book"
+  },
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg læser {target} om aftenen.",
+  "variant": {
+   "id": "d27356c3-4b05-565e-9eda-64679d852dd6",
+   "version": "99fd335738aaa901",
+   "danish": "Jeg læser bøger om aftenen.",
+   "target": "bøger",
+   "en": "I read books in the evenings.",
+   "ru": "Я читаю книги по вечерам.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "2154bfdf-e33b-567d-8266-89258929223a",
+  "family_id": "09cee53d-1dcd-56ce-a24e-1fe5cd1d980c",
+  "lemma": "hvad",
+  "sense": {
+   "ru": "что",
+   "en": "what"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {subject} til {meal}?",
+  "variant": {
+   "id": "2154bfdf-e33b-567d-8266-89258929223a",
+   "version": "58fe694da39eca0e",
+   "danish": "Hvad laver børnene til morgenmad?",
+   "target": "Hvad",
+   "en": "What do the kids make for breakfast?",
+   "ru": "Что дети готовят на завтрак?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ed60046c-ded2-5ade-826d-fdc8d5ab4439",
+  "family_id": "5ab73365-78da-5d08-a1dd-9306d7744369",
+  "lemma": "så",
+  "sense": {
+   "ru": "потом, затем",
+   "en": "then (next)"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Først {activity}, og {target} {rest}.",
+  "variant": {
+   "id": "ed60046c-ded2-5ade-826d-fdc8d5ab4439",
+   "version": "4cc77ae011d523ce",
+   "danish": "Først spiser jeg morgenmad, og så går jeg ud ad døren.",
+   "target": "så",
+   "en": "First I eat breakfast and then I walk out the door.",
+   "ru": "Сначала я завтракаю, а потом выхожу из дома.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "fa27296c-ea62-58a0-be54-9c86f5e8bb1f",
+  "family_id": "e4b78eb7-271e-52c2-9e26-c0610c39cf59",
+  "lemma": "derfor",
+  "sense": {
+   "ru": "поэтому",
+   "en": "therefore, that is why"
+  },
+  "level": "A2",
+  "situation": "work",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {subject} {object}.",
+  "variant": {
+   "id": "fa27296c-ea62-58a0-be54-9c86f5e8bb1f",
+   "version": "9e0f7a9492ba89f1",
+   "danish": "Derfor blev mødet aflyst.",
+   "target": "derfor",
+   "en": "Therefore, the meeting was cancelled.",
+   "ru": "Поэтому встреча была отменена.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "constrained_slots"
+  ]
+ },
+ {
+  "id": "f53d8198-3762-58e0-b7db-159e2cd1d9dc",
+  "family_id": "f265516c-646b-56eb-874e-9e5a683821dc",
+  "lemma": "god",
+  "sense": {
+   "ru": "хороший",
+   "en": "good"
+  },
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg synes, {subject} smager {target} end {comparison}.",
+  "variant": {
+   "id": "f53d8198-3762-58e0-b7db-159e2cd1d9dc",
+   "version": "95fe91f02064e507",
+   "danish": "Jeg synes, frisk fisk smager bedre end den fra fryseren.",
+   "target": "bedre",
+   "en": "I think fresh fish tastes better than the one from the freezer.",
+   "ru": "Мне кажется, свежая рыба вкуснее, чем та, что из морозилки.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5be1a27a-b683-55d5-9719-66c091d06b8e",
+  "family_id": "8f73797a-390e-5175-a9dc-ebaaaa9e6954",
+  "lemma": "bo",
+  "sense": {
+   "ru": "жить, проживать",
+   "en": "to live, to reside"
+  },
+  "level": "A2",
+  "situation": "personal-info",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Min {relative} {target} i {place}.",
+  "variant": {
+   "id": "5be1a27a-b683-55d5-9719-66c091d06b8e",
+   "version": "785976a80edd840b",
+   "danish": "Min fætter bor i udlandet.",
+   "target": "bor",
+   "en": "My cousin lives abroad.",
+   "ru": "Мой двоюродный брат живёт за границей.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cbd2ac9c-8fa1-5a5b-81bc-06dd5afd2a2a",
+  "family_id": "fe8cc2d9-a77c-5d88-9753-a9842175c30c",
+  "lemma": "købe",
+  "sense": {
+   "ru": "покупать",
+   "en": "to buy"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg har {target} en ny {item}.",
+  "variant": {
+   "id": "cbd2ac9c-8fa1-5a5b-81bc-06dd5afd2a2a",
+   "version": "8464b32fcd5efb7c",
+   "danish": "Jeg har købt en ny bog.",
+   "target": "købt",
+   "en": "I have bought a new book.",
+   "ru": "Я купил новую книгу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b8dbfe62-6bd1-5e92-bd1e-25c18039d5e1",
+  "family_id": "07f0a584-ce78-5757-94ea-206b8eacc5e3",
+  "lemma": "læse",
+  "sense": {
+   "ru": "читать",
+   "en": "to read"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg har {target} {book} i dag.",
+  "variant": {
+   "id": "b8dbfe62-6bd1-5e92-bd1e-25c18039d5e1",
+   "version": "87554870f6e85bb6",
+   "danish": "Jeg har læst en avis i dag.",
+   "target": "læst",
+   "en": "I have read a newspaper today.",
+   "ru": "Сегодня я читал газету.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "8776f435-dd9e-5d53-a697-9952abfcb16b",
+  "family_id": "8af63325-23a0-527c-981e-d728eeba33b8",
+  "lemma": "stor",
+  "sense": {
+   "ru": "большой",
+   "en": "big, large"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Vi har en {target} {noun} i stuen.",
+  "variant": {
+   "id": "8776f435-dd9e-5d53-a697-9952abfcb16b",
+   "version": "cadd7f679762f1da",
+   "danish": "Vi har en større reol i stuen.",
+   "target": "større",
+   "en": "We have a larger bookcase in the living room.",
+   "ru": "У нас в гостиной стоит книжный шкаф побольше.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3addc13c-c4d4-5920-834d-8f822cf94e1e",
+  "family_id": "12d93447-5da9-59be-a3ca-46e68c129a7a",
+  "lemma": "ny",
+  "sense": {
+   "ru": "новый",
+   "en": "new"
+  },
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "adjective-agreement",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg købte en {target} {item} i går.",
+  "variant": {
+   "id": "3addc13c-c4d4-5920-834d-8f822cf94e1e",
+   "version": "d0f8ce6b436607f1",
+   "danish": "Jeg købte en ny kjole i går.",
+   "target": "ny",
+   "en": "I bought a new dress yesterday.",
+   "ru": "Вчера я купила новое платье.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "007f7ad0-0647-50b1-97ca-158934032af4",
+  "family_id": "d2f8ed12-1a5c-567f-ac34-27cedd15bbf5",
+  "lemma": "vente",
+  "sense": {
+   "ru": "ждать",
+   "en": "to wait"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} på {transport} ved {sted}.",
+  "variant": {
+   "id": "007f7ad0-0647-50b1-97ca-158934032af4",
+   "version": "5175cfa63d2b606b",
+   "danish": "Vent på bussen ved stoppestedet.",
+   "target": "Vent",
+   "en": "Wait for the bus at the stop.",
+   "ru": "Жди автобус на остановке.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a05a3df4-a8a8-584d-94ed-836dda40d8fb",
+  "family_id": "7367455b-8eb5-5992-b9f9-2c0b281bd2a4",
+  "lemma": "hvordan",
+  "sense": {
+   "ru": "как",
+   "en": "how"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} kommer jeg til {place}?",
+  "variant": {
+   "id": "a05a3df4-a8a8-584d-94ed-836dda40d8fb",
+   "version": "be95e8a562ac3693",
+   "danish": "Hvordan kommer jeg til lufthavnen?",
+   "target": "Hvordan",
+   "en": "How do I get to the airport?",
+   "ru": "Как добраться до аэропорта?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "37737e59-2fd8-5909-9910-7403b46ae127",
+  "family_id": "0a73976c-e050-5049-a4b2-505b18a1a28c",
+  "lemma": "hvorfor",
+  "sense": {
+   "ru": "почему",
+   "en": "why"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {subject} {object}?",
+  "variant": {
+   "id": "37737e59-2fd8-5909-9910-7403b46ae127",
+   "version": "1a2e61457dba7ee7",
+   "danish": "Hvorfor fortalte han det?",
+   "target": "hvorfor",
+   "en": "Why did he tell them that?",
+   "ru": "Почему он это сказал?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d47662b6-b544-58c4-aaf9-f0ea1522d8a2",
+  "family_id": "ecb5bc8a-3584-5a9e-8799-049eda3fc3fb",
+  "lemma": "hvornår",
+  "sense": {
+   "ru": "когда",
+   "en": "when"
+  },
+  "level": "A2",
+  "situation": "services",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {place}?",
+  "variant": {
+   "id": "d47662b6-b544-58c4-aaf9-f0ea1522d8a2",
+   "version": "988dd8bfb9481479",
+   "danish": "Hvornår ankommer toget?",
+   "target": "Hvornår",
+   "en": "What time does the train arrive?",
+   "ru": "Во сколько прибывает поезд?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "be9f4547-49cf-5362-b413-51ba9fa676b7",
+  "family_id": "bc338637-0d91-5277-8a8b-0153cdb68062",
+  "lemma": "måske",
+  "sense": {
+   "ru": "может быть",
+   "en": "maybe, perhaps"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "word-order-v2",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} {verb} {subject}.",
+  "variant": {
+   "id": "be9f4547-49cf-5362-b413-51ba9fa676b7",
+   "version": "b1165590a4f090f9",
+   "danish": "Måske regner det.",
+   "target": "måske",
+   "en": "Maybe it's raining.",
+   "ru": "Может, идёт дождь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ea916bf3-c4a6-5d34-8329-c1cad903b95f",
+  "family_id": "a6cf2c41-231b-556c-bc52-eaedb885aad9",
+  "lemma": "måtte",
+  "sense": {
+   "ru": "мог, имел разрешение",
+   "en": "was allowed to, could"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "modal-verbs",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Jeg {target} ikke se fjernsyn efter klokken otte.",
+  "variant": {
+   "id": "ea916bf3-c4a6-5d34-8329-c1cad903b95f",
+   "version": "2a53bc346b251e80",
+   "danish": "Jeg må ikke se fjernsyn efter klokken otte.",
+   "target": "må",
+   "en": "I am not allowed to watch television after eight o'clock.",
+   "ru": "Мне нельзя смотреть телевизор после восьми часов.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b3034159-34bc-59e8-9a2f-d5ffa171e87c",
+  "family_id": "113d1082-42ea-53d6-b6c9-5a4879fff389",
+  "lemma": "lukke",
+  "sense": {
+   "ru": "закрывать",
+   "en": "to close"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{subject}, {target} vinduet! Det trækker.",
+  "variant": {
+   "id": "b3034159-34bc-59e8-9a2f-d5ffa171e87c",
+   "version": "be160d22e187d5d1",
+   "danish": "Skat, luk vinduet! Det trækker.",
+   "target": "luk",
+   "en": "Honey, close the window! There's a draught.",
+   "ru": "Дорогая, закрой окно! Сейчас сквозняк.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b904f31e-bc93-5318-8e55-3eb70dc01859",
+  "family_id": "04a643da-349b-50ea-a36b-50296739de99",
+  "lemma": "hjælpe",
+  "sense": {
+   "ru": "помогать",
+   "en": "to help"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "imperative",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{target} mig med {task}!",
+  "variant": {
+   "id": "b904f31e-bc93-5318-8e55-3eb70dc01859",
+   "version": "f4cfce4d6cacd142",
+   "danish": "Hjælp mig med opvasken!",
+   "target": "Hjælp",
+   "en": "Help me with the dishes!",
+   "ru": "Помоги мне с посудой!",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5de5130a-4d7f-5b58-9f20-4b24e68b4c60",
+  "family_id": "d9643e13-8f04-5f70-87ce-97c22e935388",
+  "lemma": "hurtig",
+  "sense": {
+   "ru": "быстрый",
+   "en": "fast, quick"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "{subject} er {target} end {object}.",
+  "variant": {
+   "id": "5de5130a-4d7f-5b58-9f20-4b24e68b4c60",
+   "version": "8fba24271703059a",
+   "danish": "Toget er hurtigere end bilen.",
+   "target": "hurtigere",
+   "en": "The train is faster than the car.",
+   "ru": "Поезд быстрее машины.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "3e04a1ed-0135-5b31-9b9c-5abe931034b2",
+  "family_id": "db643091-4d53-53bf-b906-d377904703d1",
+  "lemma": "gammel",
+  "sense": {
+   "ru": "старый",
+   "en": "old"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Min {relative} er {target} end mig.",
+  "variant": {
+   "id": "3e04a1ed-0135-5b31-9b9c-5abe931034b2",
+   "version": "0613628024ac2dbc",
+   "danish": "Min farfar er ældre end mig.",
+   "target": "ældre",
+   "en": "My grandfather is older than me.",
+   "ru": "Мой дедушка старше меня.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "248de1a6-4f01-5f10-9f5e-f3be7bc90e8e",
+  "family_id": "52d608f1-8aa6-5f25-8bda-a0a4cde6847b",
+  "lemma": "svær",
+  "sense": {
+   "ru": "трудный, сложный",
+   "en": "difficult, hard"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "comparison",
+  "source": "catalog",
+  "batch": "batch-0104.json",
+  "frame": "Eleverne synes, at grammatik er {target} end {subject}.",
+  "variant": {
+   "id": "248de1a6-4f01-5f10-9f5e-f3be7bc90e8e",
+   "version": "f21c664748b16d2a",
+   "danish": "Eleverne synes, at grammatik er sværere end læsning.",
+   "target": "sværere",
+   "en": "The students think that grammar is more difficult than reading.",
+   "ru": "Студенты считают, что грамматика сложнее, чем чтение.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ }
+]

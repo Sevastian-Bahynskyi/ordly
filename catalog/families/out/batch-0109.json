@@ -1,0 +1,433 @@
+[
+ {
+  "sense_id": "6277cc53-fe22-57eb-90ce-d7ad5136ae11",
+  "lemma": "hus",
+  "target": {
+   "level": "A1",
+   "situation": "home",
+   "grammar": "noun-plural"
+  },
+  "skip": "style check: the alternative order \"På vejen ligger husene.\" does not use exactly the words of \"Der ligger tre husene på vejen.\" — omit it or fix it"
+ },
+ {
+  "lemma": "bil",
+  "kind": "word",
+  "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "noun-plural",
+  "frame": "Der holder mange {target} på {location}.",
+  "slots": {
+   "location": [
+    {
+     "da": "parkeringspladsen"
+    },
+    {
+     "da": "gaden"
+    },
+    {
+     "da": "motorvejen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "location": 0
+    },
+    "target": "biler",
+    "en": "There are many cars in the parking lot.",
+    "ru": "На парковке много машин."
+   },
+   {
+    "slots": {
+     "location": 1
+    },
+    "target": "biler",
+    "en": "There are many cars on the street.",
+    "ru": "На улице много машин."
+   }
+  ]
+ },
+ {
+  "sense_id": "29f98378-ee1e-5163-9402-a947bc264db0",
+  "lemma": "virksomhed",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "land",
+  "kind": "word",
+  "sense_id": "6406569e-0748-58f2-a34d-82f3e2a61b20",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-plural",
+  "frame": "Flere europæiske {target} har indført en ny afgift på {material}.",
+  "slots": {
+   "material": [
+    {
+     "da": "plastikposer"
+    },
+    {
+     "da": "sukkerholdige drikkevarer"
+    },
+    {
+     "da": "engangsemballage"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "material": 0
+    },
+    "target": "lande",
+    "en": "Several European countries have introduced a new tax on plastic bags.",
+    "ru": "Несколько европейских стран ввели новый налог на пластиковые пакеты."
+   },
+   {
+    "slots": {
+     "material": 1
+    },
+    "target": "lande",
+    "en": "Several European countries have introduced a new tax on sugary drinks.",
+    "ru": "Несколько европейских стран ввели новый налог на сладкие напитки."
+   },
+   {
+    "slots": {
+     "material": 2
+    },
+    "target": "lande",
+    "en": "Several European countries have introduced a new tax on single-use packaging.",
+    "ru": "Несколько европейских стран ввели новый налог на одноразовую упаковку."
+   }
+  ]
+ },
+ {
+  "sense_id": "0cf29185-e6f0-5d9e-b4c1-eb1160fe6c5b",
+  "lemma": "betale",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "verb-present"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (betaler, betales) — pick one construction and stay in it for every variant"
+ },
+ {
+  "lemma": "køre",
+  "kind": "word",
+  "sense_id": "1fd1bc9c-4d13-5421-ab34-13913d02d4e9",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "verb-present",
+  "frame": "Hver morgen {target} {subject} til arbejde, men i dag {verb} {pronoun} cyklen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "min nabo"
+    },
+    {
+     "da": "de fleste pendlere"
+    },
+    {
+     "da": "min kone"
+    }
+   ],
+   "verb": [
+    {
+     "da": "tager"
+    },
+    {
+     "da": "tager"
+    },
+    {
+     "da": "tager"
+    }
+   ],
+   "pronoun": [
+    {
+     "da": "hun"
+    },
+    {
+     "da": "de"
+    },
+    {
+     "da": "hun"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "pronoun": 0
+    },
+    "target": "kører",
+    "en": "Every morning my neighbor drives to work, but today she takes the bike.",
+    "ru": "Каждое утро соседка едет на работу, но сегодня она берёт велосипед."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "pronoun": 1
+    },
+    "target": "kører",
+    "en": "Every morning, most commuters drive to work, but today they take the bike.",
+    "ru": "Каждое утро большинство жителей пригородов едут на работу на машине, но сегодня они берут велосипед."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "pronoun": 2
+    },
+    "target": "kører",
+    "en": "Every morning my wife drives to work, but today she takes the bike.",
+    "ru": "Каждое утро моя жена едет на работу, но сегодня она берёт велосипед."
+   }
+  ]
+ },
+ {
+  "lemma": "hvem",
+  "kind": "word",
+  "sense_id": "62169ccd-a757-510e-8ae9-b724433b16fc",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "questions",
+  "frame": "{target} har ansvaret for {task}?",
+  "slots": {
+   "task": [
+    {
+     "da": "det nye projekt"
+    },
+    {
+     "da": "budgetteringen"
+    },
+    {
+     "da": "at indkalde til mødet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "task": 0
+    },
+    "target": "hvem",
+    "en": "Who is responsible for the new project?",
+    "ru": "Кто отвечает за новый проект?"
+   },
+   {
+    "slots": {
+     "task": 1
+    },
+    "target": "hvem",
+    "en": "Who is responsible for budgeting?",
+    "ru": "Кто отвечает за составление бюджета?"
+   },
+   {
+    "slots": {
+     "task": 2
+    },
+    "target": "hvem",
+    "en": "Who is responsible for convening the meeting?",
+    "ru": "Кто отвечает за созыв собрания?"
+   }
+  ]
+ },
+ {
+  "lemma": "hvilken",
+  "kind": "word",
+  "sense_id": "82ab6c03-7414-5a46-b7af-81742d35cc79",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "questions",
+  "frame": "{target} {noun} foretrækker du?",
+  "slots": {
+   "noun": [
+    {
+     "da": "størrelse"
+    },
+    {
+     "da": "model"
+    },
+    {
+     "da": "farve"
+    },
+    {
+     "da": "mærke"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "hvilken",
+    "en": "Which size do you prefer?",
+    "ru": "Какой размер вы предпочитаете?"
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "hvilken",
+    "en": "Which model do you prefer?",
+    "ru": "Какую модель вы предпочитаете?"
+   },
+   {
+    "slots": {
+     "noun": 2
+    },
+    "target": "hvilken",
+    "en": "Which color do you prefer?",
+    "ru": "Какой цвет вы предпочитаете?"
+   },
+   {
+    "slots": {
+     "noun": 3
+    },
+    "target": "hvilket",
+    "en": "Which brand do you prefer?",
+    "ru": "Какой бренд вы предпочитаете?"
+   }
+  ]
+ },
+ {
+  "lemma": "kamp",
+  "kind": "word",
+  "sense_id": "bd568410-6288-5b68-9800-03c63071361f",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} {target} mod {modstander}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Aktivisterne fører en intens"
+    },
+    {
+     "da": "Regeringen lovede en kompromisløs"
+    },
+    {
+     "da": "Den nye organisation indledte en målrettet"
+    }
+   ],
+   "modstander": [
+    {
+     "da": "social ulighed"
+    },
+    {
+     "da": "klimaforandringerne"
+    },
+    {
+     "da": "systematisk diskrimination"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "modstander": 0
+    },
+    "target": "kamp",
+    "en": "The activists are waging an intense fight against social inequality.",
+    "ru": "Активисты ведут ожесточённую борьбу с социальным неравенством."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "modstander": 1
+    },
+    "target": "kamp",
+    "en": "The government promised an uncompromising fight against climate change.",
+    "ru": "Правительство обещало бескомпромиссную борьбу с изменением климата."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "modstander": 2
+    },
+    "target": "kamp",
+    "en": "The new organization began a determined fight against systematic discrimination.",
+    "ru": "Новая организация начала решительную борьбу с систематической дискриминацией."
+   }
+  ]
+ },
+ {
+  "lemma": "læse",
+  "kind": "word",
+  "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "verb-perfect",
+  "frame": "Inden timen begyndte, {subject} allerede {target} hele kapitlet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "havde eleven"
+    },
+    {
+     "da": "havde de studerende"
+    },
+    {
+     "da": "havde jeg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "læst",
+    "en": "Before class began, the student had already read the entire chapter.",
+    "ru": "До начала урока ученик уже прочитал всю главу."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "læst",
+    "en": "Before class began, the students had already read the entire chapter.",
+    "ru": "До начала урока ученики уже прочитали всю главу."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "læst",
+    "en": "Before class began, I had already read the entire chapter.",
+    "ru": "До начала урока я уже прочитал всю главу."
+   }
+  ]
+ },
+ {
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "lemma": "flytte",
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "verb-perfect"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "49f699f6-a6bc-5ecc-8353-9bb58a576b0c",
+  "lemma": "måde",
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "noun-meaning"
+  },
+  "skip": "audit: \"på hvilken måder\" is ungrammatical and recurred; one variant left"
+ }
+]

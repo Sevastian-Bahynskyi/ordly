@@ -1,0 +1,2706 @@
+[
+ {
+  "lemma": "i",
+  "kind": "word",
+  "sense_id": "ac959d8e-e379-5c19-b5db-2162dc882745",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "frame": "{subject} er {target} {place}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Bogen"
+    },
+    {
+     "da": "Katten"
+    },
+    {
+     "da": "Nøglerne"
+    }
+   ],
+   "place": [
+    {
+     "da": "tasken"
+    },
+    {
+     "da": "haven"
+    },
+    {
+     "da": "skuffen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "place": 0
+    },
+    "target": "i",
+    "en": "The book is in the bag.",
+    "ru": "Книга в сумке.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "place": 1
+    },
+    "target": "i",
+    "en": "The cat is in the garden.",
+    "ru": "Кошка в саду.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "place": 2
+    },
+    "target": "i",
+    "en": "The keys are in the drawer.",
+    "ru": "Ключи в ящике.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "i",
+  "kind": "word",
+  "sense_id": "398bafa2-a639-5818-b039-89b347b15d76",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-time",
+  "frame": "{subject} sover {target} {duration} om natten.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Barnet"
+    },
+    {
+     "da": "Min mor"
+    }
+   ],
+   "duration": [
+    {
+     "da": "otte timer"
+    },
+    {
+     "da": "ti timer"
+    },
+    {
+     "da": "syv timer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "duration": 0
+    },
+    "target": "i",
+    "en": "I sleep for eight hours at night.",
+    "ru": "По ночам я сплю восемь часов.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "duration": 1
+    },
+    "target": "i",
+    "en": "The child sleeps for ten hours at night.",
+    "ru": "По ночам ребёнок спит десять часов.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "duration": 2
+    },
+    "target": "i",
+    "en": "My mother sleeps for seven hours at night.",
+    "ru": "По ночам моя мама спит семь часов.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "være",
+  "kind": "word",
+  "sense_id": "9b0af59e-3423-569d-b1d4-17f539f3b118",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {adj} i dag.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    }
+   ],
+   "adj": [
+    {
+     "da": "glad"
+    },
+    {
+     "da": "træt"
+    },
+    {
+     "da": "sulten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "adj": 0
+    },
+    "target": "er",
+    "en": "I am happy today.",
+    "ru": "Сегодня я счастлив.",
+    "orders": [
+     "I dag er jeg glad."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "adj": 1
+    },
+    "target": "er",
+    "en": "She is tired today.",
+    "ru": "Она сегодня устала.",
+    "orders": [
+     "I dag er hun træt."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "adj": 2
+    },
+    "target": "er",
+    "en": "He is hungry today.",
+    "ru": "Он сегодня голоден.",
+    "orders": [
+     "I dag er han sulten."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "og",
+  "kind": "word",
+  "sense_id": "a750d51a-56f1-580e-8f96-063ceb8becc6",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "conjunctions",
+  "frame": "{person} spiser {item1} {target} {item2} til morgenmad.",
+  "slots": {
+   "person": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min bror"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "item1": [
+    {
+     "da": "brød"
+    },
+    {
+     "da": "et æble"
+    },
+    {
+     "da": "et æg"
+    }
+   ],
+   "item2": [
+    {
+     "da": "ost"
+    },
+    {
+     "da": "en banan"
+    },
+    {
+     "da": "en skive brød"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0,
+     "item1": 0,
+     "item2": 0
+    },
+    "target": "og",
+    "en": "I eat bread and cheese for breakfast.",
+    "ru": "На завтрак я ем хлеб и сыр.",
+    "orders": [
+     "Til morgenmad spiser jeg brød og ost."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "person": 1,
+     "item1": 1,
+     "item2": 1
+    },
+    "target": "og",
+    "en": "My brother eats an apple and a banana for breakfast.",
+    "ru": "На завтрак мой брат ест яблоко и банан.",
+    "orders": [
+     "Til morgenmad spiser min bror et æble og en banan."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "person": 2,
+     "item1": 2,
+     "item2": 2
+    },
+    "target": "og",
+    "en": "She eats an egg and a slice of bread for breakfast.",
+    "ru": "На завтрак она ест яйцо и кусок хлеба.",
+    "orders": [
+     "Til morgenmad spiser hun et æg og en skive brød."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "en",
+  "kind": "word",
+  "sense_id": "56ad3758-8317-5b48-a59e-ad4dfb7386c9",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} ser {target} {noun} i haven.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Børnene"
+    }
+   ],
+   "noun": [
+    {
+     "da": "fugl"
+    },
+    {
+     "da": "kat"
+    },
+    {
+     "da": "hund"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "noun": 0
+    },
+    "target": "en",
+    "en": "I see a bird in the garden.",
+    "ru": "Я вижу птицу в саду.",
+    "orders": [
+     "I haven ser jeg en fugl."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "noun": 1
+    },
+    "target": "en",
+    "en": "We see a cat in the garden.",
+    "ru": "Мы видим кошку в саду.",
+    "orders": [
+     "I haven ser vi en kat."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "noun": 2
+    },
+    "target": "en",
+    "en": "The children see a dog in the garden.",
+    "ru": "Дети видят собаку в саду.",
+    "orders": [
+     "I haven ser børnene en hund."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "en",
+  "kind": "word",
+  "sense_id": "ba028595-b3fe-5c23-84ce-e0619b16ff27",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} har kun {target} {noun}, ikke to.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "noun": [
+    {
+     "da": "bil"
+    },
+    {
+     "da": "hus"
+    },
+    {
+     "da": "cykel"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "noun": 0
+    },
+    "target": "én",
+    "en": "I only have one car, not two.",
+    "ru": "У меня только одна машина, а не две.",
+    "orders": [],
+    "accepted": [
+     "en"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "noun": 1
+    },
+    "target": "ét",
+    "en": "She only has one house, not two.",
+    "ru": "У неё только один дом, а не два.",
+    "orders": [],
+    "accepted": [
+     "et"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "noun": 2
+    },
+    "target": "én",
+    "en": "We only have one bike, not two.",
+    "ru": "У нас только один велосипед, а не два.",
+    "orders": [],
+    "accepted": [
+     "en"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "den",
+  "kind": "word",
+  "sense_id": "b73116f2-fa75-57fa-b586-7cfb480fd6af",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "pronouns",
+  "frame": "Se {target} {noun} derovre!",
+  "slots": {
+   "noun": [
+    {
+     "da": "bil"
+    },
+    {
+     "da": "hund"
+    },
+    {
+     "da": "fugl"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "den",
+    "en": "Look at that car over there!",
+    "ru": "Посмотри на ту машину вон там!",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "den",
+    "en": "Look at that dog over there!",
+    "ru": "Посмотри на ту собаку вон там!",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "noun": 2
+    },
+    "target": "den",
+    "en": "Look at that bird over there!",
+    "ru": "Посмотри на ту птицу вон там!",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "den",
+  "kind": "word",
+  "sense_id": "37e282d9-bc8e-5ee2-896f-fe2d85772a91",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "pronouns",
+  "frame": "{subject} har en {noun}, og {target} er {adj}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "noun": [
+    {
+     "da": "cykel"
+    },
+    {
+     "da": "telefon"
+    },
+    {
+     "da": "bil"
+    }
+   ],
+   "adj": [
+    {
+     "da": "hurtig"
+    },
+    {
+     "da": "dyr"
+    },
+    {
+     "da": "gammel"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "noun": 0,
+     "adj": 0
+    },
+    "target": "den",
+    "en": "I have a bicycle, and it is fast.",
+    "ru": "У меня есть велосипед, и он быстрый.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "noun": 1,
+     "adj": 1
+    },
+    "target": "den",
+    "en": "He has a phone, and it is expensive.",
+    "ru": "У него есть телефон, и он дорогой.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "noun": 2,
+     "adj": 2
+    },
+    "target": "den",
+    "en": "We have a car, and it is old.",
+    "ru": "У нас есть машина, и она старая.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "på",
+  "kind": "word",
+  "sense_id": "45f2b553-6618-545c-819d-e300b5afcd41",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "frame": "{object} står {target} {place}.",
+  "slots": {
+   "object": [
+    {
+     "da": "Vasen"
+    },
+    {
+     "da": "Lampen"
+    },
+    {
+     "da": "Koppen"
+    }
+   ],
+   "place": [
+    {
+     "da": "bordet"
+    },
+    {
+     "da": "natbordet"
+    },
+    {
+     "da": "hylden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0,
+     "place": 0
+    },
+    "target": "på",
+    "en": "The vase is standing on the table.",
+    "ru": "Ваза стоит на столе.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 1,
+     "place": 1
+    },
+    "target": "på",
+    "en": "The lamp is standing on the nightstand.",
+    "ru": "Лампа стоит на тумбочке.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 2,
+     "place": 2
+    },
+    "target": "på",
+    "en": "The cup is standing on the shelf.",
+    "ru": "Чашка стоит на полке.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "på",
+  "kind": "word",
+  "sense_id": "48a7e289-9479-51fa-a9ce-710e1017682c",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "frame": "Vi har møde {target} {day}.",
+  "slots": {
+   "day": [
+    {
+     "da": "tirsdag"
+    },
+    {
+     "da": "torsdag"
+    },
+    {
+     "da": "fredag"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "day": 0
+    },
+    "target": "på",
+    "en": "We have a meeting on Tuesday.",
+    "ru": "У нас встреча во вторник.",
+    "orders": [
+     "På tirsdag har vi møde."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "day": 1
+    },
+    "target": "på",
+    "en": "We have a meeting on Thursday.",
+    "ru": "У нас встреча в четверг.",
+    "orders": [
+     "På torsdag har vi møde."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "day": 2
+    },
+    "target": "på",
+    "en": "We have a meeting on Friday.",
+    "ru": "У нас встреча в пятницу.",
+    "orders": [
+     "På fredag har vi møde."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "til",
+  "kind": "word",
+  "sense_id": "e0b64eea-5787-57ad-b2b3-d276c284f655",
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "frame": "{subject} cykler {target} {place}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "place": [
+    {
+     "da": "skolen"
+    },
+    {
+     "da": "byen"
+    },
+    {
+     "da": "stranden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "place": 0
+    },
+    "target": "til",
+    "en": "I cycle to school.",
+    "ru": "Я езжу в школу на велосипеде.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "place": 1
+    },
+    "target": "til",
+    "en": "We cycle to town.",
+    "ru": "Мы ездим в город на велосипедах.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "place": 2
+    },
+    "target": "til",
+    "en": "She cycles to the beach.",
+    "ru": "Она ездит на пляж на велосипеде.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "til",
+  "kind": "word",
+  "sense_id": "a81de5e2-b5d7-556e-ab2e-a86ca680ff33",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-other",
+  "frame": "{item} er {target} {purpose}.",
+  "slots": {
+   "item": [
+    {
+     "da": "Denne kop"
+    },
+    {
+     "da": "Denne nøgle"
+    },
+    {
+     "da": "Denne pose"
+    }
+   ],
+   "purpose": [
+    {
+     "da": "te",
+     "requires": {
+      "item": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "hoveddøren",
+     "requires": {
+      "item": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "tomme flasker",
+     "requires": {
+      "item": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "item": 0,
+     "purpose": 0
+    },
+    "target": "til",
+    "en": "This cup is for tea.",
+    "ru": "Эта чашка для чая.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "item": 1,
+     "purpose": 1
+    },
+    "target": "til",
+    "en": "This key is for the front door.",
+    "ru": "Этот ключ для входной двери.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "item": 2,
+     "purpose": 2
+    },
+    "target": "til",
+    "en": "This bag is for empty bottles.",
+    "ru": "Этот пакет для пустых бутылок.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "af",
+  "kind": "word",
+  "sense_id": "95163e94-7095-5605-8c68-28127f3db7af",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "prepositions-other",
+  "frame": "{item} er lavet {target} {material}.",
+  "slots": {
+   "item": [
+    {
+     "da": "Bordet"
+    },
+    {
+     "da": "Gardinet"
+    },
+    {
+     "da": "Ringen"
+    }
+   ],
+   "material": [
+    {
+     "da": "træ"
+    },
+    {
+     "da": "silke"
+    },
+    {
+     "da": "guld"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "item": 0,
+     "material": 0
+    },
+    "target": "af",
+    "en": "The table is made of wood.",
+    "ru": "Стол сделан из дерева.",
+    "orders": [],
+    "accepted": [
+     "i"
+    ]
+   },
+   {
+    "slots": {
+     "item": 1,
+     "material": 1
+    },
+    "target": "af",
+    "en": "The curtain is made of silk.",
+    "ru": "Занавеска сделана из шёлка.",
+    "orders": [],
+    "accepted": [
+     "i"
+    ]
+   },
+   {
+    "slots": {
+     "item": 2,
+     "material": 2
+    },
+    "target": "af",
+    "en": "The ring is made of gold.",
+    "ru": "Кольцо сделано из золота.",
+    "orders": [],
+    "accepted": [
+     "i"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "af",
+  "kind": "word",
+  "sense_id": "6c1f9ab7-3609-5f8d-8bfa-a0b74f4d0fe1",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "passive",
+  "frame": "Sangen blev skrevet {target} {person}.",
+  "slots": {
+   "person": [
+    {
+     "da": "en berømt komponist"
+    },
+    {
+     "da": "min bedstefar"
+    },
+    {
+     "da": "to unge musikere"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0
+    },
+    "target": "af",
+    "en": "The song was written by a famous composer.",
+    "ru": "Песня была написана известным композитором.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "person": 1
+    },
+    "target": "af",
+    "en": "The song was written by my grandfather.",
+    "ru": "Песня была написана моим дедушкой.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "person": 2
+    },
+    "target": "af",
+    "en": "The song was written by two young musicians.",
+    "ru": "Песня была написана двумя молодыми музыкантами.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "have",
+  "kind": "word",
+  "sense_id": "ae9673ce-eaeb-5bde-a4f1-611f50dbed97",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min ven"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "object": [
+    {
+     "da": "en hund"
+    },
+    {
+     "da": "tre børn"
+    },
+    {
+     "da": "en bil"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "har",
+    "en": "I have a dog.",
+    "ru": "У меня есть собака.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "har",
+    "en": "My friend has three children.",
+    "ru": "У моего друга трое детей.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "har",
+    "en": "We have a car.",
+    "ru": "У нас есть машина.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "have",
+  "kind": "word",
+  "sense_id": "73f3b2ef-dd9d-5a4c-8b83-07ede8c469b7",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "verb-perfect",
+  "frame": "{subject} {target} {participle} i dag.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "participle": [
+    {
+     "da": "læst avisen"
+    },
+    {
+     "da": "ryddet op"
+    },
+    {
+     "da": "vasket bilen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "participle": 0
+    },
+    "target": "har",
+    "en": "I have read the newspaper today.",
+    "ru": "Я сегодня прочитал газету.",
+    "orders": [
+     "I dag har jeg læst avisen."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "participle": 1
+    },
+    "target": "har",
+    "en": "She has tidied up today.",
+    "ru": "Она сегодня убралась.",
+    "orders": [
+     "I dag har hun ryddet op."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "participle": 2
+    },
+    "target": "har",
+    "en": "We have washed the car today.",
+    "ru": "Мы сегодня помыли машину.",
+    "orders": [
+     "I dag har vi vasket bilen."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "for",
+  "kind": "word",
+  "sense_id": "925492d4-3258-50b3-8004-cea7c63a4c56",
+  "level": "A1",
+  "situation": "family",
+  "grammar": "prepositions-other",
+  "frame": "{subject} arbejder {target} {beneficiary}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "beneficiary": [
+    {
+     "da": "sin familie"
+    },
+    {
+     "da": "sine forældre"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "beneficiary": 0
+    },
+    "target": "for",
+    "en": "He works for his family.",
+    "ru": "Он работает на семью.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "beneficiary": 1
+    },
+    "target": "for",
+    "en": "She works for her parents.",
+    "ru": "Она работает на родителей.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "beneficiary": 0
+    },
+    "target": "for",
+    "en": "She works for her family.",
+    "ru": "Она работает на семью.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "for",
+  "kind": "word",
+  "sense_id": "a6abcb56-4735-537b-be03-4c65021ea6a3",
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "adverbs",
+  "frame": "{subject} er {target} {adj} til at købe.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Bilen"
+    },
+    {
+     "da": "Huset"
+    },
+    {
+     "da": "Skoene"
+    }
+   ],
+   "adj": [
+    {
+     "da": "dyr",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "dyrt",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "dyre",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "adj": 0
+    },
+    "target": "for",
+    "en": "The car is too expensive to buy.",
+    "ru": "Машина слишком дорогая, чтобы её купить.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "adj": 1
+    },
+    "target": "for",
+    "en": "The house is too expensive to buy.",
+    "ru": "Дом слишком дорогой, чтобы его купить.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "adj": 2
+    },
+    "target": "for",
+    "en": "The shoes are too expensive to buy.",
+    "ru": "Туфли слишком дорогие, чтобы их купить.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "for",
+  "kind": "word",
+  "sense_id": "48cc8324-d3dc-5887-ab29-af35e3c59377",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "conjunctions",
+  "frame": "Jeg bliver hjemme i dag, {target} {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "jeg har det ikke godt"
+    },
+    {
+     "da": "jeg gider ikke gå ud i regnen"
+    },
+    {
+     "da": "bilen virker ikke"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "for",
+    "en": "I am staying home today because I don't feel well.",
+    "ru": "Я сегодня остаюсь дома, потому что плохо себя чувствую.",
+    "orders": [],
+    "accepted": [
+     "fordi"
+    ]
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "for",
+    "en": "I am staying home today because I don't feel like going out in the rain.",
+    "ru": "Я сегодня остаюсь дома, потому что мне не хочется выходить под дождь.",
+    "orders": [],
+    "accepted": [
+     "fordi"
+    ]
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "for",
+    "en": "I am staying home today because the car doesn't work.",
+    "ru": "Я сегодня остаюсь дома, потому что машина не работает.",
+    "orders": [],
+    "accepted": [
+     "fordi"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "med",
+  "kind": "word",
+  "sense_id": "9b84b268-dadc-55a9-8279-14f02fed9c7b",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "prepositions-other",
+  "frame": "{subject} skriver {target} {tool}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Børnene"
+    }
+   ],
+   "tool": [
+    {
+     "da": "blyant"
+    },
+    {
+     "da": "kuglepen"
+    },
+    {
+     "da": "kridt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "tool": 0
+    },
+    "target": "med",
+    "en": "I write with a pencil.",
+    "ru": "Я пишу карандашом.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "tool": 1
+    },
+    "target": "med",
+    "en": "She writes with a pen.",
+    "ru": "Она пишет ручкой.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "tool": 2
+    },
+    "target": "med",
+    "en": "The children write with chalk.",
+    "ru": "Дети пишут мелом.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "med",
+  "kind": "word",
+  "sense_id": "134659d4-dcc7-59e7-bb5c-26578830b053",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "particle-verbs",
+  "frame": "{subject} tager {object} {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "object": [
+    {
+     "da": "en paraply",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "sin computer",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "vand"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "med",
+    "en": "I am bringing an umbrella along.",
+    "ru": "Я беру с собой зонт.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "med",
+    "en": "He is bringing his computer along.",
+    "ru": "Он берёт с собой свой компьютер.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "med",
+    "en": "We are bringing water along.",
+    "ru": "Мы берём с собой воду.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f40cac6a-e21f-5bfd-9761-7b7dc33646ff",
+  "level": "A2",
+  "situation": "feelings-opinions",
+  "grammar": "subordinate-clause",
+  "frame": "Jeg tror, {target} {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "vejret bliver godt i weekenden"
+    },
+    {
+     "da": "hun snart kommer hjem"
+    },
+    {
+     "da": "butikken er lukket nu"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "at",
+    "en": "I think that the weather will be good this weekend.",
+    "ru": "Я думаю, что в выходные будет хорошая погода.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "at",
+    "en": "I think that she will come home soon.",
+    "ru": "Я думаю, что она скоро придёт домой.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "at",
+    "en": "I think that the shop is closed now.",
+    "ru": "Я думаю, что магазин сейчас закрыт.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "frame": "Jeg elsker {target} {verb_phrase}.",
+  "slots": {
+   "verb_phrase": [
+    {
+     "da": "danse om natten"
+    },
+    {
+     "da": "rejse til nye lande"
+    },
+    {
+     "da": "gå lange ture"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb_phrase": 0
+    },
+    "target": "at",
+    "en": "I love to dance at night.",
+    "ru": "Я люблю танцевать по ночам.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb_phrase": 1
+    },
+    "target": "at",
+    "en": "I love to travel to new countries.",
+    "ru": "Я люблю путешествовать в новые страны.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb_phrase": 2
+    },
+    "target": "at",
+    "en": "I love to go for long walks.",
+    "ru": "Я люблю ходить на долгие прогулки.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "frame": "Jeg kan {target} lide {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "løg"
+    },
+    {
+     "da": "spinat"
+    },
+    {
+     "da": "fisk"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "ikke",
+    "en": "I don't like onions.",
+    "ru": "Я не люблю лук.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "ikke",
+    "en": "I don't like spinach.",
+    "ru": "Я не люблю шпинат.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "ikke",
+    "en": "I don't like fish.",
+    "ru": "Я не люблю рыбу.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "kunne",
+  "kind": "word",
+  "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "modal-verbs",
+  "frame": "{subject} {target} {verb}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min lillebror"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "verb": [
+    {
+     "da": "svømme hurtigt"
+    },
+    {
+     "da": "cykle uden støttehjul"
+    },
+    {
+     "da": "spille klaver"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0
+    },
+    "target": "kan",
+    "en": "I can swim fast.",
+    "ru": "Я умею быстро плавать.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1
+    },
+    "target": "kan",
+    "en": "My little brother can ride a bike without training wheels.",
+    "ru": "Мой младший брат умеет кататься на велосипеде без страховочных колёс.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2
+    },
+    "target": "kan",
+    "en": "She can play the piano.",
+    "ru": "Она умеет играть на пианино.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "blive",
+  "kind": "word",
+  "sense_id": "4b0576a9-0d12-596c-9b04-4becfef0c42c",
+  "level": "A1",
+  "situation": "weather-nature",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} {adj}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vandet"
+    },
+    {
+     "da": "Himlen"
+    },
+    {
+     "da": "Bladene"
+    }
+   ],
+   "adj": [
+    {
+     "da": "koldt",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "mørk",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "gule",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "adj": 0
+    },
+    "target": "bliver",
+    "en": "The water is getting cold.",
+    "ru": "Вода становится холодной.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "adj": 1
+    },
+    "target": "bliver",
+    "en": "The sky is getting dark.",
+    "ru": "Небо становится тёмным.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "adj": 2
+    },
+    "target": "bliver",
+    "en": "The leaves are turning yellow.",
+    "ru": "Листья становятся жёлтыми.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "blive",
+  "kind": "word",
+  "sense_id": "e3f77e84-58cb-5179-8b2a-343fbfa59fa4",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} hjemme {time}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Hun"
+    }
+   ],
+   "time": [
+    {
+     "da": "i aften"
+    },
+    {
+     "da": "i weekenden"
+    },
+    {
+     "da": "hele dagen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "time": 0
+    },
+    "target": "bliver",
+    "en": "I am staying home tonight.",
+    "ru": "Я остаюсь дома сегодня вечером.",
+    "orders": [
+     "I aften bliver jeg hjemme."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "time": 1
+    },
+    "target": "bliver",
+    "en": "We are staying home this weekend.",
+    "ru": "Мы остаёмся дома на выходных.",
+    "orders": [
+     "I weekenden bliver vi hjemme."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "time": 2
+    },
+    "target": "bliver",
+    "en": "She is staying home all day.",
+    "ru": "Она весь день остаётся дома.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "blive",
+  "kind": "word",
+  "sense_id": "5b9cc201-f470-5c99-a94f-688385e37f36",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "passive",
+  "frame": "{object} {target} {participle} {time}.",
+  "slots": {
+   "object": [
+    {
+     "da": "Huset"
+    },
+    {
+     "da": "Taget"
+    },
+    {
+     "da": "Køkkenet"
+    }
+   ],
+   "participle": [
+    {
+     "da": "malet"
+    },
+    {
+     "da": "repareret"
+    },
+    {
+     "da": "renoveret"
+    }
+   ],
+   "time": [
+    {
+     "da": "i denne måned"
+    },
+    {
+     "da": "næste år"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0,
+     "participle": 0,
+     "time": 0
+    },
+    "target": "bliver",
+    "en": "The house is being painted this month.",
+    "ru": "Дом красят в этом месяце.",
+    "orders": [
+     "I denne måned bliver huset malet."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 1,
+     "participle": 1,
+     "time": 1
+    },
+    "target": "bliver",
+    "en": "The roof will be repaired next year.",
+    "ru": "Крышу отремонтируют в следующем году.",
+    "orders": [
+     "Næste år bliver taget repareret."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "object": 2,
+     "participle": 2,
+     "time": 0
+    },
+    "target": "bliver",
+    "en": "The kitchen is being renovated this month.",
+    "ru": "Кухню ремонтируют в этом месяце.",
+    "orders": [
+     "I denne måned bliver køkkenet renoveret."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "han",
+  "kind": "word",
+  "sense_id": "8580f07c-4be0-59f9-8af9-be876a57c1e5",
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "pronouns",
+  "frame": "{target} er {role}.",
+  "slots": {
+   "role": [
+    {
+     "da": "min far"
+    },
+    {
+     "da": "lærer på skolen"
+    },
+    {
+     "da": "min nabo"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "role": 0
+    },
+    "target": "han",
+    "en": "He is my father.",
+    "ru": "Он мой отец.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "role": 1
+    },
+    "target": "han",
+    "en": "He is a teacher at the school.",
+    "ru": "Он учитель в школе.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "role": 2
+    },
+    "target": "han",
+    "en": "He is my neighbour.",
+    "ru": "Он мой сосед.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "om",
+  "kind": "word",
+  "sense_id": "ca40a44c-06fd-5093-9276-e7fd23d1ec16",
+  "level": "A1",
+  "situation": "leisure",
+  "grammar": "prepositions-other",
+  "frame": "Vi taler {target} {topic}.",
+  "slots": {
+   "topic": [
+    {
+     "da": "den nye film"
+    },
+    {
+     "da": "hendes sommerferie"
+    },
+    {
+     "da": "vejret"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "topic": 0
+    },
+    "target": "om",
+    "en": "We are talking about the new movie.",
+    "ru": "Мы говорим о новом фильме.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "topic": 1
+    },
+    "target": "om",
+    "en": "We are talking about her summer vacation.",
+    "ru": "Мы говорим о её летнем отпуске.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "topic": 2
+    },
+    "target": "om",
+    "en": "We are talking about the weather.",
+    "ru": "Мы говорим о погоде.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "om",
+  "kind": "word",
+  "sense_id": "bb3d854c-e1b4-5f21-a780-105ff230f8fc",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "conjunctions",
+  "frame": "Jeg ved ikke, {target} {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "det bliver solskin i morgen"
+    },
+    {
+     "da": "hun har tid i aften"
+    },
+    {
+     "da": "butikken har åbent i dag"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "om",
+    "en": "I don't know if it will be sunny tomorrow.",
+    "ru": "Я не знаю, будет ли завтра солнечно.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "om",
+    "en": "I don't know if she has time tonight.",
+    "ru": "Я не знаю, есть ли у неё время сегодня вечером.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "om",
+    "en": "I don't know if the shop is open today.",
+    "ru": "Я не знаю, открыт ли сегодня магазин.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "om",
+  "kind": "word",
+  "sense_id": "7ae6928d-8e5a-5bc1-92a8-06a6c0bcf1a4",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "frame": "Vi ses {target} {duration}.",
+  "slots": {
+   "duration": [
+    {
+     "da": "en time"
+    },
+    {
+     "da": "tre dage"
+    },
+    {
+     "da": "en uge"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "duration": 0
+    },
+    "target": "om",
+    "en": "See you in an hour.",
+    "ru": "Увидимся через час.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "duration": 1
+    },
+    "target": "om",
+    "en": "See you in three days.",
+    "ru": "Увидимся через три дня.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "duration": 2
+    },
+    "target": "om",
+    "en": "See you in a week.",
+    "ru": "Увидимся через неделю.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "men",
+  "kind": "word",
+  "sense_id": "1f3f2e7a-66a9-5506-80a5-d36ba396c18e",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "conjunctions",
+  "frame": "Jeg er sulten, {target} {clause}.",
+  "slots": {
+   "clause": [
+    {
+     "da": "der er ikke mere mad"
+    },
+    {
+     "da": "jeg gider ikke lave mad"
+    },
+    {
+     "da": "maden er ikke klar endnu"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "clause": 0
+    },
+    "target": "men",
+    "en": "I am hungry, but there is no more food.",
+    "ru": "Я голоден, но еды больше нет.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 1
+    },
+    "target": "men",
+    "en": "I am hungry, but I don't feel like cooking.",
+    "ru": "Я голоден, но мне не хочется готовить.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "clause": 2
+    },
+    "target": "men",
+    "en": "I am hungry, but the food is not ready yet.",
+    "ru": "Я голоден, но еда ещё не готова.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "jeg",
+  "kind": "word",
+  "sense_id": "86b2f7ac-de0a-523a-98ba-9185d34b47bf",
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "pronouns",
+  "frame": "{target} {verb_phrase}.",
+  "slots": {
+   "verb_phrase": [
+    {
+     "da": "taler tre sprog"
+    },
+    {
+     "da": "elsker at læse"
+    },
+    {
+     "da": "bor i en lille by"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb_phrase": 0
+    },
+    "target": "jeg",
+    "en": "I speak three languages.",
+    "ru": "Я говорю на трёх языках.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb_phrase": 1
+    },
+    "target": "jeg",
+    "en": "I love to read.",
+    "ru": "Я люблю читать.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb_phrase": 2
+    },
+    "target": "jeg",
+    "en": "I live in a small town.",
+    "ru": "Я живу в маленьком городе.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "vi",
+  "kind": "word",
+  "sense_id": "7849289d-b484-537d-be1a-33ca2462a4b3",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "pronouns",
+  "frame": "{target} bor sammen i {place}.",
+  "slots": {
+   "place": [
+    {
+     "da": "en lejlighed"
+    },
+    {
+     "da": "et hus på landet"
+    },
+    {
+     "da": "et gammelt hus"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "place": 0
+    },
+    "target": "vi",
+    "en": "We live together in an apartment.",
+    "ru": "Мы живём вместе в квартире.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "place": 1
+    },
+    "target": "vi",
+    "en": "We live together in a house in the countryside.",
+    "ru": "Мы живём вместе в доме за городом.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "place": 2
+    },
+    "target": "vi",
+    "en": "We live together in an old house.",
+    "ru": "Мы живём вместе в старом доме.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "fra",
+  "kind": "word",
+  "sense_id": "716e0255-f1f6-5e58-9f97-e372811f8f36",
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "frame": "{vehicle} kører {target} {place}.",
+  "slots": {
+   "vehicle": [
+    {
+     "da": "Toget"
+    },
+    {
+     "da": "Bussen"
+    }
+   ],
+   "place": [
+    {
+     "da": "den gamle station"
+    },
+    {
+     "da": "torvet"
+    },
+    {
+     "da": "lufthavnen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "vehicle": 0,
+     "place": 0
+    },
+    "target": "fra",
+    "en": "The train departs from the old station.",
+    "ru": "Поезд отправляется со старого вокзала.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "vehicle": 1,
+     "place": 1
+    },
+    "target": "fra",
+    "en": "The bus departs from the square.",
+    "ru": "Автобус отправляется с площади.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "vehicle": 0,
+     "place": 2
+    },
+    "target": "fra",
+    "en": "The train departs from the airport.",
+    "ru": "Поезд отправляется из аэропорта.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "de",
+  "kind": "word",
+  "sense_id": "e83a2cbc-5803-5161-93a2-213405b8a09c",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "pronouns",
+  "frame": "{target} spiser morgenmad {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "klokken syv"
+    },
+    {
+     "da": "meget tidligt"
+    },
+    {
+     "da": "hver dag"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "de",
+    "en": "They eat breakfast at seven o'clock.",
+    "ru": "Они завтракают в семь часов.",
+    "orders": [
+     "Klokken syv spiser de morgenmad."
+    ],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "de",
+    "en": "They eat breakfast very early.",
+    "ru": "Они завтракают очень рано.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "time": 2
+    },
+    "target": "de",
+    "en": "They eat breakfast every day.",
+    "ru": "Они завтракают каждый день.",
+    "orders": [
+     "Hver dag spiser de morgenmad."
+    ],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "57c4736d-fc28-5a50-80a0-4fab80638de3",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "modal-verbs",
+  "frame": "{subject} {target} {plan}, men {problem}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Toget"
+    },
+    {
+     "da": "Mødet"
+    },
+    {
+     "da": "Pakken"
+    }
+   ],
+   "plan": [
+    {
+     "da": "komme klokken otte",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "begynde klokken ni",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "komme i går",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ],
+   "problem": [
+    {
+     "da": "det er forsinket",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "chefen er ikke kommet endnu",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "den er ikke kommet endnu",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "plan": 0,
+     "problem": 0
+    },
+    "target": "skulle",
+    "en": "The train was supposed to arrive at eight, but it is delayed.",
+    "ru": "Поезд должен был прийти в восемь, но он опаздывает.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "plan": 1,
+     "problem": 1
+    },
+    "target": "skulle",
+    "en": "The meeting was supposed to start at nine, but the boss has not arrived yet.",
+    "ru": "Совещание должно было начаться в девять, но начальник ещё не пришёл.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "plan": 2,
+     "problem": 2
+    },
+    "target": "skulle",
+    "en": "The parcel was supposed to arrive yesterday, but it has not come yet.",
+    "ru": "Посылка должна была прийти вчера, но её до сих пор нет.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "1a6f60ce-55b7-549e-9cf1-16a648a17811",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "verb-future",
+  "frame": "{subject} {target} {plan} i næste uge.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min bror"
+    }
+   ],
+   "plan": [
+    {
+     "da": "holde fest"
+    },
+    {
+     "da": "besøge sin gamle veninde",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "løbe et maraton"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "plan": 0
+    },
+    "target": "skal",
+    "en": "We are going to have a party next week.",
+    "ru": "На следующей неделе мы устраиваем вечеринку.",
+    "orders": [
+     "I næste uge skal vi holde fest."
+    ],
+    "accepted": [
+     "vil"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "plan": 1
+    },
+    "target": "skal",
+    "en": "She is going to visit her old friend next week.",
+    "ru": "На следующей неделе она собирается навестить свою старую подругу.",
+    "orders": [
+     "I næste uge skal hun besøge sin gamle veninde."
+    ],
+    "accepted": [
+     "vil"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "plan": 2
+    },
+    "target": "skal",
+    "en": "My brother is going to run a marathon next week.",
+    "ru": "На следующей неделе мой брат собирается пробежать марафон.",
+    "orders": [
+     "I næste uge skal min bror løbe et maraton."
+    ],
+    "accepted": [
+     "vil"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "man",
+  "kind": "word",
+  "sense_id": "bc67a387-d688-5b60-a087-7395a80f4ee6",
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "pronouns",
+  "frame": "{target} skal {verb} for at holde sig sund.",
+  "slots": {
+   "verb": [
+    {
+     "da": "spise grøntsager hver dag"
+    },
+    {
+     "da": "sove nok om natten"
+    },
+    {
+     "da": "drikke meget vand"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0
+    },
+    "target": "man",
+    "en": "One should eat vegetables every day to stay healthy.",
+    "ru": "Нужно есть овощи каждый день, чтобы оставаться здоровым.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb": 1
+    },
+    "target": "man",
+    "en": "One should sleep enough at night to stay healthy.",
+    "ru": "Нужно достаточно спать по ночам, чтобы оставаться здоровым.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "verb": 2
+    },
+    "target": "man",
+    "en": "One should drink a lot of water to stay healthy.",
+    "ru": "Нужно пить много воды, чтобы оставаться здоровым.",
+    "orders": [],
+    "accepted": []
+   }
+  ]
+ }
+]

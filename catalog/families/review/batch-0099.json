@@ -1,0 +1,67 @@
+[
+ {
+  "sense_id": "bbb41382-2078-5879-9d68-01a1b318d4cb",
+  "lemma": "folketingsvalg",
+  "changes": [
+   "venter → forventer ('venter' reads as 'wait')",
+   "subject 'Vælgerne' → 'Politikerne'",
+   "accepted +parlamentsvalg",
+   "orders + fronted 'I november' for every variant"
+  ]
+ },
+ {
+  "sense_id": "7c5c651d-714c-5ea2-8723-1c80ed01f738",
+  "lemma": "snes",
+  "changes": [
+   "orders + fronted 'På markedet' for every variant"
+  ]
+ },
+ {
+  "sense_id": "9ffddcab-5dbc-5f31-8e1b-7ce28076fd69",
+  "lemma": "mystisk",
+  "changes": [
+   "accepted +gådefuldt",
+   "orders + fronted 'I postkassen' for every variant"
+  ]
+ },
+ {
+  "sense_id": "ebe5116e-07b4-56ff-b512-007fdac1e0ce",
+  "lemma": "mystisk",
+  "changes": [
+   "accepted +besynderligt",
+   "ru word order made natural ('сегодня странно себя ведёт')"
+  ]
+ },
+ {
+  "sense_id": "4f67f563-0202-52ee-896d-9c9e0a9781f6",
+  "lemma": "markedsføring",
+  "changes": [
+   "accepted +marketing"
+  ]
+ },
+ {
+  "sense_id": "5c070122-eed5-5e0b-bdfa-af3008f84e38",
+  "lemma": "markedsføring",
+  "changes": [
+   "accepted +promoveringen (from 'продвижение')",
+   "en 'plans' → 'is planning'"
+  ]
+ },
+ {
+  "sense_id": "60b79c55-1055-50bf-b824-03c00122eb7e",
+  "lemma": "ideologisk",
+  "changes": [
+   "ru 'идеологическая разница' → 'идеологическое различие'",
+   "orders + fronted 'Mellem …' for every variant"
+  ]
+ },
+ {
+  "sense_id": "0b0e9f9b-05c6-5fd0-ae7d-92a2ff1e0e76",
+  "lemma": "bosætte",
+  "changes": [
+   "frame rewritten: 'bosætter sig sammen kort efter brylluppet' (unnatural for a couple moving in; natives say 'flytter sammen', no place) → 'bosatte sig i en lille by ved kysten, da de gik på pension'",
+   "target bosætter → bosatte, grammar reflexive → verb-past, situation family → home",
+   "subjects → 'Mine bedsteforældre' / 'Min onkel og tante' / 'De'"
+  ]
+ }
+]

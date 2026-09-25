@@ -1,0 +1,62 @@
+{
+ "auditor": "claude-opus-5-5",
+ "at": "2026-09-25T15:32:40.141Z",
+ "regenerated": {
+  "oven på": "Give ONE sense only: the spatial preposition \"on top of\" (ru \"на, поверх\"). The second sense \"вдобавок к\" was wrong — \"oven på en lang dag\" means \"after\", not \"in addition to\".",
+  "dukke op": "Give ONE sense only: \"to turn up, to appear\" (ru \"появляться\"). \"всплывать\" as a separate sense was padding: the example showed the same meaning.",
+  "tage fejl": "Use the plain intransitive meaning \"to be wrong, to be mistaken\" in a sentence without \"af\" (e.g. \"Du tager fejl.\" in a fuller context). \"tage fejl af vejen\" was misleading and its translations disagreed.",
+  "have lyst til": "Word the meaning as ru \"хотеть, хотеться (чего-л.)\" / en \"to feel like, to want\" — it combines with a noun or with \"at\" + infinitive; \"хотеть\"/\"to want to\" alone was too narrow.",
+  "give efter": "Keep sense 1 (to give in, to yield to pressure: ru \"уступать, поддаваться\"). If you keep a physical sense, word it ru \"прогибаться, не выдерживать (о предмете)\" / en \"to give way\" with a natural example; otherwise give one sense."
+ },
+ "translation_corrections": [
+  {
+   "lemma": "stå op",
+   "ordinal": 1,
+   "lang": "ru",
+   "before": "Я встаю в семь утра каждое утро.",
+   "after": "Я встаю в семь часов каждое утро."
+  },
+  {
+   "lemma": "falde i søvn",
+   "ordinal": 1,
+   "lang": "ru",
+   "before": "Я засыпаю на диване каждую ночь.",
+   "after": "Я засыпаю на диване каждый вечер."
+  },
+  {
+   "lemma": "falde i søvn",
+   "ordinal": 1,
+   "lang": "en",
+   "before": "I fall asleep on the couch every night.",
+   "after": "I fall asleep on the sofa every evening."
+  },
+  {
+   "lemma": "i lang tid",
+   "ordinal": 1,
+   "lang": "ru",
+   "before": "Я долго ждал автобус.",
+   "after": "Я уже давно жду автобус."
+  }
+ ],
+ "round2": {
+  "regenerated": {
+   "alle sammen": "Meaning ru \"все (до одного), все мы/вы/они\" / en \"all (of us/you/them), everyone\". Use it where natives do: after the subject or verb (\"Vi kender den historie alle sammen.\"), or addressing a group (\"Tak for i dag, alle sammen.\"). Do not open a sentence with it as the bare subject.",
+   "tage fejl": "One sense: ru \"ошибаться\" / en \"to be wrong, to be mistaken\". Write an everyday exchange where someone is simply wrong about a fact, e.g. \"Du tager fejl, mødet er i morgen.\" Keep \"tage fejl\" without \"af\".",
+   "finde ud af": "Two senses. 1: ru \"выяснять, узнавать\" / en \"to find out\" (a fact). 2: ru \"уметь, справляться (с чем-л.)\" / en \"to manage, to know how to\" — with \"at\" + infinitive or \"det\", an ability, e.g. \"Min søn kan godt finde ud af at cykle nu.\" The English and Russian example translations must express ability (\"can manage to\", \"умеет\"), not figuring out a method."
+  },
+  "translation_corrections": [
+   {
+    "lemma": "vågne op",
+    "ordinal": 1,
+    "lang": "ru",
+    "before": "Я просыпаюсь в семь утра.",
+    "after": "Я просыпаюсь в семь часов каждое утро."
+   }
+  ]
+ },
+ "round3": {
+  "regenerated": {
+   "finde ud af": "Two senses. 1: ru \"выяснять, узнавать\" / en \"to find out\" (a fact). 2: ru \"уметь, справляться (с чем-л.)\" / en \"to manage, to be able to\" — ability, so the example must contain \"kan (godt) finde ud af\", e.g. \"Min lillebror kan godt finde ud af at binde sine sko nu.\" A bare present \"finder ud af at\" reads as \"figures out how\" and was mistranslated as \"learns how\"."
+  }
+ }
+}

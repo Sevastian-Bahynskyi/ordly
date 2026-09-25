@@ -1,0 +1,628 @@
+[
+ {
+  "lemma": "stå op",
+  "kind": "phrase",
+  "sense_id": "9b875b47-8821-57ca-a4d0-fa449a15fd1e",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "particle-verbs",
+  "frame": "Jeg {target} klokken syv.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "står op",
+    "en": "I get up at seven.",
+    "ru": "Я встаю в семь."
+   },
+   {
+    "slots": {},
+    "target": "stod op",
+    "en": "I got up at seven.",
+    "ru": "Я встал в семь."
+   }
+  ]
+ },
+ {
+  "lemma": "vågne op",
+  "kind": "phrase",
+  "sense_id": "6536f02e-1de4-54ab-8c04-2389244f1101",
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "particle-verbs",
+  "frame": "Jeg {target} klokken {time}.",
+  "slots": {
+   "time": [
+    {
+     "da": "syv"
+    },
+    {
+     "da": "halv otte"
+    },
+    {
+     "da": "otte"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time": 0
+    },
+    "target": "vågner op",
+    "en": "I wake up at seven.",
+    "ru": "Я просыпаюсь в семь."
+   },
+   {
+    "slots": {
+     "time": 1
+    },
+    "target": "vågnede op",
+    "en": "I woke up at half past seven.",
+    "ru": "Я проснулся в половине восьмого."
+   },
+   {
+    "slots": {
+     "time": 2
+    },
+    "target": "vågner op",
+    "en": "I wake up at eight o'clock.",
+    "ru": "Я просыпаюсь в восемь часов."
+   }
+  ]
+ },
+ {
+  "lemma": "rydde op",
+  "kind": "phrase",
+  "sense_id": "3669af2f-dee2-5dab-b74d-2db25746874e",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "particle-verbs",
+  "frame": "Jeg {target} hver lørdag.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "rydder op",
+    "en": "I clean up every Saturday.",
+    "ru": "Я убираю каждую субботу."
+   },
+   {
+    "slots": {},
+    "target": "ryddede op",
+    "en": "I cleaned up every Saturday.",
+    "ru": "Я убирал(а) каждую субботу."
+   }
+  ]
+ },
+ {
+  "lemma": "finde ud af",
+  "kind": "phrase",
+  "sense_id": "6eb4b8a3-8e1d-5635-bc43-69c13a599466",
+  "level": "A2",
+  "situation": "services",
+  "grammar": "particle-verbs",
+  "frame": "Jeg {target} prisen på reparationen.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "finder ud af",
+    "en": "I find out the price of the repair.",
+    "ru": "Я узнаю стоимость ремонта."
+   },
+   {
+    "slots": {},
+    "target": "fandt ud af",
+    "en": "I found out the price of the repair.",
+    "ru": "Я узнал стоимость ремонта."
+   }
+  ]
+ },
+ {
+  "lemma": "løbe tør for",
+  "kind": "phrase",
+  "sense_id": "52d6ea24-bcfa-5ecf-b85a-9d3d9ec789e8",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "particle-verbs",
+  "frame": "Vi {target} {resource}.",
+  "slots": {
+   "resource": [
+    {
+     "da": "benzin"
+    },
+    {
+     "da": "rengøringsmidler"
+    },
+    {
+     "da": "papir til kvitteringer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "resource": 1
+    },
+    "target": "løb tør for",
+    "en": "We ran out of cleaning supplies.",
+    "ru": "У нас закончились чистящие средства."
+   },
+   {
+    "slots": {
+     "resource": 2
+    },
+    "target": "løb tør for",
+    "orders": [
+     "Papir til kvitteringer løb vi tør for."
+    ],
+    "en": "We ran out of paper for receipts.",
+    "ru": "У нас закончилась бумага для чеков."
+   }
+  ]
+ },
+ {
+  "lemma": "stikke af",
+  "kind": "phrase",
+  "sense_id": "ff89af01-860f-5f6e-8cba-b6e21957942e",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "particle-verbs",
+  "frame": "Tyven {target} fra gerningsstedet.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "stak af",
+    "en": "The thief ran away from the scene of the crime.",
+    "ru": "Вор сбежал с места преступления."
+   },
+   {
+    "slots": {},
+    "target": "stikker af",
+    "en": "The thief runs away from the scene of the crime.",
+    "ru": "Вор сбегает с места преступления."
+   }
+  ]
+ },
+ {
+  "lemma": "skynde sig",
+  "kind": "phrase",
+  "sense_id": "96308c4f-6d20-5946-99f5-b1b431f26eea",
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "reflexive",
+  "frame": "Jeg {target} for at nå bussen.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "skynder mig",
+    "en": "I hurry to catch the bus.",
+    "ru": "Я спешу успеть на автобус."
+   },
+   {
+    "slots": {},
+    "target": "skyndte mig",
+    "en": "I hurried to catch the bus.",
+    "ru": "Я спешил(а), чтобы успеть на автобус."
+   }
+  ]
+ },
+ {
+  "lemma": "kede sig",
+  "kind": "phrase",
+  "sense_id": "ae8b25f2-6227-54a9-8348-e46ed609d0af",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "reflexive",
+  "frame": "{subject} {target} i biografen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min ven"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "keder mig",
+    "en": "I'm bored at the cinema.",
+    "ru": "Мне скучно в кинотеатре."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "keder sig",
+    "en": "My friend is bored at the movies.",
+    "ru": "Мой друг скучает в кино."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "keder sig",
+    "en": "They are bored in the cinema.",
+    "ru": "Им скучно в кино."
+   }
+  ]
+ },
+ {
+  "lemma": "glæde sig til",
+  "kind": "phrase",
+  "sense_id": "16c261fe-dc32-579d-bc8b-5ad7a16c40a0",
+  "level": "A2",
+  "situation": "social",
+  "grammar": "reflexive",
+  "frame": "{subject} {target} weekenden.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Børnene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "glæder mig til",
+    "en": "I'm looking forward to the weekend.",
+    "ru": "Я с нетерпением жду выходных."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "glæder os til",
+    "en": "We are looking forward to the weekend.",
+    "ru": "Мы с нетерпением ждём выходных."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "glæder sig til",
+    "en": "The children are looking forward to the weekend.",
+    "ru": "Дети с нетерпением ждут выходных."
+   },
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "glædede mig til",
+    "en": "I was looking forward to the weekend.",
+    "ru": "Я с нетерпением ждал выходных."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "glædede os til",
+    "en": "We were looking forward to the weekend.",
+    "ru": "Мы с нетерпением ждали выходных."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "glædede sig til",
+    "en": "The children were looking forward to the weekend.",
+    "ru": "Дети с нетерпением ждали выходных."
+   }
+  ]
+ },
+ {
+  "sense_id": "9609956a-705b-5ac5-9fc7-8f95bc44afcb",
+  "lemma": "vokse op",
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "particle-verbs"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "dukke op",
+  "kind": "phrase",
+  "sense_id": "813a71f5-40aa-513a-b8d9-e1de2fe5374a",
+  "level": "B1",
+  "situation": "social",
+  "grammar": "particle-verbs",
+  "frame": "{person} {target} til festen.",
+  "slots": {
+   "person": [
+    {
+     "da": "Mange gamle venner"
+    },
+    {
+     "da": "Min nabo"
+    },
+    {
+     "da": "Nogle uventede gæster"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "person": 0
+    },
+    "target": "dukkede op",
+    "en": "Many old friends showed up at the party.",
+    "ru": "На вечеринку пришло много старых друзей."
+   },
+   {
+    "slots": {
+     "person": 1
+    },
+    "target": "dukker op",
+    "en": "My neighbor shows up at the party.",
+    "ru": "Мой сосед приходит на вечеринку."
+   },
+   {
+    "slots": {
+     "person": 2
+    },
+    "target": "dukkede op",
+    "en": "Some unexpected guests showed up at the party.",
+    "ru": "На вечеринке появились неожиданные гости."
+   }
+  ]
+ },
+ {
+  "lemma": "gå ind for",
+  "kind": "phrase",
+  "sense_id": "3a8873b5-682e-58c4-99e1-151dfb042be0",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "particle-verbs",
+  "frame": "{subject} {target} en mere bæredygtig politik.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Partiet"
+    },
+    {
+     "da": "Flere vælgere"
+    },
+    {
+     "da": "Den nye borgmester"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "går ind for",
+    "en": "The party is in favour of a more sustainable policy.",
+    "ru": "Партия выступает за более устойчивую политику."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "går ind for",
+    "en": "The new mayor is in favour of a more sustainable policy.",
+    "ru": "Новый мэр выступает за более устойчивую политику."
+   }
+  ]
+ },
+ {
+  "lemma": "se ned på",
+  "kind": "phrase",
+  "sense_id": "264f18db-d819-57cb-9f1f-14a92456018c",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "particle-verbs",
+  "frame": "Det er forkert at {target} {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "andre mennesker"
+    },
+    {
+     "da": "kolleger med mindre erfaring"
+    },
+    {
+     "da": "personer uden formel uddannelse"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "se ned på",
+    "en": "It is wrong to look down on other people.",
+    "ru": "Неправильно смотреть свысока на других."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "se ned på",
+    "en": "It is wrong to look down on colleagues with less experience.",
+    "ru": "Неправильно смотреть свысока на коллег с меньшим опытом."
+   },
+   {
+    "slots": {
+     "object": 2
+    },
+    "target": "se ned på",
+    "en": "It is wrong to look down on people without formal education.",
+    "ru": "Неправильно смотреть свысока на людей без формального образования."
+   }
+  ]
+ },
+ {
+  "sense_id": "d59590b5-d784-59df-9bc4-529f52f4c28a",
+  "lemma": "give efter",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "particle-verbs"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "31e41627-3a2d-5181-bc7a-758abbae8105",
+  "lemma": "vænne sig til",
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "reflexive"
+  },
+  "skip": "translation fidelity: 1 of 3 variants survived"
+ },
+ {
+  "lemma": "tage sig af",
+  "kind": "phrase",
+  "sense_id": "af2f1160-0609-5554-b675-120eacf1d720",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "reflexive",
+  "frame": "Min {relative} {target} børnene hver dag.",
+  "slots": {
+   "relative": [
+    {
+     "da": "søster"
+    },
+    {
+     "da": "bror"
+    },
+    {
+     "da": "mor"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "relative": 0
+    },
+    "target": "tager sig af",
+    "en": "My sister takes care of the children every day.",
+    "ru": "Моя сестра заботится о детях каждый день."
+   },
+   {
+    "slots": {
+     "relative": 1
+    },
+    "target": "tog sig af",
+    "en": "My brother took care of the children every day.",
+    "ru": "Мой брат заботился о детях каждый день."
+   },
+   {
+    "slots": {
+     "relative": 2
+    },
+    "target": "tager sig af",
+    "en": "My mother takes care of the children every day.",
+    "ru": "Моя мама заботится о детях каждый день."
+   }
+  ]
+ },
+ {
+  "sense_id": "624b374e-c1e1-5904-91fc-55b1b057095c",
+  "lemma": "give op",
+  "target": {
+   "level": "A2",
+   "situation": "education",
+   "grammar": "particle-verbs"
+  },
+  "skip": "translation fidelity: 0 of 2 variants survived"
+ },
+ {
+  "lemma": "komme ind på",
+  "kind": "phrase",
+  "sense_id": "2ea3de40-373b-542b-9065-edd92839827c",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "particle-verbs",
+  "frame": "{subject} {target} {topic} i sin artikel.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Journalisten"
+    },
+    {
+     "da": "Kronikøren"
+    },
+    {
+     "da": "Anmelderen"
+    }
+   ],
+   "topic": [
+    {
+     "da": "de økonomiske konsekvenser"
+    },
+    {
+     "da": "den politiske uro"
+    },
+    {
+     "da": "miljøkrisen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "topic": 0
+    },
+    "target": "kom ind på",
+    "en": "The journalist touched on the financial consequences in his article.",
+    "ru": "Журналист затронул финансовые последствия в своей статье."
+   },
+   {
+    "slots": {
+     "subject": 0,
+     "topic": 1
+    },
+    "target": "kommer ind på",
+    "en": "The journalist touches on the political unrest in his article.",
+    "ru": "Журналист затрагивает политические волнения в своей статье."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "topic": 2
+    },
+    "target": "kom ind på",
+    "en": "The columnist touched on the environmental crisis in his article.",
+    "ru": "Колумнист затронул экологический кризис в своей статье."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "topic": 0
+    },
+    "target": "kommer ind på",
+    "en": "The reviewer touches on the financial consequences in his article.",
+    "ru": "Рецензент затрагивает финансовые последствия в своей статье."
+   }
+  ]
+ }
+]

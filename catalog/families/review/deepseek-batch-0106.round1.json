@@ -1,0 +1,584 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T17:02:35.508Z",
+ "entries": [
+  {
+   "lemma": "regering",
+   "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial clause when the main clause follows directly. This violates V2 word order presentation.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial clause when the main clause follows directly. This violates V2 word order presentation.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Comma before 'fremlagde' is incorrect; Danish does not use a comma after a fronted adverbial phrase when the main clause follows directly. This violates V2 word order presentation.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "virksomhed",
+   "sense_id": "29f98378-ee1e-5163-9402-a947bc264db0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "kræve",
+   "sense_id": "9de4d769-23e1-5598-8db4-b42064ce0bba",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "gælde",
+   "sense_id": "3f4f702b-e412-54e2-95c2-c774391558b8",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "udvikle",
+   "sense_id": "e9672244-40eb-5352-aae7-b624531c6139",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "opleve",
+   "sense_id": "86861999-9a50-557d-b90b-43f050779eaf",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish 'ikke tidligere ... før' is redundant and unnatural; English 'not ... before' is faithful but the Danish is not idiomatic. Russian 'никогда раньше не испытывал' is a natural rendering of the intended meaning but the Danish source is flawed.",
+     "danish_ok": false,
+     "en": "I have not experienced such deep grief before.",
+     "ru": "Я никогда раньше не испытывал такого глубокого горя."
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "English 'on weekends' implies habitual action, but Danish 'i weekenden' means 'this/that weekend' (a specific weekend). Russian 'по выходным' also implies habitual. Both translations should reflect a specific weekend.",
+     "danish_ok": true,
+     "en": "Due to a deadline, the employees had to work overtime that weekend.",
+     "ru": "Из-за срока сотрудникам пришлось работать сверхурочно в те выходные."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "Same issue: 'on weekends' and 'по выходным' imply habitual action, but 'i weekenden' refers to a specific weekend. Also, 'må' is present tense, so 'have to' is correct, but the time reference must match.",
+     "danish_ok": true,
+     "en": "Due to a deadline, the employees have to work overtime this weekend.",
+     "ru": "Из-за дедлайна сотрудникам приходится работать сверхурочно в эти выходные."
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "Due to a deadline, employees had to work overtime on weekends.",
+      "ru": "Из-за срока сотрудники были вынуждены работать сверхурочно по выходным."
+     },
+     "after": {
+      "en": "Due to a deadline, the employees had to work overtime that weekend.",
+      "ru": "Из-за срока сотрудникам пришлось работать сверхурочно в те выходные."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "Due to a deadline, employees have to work overtime on weekends.",
+      "ru": "Из-за дедлайна сотрудники вынуждены работать сверхурочно по выходным."
+     },
+     "after": {
+      "en": "Due to a deadline, the employees have to work overtime this weekend.",
+      "ru": "Из-за дедлайна сотрудникам приходится работать сверхурочно в эти выходные."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "bygge",
+   "sense_id": "83d0400f-ceda-5bfc-8670-096d90c9f744",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "The passive form 'byggedes' is archaic and not used in modern spoken or written Danish; a native speaker would say 'blev bygget'. Teaching this form at B1 is misleading and not level-appropriate.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "oplyse",
+   "sense_id": "7e906b48-8372-53a9-8d21-b7a1cee02268",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'гражданам информируют о своих правах' is ungrammatical and unnatural. 'Гражданам' is dative, but the verb 'информируют' (3rd person plural active) does not agree; it should be passive. A correct translation would be 'граждан информируют об их правах' or 'граждане информируются о своих правах'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Согласно докладу, граждан информируют об их правах."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'гражданам были проинформированы об их правах' is ungrammatical. 'Гражданам' is dative, but the passive construction 'были проинформированы' requires a nominative subject. A correct translation would be 'граждане были проинформированы о своих правах' or 'граждан проинформировали об их правах'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Согласно докладу, граждане были проинформированы о своих правах."
+    }
+   ]
+  },
+  {
+   "lemma": "oplyse",
+   "sense_id": "7e906b48-8372-53a9-8d21-b7a1cee02268",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "According to the report, citizens are informed about their rights.",
+      "ru": "Согласно докладу, гражданам информируют о своих правах."
+     },
+     "after": {
+      "en": "According to the report, citizens are informed about their rights.",
+      "ru": "Согласно докладу, граждан информируют об их правах."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "According to the report, citizens were informed of their rights.",
+      "ru": "Согласно докладу, гражданам были проинформированы об их правах."
+     },
+     "after": {
+      "en": "According to the report, citizens were informed of their rights.",
+      "ru": "Согласно докладу, граждане были проинформированы о своих правах."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "hvorvidt",
+   "sense_id": "8a351647-1752-5402-bdeb-cfa7d4035d57",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "idet",
+   "sense_id": "02b9badc-aeac-5d3b-87b8-39603d3ca2d2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence is ungrammatical and unnatural because 'præsenterede' is used intransitively without an object, which is not idiomatic. The English translation 'As the CEO presented' is also unnatural without an object. The Russian translation 'Когда генеральный директор выступал' uses 'когда' (when) instead of conveying the simultaneity/reason of 'idet', and 'выступал' is a different verb. The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason.",
+     "danish_ok": false,
+     "en": "As the CEO was presenting, all the employees listened attentively.",
+     "ru": "Пока генеральный директор выступал, все сотрудники внимательно слушали."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence is ungrammatical and unnatural because 'gennemgik' is used intransitively without an object, which is not idiomatic. The English translation 'As the project manager reviewed' is also unnatural without an object. The Russian translation 'Пока менеджер проекта проверял' uses 'пока' (while) instead of 'idet', and 'проверял' is a different verb. The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason.",
+     "danish_ok": false,
+     "en": "As the project manager was reviewing, several participants took notes.",
+     "ru": "Пока менеджер проекта проверял, несколько участников делали заметки."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence is ungrammatical and unnatural because 'fremlagde' is used intransitively without an object, which is not idiomatic. The English translation 'As the board presented' is also unnatural without an object. The Russian translation 'Во время презентации совета коллега задал важный вопрос' uses 'во время' (during) instead of 'idet', and 'важный' (important) instead of 'критический' (critical). The sentence does not clearly demonstrate the meaning of 'idet' as expressing simultaneity or reason.",
+     "danish_ok": false,
+     "en": "As the board was presenting, a colleague asked a critical question.",
+     "ru": "Когда совет директоров выступал, коллега задал критический вопрос."
+    }
+   ]
+  },
+  {
+   "lemma": "medmindre",
+   "sense_id": "481ecb58-42eb-5bcd-86af-50e829cc62db",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "skønt",
+   "sense_id": "46709554-1c99-5cc6-aac5-3e9ec82f0d10",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence 'fandt glæde ved udfordringen' means 'found joy in the challenge', which is a positive, enthusiastic reaction. This contradicts the concessive 'skønt' and the subsequent 'accepterede de den uden protest' (accepted it without protest), which implies a reluctant or neutral acceptance. The intended meaning 'enjoyed the challenge' is not accurately conveyed, making the sentence semantically odd. The English and Russian translations are faithful to the flawed Danish, but the underlying sense is defective.",
+     "danish_ok": false,
+     "en": "Although they found the challenge enjoyable, they accepted it without protest.",
+     "ru": "Хотя им было приятно испытание, они приняли его без возражений."
+    }
+   ]
+  },
+  {
+   "lemma": "føre",
+   "sense_id": "a280bcfa-c25d-588f-b904-d132d1904c1a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "økonomisk",
+   "sense_id": "36e56159-7e8b-56f7-9212-871bd4f17a59",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'økonomisk' in the sense of 'financial' (relating to money/costs), but the target meaning is 'economical, thrifty' (sparing, avoiding waste). The English and Russian translations correctly render the Danish as 'financial' / 'финансовую', which does not match the stated target sense.",
+     "danish_ok": true,
+     "en": "The company has put in place an economical strategy to reduce operating costs.",
+     "ru": "Компания разработала экономную стратегию по снижению операционных расходов."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'økonomisk' in the sense of 'economic' (relating to the economy or cost-effectiveness), but the target meaning is 'economical, thrifty'. The English 'economic' and Russian 'экономическую' are ambiguous but lean toward 'economic' rather than 'thrifty', and the Danish context ('reduce production costs') suggests a cost-cutting strategy, not necessarily a thrifty one. The translations do not clearly convey the target sense of 'thrifty'.",
+     "danish_ok": true,
+     "en": "The company has introduced an economical strategy to reduce production costs.",
+     "ru": "Компания внедрила экономную стратегию по снижению производственных затрат."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'økonomisk' in the sense of 'economic' (cost-saving), but the target meaning is 'economical, thrifty'. The English 'economic' and Russian 'экономическую' are ambiguous but do not clearly mean 'thrifty'. The context (reducing energy consumption) could imply thriftiness, but the word choice does not explicitly match the target sense.",
+     "danish_ok": true,
+     "en": "The company has introduced an economical strategy to reduce energy consumption.",
+     "ru": "Компания внедрила экономную стратегию по сокращению энергопотребления."
+    }
+   ]
+  },
+  {
+   "lemma": "offentlig",
+   "sense_id": "6009a9ae-b4c6-559d-910f-2ab833b8f020",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

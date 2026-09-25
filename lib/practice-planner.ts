@@ -1,10 +1,11 @@
 import { attemptOutcomes, PRACTICE_CONTENT_REVISION, queueSeconds, seedHash, type PracticeAttempt, type PracticeSessionState, type PracticeTask } from './practice'
 import {
-  assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
+  assembleTask, chooseTask, clozeTypedTask, CLOZE_DISTRACTOR_COUNT, contextAssembleTask, contextClozeTask, MEANING_DISTRACTOR_COUNT, pickMeaningTask, produceSenseTask,
   selectDistractors, selectMeaningDistractors, sentenceAssembleTask, senseTask, WORD_BANK_DISTRACTOR_COUNT,
   type DistractorEntry, type ExerciseInput,
 } from './practice-exercises'
-import { itemSenses, senseTargetKey, SENSE_PROMOTION_MIN_REPS, TARGET_KEY_MAX_LENGTH, type SenseCandidate } from './practice-senses'
+import type { CatalogContext } from './practice-contexts'
+import { itemSenses, senseExample, senseTargetKey, SENSE_PROMOTION_MIN_REPS, TARGET_KEY_MAX_LENGTH, type SenseCandidate } from './practice-senses'
 import { binaryTask, dialogueTasks, flashTask, matchTask, oddTask, sortTask } from './practice-formats'
 import { scoreTargets, type TargetLevel, type TargetScore } from './practice-targets'
 import { synonymNeighbourIds, type SynonymLinkRow } from './synonyms'
@@ -40,11 +41,16 @@ type Builder = (input: ExerciseInput) => PracticeTask | null
 /** Formats that only ask the learner to recognise a meaning, never to recall or use the word. */
 const RECOGNITION_KINDS = new Set<PracticeTask['kind']>(['pick', 'binary', 'flash'])
 
+/** The learner's own example first; a catalog sentence stands in when there is none. */
+const ownThenCatalog = (own: Builder, catalog: Builder): Builder => (input) => own(input) || catalog(input)
+/** A catalog sentence first, for a word already met: a new context rather than the memorised one. */
+const catalogThenOwn = (own: Builder, catalog: Builder): Builder => (input) => catalog(input) || own(input)
+
 const WORD_LADDER: Record<TargetLevel, Builder[]> = {
-  0: [pickMeaningTask, binaryTask, chooseTask, assembleTask, clozeTypedTask],
-  1: [chooseTask, binaryTask, clozeTypedTask, senseTask, assembleTask, flashTask, produceSenseTask],
-  2: [senseTask, assembleTask, clozeTypedTask, flashTask, produceSenseTask],
-  3: [clozeTypedTask, flashTask, produceSenseTask],
+  0: [pickMeaningTask, binaryTask, chooseTask, ownThenCatalog(assembleTask, contextAssembleTask), ownThenCatalog(clozeTypedTask, contextClozeTask)],
+  1: [chooseTask, binaryTask, ownThenCatalog(clozeTypedTask, contextClozeTask), senseTask, catalogThenOwn(assembleTask, contextAssembleTask), flashTask, produceSenseTask],
+  2: [senseTask, catalogThenOwn(assembleTask, contextAssembleTask), catalogThenOwn(clozeTypedTask, contextClozeTask), flashTask, produceSenseTask],
+  3: [catalogThenOwn(clozeTypedTask, contextClozeTask), flashTask, produceSenseTask],
 }
 
 const SENTENCE_LADDER: Record<TargetLevel, Builder[]> = {
@@ -61,7 +67,20 @@ interface PlanContext {
   practisedAt: ReadonlyMap<string, number>
   /** Each entry's verified forms, for typed gaps. */
   formsByEntry: Readonly<Record<string, readonly string[]>>
+  /** Catalog sentences per saved sense id, already in the learner's language. */
+  contextsBySense: Readonly<Record<string, readonly CatalogContext[]>>
   seed: string
+}
+
+/**
+ * One catalog sentence for this sense, chosen by the session seed so the same word meets a
+ * different context in a different session. A sentence identical to the learner's own example
+ * adds nothing and is skipped.
+ */
+function contextFor(candidate: SenseCandidate, context: PlanContext, seed: string): CatalogContext | undefined {
+  const own = senseExample(candidate.item, candidate.sense, candidate.primary).sentence.trim().toLocaleLowerCase('da-DK')
+  const options = (context.contextsBySense[candidate.sense.id] || []).filter((option) => option.sentence.trim().toLocaleLowerCase('da-DK') !== own)
+  return options.length ? options[seedHash(`${seed}:context`) % options.length] : undefined
 }
 
 /**
@@ -133,6 +152,7 @@ function exercisesFor(score: TargetScore, context: PlanContext): PracticeTask[] 
     }),
     newTarget: false,
     forms: context.formsByEntry[entry.id],
+    context: contextFor(candidate, context, seed),
   }
 
   const available: PracticeTask[] = []
@@ -174,6 +194,8 @@ export interface PracticePlanInput {
   links?: readonly SynonymLinkRow[]
   /** Each entry's verified forms, from `word_forms`. */
   formsByEntry?: Readonly<Record<string, readonly string[]>>
+  /** Catalog sentences per saved sense id, in the learner's language (`contextsBySense`). */
+  contextsBySense?: Readonly<Record<string, readonly CatalogContext[]>>
 }
 
 /** Group boards take at most this share of the session, so single-word practice still leads. */
@@ -200,6 +222,7 @@ export function planPractice(input: PracticePlanInput): PracticeSessionState {
     links: input.links || [],
     practisedAt,
     formsByEntry: input.formsByEntry || {},
+    contextsBySense: input.contextsBySense || {},
     seed: input.seed,
   }
 

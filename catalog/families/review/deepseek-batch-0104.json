@@ -1,0 +1,1242 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:41:02.018Z",
+ "entries": [
+  {
+   "lemma": "bil",
+   "sense_id": "8698be3a-768a-5301-b3a2-c33de95a7e8e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "'holder ved bilen' is unnatural Danish for 'is holding the car' (would be 'holder bilen' or 'holder fast i bilen'); the intended meaning is unclear and does not demonstrate 'bilen' as a natural definite object. English 'is holding the car' is unnatural (a person doesn't typically 'hold' a car); Russian 'держит машину' is similarly odd. The sentence fails to show a natural use of the definite form.",
+     "danish_ok": false,
+     "en": "My father is waiting by the car.",
+     "ru": "Мой отец ждёт у машины."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "'holder ved bilen' is unnatural Danish for 'will stop by the car' (would be 'holder ind ved bilen' or 'stopper ved bilen'); the English 'will stop by the car' is unnatural (a taxi driver 'stops by' a place, not a car); Russian 'заедет у машины' is unnatural (would be 'остановится у машины' or 'подъедет к машине'). The sentence does not naturally demonstrate the definite form.",
+     "danish_ok": false,
+     "en": "The taxi driver is waiting by the car.",
+     "ru": "Таксист ждёт у машины."
+    }
+   ]
+  },
+  {
+   "lemma": "hus",
+   "sense_id": "6277cc53-fe22-57eb-90ce-d7ad5136ae11",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "bog",
+   "sense_id": "7211953d-1b12-5385-a56e-f613e5cbcfd9",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English translation 'I read the books in the evening' uses singular 'evening' while the Danish 'om aftenen' is a generic plural meaning 'in the evenings'. The Russian 'Я читаю книги вечером' also uses singular 'вечером' instead of the plural 'по вечерам' to match the Danish habitual sense.",
+     "danish_ok": true,
+     "en": "I read the books in the evenings.",
+     "ru": "Я читаю эти книги по вечерам."
+    }
+   ]
+  },
+  {
+   "lemma": "bog",
+   "sense_id": "7211953d-1b12-5385-a56e-f613e5cbcfd9",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I read the books in the evening.",
+      "ru": "Я читаю книги вечером."
+     },
+     "after": {
+      "en": "I read the books in the evenings.",
+      "ru": "Я читаю эти книги по вечерам."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "stor",
+   "sense_id": "e5b5d2d0-5993-5f52-8f5d-adc9dd63f12e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English 'great' and Russian 'отличная' mean 'excellent/wonderful', not 'big/large'. The Danish 'stor' in this context means 'large', so the translations are unfaithful and the sense is misrepresented.",
+     "danish_ok": true,
+     "en": "The apartment is large.",
+     "ru": "Квартира большая."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "ny",
+   "sense_id": "f89b98e0-6fbd-5323-b4ee-ceabaab99ca0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "god",
+   "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hurtig",
+   "sense_id": "39b1966a-a4d6-5e4c-b7f7-d7b651fa6ca7",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'вагона' means 'carriage' (train car), not 'car' (automobile). The Danish 'bilen' means 'the car' (automobile). Correct Russian should be 'машины' or 'автомобиля'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Поезд быстрее машины."
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence uses 'hurtigst end' which is ungrammatical; the superlative 'hurtigst' cannot be used with 'end'. The correct comparative form is 'hurtigere end'. The English translation 'fastest than' is also ungrammatical and the Russian 'быстрее' is comparative, not superlative. This teaches a wrong model for the grammar cell 'comparison'.",
+     "danish_ok": false,
+     "en": "The bus is faster than the tram.",
+     "ru": "Автобус быстрее трамвая."
+    }
+   ]
+  },
+  {
+   "lemma": "gammel",
+   "sense_id": "4fb01daa-bd3b-5b35-a4b4-c3c8e41d6f24",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "svær",
+   "sense_id": "c0889b28-2ba6-5760-8e43-eece47ae1219",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "bo",
+   "sense_id": "a69f46f0-d204-59bb-9076-f42da470732d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "læse",
+   "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "English translation uses simple past 'I read' instead of present perfect 'I have read', which does not match the Danish present perfect 'har læst'.",
+     "danish_ok": true,
+     "en": "I have read a magazine today.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "læse",
+   "sense_id": "15dedfa7-abbd-5c83-b2df-86a8fbd611bb",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "I read a magazine today.",
+      "ru": "Сегодня я читал журнал."
+     },
+     "after": {
+      "en": "I have read a magazine today.",
+      "ru": "Сегодня я читал журнал."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "købe",
+   "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "English uses simple past 'I bought' but Danish 'Jeg har købt' is present perfect. The English should be 'I have bought a new book.' to match the Danish tense.",
+     "danish_ok": true,
+     "en": "I have bought a new book.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "købe",
+   "sense_id": "f1327618-57c0-5dd9-a94b-4f46c52dff35",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "I bought a new book.",
+      "ru": "Я купил новую книгу."
+     },
+     "after": {
+      "en": "I have bought a new book.",
+      "ru": "Я купил новую книгу."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "kunne",
+   "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'может выпасть много снега' is grammatically incorrect. The correct impersonal construction is 'может выпасть много снега' -> 'может выпасть много снега' is actually correct, but 'выпасть' is perfective, implying a single snowfall event, while the Danish 'sne meget' is a general statement about winter weather. A more natural and faithful rendering is 'Зимой может идти сильный снег' or 'Зимой бывает много снега'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Зимой может идти сильный снег."
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English translation 'it can be windy' drops the meaning of 'kraftigt' (strongly). The Russian translation 'может быть ветрено' also drops 'kraftigt'. Both should include the intensity.",
+     "danish_ok": true,
+     "en": "In winter, it can blow strongly.",
+     "ru": "Зимой может сильно дуть."
+    }
+   ]
+  },
+  {
+   "lemma": "kunne",
+   "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "In winter, it can snow a lot.",
+      "ru": "Зимой может выпать много снега."
+     },
+     "after": {
+      "en": "In winter, it can snow a lot.",
+      "ru": "Зимой может идти сильный снег."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "In winter, it can be windy.",
+      "ru": "Зимой может быть ветрено."
+     },
+     "after": {
+      "en": "In winter, it can blow strongly.",
+      "ru": "Зимой может сильно дуть."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage",
+   "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "English uses simple present 'rains' for a current situation, but Danish 'det regner' means it is raining right now. The English should be 'it's raining' to match the Danish present tense and context.",
+     "danish_ok": true,
+     "en": "Bring a blanket because it's raining.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage",
+   "sense_id": "3b174431-6f04-51f3-b7ed-1773662957eb",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "Bring a blanket because it rains.",
+      "ru": "Возьми одеяло, потому что идёт дождь."
+     },
+     "after": {
+      "en": "Bring a blanket because it's raining.",
+      "ru": "Возьми одеяло, потому что идёт дождь."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "vente",
+   "sense_id": "328e9030-a486-5b2f-a2fe-a7061f09f9a2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lukke",
+   "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation 'It's draught' is ungrammatical and unnatural. It should be 'There's a draught' or 'It's draughty'.",
+     "danish_ok": true,
+     "en": "Honey, close the window! There's a draught.",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation 'It's draught' is ungrammatical and unnatural. It should be 'There's a draught' or 'It's draughty'.",
+     "danish_ok": true,
+     "en": "Mads, close the window! There's a draught.",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation 'It's draught' is ungrammatical and unnatural. It should be 'There's a draught' or 'It's draughty'.",
+     "danish_ok": true,
+     "en": "Sweetie, close the window! There's a draught.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lukke",
+   "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "Honey, close the window! It's draught.",
+      "ru": "Дорогая, закрой окно! Сейчас сквозняк."
+     },
+     "after": {
+      "en": "Honey, close the window! There's a draught.",
+      "ru": "Дорогая, закрой окно! Сейчас сквозняк."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "Mads, close the window! It's draught.",
+      "ru": "Мадс, закрой окно! Сквозняк."
+     },
+     "after": {
+      "en": "Mads, close the window! There's a draught.",
+      "ru": "Мадс, закрой окно! Сквозняк."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "Sweetie, close the window! It's draught.",
+      "ru": "Дорогая, закрой окно! Сквозняк."
+     },
+     "after": {
+      "en": "Sweetie, close the window! There's a draught.",
+      "ru": "Дорогая, закрой окно! Сквозняк."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "nu",
+   "sense_id": "49239e18-c170-5e75-99bc-7af495e7b87e",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "her",
+   "sense_id": "cb0aed16-4840-54c8-a959-e4e4e2fbee26",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "derfor",
+   "sense_id": "1449948e-71ef-595a-a72f-5ddf8e841cfd",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor blev mødet aflyst.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor sendte chefen en mail.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "Violates V2 word order: 'derfor' is in position 3 instead of position 1. Correct: 'Derfor tog kollegaen en fridag.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "så",
+   "sense_id": "4b9f4952-be71-5332-8f08-819327485fca",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "måske",
+   "sense_id": "ebb68a7a-7e1a-57a9-8ce6-b38e8e03fc8f",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish 'Måske kommer solen i morgen' is unnatural for describing the sun appearing; a native speaker would say 'Måske skinner solen i morgen' or 'Måske kommer solen frem i morgen'. The English 'Maybe the sun will come tomorrow' is a calque and unnatural; it should be 'Maybe the sun will come out tomorrow'. The Russian 'Может, завтра взойдёт солнце' is unnatural in this context; 'взойдёт' implies sunrise, not just appearing from behind clouds. A more natural rendering is 'Может, завтра выглянет солнце'.",
+     "danish_ok": false,
+     "en": "Maybe the sun will come out tomorrow.",
+     "ru": "Может, завтра выглянет солнце."
+    }
+   ]
+  },
+  {
+   "lemma": "hvad",
+   "sense_id": "c3ccf28b-740b-510b-8a17-576fe64430f1",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Spiser du hvad til aftensmad?' is ungrammatical and unnatural. In Danish, the question word 'hvad' must be placed at the beginning of the sentence (V2 rule for questions). The correct form is 'Hvad spiser du til aftensmad?'. The English translation 'Do you eat what for dinner?' is a direct calque of the incorrect Danish and is unnatural; it should be 'What do you eat for dinner?'. The Russian translation 'Что ты ешь на ужин?' is natural but translates the corrected, not the given, Danish. The sentence as given is a misleading model for learners.",
+     "danish_ok": false,
+     "en": "What do you eat for dinner?",
+     "ru": "Что ты ешь на ужин?"
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Laver I hvad til aftensmad?' is ungrammatical and unnatural. The question word 'hvad' must be fronted. The correct form is 'Hvad laver I til aftensmad?'. The English translation 'Do you make what for dinner?' is a calque and unnatural; it should be 'What are you making for dinner?' or 'What do you make for dinner?'. The Russian translation 'Что ты готовишь на ужин?' uses the singular 'ты' instead of the plural 'вы' (for 'I'), which is a person mismatch.",
+     "danish_ok": false,
+     "en": "What are you making for dinner?",
+     "ru": "Что вы готовите на ужин?"
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Vil børnene have hvad til aftensmad?' is ungrammatical and unnatural. The question word 'hvad' must be fronted. The correct form is 'Hvad vil børnene have til aftensmad?'. The English translation 'Do the kids want what for dinner?' is a calque and unnatural; it should be 'What do the kids want for dinner?'. The Russian translation 'Дети хотят что на ужин?' is a calque and unnatural; it should be 'Что дети хотят на ужин?'.",
+     "danish_ok": false,
+     "en": "What do the kids want for dinner?",
+     "ru": "Что дети хотят на ужин?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvordan",
+   "sense_id": "3e90885c-306a-56e6-80b5-d3462f4e3452",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hvornår",
+   "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish 'Hvornår lukker bussen?' is unnatural because a bus does not 'close'; a native speaker would say 'Hvornår går den sidste bus?' or similar. The English 'When does the bus close?' is a calque and unnatural. The Russian 'Когда закрывается автобус?' is also unnatural. The sentence does not demonstrate the meaning of 'hvornår' in a natural service context.",
+     "danish_ok": false,
+     "en": "When is the last bus?",
+     "ru": "Когда последний автобус?"
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish 'Hvornår ankommer posthuset?' is unnatural because a post office does not 'arrive'; a native speaker would say 'Hvornår åbner posthuset?' or 'Hvornår kommer posten?'. The English 'What time does the post office arrive?' is a calque and unnatural. The Russian 'Во сколько приезжает почтовое отделение?' is also unnatural. The sentence does not demonstrate the meaning of 'hvornår' in a natural service context.",
+     "danish_ok": false,
+     "en": "When does the post office open?",
+     "ru": "Когда открывается почтовое отделение?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvorfor",
+   "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Зачем он это сказал?' changes the meaning from 'Why did he tell that?' (asking for a reason/motive, 'почему') to 'What did he say that for?' (asking for a purpose, 'зачем'). The Danish 'Hvorfor' aligns with 'почему'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Почему он это сказал?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvorfor",
+   "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "Why did he tell that?",
+      "ru": "Зачем он это сказал?"
+     },
+     "after": {
+      "en": "Why did he tell that?",
+      "ru": "Почему он это сказал?"
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "aldrig",
+   "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian uses formal 'Хотите' while Danish 'Vil du' is informal singular. Should be 'Хочешь' for consistency with items 1 and 2.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Хочешь попробовать новый торт?"
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "Want to try the new cake?",
+      "ru": "Хотите попробовать новый торт?"
+     },
+     "after": {
+      "en": "Want to try the new cake?",
+      "ru": "Хочешь попробовать новый торт?"
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "hjælpe",
+   "sense_id": "025b4d7d-56b0-584c-acd7-a9ae2d460993",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

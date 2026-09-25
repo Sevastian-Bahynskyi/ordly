@@ -1,0 +1,778 @@
+[
+ {
+  "lemma": "virksomhed",
+  "kind": "word",
+  "sense_id": "29f98378-ee1e-5163-9402-a947bc264db0",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "Ifølge årsrapporten har {target} opnået et solidt resultat i år.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "virksomheden",
+    "en": "According to the annual report, the company has achieved a solid result this year.",
+    "ru": "Согласно годовому отчёту, компания добилась солидных результатов в этом году."
+   },
+   {
+    "slots": {},
+    "target": "virksomhederne",
+    "en": "According to the annual report, the companies have achieved a solid result this year.",
+    "ru": "Согласно годовому отчету, компании добились солидных результатов в этом году."
+   }
+  ]
+ },
+ {
+  "sense_id": "7dc716de-68ed-57fb-8176-4c7fef5335f1",
+  "lemma": "mulighed",
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "f508bcb1-684a-5a34-994f-842e7a8c89cd",
+  "lemma": "forhold",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "noun-plural"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "kræve",
+  "kind": "word",
+  "sense_id": "9de4d769-23e1-5598-8db4-b42064ce0bba",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "frame": "Stillingen {target} {experience}.",
+  "slots": {
+   "experience": [
+    {
+     "da": "erfaring med projektledelse"
+    },
+    {
+     "da": "mindst fem års erfaring"
+    },
+    {
+     "da": "gode sprogkundskaber"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "experience": 0
+    },
+    "target": "kræver",
+    "en": "The position requires experience in project management.",
+    "ru": "Эта должность требует опыта управления проектами."
+   },
+   {
+    "slots": {
+     "experience": 1
+    },
+    "target": "kræver",
+    "en": "The position requires at least five years of experience.",
+    "ru": "Для работы требуется не менее пяти лет опыта."
+   },
+   {
+    "slots": {
+     "experience": 2
+    },
+    "target": "kræver",
+    "en": "The position requires good language skills.",
+    "ru": "Эта должность требует хороших языковых навыков."
+   }
+  ]
+ },
+ {
+  "lemma": "gælde",
+  "kind": "word",
+  "sense_id": "3f4f702b-e412-54e2-95c2-c774391558b8",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-present",
+  "frame": "De nye regler {target} for alle borgere, {adverb}.",
+  "slots": {
+   "adverb": [
+    {
+     "da": "uanset indkomst"
+    },
+    {
+     "da": "uden undtagelse"
+    },
+    {
+     "da": "også for udlændinge"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adverb": 0
+    },
+    "target": "gælder",
+    "en": "The new rules apply to all citizens, regardless of income.",
+    "ru": "Новые правила применяются ко всем гражданам, независимо от дохода."
+   },
+   {
+    "slots": {
+     "adverb": 1
+    },
+    "target": "gælder",
+    "en": "The new rules apply to all citizens, without exception.",
+    "ru": "Новые правила распространяются на всех граждан без исключения."
+   }
+  ]
+ },
+ {
+  "lemma": "udvikle",
+  "kind": "word",
+  "sense_id": "e9672244-40eb-5352-aae7-b624531c6139",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "verb-past",
+  "frame": "I løbet af det 20. århundrede {target} {subject} sig markant.",
+  "slots": {
+   "subject": [
+    {
+     "da": "teknologien"
+    },
+    {
+     "da": "medicinen"
+    },
+    {
+     "da": "kommunikationsformerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "udviklede",
+    "en": "During the 20th century, technology developed significantly.",
+    "ru": "В XX веке технологии значительно развились."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "udviklede",
+    "en": "During the 20th century, medicine developed significantly.",
+    "ru": "В XX веке медицина значительно развилась."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "udviklede",
+    "en": "During the 20th century, the forms of communication developed significantly.",
+    "ru": "В XX веке формы коммуникации значительно развились."
+   }
+  ]
+ },
+ {
+  "sense_id": "c7761142-4642-5b40-b479-7eb288d4ba32",
+  "lemma": "ansætte",
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "verb-past"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (ansatte, ansattes) — pick one construction and stay in it for every variant; the alternative order \"Sidste år ansattes tre nye medarbejdere af virksomheden.\" does not use exactly the words of \"Virksomheden ansattes tre nye medarbejdere sidste år.\" — omit it or fix it"
+ },
+ {
+  "sense_id": "2274236f-20da-58f1-9d4f-f02336921493",
+  "lemma": "forklare",
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "032e6590-b346-5574-b76d-81ae1b3abeb8",
+  "lemma": "burde",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "modal-verbs"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "modal-verbs",
+  "frame": "På grund af en deadline {target} medarbejderne arbejde over i weekenden.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "måtte",
+    "en": "Due to a deadline, the employees had to work overtime that weekend.",
+    "ru": "Из-за срока сотрудникам пришлось работать сверхурочно в те выходные."
+   },
+   {
+    "slots": {},
+    "target": "må",
+    "en": "Due to a deadline, the employees have to work overtime this weekend.",
+    "ru": "Из-за дедлайна сотрудникам приходится работать сверхурочно в эти выходные."
+   }
+  ]
+ },
+ {
+  "sense_id": "c09bbc9c-2396-5bf5-ab21-876494657a4b",
+  "lemma": "sende",
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "passive"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "oplyse",
+  "kind": "word",
+  "sense_id": "7e906b48-8372-53a9-8d21-b7a1cee02268",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "passive",
+  "frame": "Ifølge rapporten {target} borgerne om deres rettigheder.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "oplyses",
+    "en": "According to the report, citizens are informed about their rights.",
+    "ru": "Согласно докладу, граждан информируют об их правах."
+   },
+   {
+    "slots": {},
+    "target": "oplystes",
+    "en": "According to the report, citizens were informed of their rights.",
+    "ru": "Согласно докладу, граждане были проинформированы о своих правах."
+   }
+  ]
+ },
+ {
+  "lemma": "hvorvidt",
+  "kind": "word",
+  "sense_id": "8a351647-1752-5402-bdeb-cfa7d4035d57",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "subordinate-clause",
+  "frame": "{subject} diskuterer, {target} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Forskerne"
+    },
+    {
+     "da": "Eksperterne"
+    },
+    {
+     "da": "Juristerne"
+    }
+   ],
+   "object": [
+    {
+     "da": "resultatet kan generaliseres"
+    },
+    {
+     "da": "metoden er valid"
+    },
+    {
+     "da": "lovforslaget er i strid med grundloven"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "hvorvidt",
+    "en": "The researchers are debating whether the result can be generalized.",
+    "ru": "Исследователи спорят, можно ли обобщить результат."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "hvorvidt",
+    "en": "The lawyers are discussing whether the bill is in conflict with the Constitution.",
+    "ru": "Юристы обсуждают, противоречит ли законопроект Конституции."
+   }
+  ]
+ },
+ {
+  "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+  "lemma": "hvis",
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "relative-clause"
+  },
+  "skip": "style check: only 1 variant(s) — needs at least 2, genuinely different sentences; \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+  "lemma": "hvor",
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "relative-clause"
+  },
+  "skip": "style check: slot(s) subject are declared but never used in the frame — every slot must appear as {name} in \"frame\", or be removed"
+ },
+ {
+  "lemma": "medmindre",
+  "kind": "word",
+  "sense_id": "481ecb58-42eb-5bcd-86af-50e829cc62db",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "conjunctions",
+  "frame": "{target} {subordinate}, {main_clause}.",
+  "slots": {
+   "subordinate": [
+    {
+     "da": "der indgås et forlig inden fredag"
+    },
+    {
+     "da": "bestyrelsen godkender budgettet i dag"
+    },
+    {
+     "da": "projektet modtager yderligere finansiering"
+    }
+   ],
+   "main_clause": [
+    {
+     "da": "må afdelingen afskedige tre medarbejdere"
+    },
+    {
+     "da": "udsættes lanceringen til næste kvartal"
+    },
+    {
+     "da": "bliver kontrakten opsagt med øjeblikkelig virkning"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subordinate": 0,
+     "main_clause": 0
+    },
+    "target": "medmindre",
+    "en": "Unless a settlement is reached before Friday, the department will have to dismiss three employees.",
+    "ru": "Если соглашение не будет достигнуто до пятницы, департаменту придётся уволить трёх сотрудников."
+   },
+   {
+    "slots": {
+     "subordinate": 1,
+     "main_clause": 1
+    },
+    "target": "medmindre",
+    "en": "Unless the board approves the budget today, the launch will be postponed until next quarter.",
+    "ru": "Если совет не утвердит бюджет сегодня, запуск будет отложен до следующего квартала."
+   },
+   {
+    "slots": {
+     "subordinate": 2,
+     "main_clause": 2
+    },
+    "target": "medmindre",
+    "en": "Unless the project receives additional funding, the contract will be terminated with immediate effect.",
+    "ru": "Если проект не получит дополнительного финансирования, контракт будет расторгнут с немедленным вступлением в силу."
+   }
+  ]
+ },
+ {
+  "lemma": "føre",
+  "kind": "word",
+  "sense_id": "a280bcfa-c25d-588f-b904-d132d1904c1a",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "frame": "Den nye direktør {target} virksomheden gennem en svær tid.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "førte",
+    "en": "The new CEO led the company through a difficult time.",
+    "ru": "Новый генеральный директор провёл компанию через трудное время."
+   },
+   {
+    "slots": {},
+    "target": "fører",
+    "en": "The new CEO is leading the company through a difficult time.",
+    "ru": "Новый генеральный директор ведёт компанию через трудное время."
+   }
+  ]
+ },
+ {
+  "sense_id": "63e25a96-7c46-5607-93a6-9c5576a96fdf",
+  "lemma": "grund",
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "noun-meaning"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "offentlig",
+  "kind": "word",
+  "sense_id": "6009a9ae-b4c6-559d-910f-2ab833b8f020",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "frame": "Debatten om {subject} er blevet mere {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "klimapolitik"
+    },
+    {
+     "da": "sundhedsvæsenets fremtid"
+    },
+    {
+     "da": "integration"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "offentlig",
+    "en": "The debate on climate policy has become more public.",
+    "ru": "Дебаты по климатической политике стали более публичными."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "offentlig",
+    "en": "The debate about the future of the health service has become more public.",
+    "ru": "Дебаты о будущем системы здравоохранения стали более публичными."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "offentlig",
+    "en": "The debate on integration has become more public.",
+    "ru": "Дебаты об интеграции стали более публичными."
+   }
+  ]
+ },
+ {
+  "lemma": "regering",
+  "kind": "word",
+  "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "frame": "Ifølge den nye rapport har {target} undervurderet problemets omfang.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "regeringen",
+    "en": "According to the new report, the government has underestimated the extent of the problem.",
+    "ru": "Согласно новому докладу, правительство недооценило масштаб проблемы."
+   },
+   {
+    "slots": {},
+    "target": "regeringerne",
+    "en": "According to the new report, governments have underestimated the scale of the problem.",
+    "ru": "Согласно новому докладу, правительства недооценили масштаб проблемы."
+   }
+  ]
+ },
+ {
+  "lemma": "opleve",
+  "kind": "word",
+  "sense_id": "86861999-9a50-557d-b90b-43f050779eaf",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "verb-perfect",
+  "frame": "Jeg har aldrig {target} en så dyb følelse af {emotion}.",
+  "slots": {
+   "emotion": [
+    {
+     "da": "taknemmelighed"
+    },
+    {
+     "da": "lettelse"
+    },
+    {
+     "da": "samhørighed"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "emotion": 0
+    },
+    "target": "oplevet",
+    "en": "I have never experienced such a deep feeling of gratitude.",
+    "ru": "Я никогда не испытывал такого глубокого чувства благодарности."
+   },
+   {
+    "slots": {
+     "emotion": 1
+    },
+    "target": "oplevet",
+    "en": "I have never experienced such a deep feeling of relief.",
+    "ru": "Я никогда не испытывал такого глубокого облегчения."
+   },
+   {
+    "slots": {
+     "emotion": 2
+    },
+    "target": "oplevet",
+    "en": "I have never experienced such a deep sense of togetherness.",
+    "ru": "Я никогда не испытывал такого глубокого чувства единства."
+   }
+  ]
+ },
+ {
+  "lemma": "idet",
+  "kind": "word",
+  "sense_id": "02b9badc-aeac-5d3b-87b8-39603d3ca2d2",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "frame": "{target} {subject} {verb} {object}, {main_clause}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "direktøren"
+    },
+    {
+     "da": "projektlederen"
+    },
+    {
+     "da": "bestyrelsen"
+    }
+   ],
+   "verb": [
+    {
+     "da": "gennemgik"
+    },
+    {
+     "da": "præsenterede"
+    },
+    {
+     "da": "diskuterede"
+    }
+   ],
+   "object": [
+    {
+     "da": "rapporten"
+    },
+    {
+     "da": "det nye budget"
+    },
+    {
+     "da": "strategien"
+    }
+   ],
+   "main_clause": [
+    {
+     "da": "noterede jeg de vigtigste pointer"
+    },
+    {
+     "da": "stillede kollegaen et kritisk spørgsmål"
+    },
+    {
+     "da": "indså vi et alvorligt problem"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0,
+     "main_clause": 0
+    },
+    "target": "idet",
+    "en": "As the director reviewed the report, I noted the most important points.",
+    "ru": "Пока директор изучал отчёт, я отметил самые важные моменты."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1,
+     "main_clause": 1
+    },
+    "target": "idet",
+    "en": "As the project manager presented the new budget, the colleague asked a critical question.",
+    "ru": "Когда руководитель проекта представлял новый бюджет, коллега задал критический вопрос."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "object": 2,
+     "main_clause": 2
+    },
+    "target": "idet",
+    "en": "As the board discussed the strategy, we realized a serious problem.",
+    "ru": "Когда совет обсуждал стратегию, мы осознали серьёзную проблему."
+   }
+  ]
+ },
+ {
+  "lemma": "skønt",
+  "kind": "word",
+  "sense_id": "46709554-1c99-5cc6-aac5-3e9ec82f0d10",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "conjunctions",
+  "frame": "{target} {subject} {verb} {object}, {main_clause}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "han"
+    },
+    {
+     "da": "hun"
+    },
+    {
+     "da": "de"
+    }
+   ],
+   "verb": [
+    {
+     "da": "var uenig"
+    },
+    {
+     "da": "følte sig overset"
+    },
+    {
+     "da": "havde ret"
+    }
+   ],
+   "object": [
+    {
+     "da": "i sagen"
+    },
+    {
+     "da": "i diskussionen"
+    },
+    {
+     "da": "i sin vurdering"
+    }
+   ],
+   "main_clause": [
+    {
+     "da": "lyttede alle respektfuldt til hans argumenter"
+    },
+    {
+     "da": "anerkendte bestyrelsen hendes synspunkt"
+    },
+    {
+     "da": "blev deres forslag alligevel vedtaget"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0,
+     "main_clause": 0
+    },
+    "target": "skønt",
+    "en": "Although he disagreed on the matter, everyone listened respectfully to his arguments.",
+    "ru": "Хотя он не соглашался с этим вопросом, все уважительно слушали его аргументы."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1,
+     "main_clause": 1
+    },
+    "target": "skønt",
+    "en": "Although she felt overlooked in the discussion, the board recognized her point of view.",
+    "ru": "Хотя она чувствовала себя обделённой в обсуждении, совет признал её точку зрения."
+   }
+  ]
+ },
+ {
+  "lemma": "økonomisk",
+  "kind": "word",
+  "sense_id": "36e56159-7e8b-56f7-9212-871bd4f17a59",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "frame": "Hun er meget {target} og genbruger altid {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "papir"
+    },
+    {
+     "da": "emballage"
+    },
+    {
+     "da": "mapper"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "økonomisk",
+    "en": "She is very economical and always recycles paper.",
+    "ru": "Она очень экономна и всегда перерабатывает бумагу."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "økonomisk",
+    "en": "She is very economical and always recycles packaging.",
+    "ru": "Она очень экономна и всегда перерабатывает упаковку."
+   }
+  ]
+ },
+ {
+  "sense_id": "83d0400f-ceda-5bfc-8670-096d90c9f744",
+  "lemma": "bygge",
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "passive"
+  },
+  "skip": "audit: the generator kept the archaic past s-passive byggedes after a correction; left out"
+ }
+]

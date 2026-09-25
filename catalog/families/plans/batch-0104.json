@@ -1,0 +1,384 @@
+{
+ "note": "Coverage chunk A (issue #16), 2026-09-25: A1/A2 matrix cells below 3 families in docs/content-coverage-report.md after the phrase pilot; each target names the sense and the cell, chosen by hand for fit. Situations pair the three deficient situation cells (personal-info A2, weather-nature A1, social A1).",
+ "entries": [
+  {
+   "lemma": "bil",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "transport",
+     "grammar": "noun-definite"
+    }
+   ]
+  },
+  {
+   "lemma": "hus",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "home",
+     "grammar": "noun-definite"
+    }
+   ]
+  },
+  {
+   "lemma": "barn",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "family",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "bog",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "leisure",
+     "grammar": "noun-plural"
+    }
+   ]
+  },
+  {
+   "lemma": "stor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "home",
+     "grammar": "adjective-agreement"
+    }
+   ]
+  },
+  {
+   "lemma": "ny",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "shopping",
+     "grammar": "adjective-agreement"
+    }
+   ]
+  },
+  {
+   "lemma": "god",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "food-drink",
+     "grammar": "comparison",
+     "note": "Use the comparative or superlative form of god (bedre, bedst) in every variant."
+    }
+   ]
+  },
+  {
+   "lemma": "lang",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "transport",
+     "grammar": "comparison",
+     "note": "Use the comparative or superlative form (længere, længst) in every variant."
+    }
+   ]
+  },
+  {
+   "lemma": "hurtig",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "transport",
+     "grammar": "comparison"
+    }
+   ]
+  },
+  {
+   "lemma": "gammel",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "family",
+     "grammar": "comparison"
+    }
+   ]
+  },
+  {
+   "lemma": "svær",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "B1",
+     "situation": "education",
+     "grammar": "comparison"
+    }
+   ]
+  },
+  {
+   "lemma": "bo",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "personal-info",
+     "grammar": "verb-present"
+    }
+   ]
+  },
+  {
+   "lemma": "læse",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "leisure",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "købe",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "shopping",
+     "grammar": "verb-perfect"
+    }
+   ]
+  },
+  {
+   "lemma": "rejse",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "transport",
+     "grammar": "verb-future"
+    }
+   ]
+  },
+  {
+   "lemma": "kunne",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "weather-nature",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "home",
+     "grammar": "modal-verbs"
+    }
+   ]
+  },
+  {
+   "lemma": "komme",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "social",
+     "grammar": "imperative"
+    }
+   ]
+  },
+  {
+   "lemma": "tage",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "weather-nature",
+     "grammar": "imperative",
+     "note": "Imperative of tage (tag). Keep any particle verb unsplit only if natural; prefer \"Tag en paraply med\"-type sentences only if the particle is after the object as Danish requires."
+    }
+   ]
+  },
+  {
+   "lemma": "hjælpe",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "home",
+     "grammar": "imperative"
+    }
+   ]
+  },
+  {
+   "lemma": "vente",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "transport",
+     "grammar": "imperative"
+    }
+   ]
+  },
+  {
+   "lemma": "lukke",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "weather-nature",
+     "grammar": "imperative"
+    }
+   ]
+  },
+  {
+   "lemma": "nu",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "daily-routine",
+     "grammar": "word-order-v2",
+     "note": "Front nu and invert: \"Nu spiser vi.\""
+    }
+   ]
+  },
+  {
+   "lemma": "her",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "personal-info",
+     "grammar": "word-order-v2",
+     "note": "Front her and invert: \"Her bor jeg.\""
+    }
+   ]
+  },
+  {
+   "lemma": "derfor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "work",
+     "grammar": "word-order-v2"
+    }
+   ]
+  },
+  {
+   "lemma": "så",
+   "ordinal": 3,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "daily-routine",
+     "grammar": "word-order-v2"
+    }
+   ]
+  },
+  {
+   "lemma": "måske",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "weather-nature",
+     "grammar": "word-order-v2"
+    }
+   ]
+  },
+  {
+   "lemma": "hvad",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "food-drink",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvordan",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "transport",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvornår",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "services",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "hvorfor",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A2",
+     "situation": "social",
+     "grammar": "questions"
+    }
+   ]
+  },
+  {
+   "lemma": "aldrig",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "food-drink",
+     "grammar": "negation"
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "ordinal": 2,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "leisure",
+     "grammar": "infinitive"
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "ordinal": 1,
+   "targets": [
+    {
+     "level": "A1",
+     "situation": "food-drink",
+     "grammar": "infinitive"
+    }
+   ]
+  }
+ ]
+}

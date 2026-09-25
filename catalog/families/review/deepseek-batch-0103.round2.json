@@ -1,0 +1,664 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:05:25.903Z",
+ "entries": [
+  {
+   "lemma": "falde i søvn",
+   "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage fejl",
+   "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage for givet",
+   "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation adds 'it' ('take it for granted'), which is not present in the Danish 'tager for givet'. The Danish phrase is 'tage for givet' without an object pronoun, so the English should be 'take for granted' without 'it'.",
+     "danish_ok": true,
+     "en": "Many citizens take for granted that the state always provides clean drinking water."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "The English translation adds 'it' ('took it for granted'), which is not present in the Danish 'tog for givet'. The Danish phrase is 'tage for givet' without an object pronoun, so the English should be 'took for granted' without 'it'.",
+     "danish_ok": true,
+     "en": "Many citizens took for granted that the state always provides clean drinking water."
+    }
+   ]
+  },
+  {
+   "lemma": "tage for givet",
+   "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "Many citizens take it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевую воду."
+     },
+     "after": {
+      "en": "Many citizens take for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевую воду."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "Many citizens took it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду."
+     },
+     "after": {
+      "en": "Many citizens took for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "have til hensigt",
+   "sense_id": "074047ba-6a6e-5a9a-8285-967913997234",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hele tiden",
+   "sense_id": "e8fe2b36-160b-587e-a89d-764c194b360f",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "\"hele tiden\" means 'constantly/continuously', not 'all the time since'. The Danish sentence is unnatural because 'hele tiden' clashes with 'siden i morges' — it should be 'lige siden i morges' or similar. The English and Russian translations also misinterpret the meaning.",
+     "danish_ok": false,
+     "en": "I've been talking to her constantly since this morning.",
+     "ru": "Я постоянно разговариваю с ней с самого утра."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Same issue: 'hele tiden' means 'constantly', not 'all the time since'. The Danish is unnatural with 'siden frokosten'. Translations are wrong.",
+     "danish_ok": false,
+     "en": "I've been talking to her constantly since lunch.",
+     "ru": "Я постоянно разговариваю с ней с обеда."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Same issue: 'hele tiden' means 'constantly', not 'all the time since'. The Danish is unnatural with 'siden sidste uge'. Translations are wrong.",
+     "danish_ok": false,
+     "en": "I've been talking to her constantly since last week.",
+     "ru": "Я постоянно общаюсь с ней с прошлой недели."
+    }
+   ]
+  },
+  {
+   "lemma": "oven på",
+   "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "på forhånd",
+   "sense_id": "4784a291-3cdd-5521-8525-a7bf03022cf5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "på grund af",
+   "sense_id": "21832b47-a527-55cb-8226-5c2d0dbf2d73",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "heller ikke",
+   "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'снаружи' is unnatural for a bus stopping outside a station; a native would say 'у вокзала' or 'около вокзала'. 'Снаружи' implies 'on the outside surface' or 'outdoors' rather than 'in front of/outside the building'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается у вокзала."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'снаружи' is unnatural for a bus stopping outside an airport; a native would say 'у аэропорта' or 'около аэропорта'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается у аэропорта."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation 'снаружи' is unnatural for a bus stopping outside a main entrance; a native would say 'у главного входа' or 'перед главным входом'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается у главного входа."
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "The bus stops outside the station.",
+      "ru": "Автобус останавливается снаружи станции."
+     },
+     "after": {
+      "en": "The bus stops outside the station.",
+      "ru": "Автобус останавливается у вокзала."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "The bus stops outside the airport.",
+      "ru": "Автобус останавливается снаружи аэропорта."
+     },
+     "after": {
+      "en": "The bus stops outside the airport.",
+      "ru": "Автобус останавливается у аэропорта."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "The bus stops outside the main entrance.",
+      "ru": "Автобус останавливается снаружи главного входа."
+     },
+     "after": {
+      "en": "The bus stops outside the main entrance.",
+      "ru": "Автобус останавливается у главного входа."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lægge mærke til",
+   "sense_id": "3b128180-c106-5899-9e52-7ea5453095df",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Word order is wrong: 'lagde mærke til vi regnbuen' violates V2 and subordinate clause structure. Correct: 'Da solen skinnede, lagde vi mærke til regnbuen.' The target form 'lagde mærke til' is also incorrectly split and the subject 'vi' is misplaced. This is not a safe model for learners.",
+     "danish_ok": false,
+     "en": "As the sun shone, we noticed the rainbow.",
+     "ru": "Когда солнце светило, мы заметили радугу."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Incorrect past tense form 'lagte' (should be 'lagde') and wrong word order: 'lagte mærke til vi regnbuen' violates V2 and subordinate clause structure. Correct: 'Da solen skinnede, lagde vi mærke til regnbuen.' The target form is misspelled and the sentence is ungrammatical, making it unsafe to teach.",
+     "danish_ok": false,
+     "en": "When the sun was shining, we noticed the rainbow.",
+     "ru": "Когда светило солнце, мы заметили радугу."
+    }
+   ]
+  },
+  {
+   "lemma": "i aftes",
+   "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation drops 'вечером', losing the evening component of 'i aftes'. 'Вчера мы ужинали' means 'yesterday we had dinner', not specifically 'last night'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Вчера вечером мы ужинали."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i aftes",
+   "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "We had dinner last night.",
+      "ru": "Вчера мы ужинали."
+     },
+     "after": {
+      "en": "We had dinner last night.",
+      "ru": "Вчера вечером мы ужинали."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "pleje at",
+   "sense_id": "bf4765cc-8a9f-5cea-9def-6cf10ff1f1ad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 4,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 5,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 6,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "alle sammen",
+   "sense_id": "379311a2-3a43-5852-b76e-6992597e6fc4",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "The phrase 'alle sammen' is placed after the noun, which is unidiomatic and grammatically awkward in Danish. The natural position is immediately after the verb or at the end of the clause, e.g., 'Mine venner kommer alle sammen til festen.' This misplacement also fails to clearly exercise the adverb grammar cell.",
+     "danish_ok": false,
+     "en": "My friends are all coming to the party.",
+     "ru": "Мои друзья все придут на вечеринку."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "Same issue as item 1: 'alle sammen' is placed after the noun, which is unidiomatic. Should be 'Dine kolleger kommer alle sammen til festen.' This misplacement fails to clearly exercise the adverb grammar cell.",
+     "danish_ok": false,
+     "en": "Your colleagues are all coming to the party.",
+     "ru": "Ваши коллеги все придут на вечеринку."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence has the same unidiomatic placement of 'alle sammen' after the noun. Additionally, the English translation uses simple present 'come' instead of present continuous 'are coming', which does not match the Danish present tense used for future meaning. The Russian translation uses 'приходят' (present habitual) instead of future 'придут', and the word order is less natural than 'Все её братья и сёстры придут на вечеринку.'",
+     "danish_ok": false,
+     "en": "Her siblings are all coming to the party.",
+     "ru": "Все её братья и сёстры придут на вечеринку."
+    }
+   ]
+  }
+ ]
+}

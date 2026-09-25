@@ -1,0 +1,846 @@
+[
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 14,
+  "min_level": "A1",
+  "ru": "не",
+  "en": "not",
+  "forms": [
+   "ik'",
+   "ikk'",
+   "ikke"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "work",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 14,
+  "min_level": "A1",
+  "ru": "не",
+  "en": "not",
+  "forms": [
+   "ik'",
+   "ikk'",
+   "ikke"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 193,
+  "min_level": "A1",
+  "ru": "никогда",
+  "en": "never",
+  "forms": [
+   "aldrig"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "leisure",
+   "grammar": "negation"
+  },
+  "note": "An independent reviewer rejected the previous family: Word order is wrong: 'Jeg aldrig spiller tennis' violates V2 rule; adverb 'aldrig' must follow the finite verb in a main clause. Correct: 'Jeg spiller aldrig tennis.' Word order is wrong: 'Jeg aldrig ser fjernsyn' violates V2 rule; adverb 'aldrig' must follow the finite verb. Correct: 'Jeg ser aldrig fjernsyn om aftenen.' Word order is wrong: 'Jeg aldrig går i biografen alene' violates V2 rule; adverb 'aldrig' must follow the finite verb. Correct: 'Jeg går aldrig i biografen alene.' Write a new family that avoids this."
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 193,
+  "min_level": "A1",
+  "ru": "никогда",
+  "en": "never",
+  "forms": [
+   "aldrig"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "feelings-opinions",
+   "grammar": "negation"
+  }
+ },
+ {
+  "lemma": "ingen",
+  "kind": "word",
+  "sense_id": "87a80440-22b5-51f1-aadc-0169fd912aff",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 98,
+  "min_level": "A1",
+  "ru": "никто, никакой",
+  "en": "no one, none",
+  "forms": [
+   "ingen",
+   "ingens",
+   "intet",
+   "intets"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "shopping",
+   "grammar": "negation"
+  },
+  "note": "An independent reviewer rejected the previous family: Target is 'intet' but the lemma is 'ingen' and the grammar cell is 'negation'. 'intet' is the neuter form of 'ingen', but the sentence uses 'brød' (neuter), so 'intet' is grammatically correct. However, the exercise is for the lemma 'ingen', and 'intet' is a different word form that may confuse learners at A2. The sense gloss is 'no one, none', but 'intet' means 'nothing' or 'no' (neuter). The pedagogy is compromised because the target does not match the lemma being taught, and the sentence does not exercise 'ingen' as intended. Write a new family that avoids this."
+ },
+ {
+  "lemma": "endnu",
+  "kind": "word",
+  "sense_id": "b573ef9d-85db-5918-b53a-4a29c1f65e88",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 145,
+  "min_level": "A1",
+  "ru": "ещё",
+  "en": "still, yet",
+  "forms": [
+   "endnu"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "negation"
+  },
+  "note": "Use endnu with ikke (\"endnu ikke\" / \"ikke endnu\") meaning \"not yet\"."
+ },
+ {
+  "lemma": "sin",
+  "kind": "word",
+  "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 40,
+  "min_level": "A1",
+  "ru": "свой",
+  "en": "his, her, its, their own (reflexive possessive)",
+  "forms": [
+   "sin",
+   "sine",
+   "sit"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "family",
+   "grammar": "pronouns"
+  },
+  "note": "An independent reviewer rejected the previous family: \"sit børn\" is ungrammatical because \"børn\" is plural, requiring \"sine\". The target \"sit\" is neuter singular, so the sentence does not demonstrate the stated meaning of the reflexive possessive correctly. This is a misleading model for learners. \"Mine bedsteforældre\" is plural, so the reflexive possessive must be \"deres\", not \"sin\". The English \"her garden\" and Russian \"её сад\" are non-reflexive and refer to a female singular possessor, which does not match the Danish subject. The sentence fails to demonstrate the reflexive possessive and is misleading. Write a new family that avoids this."
+ },
+ {
+  "lemma": "sin",
+  "kind": "word",
+  "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 40,
+  "min_level": "A1",
+  "ru": "свой",
+  "en": "his, her, its, their own (reflexive possessive)",
+  "forms": [
+   "sin",
+   "sine",
+   "sit"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "pronouns"
+  },
+  "note": "Contrast reflexive sin/sit/sine with hans/hendes correctly: sin refers back to the subject of its own clause."
+ },
+ {
+  "lemma": "hinanden",
+  "kind": "word",
+  "sense_id": "b6692369-22ed-5653-ac4c-2195360b1a6c",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 405,
+  "min_level": "A1",
+  "ru": "друг друга",
+  "en": "each other",
+  "forms": [
+   "hinanden",
+   "hinandens"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "pronouns"
+  }
+ },
+ {
+  "lemma": "selv",
+  "kind": "word",
+  "sense_id": "52a6e67e-150b-5dff-b8ef-6b1e322c0553",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 86,
+  "min_level": "A1",
+  "ru": "сам, сама, само",
+  "en": "myself, himself, herself, itself (emphatic)",
+  "forms": [
+   "selv"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "pronouns"
+  }
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 13,
+  "min_level": "A1",
+  "ru": "частица перед инфинитивом глагола (не переводится отдельно)",
+  "en": "to (before a verb's infinitive)",
+  "forms": [
+   "at"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "education",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 13,
+  "min_level": "A1",
+  "ru": "частица перед инфинитивом глагола (не переводится отдельно)",
+  "en": "to (before a verb's infinitive)",
+  "forms": [
+   "at"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "abstract",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "begynde",
+  "kind": "word",
+  "sense_id": "25ab7e1a-fbfb-5c63-ac42-92fa9f606801",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 174,
+  "min_level": "A1",
+  "ru": "начинать",
+  "en": "to begin, to start",
+  "forms": [
+   "begynd",
+   "begynde",
+   "begyndende",
+   "begynder",
+   "begyndes",
+   "begyndt",
+   "begyndte",
+   "begyndtes"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "leisure",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "forsøge",
+  "kind": "word",
+  "sense_id": "6f4e5092-1f71-580f-8335-90361855e9f2",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 273,
+  "min_level": "A1",
+  "ru": "пытаться",
+  "en": "to try, to attempt",
+  "forms": [
+   "forsøg",
+   "forsøge",
+   "forsøgende",
+   "forsøger",
+   "forsøges",
+   "forsøgt",
+   "forsøgte",
+   "forsøgtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "infinitive"
+  }
+ },
+ {
+  "lemma": "mene",
+  "kind": "word",
+  "sense_id": "b69b2cf6-4e95-5490-a308-5859b2dd12f7",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 110,
+  "min_level": "A1",
+  "ru": "считать, полагать",
+  "en": "to think, to believe",
+  "forms": [
+   "men",
+   "mene",
+   "menende",
+   "mener",
+   "menes",
+   "ment",
+   "mente",
+   "mentes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "betyde",
+  "kind": "word",
+  "sense_id": "411daa08-0194-5606-81ea-8ac33779ae8d",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 200,
+  "min_level": "A1",
+  "ru": "означать",
+  "en": "to mean",
+  "forms": [
+   "betyd",
+   "betyde",
+   "betydede",
+   "betydedes",
+   "betydende",
+   "betyder",
+   "betydes",
+   "betydet",
+   "betød"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "abstract",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "flytte",
+  "kind": "word",
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 335,
+  "min_level": "A1",
+  "ru": "переезжать, перемещать",
+  "en": "to move",
+  "forms": [
+   "flyt",
+   "flytte",
+   "flyttede",
+   "flyttedes",
+   "flyttende",
+   "flytter",
+   "flyttes",
+   "flyttet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "verb-past"
+  },
+  "note": "An independent reviewer rejected the previous family: In 'for at børnene kunne få', the subordinate clause after 'for at' requires inversion: 'for at børnene kunne få' should be 'for at børnene kunne få' is actually correct? Wait, 'for at' is a conjunction that introduces a subordinate clause with normal word order (subject before verb). However, 'for at' normally takes an infinitive, not a finite clause. To express purpose with a different subject, Danish uses 'for at' + infinitive only when the subject is the same; with a different subject, 'så at' or 'så' is used. 'For at børnene kunne få' is ungrammatical; it should be 'så børnene kunne få' or 'så at børnene kunne få'. Write a new family that avoids this."
+ },
+ {
+  "lemma": "opleve",
+  "kind": "word",
+  "sense_id": "86861999-9a50-557d-b90b-43f050779eaf",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 301,
+  "min_level": "A1",
+  "ru": "переживать, испытывать",
+  "en": "to experience",
+  "forms": [
+   "oplev",
+   "opleve",
+   "oplevede",
+   "oplevedes",
+   "oplevende",
+   "oplever",
+   "opleves",
+   "oplevet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "leisure",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "ændre",
+  "kind": "word",
+  "sense_id": "ab9effc9-8398-529a-b213-449c2f614056",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 340,
+  "min_level": "A1",
+  "ru": "изменять",
+  "en": "to change",
+  "forms": [
+   "ændr",
+   "ændre",
+   "ændrede",
+   "ændredes",
+   "ændrende",
+   "ændrer",
+   "ændres",
+   "ændret"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "lære",
+  "kind": "word",
+  "sense_id": "8b416909-1683-51a9-bb0c-38cbe12cf680",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 380,
+  "min_level": "A1",
+  "ru": "учить, изучать",
+  "en": "to learn",
+  "forms": [
+   "lær",
+   "lære",
+   "lærende",
+   "lærer",
+   "læres",
+   "lært",
+   "lærte",
+   "lærtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "ville",
+  "kind": "word",
+  "sense_id": "f1a0b83a-edd6-52ec-a175-a5318be6e87a",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 29,
+  "min_level": "A1",
+  "ru": "буду, будет (вспомогательный глагол будущего времени)",
+  "en": "will (helper verb for the future)",
+  "forms": [
+   "vil",
+   "ville",
+   "villede",
+   "villet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "weather-nature",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "1a6f60ce-55b7-549e-9cf1-16a648a17811",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 24,
+  "min_level": "A1",
+  "ru": "собираться, иметь план (о будущем действии)",
+  "en": "to be going to (a plan)",
+  "forms": [
+   "ska'",
+   "skal",
+   "sku'",
+   "skulle",
+   "skullede",
+   "skullet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-future"
+  }
+ },
+ {
+  "lemma": "komme",
+  "kind": "word",
+  "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 41,
+  "min_level": "A1",
+  "ru": "приходить, приезжать",
+  "en": "to come, to arrive",
+  "forms": [
+   "kom",
+   "komme",
+   "kommede",
+   "kommende",
+   "kommer",
+   "kommes",
+   "kommet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-future"
+  },
+  "note": "Audit: the previous family used plain \"kommer/kom til receptionen\" (come to), which is not the future and even had a past variant. Every variant must be the future construction \"kommer til at\" + infinitive (\"Priserne kommer til at stige.\"), target \"kommer\"; \"til at\" and the infinitive are fixed frame text; vary the subject or the infinitive, never the tense."
+ },
+ {
+  "lemma": "burde",
+  "kind": "word",
+  "sense_id": "032e6590-b346-5574-b76d-81ae1b3abeb8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 225,
+  "min_level": "A1",
+  "ru": "следовало бы, должен",
+  "en": "ought to, should",
+  "forms": [
+   "burde",
+   "burdede",
+   "burdet",
+   "bør"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "body-health",
+   "grammar": "modal-verbs"
+  }
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 72,
+  "min_level": "A1",
+  "ru": "пришлось, был вынужден",
+  "en": "had to (was forced to)",
+  "forms": [
+   "må",
+   "måtte",
+   "måttede",
+   "måttet"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "modal-verbs"
+  },
+  "note": "An independent reviewer rejected the previous family: The target 'må' means 'must/has to' (obligation), but the lemma and sense gloss specify 'måtte' meaning 'had to (was forced to)'. The sentence does not exercise the stated lemma or meaning. The English and Russian translations also reflect obligation, not past forced necessity, making them unfaithful to the intended target. Write a new family that avoids this."
+ },
+ {
+  "lemma": "sætte",
+  "kind": "word",
+  "sense_id": "1ffa39d8-f102-5944-a658-a205e2b156e2",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 103,
+  "min_level": "A1",
+  "ru": "садиться",
+  "en": "to sit down",
+  "forms": [
+   "sat",
+   "satte",
+   "sattes",
+   "sæt",
+   "sætte",
+   "sættende",
+   "sætter",
+   "sættes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "reflexive"
+  },
+  "note": "This sense is \"sætte sig\" (to sit down): the reflexive pronoun agrees with the subject (jeg sætter mig, vi satte os)."
+ },
+ {
+  "lemma": "siden",
+  "kind": "word",
+  "sense_id": "73726a32-ed83-5865-8253-34e7d0bcbc57",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 126,
+  "min_level": "A1",
+  "ru": "тому назад",
+  "en": "ago",
+  "forms": [
+   "siden",
+   "sidenhen"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "prepositions-time"
+  },
+  "note": "\"for ... siden\" = ago: \"for to år siden\"."
+ },
+ {
+  "lemma": "under",
+  "kind": "word",
+  "sense_id": "08b250ac-9c18-5f50-9f2e-1b7171b154bc",
+  "pos": "preposition",
+  "gender": null,
+  "freq_rank": 81,
+  "min_level": "A1",
+  "ru": "во время, в течение",
+  "en": "during",
+  "forms": [
+   "under"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "leisure",
+   "grammar": "prepositions-time"
+  }
+ },
+ {
+  "lemma": "fordi",
+  "kind": "word",
+  "sense_id": "4751a42a-b4d5-52b9-ba21-f20487d8c032",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 88,
+  "min_level": "A1",
+  "ru": "потому что",
+  "en": "because",
+  "forms": [
+   "fordi"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "subordinate-clause"
+  },
+  "note": "Subordinate clause word order: a sentence adverb goes before the finite verb (fordi han ikke kom)."
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "af5ca027-0f2e-57ff-91a8-3edabefab676",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 60,
+  "min_level": "A1",
+  "ru": "если",
+  "en": "if",
+  "forms": [
+   "hvis"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "subordinate-clause"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish has a person mismatch: 'kunden' (3rd person) in the subordinate clause but 'du' (2nd person) in the main clause, making it ungrammatical and nonsensical. English and Russian translations are faithful to the Danish but inherit the same mismatch. Danish has a person mismatch: 'I' (2nd person plural) in the subordinate clause but 'du' (2nd person singular) in the main clause, making it ungrammatical and nonsensical. English and Russian translations are faithful to the Danish but inherit the same mismatch. Write a new family that avoids this."
+ },
+ {
+  "lemma": "når",
+  "kind": "word",
+  "sense_id": "bd9c67aa-29d0-5375-8304-b768d31c835e",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 55,
+  "min_level": "A1",
+  "ru": "когда",
+  "en": "when (whenever, once)",
+  "forms": [
+   "når"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "subordinate-clause"
+  }
+ },
+ {
+  "lemma": "hvor",
+  "kind": "word",
+  "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 39,
+  "min_level": "A1",
+  "ru": "где",
+  "en": "where",
+  "forms": [
+   "hvor"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "relative-clause"
+  },
+  "note": "Relative \"hvor\" after a place noun: \"huset, hvor jeg bor\"."
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+  "pos": "pronoun",
+  "gender": null,
+  "freq_rank": 60,
+  "min_level": "A1",
+  "ru": "чей, чья, чьё",
+  "en": "whose",
+  "forms": [
+   "hvis"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "relative-clause"
+  },
+  "note": "Relative \"hvis\" = whose: \"naboen, hvis hund gør\"."
+ },
+ {
+  "lemma": "medens",
+  "kind": "word",
+  "sense_id": "8f2dcb43-27aa-5dbb-b916-457fd6066e59",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 114,
+  "min_level": "A1",
+  "ru": "пока, в то время как",
+  "en": "while, whereas",
+  "forms": [
+   "medens"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "conjunctions"
+  },
+  "note": "An independent reviewer rejected the previous family: The Danish sentence is ungrammatical and unnatural: 'Mens ... medens ...' is a double conjunction with no main clause. 'medens' is an archaic/formal variant of 'mens' meaning 'while', not a correlative 'while...while'. The English and Russian translations are unnatural and do not reflect idiomatic usage. The sentence does not demonstrate the target word correctly and is misleading for learners. Same structural defect as item 1: 'Mens ... medens ...' is ungrammatical and unnatural. The English and Russian translations are unnatural and do not reflect idiomatic usage. The sentence does not demonstrate the target word correctly and is misleading for learners. Write a new family that avoids this."
+ },
+ {
+  "lemma": "eftersom",
+  "kind": "word",
+  "sense_id": "8ac59b8a-93a5-58a8-84a9-39dbe8dcb590",
+  "pos": "conjunction",
+  "gender": null,
+  "freq_rank": 2255,
+  "min_level": "B1",
+  "ru": "поскольку",
+  "en": "since, as (because)",
+  "forms": [
+   "eftersom"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "conjunctions"
+  }
+ },
+ {
+  "lemma": "altid",
+  "kind": "word",
+  "sense_id": "000e931b-b207-5f88-85ab-4ed12fc102c8",
+  "pos": "adverb",
+  "gender": null,
+  "freq_rank": 199,
+  "min_level": "A1",
+  "ru": "всегда",
+  "en": "always",
+  "forms": [
+   "altid"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "adverbs"
+  },
+  "note": "An independent reviewer rejected the previous family: Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg spiser altid havregryn om morgenen.' This is a fundamental error for an A2 adverb exercise. Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg drikker altid kaffe om morgenen.' This is a fundamental error for an A2 adverb exercise. Adverb 'altid' is placed before the verb in a main clause, violating V2 word order. Correct: 'Jeg læser altid avisen om morgenen.' This is a fundamental error for an A2 adverb exercise. Write a new family that avoids this."
+ },
+ {
+  "lemma": "god",
+  "kind": "word",
+  "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 35,
+  "min_level": "A1",
+  "ru": "хороший",
+  "en": "good",
+  "forms": [
+   "bedre",
+   "bedst",
+   "bedste",
+   "god",
+   "gode",
+   "godt"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "food-drink",
+   "grammar": "adjective-meaning"
+  }
+ },
+ {
+  "lemma": "lille",
+  "kind": "word",
+  "sense_id": "ab59fc25-cfc6-5dc7-9ed2-1fdc9e3d0360",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 109,
+  "min_level": "A1",
+  "ru": "маленький",
+  "en": "small, little",
+  "forms": [
+   "lille",
+   "mindre",
+   "mindst",
+   "mindste",
+   "små"
+  ],
+  "target": {
+   "level": "A1",
+   "situation": "home",
+   "grammar": "adjective-meaning"
+  }
+ }
+]

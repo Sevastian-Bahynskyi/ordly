@@ -1,0 +1,545 @@
+[
+ {
+  "lemma": "folketingsvalg",
+  "kind": "word",
+  "sense_id": "bbb41382-2078-5879-9d68-01a1b318d4cb",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} forventer et {target} i november.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Analytikerne"
+    },
+    {
+     "da": "Journalisterne"
+    },
+    {
+     "da": "Politikerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "folketingsvalg",
+    "en": "The analysts expect a parliamentary election in November.",
+    "ru": "Аналитики ожидают парламентских выборов в ноябре.",
+    "orders": [
+     "I november forventer analytikerne et folketingsvalg."
+    ],
+    "accepted": [
+     "parlamentsvalg"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "folketingsvalg",
+    "en": "The journalists expect a parliamentary election in November.",
+    "ru": "Журналисты ожидают парламентских выборов в ноябре.",
+    "orders": [
+     "I november forventer journalisterne et folketingsvalg."
+    ],
+    "accepted": [
+     "parlamentsvalg"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "folketingsvalg",
+    "en": "The politicians expect a parliamentary election in November.",
+    "ru": "Политики ожидают парламентских выборов в ноябре.",
+    "orders": [
+     "I november forventer politikerne et folketingsvalg."
+    ],
+    "accepted": [
+     "parlamentsvalg"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "snes",
+  "kind": "word",
+  "sense_id": "7c5c651d-714c-5ea2-8723-1c80ed01f738",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} køber en {target} æg på markedet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Bageren"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "snes",
+    "en": "She buys a score of eggs at the market.",
+    "ru": "Она покупает два десятка яиц на рынке.",
+    "orders": [
+     "På markedet køber hun en snes æg."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "snes",
+    "en": "The baker buys a score of eggs at the market.",
+    "ru": "Пекарь покупает два десятка яиц на рынке.",
+    "orders": [
+     "På markedet køber bageren en snes æg."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "snes",
+    "en": "They buy a score of eggs at the market.",
+    "ru": "Они покупают два десятка яиц на рынке.",
+    "orders": [
+     "På markedet køber de en snes æg."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "mystisk",
+  "kind": "word",
+  "sense_id": "9ffddcab-5dbc-5f31-8e1b-7ce28076fd69",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} finder et {target} brev i postkassen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Naboen"
+    },
+    {
+     "da": "Han"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mystisk",
+    "en": "She finds a mysterious letter in the mailbox.",
+    "ru": "Она находит таинственное письмо в почтовом ящике.",
+    "orders": [
+     "I postkassen finder hun et mystisk brev."
+    ],
+    "accepted": [
+     "gådefuldt"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mystisk",
+    "en": "The neighbor finds a mysterious letter in the mailbox.",
+    "ru": "Сосед находит таинственное письмо в почтовом ящике.",
+    "orders": [
+     "I postkassen finder naboen et mystisk brev."
+    ],
+    "accepted": [
+     "gådefuldt"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mystisk",
+    "en": "He finds a mysterious letter in the mailbox.",
+    "ru": "Он находит таинственное письмо в почтовом ящике.",
+    "orders": [
+     "I postkassen finder han et mystisk brev."
+    ],
+    "accepted": [
+     "gådefuldt"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "mystisk",
+  "kind": "word",
+  "sense_id": "ebe5116e-07b4-56ff-b512-007fdac1e0ce",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} opfører sig {target} i dag.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Katten"
+    },
+    {
+     "da": "Naboen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mystisk",
+    "en": "He is behaving oddly today.",
+    "ru": "Он сегодня странно себя ведёт.",
+    "orders": [],
+    "accepted": [
+     "underligt",
+     "mærkeligt",
+     "sært",
+     "besynderligt"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mystisk",
+    "en": "The cat is behaving oddly today.",
+    "ru": "Кот сегодня странно себя ведёт.",
+    "orders": [],
+    "accepted": [
+     "underligt",
+     "mærkeligt",
+     "sært",
+     "besynderligt"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mystisk",
+    "en": "The neighbor is behaving oddly today.",
+    "ru": "Сосед сегодня странно себя ведёт.",
+    "orders": [],
+    "accepted": [
+     "underligt",
+     "mærkeligt",
+     "sært",
+     "besynderligt"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "markedsføring",
+  "kind": "word",
+  "sense_id": "4f67f563-0202-52ee-896d-9c9e0a9781f6",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-meaning",
+  "frame": "{subject} studerer {target} på universitetet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Min søster"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "markedsføring",
+    "en": "She studies marketing at university.",
+    "ru": "Она изучает маркетинг в университете.",
+    "orders": [],
+    "accepted": [
+     "marketing"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "markedsføring",
+    "en": "He studies marketing at university.",
+    "ru": "Он изучает маркетинг в университете.",
+    "orders": [],
+    "accepted": [
+     "marketing"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "markedsføring",
+    "en": "My sister studies marketing at university.",
+    "ru": "Моя сестра изучает маркетинг в университете.",
+    "orders": [],
+    "accepted": [
+     "marketing"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "markedsføring",
+  "kind": "word",
+  "sense_id": "5c070122-eed5-5e0b-bdfa-af3008f84e38",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} planlægger {target} af det nye produkt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Virksomheden"
+    },
+    {
+     "da": "Teamet"
+    },
+    {
+     "da": "Chefen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "markedsføringen",
+    "en": "The company is planning the marketing of the new product.",
+    "ru": "Компания планирует продвижение нового продукта.",
+    "orders": [],
+    "accepted": [
+     "promoveringen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "markedsføringen",
+    "en": "The team is planning the marketing of the new product.",
+    "ru": "Команда планирует продвижение нового продукта.",
+    "orders": [],
+    "accepted": [
+     "promoveringen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "markedsføringen",
+    "en": "The boss is planning the marketing of the new product.",
+    "ru": "Начальник планирует продвижение нового продукта.",
+    "orders": [],
+    "accepted": [
+     "promoveringen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "ideologisk",
+  "kind": "word",
+  "sense_id": "60b79c55-1055-50bf-b824-03c00122eb7e",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-meaning",
+  "frame": "Der er en {target} forskel mellem {groups}.",
+  "slots": {
+   "groups": [
+    {
+     "da": "de to partier"
+    },
+    {
+     "da": "de to bevægelser"
+    },
+    {
+     "da": "de to lejre"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "groups": 0
+    },
+    "target": "ideologisk",
+    "en": "There is an ideological difference between the two parties.",
+    "ru": "Между двумя партиями есть идеологическое различие.",
+    "orders": [
+     "Mellem de to partier er der en ideologisk forskel."
+    ]
+   },
+   {
+    "slots": {
+     "groups": 1
+    },
+    "target": "ideologisk",
+    "en": "There is an ideological difference between the two movements.",
+    "ru": "Между двумя движениями есть идеологическое различие.",
+    "orders": [
+     "Mellem de to bevægelser er der en ideologisk forskel."
+    ]
+   },
+   {
+    "slots": {
+     "groups": 2
+    },
+    "target": "ideologisk",
+    "en": "There is an ideological difference between the two camps.",
+    "ru": "Между двумя лагерями есть идеологическое различие.",
+    "orders": [
+     "Mellem de to lejre er der en ideologisk forskel."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "kirkegård",
+  "kind": "word",
+  "sense_id": "436d651a-261e-524b-959e-d0ace042d906",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{subject} går en tur på {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "De ældre"
+    },
+    {
+     "da": "Vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "kirkegården",
+    "en": "She takes a walk in the cemetery.",
+    "ru": "Она гуляет по кладбищу.",
+    "orders": [
+     "På kirkegården går hun en tur."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "kirkegården",
+    "en": "The elderly take a walk in the cemetery.",
+    "ru": "Пожилые люди гуляют по кладбищу.",
+    "orders": [
+     "På kirkegården går de ældre en tur."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "kirkegården",
+    "en": "We take a walk in the cemetery.",
+    "ru": "Мы гуляем по кладбищу.",
+    "orders": [
+     "På kirkegården går vi en tur."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "bosætte",
+  "kind": "word",
+  "sense_id": "0b0e9f9b-05c6-5fd0-ae7d-92a2ff1e0e76",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-past",
+  "frame": "{subject} {target} sig i en lille by ved kysten, da de gik på pension.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Mine bedsteforældre"
+    },
+    {
+     "da": "Min onkel og tante"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bosatte",
+    "en": "My grandparents settled in a small town on the coast when they retired.",
+    "ru": "Мои бабушка и дедушка поселились в маленьком городке на побережье, когда вышли на пенсию.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bosatte",
+    "en": "My uncle and aunt settled in a small town on the coast when they retired.",
+    "ru": "Мои дядя и тётя поселились в маленьком городке на побережье, когда вышли на пенсию.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bosatte",
+    "en": "They settled in a small town on the coast when they retired.",
+    "ru": "Они поселились в маленьком городке на побережье, когда вышли на пенсию.",
+    "orders": []
+   }
+  ]
+ }
+]

@@ -1,0 +1,1917 @@
+[
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "negation",
+  "frame": "Kollegaen har {target} {object}.",
+  "slots": {
+   "object": [
+    {
+     "da": "svaret på mailen"
+    },
+    {
+     "da": "læst rapporten"
+    },
+    {
+     "da": "bestilt frokost"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "object": 0
+    },
+    "target": "ikke",
+    "en": "The colleague has not responded to the email.",
+    "ru": "Коллега не ответил на письмо."
+   },
+   {
+    "slots": {
+     "object": 1
+    },
+    "target": "ikke",
+    "en": "The colleague has not read the report.",
+    "ru": "Коллега не читал отчёт."
+   }
+  ]
+ },
+ {
+  "lemma": "ikke",
+  "kind": "word",
+  "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "negation",
+  "frame": "Borgerne er {target} blevet informeret om {change}.",
+  "slots": {
+   "change": [
+    {
+     "da": "den nye lov"
+    },
+    {
+     "da": "ændringen af regeringen"
+    },
+    {
+     "da": "de stigende skatter"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "change": 0
+    },
+    "target": "ikke",
+    "en": "Citizens have not been informed about the new law.",
+    "ru": "Граждане не были проинформированы о новом законе."
+   },
+   {
+    "slots": {
+     "change": 1
+    },
+    "target": "ikke",
+    "orders": [
+     "Om ændringen af regeringen er borgerne ikke blevet informeret."
+    ],
+    "en": "Citizens have not been informed about the change of government.",
+    "ru": "Граждане не были проинформированы о смене правительства."
+   },
+   {
+    "slots": {
+     "change": 2
+    },
+    "target": "ikke",
+    "en": "Citizens have not been informed about the rising taxes.",
+    "ru": "Граждане не были проинформированы о росте налогов."
+   }
+  ]
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "negation",
+  "frame": "Jeg har {target} forstået, hvorfor {subject}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "hun blev så vred"
+    },
+    {
+     "da": "de aflyste mødet"
+    },
+    {
+     "da": "han sagde op"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "aldrig",
+    "en": "I have never understood why she got so angry.",
+    "ru": "Я никогда не понимал, почему она так разозлилась."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "aldrig",
+    "en": "I have never understood why they cancelled the meeting.",
+    "ru": "Я никогда не понимал, почему они отменили встречу."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "aldrig",
+    "en": "I have never understood why he resigned.",
+    "ru": "Я никогда не понимал, почему он ушёл в отставку."
+   }
+  ]
+ },
+ {
+  "sense_id": "b573ef9d-85db-5918-b53a-4a29c1f65e88",
+  "lemma": "endnu",
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "negation"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "lemma": "sin",
+  "kind": "word",
+  "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "pronouns",
+  "frame": "{subject} har glemt {target} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "Min bror"
+    },
+    {
+     "da": "Mine forældre"
+    }
+   ],
+   "object": [
+    {
+     "da": "nøgler",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    },
+    {
+     "da": "telefon"
+    },
+    {
+     "da": "pas"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 1
+    },
+    "target": "sin",
+    "en": "My sister has forgotten her phone.",
+    "ru": "Моя сестра забыла свой телефон."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 2
+    },
+    "target": "sit",
+    "en": "My brother has forgotten his passport.",
+    "ru": "Мой брат забыл свой паспорт."
+   }
+  ]
+ },
+ {
+  "sense_id": "b6692369-22ed-5653-ac4c-2195360b1a6c",
+  "lemma": "hinanden",
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "pronouns"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (hinanden, hinandens) — pick one construction and stay in it for every variant"
+ },
+ {
+  "lemma": "selv",
+  "kind": "word",
+  "sense_id": "52a6e67e-150b-5dff-b8ef-6b1e322c0553",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "pronouns",
+  "frame": "{subject} har {target} {verb} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min far"
+    },
+    {
+     "da": "Min mor"
+    },
+    {
+     "da": "Mine forældre"
+    }
+   ],
+   "verb": [
+    {
+     "da": "malet"
+    },
+    {
+     "da": "renoveret"
+    },
+    {
+     "da": "bygget"
+    }
+   ],
+   "object": [
+    {
+     "da": "køkkenet"
+    },
+    {
+     "da": "stuen"
+    },
+    {
+     "da": "garagen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0
+    },
+    "target": "selv",
+    "en": "My father painted the kitchen himself.",
+    "ru": "Мой отец сам покрасил кухню."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1
+    },
+    "target": "selv",
+    "en": "My mother has renovated the living room herself.",
+    "ru": "Моя мама сама отремонтировала гостиную."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "object": 2
+    },
+    "target": "selv",
+    "en": "My parents built the garage themselves.",
+    "ru": "Мои родители построили гараж сами."
+   }
+  ]
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "infinitive",
+  "frame": "Læreren bad eleverne om {target} {verb}.",
+  "slots": {
+   "verb": [
+    {
+     "da": "læse"
+    },
+    {
+     "da": "skrive"
+    },
+    {
+     "da": "regne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0
+    },
+    "target": "at",
+    "en": "The teacher asked the students to read.",
+    "ru": "Учитель попросил учеников читать."
+   },
+   {
+    "slots": {
+     "verb": 1
+    },
+    "target": "at",
+    "en": "The teacher asked the students to write.",
+    "ru": "Учитель попросил учеников писать."
+   },
+   {
+    "slots": {
+     "verb": 2
+    },
+    "target": "at",
+    "en": "The teacher asked the students to do math.",
+    "ru": "Учитель попросил учеников заниматься математикой."
+   }
+  ]
+ },
+ {
+  "lemma": "at",
+  "kind": "word",
+  "sense_id": "f9837b5f-64b3-5dfb-bf46-f286bcdff8f5",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "infinitive",
+  "frame": "Det er {adjective} {target} {verb} {object}.",
+  "slots": {
+   "adjective": [
+    {
+     "da": "afgørende"
+    },
+    {
+     "da": "nødvendigt"
+    },
+    {
+     "da": "vanskeligt"
+    }
+   ],
+   "verb": [
+    {
+     "da": "forstå"
+    },
+    {
+     "da": "analysere"
+    },
+    {
+     "da": "forudsige"
+    }
+   ],
+   "object": [
+    {
+     "da": "konsekvenserne"
+    },
+    {
+     "da": "de langsigtede effekter"
+    },
+    {
+     "da": "sammenhængen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "adjective": 0,
+     "verb": 0,
+     "object": 0
+    },
+    "target": "at",
+    "en": "It is crucial to understand the consequences.",
+    "ru": "Крайне важно понимать последствия."
+   },
+   {
+    "slots": {
+     "adjective": 2,
+     "verb": 2,
+     "object": 2
+    },
+    "target": "at",
+    "en": "It is difficult to predict the correlation.",
+    "ru": "Трудно предсказать корреляцию."
+   }
+  ]
+ },
+ {
+  "lemma": "begynde",
+  "kind": "word",
+  "sense_id": "25ab7e1a-fbfb-5c63-ac42-92fa9f606801",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "infinitive",
+  "frame": "I ferien vil {subject} {target} at {activity}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "hun"
+    },
+    {
+     "da": "de"
+    },
+    {
+     "da": "min bror"
+    }
+   ],
+   "activity": [
+    {
+     "da": "læse en ny bog"
+    },
+    {
+     "da": "spille tennis"
+    },
+    {
+     "da": "lære at surfe"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "activity": 0
+    },
+    "target": "begynde",
+    "en": "During the holidays, she will start reading a new book.",
+    "ru": "Во время каникул она начнёт читать новую книгу."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "activity": 1
+    },
+    "target": "begynde",
+    "en": "During the holidays, they will start playing tennis.",
+    "ru": "Во время каникул они начнут играть в теннис."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "activity": 2
+    },
+    "target": "begynde",
+    "en": "During the holidays, my brother will start learning to surf.",
+    "ru": "Во время каникул мой брат начнёт учиться серфингу."
+   }
+  ]
+ },
+ {
+  "lemma": "forsøge",
+  "kind": "word",
+  "sense_id": "6f4e5092-1f71-580f-8335-90361855e9f2",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "infinitive",
+  "frame": "Virksomheden vil {target} at {verb} {object}.",
+  "slots": {
+   "verb": [
+    {
+     "da": "reducere"
+    },
+    {
+     "da": "forbedre"
+    },
+    {
+     "da": "implementere"
+    }
+   ],
+   "object": [
+    {
+     "da": "omkostningerne"
+    },
+    {
+     "da": "arbejdsmiljøet"
+    },
+    {
+     "da": "en ny strategi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "object": 0
+    },
+    "target": "forsøge",
+    "en": "The company will try to reduce costs.",
+    "ru": "Компания постарается снизить расходы."
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "object": 1
+    },
+    "target": "forsøge",
+    "en": "The company will try to improve the working environment.",
+    "ru": "Компания постарается улучшить условия работы."
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "object": 2
+    },
+    "target": "forsøge",
+    "en": "The company will try to implement a new strategy.",
+    "ru": "Компания попытается внедрить новую стратегию."
+   }
+  ]
+ },
+ {
+  "sense_id": "b69b2cf6-4e95-5490-a308-5859b2dd12f7",
+  "lemma": "mene",
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-present"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "lemma": "betyde",
+  "kind": "word",
+  "sense_id": "411daa08-0194-5606-81ea-8ac33779ae8d",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "verb-present",
+  "frame": "Begrebet {target} noget forskelligt afhængigt af {context}.",
+  "slots": {
+   "context": [
+    {
+     "da": "sammenhængen"
+    },
+    {
+     "da": "den kulturelle baggrund"
+    },
+    {
+     "da": "hvilken teori man anvender"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "context": 1
+    },
+    "target": "betyder",
+    "en": "The term means something different depending on the cultural background.",
+    "ru": "Термин имеет разное значение в зависимости от культурного происхождения."
+   },
+   {
+    "slots": {
+     "context": 2
+    },
+    "target": "betyder",
+    "en": "The term means something different depending on which theory is used.",
+    "ru": "Термин означает что-то различное в зависимости от используемой теории."
+   }
+  ]
+ },
+ {
+  "sense_id": "86861999-9a50-557d-b90b-43f050779eaf",
+  "lemma": "opleve",
+  "target": {
+   "level": "B1",
+   "situation": "leisure",
+   "grammar": "verb-perfect"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "ab9effc9-8398-529a-b213-449c2f614056",
+  "lemma": "ændre",
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-perfect"
+  },
+  "skip": "style check: \"har ændret\" is not one of the given forms — copy a form exactly; \"havde ændret\" is not one of the given forms — copy a form exactly"
+ },
+ {
+  "lemma": "lære",
+  "kind": "word",
+  "sense_id": "8b416909-1683-51a9-bb0c-38cbe12cf680",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-perfect",
+  "frame": "Jeg har {target} meget om {topic} i løbet af det sidste år.",
+  "slots": {
+   "topic": [
+    {
+     "da": "projektledelse"
+    },
+    {
+     "da": "konflikthåndtering"
+    },
+    {
+     "da": "den nye software"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "topic": 0
+    },
+    "target": "lært",
+    "en": "I've learned a lot about project management over the past year.",
+    "ru": "За последний год я многому научился в управлении проектами."
+   },
+   {
+    "slots": {
+     "topic": 1
+    },
+    "target": "lært",
+    "en": "I have learned a lot about conflict management over the past year.",
+    "ru": "За последний год я многому научился в управлении конфликтами."
+   },
+   {
+    "slots": {
+     "topic": 2
+    },
+    "target": "lært",
+    "en": "I've learned a lot about the new software over the past year.",
+    "ru": "За последний год я много узнал о новом программном обеспечении."
+   }
+  ]
+ },
+ {
+  "lemma": "ville",
+  "kind": "word",
+  "sense_id": "f1a0b83a-edd6-52ec-a175-a5318be6e87a",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "verb-future",
+  "frame": "Ifølge meteorologerne {target} det {weather} i morgen.",
+  "slots": {
+   "weather": [
+    {
+     "da": "regne"
+    },
+    {
+     "da": "sne"
+    },
+    {
+     "da": "blæse kraftigt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "weather": 0
+    },
+    "target": "vil",
+    "en": "According to meteorologists, it will rain tomorrow.",
+    "ru": "По словам метеорологов, завтра пойдёт дождь."
+   },
+   {
+    "slots": {
+     "weather": 1
+    },
+    "target": "vil",
+    "en": "According to the meteorologists, it will snow tomorrow.",
+    "ru": "По словам метеорологов, завтра пойдёт снег."
+   },
+   {
+    "slots": {
+     "weather": 2
+    },
+    "target": "vil",
+    "en": "According to the meteorologists, it will be windy tomorrow.",
+    "ru": "По словам метеорологов, завтра будет ветер."
+   }
+  ]
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "1a6f60ce-55b7-549e-9cf1-16a648a17811",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-future",
+  "frame": "Ifølge planen {target} {subject} {object} i næste uge.",
+  "slots": {
+   "subject": [
+    {
+     "da": "afdelingen"
+    },
+    {
+     "da": "vi"
+    },
+    {
+     "da": "direktøren"
+    }
+   ],
+   "object": [
+    {
+     "da": "præsentere resultaterne"
+    },
+    {
+     "da": "ansætte en ny medarbejder"
+    },
+    {
+     "da": "holde et møde"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "object": 0
+    },
+    "target": "skal",
+    "en": "According to the plan, the department will present the results next week.",
+    "ru": "Согласно плану, департамент представит результаты на следующей неделе."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "object": 1
+    },
+    "target": "skal",
+    "en": "According to the plan, we will hire a new employee next week.",
+    "ru": "Согласно плану, на следующей неделе мы нанимаем нового сотрудника."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "object": 2
+    },
+    "target": "skal",
+    "en": "According to the plan, the director will hold a meeting next week.",
+    "ru": "Согласно плану, директор проведёт встречу на следующей неделе."
+   }
+  ]
+ },
+ {
+  "sense_id": "032e6590-b346-5574-b76d-81ae1b3abeb8",
+  "lemma": "burde",
+  "target": {
+   "level": "B1",
+   "situation": "body-health",
+   "grammar": "modal-verbs"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "sense_id": "1ffa39d8-f102-5944-a658-a205e2b156e2",
+  "lemma": "sætte",
+  "target": {
+   "level": "B1",
+   "situation": "transport",
+   "grammar": "reflexive"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "siden",
+  "kind": "word",
+  "sense_id": "73726a32-ed83-5865-8253-34e7d0bcbc57",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "prepositions-time",
+  "frame": "Virksomheden flyttede for {time_period} {target}.",
+  "slots": {
+   "time_period": [
+    {
+     "da": "tre måneder"
+    },
+    {
+     "da": "et halvt år"
+    },
+    {
+     "da": "to uger"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "time_period": 0
+    },
+    "target": "siden",
+    "en": "The company moved three months ago.",
+    "ru": "Компания переехала три месяца назад."
+   },
+   {
+    "slots": {
+     "time_period": 1
+    },
+    "target": "siden",
+    "en": "The company moved six months ago.",
+    "ru": "Компания переехала шесть месяцев назад."
+   },
+   {
+    "slots": {
+     "time_period": 2
+    },
+    "target": "siden",
+    "en": "The company moved two weeks ago.",
+    "ru": "Компания переехала две недели назад."
+   }
+  ]
+ },
+ {
+  "lemma": "under",
+  "kind": "word",
+  "sense_id": "08b250ac-9c18-5f50-9f2e-1b7171b154bc",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "prepositions-time",
+  "frame": "{subject} {verb} {target} {event}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Mange turister"
+    },
+    {
+     "da": "Jeg"
+    }
+   ],
+   "verb": [
+    {
+     "da": "slapper af"
+    },
+    {
+     "da": "besøger byen"
+    },
+    {
+     "da": "læser en bog"
+    }
+   ],
+   "event": [
+    {
+     "da": "sommerferien"
+    },
+    {
+     "da": "festivalen"
+    },
+    {
+     "da": "ferien"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "event": 0
+    },
+    "target": "under",
+    "en": "We relax during the summer holidays.",
+    "ru": "Мы отдыхаем во время летних каникул."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "event": 1
+    },
+    "target": "under",
+    "en": "Many tourists visit the city during the festival.",
+    "ru": "Многие туристы посещают город во время фестиваля."
+   }
+  ]
+ },
+ {
+  "lemma": "fordi",
+  "kind": "word",
+  "sense_id": "4751a42a-b4d5-52b9-ba21-f20487d8c032",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "subordinate-clause",
+  "frame": "Projektet blev forsinket, {target} {subject} {adverb} {verb}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "leverandøren"
+    },
+    {
+     "da": "kunden"
+    },
+    {
+     "da": "vores chef"
+    }
+   ],
+   "adverb": [
+    {
+     "da": "ikke"
+    },
+    {
+     "da": "aldrig"
+    },
+    {
+     "da": "sjældent"
+    }
+   ],
+   "verb": [
+    {
+     "da": "leverede til tiden"
+    },
+    {
+     "da": "godkendte ændringerne"
+    },
+    {
+     "da": "svarede på vores henvendelser"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "adverb": 0,
+     "verb": 0
+    },
+    "target": "fordi",
+    "en": "The project was delayed because the supplier did not deliver on time.",
+    "ru": "Проект был задержан, потому что поставщик не доставил вовремя."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "adverb": 1,
+     "verb": 1
+    },
+    "target": "fordi",
+    "en": "The project was delayed because the customer never approved the changes.",
+    "ru": "Проект был задержан, потому что заказчик никогда не одобрял изменения."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "adverb": 2,
+     "verb": 2
+    },
+    "target": "fordi",
+    "en": "The project was delayed because our boss rarely responded to our inquiries.",
+    "ru": "Проект был задержан, потому что наш начальник редко отвечал на наши запросы."
+   },
+   {
+    "slots": {
+     "subject": 0,
+     "adverb": 1,
+     "verb": 2
+    },
+    "target": "fordi",
+    "en": "The project was delayed because the supplier never responded to our inquiries.",
+    "ru": "Проект был задержан, потому что поставщик никогда не отвечал на наши запросы."
+   }
+  ]
+ },
+ {
+  "lemma": "når",
+  "kind": "word",
+  "sense_id": "bd9c67aa-29d0-5375-8304-b768d31c835e",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "subordinate-clause",
+  "frame": "{target} {subject} {verb}, {main_verb} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "jeg"
+    },
+    {
+     "da": "min mor"
+    },
+    {
+     "da": "mine forældre"
+    }
+   ],
+   "verb": [
+    {
+     "da": "kommer hjem"
+    },
+    {
+     "da": "laver mad"
+    },
+    {
+     "da": "gør rent"
+    }
+   ],
+   "main_verb": [
+    {
+     "da": "spiser"
+    },
+    {
+     "da": "ser"
+    },
+    {
+     "da": "slapper"
+    }
+   ],
+   "object": [
+    {
+     "da": "vi altid aftensmad sammen"
+    },
+    {
+     "da": "jeg fjernsyn"
+    },
+    {
+     "da": "hele familien af"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "main_verb": 0,
+     "object": 0
+    },
+    "target": "når",
+    "en": "When I get home, we always have dinner together.",
+    "ru": "Когда я прихожу домой, мы всегда ужинаем вместе."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "main_verb": 1,
+     "object": 1
+    },
+    "target": "når",
+    "en": "When my mother cooks, I watch television.",
+    "ru": "Когда моя мама готовит, я смотрю телевизор."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "main_verb": 2,
+     "object": 2
+    },
+    "target": "når",
+    "en": "When my parents clean, the whole family relaxes.",
+    "ru": "Когда мои родители убирают, вся семья расслабляется."
+   }
+  ]
+ },
+ {
+  "lemma": "hvor",
+  "kind": "word",
+  "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "relative-clause",
+  "frame": "{subject} bor i en lejlighed, {target} der er {feature}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "De"
+    },
+    {
+     "da": "Mine forældre"
+    }
+   ],
+   "feature": [
+    {
+     "da": "en stor altan"
+    },
+    {
+     "da": "plads til et spisebord"
+    },
+    {
+     "da": "en opvaskemaskine"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "feature": 0
+    },
+    "target": "hvor",
+    "en": "We live in an apartment where there is a large balcony.",
+    "ru": "Мы живём в квартире с большим балконом."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "feature": 1
+    },
+    "target": "hvor",
+    "en": "They live in an apartment where there is room for a dining table.",
+    "ru": "Они живут в квартире, где есть место для обеденного стола."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "feature": 2
+    },
+    "target": "hvor",
+    "en": "My parents live in an apartment where there is a dishwasher.",
+    "ru": "Мои родители живут в квартире, где есть посудомоечная машина."
+   }
+  ]
+ },
+ {
+  "lemma": "hvis",
+  "kind": "word",
+  "sense_id": "745b11a3-1b5e-55bb-9e4d-40cdcabbbee3",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "relative-clause",
+  "frame": "Min søster, {target} børn går i den samme skole, {action}.",
+  "slots": {
+   "action": [
+    {
+     "da": "bor lige om hjørnet"
+    },
+    {
+     "da": "arbejder som læge"
+    },
+    {
+     "da": "er for nylig blevet skilt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "action": 0
+    },
+    "target": "hvis",
+    "en": "My sister, whose children go to the same school, lives just around the corner.",
+    "ru": "Моя сестра, чьи дети ходят в одну школу, живёт совсем рядом."
+   },
+   {
+    "slots": {
+     "action": 1
+    },
+    "target": "hvis",
+    "en": "My sister, whose children go to the same school, works as a doctor.",
+    "ru": "Моя сестра, чьи дети ходят в одну школу, работает врачом."
+   },
+   {
+    "slots": {
+     "action": 2
+    },
+    "target": "hvis",
+    "en": "My sister, whose children go to the same school, has recently divorced.",
+    "ru": "Моя сестра, чьи дети ходят в одну школу, недавно развелась."
+   }
+  ]
+ },
+ {
+  "lemma": "eftersom",
+  "kind": "word",
+  "sense_id": "8ac59b8a-93a5-58a8-84a9-39dbe8dcb590",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "conjunctions",
+  "frame": "{target} {subject} {verb}, {consequence}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "kommunen"
+    },
+    {
+     "da": "regeringen"
+    },
+    {
+     "da": "borgerne"
+    }
+   ],
+   "verb": [
+    {
+     "da": "manglede penge"
+    },
+    {
+     "da": "havde modtaget mange klager"
+    },
+    {
+     "da": "ønskede mere indflydelse"
+    }
+   ],
+   "consequence": [
+    {
+     "da": "blev projektet udskudt"
+    },
+    {
+     "da": "indførte man nye regler"
+    },
+    {
+     "da": "arrangerede de et borgermøde"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "consequence": 1
+    },
+    "target": "eftersom",
+    "en": "Since the government had received many complaints, new rules were introduced.",
+    "ru": "Поскольку правительство получило множество жалоб, были введены новые правила."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "consequence": 2
+    },
+    "target": "eftersom",
+    "en": "Since the citizens wanted more influence, they organized a citizens' meeting.",
+    "ru": "Поскольку граждане хотели большего влияния, они организовали собрание граждан."
+   }
+  ]
+ },
+ {
+  "lemma": "god",
+  "kind": "word",
+  "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "adjective-meaning",
+  "frame": "Den her {food} er {target}.",
+  "slots": {
+   "food": [
+    {
+     "da": "suppe"
+    },
+    {
+     "da": "kaffe"
+    },
+    {
+     "da": "is"
+    },
+    {
+     "da": "kage"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "food": 0
+    },
+    "target": "god",
+    "en": "This soup is good.",
+    "ru": "Этот суп хороший."
+   },
+   {
+    "slots": {
+     "food": 1
+    },
+    "target": "god",
+    "en": "This coffee is good.",
+    "ru": "Этот кофе хороший."
+   },
+   {
+    "slots": {
+     "food": 2
+    },
+    "target": "god",
+    "en": "This ice cream is good.",
+    "ru": "Это мороженое хорошее."
+   },
+   {
+    "slots": {
+     "food": 3
+    },
+    "target": "god",
+    "en": "This cake is good.",
+    "ru": "Этот торт хороший."
+   }
+  ]
+ },
+ {
+  "lemma": "lille",
+  "kind": "word",
+  "sense_id": "ab59fc25-cfc6-5dc7-9ed2-1fdc9e3d0360",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Mit køkken"
+    },
+    {
+     "da": "Min lejlighed"
+    },
+    {
+     "da": "Badeværelset"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "lille",
+    "en": "My kitchen is small.",
+    "ru": "Моя кухня маленькая."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "lille",
+    "en": "My apartment is small.",
+    "ru": "Моя квартира маленькая."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "lille",
+    "en": "The bathroom is small.",
+    "ru": "Ванная маленькая."
+   },
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mindre",
+    "en": "My kitchen is smaller.",
+    "ru": "Моя кухня меньше."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mindre",
+    "en": "My apartment is smaller.",
+    "ru": "Моя квартира меньше."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mindre",
+    "en": "The bathroom is smaller.",
+    "ru": "Ванная меньше."
+   }
+  ]
+ },
+ {
+  "lemma": "aldrig",
+  "kind": "word",
+  "sense_id": "4bd01034-84d9-58e8-b4b0-734b99c000e2",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "negation",
+  "frame": "{subject} {verb} {target} {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min bror"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "verb": [
+    {
+     "da": "spiller"
+    },
+    {
+     "da": "ser"
+    },
+    {
+     "da": "går i"
+    }
+   ],
+   "object": [
+    {
+     "da": "tennis"
+    },
+    {
+     "da": "fjernsyn om aftenen"
+    },
+    {
+     "da": "biografen alene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0
+    },
+    "target": "aldrig",
+    "en": "I never play tennis.",
+    "ru": "Я никогда не играю в теннис."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1
+    },
+    "target": "aldrig",
+    "en": "My brother never watches television at night.",
+    "ru": "Мой брат никогда не смотрит телевизор по ночам."
+   }
+  ]
+ },
+ {
+  "lemma": "ingen",
+  "kind": "word",
+  "sense_id": "87a80440-22b5-51f1-aadc-0169fd912aff",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "negation",
+  "frame": "Der var {target} {item} tilbage i butikken.",
+  "slots": {
+   "item": [
+    {
+     "da": "æbler"
+    },
+    {
+     "da": "billige sko"
+    },
+    {
+     "da": "ledige parkeringspladser"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "item": 0
+    },
+    "target": "ingen",
+    "en": "There were no apples left in the store.",
+    "ru": "В магазине не осталось яблок."
+   },
+   {
+    "slots": {
+     "item": 1
+    },
+    "target": "ingen",
+    "en": "There were no cheap shoes left in the store.",
+    "ru": "В магазине не осталось дешёвой обуви."
+   }
+  ]
+ },
+ {
+  "lemma": "sin",
+  "kind": "word",
+  "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+  "level": "A2",
+  "situation": "family",
+  "grammar": "pronouns",
+  "frame": "{subject} elsker {target} {noun}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min far"
+    },
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "Mine forældre"
+    }
+   ],
+   "noun": [
+    {
+     "da": "have",
+     "requires": {
+      "subject": [
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "da": "bil",
+     "requires": {
+      "subject": [
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "da": "børn",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "noun": 0
+    },
+    "target": "sin",
+    "en": "My father loves his garden.",
+    "ru": "Мой отец любит свой сад."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "noun": 1
+    },
+    "target": "sin",
+    "en": "My sister loves her car.",
+    "ru": "Моя сестра обожает свою машину."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "noun": 2
+    },
+    "target": "sine",
+    "en": "My parents love their children.",
+    "ru": "Мои родители любят своих детей."
+   },
+   {
+    "slots": {
+     "subject": 0,
+     "noun": 1
+    },
+    "target": "sin",
+    "en": "My dad loves his car.",
+    "ru": "Мой папа любит свою машину."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "noun": 0
+    },
+    "target": "sin",
+    "en": "My sister loves her garden.",
+    "ru": "Моя сестра обожает свой сад."
+   }
+  ]
+ },
+ {
+  "lemma": "flytte",
+  "kind": "word",
+  "sense_id": "737c9771-7c27-561a-b5c4-79a3b509ef0b",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-past",
+  "frame": "Familien {target} til en større lejlighed, {reason}.",
+  "slots": {
+   "reason": [
+    {
+     "da": "fordi de ventede et barn"
+    },
+    {
+     "da": "da faren fik nyt arbejde"
+    },
+    {
+     "da": "for at få plads til et hjemmekontor"
+    },
+    {
+     "da": "selvom huslejen steg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "reason": 0
+    },
+    "target": "flyttede",
+    "en": "The family moved to a larger apartment because they were expecting a child.",
+    "ru": "Семья переехала в большую квартиру, потому что ждала ребёнка."
+   },
+   {
+    "slots": {
+     "reason": 1
+    },
+    "target": "flyttede",
+    "en": "The family moved to a larger apartment when the father got a new job.",
+    "ru": "Семья переехала в более просторную квартиру, когда отец устроился на новую работу."
+   },
+   {
+    "slots": {
+     "reason": 2
+    },
+    "target": "flyttede",
+    "en": "The family moved to a larger apartment to make room for a home office.",
+    "ru": "Семья переехала в большую квартиру, чтобы освободить место для домашнего офиса."
+   },
+   {
+    "slots": {
+     "reason": 3
+    },
+    "target": "flyttede",
+    "orders": [
+     "Selvom huslejen steg, flyttede familien til en større lejlighed."
+    ],
+    "en": "The family moved to a larger apartment, even though the rent increased.",
+    "ru": "Семья переехала в большую квартиру, несмотря на рост арендной платы."
+   }
+  ]
+ },
+ {
+  "lemma": "måtte",
+  "kind": "word",
+  "sense_id": "a3f54d2c-6980-5402-b6bd-f270c464dace",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "modal-verbs",
+  "frame": "Kunden {target} {verb} en ny tid, fordi {reason}.",
+  "slots": {
+   "verb": [
+    {
+     "da": "bestille"
+    },
+    {
+     "da": "aftale"
+    }
+   ],
+   "reason": [
+    {
+     "da": "frisøren var syg"
+    },
+    {
+     "da": "systemet var nede"
+    },
+    {
+     "da": "han havde glemt sit kort"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "reason": 0
+    },
+    "target": "måtte",
+    "en": "The customer had to book a new appointment because the hairdresser was ill.",
+    "ru": "Клиенту пришлось записаться на новый приём, потому что парикмахер был болен."
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "reason": 1
+    },
+    "target": "måtte",
+    "en": "The customer had to make a new appointment because the system was down.",
+    "ru": "Клиенту пришлось записаться на новую встречу, потому что система не работала."
+   },
+   {
+    "slots": {
+     "verb": 0,
+     "reason": 2
+    },
+    "target": "måtte",
+    "en": "The customer had to book a new appointment because he had forgotten his card.",
+    "ru": "Клиенту пришлось записаться на новую встречу, потому что он забыл свою карту."
+   }
+  ]
+ },
+ {
+  "sense_id": "af5ca027-0f2e-57ff-91a8-3edabefab676",
+  "lemma": "hvis",
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "subordinate-clause"
+  },
+  "skip": "style check: the frame must contain {target} exactly once — the word being taught is always spelled {target}, never written out or repeated"
+ },
+ {
+  "lemma": "medens",
+  "kind": "word",
+  "sense_id": "8f2dcb43-27aa-5dbb-b916-457fd6066e59",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "conjunctions",
+  "frame": "{subject} {verb} {object}, {target} {subject2} {verb2} {object2}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Direktøren"
+    },
+    {
+     "da": "Marketingafdelingen"
+    },
+    {
+     "da": "Nogle kolleger"
+    }
+   ],
+   "verb": [
+    {
+     "da": "fokuserede på"
+    },
+    {
+     "da": "prioriterede"
+    },
+    {
+     "da": "arbejdede på"
+    }
+   ],
+   "object": [
+    {
+     "da": "kortsigtede gevinster"
+    },
+    {
+     "da": "det presserende projekt"
+    },
+    {
+     "da": "en ny strategi"
+    }
+   ],
+   "subject2": [
+    {
+     "da": "bestyrelsen"
+    },
+    {
+     "da": "de øvrige teams"
+    },
+    {
+     "da": "konkurrenterne"
+    }
+   ],
+   "verb2": [
+    {
+     "da": "insisterede på"
+    },
+    {
+     "da": "efterspurgte"
+    },
+    {
+     "da": "allerede implementerede"
+    }
+   ],
+   "object2": [
+    {
+     "da": "en langsigtet plan"
+    },
+    {
+     "da": "mere innovation"
+    },
+    {
+     "da": "lignende løsninger"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "verb": 0,
+     "object": 0,
+     "subject2": 0,
+     "verb2": 0,
+     "object2": 0
+    },
+    "target": "medens",
+    "en": "The CEO focused on short-term gains, while the board insisted on a long-term plan.",
+    "ru": "Генеральный директор сосредоточился на краткосрочной выгоде, а совет директоров настаивал на долгосрочном плане."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "verb": 1,
+     "object": 1,
+     "subject2": 1,
+     "verb2": 1,
+     "object2": 1
+    },
+    "target": "medens",
+    "en": "The marketing department prioritized the urgent project, while the other teams demanded more innovation.",
+    "ru": "Маркетинговый отдел отдал приоритет срочному проекту, а остальные команды требовали большего количества инноваций."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "verb": 2,
+     "object": 2,
+     "subject2": 2,
+     "verb2": 2,
+     "object2": 2
+    },
+    "target": "medens",
+    "en": "Some colleagues were working on a new strategy, while competitors were already implementing similar solutions.",
+    "ru": "Некоторые коллеги работали над новой стратегией, в то время как конкуренты уже внедряли аналогичные решения."
+   }
+  ]
+ },
+ {
+  "lemma": "altid",
+  "kind": "word",
+  "sense_id": "000e931b-b207-5f88-85ab-4ed12fc102c8",
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "adverbs",
+  "frame": "Jeg {verb} {target} {object} om morgenen.",
+  "slots": {
+   "verb": [
+    {
+     "da": "spiser"
+    },
+    {
+     "da": "drikker"
+    },
+    {
+     "da": "læser"
+    }
+   ],
+   "object": [
+    {
+     "da": "havregryn",
+     "requires": {
+      "verb": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "kaffe",
+     "requires": {
+      "verb": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "avisen",
+     "requires": {
+      "verb": [
+       2
+      ]
+     }
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0,
+     "object": 0
+    },
+    "target": "altid",
+    "en": "I always eat oatmeal in the morning.",
+    "ru": "Я всегда ем овсянку утром."
+   },
+   {
+    "slots": {
+     "verb": 1,
+     "object": 1
+    },
+    "target": "altid",
+    "en": "I always drink coffee in the morning.",
+    "ru": "Я всегда пью кофе утром."
+   },
+   {
+    "slots": {
+     "verb": 2,
+     "object": 2
+    },
+    "target": "altid",
+    "en": "I always read the newspaper in the morning.",
+    "ru": "Я всегда читаю газету утром."
+   }
+  ]
+ },
+ {
+  "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+  "lemma": "komme",
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-future"
+  },
+  "skip": "translation fidelity: 1 of 3 variants survived"
+ }
+]

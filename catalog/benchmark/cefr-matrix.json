@@ -1,0 +1,456 @@
+{
+ "version": "cefr-matrix-2026-09-25",
+ "note": "A1–B2 learning-coverage matrix for issue #16 (spec #12 decision 15). Two axes, each cell a (level, id) pair: everyday situations (CEFR companion volume, 2020, communicative themes and the reception/production/interaction descriptors for A1–B2) and grammar/communicative functions of Danish that the Practice formats can check. A cell is covered when it has audited sentence families usable in both learner languages. Coverage of this matrix describes the content, never a learner's level.",
+ "source": "Council of Europe (2020), Common European Framework of Reference for Languages: Companion volume; themes after Threshold/Waystage specifications. Danish grammar functions selected by the maintainers.",
+ "situations": [
+  {
+   "id": "personal-info",
+   "levels": [
+    "A1",
+    "A2"
+   ],
+   "label": "Introducing yourself: name, origin, age, languages"
+  },
+  {
+   "id": "family",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Family and relationships"
+  },
+  {
+   "id": "home",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Home, rooms, furniture, housing"
+  },
+  {
+   "id": "daily-routine",
+   "levels": [
+    "A1",
+    "A2"
+   ],
+   "label": "Daily routine and time of day"
+  },
+  {
+   "id": "time-dates",
+   "levels": [
+    "A1",
+    "A2"
+   ],
+   "label": "Time, dates, days, seasons"
+  },
+  {
+   "id": "food-drink",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Food, drink, cooking, eating out"
+  },
+  {
+   "id": "shopping",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Shopping, prices, payment"
+  },
+  {
+   "id": "transport",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Transport, directions, travel"
+  },
+  {
+   "id": "weather-nature",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Weather, nature, environment"
+  },
+  {
+   "id": "body-health",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Body, health, doctor, feelings of illness"
+  },
+  {
+   "id": "work",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Work, jobs, workplace"
+  },
+  {
+   "id": "education",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "School, study, learning"
+  },
+  {
+   "id": "leisure",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Hobbies, sport, free time, culture"
+  },
+  {
+   "id": "services",
+   "levels": [
+    "A2",
+    "B1"
+   ],
+   "label": "Public services, bank, post, appointments"
+  },
+  {
+   "id": "social",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Social contact: greeting, inviting, thanking, apologising"
+  },
+  {
+   "id": "feelings-opinions",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Feelings, preferences, opinions"
+  },
+  {
+   "id": "communication-media",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Phone, messages, internet, news"
+  },
+  {
+   "id": "society",
+   "levels": [
+    "B1",
+    "B2"
+   ],
+   "label": "Society, politics, economy, public life"
+  },
+  {
+   "id": "abstract",
+   "levels": [
+    "B1",
+    "B2"
+   ],
+   "label": "Abstract reasoning: cause, change, possibility, comparison"
+  }
+ ],
+ "grammar": [
+  {
+   "id": "noun-indefinite",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Indefinite noun with en/et"
+  },
+  {
+   "id": "noun-definite",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Definite suffix -en/-et"
+  },
+  {
+   "id": "noun-plural",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Plural forms, indefinite and definite"
+  },
+  {
+   "id": "adjective-agreement",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Adjective agreement: -t neuter, -e plural and definite"
+  },
+  {
+   "id": "comparison",
+   "levels": [
+    "A2",
+    "B1"
+   ],
+   "label": "Comparative and superlative"
+  },
+  {
+   "id": "verb-present",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Present tense -r"
+  },
+  {
+   "id": "verb-past",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Simple past, weak and strong verbs"
+  },
+  {
+   "id": "verb-perfect",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Perfect with have/være"
+  },
+  {
+   "id": "verb-future",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Future with vil/skal/kommer til at"
+  },
+  {
+   "id": "modal-verbs",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Modal verbs with bare infinitive"
+  },
+  {
+   "id": "imperative",
+   "levels": [
+    "A1",
+    "A2"
+   ],
+   "label": "Imperative"
+  },
+  {
+   "id": "passive",
+   "levels": [
+    "B1",
+    "B2"
+   ],
+   "label": "Passive: -s form and blive"
+  },
+  {
+   "id": "reflexive",
+   "levels": [
+    "A2",
+    "B1"
+   ],
+   "label": "Reflexive verbs and pronouns (sig, sin/sit/sine)"
+  },
+  {
+   "id": "particle-verbs",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Particle verbs (stå op, finde ud af)"
+  },
+  {
+   "id": "word-order-v2",
+   "levels": [
+    "A1",
+    "A2"
+   ],
+   "label": "Main clause V2 and inversion after a fronted element"
+  },
+  {
+   "id": "subordinate-clause",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Subordinate clause order (at, fordi, når, hvis; adverb before verb)"
+  },
+  {
+   "id": "questions",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Yes/no and hv-questions"
+  },
+  {
+   "id": "negation",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Negation and sentence adverb placement (ikke, aldrig, også)"
+  },
+  {
+   "id": "pronouns",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Personal and possessive pronouns"
+  },
+  {
+   "id": "prepositions-place",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Prepositions of place and direction"
+  },
+  {
+   "id": "prepositions-time",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Prepositions and adverbials of time"
+  },
+  {
+   "id": "relative-clause",
+   "levels": [
+    "B1",
+    "B2"
+   ],
+   "label": "Relative clauses with som/der"
+  },
+  {
+   "id": "conjunctions",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Coordinating and subordinating conjunctions"
+  },
+  {
+   "id": "fixed-expressions",
+   "levels": [
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Fixed expressions and collocations"
+  },
+  {
+   "id": "sentence-adverbs",
+   "levels": [
+    "B1",
+    "B2"
+   ],
+   "label": "Modal particles and sentence adverbs (jo, vel, nok, dog)"
+  },
+  {
+   "id": "prepositions-other",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Prepositions of purpose, cause, manner and fixed government (til, for, med, om, af)"
+  },
+  {
+   "id": "infinitive",
+   "levels": [
+    "A1",
+    "A2",
+    "B1"
+   ],
+   "label": "Infinitive with and without at"
+  },
+  {
+   "id": "adverbs",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Adverbs of degree, frequency and manner (meget, for, ofte, næsten)"
+  },
+  {
+   "id": "verb-meaning",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Verb meaning and valency in context (transitive/intransitive, object choice)"
+  },
+  {
+   "id": "noun-meaning",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Noun meaning in context (collocation, countability)"
+  },
+  {
+   "id": "adjective-meaning",
+   "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "label": "Adjective meaning in context (predicative and attributive use)"
+  }
+ ]
+}

@@ -1,0 +1,818 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T16:02:11.016Z",
+ "entries": [
+  {
+   "lemma": "falde i søvn",
+   "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation uses past tense 'засыпал' for Danish present 'falder', which describes a habitual action. Correct present tense is 'засыпаю'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я засыпаю перед телевизором."
+    }
+   ]
+  },
+  {
+   "lemma": "falde i søvn",
+   "sense_id": "9fe795c1-4550-5df3-b766-b21f87f753bc",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I fall asleep in front of the TV.",
+      "ru": "Я засыпал перед телевизором."
+     },
+     "after": {
+      "en": "I fall asleep in front of the TV.",
+      "ru": "Я засыпаю перед телевизором."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "tage fejl",
+   "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian uses 'ты' (informal) while Danish 'du' is neutral; the English 'you' is also neutral. However, the Russian translation shifts from formal 'вы' in item 1 to informal 'ты' in item 2 for no reason, and the aspect 'ошибался' (imperfective, process) does not match the Danish simple past 'tog fejl' (completed action). A faithful and natural rendering would be 'Думаю, вы ошиблись.'",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Думаю, вы ошиблись."
+    }
+   ]
+  },
+  {
+   "lemma": "tage fejl",
+   "sense_id": "24e69c7d-dfca-5730-a4fc-223802385855",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I think you were wrong.",
+      "ru": "Думаю, ты ошибался."
+     },
+     "after": {
+      "en": "I think you were wrong.",
+      "ru": "Думаю, вы ошиблись."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "lægge mærke til",
+   "sense_id": "3b128180-c106-5899-9e52-7ea5453095df",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish subordinate clause tense is wrong: 'skinner' (present) should be 'skinnede' (past) to match the past tense of the main clause. This also makes the English and Russian translations unfaithful because they reflect the incorrect Danish.",
+     "danish_ok": false,
+     "en": "I noticed that the sun was shining.",
+     "ru": "Я заметил, что светило солнце."
+    }
+   ]
+  },
+  {
+   "lemma": "gå i opfyldelse",
+   "sense_id": "48f176c6-6908-51bc-99af-0e56b09a76f0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural"
+     ],
+     "problem": "Adverb placement 'endelig' at the end is unnatural; a native speaker would place it earlier, e.g., 'gik endelig i opfyldelse' or 'endelig gik i opfyldelse'.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural"
+     ],
+     "problem": "Adverb placement 'endelig' at the end is unnatural; a native speaker would place it earlier, e.g., 'går endelig i opfyldelse' or 'endelig går i opfyldelse'.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "tage for givet",
+   "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation has a grammatical error: 'чистую питьевой воду' should be 'чистую питьевую воду' (adjective agreement).",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевую воду."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation has a grammatical error: 'чистую питьевой воду' should be 'чистую питьевую воду' (adjective agreement).",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду."
+    }
+   ]
+  },
+  {
+   "lemma": "tage for givet",
+   "sense_id": "a888b9ce-f7eb-5ca8-a087-0aa12d6a024a",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "Many citizens take it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевой воду."
+     },
+     "after": {
+      "en": "Many citizens take it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимают как должное, что государство всегда обеспечивает чистую питьевую воду."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "Many citizens took it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевой воду."
+     },
+     "after": {
+      "en": "Many citizens took it for granted that the state always provides clean drinking water.",
+      "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "have til hensigt",
+   "sense_id": "074047ba-6a6e-5a9a-8285-967913997234",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "finde sted",
+   "sense_id": "207951ee-2e1f-504a-ad23-861f7ac023b5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "pedagogy"
+     ],
+     "problem": "Word order is ungrammatical: 'finder sted mødet' violates V2 rule; the finite verb must be in second position. Correct: 'finder mødet sted'. This also makes the sentence unnatural and fails to demonstrate the fixed expression correctly, misleading learners.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Word order is ungrammatical: 'fandt sted mødet' violates V2 rule. Additionally, the tense is contradictory: 'fandt sted' (past) with 'i næste uge' (next week) is nonsensical. English and Russian translations also mismatch the Danish tense (past vs. future).",
+     "danish_ok": false,
+     "en": "According to the editor, the meeting took place last week.",
+     "ru": "По словам редактора, встреча состоялась на прошлой неделе."
+    }
+   ]
+  },
+  {
+   "lemma": "i aftes",
+   "sense_id": "04af866b-96bb-5d8d-9aa0-1137c72a329c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation drops 'вечером', changing the meaning from 'last night' to 'yesterday'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Вчера вечером мы ужинали."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural"
+     ],
+     "problem": "'De talte i telefon i aftes' is not idiomatic Danish; the natural phrasing is 'De talte i telefon i går aftes' or 'De snakkede i telefon i aftes', but 'i aftes' alone with 'talte i telefon' is awkward. Alternatively, 'De talte i telefon i går aftes' would be more natural.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "i morgen tidlig",
+   "sense_id": "10a29153-af3f-5d0e-92d1-d57d7bc0e270",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hele tiden",
+   "sense_id": "e8fe2b36-160b-587e-a89d-764c194b360f",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses the present tense 'разговариваю' instead of the present perfect continuous 'have been talking', which is more accurately rendered as 'разговаривал(а)' or 'общался/общалась' to match the ongoing action from the past. Also, 'с утра' is less natural than 'с самого утра' for 'since this morning'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я разговариваю с ней всё время с самого утра."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses the present tense 'разговариваю' instead of the present perfect continuous 'have been talking', which is more accurately rendered as 'разговаривал(а)' or 'общался/общалась' to match the ongoing action from the past.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я разговариваю с ней всё время с обеда."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses the present tense 'общаюсь' instead of the present perfect continuous 'have been talking', which is more accurately rendered as 'общался/общалась' to match the ongoing action from the past.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я общаюсь с ней всё время с прошлой недели."
+    }
+   ]
+  },
+  {
+   "lemma": "hele tiden",
+   "sense_id": "e8fe2b36-160b-587e-a89d-764c194b360f",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "I've been talking to her all the time since this morning.",
+      "ru": "Я разговариваю с ней всё время с утра."
+     },
+     "after": {
+      "en": "I've been talking to her all the time since this morning.",
+      "ru": "Я разговариваю с ней всё время с самого утра."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "I've been talking to her all the time since lunch.",
+      "ru": "Я разговариваю с ней всё время с обеда."
+     },
+     "after": {
+      "en": "I've been talking to her all the time since lunch.",
+      "ru": "Я разговариваю с ней всё время с обеда."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "I've been talking to her all the time since last week.",
+      "ru": "Я общаюсь с ней всё время с прошлой недели."
+     },
+     "after": {
+      "en": "I've been talking to her all the time since last week.",
+      "ru": "Я общаюсь с ней всё время с прошлой недели."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "pleje at",
+   "sense_id": "bf4765cc-8a9f-5cea-9def-6cf10ff1f1ad",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Jeg vil pleje at løbe en tur om morgenen.' is ungrammatical and unnatural because 'pleje at' is a modal-like phrase that does not combine with 'vil' in this way; it means 'I want to usually run', which is nonsensical. The English translation 'I usually go for a run in the morning.' does not match the Danish, which includes 'vil' (want to). The Russian translation 'Обычно я выхожу на пробежку утром.' also omits 'vil'. The sentence does not exercise the infinitive after 'pleje at' correctly because 'pleje at' itself is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure.",
+     "danish_ok": false,
+     "en": "I want to usually go for a run in the morning.",
+     "ru": "Я хочу обычно выходить на пробежку утром."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Jeg vil pleje at læse en bog inden sengetid.' is ungrammatical and unnatural because 'pleje at' does not combine with 'vil' in this way; it means 'I want to usually read a book before bedtime', which is nonsensical. The English translation 'I usually want to read a book before bedtime.' is a literal rendering of the flawed Danish but is unnatural and does not match the intended meaning of 'pleje at'. The Russian translation 'Обычно я хочу прочитать книгу перед сном.' also reflects the flawed structure. The sentence does not correctly exercise the infinitive after 'pleje at' because 'pleje at' is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure.",
+     "danish_ok": false,
+     "en": "I want to usually read a book before bedtime.",
+     "ru": "Я хочу обычно читать книгу перед сном."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "The Danish sentence 'Jeg vil pleje at drikke kaffe efter frokost.' is ungrammatical and unnatural because 'pleje at' does not combine with 'vil' in this way; it means 'I want to usually drink coffee after lunch', which is nonsensical. The English translation 'I usually drink coffee after lunch.' does not match the Danish, which includes 'vil' (want to). The Russian translation 'Обычно я пью кофе после обеда.' also omits 'vil'. The sentence does not correctly exercise the infinitive after 'pleje at' because 'pleje at' is not in the infinitive but is preceded by a modal, creating a double-modal construction that is not standard Danish. It is misleading to teach this structure.",
+     "danish_ok": false,
+     "en": "I want to usually drink coffee after lunch.",
+     "ru": "Я хочу обычно пить кофе после обеда."
+    }
+   ]
+  },
+  {
+   "lemma": "oven på",
+   "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian uses feminine verb form 'положила' while Danish 'lagde' is gender-neutral; English 'I put' is also neutral. The Russian should match the neutral/generic form, e.g., 'Я положил книгу на комод.'",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я положил книгу на комод."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian uses masculine verb form 'положил' while Danish 'lagde' is gender-neutral; English 'I put' is also neutral. The Russian should match the neutral/generic form, e.g., 'Я положила книгу на стол.' or keep consistent with other sentences. However, inconsistency in gender across sentences is a defect. For consistency with item 1 (masculine), item 3 should also be masculine: 'Я положил книгу на стол.'",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я положил книгу на стол."
+    }
+   ]
+  },
+  {
+   "lemma": "oven på",
+   "sense_id": "bca7a4a2-4ffe-5cb5-bfe6-9bd08e44611c",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I put the book on top of the dresser.",
+      "ru": "Я положила книгу на комод."
+     },
+     "after": {
+      "en": "I put the book on top of the dresser.",
+      "ru": "Я положил книгу на комод."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "I put the book on top of the desk.",
+      "ru": "Я положил книгу на стол."
+     },
+     "after": {
+      "en": "I put the book on top of the desk.",
+      "ru": "Я положил книгу на стол."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "alle sammen",
+   "sense_id": "379311a2-3a43-5852-b76e-6992597e6fc4",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English translation adds 'together', which is not in the Danish and changes the meaning. The Russian translation uses past tense 'пришли' instead of present 'приходим' and adds 'вместе'. The Danish 'alle sammen' means 'all' (emphasizing the whole group), not 'all together'.",
+     "danish_ok": true,
+     "en": "We are all coming to the party.",
+     "ru": "Мы все приходим на вечеринку."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The English translation adds 'together', which is not in the Danish and changes the meaning. The Russian translation adds 'вместе'. The Danish 'alle sammen' means 'all' (emphasizing the whole group), not 'all together'.",
+     "danish_ok": true,
+     "en": "They are all coming to the party.",
+     "ru": "Они все приходят на вечеринку."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses future tense 'придут' instead of present 'приходят', which does not match the Danish present tense 'kommer'.",
+     "danish_ok": true,
+     "ru": "Мои друзья все приходят на вечеринку."
+    }
+   ]
+  },
+  {
+   "lemma": "på forhånd",
+   "sense_id": "4784a291-3cdd-5521-8525-a7bf03022cf5",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "på grund af",
+   "sense_id": "21832b47-a527-55cb-8226-5c2d0dbf2d73",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "heller ikke",
+   "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "en"
+     ],
+     "problem": "English translation uses 'also' instead of 'either' for negative addition, which is less natural and not faithful to the Danish negative concord.",
+     "danish_ok": true,
+     "en": "The kids don't like spicy food either.",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "heller ikke",
+   "sense_id": "a17875fe-feb8-51aa-8484-6a87026096cf",
+   "repairs": [
+    {
+     "item": 3,
+     "before": {
+      "en": "The kids also don't like spicy food.",
+      "ru": "Дети тоже не любят острую еду."
+     },
+     "after": {
+      "en": "The kids don't like spicy food either.",
+      "ru": "Дети тоже не любят острую еду."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у станции' means 'by/near the station', not 'outside the station'. The Danish 'uden for' means 'outside', so the Russian should be 'снаружи станции' or 'перед станцией' depending on context, but 'у' is a mistranslation.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи станции."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у аэропорта' means 'by/near the airport', not 'outside the airport'. The Danish 'uden for' means 'outside', so the Russian should be 'снаружи аэропорта' or 'перед аэропортом'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи аэропорта."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'у главного входа' means 'by/near the main entrance', not 'outside the main entrance'. The Danish 'uden for' means 'outside', so the Russian should be 'снаружи главного входа' or 'перед главным входом'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Автобус останавливается снаружи главного входа."
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "The bus stops outside the station.",
+      "ru": "Автобус останавливается у станции."
+     },
+     "after": {
+      "en": "The bus stops outside the station.",
+      "ru": "Автобус останавливается снаружи станции."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "The bus stops outside the airport.",
+      "ru": "Автобус останавливается у аэропорта."
+     },
+     "after": {
+      "en": "The bus stops outside the airport.",
+      "ru": "Автобус останавливается снаружи аэропорта."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "The bus stops outside the main entrance.",
+      "ru": "Автобус останавливается у главного входа."
+     },
+     "after": {
+      "en": "The bus stops outside the main entrance.",
+      "ru": "Автобус останавливается снаружи главного входа."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "uden for",
+   "sense_id": "3f5c3661-7306-58bb-9529-4cde4aeaa02b",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  }
+ ]
+}

@@ -2,6 +2,7 @@ import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
 import { senseContentVersion } from './practice-content'
 import { senseExample, type SenseCandidate } from './practice-senses'
+import type { CatalogContext } from './practice-contexts'
 import { seedHash, type PracticeTask } from './practice'
 import type { EntrySense, PartOfSpeech, ReviewItem } from './types'
 
@@ -117,6 +118,8 @@ export interface ExerciseInput {
   newTarget: boolean
   /** The entry's verified forms (from `word_forms`), for typed gaps. */
   forms?: readonly string[]
+  /** A catalog sentence for this sense in the learner's language, chosen by the session seed. */
+  context?: CatalogContext
 }
 
 function baseTask(candidate: SenseCandidate, item: ReviewItem): Omit<PracticeTask, 'kind' | 'prompt' | 'answer' | 'hint' | 'answerIsSentence'> {
@@ -452,5 +455,61 @@ export function sentenceAssembleTask(input: ExerciseInput): PracticeTask | null 
     choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:assemble`),
     ...alternativeOrders(sentence),
     newTarget: input.newTarget,
+  }
+}
+
+/**
+ * Type the missing word into a catalog sentence for the same sense (issue #16). The gap is the
+ * sentence's own target form, which the family's gate verified, so no stem guessing is needed;
+ * the word's other verified forms still grade as the wrong form, not as a typo.
+ */
+export function contextClozeTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate, context } = input
+  const item = candidate.item
+  if (!context || item.vocabulary_entries.entry_kind === 'sentence') return null
+  const found = findInSentence(context.sentence, context.target)
+  if (!found || found.surface.toLocaleLowerCase('da-DK') !== context.target.toLocaleLowerCase('da-DK')) return null
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:context-cloze`,
+    kind: 'cloze',
+    prompt: found.gapped,
+    answer: found.surface,
+    answerIsSentence: false,
+    example: context.sentence,
+    context: context.translation,
+    hint: `${found.surface.slice(0, 1)}…`,
+    newTarget: input.newTarget,
+    source: { variantId: context.variantId, version: context.version },
+    ...(context.accepted.length ? { accepted: context.accepted } : {}),
+    ...otherForms(input.forms, found.surface),
+  }
+}
+
+/** Build a catalog sentence for the same sense from its tiles; its authored orders also count. */
+export function contextAssembleTask(input: ExerciseInput): PracticeTask | null {
+  const { candidate, context } = input
+  const item = candidate.item
+  if (!context || item.vocabulary_entries.entry_kind === 'sentence') return null
+  const tiles = sentenceTiles(context.sentence)
+  if (tiles.length < 3 || tiles.length > WORD_BANK_MAX_TILES) return null
+  const extras = input.distractors
+    .filter((word) => !tiles.some((tile) => normalized(tile) === normalized(word)))
+    .slice(0, WORD_BANK_DISTRACTOR_COUNT)
+  const accepted = [...new Set([...context.orders, ...(alternativeOrders(context.sentence).accepted || [])])]
+    .filter((order) => normalized(order) !== normalized(context.sentence))
+  return {
+    ...baseTask(candidate, item),
+    id: `${candidate.targetKey}:context-assemble`,
+    kind: 'assemble',
+    prompt: context.translation,
+    answer: context.sentence,
+    answerIsSentence: true,
+    example: context.sentence,
+    hint: `${tiles[0]}…`,
+    choices: seededShuffle([...tiles, ...extras], `${candidate.targetKey}:context-assemble`),
+    ...(accepted.length ? { accepted } : {}),
+    newTarget: input.newTarget,
+    source: { variantId: context.variantId, version: context.version },
   }
 }

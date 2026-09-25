@@ -1,0 +1,868 @@
+{
+ "reviewer": "DeepSeek-V4-Pro",
+ "at": "2026-09-25T17:33:52.118Z",
+ "entries": [
+  {
+   "lemma": "kunne",
+   "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Сотрудник не может присутствовать на встрече, потому что болен.' uses 'встрече' which is more 'encounter/meeting' in a general sense, but 'mødet' is a scheduled work meeting, better rendered as 'совещании'. Also 'потому что болен' is slightly unnatural without a pronoun; 'потому что она больна' is more natural. The English is fine.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Сотрудник не может присутствовать на совещании, потому что она больна."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "The English 'could not participate' is past tense, matching 'kunne', but the Danish subordinate clause 'fordi hun er syg' uses present tense 'er', which is idiomatic in Danish for a current state causing past inability. The English should reflect this with 'is ill' not 'was ill' to be faithful. The Russian 'не смог принять участие' is perfective past, matching the past inability, but 'из-за болезни' drops the person and changes the clause structure; a more faithful rendering is 'потому что она больна' to match the Danish present tense and person.",
+     "danish_ok": true,
+     "en": "The employee could not attend the meeting because she is ill.",
+     "ru": "Сотрудник не смог присутствовать на совещании, потому что она больна."
+    }
+   ]
+  },
+  {
+   "lemma": "kunne",
+   "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+   "repairs": [
+    {
+     "item": 1,
+     "before": {
+      "en": "The employee cannot attend the meeting because she is ill.",
+      "ru": "Сотрудник не может присутствовать на встрече, потому что болен."
+     },
+     "after": {
+      "en": "The employee cannot attend the meeting because she is ill.",
+      "ru": "Сотрудник не может присутствовать на совещании, потому что она больна."
+     }
+    },
+    {
+     "item": 2,
+     "before": {
+      "en": "The employee could not participate in the meeting because she is ill.",
+      "ru": "Сотрудник не смог принять участие в собрании из-за болезни."
+     },
+     "after": {
+      "en": "The employee could not attend the meeting because she is ill.",
+      "ru": "Сотрудник не смог присутствовать на совещании, потому что она больна."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "kunne",
+   "sense_id": "e464d6a7-4722-576c-aee5-9a0207d252bb",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "ville",
+   "sense_id": "34d26da1-5714-517b-8bee-aa65309e7377",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "The Danish 'ville gerne' expresses a polite wish/desire in the present ('would like'), not past tense. The English 'I wanted' and Russian 'Я хотел' are past tense, which changes the meaning. The sense gloss 'to want to' is also misleading for 'ville gerne'.",
+     "danish_ok": true,
+     "en": "I would like to learn to play the piano.",
+     "ru": "Я хотел бы научиться играть на пианино."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru",
+      "sense"
+     ],
+     "problem": "Same issue as item 1: 'ville gerne' is present polite wish, not past. English 'I wanted' and Russian 'Я хотел' are past tense.",
+     "danish_ok": true,
+     "en": "I would like to try diving.",
+     "ru": "Я хотел бы попробовать дайвинг."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true
+    }
+   ]
+  },
+  {
+   "lemma": "måtte",
+   "sense_id": "76326cbc-764b-535d-8e91-1f99e64791c4",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish: 'da direktøren havde godkendt' uses past perfect in a present-tense main clause, which is ungrammatical; should be 'har godkendt' or 'godkender'. English: 'had approved' is past perfect but the Danish present 'må' requires present perfect 'has approved' or simple present 'approves'. Russian: 'разрешено покинуть' is a perfective resultative, but the Danish present 'må' with a habitual/general condition is better rendered as 'разрешается покидать' or 'могут покинуть'; also 'одобрил' is past tense, mismatching the present-time condition.",
+     "danish_ok": false,
+     "en": "Employees are only allowed to leave the office once the director has approved their report.",
+     "ru": "Сотрудникам разрешается покидать офис только после того, как директор одобрит их отчёт."
+    }
+   ]
+  },
+  {
+   "lemma": "spise",
+   "sense_id": "e170c899-90e6-5155-9718-31eabe963eb2",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "lukke",
+   "sense_id": "aa5defcc-73f7-5bf7-8ee8-c55c407541bd",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "pedagogy"
+     ],
+     "problem": "Passive form 'lukkedes' is archaic/literary and unnatural for a B1 everyday context; a native speaker would use 'blev lukket'. Teaching this as a model is misleading at B1.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "vælge",
+   "sense_id": "de58999d-cbda-5e20-934e-10a61502d758",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "bygge",
+   "sense_id": "83d0400f-ceda-5bfc-8670-096d90c9f744",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish passive form 'byggedes' is archaic and unnatural in modern Danish; a native speaker would use 'blev bygget'. The English translation 'was built' is correct for the meaning but the Russian 'создан' means 'created', not 'built', and is thus unfaithful.",
+     "danish_ok": false,
+     "en": "The new district was built with a focus on sustainability.",
+     "ru": "Новый район был построен с акцентом на устойчивое развитие."
+    }
+   ]
+  },
+  {
+   "lemma": "bekymre sig",
+   "sense_id": "28496d90-d5db-54c8-8a9d-c0257373290d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "sense_id": "f40cac6a-e21f-5bfd-9761-7b7dc33646ff",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian translation uses 'был превышен' (past tense, perfective) for Danish 'er overskredet' (present perfect, state). More faithful and natural: 'бюджет превышен' (present state) or 'бюджет был превышен' if past is intended, but Danish present perfect indicates current relevance, so 'превышен' is better.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Руководитель проекта подчеркнул, что бюджет превышен."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'принять участие в встрече' is unnatural; correct preposition is 'во встрече' or better 'в совещании' for meeting. Also 'принять участие' is slightly formal but acceptable. More natural: 'участвовать в совещании'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Консультант подчеркнул, что все должны участвовать в совещании."
+    }
+   ]
+  },
+  {
+   "lemma": "at",
+   "sense_id": "f40cac6a-e21f-5bfd-9761-7b7dc33646ff",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "The project manager emphasized that the budget has been exceeded.",
+      "ru": "Руководитель проекта подчеркнул, что бюджет был превышен."
+     },
+     "after": {
+      "en": "The project manager emphasized that the budget has been exceeded.",
+      "ru": "Руководитель проекта подчеркнул, что бюджет превышен."
+     }
+    },
+    {
+     "item": 3,
+     "before": {
+      "en": "The consultant emphasized that everyone must participate in the meeting.",
+      "ru": "Консультант подчеркнул, что все должны принять участие в встрече."
+     },
+     "after": {
+      "en": "The consultant emphasized that everyone must participate in the meeting.",
+      "ru": "Консультант подчеркнул, что все должны участвовать в совещании."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "da",
+   "sense_id": "2583cff2-cd4f-5f43-ad2e-ec0f28052dbf",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Danish is ungrammatical: missing subject in main clause after subordinate clause (V2 requires subject after verb). 'boede i en lille lejlighed' lacks a subject. English translation is ungrammatical and unnatural: 'When I was a child, lived in a small apartment.' lacks subject 'I'. Russian translation is unnatural: 'жил в маленькой квартире' lacks subject 'я', making it sound like an impersonal or incomplete sentence. The sentence does not safely teach subordinate clause structure because it models incorrect word order.",
+     "danish_ok": false,
+     "en": "When I was a child, I lived in a small apartment.",
+     "ru": "Когда я был ребёнком, я жил в маленькой квартире."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Danish is ungrammatical: missing subject in main clause after subordinate clause. 'boede hos vores bedsteforældre' lacks a subject. English translation is ungrammatical and unnatural: 'When my sister was a child, lived with our grandparents.' lacks subject 'she'. Russian translation is unnatural: 'жила с бабушкой и дедушкой' lacks subject 'она', making it incomplete. The sentence does not safely teach subordinate clause structure.",
+     "danish_ok": false,
+     "en": "When my sister was a child, she lived with our grandparents.",
+     "ru": "Когда моя сестра была ребёнком, она жила с бабушкой и дедушкой."
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "natural",
+      "sense",
+      "en",
+      "ru",
+      "pedagogy"
+     ],
+     "problem": "Danish is ungrammatical: missing subject in main clause after subordinate clause. 'boede på landet' lacks a subject. English translation is grammatical but the Danish does not match it; the Danish lacks 'they'. Russian translation is grammatical but the Danish lacks 'они'. The sentence does not safely teach subordinate clause structure because it models incorrect word order.",
+     "danish_ok": false,
+     "en": "When my parents were children, they lived in the countryside.",
+     "ru": "Когда мои родители были детьми, они жили в сельской местности."
+    }
+   ]
+  },
+  {
+   "lemma": "hvorfor",
+   "sense_id": "ffb93354-738b-5f81-8637-14b3454d7996",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "hvor",
+   "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish word order is unnatural for a question; a native speaker would say 'Hvor ligger den nærmeste busstation?'. English translation is unnatural and calqued; should be 'Where is the nearest bus station?'. Russian translation is unnatural and calqued; should be 'Где находится ближайшая автостанция?'.",
+     "danish_ok": false,
+     "en": "Where is the nearest bus station?",
+     "ru": "Где находится ближайшая автостанция?"
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en"
+     ],
+     "problem": "Danish word order is unnatural for a question; a native speaker would say 'Hvor er metrostationen?'. English translation is unnatural and calqued; should be 'Where is the metro station?'.",
+     "danish_ok": false,
+     "en": "Where is the metro station?",
+     "ru": "Где находится станция метро?"
+    },
+    {
+     "item": 3,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish word order is unnatural for a question; a native speaker would say 'Hvor kan jeg købe en billet?'. English translation is unnatural and calqued; should be 'Where can I buy a ticket?'. Russian translation adds 'можно' not present in the Danish, changing meaning; should be 'Где я могу купить билет?'.",
+     "danish_ok": false,
+     "en": "Where can I buy a ticket?",
+     "ru": "Где я могу купить билет?"
+    },
+    {
+     "item": 4,
+     "ok": false,
+     "criteria": [
+      "natural",
+      "en",
+      "ru"
+     ],
+     "problem": "Danish word order is unnatural for a question; a native speaker would say 'Hvor skal jeg stige af?'. English translation is unnatural and calqued; should be 'Where do I have to get off?'. Russian translation uses impersonal 'нужно' instead of 'я должен/должна', changing person; should be 'Где я должен сойти?'.",
+     "danish_ok": false,
+     "en": "Where do I have to get off?",
+     "ru": "Где я должен сойти?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvornår",
+   "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation uses the past tense 'решило' for the Danish present perfect 'har besluttet', which changes the aspect and temporal relation. A more faithful rendering would be 'Когда руководство решило нанять нового сотрудника?' or to match the perfect, 'Когда руководство приняло решение нанять нового сотрудника?' but the current translation drops the perfect aspect.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Когда руководство приняло решение нанять нового сотрудника?"
+    }
+   ]
+  },
+  {
+   "lemma": "hvornår",
+   "sense_id": "89d04eaf-fbed-506d-9c44-2c224bd5f113",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "When has the management decided to hire a new employee?",
+      "ru": "Когда руководство решило нанять нового сотрудника?"
+     },
+     "after": {
+      "en": "When has the management decided to hire a new employee?",
+      "ru": "Когда руководство приняло решение нанять нового сотрудника?"
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "ikke",
+   "sense_id": "f505263c-a155-5b99-90b0-70145410c395",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "nogen",
+   "sense_id": "551f0dfd-51db-5a83-9732-5526d0006804",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "en",
+      "ru"
+     ],
+     "problem": "English 'some' is unnatural here; should be 'someone' to match Danish 'nogle' meaning 'some people'. Russian 'кто-то' is singular, but 'nogle' is plural; should be 'некоторые' or rephrased to match plural sense.",
+     "danish_ok": true,
+     "en": "I hope that some people will take the initiative to meet.",
+     "ru": "Я надеюсь, что некоторые проявят инициативу и встретятся."
+    }
+   ]
+  },
+  {
+   "lemma": "nogen",
+   "sense_id": "551f0dfd-51db-5a83-9732-5526d0006804",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I hope that some will take the initiative to meet.",
+      "ru": "Я надеюсь, что кто-то проявит инициативу и встретится."
+     },
+     "after": {
+      "en": "I hope that some people will take the initiative to meet.",
+      "ru": "Я надеюсь, что некоторые проявят инициативу и встретятся."
+     }
+    }
+   ]
+  },
+  {
+   "lemma": "bo",
+   "sense_id": "a69f46f0-d204-59bb-9076-f42da470732d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'boede' (lived/resided) but the English says 'stayed' and the Russian says 'останавливались' (stayed). The target meaning is 'to live, to reside', not 'to stay temporarily'. The English and Russian translations are unfaithful to the Danish and to the stated sense.",
+     "danish_ok": true,
+     "en": "The apartment that we lived in has a large balcony.",
+     "ru": "Квартира, в которой мы жили, имеет большой балкон."
+    }
+   ]
+  },
+  {
+   "lemma": "arbejde",
+   "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "arbejde",
+   "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "sense",
+      "en",
+      "ru"
+     ],
+     "problem": "The Danish sentence uses 'arbejdede' (past tense) in the relative clause, but the main clause is in present perfect ('har vundet'). This creates a semantic mismatch: the company worked with sustainable solutions in the past, but the award is recent. The English and Russian translations correctly reflect the Danish past tense, but the Danish sentence itself is semantically odd and not a natural demonstration of the target meaning 'to work' in a relative clause. The sense is not clearly demonstrated because the temporal relationship is confusing.",
+     "danish_ok": false,
+     "en": "The company, which worked with sustainable solutions, has just won an international award.",
+     "ru": "Компания, работавшая с устойчивыми решениями, недавно получила международную награду."
+    }
+   ]
+  },
+  {
+   "lemma": "leve",
+   "sense_id": "3538eb04-e549-5b1c-82d9-cee89f1fd119",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar",
+      "sense"
+     ],
+     "problem": "The Danish sentence mixes past tense in the relative clause ('levede') with present tense in the main clause ('forstår'), creating a temporal mismatch that is grammatically incorrect and does not clearly demonstrate the stated meaning of 'leve' in a coherent way. A reader would be confused about when the living and understanding occur.",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "gælde",
+   "sense_id": "3f4f702b-e412-54e2-95c2-c774391558b8",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "gå i stykker",
+   "sense_id": "75f119a1-b4ad-5f46-85b3-f4c6d5c37b3f",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'в критический срок' is unnatural and does not accurately render 'under a critical deadline'. A more natural and faithful translation would be 'в условиях критического дедлайна' or 'в самый ответственный момент'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Старый принтер сломался в самый ответственный момент."
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "The Russian translation 'Копировая машина' is unnatural; the standard term is 'копировальный аппарат' or 'ксерокс'. Also, 'во время важного визита клиента' is slightly clumsy; 'во время важного визита клиентов' or 'при важных клиентах' would be more natural.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Копировальный аппарат ломается во время важного визита клиентов."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "have travlt",
+   "sense_id": "a359acaf-1458-5519-94b0-d9cd56615181",
+   "findings": [
+    {
+     "item": 1,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Inversion is missing in the main clause after the subordinate clause. The finite verb 'har' must come before the subject 'medarbejderne'. Correct: 'Selvom projektet nærmer sig deadline, har medarbejderne ikke travlt.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "grammar"
+     ],
+     "problem": "Inversion is missing in the main clause after the subordinate clause. The finite verb 'havde' must come before the subject 'medarbejderne'. Correct: 'Selvom projektet nærmer sig deadline, havde medarbejderne ikke travlt.'",
+     "danish_ok": false,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+   "findings": [
+    {
+     "item": 1,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    },
+    {
+     "item": 2,
+     "ok": false,
+     "criteria": [
+      "ru"
+     ],
+     "problem": "Russian 'постараюсь' means 'I will try hard/endeavor', which is a different nuance from 'prøve' (to attempt/try). The Danish 'prøve' is neutral, and the English 'will try' is correctly neutral. A faithful Russian translation would be 'Я попробую бегать каждое утро' or 'Я буду пробовать бегать каждое утро'.",
+     "danish_ok": true,
+     "en": "",
+     "ru": "Я попробую бегать каждое утро."
+    },
+    {
+     "item": 3,
+     "ok": true,
+     "criteria": [],
+     "problem": "",
+     "danish_ok": true,
+     "en": "",
+     "ru": ""
+    }
+   ]
+  },
+  {
+   "lemma": "prøve",
+   "sense_id": "323912d0-d128-5819-b3df-587e30d23cec",
+   "repairs": [
+    {
+     "item": 2,
+     "before": {
+      "en": "I will try to go for a run every morning.",
+      "ru": "Я постараюсь бегать каждое утро."
+     },
+     "after": {
+      "en": "I will try to go for a run every morning.",
+      "ru": "Я попробую бегать каждое утро."
+     }
+    }
+   ]
+  }
+ ]
+}

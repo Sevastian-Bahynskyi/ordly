@@ -1,0 +1,316 @@
+[
+ {
+  "lemma": "arbejde",
+  "kind": "word",
+  "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 169,
+  "min_level": "A1",
+  "ru": "работать",
+  "en": "to work",
+  "forms": [
+   "arbejd",
+   "arbejde",
+   "arbejdede",
+   "arbejdedes",
+   "arbejdende",
+   "arbejder",
+   "arbejdes",
+   "arbejdet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "eksempel",
+  "kind": "word",
+  "sense_id": "da385b9b-f23a-5927-81a8-2436203b1d57",
+  "pos": "noun",
+  "gender": "et",
+  "freq_rank": 127,
+  "min_level": "A1",
+  "ru": "пример",
+  "en": "example",
+  "forms": [
+   "eksempel",
+   "eksempels",
+   "eksempler",
+   "eksemplerne",
+   "eksemplernes",
+   "eksemplers",
+   "eksemplet",
+   "eksemplets"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "noun-definite"
+  }
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "57c4736d-fc28-5a50-80a0-4fab80638de3",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 24,
+  "min_level": "A1",
+  "ru": "должен был, следовало",
+  "en": "should, to be supposed to",
+  "forms": [
+   "ska'",
+   "skal",
+   "sku'",
+   "skulle",
+   "skullede",
+   "skullet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "modal-verbs"
+  },
+  "note": "This sense means specifically \"should have / was supposed to\" (reported past obligation), not plain \"must\". Use \"skulle\" as the target in every variant — never \"skal\". Since the target form must stay the same, add a real varying slot (a different subject or obligation) for the 2+ variants, per rule 11. Also: whatever precedes {subject} in the frame (e.g. \"Ifølge den nye lov\") is a fronted phrase, not the subject — the verb ({target}, or an auxiliary right before it) must come immediately after it, BEFORE {subject}, per rule 10. \"Ifølge den nye lov {subject} {target} have...\" is wrong (subject before verb); \"Ifølge den nye lov {target} {subject} have...\" is correct (verb before subject)."
+ },
+ {
+  "lemma": "sag",
+  "kind": "word",
+  "sense_id": "d0b61aa1-5fce-5dff-b682-19dc043d5ec6",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 132,
+  "min_level": "A1",
+  "ru": "дело, вопрос",
+  "en": "matter, issue",
+  "forms": [
+   "sag",
+   "sagen",
+   "sagens",
+   "sager",
+   "sagerne",
+   "sagernes",
+   "sagers",
+   "sags"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "subordinate-clause"
+  },
+  "note": "Do not use the figurative \"stejl/stejlt\" (as in \"stejle fronter\" or \"stå stejlt over for hinanden\") anywhere in this family — Azure Translator mistranslates it literally (\"steeply\") into English and Russian, producing a faithful-sounding but wrong translation. Say the parties are entrenched or cannot agree using more literal, directly-translatable words (e.g. \"er dybt uenige\", \"ikke kan nå til enighed\", \"har modstridende interesser\"). Also: keep the target as \"sagen\" (singular) in every variant — the \"subordinate\" slot alone already gives 3 genuinely different variants. Do not also switch the target to \"sagerne\" (plural): the frame's fixed trailing text \"stadig uafklaret\" is the singular predicate-adjective form and does not become \"uafklarede\" for a plural subject, so a plural target here is a real Danish agreement error, not a safe extra variant."
+ },
+ {
+  "lemma": "blive",
+  "kind": "word",
+  "sense_id": "5b9cc201-f470-5c99-a94f-688385e37f36",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 16,
+  "min_level": "A1",
+  "ru": "вспомогательный глагол для образования пассивного залога",
+  "en": "be (helper verb forming the passive)",
+  "forms": [
+   "blev",
+   "blevede",
+   "blevet",
+   "bli'",
+   "bli'r",
+   "bliv",
+   "blive",
+   "blivende",
+   "bliver",
+   "blives"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "passive"
+  }
+ },
+ {
+  "lemma": "ringe",
+  "kind": "word",
+  "sense_id": "115f7996-b879-5f37-8846-522c524f6cd1",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 803,
+  "min_level": "A2",
+  "ru": "звонить (по телефону, в колокол)",
+  "en": "to call, to ring",
+  "forms": [
+   "ring",
+   "ringe",
+   "ringede",
+   "ringedes",
+   "ringende",
+   "ringer",
+   "ringes",
+   "ringet"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "verb-past"
+  },
+  "note": "Do not use \"linjen var optaget\" (line was busy) anywhere in this family — Azure Translator mistranslates \"optaget\" here as \"taken\"/\"принята\" instead of \"busy\"/\"занята\", a genuine mistranslation. Say the call did not succeed a different, more literally-translatable way (e.g. \"ingen svarede\", \"opkaldet blev ikke besvaret\", \"der var ingen, der tog telefonen\")."
+ },
+ {
+  "lemma": "klar",
+  "kind": "word",
+  "sense_id": "5b949f8d-483b-5daa-9fee-b75d5d424f52",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 161,
+  "min_level": "A1",
+  "ru": "ясный, чёткий",
+  "en": "clear (of sky, thought)",
+  "forms": [
+   "klar",
+   "klare",
+   "klarere",
+   "klarest",
+   "klareste",
+   "klart"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "adjective-meaning"
+  }
+ },
+ {
+  "lemma": "del",
+  "kind": "word",
+  "sense_id": "c3c84ddd-45b6-58c7-9c70-ac7818a34bbf",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 101,
+  "min_level": "A1",
+  "ru": "часть",
+  "en": "part",
+  "forms": [
+   "del",
+   "dele",
+   "delen",
+   "delene",
+   "delenes",
+   "delens",
+   "deles",
+   "dels"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "have",
+  "kind": "word",
+  "sense_id": "73f3b2ef-dd9d-5a4c-8b83-07ede8c469b7",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 10,
+  "min_level": "A1",
+  "ru": "вспомогательный глагол для образования перфекта",
+  "en": "have (helper verb forming the perfect)",
+  "forms": [
+   "ha'",
+   "haft",
+   "hafte",
+   "har",
+   "hav",
+   "havde",
+   "have",
+   "havende",
+   "haves"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "education",
+   "grammar": "verb-perfect"
+  }
+ },
+ {
+  "lemma": "gøre",
+  "kind": "word",
+  "sense_id": "95bfa9d5-c9aa-5109-bba7-9935aff138c4",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 51,
+  "min_level": "A1",
+  "ru": "поступать, действовать",
+  "en": "to act, to behave",
+  "forms": [
+   "gjorde",
+   "gjordes",
+   "gjort",
+   "gjorte",
+   "gør",
+   "gøre",
+   "gørende",
+   "gøres"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "abstract",
+   "grammar": "relative-clause"
+  }
+ },
+ {
+  "lemma": "regering",
+  "kind": "word",
+  "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 130,
+  "min_level": "A1",
+  "ru": "правительство",
+  "en": "government",
+  "forms": [
+   "regering",
+   "regeringen",
+   "regeringens",
+   "regeringer",
+   "regeringerne",
+   "regeringernes",
+   "regeringers",
+   "regerings"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "conjunctions"
+  },
+  "note": "A \"da\" clause describes a completed past event, so the main clause after it must be simple/past perfect, not present perfect — never write \"Da X skete, har Y ikke gjort Z\"; write \"Da X skete, havde Y endnu ikke gjort Z\" instead, or use a present-compatible conjunction like \"mens\" or \"eftersom\" if you want to keep \"har\"."
+ },
+ {
+  "lemma": "få",
+  "kind": "word",
+  "sense_id": "0b943f44-aba6-59aa-b914-89855a2c451b",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 30,
+  "min_level": "A1",
+  "ru": "получать",
+  "en": "to get, to receive",
+  "forms": [
+   "fik",
+   "få",
+   "fåede",
+   "fående",
+   "fået",
+   "får",
+   "fås"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "body-health",
+   "grammar": "verb-meaning"
+  }
+ }
+]

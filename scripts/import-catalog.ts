@@ -17,44 +17,21 @@
  * so a second import must mint the same id for the same meaning. A UUIDv5-style digest of the
  * lemma, kind and ordinal does that without a table to remember it by.
  */
-import { createHash } from 'node:crypto'
 import { execFile } from 'node:child_process'
-import { readFile, readdir } from 'node:fs/promises'
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
-import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
-import { catalogCleanupSql } from '../lib/catalog-import'
+import { catalogCleanupSql, catalogEntriesJsonSql, catalogSensesJsonSql, senseId, type CatalogEntryRow, type CatalogSenseRow } from '../lib/catalog-import'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
 import { literal, query } from './catalog-db'
 
 /** Rows per statement. Each carries its senses, so this stays well inside the payload limit. */
 const BATCH_SIZE = 250
 
-/** Namespace for the derived sense ids. Changing it re-mints every id, so it never changes. */
-const SENSE_NAMESPACE = 'ordly.word_catalog.sense'
-
 function valueAfter(argv: string[], flag: string): string | null {
   const at = argv.indexOf(flag)
   return at >= 0 && at + 1 < argv.length ? argv[at + 1] : null
-}
-
-/**
- * A stable uuid for one meaning of one entry.
- *
- * Derived from lemma, kind and ordinal — not from the meaning's text, because correcting a
- * translation must not strand the scheduling state attached to that meaning.
- */
-export function senseId(lemma: string, kind: string, ordinal: number): string {
-  const digest = createHash('sha1').update(`${SENSE_NAMESPACE}:${lemma}:${kind}:${ordinal}`).digest('hex')
-  const variant = ((parseInt(digest.slice(16, 18), 16) & 0x3f) | 0x80).toString(16)
-  return [
-    digest.slice(0, 8),
-    digest.slice(8, 12),
-    `5${digest.slice(13, 16)}`,
-    `${variant}${digest.slice(18, 20)}`,
-    digest.slice(20, 32),
-  ].join('-')
 }
 
 function sqlText(value: string | null): string {
@@ -88,17 +65,19 @@ async function readRejected(path: string): Promise<Set<string>> {
   }
 }
 
+/**
+ * The recording key for each catalog row, from the Azure Speech manifest
+ * (`scripts/synthesize-audio.ts`). Only clips the manifest records as uploaded are used, so a row
+ * never points at an object that is not in the bucket.
+ */
 async function readAudio(path: string): Promise<Map<string, string>> {
   try {
-    const manifest = JSON.parse(await readFile(path, 'utf8')) as { batches?: Record<string, { files?: Record<string, string> }> }
+    const manifest = JSON.parse(await readFile(path, 'utf8')) as { uses?: Record<string, string[]>; clips?: Record<string, { key: string; uploaded?: boolean }> }
     const audio = new Map<string, string>()
-    for (const batch of Object.values(manifest.batches || {})) {
-      // The bucket key, not the local path: storage keys are ASCII and Danish is not, so the
-      // uploader stores `adfærd.mp3` under a transliterated slug plus a digest of the lemma.
-      // Both sides derive it the same way rather than passing a map around.
-      for (const lemma of Object.keys(batch.files || {})) {
-        audio.set(lemma, audioObjectKey(lemma, createHash('sha1').update(lemma).digest('hex')))
-      }
+    for (const [text, uses] of Object.entries(manifest.uses || {})) {
+      const clip = manifest.clips?.[text]
+      if (!clip?.uploaded) continue
+      for (const use of uses) audio.set(use, clip.key)
     }
     return audio
   } catch (error) {
@@ -160,7 +139,7 @@ async function main(): Promise<void> {
   const factsPath = valueAfter(argv, '--facts') || 'catalog/facts.jsonl'
   const outDir = valueAfter(argv, '--out') || 'catalog/out'
   const reviewPath = valueAfter(argv, '--needs-review') || 'catalog/needs_review.jsonl'
-  const audioPath = valueAfter(argv, '--audio-manifest') || 'catalog/audio-manifest.json'
+  const audioPath = valueAfter(argv, '--audio-manifest') || 'catalog/speech/manifest.json'
   const generator = valueAfter(argv, '--generator') || 'chatgpt+claude-sonnet-5, 2026-09'
 
   const facts = await readFacts(factsPath)
@@ -178,7 +157,7 @@ async function main(): Promise<void> {
       const key = `${value.lemma}:${value.kind}`
       if (seen.has(key)) continue
       seen.add(key)
-      entries.push({ fact, row: value, audioPath: audio.get(value.lemma) ?? null })
+      entries.push({ fact, row: value, audioPath: audio.get(`${value.lemma}|${value.kind}`) ?? null })
     }
   }
 
@@ -188,6 +167,33 @@ async function main(): Promise<void> {
   console.log(`${withAudio.toLocaleString('en-US')} carry a recording · ${rejected.size} rejected rows left out`)
   if (dryRun) {
     console.log('\nDry run: nothing written.')
+    return
+  }
+
+  // `--sql-dir` writes the upserts as JSON-payload statement files instead of running them, for a
+  // session with no linked CLI. It is additive only: an expansion directory is not the whole
+  // catalog, so the snapshot synchronization below (which deletes whatever the snapshot lacks)
+  // never runs there, and neither does the paradigm sync (`scripts/catalog-paradigms-sql.ts`).
+  const sqlDir = valueAfter(argv, '--sql-dir')
+  if (sqlDir) {
+    const entryRows: CatalogEntryRow[] = entries.map(({ fact, row, audioPath }) => ({
+      lemma: fact.lemma, kind: fact.kind, freq_rank: fact.freq_rank, pos: fact.pos, gender: fact.gender,
+      definite_singular: fact.definite_singular, indefinite_plural: fact.indefinite_plural, ipa: fact.ipa,
+      ipa_source: fact.ipa ? fact.ipa_source ?? null : null, pronunciation: row.pronunciation, audio_path: audioPath,
+      example_sentence: row.senses[0].example, example_translation: row.senses[0].example_translation, generator,
+    }))
+    const senseRows: CatalogSenseRow[] = entries.flatMap(({ fact, row }) => row.senses.map((sense) => ({
+      lemma: fact.lemma, kind: fact.kind, sense_id: senseId(fact.lemma, fact.kind, sense.ordinal), ordinal: sense.ordinal, lang: 'ru',
+      text: sense.text, pos: sense.pos, gender: sense.gender,
+      // The primary sense's example lives on the entry (D10).
+      example: sense.ordinal === 1 ? null : sense.example, example_translation: sense.ordinal === 1 ? null : sense.example_translation,
+    })))
+    const statements: string[] = []
+    for (let start = 0; start < entryRows.length; start += BATCH_SIZE) statements.push(catalogEntriesJsonSql(entryRows.slice(start, start + BATCH_SIZE)))
+    for (let start = 0; start < senseRows.length; start += BATCH_SIZE) statements.push(catalogSensesJsonSql(senseRows.slice(start, start + BATCH_SIZE)))
+    await mkdir(sqlDir, { recursive: true })
+    for (const [index, statement] of statements.entries()) await writeFile(join(sqlDir, `catalog-${String(index + 1).padStart(4, '0')}.sql`), `${statement};\n`)
+    console.log(`Wrote ${statements.length} additive statements to ${sqlDir}; no snapshot synchronization.`)
     return
   }
 

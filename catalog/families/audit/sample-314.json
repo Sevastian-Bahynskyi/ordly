@@ -1,0 +1,186 @@
+[
+ {
+  "id": "7f2d0965-523c-52c7-aa37-84b08f673e3d",
+  "family_id": "6d77b319-2dd9-5530-9017-d7ac25f212f0",
+  "lemma": "bil",
+  "sense": {
+   "ru": "машина, автомобиль",
+   "en": "car"
+  },
+  "level": "A1",
+  "situation": "transport",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "Der holder mange {target} på {location}.",
+  "variant": {
+   "id": "7f2d0965-523c-52c7-aa37-84b08f673e3d",
+   "version": "0a99b9f8a5087e23",
+   "danish": "Der holder mange biler på parkeringspladsen.",
+   "target": "biler",
+   "en": "There are many cars in the parking lot.",
+   "ru": "На парковке много машин.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bc03e12b-b2d4-5cb3-ba05-3840c7db056f",
+  "family_id": "5b6ce685-45f7-5e75-9532-2448d75c29d9",
+  "lemma": "køre",
+  "sense": {
+   "ru": "ехать",
+   "en": "to drive, to go (by vehicle)"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "verb-present",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "Hver morgen {target} {subject} til arbejde, men i dag {verb} {pronoun} cyklen.",
+  "variant": {
+   "id": "bc03e12b-b2d4-5cb3-ba05-3840c7db056f",
+   "version": "4877a8c1a18e98f3",
+   "danish": "Hver morgen kører min nabo til arbejde, men i dag tager hun cyklen.",
+   "target": "kører",
+   "en": "Every morning my neighbor drives to work, but today she takes the bike.",
+   "ru": "Каждое утро соседка едет на работу, но сегодня она берёт велосипед.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "ce506958-941c-500b-a9ba-7f567375fe8f",
+  "family_id": "7a37a3e8-3526-5f31-a1f9-bd82a90d52d0",
+  "lemma": "hvilken",
+  "sense": {
+   "ru": "какой, который",
+   "en": "which, what"
+  },
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "{target} {noun} foretrækker du?",
+  "variant": {
+   "id": "ce506958-941c-500b-a9ba-7f567375fe8f",
+   "version": "4f0f2448e3257e2a",
+   "danish": "Hvilken farve foretrækker du?",
+   "target": "hvilken",
+   "en": "Which color do you prefer?",
+   "ru": "Какой цвет вы предпочитаете?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "83fbbf28-9cb5-5bc1-8daf-9e1915d7256a",
+  "family_id": "1ac9a9c4-b164-5b4d-95d4-de0eefdaf6d2",
+  "lemma": "læse",
+  "sense": {
+   "ru": "читать",
+   "en": "to read"
+  },
+  "level": "B1",
+  "situation": "education",
+  "grammar": "verb-perfect",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "Inden timen begyndte, {subject} allerede {target} hele kapitlet.",
+  "variant": {
+   "id": "83fbbf28-9cb5-5bc1-8daf-9e1915d7256a",
+   "version": "a152c3df485bd78c",
+   "danish": "Inden timen begyndte, havde jeg allerede læst hele kapitlet.",
+   "target": "læst",
+   "en": "Before class began, I had already read the entire chapter.",
+   "ru": "До начала урока я уже прочитал всю главу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "072ab08d-66ac-5cc0-8dee-43de9719a9ed",
+  "family_id": "fe9dfed1-8bd5-5ff3-bc82-99ca518875f0",
+  "lemma": "hvem",
+  "sense": {
+   "ru": "кто",
+   "en": "who"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "questions",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "{target} har ansvaret for {task}?",
+  "variant": {
+   "id": "072ab08d-66ac-5cc0-8dee-43de9719a9ed",
+   "version": "9cb89b15245d4c0e",
+   "danish": "Hvem har ansvaret for at indkalde til mødet?",
+   "target": "hvem",
+   "en": "Who is responsible for convening the meeting?",
+   "ru": "Кто отвечает за созыв собрания?",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "cce56270-524e-5f04-b673-3b60208b7b65",
+  "family_id": "389373ec-4971-561a-bcbb-228e833e5623",
+  "lemma": "kamp",
+  "sense": {
+   "ru": "борьба, сражение",
+   "en": "battle, fight"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "{subject} {target} mod {modstander}.",
+  "variant": {
+   "id": "cce56270-524e-5f04-b673-3b60208b7b65",
+   "version": "ebdb1b8e5bd9fe4f",
+   "danish": "Regeringen lovede en kompromisløs kamp mod klimaforandringerne.",
+   "target": "kamp",
+   "en": "The government promised an uncompromising fight against climate change.",
+   "ru": "Правительство обещало бескомпромиссную борьбу с изменением климата.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ebe753b3-97c7-5f13-ba60-2f8f57ddf851",
+  "family_id": "ae126577-adbb-50cf-8abd-ff5dc017eb0b",
+  "lemma": "land",
+  "sense": {
+   "ru": "страна",
+   "en": "country"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "noun-plural",
+  "source": "catalog",
+  "batch": "batch-0109.json",
+  "frame": "Flere europæiske {target} har indført en ny afgift på {material}.",
+  "variant": {
+   "id": "ebe753b3-97c7-5f13-ba60-2f8f57ddf851",
+   "version": "37f1dbcf9cdda333",
+   "danish": "Flere europæiske lande har indført en ny afgift på engangsemballage.",
+   "target": "lande",
+   "en": "Several European countries have introduced a new tax on single-use packaging.",
+   "ru": "Несколько европейских стран ввели новый налог на одноразовую упаковку.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ }
+]

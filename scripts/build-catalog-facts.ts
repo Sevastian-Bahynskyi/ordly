@@ -33,7 +33,7 @@ import { buildCatalogFact, catalogHeadword, resolvePartOfSpeech } from '../lib/c
 import { parseKaikkiLine, selectCatalogIpa, type WiktionaryIpa } from '../lib/catalog-ipa'
 import { parseRanking, type RankedLemma } from '../lib/catalog-ranking'
 import { corLookupForm, parseCorForms, type CorForm } from '../lib/cor'
-import { literal, queryJson } from './catalog-db'
+import { corRowsFor } from './catalog-db'
 
 /** Lemmas per COR query. Each one rides in the statement, so this keeps the SQL a sane size. */
 const COR_CHUNK = 400
@@ -79,10 +79,7 @@ async function readCorRows(lemmas: readonly string[], column: 'form' | 'lemma'):
   const rows = new Map<string, CorForm[]>()
   for (let start = 0; start < lemmas.length; start += COR_CHUNK) {
     const chunk = lemmas.slice(start, start + COR_CHUNK)
-    const values = chunk.map((lemma) => literal(lemma)).join(', ')
-    const found = await queryJson<unknown>(
-      `select form, lemma, tag from cor_form where ${column} in (${values})`,
-    )
+    const found = await corRowsFor(chunk, column)
     for (const row of parseCorForms(found)) {
       const key = row[column]
       const existing = rows.get(key)
@@ -116,7 +113,7 @@ async function main(): Promise<void> {
   const rankingPath = valueAfter(argv, '--ranking')
   const ipaPath = valueAfter(argv, '--ipa')
   const ddoIpaPath = valueAfter(argv, '--ddo-ipa')
-  if (!rankingPath || !ipaPath) throw new Error('Required: --ranking <frequency list> --ipa <kaikki jsonl>')
+  if (!rankingPath) throw new Error('Required: --ranking <frequency list> [--ipa <kaikki jsonl>]')
   const rawLimit = valueAfter(argv, '--limit')
   const limit = rawLimit === null ? 10000 : Number(rawLimit)
   if (!Number.isInteger(limit) || limit < 1) throw new Error('--limit must be a positive integer')
@@ -127,8 +124,9 @@ async function main(): Promise<void> {
   const phrases = await readPhrases(valueAfter(argv, '--phrases'))
 
   const wanted = new Set<string>([...ranking.map((entry) => entry.lemma), ...phrases])
-  console.log(`Reading IPA for ${wanted.size.toLocaleString('en-US')} entries from ${ipaPath} …`)
-  const ipaIndex = await readIpaIndex(ipaPath, wanted)
+  // Without the Wiktionary extract every IPA is null, and so, by rule, is every pronunciation.
+  if (ipaPath) console.log(`Reading IPA for ${wanted.size.toLocaleString('en-US')} entries from ${ipaPath} …`)
+  const ipaIndex = ipaPath ? await readIpaIndex(ipaPath, wanted) : new Map<string, WiktionaryIpa[]>()
   // DDO is the dictionary that defines Danish pronunciation, and its transcription came from the
   // article the audio run had already matched by headword and part of speech. Where it has an
   // answer it is preferred; Wiktionary fills the rest.

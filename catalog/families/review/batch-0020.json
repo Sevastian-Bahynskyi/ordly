@@ -1,0 +1,227 @@
+[
+  {
+    "sense_id": "1a21c798-88c4-5114-9f40-e47c9eeead86",
+    "lemma": "april",
+    "changes": [
+      "ru: в отпуске → у нас отпуск (natural Russian)",
+      "orders +fronted I april"
+    ]
+  },
+  {
+    "sense_id": "25312888-640e-5a87-9a3e-4a99bb2f53ec",
+    "lemma": "stilling",
+    "changes": [
+      "accepted +post +position"
+    ]
+  },
+  {
+    "sense_id": "5ab814ab-96f1-5a92-91ba-abfe495e956b",
+    "lemma": "stilling",
+    "changes": [
+      "rewritten: 'Holdet er i en god stilling' is unidiomatic and does not select the sense; now a board-game position (Efter ti træk har … en stærk stilling på brættet)",
+      "level A2 → B1",
+      "accepted position"
+    ]
+  },
+  {
+    "sense_id": "5efb5393-0074-59fb-9d91-dd0077464d53",
+    "lemma": "trods",
+    "changes": [
+      "orders +fronted Trods regnen"
+    ]
+  },
+  {
+    "sense_id": "7cbc8f44-3d28-564f-9be7-387af8765cf1",
+    "lemma": "trods",
+    "changes": [
+      "accepted +stædighed (from ru упрямства)"
+    ]
+  },
+  {
+    "sense_id": "80817e04-512b-5292-95bf-63d99c1eb0f3",
+    "lemma": "forskel",
+    "changes": [
+      "slots: houses/sisters → jackets/phones to fit shopping; 'prisen på de to produkter' (double på) → 'priserne i de to butikker'",
+      "translations updated"
+    ]
+  },
+  {
+    "sense_id": "adac19f3-fb8e-59c2-9de8-da1eb9b30be7",
+    "lemma": "oktober",
+    "changes": [
+      "blev født → er født (idiomatic for living people)"
+    ]
+  },
+  {
+    "sense_id": "bce3f3fa-afc1-5f0f-8f0e-8145b2398f4c",
+    "lemma": "indgå",
+    "changes": [
+      "present indgår → perfect har indgået (bare present 'enters into' reads unnaturally)",
+      "accepted +sluttet"
+    ]
+  },
+  {
+    "sense_id": "b746d4b0-290e-50f0-9132-7dfa15bb72fa",
+    "lemma": "egentlig",
+    "changes": [
+      "orders +fronted Egentlig"
+    ]
+  },
+  {
+    "sense_id": "17fb9932-3cd0-5baf-b4bc-89281f54547b",
+    "lemma": "egentlig",
+    "changes": [
+      "rewritten: 'den egentlige grund/årsag/løsning' admitted more than 4 answers (sande, virkelige, reelle, rigtige, faktiske); now 'Det egentlige arbejde begynder først …'",
+      "accepted rigtige, virkelige, faktiske",
+      "grammar adjective-agreement → adjective-meaning, situation abstract → work"
+    ]
+  },
+  {
+    "sense_id": "e4cac7b7-c2d3-50fd-90f7-08b3a8355c0f",
+    "lemma": "klare",
+    "changes": [
+      "klarer → klarede (present 'handles the exam' unnatural)",
+      "accepted +bestod",
+      "translations rewritten"
+    ]
+  },
+  {
+    "sense_id": "9b5b28fd-6668-503c-a9c8-e5d3d1574ebb",
+    "lemma": "klare",
+    "changes": [
+      "skip replaced by a family: the particle verb 'det klarer op' is the natural weather use and keeps its particle in the frame"
+    ]
+  },
+  {
+    "sense_id": "4d38a829-a2d2-55ca-ba03-f37cdbaa5d5b",
+    "lemma": "afgørende",
+    "changes": [
+      "en: decisive for → crucial to; ru: были решающими для → имели решающее значение для",
+      "accepted +altafgørende +udslagsgivende"
+    ]
+  },
+  {
+    "sense_id": "47da8a03-04e7-522a-b0e4-569f826365b7",
+    "lemma": "værk",
+    "changes": [
+      "'af komponisten' (unanchored definite) → 'af en dansk komponist'",
+      "subject Symfoniorkestret (near-duplicate) → Musikerne",
+      "accepted +stykke"
+    ]
+  },
+  {
+    "sense_id": "f863a220-482b-5a58-8dec-a09a17357e03",
+    "lemma": "værk",
+    "changes": [
+      "context: sore legs after a run is ømhed/ondt, not værk → recurring ache in the knees 'når det er koldt'",
+      "accepted +ondt",
+      "level A2 → B1"
+    ]
+  },
+  {
+    "sense_id": "41aac673-22ab-5de4-9692-d61bcd5922d0",
+    "lemma": "kigge",
+    "changes": [
+      "accepted +kikker (variant spelling)"
+    ]
+  },
+  {
+    "sense_id": "3bedca00-6772-5c42-8027-923221d25cc7",
+    "lemma": "fungere",
+    "changes": [
+      "accepted +kører (Bilen)"
+    ]
+  },
+  {
+    "sense_id": "1f129d31-ab9b-540d-81e8-c154309a4c19",
+    "lemma": "mærke",
+    "changes": [
+      "+stadig for a natural, complete statement",
+      "translations updated"
+    ]
+  },
+  {
+    "sense_id": "06a1db74-2789-5268-82be-64cb7a07dc30",
+    "lemma": "mærke",
+    "changes": [
+      "accepted +varemærke +brand"
+    ]
+  },
+  {
+    "sense_id": "90f4565c-bec4-5e70-8533-4e64c67f63f8",
+    "lemma": "jord",
+    "changes": [
+      "Videnskabsmænd → Forskere",
+      "slot vejret → livet (weather on Earth is odd)",
+      "accepted +kloden"
+    ]
+  },
+  {
+    "sense_id": "ecf0da85-6600-5b1f-b1e4-4e7a5c2c854b",
+    "lemma": "smuk",
+    "changes": [
+      "accepted +køn/kønt/kønne +pæn/pænt/pæne"
+    ]
+  },
+  {
+    "sense_id": "2ecc3a62-14d6-5031-bcd8-246774b316a2",
+    "lemma": "salg",
+    "changes": [
+      "rewritten: 'har salg' / 'распродажа' is the udsalg sense (and udsalg fits the gap); now 'Salget af … stiger om sommeren' = продажа",
+      "grammar noun-meaning → noun-definite",
+      "orders +Om sommeren"
+    ]
+  },
+  {
+    "sense_id": "d0e59022-41e0-596b-80d8-d60c0b8a6914",
+    "lemma": "unge",
+    "changes": [
+      "rewritten: Løven/Bjørnen translated as lioness/she-bear (added content) and fox/lion young also take hvalp; now birds feeding their unger in the nest"
+    ]
+  },
+  {
+    "sense_id": "12ad6bd6-1cd3-55e4-b5f6-205e5a3a3651",
+    "lemma": "unge",
+    "changes": [
+      "ru: сорванцов (added 'rascals') → ребятишек"
+    ]
+  },
+  {
+    "sense_id": "fadfa579-31de-5b19-8684-97390d1cc9e0",
+    "lemma": "oplysning",
+    "changes": [
+      "accepted +informationer"
+    ]
+  },
+  {
+    "sense_id": "f089ea85-3e51-5f4f-8c9b-3a8779fe0736",
+    "lemma": "myndighed",
+    "changes": [
+      "rewritten: 'har myndighed til at træffe beslutninger' admits more than 4 answers (magt, bemyndigelse, beføjelse(r), kompetence, fuldmagt); now 'misbrugte sin myndighed', where sin blocks plurals",
+      "accepted magt, autoritet"
+    ]
+  },
+  {
+    "sense_id": "9b8138ac-a386-5b73-b986-005a64f8c9ae",
+    "lemma": "minister",
+    "changes": [
+      "en: interviews → is interviewing (tonight)",
+      "orders +fronted I aften"
+    ]
+  },
+  {
+    "sense_id": "de1751cf-bf25-5369-ac20-0228721c5524",
+    "lemma": "bane",
+    "changes": [
+      "Raketten → Rumstationen (a rocket does not keep an orbit)",
+      "ru: фиксированной → постоянной"
+    ]
+  },
+  {
+    "sense_id": "a444e5ee-eb1c-5fbb-a560-01a9be50b118",
+    "lemma": "magt",
+    "changes": [
+      "en: holds the power → holds power"
+    ]
+  }
+]

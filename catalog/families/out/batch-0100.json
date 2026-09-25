@@ -1,0 +1,565 @@
+[
+ {
+  "lemma": "eksempel",
+  "kind": "word",
+  "sense_id": "da385b9b-f23a-5927-81a8-2436203b1d57",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "I forelæsningen illustrerede underviseren teorien med {target}.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "eksemplet",
+    "en": "In the lecture, the teacher illustrated the theory with the example.",
+    "ru": "В лекции преподаватель иллюстрировал теорию примером."
+   },
+   {
+    "slots": {},
+    "target": "eksemplerne",
+    "en": "In the lecture, the teacher illustrated the theory with the examples.",
+    "ru": "В лекции преподаватель иллюстрировал теорию примерами."
+   }
+  ]
+ },
+ {
+  "lemma": "have",
+  "kind": "word",
+  "sense_id": "73f3b2ef-dd9d-5a4c-8b83-07ede8c469b7",
+  "level": "B2",
+  "situation": "education",
+  "grammar": "verb-perfect",
+  "frame": "Eleven {target} allerede {verb} pensum, da eksamen blev aflyst.",
+  "slots": {
+   "verb": [
+    {
+     "da": "gennemgået"
+    },
+    {
+     "da": "læst"
+    },
+    {
+     "da": "forberedt sig på"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "verb": 0
+    },
+    "target": "havde",
+    "en": "The student had already gone through the syllabus when the exam was cancelled.",
+    "ru": "Студент уже прошёл учебную программу, когда экзамен отменили."
+   },
+   {
+    "slots": {
+     "verb": 1
+    },
+    "target": "havde",
+    "en": "The student had already read the syllabus when the exam was cancelled.",
+    "ru": "Студент уже прочитал учебную программу, когда экзамен отменили."
+   },
+   {
+    "slots": {
+     "verb": 2
+    },
+    "target": "havde",
+    "orders": [
+     "Allerede havde eleven forberedt sig på pensum, da eksamen blev aflyst."
+    ],
+    "en": "The student had already prepared for the syllabus when the exam was cancelled.",
+    "ru": "Студент уже подготовился к учебной программе, когда экзамен был отменён."
+   }
+  ]
+ },
+ {
+  "lemma": "gøre",
+  "kind": "word",
+  "sense_id": "95bfa9d5-c9aa-5109-bba7-9935aff138c4",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "relative-clause",
+  "frame": "Den måde, man {target} på, afspejler ofte ens indre værdier.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "gør",
+    "en": "The way you do it often reflects your inner values.",
+    "ru": "То, как вы это делаете, часто отражает ваши внутренние ценности."
+   },
+   {
+    "slots": {},
+    "target": "gjorde",
+    "en": "The way you did it often reflects your inner values.",
+    "ru": "То, как вы это сделали, часто отражает ваши внутренние ценности."
+   }
+  ]
+ },
+ {
+  "lemma": "få",
+  "kind": "word",
+  "sense_id": "0b943f44-aba6-59aa-b914-89855a2c451b",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "frame": "Patienten {target} en alvorlig diagnose efter undersøgelsen.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "fik",
+    "en": "The patient received a serious diagnosis after the examination.",
+    "ru": "После осмотра пациенту поставили серьёзный диагноз."
+   },
+   {
+    "slots": {},
+    "target": "får",
+    "en": "The patient receives a serious diagnosis after the examination.",
+    "ru": "После осмотра пациенту ставят серьёзный диагноз."
+   }
+  ]
+ },
+ {
+  "lemma": "blive",
+  "kind": "word",
+  "sense_id": "5b9cc201-f470-5c99-a94f-688385e37f36",
+  "level": "B2",
+  "situation": "body-health",
+  "grammar": "passive",
+  "frame": "Patienten {target} {participle} af en speciallæge.",
+  "slots": {
+   "participle": [
+    {
+     "da": "undersøgt"
+    },
+    {
+     "da": "opereret"
+    },
+    {
+     "da": "behandlet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "participle": 0
+    },
+    "target": "blev",
+    "en": "The patient was examined by a specialist.",
+    "ru": "Пациента осмотрел специалист."
+   },
+   {
+    "slots": {
+     "participle": 1
+    },
+    "target": "bliver",
+    "en": "The patient is operated on by a specialist.",
+    "ru": "Пациента оперирует специалист."
+   },
+   {
+    "slots": {
+     "participle": 2
+    },
+    "target": "blev",
+    "en": "The patient was treated by a specialist.",
+    "ru": "Пациента лечил специалист."
+   }
+  ]
+ },
+ {
+  "lemma": "arbejde",
+  "kind": "word",
+  "sense_id": "81e89b7a-8152-5f2f-aa6c-9c39f2e4b86d",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "verb-present",
+  "frame": "Min kollega {target} ofte hjemmefra, {reason}.",
+  "slots": {
+   "reason": [
+    {
+     "da": "fordi hun har små børn"
+    },
+    {
+     "da": "selvom kontoret ligger tæt på"
+    },
+    {
+     "da": "da hun foretrækker rolige omgivelser"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "reason": 0
+    },
+    "target": "arbejder",
+    "en": "My colleague often works from home because she has small children.",
+    "ru": "Моя коллега часто работает из дома, потому что у неё маленькие дети."
+   },
+   {
+    "slots": {
+     "reason": 1
+    },
+    "target": "arbejder",
+    "en": "My colleague often works from home, even though the office is close by.",
+    "ru": "Мой коллега часто работает из дома, хотя офис находится рядом."
+   },
+   {
+    "slots": {
+     "reason": 2
+    },
+    "target": "arbejder",
+    "en": "My colleague often works from home, as she prefers quiet surroundings.",
+    "ru": "Моя коллега часто работает из дома, так как предпочитает тихую обстановку."
+   }
+  ]
+ },
+ {
+  "lemma": "klar",
+  "kind": "word",
+  "sense_id": "5b949f8d-483b-5daa-9fee-b75d5d424f52",
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-meaning",
+  "frame": "Efter den lange diskussion stod det {target} for mig, at {subject}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "vi måtte ændre strategi"
+    },
+    {
+     "da": "projektet var dømt til at mislykkes"
+    },
+    {
+     "da": "han havde ret hele tiden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "klart",
+    "en": "After the long discussion, it was clear to me that we had to change our strategy.",
+    "ru": "После долгого обсуждения мне стало ясно, что нам нужно изменить стратегию."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "klart",
+    "en": "After the long discussion, it was clear to me that the project was doomed to failure.",
+    "ru": "После долгих обсуждений мне стало ясно, что проект обречён на провал."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "klart",
+    "en": "After the long discussion, it was clear to me that he was right all along.",
+    "ru": "После долгого обсуждения мне стало ясно, что он был прав с самого начала."
+   }
+  ]
+ },
+ {
+  "lemma": "del",
+  "kind": "word",
+  "sense_id": "c3c84ddd-45b6-58c7-9c70-ac7818a34bbf",
+  "level": "B2",
+  "situation": "work",
+  "grammar": "noun-plural",
+  "frame": "Flere {target} af {projektet} kræver en grundig gennemgang.",
+  "slots": {
+   "projektet": [
+    {
+     "da": "projektet"
+    },
+    {
+     "da": "rapporten"
+    },
+    {
+     "da": "budgettet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "projektet": 0
+    },
+    "target": "dele",
+    "en": "Several parts of the project require a thorough review.",
+    "ru": "Некоторые части проекта требуют тщательного рассмотрения."
+   },
+   {
+    "slots": {
+     "projektet": 1
+    },
+    "target": "dele",
+    "en": "Several parts of the report require a thorough review.",
+    "ru": "Несколько частей отчёта требуют тщательного рассмотрения."
+   },
+   {
+    "slots": {
+     "projektet": 2
+    },
+    "target": "dele",
+    "en": "Several parts of the budget require a thorough review.",
+    "ru": "Некоторые части бюджета требуют тщательного пересмотра."
+   }
+  ]
+ },
+ {
+  "lemma": "regering",
+  "kind": "word",
+  "sense_id": "71a25a53-cb0a-5f0b-99c4-b1d0dbcc4533",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "conjunctions",
+  "frame": "{subordinate}, fremlagde {target} alligevel en ny reform.",
+  "slots": {
+   "subordinate": [
+    {
+     "da": "Selvom forhandlingerne trak ud"
+    },
+    {
+     "da": "Da statsministeren trådte tilbage"
+    },
+    {
+     "da": "Eftersom oppositionen havde flertal"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subordinate": 0
+    },
+    "target": "regeringen",
+    "en": "Although the negotiations dragged on, the government nevertheless presented a new reform.",
+    "ru": "Хотя переговоры затянулись, правительство всё же представило новую реформу."
+   },
+   {
+    "slots": {
+     "subordinate": 1
+    },
+    "target": "regeringen",
+    "en": "When the Prime Minister resigned, the government nevertheless presented a new reform.",
+    "ru": "Когда премьер-министр ушёл в отставку, правительство тем не менее представило новую реформу."
+   },
+   {
+    "slots": {
+     "subordinate": 2
+    },
+    "target": "regeringen",
+    "en": "Since the opposition had a majority, the government nevertheless presented a new reform.",
+    "ru": "Поскольку оппозиция имела большинство, правительство тем не менее представило новую реформу."
+   },
+   {
+    "slots": {
+     "subordinate": 0
+    },
+    "target": "regeringerne",
+    "en": "Although the negotiations dragged on, the governments nevertheless presented a new reform.",
+    "ru": "Хотя переговоры затянулись, правительства тем не менее предложили новую реформу."
+   },
+   {
+    "slots": {
+     "subordinate": 1
+    },
+    "target": "regeringerne",
+    "en": "When the prime minister resigned, the governments nevertheless presented a new reform.",
+    "ru": "Когда премьер-министр ушёл в отставку, правительства тем не менее представили новую реформу."
+   },
+   {
+    "slots": {
+     "subordinate": 2
+    },
+    "target": "regeringerne",
+    "en": "Since the opposition had a majority, the governments nevertheless presented a new reform.",
+    "ru": "Поскольку оппозиция имела большинство, правительства тем не менее предложили новую реформу."
+   }
+  ]
+ },
+ {
+  "lemma": "ringe",
+  "kind": "word",
+  "sense_id": "115f7996-b879-5f37-8846-522c524f6cd1",
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "verb-past",
+  "frame": "Da {subject} {target} til kundeservice, {result}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "jeg"
+    },
+    {
+     "da": "min kollega"
+    },
+    {
+     "da": "vi"
+    }
+   ],
+   "result": [
+    {
+     "da": "blev opkaldet ikke besvaret"
+    },
+    {
+     "da": "var der ingen, der tog telefonen"
+    },
+    {
+     "da": "fik jeg en automatisk telefonsvarer"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "result": 0
+    },
+    "target": "ringede",
+    "en": "When I called customer service, the call was not answered.",
+    "ru": "Когда я звонил в службу поддержки, звонок не был принят."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "result": 1
+    },
+    "target": "ringede",
+    "en": "When my colleague called customer service, no one answered the phone.",
+    "ru": "Когда мой коллега позвонил в службу поддержки, никто не ответил на звонок."
+   },
+   {
+    "slots": {
+     "subject": 0,
+     "result": 1
+    },
+    "target": "ringede",
+    "en": "When I called customer service, no one answered the phone.",
+    "ru": "Когда я звонил в службу поддержки, никто не ответил."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "result": 0
+    },
+    "target": "ringede",
+    "en": "When my colleague called customer service, the call was not answered.",
+    "ru": "Когда мой коллега позвонил в службу поддержки, звонок не ответил."
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "result": 1
+    },
+    "target": "ringede",
+    "en": "When we called customer service, no one answered the phone.",
+    "ru": "Когда мы позвонили в службу поддержки, никто не ответил."
+   }
+  ]
+ },
+ {
+  "lemma": "sag",
+  "kind": "word",
+  "sense_id": "d0b61aa1-5fce-5dff-b682-19dc043d5ec6",
+  "level": "B2",
+  "situation": "abstract",
+  "grammar": "subordinate-clause",
+  "frame": "{subordinate}, er {target} stadig uafklaret.",
+  "slots": {
+   "subordinate": [
+    {
+     "da": "Selvom parterne har forhandlet i flere uger"
+    },
+    {
+     "da": "Da begge sider fastholder deres krav"
+    },
+    {
+     "da": "Skønt udvalget har afholdt adskillige møder"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subordinate": 0
+    },
+    "target": "sagen",
+    "en": "Although the parties have been negotiating for several weeks, the case is still unresolved.",
+    "ru": "Хотя стороны ведут переговоры уже несколько недель, дело до сих пор не решено."
+   },
+   {
+    "slots": {
+     "subordinate": 1
+    },
+    "target": "sagen",
+    "en": "As both sides maintain their claims, the matter is still unresolved.",
+    "ru": "Поскольку обе стороны настаивают на своих претензиях, вопрос остаётся нерешённым."
+   },
+   {
+    "slots": {
+     "subordinate": 2
+    },
+    "target": "sagen",
+    "en": "Although the committee has held several meetings, the matter remains unresolved.",
+    "ru": "Хотя комитет провёл несколько заседаний, вопрос остаётся нерешённым."
+   }
+  ]
+ },
+ {
+  "lemma": "skulle",
+  "kind": "word",
+  "sense_id": "57c4736d-fc28-5a50-80a0-4fab80638de3",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "modal-verbs",
+  "frame": "Ifølge den nye lov {target} {subject} have indberettet alle udenlandske transaktioner inden fristen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "bankerne"
+    },
+    {
+     "da": "alle finansielle institutter"
+    },
+    {
+     "da": "revisorerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "skulle",
+    "en": "According to the new law, banks had to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, банки должны были отчитываться обо всех иностранных операциях до установленного срока."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "skulle",
+    "en": "Under the new law, all financial institutions were required to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, все финансовые учреждения должны были отчитываться обо всех иностранных операциях в установленный срок."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "skulle",
+    "en": "According to the new law, the auditors were required to report all foreign transactions by the deadline.",
+    "ru": "Согласно новому закону, аудиторы должны были отчитываться обо всех зарубежных операциях в установленный срок."
+   }
+  ]
+ }
+]

@@ -1,0 +1,2305 @@
+[
+ {
+  "lemma": "retssag",
+  "kind": "word",
+  "sense_id": "95b4fd5b-0bad-55db-9fbf-b5e35c69e10b",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-definite",
+  "frame": "{subject} følger {target} i medierne.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hele landet"
+    },
+    {
+     "da": "Offentligheden"
+    },
+    {
+     "da": "Naboerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "retssagen",
+    "en": "The whole country is following the court case in the media.",
+    "ru": "Вся страна следит за судебным делом в СМИ.",
+    "orders": [],
+    "accepted": [
+     "sagen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "retssagen",
+    "en": "The public is following the court case in the media.",
+    "ru": "Общественность следит за судебным делом в СМИ.",
+    "orders": [],
+    "accepted": [
+     "sagen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "retssagen",
+    "en": "The neighbors are following the court case in the media.",
+    "ru": "Соседи следят за судебным делом в СМИ.",
+    "orders": [],
+    "accepted": [
+     "sagen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "vind",
+  "kind": "word",
+  "sense_id": "0d42f078-5bae-5190-a63f-ed9b1b1268df",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "noun-definite",
+  "frame": "{subject} beskytter huset mod {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hækken"
+    },
+    {
+     "da": "Muren"
+    },
+    {
+     "da": "Skoven"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "vinden",
+    "en": "The hedge protects the house from the wind.",
+    "ru": "Живая изгородь защищает дом от ветра.",
+    "orders": [],
+    "accepted": [
+     "blæsten"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "vinden",
+    "en": "The wall protects the house from the wind.",
+    "ru": "Стена защищает дом от ветра.",
+    "orders": [],
+    "accepted": [
+     "blæsten"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "vinden",
+    "en": "The forest protects the house from the wind.",
+    "ru": "Лес защищает дом от ветра.",
+    "orders": [],
+    "accepted": [
+     "blæsten"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "tildele",
+  "kind": "word",
+  "sense_id": "453379a6-fe6f-5361-a428-8cecb121c913",
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} hende prisen for årets bedste bog.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Juryen"
+    },
+    {
+     "da": "Komiteen"
+    },
+    {
+     "da": "Avisen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "tildelte",
+    "en": "The jury awarded her the prize for the year's best book.",
+    "ru": "Жюри присудило ей премию за лучшую книгу года.",
+    "orders": [],
+    "accepted": [
+     "gav"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "tildelte",
+    "en": "The committee awarded her the prize for the year's best book.",
+    "ru": "Комитет присудил ей премию за лучшую книгу года.",
+    "orders": [],
+    "accepted": [
+     "gav"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "tildelte",
+    "en": "The newspaper awarded her the prize for the year's best book.",
+    "ru": "Газета присудила ей премию за лучшую книгу года.",
+    "orders": [],
+    "accepted": [
+     "gav"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "afløse",
+  "kind": "word",
+  "sense_id": "3d742973-077e-507f-9548-2180bccce7a2",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} sin kollega klokken seks.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Sygeplejersken"
+    },
+    {
+     "da": "Min mor"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "afløser",
+    "en": "She relieves her colleague at six o'clock.",
+    "ru": "Она сменяет свою коллегу в шесть часов.",
+    "orders": [
+     "Klokken seks afløser hun sin kollega."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "afløser",
+    "en": "The nurse relieves her colleague at six o'clock.",
+    "ru": "Медсестра сменяет свою коллегу в шесть часов.",
+    "orders": [
+     "Klokken seks afløser sygeplejersken sin kollega."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "afløser",
+    "en": "My mother relieves her colleague at six o'clock.",
+    "ru": "Моя мама сменяет свою коллегу в шесть часов.",
+    "orders": [
+     "Klokken seks afløser min mor sin kollega."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "stadion",
+  "kind": "word",
+  "sense_id": "5a4342b9-eb69-5366-a6f0-f6590ea03321",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} spiller foran et fyldt {target} i aften.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Holdet"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Landsholdet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "stadion",
+    "en": "The team is playing in front of a full stadium tonight.",
+    "ru": "Сегодня вечером команда играет перед полным стадионом.",
+    "orders": [
+     "I aften spiller holdet foran et fyldt stadion."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "stadion",
+    "en": "We are playing in front of a full stadium tonight.",
+    "ru": "Сегодня вечером мы играем перед полным стадионом.",
+    "orders": [
+     "I aften spiller vi foran et fyldt stadion."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "stadion",
+    "en": "The national team is playing in front of a full stadium tonight.",
+    "ru": "Сегодня вечером сборная играет перед полным стадионом.",
+    "orders": [
+     "I aften spiller landsholdet foran et fyldt stadion."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "etnisk",
+  "kind": "word",
+  "sense_id": "75a824f4-f302-5e90-814a-09a2d1038d97",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} tilhører en {target} minoritet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Familien"
+    },
+    {
+     "da": "Kvinden"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "etnisk",
+    "en": "He belongs to an ethnic minority.",
+    "ru": "Он принадлежит к этническому меньшинству.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "etnisk",
+    "en": "The family belongs to an ethnic minority.",
+    "ru": "Семья принадлежит к этническому меньшинству.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "etnisk",
+    "en": "The woman belongs to an ethnic minority.",
+    "ru": "Женщина принадлежит к этническому меньшинству.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "bekendt",
+  "kind": "word",
+  "sense_id": "d26b39c4-3896-51c8-8e66-feed7ca816c2",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} skal være {target} med de nye regler.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hver medarbejder"
+    },
+    {
+     "da": "Enhver chauffør"
+    },
+    {
+     "da": "Læreren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bekendt",
+    "en": "Every employee must be familiar with the new rules.",
+    "ru": "Каждый сотрудник должен быть знаком с новыми правилами.",
+    "orders": [],
+    "accepted": [
+     "fortrolig"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bekendt",
+    "en": "Every driver must be familiar with the new rules.",
+    "ru": "Каждый водитель должен быть знаком с новыми правилами.",
+    "orders": [],
+    "accepted": [
+     "fortrolig"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bekendt",
+    "en": "The teacher must be familiar with the new rules.",
+    "ru": "Учитель должен быть знаком с новыми правилами.",
+    "orders": [],
+    "accepted": [
+     "fortrolig"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "mon",
+  "kind": "word",
+  "sense_id": "4de4d77d-2335-5b0e-8f65-45939913e891",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "sentence-adverbs",
+  "frame": "{target} {subject} kommer i dag?",
+  "slots": {
+   "subject": [
+    {
+     "da": "han"
+    },
+    {
+     "da": "hun"
+    },
+    {
+     "da": "de"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mon",
+    "en": "I wonder if he's coming today.",
+    "ru": "Интересно, придёт ли он сегодня.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mon",
+    "en": "I wonder if she's coming today.",
+    "ru": "Интересно, придёт ли она сегодня.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mon",
+    "en": "I wonder if they're coming today.",
+    "ru": "Интересно, придут ли они сегодня.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "desto",
+  "kind": "word",
+  "sense_id": "5f382578-5bd1-5d01-b3ec-ec419770387a",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "conjunctions",
+  "frame": "Jo mere du øver dig i {skill}, {target} bedre bliver du.",
+  "slots": {
+   "skill": [
+    {
+     "da": "dansk"
+    },
+    {
+     "da": "at tale dansk"
+    },
+    {
+     "da": "at skrive dansk"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "skill": 0
+    },
+    "target": "desto",
+    "en": "The more you practice Danish, the better you get.",
+    "ru": "Чем больше ты практикуешься в датском, тем лучше у тебя получается.",
+    "orders": [],
+    "accepted": [
+     "jo",
+     "des"
+    ]
+   },
+   {
+    "slots": {
+     "skill": 1
+    },
+    "target": "desto",
+    "en": "The more you practice speaking Danish, the better you get.",
+    "ru": "Чем больше ты тренируешься говорить по-датски, тем лучше у тебя получается.",
+    "orders": [],
+    "accepted": [
+     "jo",
+     "des"
+    ]
+   },
+   {
+    "slots": {
+     "skill": 2
+    },
+    "target": "desto",
+    "en": "The more you practice writing Danish, the better you get.",
+    "ru": "Чем больше ты тренируешься писать по-датски, тем лучше у тебя получается.",
+    "orders": [],
+    "accepted": [
+     "jo",
+     "des"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "hollandsk",
+  "kind": "word",
+  "sense_id": "a31c884c-1aed-5433-81d2-fbce73b48a78",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Cyklen"
+    },
+    {
+     "da": "Osten"
+    },
+    {
+     "da": "Skoene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "hollandsk",
+    "en": "The bicycle is Dutch.",
+    "ru": "Велосипед голландский.",
+    "orders": [],
+    "accepted": [
+     "nederlandsk"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "hollandsk",
+    "en": "The cheese is Dutch.",
+    "ru": "Сыр голландский.",
+    "orders": [],
+    "accepted": [
+     "nederlandsk"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "hollandske",
+    "en": "The shoes are Dutch.",
+    "ru": "Туфли голландские.",
+    "orders": [],
+    "accepted": [
+     "nederlandske"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "liga",
+  "kind": "word",
+  "sense_id": "55029d5d-f2ac-50b7-a250-4ddcc3ecaa8e",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{subject} vandt {target} sidste sæson.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Holdet"
+    },
+    {
+     "da": "Vores klub"
+    },
+    {
+     "da": "Byens hold"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "ligaen",
+    "en": "The team won the league last season.",
+    "ru": "Команда выиграла лигу в прошлом сезоне.",
+    "orders": [
+     "Sidste sæson vandt holdet ligaen."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "ligaen",
+    "en": "Our club won the league last season.",
+    "ru": "Наш клуб выиграл лигу в прошлом сезоне.",
+    "orders": [
+     "Sidste sæson vandt vores klub ligaen."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "ligaen",
+    "en": "The town's team won the league last season.",
+    "ru": "Городская команда выиграла лигу в прошлом сезоне.",
+    "orders": [
+     "Sidste sæson vandt byens hold ligaen."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "aktion",
+  "kind": "word",
+  "sense_id": "d44ed6ab-bbfc-56cd-b8b9-ebf5153006e8",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "Politiet indleder en stor {target} mod {crime}.",
+  "slots": {
+   "crime": [
+    {
+     "da": "narkohandel"
+    },
+    {
+     "da": "menneskehandel"
+    },
+    {
+     "da": "indbrud"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "crime": 0
+    },
+    "target": "aktion",
+    "en": "The police are launching a major operation against drug trafficking.",
+    "ru": "Полиция начинает крупную операцию против наркоторговли.",
+    "orders": [],
+    "accepted": [
+     "operation",
+     "indsats"
+    ]
+   },
+   {
+    "slots": {
+     "crime": 1
+    },
+    "target": "aktion",
+    "en": "The police are launching a major operation against human trafficking.",
+    "ru": "Полиция начинает крупную операцию против торговли людьми.",
+    "orders": [],
+    "accepted": [
+     "operation",
+     "indsats"
+    ]
+   },
+   {
+    "slots": {
+     "crime": 2
+    },
+    "target": "aktion",
+    "en": "The police are launching a major operation against burglary.",
+    "ru": "Полиция начинает крупную операцию против краж со взломом.",
+    "orders": [],
+    "accepted": [
+     "operation",
+     "indsats"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "opbygge",
+  "kind": "word",
+  "sense_id": "38ef638f-75a6-5651-891a-ed4f3d7d1db7",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "frame": "{subject} har {target} et godt forhold til kunderne.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Virksomheden"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Sælgeren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "opbygget",
+    "en": "The company has built up a good relationship with the customers.",
+    "ru": "Компания выстроила хорошие отношения с клиентами.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "opbygget",
+    "en": "We have built up a good relationship with the customers.",
+    "ru": "Мы выстроили хорошие отношения с клиентами.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "opbygget",
+    "en": "The salesperson has built up a good relationship with the customers.",
+    "ru": "Продавец выстроил хорошие отношения с клиентами.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fader",
+  "kind": "word",
+  "sense_id": "1ce1c862-4969-55a8-aafc-6e77d5651c20",
+  "level": "B1",
+  "situation": "family",
+  "grammar": "noun-plural",
+  "frame": "I dag tager mange {target} {what}.",
+  "slots": {
+   "what": [
+    {
+     "da": "barsel"
+    },
+    {
+     "da": "fri, når barnet er sygt"
+    },
+    {
+     "da": "sig tid til at lege med deres børn"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "what": 0
+    },
+    "target": "fædre",
+    "en": "Nowadays many fathers take parental leave.",
+    "ru": "Сегодня многие отцы берут отпуск по уходу за ребёнком.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "what": 1
+    },
+    "target": "fædre",
+    "en": "Nowadays many fathers take time off when the child is ill.",
+    "ru": "Сегодня многие отцы берут выходной, когда ребёнок болеет.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "what": 2
+    },
+    "target": "fædre",
+    "en": "Nowadays many fathers take the time to play with their children.",
+    "ru": "Сегодня многие отцы находят время поиграть со своими детьми.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "afslutning",
+  "kind": "word",
+  "sense_id": "8e796a4c-6fdd-504b-a269-2b2e92d145fb",
+  "level": "B1",
+  "situation": "education",
+  "grammar": "noun-definite",
+  "frame": "{subject} markerer {target} på kurset.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Festen"
+    },
+    {
+     "da": "Eksamen"
+    },
+    {
+     "da": "En fælles middag"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "afslutningen",
+    "en": "The party marks the end of the course.",
+    "ru": "Праздник знаменует завершение курса.",
+    "orders": [],
+    "accepted": [
+     "slutningen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "afslutningen",
+    "en": "The exam marks the end of the course.",
+    "ru": "Экзамен знаменует завершение курса.",
+    "orders": [],
+    "accepted": [
+     "slutningen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "afslutningen",
+    "en": "A shared dinner marks the end of the course.",
+    "ru": "Совместный ужин знаменует завершение курса.",
+    "orders": [],
+    "accepted": [
+     "slutningen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "skrue",
+  "kind": "word",
+  "sense_id": "9bc63b7c-46cd-5c46-bee9-8750a6dda225",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} låget {dir} glasset.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Jeg"
+    }
+   ],
+   "dir": [
+    {
+     "da": "af"
+    },
+    {
+     "da": "på"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "dir": 0
+    },
+    "target": "skruer",
+    "en": "She unscrews the lid from the jar.",
+    "ru": "Она откручивает крышку с банки.",
+    "orders": [],
+    "accepted": [
+     "drejer"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "dir": 1
+    },
+    "target": "skruer",
+    "en": "He screws the lid onto the jar.",
+    "ru": "Он закручивает крышку на банке.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "dir": 0
+    },
+    "target": "skruer",
+    "en": "I unscrew the lid from the jar.",
+    "ru": "Я откручиваю крышку с банки.",
+    "orders": [],
+    "accepted": [
+     "drejer"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "skrue",
+  "kind": "word",
+  "sense_id": "88750535-fd7b-5f33-a963-c9f75ddd4e7d",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "particle-verbs",
+  "frame": "{subject} {target} {dir} for {object}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
+   ],
+   "dir": [
+    {
+     "da": "op"
+    },
+    {
+     "da": "ned"
+    }
+   ],
+   "object": [
+    {
+     "da": "radioen"
+    },
+    {
+     "da": "varmen"
+    },
+    {
+     "da": "musikken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "dir": 0,
+     "object": 0
+    },
+    "target": "skruer",
+    "en": "He turns up the radio.",
+    "ru": "Он делает радио погромче.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "dir": 1,
+     "object": 1
+    },
+    "target": "skruer",
+    "en": "She turns down the heating.",
+    "ru": "Она убавляет отопление.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2,
+     "dir": 0,
+     "object": 2
+    },
+    "target": "skruer",
+    "en": "We turn up the music.",
+    "ru": "Мы делаем музыку погромче.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "skrue",
+  "kind": "word",
+  "sense_id": "82834749-635a-5452-bd01-7b039b33d85b",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "frame": "{subject} strammer {target} med en skruetrækker.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Tømreren"
+    },
+    {
+     "da": "Jeg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "skruen",
+    "en": "He tightens the screw with a screwdriver.",
+    "ru": "Он затягивает винт отвёрткой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "skruen",
+    "en": "The carpenter tightens the screw with a screwdriver.",
+    "ru": "Плотник затягивает винт отвёрткой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "skruen",
+    "en": "I tighten the screw with a screwdriver.",
+    "ru": "Я затягиваю винт отвёрткой.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "landskab",
+  "kind": "word",
+  "sense_id": "f2e7fbe0-0a64-5364-9d1b-7a513040b544",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} maler et smukt {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Kunstneren"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min bedstefar"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "landskab",
+    "en": "The artist paints a beautiful landscape.",
+    "ru": "Художник рисует красивый пейзаж.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "landskab",
+    "en": "She paints a beautiful landscape.",
+    "ru": "Она рисует красивый пейзаж.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "landskab",
+    "en": "My grandfather paints a beautiful landscape.",
+    "ru": "Мой дедушка рисует красивый пейзаж.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "forud",
+  "kind": "word",
+  "sense_id": "137226dd-1727-539b-bdb7-4b12a45a79ae",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "adverbs",
+  "frame": "{subject} betaler rejsen {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Kunderne"
+    },
+    {
+     "da": "Hun"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "forud",
+    "en": "We pay for the trip in advance.",
+    "ru": "Мы оплачиваем поездку заранее.",
+    "orders": [],
+    "accepted": [
+     "på forhånd",
+     "i forvejen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "forud",
+    "en": "The customers pay for the trip in advance.",
+    "ru": "Клиенты оплачивают поездку заранее.",
+    "orders": [],
+    "accepted": [
+     "på forhånd",
+     "i forvejen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "forud",
+    "en": "She pays for the trip in advance.",
+    "ru": "Она оплачивает поездку заранее.",
+    "orders": [],
+    "accepted": [
+     "på forhånd",
+     "i forvejen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "enhed",
+  "kind": "word",
+  "sense_id": "2b3d15f6-0cb1-55ed-8ba0-3f177ba10ba9",
+  "level": "B1",
+  "situation": "communication-media",
+  "grammar": "noun-plural",
+  "frame": "{subject} virker på alle dine {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Appen"
+    },
+    {
+     "da": "Programmet"
+    },
+    {
+     "da": "Tjenesten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "enheder",
+    "en": "The app works on all your devices.",
+    "ru": "Приложение работает на всех твоих устройствах.",
+    "orders": [],
+    "accepted": [
+     "apparater"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "enheder",
+    "en": "The program works on all your devices.",
+    "ru": "Программа работает на всех твоих устройствах.",
+    "orders": [],
+    "accepted": [
+     "apparater"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "enheder",
+    "en": "The service works on all your devices.",
+    "ru": "Сервис работает на всех твоих устройствах.",
+    "orders": [],
+    "accepted": [
+     "apparater"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "enhed",
+  "kind": "word",
+  "sense_id": "0a223d56-c742-5f7a-9210-b0c7203570a0",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} arbejder for national {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Partiet"
+    },
+    {
+     "da": "Regeringen"
+    },
+    {
+     "da": "Bevægelsen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "enhed",
+    "en": "The party works for national unity.",
+    "ru": "Партия стремится к национальному единству.",
+    "orders": [],
+    "accepted": [
+     "enighed"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "enhed",
+    "en": "The government works for national unity.",
+    "ru": "Правительство стремится к национальному единству.",
+    "orders": [],
+    "accepted": [
+     "enighed"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "enhed",
+    "en": "The movement works for national unity.",
+    "ru": "Движение стремится к национальному единству.",
+    "orders": [],
+    "accepted": [
+     "enighed"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "bilist",
+  "kind": "word",
+  "sense_id": "c84008d3-4ffb-51eb-99c6-811ac5565826",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "noun-plural",
+  "frame": "{subject} advarer {target} om glat føre.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Politiet"
+    },
+    {
+     "da": "Radioen"
+    },
+    {
+     "da": "Kommunen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bilisterne",
+    "en": "The police are warning motorists about slippery roads.",
+    "ru": "Полиция предупреждает автомобилистов о скользкой дороге.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bilisterne",
+    "en": "The radio is warning motorists about slippery roads.",
+    "ru": "Радио предупреждает автомобилистов о скользкой дороге.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bilisterne",
+    "en": "The municipality is warning motorists about slippery roads.",
+    "ru": "Муниципалитет предупреждает автомобилистов о скользкой дороге.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "smil",
+  "kind": "word",
+  "sense_id": "d4c9e207-7b90-5bda-a93f-847dea0d600e",
+  "level": "B1",
+  "situation": "social",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} hilser på alle med et stort {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Receptionisten"
+    },
+    {
+     "da": "Den nye nabo"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "smil",
+    "en": "She greets everyone with a big smile.",
+    "ru": "Она приветствует всех с широкой улыбкой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "smil",
+    "en": "The receptionist greets everyone with a big smile.",
+    "ru": "Администратор приветствует всех с широкой улыбкой.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "smil",
+    "en": "The new neighbor greets everyone with a big smile.",
+    "ru": "Новый сосед приветствует всех с широкой улыбкой.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "tænde",
+  "kind": "word",
+  "sense_id": "6f6ac23a-60f9-5304-a1e2-9cd30163d9d7",
+  "level": "B1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} lyset, når det bliver mørkt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Jeg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "tænder",
+    "en": "She turns on the light when it gets dark.",
+    "ru": "Она включает свет, когда темнеет.",
+    "orders": [
+     "Når det bliver mørkt, tænder hun lyset."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "tænder",
+    "en": "He turns on the light when it gets dark.",
+    "ru": "Он включает свет, когда темнеет.",
+    "orders": [
+     "Når det bliver mørkt, tænder han lyset."
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "tænder",
+    "en": "I turn on the light when it gets dark.",
+    "ru": "Я включаю свет, когда темнеет.",
+    "orders": [
+     "Når det bliver mørkt, tænder jeg lyset."
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "straf",
+  "kind": "word",
+  "sense_id": "891a7fb8-a875-5485-8af8-559533448668",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} idømmer ham en hård {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Dommeren"
+    },
+    {
+     "da": "Retten"
+    },
+    {
+     "da": "Byretten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "straf",
+    "en": "The judge imposes a harsh punishment on him.",
+    "ru": "Судья назначает ему суровое наказание.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "straf",
+    "en": "The court imposes a harsh punishment on him.",
+    "ru": "Суд назначает ему суровое наказание.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "straf",
+    "en": "The district court imposes a harsh punishment on him.",
+    "ru": "Городской суд назначает ему суровое наказание.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "stribe",
+  "kind": "word",
+  "sense_id": "d7a2e68a-fb76-5949-9b29-4bef42dcab58",
+  "level": "B1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} har en rød {target} på siden.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Bukserne"
+    },
+    {
+     "da": "Trøjen"
+    },
+    {
+     "da": "Jakken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "stribe",
+    "en": "The trousers have a red stripe on the side.",
+    "ru": "На брюках красная полоса сбоку.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "stribe",
+    "en": "The sweater has a red stripe on the side.",
+    "ru": "На свитере красная полоса сбоку.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "stribe",
+    "en": "The jacket has a red stripe on the side.",
+    "ru": "На куртке красная полоса сбоку.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "afsætte",
+  "kind": "word",
+  "sense_id": "6a9a1509-f3da-5da6-bd04-f1243f0d1dc4",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} tid til projektet hver uge.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Lederen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "afsætter",
+    "en": "He sets aside time for the project every week.",
+    "ru": "Он выделяет время на проект каждую неделю.",
+    "orders": [],
+    "accepted": [
+     "reserverer"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "afsætter",
+    "en": "We set aside time for the project every week.",
+    "ru": "Мы выделяем время на проект каждую неделю.",
+    "orders": [],
+    "accepted": [
+     "reserverer"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "afsætter",
+    "en": "The manager sets aside time for the project every week.",
+    "ru": "Руководитель выделяет время на проект каждую неделю.",
+    "orders": [],
+    "accepted": [
+     "reserverer"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "afsætte",
+  "kind": "word",
+  "sense_id": "8506dd48-d98c-56cf-b370-0dde1a9d6fff",
+  "level": "B2",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} præsidenten efter skandalen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Parlamentet"
+    },
+    {
+     "da": "Militæret"
+    },
+    {
+     "da": "Folket"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "afsatte",
+    "en": "Parliament deposed the president after the scandal.",
+    "ru": "Парламент сместил президента после скандала.",
+    "orders": [
+     "Efter skandalen afsatte parlamentet præsidenten."
+    ],
+    "accepted": [
+     "fjernede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "afsatte",
+    "en": "The military deposed the president after the scandal.",
+    "ru": "Военные сместили президента после скандала.",
+    "orders": [
+     "Efter skandalen afsatte militæret præsidenten."
+    ],
+    "accepted": [
+     "fjernede",
+     "styrtede"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "afsatte",
+    "en": "The people deposed the president after the scandal.",
+    "ru": "Народ сместил президента после скандала.",
+    "orders": [
+     "Efter skandalen afsatte folket præsidenten."
+    ],
+    "accepted": [
+     "fjernede",
+     "styrtede"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "biograf",
+  "kind": "word",
+  "sense_id": "effbb3e8-6b9f-59bf-ad9c-e799df64645b",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{subject} tager i {target} i aften.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "De unge"
+    },
+    {
+     "da": "Min veninde"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "biografen",
+    "en": "We are going to the cinema tonight.",
+    "ru": "Мы идём в кино сегодня вечером.",
+    "orders": [],
+    "accepted": [
+     "biffen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "biografen",
+    "en": "The young people are going to the cinema tonight.",
+    "ru": "Молодёжь идёт в кино сегодня вечером.",
+    "orders": [],
+    "accepted": [
+     "biffen"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "biografen",
+    "en": "My friend is going to the cinema tonight.",
+    "ru": "Моя подруга идёт в кино сегодня вечером.",
+    "orders": [],
+    "accepted": [
+     "biffen"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "formiddag",
+  "kind": "word",
+  "sense_id": "aa4f0af6-aed5-5318-bfce-417d753a9ec2",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{activity} i {target}, men efter frokost er jeg fri.",
+  "slots": {
+   "activity": [
+    {
+     "da": "Jeg har et møde"
+    },
+    {
+     "da": "Jeg arbejder hjemme"
+    },
+    {
+     "da": "Jeg holder et kursus"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "activity": 0
+    },
+    "target": "formiddag",
+    "en": "I have a meeting this morning, but after lunch I'm free.",
+    "ru": "Сегодня до обеда у меня встреча, но после обеда я свободен.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "activity": 1
+    },
+    "target": "formiddag",
+    "en": "I'm working from home this morning, but after lunch I'm free.",
+    "ru": "Сегодня до обеда я работаю из дома, но после обеда я свободен.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "activity": 2
+    },
+    "target": "formiddag",
+    "en": "I'm teaching a course this morning, but after lunch I'm free.",
+    "ru": "Сегодня до обеда я веду курс, но после обеда я свободен.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "ærlig",
+  "kind": "word",
+  "sense_id": "8bc006d3-ad59-50d4-b899-05a3838727c7",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Svaret"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "ærlig",
+    "en": "He is honest.",
+    "ru": "Он честный.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "ærligt",
+    "en": "The answer is honest.",
+    "ru": "Ответ честный.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "ærlige",
+    "en": "They are honest.",
+    "ru": "Они честные.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fremme",
+  "kind": "word",
+  "sense_id": "2feba617-86cd-5f59-a2cf-deea606b7ffc",
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "adverbs",
+  "frame": "{subject} er endelig {target} efter den lange rejse.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Toget"
+    },
+    {
+     "da": "Han"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fremme",
+    "en": "We have finally arrived after the long journey.",
+    "ru": "Мы наконец добрались до места после долгого путешествия.",
+    "orders": [
+     "Endelig er vi fremme efter den lange rejse."
+    ],
+    "accepted": [
+     "ankommet"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fremme",
+    "en": "The train has finally arrived after the long journey.",
+    "ru": "Поезд наконец прибыл на место после долгого пути.",
+    "orders": [
+     "Endelig er toget fremme efter den lange rejse."
+    ],
+    "accepted": [
+     "ankommet"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fremme",
+    "en": "He has finally arrived after the long journey.",
+    "ru": "Он наконец добрался до места после долгого путешествия.",
+    "orders": [
+     "Endelig er han fremme efter den lange rejse."
+    ],
+    "accepted": [
+     "ankommet"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "fremme",
+  "kind": "word",
+  "sense_id": "42116219-8635-59e4-9a8d-c40996049f89",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "verb-meaning",
+  "frame": "{subject} skal {target} ligestilling mellem kønnene.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Loven"
+    },
+    {
+     "da": "Kampagnen"
+    },
+    {
+     "da": "Skolen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fremme",
+    "en": "The law is meant to promote equality between the sexes.",
+    "ru": "Закон должен способствовать равноправию полов.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fremme",
+    "en": "The campaign is meant to promote equality between the sexes.",
+    "ru": "Кампания должна способствовать равноправию полов.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fremme",
+    "en": "The school is meant to promote equality between the sexes.",
+    "ru": "Школа должна способствовать равноправию полов.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "dans",
+  "kind": "word",
+  "sense_id": "b1d466f3-0fec-5cc7-b0b8-f9a1f84d1f9e",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} lærer en ny {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Parret"
+    },
+    {
+     "da": "Børnene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "dans",
+    "en": "She is learning a new dance.",
+    "ru": "Она учит новый танец.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "dans",
+    "en": "The couple is learning a new dance.",
+    "ru": "Пара учит новый танец.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "dans",
+    "en": "The children are learning a new dance.",
+    "ru": "Дети учат новый танец.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "overlæge",
+  "kind": "word",
+  "sense_id": "b9e1b4e7-e8bc-50cc-b1ac-f08b77e8e90e",
+  "level": "B1",
+  "situation": "body-health",
+  "grammar": "noun-definite",
+  "frame": "{subject} taler med {target} på hospitalet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Patienten"
+    },
+    {
+     "da": "Familien"
+    },
+    {
+     "da": "Sygeplejersken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "overlægen",
+    "en": "The patient talks with the senior consultant at the hospital.",
+    "ru": "Пациент разговаривает со старшим врачом в больнице.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "overlægen",
+    "en": "The family talks with the senior consultant at the hospital.",
+    "ru": "Семья разговаривает со старшим врачом в больнице.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "overlægen",
+    "en": "The nurse talks with the senior consultant at the hospital.",
+    "ru": "Медсестра разговаривает со старшим врачом в больнице.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "rytter",
+  "kind": "word",
+  "sense_id": "b7f1f647-ec17-5d90-91fe-b5eb576aad07",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} er en dygtig {target} og har sin egen hest.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "Pigen"
+    },
+    {
+     "da": "Min bror"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "rytter",
+    "en": "My sister is a skilled rider and has her own horse.",
+    "ru": "Моя сестра — умелая наездница, и у неё есть своя лошадь.",
+    "orders": [],
+    "accepted": [
+     "rytterske"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "rytter",
+    "en": "The girl is a skilled rider and has her own horse.",
+    "ru": "Девочка — умелая наездница, и у неё есть своя лошадь.",
+    "orders": [],
+    "accepted": [
+     "rytterske"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "rytter",
+    "en": "My brother is a skilled rider and has his own horse.",
+    "ru": "Мой брат — умелый наездник, и у него есть своя лошадь.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "rytter",
+  "kind": "word",
+  "sense_id": "d2f913de-099c-5dbd-9ee2-2412580c8e90",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} er den stærkeste {target} på cykelholdet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Den unge dansker"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "rytter",
+    "en": "He is the strongest rider on the cycling team.",
+    "ru": "Он самый сильный гонщик в велокоманде.",
+    "orders": [],
+    "accepted": [
+     "cyklist"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "rytter",
+    "en": "She is the strongest rider on the cycling team.",
+    "ru": "Она самая сильная гонщица в велокоманде.",
+    "orders": [],
+    "accepted": [
+     "cyklist"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "rytter",
+    "en": "The young Dane is the strongest rider on the cycling team.",
+    "ru": "Молодой датчанин — самый сильный гонщик в велокоманде.",
+    "orders": [],
+    "accepted": [
+     "cyklist"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "attraktiv",
+  "kind": "word",
+  "sense_id": "af7dd2bc-794f-5c62-866b-c15914a5c95a",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Stillingen"
+    },
+    {
+     "da": "Tilbuddet"
+    },
+    {
+     "da": "Vilkårene"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "attraktiv",
+    "en": "The position is attractive.",
+    "ru": "Должность привлекательна.",
+    "orders": [],
+    "accepted": [
+     "tiltrækkende"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "attraktivt",
+    "en": "The offer is attractive.",
+    "ru": "Предложение привлекательно.",
+    "orders": [],
+    "accepted": [
+     "tiltrækkende"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "attraktive",
+    "en": "The terms are attractive.",
+    "ru": "Условия привлекательны.",
+    "orders": [],
+    "accepted": [
+     "tiltrækkende"
+    ]
+   }
+  ]
+ },
+ {
+  "lemma": "foruden",
+  "kind": "word",
+  "sense_id": "1570a36f-b4b1-555c-803d-a40bc24bc7d4",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "prepositions-other",
+  "frame": "{target} kaffe drikker {subject} også te.",
+  "slots": {
+   "subject": [
+    {
+     "da": "hun"
+    },
+    {
+     "da": "han"
+    },
+    {
+     "da": "de"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "foruden",
+    "en": "Besides coffee, she also drinks tea.",
+    "ru": "Помимо кофе она также пьёт чай.",
+    "orders": [],
+    "accepted": [
+     "udover",
+     "ud over",
+     "ved siden af"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "foruden",
+    "en": "Besides coffee, he also drinks tea.",
+    "ru": "Помимо кофе он также пьёт чай.",
+    "orders": [],
+    "accepted": [
+     "udover",
+     "ud over",
+     "ved siden af"
+    ]
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "foruden",
+    "en": "Besides coffee, they also drink tea.",
+    "ru": "Помимо кофе они также пьют чай.",
+    "orders": [],
+    "accepted": [
+     "udover",
+     "ud over",
+     "ved siden af"
+    ]
+   }
+  ]
+ }
+]

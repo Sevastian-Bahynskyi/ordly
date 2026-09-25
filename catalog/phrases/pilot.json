@@ -1,0 +1,292 @@
+{
+ "note": "Phrase pilot (issue #16), 2026-09-25: 40 inventory units chosen by hand from the DeepSeek labels (catalog/phrases/classified.json) for the matrix cells still below threshold; phrases whose ordinary use splits around an object (holde det ud) were passed over because a gap is one contiguous span.",
+ "phrases": [
+  {
+   "phrase": "stå op",
+   "type": "particle-verb",
+   "level": "A1",
+   "cell": "particle-verbs",
+   "gloss_en": "get up"
+  },
+  {
+   "phrase": "vågne op",
+   "type": "particle-verb",
+   "level": "A2",
+   "cell": "particle-verbs",
+   "gloss_en": "to wake up"
+  },
+  {
+   "phrase": "give op",
+   "type": "particle-verb",
+   "level": "A2",
+   "cell": "particle-verbs",
+   "gloss_en": "give up"
+  },
+  {
+   "phrase": "finde ud af",
+   "type": "particle-verb",
+   "level": "A2",
+   "cell": "particle-verbs",
+   "gloss_en": "find out",
+   "note": "Two senses. 1: ru \"выяснять, узнавать\" / en \"to find out\" (a fact). 2: ru \"уметь, справляться (с чем-л.)\" / en \"to manage, to be able to\" — ability, so the example must contain \"kan (godt) finde ud af\", e.g. \"Min lillebror kan godt finde ud af at binde sine sko nu.\" A bare present \"finder ud af at\" reads as \"figures out how\" and was mistranslated as \"learns how\"."
+  },
+  {
+   "phrase": "rydde op",
+   "type": "particle-verb",
+   "level": "A2",
+   "cell": "particle-verbs",
+   "gloss_en": "to tidy up"
+  },
+  {
+   "phrase": "dukke op",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "turn up, appear",
+   "note": "Give ONE sense only: \"to turn up, to appear\" (ru \"появляться\"). \"всплывать\" as a separate sense was padding: the example showed the same meaning."
+  },
+  {
+   "phrase": "vokse op",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "grow up"
+  },
+  {
+   "phrase": "løbe tør for",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "run out of"
+  },
+  {
+   "phrase": "stikke af",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "run away, take off"
+  },
+  {
+   "phrase": "gå ud fra",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "assume"
+  },
+  {
+   "phrase": "gå ind for",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "support, advocate"
+  },
+  {
+   "phrase": "give efter",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "give in, yield",
+   "note": "Keep sense 1 (to give in, to yield to pressure: ru \"уступать, поддаваться\"). If you keep a physical sense, word it ru \"прогибаться, не выдерживать (о предмете)\" / en \"to give way\" with a natural example; otherwise give one sense."
+  },
+  {
+   "phrase": "se ned på",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "look down on"
+  },
+  {
+   "phrase": "komme ind på",
+   "type": "particle-verb",
+   "level": "B1",
+   "cell": "particle-verbs",
+   "gloss_en": "touch upon"
+  },
+  {
+   "phrase": "glæde sig til",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "cell": "reflexive",
+   "gloss_en": "look forward to"
+  },
+  {
+   "phrase": "skynde sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "cell": "reflexive",
+   "gloss_en": "hurry"
+  },
+  {
+   "phrase": "kede sig",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "cell": "reflexive",
+   "gloss_en": "be bored"
+  },
+  {
+   "phrase": "vænne sig til",
+   "type": "reflexive-verb",
+   "level": "A2",
+   "cell": "reflexive",
+   "gloss_en": "get used to"
+  },
+  {
+   "phrase": "tage sig af",
+   "type": "reflexive-verb",
+   "level": "B1",
+   "cell": "reflexive",
+   "gloss_en": "take care of"
+  },
+  {
+   "phrase": "falde i søvn",
+   "type": "idiom",
+   "level": "A2",
+   "cell": "fixed-expressions",
+   "gloss_en": "fall asleep"
+  },
+  {
+   "phrase": "tage fejl",
+   "type": "idiom",
+   "level": "A2",
+   "cell": "fixed-expressions",
+   "gloss_en": "be wrong",
+   "note": "One sense: ru \"ошибаться\" / en \"to be wrong, to be mistaken\". Write an everyday exchange where someone is simply wrong about a fact, e.g. \"Du tager fejl, mødet er i morgen.\" Keep \"tage fejl\" without \"af\"."
+  },
+  {
+   "phrase": "have lyst til",
+   "type": "collocation",
+   "level": "A2",
+   "cell": "fixed-expressions",
+   "gloss_en": "feel like",
+   "note": "Word the meaning as ru \"хотеть, хотеться (чего-л.)\" / en \"to feel like, to want\" — it combines with a noun or with \"at\" + infinitive; \"хотеть\"/\"to want to\" alone was too narrow."
+  },
+  {
+   "phrase": "lægge mærke til",
+   "type": "idiom",
+   "level": "A2",
+   "cell": "fixed-expressions",
+   "gloss_en": "to notice"
+  },
+  {
+   "phrase": "gå i opfyldelse",
+   "type": "idiom",
+   "level": "B2",
+   "cell": "fixed-expressions",
+   "gloss_en": "to come true"
+  },
+  {
+   "phrase": "tage for givet",
+   "type": "idiom",
+   "level": "B1",
+   "cell": "fixed-expressions",
+   "gloss_en": "take for granted"
+  },
+  {
+   "phrase": "have til hensigt",
+   "type": "collocation",
+   "level": "B2",
+   "cell": "fixed-expressions",
+   "gloss_en": "intend to"
+  },
+  {
+   "phrase": "finde sted",
+   "type": "idiom",
+   "level": "B1",
+   "cell": "fixed-expressions",
+   "gloss_en": "to take place"
+  },
+  {
+   "phrase": "i aftes",
+   "type": "time-expression",
+   "level": "A1",
+   "cell": "prepositions-time",
+   "gloss_en": "last night"
+  },
+  {
+   "phrase": "i lang tid",
+   "type": "time-expression",
+   "level": "A2",
+   "cell": "prepositions-time",
+   "gloss_en": "for a long time"
+  },
+  {
+   "phrase": "hele tiden",
+   "type": "time-expression",
+   "level": "A2",
+   "cell": "prepositions-time",
+   "gloss_en": "all the time"
+  },
+  {
+   "phrase": "i morgen tidlig",
+   "type": "time-expression",
+   "level": "A1",
+   "cell": "prepositions-time",
+   "gloss_en": "tomorrow morning"
+  },
+  {
+   "phrase": "heller ikke",
+   "type": "adverbial",
+   "level": "A1",
+   "cell": "negation",
+   "gloss_en": "neither"
+  },
+  {
+   "phrase": "være nødt til",
+   "type": "collocation",
+   "level": "A2",
+   "cell": "infinitive",
+   "gloss_en": "have to, must"
+  },
+  {
+   "phrase": "pleje at",
+   "type": "collocation",
+   "level": "A2",
+   "cell": "infinitive",
+   "gloss_en": "usually"
+  },
+  {
+   "phrase": "lade være med at",
+   "type": "collocation",
+   "level": "A2",
+   "cell": "infinitive",
+   "gloss_en": "refrain from"
+  },
+  {
+   "phrase": "uden for",
+   "type": "complex-preposition",
+   "level": "A2",
+   "cell": "prepositions-place",
+   "gloss_en": "outside"
+  },
+  {
+   "phrase": "oven på",
+   "type": "complex-preposition",
+   "level": "A2",
+   "cell": "prepositions-place",
+   "gloss_en": "on top of",
+   "note": "Give ONE sense only: the spatial preposition \"on top of\" (ru \"на, поверх\"). The second sense \"вдобавок к\" was wrong — \"oven på en lang dag\" means \"after\", not \"in addition to\"."
+  },
+  {
+   "phrase": "alle sammen",
+   "type": "adverbial",
+   "level": "A1",
+   "cell": "adverbs",
+   "gloss_en": "everyone, all together",
+   "note": "Meaning ru \"все (до одного), все мы/вы/они\" / en \"all (of us/you/them), everyone\". Use it where natives do: after the subject or verb (\"Vi kender den historie alle sammen.\"), or addressing a group (\"Tak for i dag, alle sammen.\"). Do not open a sentence with it as the bare subject."
+  },
+  {
+   "phrase": "på forhånd",
+   "type": "adverbial",
+   "level": "B1",
+   "cell": "adverbs",
+   "gloss_en": "in advance"
+  },
+  {
+   "phrase": "på grund af",
+   "type": "complex-preposition",
+   "level": "A2",
+   "cell": "prepositions-other",
+   "gloss_en": "because of"
+  }
+ ]
+}

@@ -1,0 +1,794 @@
+[
+ {
+  "id": "d1d2c9d7-f764-5c89-8268-b2524fa346d4",
+  "family_id": "e4403ab5-76cb-5b2f-9850-3688d26cf927",
+  "lemma": "heller ikke",
+  "sense": {
+   "ru": "тоже не",
+   "en": "neither"
+  },
+  "level": "A1",
+  "situation": "food-drink",
+  "grammar": "negation",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "{person} kan {target} lide {food}.",
+  "variant": {
+   "id": "d1d2c9d7-f764-5c89-8268-b2524fa346d4",
+   "version": "4e1b11bd4d1eff14",
+   "danish": "Min bror kan heller ikke lide kaffe.",
+   "target": "heller ikke",
+   "en": "My brother doesn't like coffee either.",
+   "ru": "Мой брат тоже не любит кофе.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "2b880fb1-4612-5d55-b846-135a2c948718",
+  "family_id": "43b6d1a7-2d9a-5a7d-9b65-cd034b844463",
+  "lemma": "falde i søvn",
+  "sense": {
+   "ru": "засыпать",
+   "en": "to fall asleep"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Jeg {target} foran fjernsynet.",
+  "variant": {
+   "id": "2b880fb1-4612-5d55-b846-135a2c948718",
+   "version": "0696ee15f0d671a4",
+   "danish": "Jeg falder i søvn foran fjernsynet.",
+   "target": "falder i søvn",
+   "en": "I fall asleep in front of the TV.",
+   "ru": "Я засыпаю перед телевизором.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "f0ad9655-8aec-52b2-b5d4-123e53d9c9b2",
+  "family_id": "f90c0cf6-b7eb-5fed-9314-5045c2e0cf5d",
+  "lemma": "rydde op",
+  "sense": {
+   "ru": "убирать",
+   "en": "to tidy up"
+  },
+  "level": "A2",
+  "situation": "home",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Jeg {target} hver lørdag.",
+  "variant": {
+   "id": "f0ad9655-8aec-52b2-b5d4-123e53d9c9b2",
+   "version": "e7d52c342e489704",
+   "danish": "Jeg ryddede op hver lørdag.",
+   "target": "ryddede op",
+   "en": "I cleaned up every Saturday.",
+   "ru": "Я убирал(а) каждую субботу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "5679381e-6bea-5b04-a09f-88daf5e42fb1",
+  "family_id": "31977096-c483-5c3c-b035-e08f2185cf48",
+  "lemma": "vågne op",
+  "sense": {
+   "ru": "просыпаться",
+   "en": "to wake up"
+  },
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Jeg {target} klokken {time}.",
+  "variant": {
+   "id": "5679381e-6bea-5b04-a09f-88daf5e42fb1",
+   "version": "6c2023173f815fd5",
+   "danish": "Jeg vågnede op klokken halv otte.",
+   "target": "vågnede op",
+   "en": "I woke up at half past seven.",
+   "ru": "Я проснулся в половине восьмого.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "b7d30c43-1f2a-5e3b-a919-fcb95743699c",
+  "family_id": "3b9e2d17-d00a-5848-be2f-e8d524be22c2",
+  "lemma": "i morgen tidlig",
+  "sense": {
+   "ru": "завтра утром",
+   "en": "tomorrow morning"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "{subject} {target}.",
+  "variant": {
+   "id": "b7d30c43-1f2a-5e3b-a919-fcb95743699c",
+   "version": "aef099527ad22465",
+   "danish": "Toget afgår i morgen tidlig.",
+   "target": "i morgen tidlig",
+   "en": "The train departs tomorrow morning.",
+   "ru": "Поезд отправляется завтра утром.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "8b7996d3-a278-510e-b8b3-71d67ed26931",
+  "family_id": "59393df2-5d28-5b10-8c74-2a8477b87efa",
+  "lemma": "tage fejl",
+  "sense": {
+   "ru": "ошибаться",
+   "en": "to be wrong"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Jeg tror, du {target}.",
+  "variant": {
+   "id": "8b7996d3-a278-510e-b8b3-71d67ed26931",
+   "version": "98aa5c033f77d440",
+   "danish": "Jeg tror, du tog fejl.",
+   "target": "tog fejl",
+   "en": "I think you were wrong.",
+   "ru": "Думаю, вы ошиблись.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "ea988007-7897-5a5b-bf89-ab62aedb6cf5",
+  "family_id": "fa1bee44-284a-5740-841d-e59aa3e99c2a",
+  "lemma": "skynde sig",
+  "sense": {
+   "ru": "торопиться",
+   "en": "to hurry up"
+  },
+  "level": "A2",
+  "situation": "transport",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Jeg {target} for at nå bussen.",
+  "variant": {
+   "id": "ea988007-7897-5a5b-bf89-ab62aedb6cf5",
+   "version": "cb3380af61af1332",
+   "danish": "Jeg skynder mig for at nå bussen.",
+   "target": "skynder mig",
+   "en": "I hurry to catch the bus.",
+   "ru": "Я спешу успеть на автобус.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "392ec175-c6b3-5755-9c6d-f4ccea9ce9bd",
+  "family_id": "f56e2c83-a3f3-55e8-a630-9dcb3fd19abf",
+  "lemma": "alle sammen",
+  "sense": {
+   "ru": "все (до одного)",
+   "en": "all (of us/you/them)"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "{subject} {verb} {target} til festen.",
+  "variant": {
+   "id": "392ec175-c6b3-5755-9c6d-f4ccea9ce9bd",
+   "version": "26bf01e157e9973d",
+   "danish": "Mine venner kommer alle sammen til festen.",
+   "target": "alle sammen",
+   "en": "My friends are all coming to the party.",
+   "ru": "Мои друзья все придут на вечеринку.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "45f48303-e4a7-5c8f-8eeb-deb12dc64750",
+  "family_id": "5d9a6ad2-fb47-5e0b-ae21-ad3eb966a344",
+  "lemma": "stå op",
+  "sense": {
+   "ru": "вставать",
+   "en": "to get up"
+  },
+  "level": "A2",
+  "situation": "daily-routine",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Jeg {target} klokken syv.",
+  "variant": {
+   "id": "45f48303-e4a7-5c8f-8eeb-deb12dc64750",
+   "version": "9ae1803114bf024c",
+   "danish": "Jeg står op klokken syv.",
+   "target": "står op",
+   "en": "I get up at seven.",
+   "ru": "Я встаю в семь.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "eca7f38a-dfea-5ab2-a489-8d5ba298b46d",
+  "family_id": "cfedd963-b1f1-5665-a25b-8776c64f8c91",
+  "lemma": "pleje at",
+  "sense": {
+   "ru": "иметь обыкновение",
+   "en": "to usually do"
+  },
+  "level": "A2",
+  "situation": "personal-info",
+  "grammar": "infinitive",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Jeg {target} {activity}.",
+  "variant": {
+   "id": "eca7f38a-dfea-5ab2-a489-8d5ba298b46d",
+   "version": "143b517cb44f4030",
+   "danish": "Jeg plejede at drikke kaffe efter frokost.",
+   "target": "plejede at",
+   "en": "I used to drink coffee after lunch.",
+   "ru": "Раньше я пил кофе после обеда.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "a2f09087-1fda-5ada-a685-7bfec0a93085",
+  "family_id": "4ba5fd8f-4058-549c-ba11-989b96edae25",
+  "lemma": "i aftes",
+  "sense": {
+   "ru": "вчера вечером",
+   "en": "last night"
+  },
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "{subject} {verb} {target}.",
+  "variant": {
+   "id": "a2f09087-1fda-5ada-a685-7bfec0a93085",
+   "version": "d041ab4fa0b86a10",
+   "danish": "Jeg så en film i aftes.",
+   "target": "i aftes",
+   "en": "I saw a movie last night.",
+   "ru": "Вчера вечером я смотрел фильм.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bda065b9-34e5-51f2-8e4c-fda39a8f0559",
+  "family_id": "beb3477b-05db-547b-8d79-86c6d266c99a",
+  "lemma": "finde ud af",
+  "sense": {
+   "ru": "выяснять, узнавать",
+   "en": "to find out"
+  },
+  "level": "A2",
+  "situation": "services",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Jeg {target} prisen på reparationen.",
+  "variant": {
+   "id": "bda065b9-34e5-51f2-8e4c-fda39a8f0559",
+   "version": "8e27a1a078255301",
+   "danish": "Jeg fandt ud af prisen på reparationen.",
+   "target": "fandt ud af",
+   "en": "I found out the price of the repair.",
+   "ru": "Я узнал стоимость ремонта.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "f22952ab-89b9-5d99-95b0-3214dd77e5e3",
+  "family_id": "ae77782d-624c-5747-a6a4-fbe8ba6a163c",
+  "lemma": "glæde sig til",
+  "sense": {
+   "ru": "ждать с нетерпением",
+   "en": "to look forward to"
+  },
+  "level": "A2",
+  "situation": "social",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "{subject} {target} weekenden.",
+  "variant": {
+   "id": "f22952ab-89b9-5d99-95b0-3214dd77e5e3",
+   "version": "c2b9c801a86909c1",
+   "danish": "Børnene glæder sig til weekenden.",
+   "target": "glæder sig til",
+   "en": "The children are looking forward to the weekend.",
+   "ru": "Дети с нетерпением ждут выходных.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "42c272ef-7737-5097-9d68-dc119a12781e",
+  "family_id": "276c961f-44ff-5512-86fb-5ad07f55cbc5",
+  "lemma": "kede sig",
+  "sense": {
+   "ru": "скучать",
+   "en": "to be bored"
+  },
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "{subject} {target} i biografen.",
+  "variant": {
+   "id": "42c272ef-7737-5097-9d68-dc119a12781e",
+   "version": "06879ded45d235d4",
+   "danish": "Min ven keder sig i biografen.",
+   "target": "keder sig",
+   "en": "My friend is bored at the movies.",
+   "ru": "Мой друг скучает в кино.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "096f20d3-a81e-5401-b5ba-c31869979271",
+  "family_id": "1c7c781e-1df7-5764-869d-5dc669f3ea06",
+  "lemma": "lægge mærke til",
+  "sense": {
+   "ru": "замечать",
+   "en": "to notice"
+  },
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Vi {target} en regnbue over marken.",
+  "variant": {
+   "id": "096f20d3-a81e-5401-b5ba-c31869979271",
+   "version": "6367120dde964027",
+   "danish": "Vi lægger mærke til en regnbue over marken.",
+   "target": "lægger mærke til",
+   "en": "We notice a rainbow over the field.",
+   "ru": "Мы замечаем радугу над полем.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "150b5188-64c8-509b-9cd4-57e3898ddd61",
+  "family_id": "7baef327-504b-53fd-a012-32c592a9d533",
+  "lemma": "løbe tør for",
+  "sense": {
+   "ru": "исчерпать запасы",
+   "en": "to run out of"
+  },
+  "level": "B1",
+  "situation": "services",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Vi {target} {resource}.",
+  "variant": {
+   "id": "150b5188-64c8-509b-9cd4-57e3898ddd61",
+   "version": "f6eb3c587c956f74",
+   "danish": "Vi løb tør for papir til kvitteringer.",
+   "target": "løb tør for",
+   "en": "We ran out of paper for receipts.",
+   "ru": "У нас закончилась бумага для чеков.",
+   "orders": [
+    "Papir til kvitteringer løb vi tør for."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "e04045b5-9f16-57ce-966e-b84072a7551b",
+  "family_id": "8373385a-f86f-5b68-bcea-8a6666f30751",
+  "lemma": "i morgen tidlig",
+  "sense": {
+   "ru": "завтра утром",
+   "en": "tomorrow morning"
+  },
+  "level": "B1",
+  "situation": "work",
+  "grammar": "prepositions-time",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "{target} skal jeg mødes med {person}.",
+  "variant": {
+   "id": "e04045b5-9f16-57ce-966e-b84072a7551b",
+   "version": "7c57bc57a2d103f9",
+   "danish": "I morgen tidlig skal jeg mødes med projektlederen.",
+   "target": "i morgen tidlig",
+   "en": "Tomorrow morning I will meet with the project manager.",
+   "ru": "Завтра утром я встречусь с руководителем проекта.",
+   "orders": [
+    "Jeg skal mødes med projektlederen i morgen tidlig."
+   ],
+   "accepted": []
+  },
+  "risk": [
+   "authored_orders"
+  ]
+ },
+ {
+  "id": "fe8d6da0-b780-5f06-a49c-640c3e5c8630",
+  "family_id": "19f98c65-c9cc-5bef-9f88-a17dfd2a8ef5",
+  "lemma": "uden for",
+  "sense": {
+   "ru": "за пределами",
+   "en": "outside of"
+  },
+  "level": "B1",
+  "situation": "transport",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Bussen holder {target} {place}.",
+  "variant": {
+   "id": "fe8d6da0-b780-5f06-a49c-640c3e5c8630",
+   "version": "6c4033ddafa23002",
+   "danish": "Bussen holder uden for lufthavnen.",
+   "target": "uden for",
+   "en": "The bus stops outside the airport.",
+   "ru": "Автобус останавливается у аэропорта.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "24c93cfc-78d5-5692-9f00-8498beb781ac",
+  "family_id": "fb03f5e8-7162-5a98-ab71-711e068072bf",
+  "lemma": "på grund af",
+  "sense": {
+   "ru": "из-за",
+   "en": "because of"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-other",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Festivalen blev aflyst {target} {weather}.",
+  "variant": {
+   "id": "24c93cfc-78d5-5692-9f00-8498beb781ac",
+   "version": "7867dfcaef45fea5",
+   "danish": "Festivalen blev aflyst på grund af en storm.",
+   "target": "på grund af",
+   "en": "The festival was cancelled due to a storm.",
+   "ru": "Фестиваль был отменён из-за шторма.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "8907d2bc-ad04-5566-bb87-6d655b674c97",
+  "family_id": "9a8c0373-1950-5ec0-989e-97c6225c035c",
+  "lemma": "oven på",
+  "sense": {
+   "ru": "на, поверх",
+   "en": "on top of"
+  },
+  "level": "B1",
+  "situation": "home",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Jeg lagde bogen {target} {furniture}.",
+  "variant": {
+   "id": "8907d2bc-ad04-5566-bb87-6d655b674c97",
+   "version": "43f918f52cfc0623",
+   "danish": "Jeg lagde bogen oven på skrivebordet.",
+   "target": "oven på",
+   "en": "I put the book on top of the desk.",
+   "ru": "Я положил книгу на стол.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "dff3e3f2-c6cc-57e6-b487-00cc3c823145",
+  "family_id": "40246b11-5a2e-5d4f-b99b-2f61b31b2ded",
+  "lemma": "uden for",
+  "sense": {
+   "ru": "за пределами",
+   "en": "outside of"
+  },
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-place",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Temperaturen er lavere {target} {place}.",
+  "variant": {
+   "id": "dff3e3f2-c6cc-57e6-b487-00cc3c823145",
+   "version": "a9f736ea0335050f",
+   "danish": "Temperaturen er lavere uden for skoven.",
+   "target": "uden for",
+   "en": "The temperature is lower outside the forest.",
+   "ru": "Температура за пределами леса ниже.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d2f86094-f91a-5eb0-876f-0e68a9be36a4",
+  "family_id": "fde63ee8-e952-556c-b55f-4be8fcb72fc0",
+  "lemma": "tage sig af",
+  "sense": {
+   "ru": "заботиться",
+   "en": "to take care of"
+  },
+  "level": "B1",
+  "situation": "family",
+  "grammar": "reflexive",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Min {relative} {target} børnene hver dag.",
+  "variant": {
+   "id": "d2f86094-f91a-5eb0-876f-0e68a9be36a4",
+   "version": "1b12c821ce14ffa7",
+   "danish": "Min søster tager sig af børnene hver dag.",
+   "target": "tager sig af",
+   "en": "My sister takes care of the children every day.",
+   "ru": "Моя сестра заботится о детях каждый день.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "052b3e99-f4ed-5ba7-ae86-805959835f69",
+  "family_id": "4d5f9bac-a923-53a6-a000-e7ccfd2a4081",
+  "lemma": "stikke af",
+  "sense": {
+   "ru": "сбегать",
+   "en": "to run away"
+  },
+  "level": "B1",
+  "situation": "society",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Tyven {target} fra gerningsstedet.",
+  "variant": {
+   "id": "052b3e99-f4ed-5ba7-ae86-805959835f69",
+   "version": "c50a6682d00a9d68",
+   "danish": "Tyven stikker af fra gerningsstedet.",
+   "target": "stikker af",
+   "en": "The thief runs away from the scene of the crime.",
+   "ru": "Вор сбегает с места преступления.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "22ee9d7b-5544-5ade-9b48-fd8d48923eea",
+  "family_id": "3c96523c-41c9-5c1a-91e3-e5f950f69fc1",
+  "lemma": "på forhånd",
+  "sense": {
+   "ru": "заранее",
+   "en": "in advance"
+  },
+  "level": "B1",
+  "situation": "services",
+  "grammar": "adverbs",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Du bør {target} bestille {object}.",
+  "variant": {
+   "id": "22ee9d7b-5544-5ade-9b48-fd8d48923eea",
+   "version": "18c5532358322e57",
+   "danish": "Du bør på forhånd bestille billetter til forestillingen.",
+   "target": "på forhånd",
+   "en": "You should book tickets for the show in advance.",
+   "ru": "Билеты на шоу стоит заранее забронировать.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "7594d2df-8b7e-5620-832b-cea884af5f67",
+  "family_id": "2c28b9eb-c7f6-5b09-8262-73ccbb191dc0",
+  "lemma": "dukke op",
+  "sense": {
+   "ru": "появляться",
+   "en": "to turn up"
+  },
+  "level": "B1",
+  "situation": "social",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "{person} {target} til festen.",
+  "variant": {
+   "id": "7594d2df-8b7e-5620-832b-cea884af5f67",
+   "version": "5d37a06868f5a775",
+   "danish": "Nogle uventede gæster dukkede op til festen.",
+   "target": "dukkede op",
+   "en": "Some unexpected guests showed up at the party.",
+   "ru": "На вечеринке появились неожиданные гости.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "d5b8d6e3-8348-512a-901c-b739c91701fc",
+  "family_id": "ddd64b9a-e79a-54a0-bfd8-5f068612a1d2",
+  "lemma": "se ned på",
+  "sense": {
+   "ru": "смотреть свысока на",
+   "en": "to look down on"
+  },
+  "level": "B2",
+  "situation": "feelings-opinions",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "Det er forkert at {target} {object}.",
+  "variant": {
+   "id": "d5b8d6e3-8348-512a-901c-b739c91701fc",
+   "version": "6ed437af3a14566d",
+   "danish": "Det er forkert at se ned på personer uden formel uddannelse.",
+   "target": "se ned på",
+   "en": "It is wrong to look down on people without formal education.",
+   "ru": "Неправильно смотреть свысока на людей без формального образования.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "881f385c-e5bd-5e27-96cd-556a0a4d820d",
+  "family_id": "ec02821a-e725-598e-9146-af6d405acb44",
+  "lemma": "tage for givet",
+  "sense": {
+   "ru": "принимать как должное",
+   "en": "to take for granted"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Mange borgere {target}, at staten altid sørger for rent drikkevand.",
+  "variant": {
+   "id": "881f385c-e5bd-5e27-96cd-556a0a4d820d",
+   "version": "84b56be570c59d06",
+   "danish": "Mange borgere tog for givet, at staten altid sørger for rent drikkevand.",
+   "target": "tog for givet",
+   "en": "Many citizens took for granted that the state always provides clean drinking water.",
+   "ru": "Многие граждане воспринимали как должное, что государство всегда обеспечивает чистую питьевую воду.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": [
+   "long_sentence"
+  ]
+ },
+ {
+  "id": "8f4f5399-0243-5659-ba55-13f688c40438",
+  "family_id": "30f9f6b0-f2ee-5dd3-8b09-3f91b6c0ec0b",
+  "lemma": "gå ind for",
+  "sense": {
+   "ru": "поддерживать",
+   "en": "to support"
+  },
+  "level": "B2",
+  "situation": "society",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "{subject} {target} en mere bæredygtig politik.",
+  "variant": {
+   "id": "8f4f5399-0243-5659-ba55-13f688c40438",
+   "version": "1f468c6ff79abab1",
+   "danish": "Den nye borgmester går ind for en mere bæredygtig politik.",
+   "target": "går ind for",
+   "en": "The new mayor is in favour of a more sustainable policy.",
+   "ru": "Новый мэр выступает за более устойчивую политику.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "89f12be3-f663-51e4-aa80-f60bcb11f18b",
+  "family_id": "c61d3d21-7ff5-505a-82c8-4087d1cb4618",
+  "lemma": "have til hensigt",
+  "sense": {
+   "ru": "намереваться",
+   "en": "to intend"
+  },
+  "level": "B2",
+  "situation": "work",
+  "grammar": "fixed-expressions",
+  "source": "catalog",
+  "batch": "batch-0103.json",
+  "frame": "Direktøren {target} at gennemføre reformen.",
+  "variant": {
+   "id": "89f12be3-f663-51e4-aa80-f60bcb11f18b",
+   "version": "b7f4861b4cb54b47",
+   "danish": "Direktøren har til hensigt at gennemføre reformen.",
+   "target": "har til hensigt",
+   "en": "The Director intends to implement the reform.",
+   "ru": "Директор намерен реализовать реформу.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ },
+ {
+  "id": "bccf292c-c236-5aaf-b7e5-a8916c6f606d",
+  "family_id": "078d8d64-d42d-511f-ad43-6425c4d43916",
+  "lemma": "komme ind på",
+  "sense": {
+   "ru": "затрагивать (тему)",
+   "en": "to touch upon (a topic)"
+  },
+  "level": "B2",
+  "situation": "communication-media",
+  "grammar": "particle-verbs",
+  "source": "catalog",
+  "batch": "batch-0102.json",
+  "frame": "{subject} {target} {topic} i sin artikel.",
+  "variant": {
+   "id": "bccf292c-c236-5aaf-b7e5-a8916c6f606d",
+   "version": "3bb20bdd81fac025",
+   "danish": "Kronikøren kom ind på miljøkrisen i sin artikel.",
+   "target": "kom ind på",
+   "en": "The columnist touched on the environmental crisis in his article.",
+   "ru": "Колумнист затронул экологический кризис в своей статье.",
+   "orders": [],
+   "accepted": []
+  },
+  "risk": []
+ }
+]

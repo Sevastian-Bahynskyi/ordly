@@ -634,12 +634,17 @@ anything here. The shape:
   had: `resolvePronunciation` asks a model directly and stores `ipa: ''`. Ten thousand DDO fetches
   would be thirty thousand requests against a dictionary with no API, so the catalog uses the
   kaikki.org extract — the same Wiktionary phonetics as one file, joined offline, part-of-speech
-  tagged. DDO stays the **audio** source, through `download_ddo_audio.py` in the repo root.
-- **Phrases are silent, by design.** DDO attaches audio to headwords only; `godt lide` lives there
-  as a fixed expression under `lide`, with no recording. Stitching word recordings is banned: the
-  citation forms are wrong (`tage`, not `tager`) and Danish reshapes phrase boundaries, so the
-  result teaches a wrong pronunciation — §8's ban in audio form. A missing recording never blocks
-  a row; the word is simply silent and the button does not render.
+  tagged.
+- **Audio is Azure Speech, words and phrases alike** (issue #16). `scripts/synthesize-audio.ts`
+  speaks every catalog headword and phrase and every saved word or phrase with the Danish neural
+  voice `da-DK-ChristelNeural` (`AZURE_SPEECH_RATE`), checks each clip with Danish speech
+  recognition (a clip not heard as written is redone with `da-DK-JeppeNeural`, and a remaining
+  mismatch is judged by DeepSeek as homophone or problem), and stores it as
+  `word-audio/words/<slug>-<digest>-azure.mp3`. Sentences get no recording. A phrase is spoken
+  whole, never stitched from word recordings (citation forms are wrong and Danish reshapes phrase
+  boundaries). The former DDO website recordings, for which no rights check exists, live only in
+  `word-audio/legacy/ddo/` (`catalog/legacy/ddo-audio-keys.json`) and are not used by the app.
+  A missing recording never blocks a row; the button simply does not render.
 - **`word_catalog` / `word_catalog_sense` are reference data**, like `cor_form`: no `user_id`,
   read-only to the app, and **loaded by a script, never by a migration**. An environment with no
   catalog misses every lookup and falls through to the live AI path, which is the designed
@@ -661,7 +666,7 @@ anything here. The shape:
   residue the gate cannot see — a translation that is plausible and wrong passes every validator.
   It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
   so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
-  model; the downloaded DDO recording is the independent check.
+  model.
 - **The audio button is a narrow reversal of §19.** What stays removed is the three-button
   Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
   is not that.
@@ -675,6 +680,40 @@ anything here. The shape:
 - **A catalog word already in Material is never saved twice.** On Save, a catalog draft calls `findSavedCatalogWord` (same `catalog_lemma` first, then the headword, then any verified form such as a manual `gulvet`; a failed read stops the save rather than reading as "not saved"). `catalogMerge`/`addCatalogMeaning` then report the meaning as already saved, or add it to the saved entry, recomputed from the current draft and conditional on `updated_at`. A locked or removed copy is restored with the learner-language wording under its own id. A manual headword also gains `catalog_lemma`, which copies its verified forms. No second entry, card or history. The manual "Add another meaning" path is unchanged for non-catalog text.
 - `catalogLookupText` keeps a phrase whole; `corLookupForm` deliberately refuses anything with a space.
 - A learner-language switch updates `profiles` only. Saved meanings, Review and practice are untouched; only the wording offered from the catalog changes.
+
+## 25. Content through B2: English wording, sentence families, coverage (issue #16)
+
+The runbook and progress log are `docs/content-population.md`; the published numbers are
+`docs/content-coverage-report.md`. The rules that bind future changes:
+
+- **Every catalog sense has an English wording** (`catalog/locale-en.json`, loaded by
+  `scripts/import-catalog-locale.ts`). A wording pass may only add wording: `lib/catalog-locale-pass.ts`
+  refuses a reply that changes a sense's id, ordinal, part of speech, gender or Danish example.
+- **Sentence families** (`lib/catalog-families.ts`, tables `catalog_sentence_family` /
+  `catalog_sentence_variant`) teach one catalog sense in one context. The frame and slots record
+  what varies; **every allowed combination is an explicit variant** with its own verified target
+  form and its own English and Russian translation. Nothing is recombined at runtime, and the
+  distinct-sentence count is the number of variants, never a Cartesian product.
+- **The family gate** (`scripts/check-family-batches.ts`) checks the target against verified
+  forms (DSL's DDO full-form list, COR), slot constraints, spelling, article/gender agreement,
+  alternative orders (same words only), the A1–B2 matrix cell, the word's level floor, and overlap
+  with the frozen benchmark. A failure is quarantined in `needs_review.jsonl`; a batch below 95%
+  publishes nothing. Only `published.jsonl` is imported (`scripts/import-catalog-families.ts`),
+  and its cleanup refuses to run unless the whole snapshot is loaded.
+- **The benchmark is frozen.** `catalog/benchmark/unseen-tatoeba.tsv` was committed before any
+  family existed. Do not tune content against it and do not add its sentences to the catalog.
+- **Practice reads families only for the learner's own saved senses** (`lib/practice-contexts.ts`).
+  A catalog sentence is offered only with a translation in the learner language and at most one
+  level above theirs. A task built from one records `source: { variantId, version }` and is
+  dropped, not graded, if that variant has changed. A failed catalog read leaves Practice on the
+  learner's own examples. §19 and §21 still hold: no model call, no Review or Material write.
+- **Scripts can run without a linked database**: `CATALOG_COR_TSV` points `scripts/catalog-db.ts`
+  at a local copy of COR. In the cloud session, data was loaded through the Supabase MCP tool from
+  each importer's `--sql-dir` output.
+- **Coverage is three separate measures** (`lib/content-coverage.ts`): weighted lemma coverage
+  within DSL `freq-30k-ex` (by band and open/closed class, with credit through a COR headword shown
+  separately), coverage of the frozen unseen set, and A1–B2 matrix cells. None of them is a claim
+  about a learner's level.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

@@ -1,0 +1,549 @@
+[
+ {
+  "lemma": "stå op",
+  "kind": "phrase",
+  "sense_id": "9b875b47-8821-57ca-a4d0-fa449a15fd1e",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A1",
+  "ru": "вставать",
+  "en": "to get up",
+  "forms": [
+   "stod op",
+   "stå op",
+   "ståede op",
+   "stået op",
+   "står op"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "vågne op",
+  "kind": "phrase",
+  "sense_id": "6536f02e-1de4-54ab-8c04-2389244f1101",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "просыпаться",
+  "en": "to wake up",
+  "forms": [
+   "vågn op",
+   "vågne op",
+   "vågnede op",
+   "vågner op",
+   "vågnet op"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "time-dates",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "rydde op",
+  "kind": "phrase",
+  "sense_id": "3669af2f-dee2-5dab-b74d-2db25746874e",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "убирать",
+  "en": "to tidy up",
+  "forms": [
+   "ryd op",
+   "rydde op",
+   "ryddede op",
+   "rydder op",
+   "ryddet op"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "home",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "give op",
+  "kind": "phrase",
+  "sense_id": "624b374e-c1e1-5904-91fc-55b1b057095c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "сдаваться",
+  "en": "to give up",
+  "forms": [
+   "gav op",
+   "giv op",
+   "give op",
+   "given op",
+   "giver op",
+   "givet op",
+   "givne op"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "education",
+   "grammar": "particle-verbs"
+  },
+  "note": "An independent reviewer rejected the previous family: Tense mismatch: 'giver op' (present) clashes with 'var' (past) in the same sentence. The English and Russian translations also mix present and past, making the sentence unnatural and pedagogically misleading for a particle-verb exercise. Write a new family that avoids this."
+ },
+ {
+  "lemma": "finde ud af",
+  "kind": "phrase",
+  "sense_id": "6eb4b8a3-8e1d-5635-bc43-69c13a599466",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "выяснять, узнавать",
+  "en": "to find out",
+  "forms": [
+   "fandt ud af",
+   "find ud af",
+   "finde ud af",
+   "finder ud af",
+   "funden ud af",
+   "fundet ud af",
+   "fundne ud af"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "services",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "vokse op",
+  "kind": "phrase",
+  "sense_id": "9609956a-705b-5ac5-9fc7-8f95bc44afcb",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "расти, взрослеть",
+  "en": "to grow up",
+  "forms": [
+   "vokse op",
+   "voksede op",
+   "vokser op",
+   "vokset op"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "dukke op",
+  "kind": "phrase",
+  "sense_id": "813a71f5-40aa-513a-b8d9-e1de2fe5374a",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "появляться",
+  "en": "to turn up",
+  "forms": [
+   "duk op",
+   "dukke op",
+   "dukkede op",
+   "dukker op",
+   "dukket op"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "løbe tør for",
+  "kind": "phrase",
+  "sense_id": "52d6ea24-bcfa-5ecf-b85a-9d3d9ec789e8",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "исчерпать запасы",
+  "en": "to run out of",
+  "forms": [
+   "løb tør for",
+   "løbe tør for",
+   "løbede tør for",
+   "løben tør for",
+   "løber tør for",
+   "løbet tør for",
+   "løbne tør for"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "services",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "stikke af",
+  "kind": "phrase",
+  "sense_id": "ff89af01-860f-5f6e-8cba-b6e21957942e",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "сбегать",
+  "en": "to run away",
+  "forms": [
+   "stak af",
+   "stik af",
+   "stikke af",
+   "stikker af",
+   "stukken af",
+   "stukket af",
+   "stukne af"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "gå ind for",
+  "kind": "phrase",
+  "sense_id": "3a8873b5-682e-58c4-99e1-151dfb042be0",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "поддерживать",
+  "en": "to support",
+  "forms": [
+   "gak ind for",
+   "gik ind for",
+   "gå ind for",
+   "gåede ind for",
+   "gået ind for",
+   "går ind for"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "society",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "se ned på",
+  "kind": "phrase",
+  "sense_id": "264f18db-d819-57cb-9f1f-14a92456018c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "смотреть свысока на",
+  "en": "to look down on",
+  "forms": [
+   "se ned på",
+   "ser ned på",
+   "set ned på",
+   "sete ned på",
+   "så ned på"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "feelings-opinions",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "komme ind på",
+  "kind": "phrase",
+  "sense_id": "2ea3de40-373b-542b-9065-edd92839827c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "затрагивать (тему)",
+  "en": "to touch upon (a topic)",
+  "forms": [
+   "kom ind på",
+   "komme ind på",
+   "kommede ind på",
+   "kommer ind på",
+   "kommet ind på"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "communication-media",
+   "grammar": "particle-verbs"
+  },
+  "note": "Audit: every sentence of the previous family broke V2 (\"I sin artikel kom ind på journalisten emnet\"). Start each main clause with its subject: \"Journalisten kom ind på emnet i sin artikel.\""
+ },
+ {
+  "lemma": "give efter",
+  "kind": "phrase",
+  "sense_id": "d59590b5-d784-59df-9bc4-529f52f4c28a",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "уступать, поддаваться",
+  "en": "to give in, to yield",
+  "forms": [
+   "gav efter",
+   "giv efter",
+   "give efter",
+   "given efter",
+   "giver efter",
+   "givet efter",
+   "givne efter"
+  ],
+  "target": {
+   "level": "B2",
+   "situation": "work",
+   "grammar": "particle-verbs"
+  }
+ },
+ {
+  "lemma": "glæde sig til",
+  "kind": "phrase",
+  "sense_id": "16c261fe-dc32-579d-bc8b-5ad7a16c40a0",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "ждать с нетерпением",
+  "en": "to look forward to",
+  "forms": [
+   "glæd dig til",
+   "glæd jer til",
+   "glæd mig til",
+   "glæd os til",
+   "glæd sig til",
+   "glæde dig til",
+   "glæde jer til",
+   "glæde mig til",
+   "glæde os til",
+   "glæde sig til",
+   "glædede dig til",
+   "glædede jer til",
+   "glædede mig til",
+   "glædede os til",
+   "glædede sig til",
+   "glæder dig til",
+   "glæder jer til",
+   "glæder mig til",
+   "glæder os til",
+   "glæder sig til",
+   "glædet dig til",
+   "glædet jer til",
+   "glædet mig til",
+   "glædet os til",
+   "glædet sig til"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "social",
+   "grammar": "reflexive"
+  }
+ },
+ {
+  "lemma": "skynde sig",
+  "kind": "phrase",
+  "sense_id": "96308c4f-6d20-5946-99f5-b1b431f26eea",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "торопиться",
+  "en": "to hurry up",
+  "forms": [
+   "skynd dig",
+   "skynd jer",
+   "skynd mig",
+   "skynd os",
+   "skynd sig",
+   "skynde dig",
+   "skynde jer",
+   "skynde mig",
+   "skynde os",
+   "skynde sig",
+   "skyndede dig",
+   "skyndede jer",
+   "skyndede mig",
+   "skyndede os",
+   "skyndede sig",
+   "skynder dig",
+   "skynder jer",
+   "skynder mig",
+   "skynder os",
+   "skynder sig",
+   "skyndet dig",
+   "skyndet jer",
+   "skyndet mig",
+   "skyndet os",
+   "skyndet sig",
+   "skyndt dig",
+   "skyndt jer",
+   "skyndt mig",
+   "skyndt os",
+   "skyndt sig",
+   "skyndte dig",
+   "skyndte jer",
+   "skyndte mig",
+   "skyndte os",
+   "skyndte sig"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "transport",
+   "grammar": "reflexive"
+  }
+ },
+ {
+  "lemma": "kede sig",
+  "kind": "phrase",
+  "sense_id": "ae8b25f2-6227-54a9-8348-e46ed609d0af",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "A2",
+  "ru": "скучать",
+  "en": "to be bored",
+  "forms": [
+   "ked dig",
+   "ked jer",
+   "ked mig",
+   "ked os",
+   "ked sig",
+   "kede dig",
+   "kede jer",
+   "kede mig",
+   "kede os",
+   "kede sig",
+   "kedede dig",
+   "kedede jer",
+   "kedede mig",
+   "kedede os",
+   "kedede sig",
+   "keder dig",
+   "keder jer",
+   "keder mig",
+   "keder os",
+   "keder sig",
+   "kedet dig",
+   "kedet jer",
+   "kedet mig",
+   "kedet os",
+   "kedet sig"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "leisure",
+   "grammar": "reflexive"
+  }
+ },
+ {
+  "lemma": "vænne sig til",
+  "kind": "phrase",
+  "sense_id": "31e41627-3a2d-5181-bc7a-758abbae8105",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "привыкать",
+  "en": "to get used to",
+  "forms": [
+   "væn dig til",
+   "væn jer til",
+   "væn mig til",
+   "væn os til",
+   "væn sig til",
+   "vænne dig til",
+   "vænne jer til",
+   "vænne mig til",
+   "vænne os til",
+   "vænne sig til",
+   "vænnede dig til",
+   "vænnede jer til",
+   "vænnede mig til",
+   "vænnede os til",
+   "vænnede sig til",
+   "vænner dig til",
+   "vænner jer til",
+   "vænner mig til",
+   "vænner os til",
+   "vænner sig til",
+   "vænnet dig til",
+   "vænnet jer til",
+   "vænnet mig til",
+   "vænnet os til",
+   "vænnet sig til"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "home",
+   "grammar": "reflexive"
+  }
+ },
+ {
+  "lemma": "tage sig af",
+  "kind": "phrase",
+  "sense_id": "af2f1160-0609-5554-b675-120eacf1d720",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": null,
+  "min_level": "B1",
+  "ru": "заботиться",
+  "en": "to take care of",
+  "forms": [
+   "tag dig af",
+   "tag jer af",
+   "tag mig af",
+   "tag os af",
+   "tag sig af",
+   "tage dig af",
+   "tage jer af",
+   "tage mig af",
+   "tage os af",
+   "tage sig af",
+   "tagen dig af",
+   "tagen jer af",
+   "tagen mig af",
+   "tagen os af",
+   "tagen sig af",
+   "tager dig af",
+   "tager jer af",
+   "tager mig af",
+   "tager os af",
+   "tager sig af",
+   "taget dig af",
+   "taget jer af",
+   "taget mig af",
+   "taget os af",
+   "taget sig af",
+   "tagne dig af",
+   "tagne jer af",
+   "tagne mig af",
+   "tagne os af",
+   "tagne sig af",
+   "tog dig af",
+   "tog jer af",
+   "tog mig af",
+   "tog os af",
+   "tog sig af"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "family",
+   "grammar": "reflexive"
+  },
+  "note": "An independent reviewer rejected the previous family: Danish tense mismatch: 'tog sig af' (past) clashes with 'når hun er syg' (present habitual). The sentence does not demonstrate a natural past-tense use of the reflexive phrase. English and Russian translations are faithful to the faulty Danish but are themselves unnatural or mismatched in tense. Write a new family that avoids this."
+ }
+]

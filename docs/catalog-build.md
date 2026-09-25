@@ -205,6 +205,13 @@ remain in `catalog/audit-verdicts.json`; that one pruned row explains its pre-pr
 
 ## Step 6 — audio, and the transcriptions that ride along with it
 
+> **Superseded for audio (2026-09-25, issue #16).** The recordings described below came from the
+> DDO website and have no recorded rights check. They were moved to `word-audio/legacy/ddo/` and
+> the downloader (`download_ddo_audio.py`, `scripts/audio-batches.mjs`, `scripts/upload-*-audio.ts`)
+> was removed. Recordings are now synthesized with Azure Speech for every word and phrase:
+> `scripts/synthesize-audio.ts` (see AGENTS.md §23). The section is kept as the record of how the
+> existing IPA transcriptions (`catalog/ddo-ipa.json`) were harvested.
+
 **Run this before the final fact build.** It is where the IPA actually comes from.
 
 ```
@@ -250,7 +257,7 @@ button does not render.
 ## Step 7 — upload
 
 ```
-pnpm exec tsx scripts/upload-catalog-audio.ts     # recordings into the private bucket
+pnpm exec tsx --env-file=.env.corpus.local scripts/synthesize-audio.ts --collect --synthesize --upload
 pnpm exec tsx scripts/import-catalog.ts           # rows into word_catalog / word_catalog_sense
 ```
 
