@@ -6,7 +6,7 @@
   "level": "A1",
   "situation": "food-drink",
   "grammar": "noun-indefinite",
-  "frame": "{subject} er et godt sted at spise.",
+  "frame": "{subject} er et godt {target} at spise.",
   "slots": {
    "subject": [
     {
@@ -60,7 +60,7 @@
   "level": "A1",
   "situation": "personal-info",
   "grammar": "noun-indefinite",
-  "frame": "{subject} bor i et smukt land.",
+  "frame": "{subject} bor i et smukt {target}.",
   "slots": {
    "subject": [
     {
@@ -114,7 +114,7 @@
   "level": "A2",
   "situation": "transport",
   "grammar": "noun-meaning",
-  "frame": "{subject} går i land efter sejladsen.",
+  "frame": "{subject} går i {target} efter sejladsen.",
   "slots": {
    "subject": [
     {
@@ -626,7 +626,7 @@
      "da": "De"
     },
     {
-     "da": "Søskendene"
+     "da": "Vennerne"
     }
    ]
   },
@@ -656,8 +656,8 @@
      "subject": 2
     },
     "target": "sammen",
-    "en": "The siblings live together.",
-    "ru": "Братья и сёстры живут вместе.",
+    "en": "The friends live together.",
+    "ru": "Друзья живут вместе.",
     "orders": [],
     "accepted": []
    }
@@ -1346,7 +1346,7 @@
   "level": "A1",
   "situation": "daily-routine",
   "grammar": "verb-present",
-  "frame": "{subject} bruger {object} hver dag.",
+  "frame": "{subject} {target} {object} hver dag.",
   "slots": {
    "subject": [
     {
@@ -1435,7 +1435,7 @@
   "level": "A1",
   "situation": "shopping",
   "grammar": "verb-meaning",
-  "frame": "{subject} bruger mange penge på {object}.",
+  "frame": "{subject} {target} mange penge på {object}.",
   "slots": {
    "subject": [
     {
@@ -1578,7 +1578,7 @@
   "level": "A1",
   "situation": "social",
   "grammar": "verb-present",
-  "frame": "{subject} viser mig {object}.",
+  "frame": "{subject} {target} mig {object}.",
   "slots": {
    "subject": [
     {
@@ -1661,7 +1661,7 @@
   "level": "A2",
   "situation": "daily-routine",
   "grammar": "verb-past",
-  "frame": "{subject} viste sig at være {adj}.",
+  "frame": "{subject} {target} sig at være {adj}.",
   "slots": {
    "subject": [
     {
@@ -1744,7 +1744,7 @@
   "level": "A1",
   "situation": "home",
   "grammar": "verb-present",
-  "frame": "{subject} sætter {item}.",
+  "frame": "{subject} {target} {item}.",
   "slots": {
    "subject": [
     {
@@ -1833,7 +1833,7 @@
   "level": "A2",
   "situation": "home",
   "grammar": "reflexive",
-  "frame": "{subject} sætter sig på {place}.",
+  "frame": "{subject} {target} sig på {place}.",
   "slots": {
    "subject": [
     {
@@ -1916,7 +1916,7 @@
   "level": "A2",
   "situation": "work",
   "grammar": "verb-meaning",
-  "frame": "{subject} sætter en ny {object}.",
+  "frame": "{subject} {target} en ny {object}.",
   "slots": {
    "subject": [
     {
@@ -2005,7 +2005,7 @@
   "level": "A1",
   "situation": "daily-routine",
   "grammar": "verb-present",
-  "frame": "{subject} holder {object} i hånden.",
+  "frame": "{subject} {target} {object} i hånden.",
   "slots": {
    "subject": [
     {
@@ -2088,7 +2088,7 @@
   "level": "A1",
   "situation": "social",
   "grammar": "verb-meaning",
-  "frame": "{subject} holder {event} i weekenden.",
+  "frame": "{subject} {target} {event} i weekenden.",
   "slots": {
    "subject": [
     {
@@ -2180,7 +2180,7 @@
   "level": "A1",
   "situation": "transport",
   "grammar": "verb-present",
-  "frame": "{subject} holder {place}.",
+  "frame": "{subject} {target} {place}.",
   "slots": {
    "subject": [
     {
@@ -2548,7 +2548,7 @@
   "level": "A2",
   "situation": "feelings-opinions",
   "grammar": "verb-present",
-  "frame": "{subject} mener, at {clause}.",
+  "frame": "{subject} {target}, at {clause}.",
   "slots": {
    "subject": [
     {
