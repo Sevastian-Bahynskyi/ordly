@@ -64,7 +64,7 @@
   "slots": {
    "subject": [
     {
-     "da": "Den nye leder"
+     "da": "Sønnen"
     },
     {
      "da": "Hun"
@@ -75,7 +75,7 @@
    ],
    "predecessor": [
     {
-     "da": "sin forgænger"
+     "da": "sin far"
     },
     {
      "da": "sin forgænger"
@@ -92,11 +92,12 @@
      "predecessor": 0
     },
     "target": "efterfulgte",
-    "en": "The new leader succeeded their predecessor as director of the company.",
-    "ru": "Новый руководитель сменил своего предшественника на посту директора компании.",
+    "en": "The son succeeded his father as director of the company.",
+    "ru": "Сын сменил отца на посту директора компании.",
     "orders": [],
     "accepted": [
-     "afløste"
+     "afløste",
+     "erstattede"
     ]
    },
    {
@@ -109,7 +110,8 @@
     "ru": "Она сменила своего предшественника на посту директора компании.",
     "orders": [],
     "accepted": [
-     "afløste"
+     "afløste",
+     "erstattede"
     ]
    },
    {
@@ -122,7 +124,8 @@
     "ru": "Он сменил бывшего начальника на посту директора компании.",
     "orders": [],
     "accepted": [
-     "afløste"
+     "afløste",
+     "erstattede"
     ]
    }
   ]
@@ -283,7 +286,7 @@
     },
     "target": "interviewet",
     "en": "The minister was interviewed on the radio.",
-    "ru": "Министра проинтервьюировали по радио.",
+    "ru": "У министра взяли интервью на радио.",
     "orders": [],
     "accepted": []
    },
@@ -293,7 +296,7 @@
     },
     "target": "interviewet",
     "en": "The author was interviewed on the radio.",
-    "ru": "Автора проинтервьюировали по радио.",
+    "ru": "У автора взяли интервью на радио.",
     "orders": [],
     "accepted": []
    },
@@ -303,7 +306,7 @@
     },
     "target": "interviewet",
     "en": "The mayor was interviewed on the radio.",
-    "ru": "Мэра проинтервьюировали по радио.",
+    "ru": "У мэра взяли интервью на радио.",
     "orders": [],
     "accepted": []
    }
@@ -385,7 +388,7 @@
    ],
    "object": [
     {
-     "da": "den gamle maskine"
+     "da": "de gamle computere"
     },
     {
      "da": "det defekte kabel"
@@ -402,8 +405,8 @@
      "object": 0
     },
     "target": "udskiftet",
-    "en": "The company has replaced the old machine.",
-    "ru": "Компания заменила старую машину.",
+    "en": "The company has replaced the old computers.",
+    "ru": "Компания заменила старые компьютеры.",
     "orders": [],
     "accepted": [
      "erstattet"
@@ -419,7 +422,8 @@
     "ru": "Техник заменил неисправный кабель.",
     "orders": [],
     "accepted": [
-     "erstattet"
+     "erstattet",
+     "skiftet"
     ]
    },
    {
@@ -432,7 +436,8 @@
     "ru": "Мы заменили принтер.",
     "orders": [],
     "accepted": [
-     "erstattet"
+     "erstattet",
+     "skiftet"
     ]
    }
   ]
@@ -465,7 +470,7 @@
      "da": "professionelt"
     },
     {
-     "da": "hurtigt"
+     "da": "åbent"
     }
    ]
   },
@@ -498,8 +503,8 @@
      "manner": 2
     },
     "target": "kommunikerer",
-    "en": "She communicates quickly with the customers.",
-    "ru": "Она быстро общается с клиентами.",
+    "en": "She communicates openly with the customers.",
+    "ru": "Она открыто общается с клиентами.",
     "orders": [],
     "accepted": []
    }
@@ -512,7 +517,7 @@
   "level": "B2",
   "situation": "work",
   "grammar": "noun-plural",
-  "frame": "{owner} {target} på at {goal} lykkedes.",
+  "frame": "{owner} {target} på at {goal} bar frugt.",
   "slots": {
    "owner": [
     {
@@ -544,7 +549,7 @@
      "goal": 0
     },
     "target": "bestræbelser",
-    "en": "The company’s efforts to reduce costs succeeded.",
+    "en": "The company’s efforts to reduce costs paid off.",
     "ru": "Усилия компании по снижению затрат увенчались успехом.",
     "orders": [],
     "accepted": []
@@ -555,7 +560,7 @@
      "goal": 1
     },
     "target": "bestræbelser",
-    "en": "The department’s efforts to improve the quality succeeded.",
+    "en": "The department’s efforts to improve the quality paid off.",
     "ru": "Усилия отдела по повышению качества увенчались успехом.",
     "orders": [],
     "accepted": []
@@ -566,7 +571,7 @@
      "goal": 2
     },
     "target": "bestræbelser",
-    "en": "The project team’s efforts to meet the deadline succeeded.",
+    "en": "The project team’s efforts to meet the deadline paid off.",
     "ru": "Усилия проектной команды по соблюдению срока увенчались успехом.",
     "orders": [],
     "accepted": []
@@ -819,7 +824,9 @@
     "en": "The drama unfolded in the capital.",
     "ru": "Драма разворачивалась в столице.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "udfoldede"
+    ]
    },
    {
     "slots": {
@@ -830,7 +837,9 @@
     "en": "The conflict unfolded in the city council.",
     "ru": "Конфликт разворачивался в городском совете.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "udfoldede"
+    ]
    },
    {
     "slots": {
@@ -841,7 +850,9 @@
     "en": "The story unfolded in the courtroom.",
     "ru": "История разворачивалась в зале суда.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "udfoldede"
+    ]
    }
   ]
  },
@@ -875,7 +886,7 @@
      }
     },
     {
-     "da": "han havde snydt i eksamenen",
+     "da": "han havde snydt til eksamen",
      "requires": {
       "subject": [
        1
@@ -911,7 +922,7 @@
     },
     "target": "samvittigheden",
     "en": "His conscience troubled him because he had cheated on the exam.",
-    "ru": "Совесть мучила его, потому что он списывал на экзамене.",
+    "ru": "Совесть мучила его, потому что он списал на экзамене.",
     "orders": [],
     "accepted": []
    },
@@ -1030,9 +1041,12 @@
     },
     "target": "såmænd",
     "en": "He’s actually doing just fine.",
-    "ru": "Он, право, прекрасно справляется.",
+    "ru": "Он, в общем-то, прекрасно справляется.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "faktisk",
+     "egentlig"
+    ]
    },
    {
     "slots": {
@@ -1040,9 +1054,12 @@
     },
     "target": "såmænd",
     "en": "She’s actually doing just fine.",
-    "ru": "Она, право, прекрасно справляется.",
+    "ru": "Она, в общем-то, прекрасно справляется.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "faktisk",
+     "egentlig"
+    ]
    },
    {
     "slots": {
@@ -1050,9 +1067,12 @@
     },
     "target": "såmænd",
     "en": "The children are actually doing just fine.",
-    "ru": "Дети, право, прекрасно справляются.",
+    "ru": "Дети, в общем-то, прекрасно справляются.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "faktisk",
+     "egentlig"
+    ]
    }
   ]
  },
@@ -1124,9 +1144,7 @@
     "en": "He screamed with joy.",
     "ru": "Он закричал от радости.",
     "orders": [],
-    "accepted": [
-     "hylede"
-    ]
+    "accepted": []
    }
   ]
  },
@@ -1135,9 +1153,9 @@
   "kind": "word",
   "sense_id": "dc0b0907-53ae-5bd1-a5ee-70e9bd26ecbf",
   "level": "B2",
-  "situation": "abstract",
+  "situation": "society",
   "grammar": "adjective-meaning",
-  "frame": "Den {target} {noun} blev ændret.",
+  "frame": "Den {target} {noun} er blevet ændret.",
   "slots": {
    "noun": [
     {
@@ -1157,11 +1175,12 @@
      "noun": 0
     },
     "target": "hidtidige",
-    "en": "The previous policy was changed.",
+    "en": "The previous policy has been changed.",
     "ru": "Прежняя политика была изменена.",
     "orders": [],
     "accepted": [
-     "tidligere"
+     "tidligere",
+     "gamle"
     ]
    },
    {
@@ -1169,11 +1188,12 @@
      "noun": 1
     },
     "target": "hidtidige",
-    "en": "The previous plan was changed.",
+    "en": "The previous plan has been changed.",
     "ru": "Прежний план был изменён.",
     "orders": [],
     "accepted": [
-     "tidligere"
+     "tidligere",
+     "gamle"
     ]
    },
    {
@@ -1181,11 +1201,12 @@
      "noun": 2
     },
     "target": "hidtidige",
-    "en": "The previous strategy was changed.",
+    "en": "The previous strategy has been changed.",
     "ru": "Прежняя стратегия была изменена.",
     "orders": [],
     "accepted": [
-     "tidligere"
+     "tidligere",
+     "gamle"
     ]
    }
   ]
@@ -1195,8 +1216,8 @@
   "kind": "word",
   "sense_id": "d0af2fc4-c9ad-51ed-b338-e6b92bfd96c3",
   "level": "B2",
-  "situation": "abstract",
-  "grammar": "verb-present",
+  "situation": "feelings-opinions",
+  "grammar": "verb-meaning",
   "frame": "{subject} {target} ikke, hvorfor {clause}.",
   "slots": {
    "subject": [
@@ -1215,7 +1236,7 @@
      "da": "han sagde det"
     },
     {
-     "da": "hun opførte sig sådan"
+     "da": "han opførte sig sådan"
     },
     {
      "da": "de traf den beslutning"
@@ -1233,7 +1254,8 @@
     "ru": "Я не понимаю, почему он это сказал.",
     "orders": [],
     "accepted": [
-     "forstår"
+     "forstår",
+     "begriber"
     ]
    },
    {
@@ -1242,11 +1264,12 @@
      "clause": 1
     },
     "target": "fatter",
-    "en": "She doesn’t understand why she behaved like that.",
-    "ru": "Она не понимает, почему она так себя вела.",
+    "en": "She doesn’t understand why he behaved like that.",
+    "ru": "Она не понимает, почему он так себя вёл.",
     "orders": [],
     "accepted": [
-     "forstår"
+     "forstår",
+     "begriber"
     ]
    },
    {
@@ -1259,7 +1282,8 @@
     "ru": "Мы не понимаем, почему они приняли это решение.",
     "orders": [],
     "accepted": [
-     "forstår"
+     "forstår",
+     "begriber"
     ]
    }
   ]
@@ -1281,7 +1305,7 @@
      "da": "Journalisterne"
     },
     {
-     "da": "Tilhørerne"
+     "da": "Tusindvis af mennesker"
     }
    ]
   },
@@ -1294,7 +1318,9 @@
     "en": "The demonstrators flocked to the square to hear the speech.",
     "ru": "Демонстранты стекались на площадь, чтобы услышать речь.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "flokkedes"
+    ]
    },
    {
     "slots": {
@@ -1304,17 +1330,21 @@
     "en": "The journalists flocked to the square to hear the speech.",
     "ru": "Журналисты стекались на площадь, чтобы услышать речь.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "flokkedes"
+    ]
    },
    {
     "slots": {
      "people": 2
     },
     "target": "strømmede",
-    "en": "The listeners flocked to the square to hear the speech.",
-    "ru": "Слушатели стекались на площадь, чтобы услышать речь.",
+    "en": "Thousands of people flocked to the square to hear the speech.",
+    "ru": "Тысячи людей стекались на площадь, чтобы услышать речь.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "flokkedes"
+    ]
    }
   ]
  },
@@ -1379,17 +1409,17 @@
   "level": "B2",
   "situation": "education",
   "grammar": "noun-indefinite",
-  "frame": "{subject} glemte et {target} i slutningen af sætningen.",
+  "frame": "{subject} rettede punktummet til et {target}.",
   "slots": {
    "subject": [
     {
-     "da": "Eleven"
+     "da": "Læreren"
     },
     {
-     "da": "Han"
+     "da": "Redaktøren"
     },
     {
-     "da": "Hun"
+     "da": "Korrekturlæseren"
     }
    ]
   },
@@ -1399,30 +1429,27 @@
      "subject": 0
     },
     "target": "spørgsmålstegn",
-    "en": "The student forgot a question mark at the end of the sentence.",
-    "ru": "Ученик забыл вопросительный знак в конце предложения.",
-    "orders": [],
-    "accepted": []
+    "en": "The teacher changed the full stop to a question mark.",
+    "ru": "Учитель исправил точку на вопросительный знак.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 1
     },
     "target": "spørgsmålstegn",
-    "en": "He forgot a question mark at the end of the sentence.",
-    "ru": "Он забыл вопросительный знак в конце предложения.",
-    "orders": [],
-    "accepted": []
+    "en": "The editor changed the full stop to a question mark.",
+    "ru": "Редактор исправил точку на вопросительный знак.",
+    "orders": []
    },
    {
     "slots": {
      "subject": 2
     },
     "target": "spørgsmålstegn",
-    "en": "She forgot a question mark at the end of the sentence.",
-    "ru": "Она забыла вопросительный знак в конце предложения.",
-    "orders": [],
-    "accepted": []
+    "en": "The proofreader changed the full stop to a question mark.",
+    "ru": "Корректор исправил точку на вопросительный знак.",
+    "orders": []
    }
   ]
  },
@@ -1484,7 +1511,8 @@
     "ru": "Компания информирует сотрудников о новых правилах.",
     "orders": [],
     "accepted": [
-     "underretter"
+     "underretter",
+     "orienterer"
     ]
    },
    {
@@ -1497,7 +1525,8 @@
     "ru": "Школа информирует родителей о новых правилах.",
     "orders": [],
     "accepted": [
-     "underretter"
+     "underretter",
+     "orienterer"
     ]
    },
    {
@@ -1510,7 +1539,8 @@
     "ru": "Власти информируют граждан о новых правилах.",
     "orders": [],
     "accepted": [
-     "underretter"
+     "underretter",
+     "orienterer"
     ]
    }
   ]
@@ -1590,55 +1620,64 @@
   "level": "B2",
   "situation": "society",
   "grammar": "adjective-meaning",
-  "frame": "{party} vandt afstemningen med {target} flertal.",
+  "frame": "{subject} blev vedtaget med et {target} flertal.",
   "slots": {
-   "party": [
-    {
-     "da": "Partiet"
-    },
-    {
-     "da": "Regeringen"
-    },
+   "subject": [
     {
      "da": "Forslaget"
+    },
+    {
+     "da": "Loven"
+    },
+    {
+     "da": "Budgettet"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "party": 0
+     "subject": 0
     },
     "target": "snævert",
-    "en": "The party won the vote with a narrow majority.",
-    "ru": "Партия выиграла голосование с небольшим перевесом.",
+    "en": "The proposal was passed by a narrow majority.",
+    "ru": "Предложение было принято с небольшим перевесом голосов.",
     "orders": [],
     "accepted": [
-     "lille"
+     "lille",
+     "spinkelt",
+     "knebent",
+     "smalt"
     ]
    },
    {
     "slots": {
-     "party": 1
+     "subject": 1
     },
     "target": "snævert",
-    "en": "The government won the vote with a narrow majority.",
-    "ru": "Правительство выиграло голосование с небольшим перевесом.",
+    "en": "The law was passed by a narrow majority.",
+    "ru": "Закон был принят с небольшим перевесом голосов.",
     "orders": [],
     "accepted": [
-     "lille"
+     "lille",
+     "spinkelt",
+     "knebent",
+     "smalt"
     ]
    },
    {
     "slots": {
-     "party": 2
+     "subject": 2
     },
     "target": "snævert",
-    "en": "The proposal won the vote with a narrow majority.",
-    "ru": "Предложение выиграло голосование с небольшим перевесом.",
+    "en": "The budget was passed by a narrow majority.",
+    "ru": "Бюджет был принят с небольшим перевесом голосов.",
     "orders": [],
     "accepted": [
-     "lille"
+     "lille",
+     "spinkelt",
+     "knebent",
+     "smalt"
     ]
    }
   ]
@@ -1648,72 +1687,49 @@
   "kind": "word",
   "sense_id": "20445c51-932a-5366-b4a2-91b5b3394fd0",
   "level": "B2",
-  "situation": "communication-media",
-  "grammar": "verb-present",
-  "frame": "{subject} {target} stor indflydelse på {domain}.",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "frame": "Efter dommen må {subject} ikke længere {target} sit erhverv.",
   "slots": {
    "subject": [
     {
-     "da": "Medierne"
+     "da": "lægen"
     },
     {
-     "da": "Fagforeningerne"
+     "da": "advokaten"
     },
     {
-     "da": "Han"
-    }
-   ],
-   "domain": [
-    {
-     "da": "den offentlige debat"
-    },
-    {
-     "da": "beslutningsprocessen"
-    },
-    {
-     "da": "dansk politik"
+     "da": "tandlægen"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0,
-     "domain": 0
+     "subject": 0
     },
-    "target": "udøver",
-    "en": "The media exert great influence on public debate.",
-    "ru": "СМИ оказывают большое влияние на общественную дискуссию.",
-    "orders": [],
-    "accepted": [
-     "har"
-    ]
+    "target": "udøve",
+    "en": "After the verdict, the doctor may no longer practise their profession.",
+    "ru": "После приговора врач больше не имеет права работать по профессии.",
+    "orders": []
    },
    {
     "slots": {
-     "subject": 1,
-     "domain": 1
+     "subject": 1
     },
-    "target": "udøver",
-    "en": "The unions exert great influence on the decision-making process.",
-    "ru": "Профсоюзы оказывают большое влияние на процесс принятия решений.",
-    "orders": [],
-    "accepted": [
-     "har"
-    ]
+    "target": "udøve",
+    "en": "After the verdict, the lawyer may no longer practise their profession.",
+    "ru": "После приговора адвокат больше не имеет права работать по профессии.",
+    "orders": []
    },
    {
     "slots": {
-     "subject": 2,
-     "domain": 2
+     "subject": 2
     },
-    "target": "udøver",
-    "en": "He exerts great influence on Danish politics.",
-    "ru": "Он оказывает большое влияние на датскую политику.",
-    "orders": [],
-    "accepted": [
-     "har"
-    ]
+    "target": "udøve",
+    "en": "After the verdict, the dentist may no longer practise their profession.",
+    "ru": "После приговора стоматолог больше не имеет права работать по профессии.",
+    "orders": []
    }
   ]
  },
@@ -1724,50 +1740,56 @@
   "level": "B2",
   "situation": "education",
   "grammar": "noun-indefinite",
-  "frame": "{subject} bad om et {target} mellem overskriften og teksten.",
+  "frame": "Der mangler et {target} mellem {pair}.",
   "slots": {
-   "subject": [
+   "pair": [
     {
-     "da": "Redaktøren"
+     "da": "de to ord"
     },
     {
-     "da": "Designeren"
+     "da": "ordene i overskriften"
     },
     {
-     "da": "Læreren"
+     "da": "punktummet og det næste ord"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "pair": 0
     },
     "target": "mellemrum",
-    "en": "The editor asked for a space between the heading and the text.",
-    "ru": "Редактор попросил оставить пробел между заголовком и текстом.",
+    "en": "A space is missing between the two words.",
+    "ru": "Между двумя словами не хватает пробела.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "blanktegn"
+    ]
    },
    {
     "slots": {
-     "subject": 1
+     "pair": 1
     },
     "target": "mellemrum",
-    "en": "The designer asked for a space between the heading and the text.",
-    "ru": "Дизайнер попросил оставить пробел между заголовком и текстом.",
+    "en": "A space is missing between the words in the heading.",
+    "ru": "Между словами в заголовке не хватает пробела.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "blanktegn"
+    ]
    },
    {
     "slots": {
-     "subject": 2
+     "pair": 2
     },
     "target": "mellemrum",
-    "en": "The teacher asked for a space between the heading and the text.",
-    "ru": "Учитель попросил оставить пробел между заголовком и текстом.",
+    "en": "A space is missing between the full stop and the next word.",
+    "ru": "Между точкой и следующим словом не хватает пробела.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "blanktegn"
+    ]
    }
   ]
  },
@@ -1778,17 +1800,17 @@
   "level": "B2",
   "situation": "communication-media",
   "grammar": "noun-indefinite",
-  "frame": "{subject} skrev en {target} om {topic}.",
+  "frame": "{subject} skrev en {target} om {topic} til avisen.",
   "slots": {
    "subject": [
-    {
-     "da": "Journalisten"
-    },
     {
      "da": "Professoren"
     },
     {
-     "da": "Hun"
+     "da": "Forskeren"
+    },
+    {
+     "da": "En tidligere minister"
     }
    ],
    "topic": [
@@ -1810,8 +1832,8 @@
      "topic": 0
     },
     "target": "kronik",
-    "en": "The journalist wrote an opinion column about the climate.",
-    "ru": "Журналист написал авторскую колонку о климате.",
+    "en": "The professor wrote an opinion piece about the climate for the newspaper.",
+    "ru": "Профессор написал для газеты авторскую статью о климате.",
     "orders": [],
     "accepted": [
      "klumme"
@@ -1823,8 +1845,8 @@
      "topic": 1
     },
     "target": "kronik",
-    "en": "The professor wrote an opinion column about the healthcare system.",
-    "ru": "Профессор написал авторскую колонку о здравоохранении.",
+    "en": "The researcher wrote an opinion piece about the healthcare system for the newspaper.",
+    "ru": "Исследователь написал для газеты авторскую статью о здравоохранении.",
     "orders": [],
     "accepted": [
      "klumme"
@@ -1836,8 +1858,8 @@
      "topic": 2
     },
     "target": "kronik",
-    "en": "She wrote an opinion column about the education system.",
-    "ru": "Она написала авторскую колонку об образовательной системе.",
+    "en": "A former minister wrote an opinion piece about the education system for the newspaper.",
+    "ru": "Бывший министр написал для газеты авторскую статью об образовательной системе.",
     "orders": [],
     "accepted": [
      "klumme"
@@ -1852,50 +1874,47 @@
   "level": "B2",
   "situation": "society",
   "grammar": "noun-plural",
-  "frame": "Antallet af {target} steg markant {place}.",
+  "frame": "Antallet af {target} {group} steg markant.",
   "slots": {
-   "place": [
+   "group": [
     {
-     "da": "i landet"
+     "da": "blandt unge par"
     },
     {
      "da": "i storbyerne"
     },
     {
-     "da": "blandt unge par"
+     "da": "blandt ældre"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "place": 0
+     "group": 0
     },
     "target": "skilsmisser",
-    "en": "The number of divorces rose sharply in the country.",
-    "ru": "Число разводов резко выросло в стране.",
-    "orders": [],
-    "accepted": []
+    "en": "The number of divorces among young couples rose sharply.",
+    "ru": "Число разводов среди молодых пар резко выросло.",
+    "orders": []
    },
    {
     "slots": {
-     "place": 1
+     "group": 1
     },
     "target": "skilsmisser",
-    "en": "The number of divorces rose sharply in the big cities.",
-    "ru": "Число разводов резко выросло в крупных городах.",
-    "orders": [],
-    "accepted": []
+    "en": "The number of divorces in the big cities rose sharply.",
+    "ru": "Число разводов в крупных городах резко выросло.",
+    "orders": []
    },
    {
     "slots": {
-     "place": 2
+     "group": 2
     },
     "target": "skilsmisser",
-    "en": "The number of divorces rose sharply among young couples.",
-    "ru": "Число разводов резко выросло среди молодых пар.",
-    "orders": [],
-    "accepted": []
+    "en": "The number of divorces among older people rose sharply.",
+    "ru": "Число разводов среди пожилых людей резко выросло.",
+    "orders": []
    }
   ]
  },
@@ -1952,7 +1971,9 @@
     "en": "The experts criticized the distribution of the funds.",
     "ru": "Эксперты раскритиковали распределение средств.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "uddelingen"
+    ]
    },
    {
     "slots": {
@@ -2027,65 +2048,86 @@
   "sense_id": "6b2be1a5-98d1-5491-a52b-56bbd19256dc",
   "level": "B2",
   "situation": "work",
-  "grammar": "noun-indefinite",
-  "frame": "{subject} opstillede et {target} for {decision}.",
+  "grammar": "noun-meaning",
+  "frame": "{basis} er det vigtigste {target} for {decision}.",
   "slots": {
-   "subject": [
+   "basis": [
     {
-     "da": "Udvalget"
+     "da": "Erfaring"
     },
     {
-     "da": "Læreren"
+     "da": "Prisen"
     },
     {
-     "da": "Virksomheden"
+     "da": "Kvaliteten"
     }
    ],
    "decision": [
     {
-     "da": "ansættelsen"
+     "da": "ansættelsen",
+     "requires": {
+      "basis": [
+       0
+      ]
+     }
     },
     {
-     "da": "bedømmelsen"
+     "da": "valget af leverandør",
+     "requires": {
+      "basis": [
+       1
+      ]
+     }
     },
     {
-     "da": "udvælgelsen"
+     "da": "bedømmelsen",
+     "requires": {
+      "basis": [
+       2
+      ]
+     }
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0,
+     "basis": 0,
      "decision": 0
     },
     "target": "kriterie",
-    "en": "The committee set a criterion for the hiring.",
-    "ru": "Комитет установил критерий для приёма на работу.",
+    "en": "Experience is the most important criterion for the appointment.",
+    "ru": "Опыт — самый важный критерий при приёме на работу.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "kriterium"
+    ]
    },
    {
     "slots": {
-     "subject": 1,
+     "basis": 1,
      "decision": 1
     },
     "target": "kriterie",
-    "en": "The teacher set a criterion for the assessment.",
-    "ru": "Учитель установил критерий для оценки.",
+    "en": "Price is the most important criterion in choosing a supplier.",
+    "ru": "Цена — самый важный критерий при выборе поставщика.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "kriterium"
+    ]
    },
    {
     "slots": {
-     "subject": 2,
+     "basis": 2,
      "decision": 2
     },
     "target": "kriterie",
-    "en": "The company set a criterion for the selection.",
-    "ru": "Компания установила критерий для отбора.",
+    "en": "Quality is the most important criterion for the assessment.",
+    "ru": "Качество — самый важный критерий при оценке.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "kriterium"
+    ]
    }
   ]
  },
@@ -2103,7 +2145,7 @@
      "da": "Kontrakten"
     },
     {
-     "da": "Medlemskabet"
+     "da": "Hans arbejdstilladelse"
     },
     {
      "da": "Garantien"
@@ -2130,7 +2172,9 @@
     "target": "udløber",
     "en": "The contract expires tomorrow.",
     "ru": "Срок действия контракта истекает завтра.",
-    "orders": [],
+    "orders": [
+     "I morgen udløber kontrakten."
+    ],
     "accepted": []
    },
    {
@@ -2139,9 +2183,11 @@
      "time": 1
     },
     "target": "udløber",
-    "en": "The membership expires in a month.",
-    "ru": "Членство истекает через месяц.",
-    "orders": [],
+    "en": "His work permit expires in a month.",
+    "ru": "Срок действия его разрешения на работу истекает через месяц.",
+    "orders": [
+     "Om en måned udløber hans arbejdstilladelse."
+    ],
     "accepted": []
    },
    {
@@ -2152,7 +2198,9 @@
     "target": "udløber",
     "en": "The warranty expires at the end of the year.",
     "ru": "Срок действия гарантии истекает в конце года.",
-    "orders": [],
+    "orders": [
+     "Ved årets udgang udløber garantien."
+    ],
     "accepted": []
    }
   ]
@@ -2217,7 +2265,7 @@
   "sense_id": "a240dffc-d9e9-5137-b309-f10d65cb5243",
   "level": "B2",
   "situation": "society",
-  "grammar": "fixed-expressions",
+  "grammar": "noun-meaning",
   "frame": "{subject} forbyder diskrimination på grund af {target}.",
   "slots": {
    "subject": [
@@ -2225,7 +2273,7 @@
      "da": "Loven"
     },
     {
-     "da": "Grundloven"
+     "da": "Konventionen"
     },
     {
      "da": "Virksomhedens politik"
@@ -2248,8 +2296,8 @@
      "subject": 1
     },
     "target": "race",
-    "en": "The constitution prohibits discrimination on the basis of race.",
-    "ru": "Конституция запрещает дискриминацию по признаку расы.",
+    "en": "The convention prohibits discrimination on the basis of race.",
+    "ru": "Конвенция запрещает дискриминацию по признаку расы.",
     "orders": [],
     "accepted": []
    },
@@ -2325,8 +2373,8 @@
   "sense_id": "005dfd81-09ec-5ec2-82e6-dd50c7c1c6c8",
   "level": "B2",
   "situation": "feelings-opinions",
-  "grammar": "noun-indefinite",
-  "frame": "{subject} udtrykte stor {target} om {topic}.",
+  "grammar": "noun-meaning",
+  "frame": "{subject} ser på {topic} med stor {target}.",
   "slots": {
    "subject": [
     {
@@ -2358,8 +2406,8 @@
      "topic": 0
     },
     "target": "optimisme",
-    "en": "The director expressed great optimism about the future.",
-    "ru": "Директор выразил большой оптимизм по поводу будущего.",
+    "en": "The director looks to the future with great optimism.",
+    "ru": "Директор смотрит в будущее с большим оптимизмом.",
     "orders": [],
     "accepted": []
    },
@@ -2369,8 +2417,8 @@
      "topic": 1
     },
     "target": "optimisme",
-    "en": "The analysts expressed great optimism about the economy.",
-    "ru": "Аналитики выразили большой оптимизм по поводу экономики.",
+    "en": "The analysts view the economy with great optimism.",
+    "ru": "Аналитики смотрят на экономику с большим оптимизмом.",
     "orders": [],
     "accepted": []
    },
@@ -2380,8 +2428,8 @@
      "topic": 2
     },
     "target": "optimisme",
-    "en": "She expressed great optimism about the project.",
-    "ru": "Она выразила большой оптимизм по поводу проекта.",
+    "en": "She views the project with great optimism.",
+    "ru": "Она смотрит на проект с большим оптимизмом.",
     "orders": [],
     "accepted": []
    }
@@ -2409,7 +2457,7 @@
    ],
    "topic": [
     {
-     "da": "historien"
+     "da": "middelalderen"
     },
     {
      "da": "arkitekturen"
@@ -2426,8 +2474,8 @@
      "topic": 0
     },
     "target": "tårnet",
-    "en": "The class visited the tower to learn about the history.",
-    "ru": "Класс посетил башню, чтобы узнать об истории.",
+    "en": "The class visited the tower to learn about the Middle Ages.",
+    "ru": "Класс посетил башню, чтобы узнать о Средневековье.",
     "orders": [],
     "accepted": []
    },
@@ -2437,7 +2485,7 @@
      "topic": 1
     },
     "target": "tårnet",
-    "en": "The students visited the tower to learn about the architecture.",
+    "en": "The pupils visited the tower to learn about the architecture.",
     "ru": "Ученики посетили башню, чтобы узнать об архитектуре.",
     "orders": [],
     "accepted": []
@@ -2461,7 +2509,7 @@
   "sense_id": "524ce8a3-9905-5ff2-a3b6-3006f83bb329",
   "level": "B2",
   "situation": "feelings-opinions",
-  "grammar": "subordinate-clause",
+  "grammar": "verb-meaning",
   "frame": "{subject} {target} på, om {clause}.",
   "slots": {
    "subject": [
@@ -2498,7 +2546,7 @@
     "ru": "Я гадаю, будет ли завтра хорошая погода.",
     "orders": [],
     "accepted": [
-     "gætter"
+     "funderer"
     ]
    },
    {
@@ -2511,7 +2559,7 @@
     "ru": "Она гадает, получит ли она эту работу.",
     "orders": [],
     "accepted": [
-     "gætter"
+     "funderer"
     ]
    },
    {
@@ -2524,7 +2572,7 @@
     "ru": "Мы гадаем, успеют ли они на поезд.",
     "orders": [],
     "accepted": [
-     "gætter"
+     "funderer"
     ]
    }
   ]
@@ -2557,7 +2605,7 @@
      "da": "to dage om ugen"
     },
     {
-     "da": "for det meste"
+     "da": "om eftermiddagen"
     }
    ]
   },
@@ -2570,7 +2618,9 @@
     "target": "hjemmefra",
     "en": "I work from home on Fridays.",
     "ru": "Я работаю из дома по пятницам.",
-    "orders": [],
+    "orders": [
+     "Om fredagen arbejder jeg hjemmefra."
+    ],
     "accepted": [
      "hjemme"
     ]
@@ -2583,7 +2633,9 @@
     "target": "hjemmefra",
     "en": "She works from home two days a week.",
     "ru": "Она работает из дома два дня в неделю.",
-    "orders": [],
+    "orders": [
+     "To dage om ugen arbejder hun hjemmefra."
+    ],
     "accepted": [
      "hjemme"
     ]
@@ -2594,9 +2646,11 @@
      "frequency": 2
     },
     "target": "hjemmefra",
-    "en": "Many employees work from home most of the time.",
-    "ru": "Многие сотрудники работают из дома по большей части.",
-    "orders": [],
+    "en": "Many employees work from home in the afternoons.",
+    "ru": "Многие сотрудники работают из дома во второй половине дня.",
+    "orders": [
+     "Om eftermiddagen arbejder mange medarbejdere hjemmefra."
+    ],
     "accepted": [
      "hjemme"
     ]
