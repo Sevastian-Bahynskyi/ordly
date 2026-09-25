@@ -18,3 +18,12 @@ tsconfig.tsbuildinfo
 /catalog/audio-manifest.json
 /words.txt
 /kaikki.org-dictionary-Danish.jsonl
+/freq-30k-ex.txt
+/freq-30k-in.txt
+/ddo-fullforms_*.csv
+
+# Azure corpus generation (issue #16): a raw per-call log and a rebuildable translation cache —
+# transient operational output, not curated content. The cost/character totals that matter are
+# reported in commit messages instead.
+/catalog/families/azure-usage.json
+/catalog/families/translation-cache.json
