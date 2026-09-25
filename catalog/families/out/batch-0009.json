@@ -24,7 +24,7 @@
      "da": "rydde op på dit værelse"
     },
     {
-     "da": "vaske sine hænder før aftensmaden"
+     "da": "vaske hænder før aftensmaden"
     },
     {
      "da": "hjælpe naboen med tasken"
@@ -42,6 +42,7 @@
     "ru": "Тебе следует убрать в своей комнате.",
     "orders": [],
     "accepted": [
+     "burde",
      "skulle"
     ]
    },
@@ -55,6 +56,7 @@
     "ru": "Ему следует мыть руки перед ужином.",
     "orders": [],
     "accepted": [
+     "burde",
      "skulle"
     ]
    },
@@ -68,6 +70,7 @@
     "ru": "Нам следует помочь соседу с сумкой.",
     "orders": [],
     "accepted": [
+     "burde",
      "skulle"
     ]
    }
@@ -80,7 +83,7 @@
   "level": "A1",
   "situation": "home",
   "grammar": "noun-definite",
-  "frame": "{subject} bor i {target}.",
+  "frame": "{subject} bor i {target} {place}.",
   "slots": {
    "subject": [
     {
@@ -92,36 +95,50 @@
     {
      "da": "De"
     }
+   ],
+   "place": [
+    {
+     "da": "ved siden af skolen"
+    },
+    {
+     "da": "over for kirken"
+    },
+    {
+     "da": "for enden af vejen"
+    }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "subject": 0,
+     "place": 0
     },
     "target": "huset",
-    "en": "I live in the house.",
-    "ru": "Я живу в доме.",
+    "en": "I live in the house next to the school.",
+    "ru": "Я живу в доме рядом со школой.",
     "orders": [],
     "accepted": []
    },
    {
     "slots": {
-     "subject": 1
+     "subject": 1,
+     "place": 1
     },
     "target": "huset",
-    "en": "My family lives in the house.",
-    "ru": "Моя семья живёт в доме.",
+    "en": "My family lives in the house opposite the church.",
+    "ru": "Моя семья живёт в доме напротив церкви.",
     "orders": [],
     "accepted": []
    },
    {
     "slots": {
-     "subject": 2
+     "subject": 2,
+     "place": 2
     },
     "target": "huset",
-    "en": "They live in the house.",
-    "ru": "Они живут в доме.",
+    "en": "They live in the house at the end of the road.",
+    "ru": "Они живут в доме в конце улицы.",
     "orders": [],
     "accepted": []
    }
@@ -132,50 +149,50 @@
   "kind": "word",
   "sense_id": "e5ebc657-2b8e-5d2d-a46a-c3e5473b6a35",
   "level": "A2",
-  "situation": "leisure",
-  "grammar": "adjective-agreement",
-  "frame": "{subject} er {target}.",
+  "situation": "shopping",
+  "grammar": "adjective-meaning",
+  "frame": "Det er ikke {target} at {task}.",
   "slots": {
-   "subject": [
+   "task": [
     {
-     "da": "En tur i parken"
+     "da": "parkere foran butikken"
     },
     {
-     "da": "Et møde i klubben"
+     "da": "betale med kort i kiosken"
     },
     {
-     "da": "Flere ture i weekenden"
+     "da": "købe billetter ved indgangen"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
-    },
-    "target": "mulig",
-    "en": "A walk in the park is possible.",
-    "ru": "Прогулка в парке возможна.",
-    "orders": [],
-    "accepted": []
-   },
-   {
-    "slots": {
-     "subject": 1
+     "task": 0
     },
     "target": "muligt",
-    "en": "A meeting at the club is possible.",
-    "ru": "Встреча в клубе возможна.",
+    "en": "It is not possible to park in front of the shop.",
+    "ru": "Перед магазином невозможно припарковаться.",
     "orders": [],
     "accepted": []
    },
    {
     "slots": {
-     "subject": 2
+     "task": 1
     },
-    "target": "mulige",
-    "en": "Several trips over the weekend are possible.",
-    "ru": "Несколько поездок на выходных возможны.",
+    "target": "muligt",
+    "en": "It is not possible to pay by card at the kiosk.",
+    "ru": "В киоске невозможно расплатиться картой.",
+    "orders": [],
+    "accepted": []
+   },
+   {
+    "slots": {
+     "task": 2
+    },
+    "target": "muligt",
+    "en": "It is not possible to buy tickets at the entrance.",
+    "ru": "У входа невозможно купить билеты.",
     "orders": [],
     "accepted": []
    }
@@ -254,30 +271,54 @@
   "kind": "word",
   "sense_id": "8a66c763-5910-59bb-bd49-4e2e5e35dc01",
   "level": "A1",
-  "situation": "social",
+  "situation": "family",
   "grammar": "adjective-agreement",
-  "frame": "{subject} er {target}.",
+  "frame": "Det er {art} {target} {noun} for hele familien.",
   "slots": {
-   "subject": [
+   "art": [
     {
-     "da": "Kagen"
+     "da": "en"
     },
     {
-     "da": "Måltidet"
+     "da": "et"
+    }
+   ],
+   "noun": [
+    {
+     "da": "dag",
+     "requires": {
+      "art": [
+       0
+      ]
+     }
     },
     {
-     "da": "Gaverne"
+     "da": "øjeblik",
+     "requires": {
+      "art": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "aften",
+     "requires": {
+      "art": [
+       0
+      ]
+     }
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0
+     "art": 0,
+     "noun": 0
     },
     "target": "særlig",
-    "en": "The cake is special.",
-    "ru": "Торт особенный.",
+    "en": "It is a special day for the whole family.",
+    "ru": "Это особенный день для всей семьи.",
     "orders": [],
     "accepted": [
      "speciel"
@@ -285,11 +326,12 @@
    },
    {
     "slots": {
-     "subject": 1
+     "art": 1,
+     "noun": 1
     },
     "target": "særligt",
-    "en": "The meal is special.",
-    "ru": "Этот обед особенный.",
+    "en": "It is a special moment for the whole family.",
+    "ru": "Это особенный момент для всей семьи.",
     "orders": [],
     "accepted": [
      "specielt"
@@ -297,14 +339,15 @@
    },
    {
     "slots": {
-     "subject": 2
+     "art": 0,
+     "noun": 2
     },
-    "target": "særlige",
-    "en": "The gifts are special.",
-    "ru": "Подарки особенные.",
+    "target": "særlig",
+    "en": "It is a special evening for the whole family.",
+    "ru": "Это особенный вечер для всей семьи.",
     "orders": [],
     "accepted": [
-     "specielle"
+     "speciel"
     ]
    }
   ]
@@ -352,7 +395,8 @@
     "ru": "Я не особенно рад.",
     "orders": [],
     "accepted": [
-     "specielt"
+     "specielt",
+     "særligt"
     ]
    },
    {
@@ -365,7 +409,8 @@
     "ru": "Мой друг не особенно голоден.",
     "orders": [],
     "accepted": [
-     "specielt"
+     "specielt",
+     "særligt"
     ]
    },
    {
@@ -378,7 +423,9 @@
     "ru": "Фильм не особенно увлекательный.",
     "orders": [],
     "accepted": [
-     "specielt"
+     "specielt",
+     "særligt",
+     "videre"
     ]
    }
   ]
@@ -548,7 +595,8 @@
     "ru": "Он бригадир на стройке.",
     "orders": [],
     "accepted": [
-     "chef"
+     "værkfører",
+     "sjakbajs"
     ]
    },
    {
@@ -561,7 +609,7 @@
     "ru": "Мой дядя бригадир на заводе.",
     "orders": [],
     "accepted": [
-     "chef"
+     "værkfører"
     ]
    },
    {
@@ -574,7 +622,7 @@
     "ru": "Сосед бригадир в мастерской.",
     "orders": [],
     "accepted": [
-     "chef"
+     "værkfører"
     ]
    }
   ]
@@ -596,7 +644,7 @@
      "da": "Min mor"
     },
     {
-     "da": "Kvinden"
+     "da": "Min søster"
     }
    ],
    "company": [
@@ -621,9 +669,7 @@
     "en": "She is the director of the company.",
     "ru": "Она директор фирмы.",
     "orders": [],
-    "accepted": [
-     "leder"
-    ]
+    "accepted": []
    },
    {
     "slots": {
@@ -634,9 +680,7 @@
     "en": "My mother is the director of the company.",
     "ru": "Моя мама директор компании.",
     "orders": [],
-    "accepted": [
-     "leder"
-    ]
+    "accepted": []
    },
    {
     "slots": {
@@ -644,12 +688,10 @@
      "company": 2
     },
     "target": "direktør",
-    "en": "The woman is the director of the bank.",
-    "ru": "Женщина директор банка.",
+    "en": "My sister is the director of the bank.",
+    "ru": "Моя сестра директор банка.",
     "orders": [],
-    "accepted": [
-     "leder"
-    ]
+    "accepted": []
    }
   ]
  },
@@ -727,7 +769,7 @@
   "sense_id": "5c2eabc2-b23a-5370-88e5-b9f0f43266a7",
   "level": "A2",
   "situation": "leisure",
-  "grammar": "adverbs",
+  "grammar": "particle-verbs",
   "frame": "{subject} gik {target} i {place}.",
   "slots": {
    "subject": [
@@ -852,7 +894,6 @@
     "ru": "Мы должны оплатить счёт до конца месяца.",
     "orders": [],
     "accepted": [
-     "senest",
      "før"
     ]
    },
@@ -925,7 +966,7 @@
     },
     "target": "inden",
     "en": "I would like to call you before the train leaves.",
-    "ru": "Я хочу позвонить тебе, прежде чем поезд отправится.",
+    "ru": "Я хотел бы позвонить тебе, прежде чем поезд отправится.",
     "orders": [],
     "accepted": [
      "før"
@@ -963,7 +1004,7 @@
      "da": "Barnet"
     },
     {
-     "da": "Dyrene"
+     "da": "Hestene"
     }
    ]
   },
@@ -993,8 +1034,8 @@
      "subject": 2
     },
     "target": "stærke",
-    "en": "The animals are strong.",
-    "ru": "Животные сильные.",
+    "en": "The horses are strong.",
+    "ru": "Лошади сильные.",
     "orders": [],
     "accepted": []
    }
@@ -1088,7 +1129,7 @@
      "da": "på markedet om lørdagen"
     },
     {
-     "da": "online"
+     "da": "på nettet"
     }
    ]
   },
@@ -1102,9 +1143,7 @@
     "en": "I shop at the local supermarket.",
     "ru": "Я делаю покупки в местном супермаркете.",
     "orders": [],
-    "accepted": [
-     "shopper"
-    ]
+    "accepted": []
    },
    {
     "slots": {
@@ -1114,10 +1153,10 @@
     "target": "handler",
     "en": "We shop at the market on Saturdays.",
     "ru": "Мы делаем покупки на рынке по субботам.",
-    "orders": [],
-    "accepted": [
-     "shopper"
-    ]
+    "orders": [
+     "Om lørdagen handler vi på markedet."
+    ],
+    "accepted": []
    },
    {
     "slots": {
@@ -1126,7 +1165,7 @@
     },
     "target": "handler",
     "en": "My mother shops online.",
-    "ru": "Моя мама делает покупки онлайн.",
+    "ru": "Моя мама делает покупки в интернете.",
     "orders": [],
     "accepted": [
      "shopper"
@@ -1160,9 +1199,6 @@
     },
     {
      "da": "ansvarligt"
-    },
-    {
-     "da": "hurtigt"
     }
    ],
    "situation": [
@@ -1188,7 +1224,9 @@
     "en": "He acts quickly in a crisis.",
     "ru": "Он действует быстро в кризисной ситуации.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "agerer"
+    ]
    },
    {
     "slots": {
@@ -1200,19 +1238,23 @@
     "en": "The management acts responsibly in difficult situations.",
     "ru": "Руководство действует ответственно в сложных ситуациях.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "agerer"
+    ]
    },
    {
     "slots": {
      "subject": 2,
-     "manner": 2,
+     "manner": 0,
      "situation": 2
     },
     "target": "handler",
     "en": "We act quickly in emergencies.",
     "ru": "Мы действуем быстро в чрезвычайных ситуациях.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "agerer"
+    ]
    }
   ]
  },
@@ -1256,7 +1298,7 @@
     },
     "target": "alt",
     "en": "The ticket is far too expensive.",
-    "ru": "Билет слишком дорогой.",
+    "ru": "Билет чересчур дорогой.",
     "orders": [],
     "accepted": []
    },
@@ -1267,7 +1309,7 @@
     },
     "target": "alt",
     "en": "The house is far too expensive.",
-    "ru": "Дом слишком дорогой.",
+    "ru": "Дом чересчур дорогой.",
     "orders": [],
     "accepted": []
    },
@@ -1278,7 +1320,7 @@
     },
     "target": "alt",
     "en": "The shoes are far too expensive.",
-    "ru": "Туфли слишком дорогие.",
+    "ru": "Туфли чересчур дорогие.",
     "orders": [],
     "accepted": []
    }
@@ -1406,9 +1448,7 @@
     "en": "The country is facing an economic crisis.",
     "ru": "Страна сталкивается с экономическим кризисом.",
     "orders": [],
-    "accepted": [
-     "finansiel"
-    ]
+    "accepted": []
    },
    {
     "slots": {
@@ -1434,9 +1474,7 @@
     "en": "The government is introducing new economic reforms.",
     "ru": "Правительство вводит новые экономические реформы.",
     "orders": [],
-    "accepted": [
-     "finansielle"
-    ]
+    "accepted": []
    }
   ]
  },
@@ -1531,7 +1569,7 @@
      "da": "Rapporten"
     },
     {
-     "da": "Dagsordenen"
+     "da": "Nyhedsbrevet"
     }
    ],
    "topic1": [
@@ -1607,8 +1645,8 @@
      "topic3": 2
     },
     "target": "samt",
-    "en": "The agenda is about the members, the activities, as well as upcoming events.",
-    "ru": "Повестка дня посвящена членам, мероприятиям, а также предстоящим событиям.",
+    "en": "The newsletter is about the members, the activities, as well as upcoming events.",
+    "ru": "Рассылка посвящена участникам, мероприятиям, а также предстоящим событиям.",
     "orders": [],
     "accepted": [
      "og"
@@ -1676,7 +1714,7 @@
   "sense_id": "9c1a7a37-9fbb-542d-b709-e4159d8cd7fc",
   "level": "A2",
   "situation": "social",
-  "grammar": "verb-present",
+  "grammar": "verb-meaning",
   "frame": "{subject} {target} {object} {nickname}.",
   "slots": {
    "subject": [
@@ -1687,7 +1725,7 @@
      "da": "De"
     },
     {
-     "da": "Jeg"
+     "da": "Alle"
     }
    ],
    "object": [
@@ -1698,7 +1736,7 @@
      "da": "hende"
     },
     {
-     "da": "min bedste ven"
+     "da": "min onkel"
     }
    ],
    "nickname": [
@@ -1709,7 +1747,7 @@
      "da": "prinsessen"
     },
     {
-     "da": "kaptajnen"
+     "da": "professoren"
     }
    ]
   },
@@ -1745,8 +1783,8 @@
      "nickname": 2
     },
     "target": "kalder",
-    "en": "I call my best friend the captain.",
-    "ru": "Я называю своего лучшего друга капитаном.",
+    "en": "Everyone calls my uncle the professor.",
+    "ru": "Все называют моего дядю профессором.",
     "orders": [],
     "accepted": []
    }
@@ -1758,29 +1796,29 @@
   "sense_id": "5bb8ecad-6a3b-5d20-b9a0-fb3870ede6a2",
   "level": "A2",
   "situation": "home",
-  "grammar": "verb-present",
-  "frame": "{subject} {target} på {object}.",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} på {object}, når maden er klar.",
   "slots": {
    "subject": [
     {
-     "da": "Hun"
-    },
-    {
-     "da": "Vi"
-    },
-    {
      "da": "Mor"
+    },
+    {
+     "da": "Far"
+    },
+    {
+     "da": "Min mormor"
     }
    ],
    "object": [
     {
-     "da": "en læge"
-    },
-    {
-     "da": "hjælp"
-    },
-    {
      "da": "børnene"
+    },
+    {
+     "da": "os"
+    },
+    {
+     "da": "hele familien"
     }
    ]
   },
@@ -1791,9 +1829,11 @@
      "object": 0
     },
     "target": "kalder",
-    "en": "She calls for a doctor.",
-    "ru": "Она зовёт врача.",
-    "orders": [],
+    "en": "Mom calls the children when the food is ready.",
+    "ru": "Мама зовёт детей, когда еда готова.",
+    "orders": [
+     "Når maden er klar, kalder mor på børnene."
+    ],
     "accepted": [
      "råber"
     ]
@@ -1804,10 +1844,14 @@
      "object": 1
     },
     "target": "kalder",
-    "en": "We call for help.",
-    "ru": "Мы зовём на помощь.",
-    "orders": [],
-    "accepted": []
+    "en": "Dad calls us when the food is ready.",
+    "ru": "Папа зовёт нас, когда еда готова.",
+    "orders": [
+     "Når maden er klar, kalder far på os."
+    ],
+    "accepted": [
+     "råber"
+    ]
    },
    {
     "slots": {
@@ -1815,9 +1859,11 @@
      "object": 2
     },
     "target": "kalder",
-    "en": "Mom calls for the children.",
-    "ru": "Мама зовёт детей.",
-    "orders": [],
+    "en": "My grandmother calls the whole family when the food is ready.",
+    "ru": "Моя бабушка зовёт всю семью, когда еда готова.",
+    "orders": [
+     "Når maden er klar, kalder min mormor på hele familien."
+    ],
     "accepted": [
      "råber"
     ]
@@ -1899,36 +1945,36 @@
   "level": "A2",
   "situation": "leisure",
   "grammar": "noun-definite",
-  "frame": "{sentence_part} {target}{sentence_end}",
+  "frame": "{subject} {verb} {target}.",
   "slots": {
-   "sentence_part": [
+   "subject": [
     {
-     "da": "Jeg spiller for"
+     "da": "Jeg"
     },
     {
-     "da": "Min bror træner"
+     "da": "Min bror"
     },
     {
-     "da": "Hun er den bedste spiller på"
+     "da": "Hun"
     }
    ],
-   "sentence_end": [
+   "verb": [
     {
-     "da": "."
+     "da": "spiller for"
     },
     {
-     "da": " hver onsdag."
+     "da": "træner"
     },
     {
-     "da": "."
+     "da": "er den bedste spiller på"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "sentence_part": 0,
-     "sentence_end": 0
+     "subject": 0,
+     "verb": 0
     },
     "target": "holdet",
     "en": "I play for the team.",
@@ -1938,19 +1984,19 @@
    },
    {
     "slots": {
-     "sentence_part": 1,
-     "sentence_end": 1
+     "subject": 1,
+     "verb": 1
     },
     "target": "holdet",
-    "en": "My brother trains the team every Wednesday.",
-    "ru": "Мой брат тренирует команду каждую среду.",
+    "en": "My brother coaches the team.",
+    "ru": "Мой брат тренирует команду.",
     "orders": [],
     "accepted": []
    },
    {
     "slots": {
-     "sentence_part": 2,
-     "sentence_end": 2
+     "subject": 2,
+     "verb": 2
     },
     "target": "holdet",
     "en": "She is the best player on the team.",
@@ -1966,29 +2012,29 @@
   "sense_id": "1f3a8684-e239-5ef6-8aa8-2fd80fcde67d",
   "level": "A2",
   "situation": "education",
-  "grammar": "noun-indefinite",
-  "frame": "{subject} {verb} en {target}.",
+  "grammar": "noun-plural",
+  "frame": "{subject} {verb} i {target}.",
   "slots": {
    "subject": [
-    {
-     "da": "Vi"
-    },
     {
      "da": "Læreren"
     },
     {
-     "da": "Hun"
+     "da": "Vi"
+    },
+    {
+     "da": "Eleverne"
     }
    ],
    "verb": [
     {
-     "da": "arbejder i"
+     "da": "deler klassen op"
     },
     {
-     "da": "sætter eleverne i"
+     "da": "arbejder"
     },
     {
-     "da": "er med i"
+     "da": "løser opgaven"
     }
    ]
   },
@@ -1998,9 +2044,9 @@
      "subject": 0,
      "verb": 0
     },
-    "target": "gruppe",
-    "en": "We work in a group.",
-    "ru": "Мы работаем в группе.",
+    "target": "grupper",
+    "en": "The teacher divides the class into groups.",
+    "ru": "Учитель делит класс на группы.",
     "orders": [],
     "accepted": []
    },
@@ -2009,9 +2055,9 @@
      "subject": 1,
      "verb": 1
     },
-    "target": "gruppe",
-    "en": "The teacher puts the students in a group.",
-    "ru": "Учитель объединяет учеников в группу.",
+    "target": "grupper",
+    "en": "We work in groups.",
+    "ru": "Мы работаем в группах.",
     "orders": [],
     "accepted": []
    },
@@ -2020,9 +2066,9 @@
      "subject": 2,
      "verb": 2
     },
-    "target": "gruppe",
-    "en": "She is part of a group.",
-    "ru": "Она состоит в группе.",
+    "target": "grupper",
+    "en": "The pupils solve the task in groups.",
+    "ru": "Ученики решают задачу в группах.",
     "orders": [],
     "accepted": []
    }
@@ -2139,7 +2185,8 @@
     "ru": "Фильм длится примерно два часа.",
     "orders": [],
     "accepted": [
-     "omkring"
+     "omkring",
+     "omtrent"
     ]
    },
    {
@@ -2152,7 +2199,8 @@
     "ru": "Поездка длится примерно час.",
     "orders": [],
     "accepted": [
-     "omkring"
+     "omkring",
+     "omtrent"
     ]
    },
    {
@@ -2165,7 +2213,8 @@
     "ru": "Концерт длится примерно полтора часа.",
     "orders": [],
     "accepted": [
-     "omkring"
+     "omkring",
+     "omtrent"
     ]
    }
   ]
@@ -2244,7 +2293,7 @@
   "sense_id": "b3918b06-e1bb-5aba-a647-89393d40d181",
   "level": "A2",
   "situation": "transport",
-  "grammar": "verb-present",
+  "grammar": "verb-meaning",
   "frame": "{subject} {target} {vehicle}, hvis {condition}.",
   "slots": {
    "subject": [
@@ -2289,8 +2338,8 @@
      "condition": 0
     },
     "target": "når",
-    "en": "I make the train if I hurry.",
-    "ru": "Я успеваю на поезд, если тороплюсь.",
+    "en": "I'll make the train if I hurry.",
+    "ru": "Я успею на поезд, если потороплюсь.",
     "orders": [],
     "accepted": []
    },
@@ -2301,8 +2350,8 @@
      "condition": 1
     },
     "target": "når",
-    "en": "We make the flight if we leave early.",
-    "ru": "Мы успеваем на самолёт, если выезжаем рано.",
+    "en": "We'll make the flight if we leave early.",
+    "ru": "Мы успеем на самолёт, если выедем рано.",
     "orders": [],
     "accepted": []
    },
@@ -2313,8 +2362,8 @@
      "condition": 2
     },
     "target": "når",
-    "en": "She makes the bus if she runs.",
-    "ru": "Она успевает на автобус, если бежит.",
+    "en": "She'll make the bus if she runs.",
+    "ru": "Она успеет на автобус, если побежит.",
     "orders": [],
     "accepted": []
    }
@@ -2348,9 +2397,13 @@
     },
     "target": "nå",
     "en": "Oh, I had completely forgotten the meeting.",
-    "ru": "Ну, я совсем забыл про встречу.",
+    "ru": "Ах, я совсем забыл про встречу.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "nåh",
+     "åh",
+     "ah"
+    ]
    },
    {
     "slots": {
@@ -2358,9 +2411,12 @@
     },
     "target": "nå",
     "en": "Oh, that wasn't what I thought.",
-    "ru": "Ну, это было не то, что я думал.",
+    "ru": "Вот как, это было не то, что я думал.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "nåh",
+     "åh"
+    ]
    },
    {
     "slots": {
@@ -2368,9 +2424,13 @@
     },
     "target": "nå",
     "en": "Oh, now I understand it all.",
-    "ru": "Ну, теперь я всё понимаю.",
+    "ru": "А, теперь я всё понимаю.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "nåh",
+     "aha",
+     "ah"
+    ]
    }
   ]
  },
@@ -2415,7 +2475,9 @@
     "target": "aftenen",
     "en": "I cook in the evening.",
     "ru": "Я готовлю еду вечером.",
-    "orders": [],
+    "orders": [
+     "Om aftenen laver jeg mad."
+    ],
     "accepted": []
    },
    {
@@ -2426,7 +2488,9 @@
     "target": "aftenen",
     "en": "We have dinner in the evening.",
     "ru": "Мы ужинаем вечером.",
-    "orders": [],
+    "orders": [
+     "Om aftenen spiser vi middag."
+    ],
     "accepted": []
    },
    {
@@ -2437,7 +2501,9 @@
     "target": "aftenen",
     "en": "My father watches TV in the evening.",
     "ru": "Мой отец смотрит телевизор вечером.",
-    "orders": [],
+    "orders": [
+     "Om aftenen ser min far fjernsyn."
+    ],
     "accepted": []
    }
   ]
@@ -2446,72 +2512,92 @@
   "lemma": "dermed",
   "kind": "word",
   "sense_id": "6c692e56-3750-5d2e-a17f-64dfabe9d549",
-  "level": "A2",
-  "situation": "home",
-  "grammar": "word-order-v2",
-  "frame": "{cause}. {target} {consequence}.",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "sentence-adverbs",
+  "frame": "{first} og {verb} {target} {rest}.",
   "slots": {
-   "cause": [
+   "first": [
     {
-     "da": "Hun mistede nøglerne"
+     "da": "Holdet vandt kampen"
     },
     {
-     "da": "Vejret blev dårligt"
+     "da": "Hun løb hurtigst"
     },
     {
-     "da": "Prisen steg"
+     "da": "Han scorede to mål"
     }
    ],
-   "consequence": [
+   "verb": [
     {
-     "da": "kunne hun ikke komme ind"
+     "da": "er"
     },
     {
-     "da": "blev turen aflyst"
+     "da": "vandt"
     },
     {
-     "da": "valgte de en billigere model"
+     "da": "blev"
+    }
+   ],
+   "rest": [
+    {
+     "da": "videre til finalen"
+    },
+    {
+     "da": "løbet"
+    },
+    {
+     "da": "kampens bedste spiller"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "cause": 0,
-     "consequence": 0
+     "first": 0,
+     "verb": 0,
+     "rest": 0
     },
-    "target": "Dermed",
-    "en": "She lost the keys. As a result, she couldn't get in.",
-    "ru": "Она потеряла ключи. В результате она не смогла войти.",
+    "target": "dermed",
+    "en": "The team won the match and is thereby through to the final.",
+    "ru": "Команда выиграла матч и тем самым вышла в финал.",
     "orders": [],
     "accepted": [
-     "Derfor"
+     "derved",
+     "således",
+     "derfor"
     ]
    },
    {
     "slots": {
-     "cause": 1,
-     "consequence": 1
+     "first": 1,
+     "verb": 1,
+     "rest": 1
     },
-    "target": "Dermed",
-    "en": "The weather turned bad. As a result, the trip was cancelled.",
-    "ru": "Погода испортилась. В результате поездку отменили.",
+    "target": "dermed",
+    "en": "She ran the fastest and thereby won the race.",
+    "ru": "Она бежала быстрее всех и тем самым выиграла забег.",
     "orders": [],
     "accepted": [
-     "Derfor"
+     "derved",
+     "således",
+     "derfor"
     ]
    },
    {
     "slots": {
-     "cause": 2,
-     "consequence": 2
+     "first": 2,
+     "verb": 2,
+     "rest": 2
     },
-    "target": "Dermed",
-    "en": "The price went up. As a result, they chose a cheaper model.",
-    "ru": "Цена выросла. В результате они выбрали более дешёвую модель.",
+    "target": "dermed",
+    "en": "He scored two goals and thereby became the best player of the match.",
+    "ru": "Он забил два гола и тем самым стал лучшим игроком матча.",
     "orders": [],
     "accepted": [
-     "Derfor"
+     "derved",
+     "således",
+     "derfor"
     ]
    }
   ]
@@ -2520,58 +2606,72 @@
   "lemma": "enkelt",
   "kind": "word",
   "sense_id": "4b9d566e-fb55-577e-96e4-bafeabfeb117",
-  "level": "A1",
+  "level": "A2",
   "situation": "home",
-  "grammar": "adjective-meaning",
-  "frame": "Det er {target} at {task}.",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}, men {adjective}.",
   "slots": {
-   "task": [
+   "subject": [
     {
-     "da": "forstå reglerne"
+     "da": "Måltidet"
     },
     {
-     "da": "lave denne kage"
+     "da": "Værelset"
     },
     {
-     "da": "bruge denne app"
+     "da": "Huset"
+    }
+   ],
+   "adjective": [
+    {
+     "da": "godt"
+    },
+    {
+     "da": "hyggeligt"
+    },
+    {
+     "da": "smukt"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "task": 0
+     "subject": 0,
+     "adjective": 0
     },
     "target": "enkelt",
-    "en": "It's simple to understand the rules.",
-    "ru": "Понять правила просто.",
+    "en": "The meal is simple but good.",
+    "ru": "Еда простая, но вкусная.",
     "orders": [],
     "accepted": [
-     "let"
+     "simpelt"
     ]
    },
    {
     "slots": {
-     "task": 1
+     "subject": 1,
+     "adjective": 1
     },
     "target": "enkelt",
-    "en": "It's simple to make this cake.",
-    "ru": "Испечь этот пирог просто.",
+    "en": "The room is simple but cosy.",
+    "ru": "Комната простая, но уютная.",
     "orders": [],
     "accepted": [
-     "let"
+     "simpelt"
     ]
    },
    {
     "slots": {
-     "task": 2
+     "subject": 2,
+     "adjective": 2
     },
     "target": "enkelt",
-    "en": "It's simple to use this app.",
-    "ru": "Пользоваться этим приложением просто.",
+    "en": "The house is simple but beautiful.",
+    "ru": "Дом простой, но красивый.",
     "orders": [],
     "accepted": [
-     "let"
+     "simpelt"
     ]
    }
   ]
@@ -2581,66 +2681,84 @@
   "kind": "word",
   "sense_id": "cba0ca5a-66d1-5015-85ae-2ea6429a063b",
   "level": "A2",
-  "situation": "transport",
-  "grammar": "fixed-expressions",
-  "frame": "{subject} køber en {target} billet til {destination}.",
+  "situation": "shopping",
+  "grammar": "adjective-meaning",
+  "frame": "Der er kun {art} {target} {item} tilbage på hylden.",
   "slots": {
-   "subject": [
+   "art": [
     {
-     "da": "Jeg"
+     "da": "et"
     },
     {
-     "da": "Min mand"
-    },
-    {
-     "da": "Hun"
+     "da": "en"
     }
    ],
-   "destination": [
+   "item": [
     {
-     "da": "byen"
+     "da": "brød",
+     "requires": {
+      "art": [
+       0
+      ]
+     }
     },
     {
-     "da": "lufthavnen"
+     "da": "pakke kaffe",
+     "requires": {
+      "art": [
+       1
+      ]
+     }
     },
     {
-     "da": "stationen"
+     "da": "æske æg",
+     "requires": {
+      "art": [
+       1
+      ]
+     }
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "subject": 0,
-     "destination": 0
+     "art": 0,
+     "item": 0
     },
     "target": "enkelt",
-    "en": "I am buying a one-way ticket to town.",
-    "ru": "Я покупаю билет в один конец до города.",
+    "en": "There is only a single loaf of bread left on the shelf.",
+    "ru": "На полке осталась только одна-единственная буханка хлеба.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "eneste"
+    ]
    },
    {
     "slots": {
-     "subject": 1,
-     "destination": 1
+     "art": 1,
+     "item": 1
     },
     "target": "enkelt",
-    "en": "My husband is buying a one-way ticket to the airport.",
-    "ru": "Мой муж покупает билет в один конец до аэропорта.",
+    "en": "There is only a single packet of coffee left on the shelf.",
+    "ru": "На полке осталась только одна-единственная пачка кофе.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "eneste"
+    ]
    },
    {
     "slots": {
-     "subject": 2,
-     "destination": 2
+     "art": 1,
+     "item": 2
     },
     "target": "enkelt",
-    "en": "She is buying a one-way ticket to the station.",
-    "ru": "Она покупает билет в один конец до вокзала.",
+    "en": "There is only a single box of eggs left on the shelf.",
+    "ru": "На полке осталась только одна-единственная упаковка яиц.",
     "orders": [],
-    "accepted": []
+    "accepted": [
+     "eneste"
+    ]
    }
   ]
  },
@@ -2650,15 +2768,15 @@
   "sense_id": "fa2effe9-7ede-5427-ae56-ef731afb8157",
   "level": "A2",
   "situation": "feelings-opinions",
-  "grammar": "verb-present",
+  "grammar": "verb-meaning",
   "frame": "{subject} {target} {adjective}.",
   "slots": {
    "subject": [
     {
-     "da": "Musikken"
+     "da": "Hans stemme"
     },
     {
-     "da": "Stemmen"
+     "da": "Det"
     },
     {
      "da": "Forslaget"
@@ -2666,10 +2784,10 @@
    ],
    "adjective": [
     {
-     "da": "smuk"
+     "da": "træt"
     },
     {
-     "da": "træt"
+     "da": "spændende"
     },
     {
      "da": "fornuftigt"
@@ -2683,8 +2801,8 @@
      "adjective": 0
     },
     "target": "lyder",
-    "en": "The music sounds beautiful.",
-    "ru": "Музыка звучит красиво.",
+    "en": "His voice sounds tired.",
+    "ru": "Его голос звучит устало.",
     "orders": [],
     "accepted": []
    },
@@ -2694,8 +2812,8 @@
      "adjective": 1
     },
     "target": "lyder",
-    "en": "The voice sounds tired.",
-    "ru": "Голос звучит устало.",
+    "en": "That sounds exciting.",
+    "ru": "Это звучит увлекательно.",
     "orders": [],
     "accepted": []
    },
@@ -2719,40 +2837,40 @@
   "level": "B1",
   "situation": "society",
   "grammar": "verb-meaning",
-  "frame": "{document} {target}, at {content}.",
+  "frame": "{source} {target}, at {content}.",
   "slots": {
-   "document": [
+   "source": [
     {
      "da": "Reglen"
     },
     {
-     "da": "Kontrakten"
+     "da": "Beskeden fra kommunen"
     },
     {
-     "da": "Loven"
+     "da": "Svaret fra banken"
     }
    ],
    "content": [
     {
-     "da": "hunde ikke må være i parken"
+     "da": "hunde skal være i snor i parken"
     },
     {
-     "da": "lejen skal betales hver måned"
+     "da": "skolen er lukket i morgen"
     },
     {
-     "da": "alle borgere skal betale skat"
+     "da": "lånet er godkendt"
     }
    ]
   },
   "variants": [
    {
     "slots": {
-     "document": 0,
+     "source": 0,
      "content": 0
     },
     "target": "lyder",
-    "en": "The rule states that dogs are not allowed in the park.",
-    "ru": "Правило гласит, что собакам нельзя находиться в парке.",
+    "en": "The rule states that dogs must be on a lead in the park.",
+    "ru": "Правило гласит, что собаки в парке должны быть на поводке.",
     "orders": [],
     "accepted": [
      "siger"
@@ -2760,12 +2878,12 @@
    },
    {
     "slots": {
-     "document": 1,
+     "source": 1,
      "content": 1
     },
     "target": "lyder",
-    "en": "The contract states that the rent must be paid every month.",
-    "ru": "Договор гласит, что арендная плата должна выплачиваться каждый месяц.",
+    "en": "The message from the municipality states that the school is closed tomorrow.",
+    "ru": "Сообщение от муниципалитета гласит, что завтра школа закрыта.",
     "orders": [],
     "accepted": [
      "siger"
@@ -2773,12 +2891,12 @@
    },
    {
     "slots": {
-     "document": 2,
+     "source": 2,
      "content": 2
     },
     "target": "lyder",
-    "en": "The law states that all citizens must pay tax.",
-    "ru": "Закон гласит, что все граждане должны платить налог.",
+    "en": "The reply from the bank states that the loan has been approved.",
+    "ru": "Ответ из банка гласит, что кредит одобрен.",
     "orders": [],
     "accepted": [
      "siger"
