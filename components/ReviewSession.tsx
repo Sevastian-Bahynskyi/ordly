@@ -461,7 +461,7 @@ function SavedMeanings({ entry }: { entry: ReviewItem['vocabulary_entries'] }): 
 function DanishAudio({ entry, autoPlay }: { entry: ReviewItem['vocabulary_entries']; autoPlay: boolean }): React.JSX.Element | null {
   return <div className="review-word-audio">
     {entry.pronunciation && <span className="pronunciation review-pronunciation">{entry.pronunciation}</span>}
-    {inferDanishInputKind(entry.danish) === 'word' && <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />}
+    {entry.entry_kind !== 'sentence' && inferDanishInputKind(entry.danish) !== 'sentence' && <WordAudio audioPath={entry.audio_path} label={entry.danish} autoPlay={autoPlay} />}
   </div>
 }
 

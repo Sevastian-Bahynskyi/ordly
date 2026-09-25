@@ -27,3 +27,8 @@ tsconfig.tsbuildinfo
 # reported in commit messages instead.
 /catalog/families/azure-usage.json
 /catalog/families/translation-cache.json
+
+# Azure Speech: learner data and clip files stay local (catalog/speech/manifest.json is committed)
+/catalog/speech/material.json
+/catalog/speech/clips/
+/catalog/speech/upload/

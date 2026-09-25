@@ -17,12 +17,10 @@
  * so a second import must mint the same id for the same meaning. A UUIDv5-style digest of the
  * lemma, kind and ordinal does that without a table to remember it by.
  */
-import { createHash } from 'node:crypto'
 import { execFile } from 'node:child_process'
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
-import { audioObjectKey } from '../lib/catalog-audio'
 import { parseCatalogFact, parseCatalogGeneratorText, type CatalogFact, type CatalogGeneratedRow } from '../lib/catalog-contract'
 import { catalogCleanupSql, catalogEntriesJsonSql, catalogSensesJsonSql, senseId, type CatalogEntryRow, type CatalogSenseRow } from '../lib/catalog-import'
 import { isGeneratedCatalogRow } from '../lib/catalog-validation'
@@ -67,17 +65,19 @@ async function readRejected(path: string): Promise<Set<string>> {
   }
 }
 
+/**
+ * The recording key for each catalog row, from the Azure Speech manifest
+ * (`scripts/synthesize-audio.ts`). Only clips the manifest records as uploaded are used, so a row
+ * never points at an object that is not in the bucket.
+ */
 async function readAudio(path: string): Promise<Map<string, string>> {
   try {
-    const manifest = JSON.parse(await readFile(path, 'utf8')) as { batches?: Record<string, { files?: Record<string, string> }> }
+    const manifest = JSON.parse(await readFile(path, 'utf8')) as { uses?: Record<string, string[]>; clips?: Record<string, { key: string; uploaded?: boolean }> }
     const audio = new Map<string, string>()
-    for (const batch of Object.values(manifest.batches || {})) {
-      // The bucket key, not the local path: storage keys are ASCII and Danish is not, so the
-      // uploader stores `adfærd.mp3` under a transliterated slug plus a digest of the lemma.
-      // Both sides derive it the same way rather than passing a map around.
-      for (const lemma of Object.keys(batch.files || {})) {
-        audio.set(lemma, audioObjectKey(lemma, createHash('sha1').update(lemma).digest('hex')))
-      }
+    for (const [text, uses] of Object.entries(manifest.uses || {})) {
+      const clip = manifest.clips?.[text]
+      if (!clip?.uploaded) continue
+      for (const use of uses) audio.set(use, clip.key)
     }
     return audio
   } catch (error) {
@@ -139,7 +139,7 @@ async function main(): Promise<void> {
   const factsPath = valueAfter(argv, '--facts') || 'catalog/facts.jsonl'
   const outDir = valueAfter(argv, '--out') || 'catalog/out'
   const reviewPath = valueAfter(argv, '--needs-review') || 'catalog/needs_review.jsonl'
-  const audioPath = valueAfter(argv, '--audio-manifest') || 'catalog/audio-manifest.json'
+  const audioPath = valueAfter(argv, '--audio-manifest') || 'catalog/speech/manifest.json'
   const generator = valueAfter(argv, '--generator') || 'chatgpt+claude-sonnet-5, 2026-09'
 
   const facts = await readFacts(factsPath)
@@ -157,7 +157,7 @@ async function main(): Promise<void> {
       const key = `${value.lemma}:${value.kind}`
       if (seen.has(key)) continue
       seen.add(key)
-      entries.push({ fact, row: value, audioPath: audio.get(value.lemma) ?? null })
+      entries.push({ fact, row: value, audioPath: audio.get(`${value.lemma}|${value.kind}`) ?? null })
     }
   }
 

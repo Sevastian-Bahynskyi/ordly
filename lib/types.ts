@@ -101,7 +101,8 @@ export interface VocabularyEntry {
   pronunciation: string | null
   /** Private word-audio bucket object path. */
   audio_path: string | null
-  audio_source: 'ddo' | null
+  /** `azure`: an Azure Speech recording. `ddo` only on rows not yet moved off the retired DDO recordings. */
+  audio_source: 'azure' | 'ddo' | null
   /** Null for a group's canonical entry or an entry that has not been grouped. */
   canonical_entry_id: string | null
   /** Denormalized join of the non-removed `senses` texts. Kept in sync by the DB trigger. */

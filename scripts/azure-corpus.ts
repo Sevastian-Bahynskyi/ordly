@@ -29,7 +29,7 @@ const PRICE_PER_TOKEN_OUT = 3.48 / 1_000_000
 export const SAFETY_MARGIN = 5
 
 const usagePath = 'catalog/families/azure-usage.json'
-interface Usage { modelUsd: number; translatorChars: number; calls: { op: string; model?: string; inputTokens?: number; outputTokens?: number; usd?: number; chars?: number; at: string }[] }
+interface Usage { modelUsd: number; translatorChars: number; calls: { op: string; model?: string; inputTokens?: number; outputTokens?: number; usd?: number; chars?: number; seconds?: number; at: string }[] }
 async function readUsage(): Promise<Usage> {
   return existsSync(usagePath) ? JSON.parse(await readFile(usagePath, 'utf8')) as Usage : { modelUsd: 0, translatorChars: 0, calls: [] }
 }
@@ -41,7 +41,8 @@ export const usage: Usage = await readUsage()
 let unsaved: Usage['calls'] = []
 let saving: Promise<void> = Promise.resolve()
 
-function record(call: Usage['calls'][number]): Promise<void> {
+/** Record one paid call (model, Translator, Speech) in the shared ledger. */
+export function record(call: Usage['calls'][number]): Promise<void> {
   unsaved.push(call)
   saving = saving.then(async () => {
     const batch = unsaved
@@ -50,7 +51,7 @@ function record(call: Usage['calls'][number]): Promise<void> {
     const ledger = await readUsage()
     for (const entry of batch) {
       ledger.modelUsd += entry.usd ?? 0
-      ledger.translatorChars += entry.chars ?? 0
+      if (entry.op.startsWith('translator.')) ledger.translatorChars += entry.chars ?? 0
       ledger.calls.push(entry)
     }
     await writeFile(usagePath, `${JSON.stringify(ledger, null, 1)}\n`)

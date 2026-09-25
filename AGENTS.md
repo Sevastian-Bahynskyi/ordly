@@ -634,12 +634,17 @@ anything here. The shape:
   had: `resolvePronunciation` asks a model directly and stores `ipa: ''`. Ten thousand DDO fetches
   would be thirty thousand requests against a dictionary with no API, so the catalog uses the
   kaikki.org extract — the same Wiktionary phonetics as one file, joined offline, part-of-speech
-  tagged. DDO stays the **audio** source, through `download_ddo_audio.py` in the repo root.
-- **Phrases are silent, by design.** DDO attaches audio to headwords only; `godt lide` lives there
-  as a fixed expression under `lide`, with no recording. Stitching word recordings is banned: the
-  citation forms are wrong (`tage`, not `tager`) and Danish reshapes phrase boundaries, so the
-  result teaches a wrong pronunciation — §8's ban in audio form. A missing recording never blocks
-  a row; the word is simply silent and the button does not render.
+  tagged.
+- **Audio is Azure Speech, words and phrases alike** (issue #16). `scripts/synthesize-audio.ts`
+  speaks every catalog headword and phrase and every saved word or phrase with the Danish neural
+  voice `da-DK-ChristelNeural` (`AZURE_SPEECH_RATE`), checks each clip with Danish speech
+  recognition (a clip not heard as written is redone with `da-DK-JeppeNeural`, and a remaining
+  mismatch is judged by DeepSeek as homophone or problem), and stores it as
+  `word-audio/words/<slug>-<digest>-azure.mp3`. Sentences get no recording. A phrase is spoken
+  whole, never stitched from word recordings (citation forms are wrong and Danish reshapes phrase
+  boundaries). The former DDO website recordings, for which no rights check exists, live only in
+  `word-audio/legacy/ddo/` (`catalog/legacy/ddo-audio-keys.json`) and are not used by the app.
+  A missing recording never blocks a row; the button simply does not render.
 - **`word_catalog` / `word_catalog_sense` are reference data**, like `cor_form`: no `user_id`,
   read-only to the app, and **loaded by a script, never by a migration**. An environment with no
   catalog misses every lookup and falls through to the live AI path, which is the designed
@@ -661,7 +666,7 @@ anything here. The shape:
   residue the gate cannot see — a translation that is plausible and wrong passes every validator.
   It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
   so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
-  model; the downloaded DDO recording is the independent check.
+  model.
 - **The audio button is a narrow reversal of §19.** What stays removed is the three-button
   Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
   is not that.

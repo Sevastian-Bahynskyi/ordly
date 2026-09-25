@@ -218,7 +218,7 @@ export function MaterialClient({
       .map((word) => ({ type: 'entry' as const, key: word.id, entry: word, kind: kindOf(word) }))
       .filter((row) => kind === 'all' || `${row.kind}s` === kind)
       .filter((row) => pos === 'all' || (grammar.get(row.entry.id)?.parts || []).includes(pos))
-      .filter((row) => !missingAudio || (row.kind === 'word' && !hasWordRecording(row.entry, catalogAudio)))
+      .filter((row) => !missingAudio || (row.kind !== 'sentence' && !hasWordRecording(row.entry, catalogAudio, row.kind)))
       .filter((row) => matches(row.entry.danish, row.entry.translation, ...(formsByEntry.get(row.entry.id) || []).flatMap((form) => [form.form_text, form.gloss]), ...(collapseGroups ? (groupMembers.get(row.entry.id) || []).flatMap((member) => [member.danish, member.translation]) : [])))
     if (kind !== 'sentences') return entries
     // Sentences you added come first; the examples that belong to your words follow them.
