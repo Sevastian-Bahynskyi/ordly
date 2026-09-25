@@ -1,0 +1,310 @@
+[
+  {
+    "sense_id": "ec358cb5-8123-50bd-b504-333f0ba2fe53",
+    "lemma": "megen",
+    "changes": [
+      "variant +Emnet vækker megen opmærksomhed",
+      "en: much → a lot of; ru: много интереса/беспокойства → большой интерес / большое беспокойство (natural Russian)"
+    ]
+  },
+  {
+    "sense_id": "c0815aef-286c-52cb-9c49-2cd7c40f0078",
+    "lemma": "så",
+    "changes": [
+      "variant +Det er så blæsende i dag",
+      "orders +fronted I dag"
+    ]
+  },
+  {
+    "sense_id": "8194931a-5dff-5965-9348-682b87c93eeb",
+    "lemma": "så",
+    "changes": [
+      "variant +Det regnede, så vi blev hjemme",
+      "requires added so each result goes with its own clause"
+    ]
+  },
+  {
+    "sense_id": "4b9f4952-be71-5332-8f08-819327485fca",
+    "lemma": "så",
+    "changes": [
+      "variant +og så går vi en tur",
+      "accepted +dernæst"
+    ]
+  },
+  {
+    "sense_id": "e722824c-acab-52f9-8690-4459891e1b40",
+    "lemma": "sig",
+    "changes": [
+      "variant +De vasker sig hver morgen"
+    ]
+  },
+  {
+    "sense_id": "34d26da1-5714-517b-8bee-aa65309e7377",
+    "lemma": "ville",
+    "changes": [
+      "accepted +ville (ville gerne = \"would like\" fits the English and Russian)"
+    ]
+  },
+  {
+    "sense_id": "f1a0b83a-edd6-52ec-a175-a5318be6e87a",
+    "lemma": "ville",
+    "changes": [
+      "rewritten: \"Det vil regne i morgen\" (forecast-only; skal \"is supposed to\" also fits) → duration frame \"Turen vil tage cirka en time\" where only vil fits",
+      "situation weather-nature → transport",
+      "variant +Reparationen af bilen vil tage to dage"
+    ]
+  },
+  {
+    "sense_id": "0b943f44-aba6-59aa-b914-89855a2c451b",
+    "lemma": "få",
+    "changes": [
+      "variant +Vi fik en besked fra skolen",
+      "requires added (fra sin chef only with Han)"
+    ]
+  },
+  {
+    "sense_id": "699b552d-98b3-5d95-9a38-8e0e0c19930f",
+    "lemma": "få",
+    "changes": [
+      "rewritten: \"Få venner kom til mødet\" (friends at a meeting; stilted fronted få) → \"Der kom få gæster til festen\" with fronted-place orders",
+      "variant +Der kom få mennesker til koncerten, +få tilskuere til kampen",
+      "level A1 → A2 (der-construction, past)"
+    ]
+  },
+  {
+    "sense_id": "c1b8ee96-e3f7-59b8-b7dc-239c693afdbc",
+    "lemma": "sige",
+    "changes": [
+      "clause \"hun kom for sent\" (was she late / would she be late) → \"hun var træt\"",
+      "variant +De sagde, at de var sultne",
+      "accepted +fortalte",
+      "grammar subordinate-clause → verb-past (the target is the irregular past sagde)",
+      "requires added so each clause matches its subject"
+    ]
+  },
+  {
+    "sense_id": "7c4f0e8e-141a-53bd-8efa-fde97a8a150b",
+    "lemma": "år",
+    "changes": [
+      "rewritten: \"Året begyndte roligt / med en fest\" (unnatural) → \"Vi har boet her i tre år\"",
+      "grammar noun-definite → noun-plural; situation time-dates → home; level A1 → A2 (perfect)",
+      "variant +Min søster … ti år, +Naboerne … mange år"
+    ]
+  },
+  {
+    "sense_id": "4ce09e8a-5b40-5ae0-b934-46fc83f2a9ff",
+    "lemma": "også",
+    "changes": [
+      "variant +Vi kan også lide is",
+      "ru: торт → торты (kage as a mass noun)"
+    ]
+  },
+  {
+    "sense_id": "b126fc47-c1b3-5954-98e6-491dd6d5717d",
+    "lemma": "god",
+    "changes": [
+      "variant +Æblerne er gode"
+    ]
+  },
+  {
+    "sense_id": "551f0dfd-51db-5a83-9732-5526d0006804",
+    "lemma": "nogen",
+    "changes": [
+      "variant +Er der nogen på badeværelset",
+      "ru: Кто-нибудь на кухне? → На кухне кто-нибудь есть?"
+    ]
+  },
+  {
+    "sense_id": "f5489ec3-38e0-5502-9b0f-2413e4be1ff5",
+    "lemma": "ved",
+    "changes": [
+      "variant +Sofaen står ved væggen"
+    ]
+  },
+  {
+    "sense_id": "2a49ef09-110a-5605-a40a-0d4a3cd4d7e0",
+    "lemma": "hvor",
+    "changes": [
+      "variant +Hvor bor de"
+    ]
+  },
+  {
+    "sense_id": "6b6a13d8-2be7-5917-a3e7-315f132da16e",
+    "lemma": "hvor",
+    "changes": [
+      "variant +Hvor er det dejligt"
+    ]
+  },
+  {
+    "sense_id": "7b7ef04f-0a01-5794-a882-9fb404fae2ad",
+    "lemma": "sin",
+    "changes": [
+      "subject De → Min mormor (plural subjects take deres in standard Danish, not sine)",
+      "en: \"his own / her own / their own\" → his / her (own was added content)",
+      "en: tends → looks after (one verb for passe across variants)"
+    ]
+  },
+  {
+    "sense_id": "197afe4a-2fe2-54a3-b144-3cf2cfaaa55c",
+    "lemma": "komme",
+    "changes": [
+      "variant +Færgen kommer klokken ti"
+    ]
+  },
+  {
+    "sense_id": "2a7bbdef-7804-53db-899f-1e969edfd3e0",
+    "lemma": "hun",
+    "changes": [
+      "variant +Hun er læge"
+    ]
+  },
+  {
+    "sense_id": "3556d24f-7f9e-50c3-8e0b-dee304b48f16",
+    "lemma": "eller",
+    "changes": [
+      "variant +pasta eller ris"
+    ]
+  },
+  {
+    "sense_id": "b41c8a24-c0a3-5e12-b0b6-e12b448b432f",
+    "lemma": "al",
+    "changes": [
+      "accepted −hele on \"Al maden er væk\" (hele maden is not idiomatic for a mass noun)",
+      "duplicate state option \"spist\" merged",
+      "ru: Вся еда исчезла → Вся еда закончилась"
+    ]
+  },
+  {
+    "sense_id": "2445dcf8-df56-5cd8-a827-7fd028171159",
+    "lemma": "ud",
+    "changes": [
+      "\"Hunden går ud på gaden\" (a dog walking out onto the street alone) → \"Børnene går ud i gården\"",
+      "variant +Hun går ud på altanen",
+      "grammar particle-verbs → prepositions-place (directional adverb, not a particle verb)"
+    ]
+  },
+  {
+    "sense_id": "d0de2ac2-0e9d-53ba-b6db-a3ce78192763",
+    "lemma": "efter",
+    "changes": [
+      "\"Børnene spiser dessert efter frokosten\" → varied verbs: leger udenfor efter skolen / drikker kaffe efter maden",
+      "situation food-drink → daily-routine",
+      "orders +fronted Efter …"
+    ]
+  },
+  {
+    "sense_id": "a0246afe-7d5c-57db-86a6-8d0d0ef3e9e3",
+    "lemma": "efter",
+    "changes": [
+      "variant +Drengen løber efter bussen"
+    ]
+  },
+  {
+    "sense_id": "a9f1c498-6074-5c73-a915-55ce37a77f47",
+    "lemma": "hel",
+    "changes": [
+      "rewritten: predicative \"Kagen er hel\" means intact/unbroken (another sense; \"Kagerne er hele\" unnatural) → \"Jeg arbejdede hele dagen\"",
+      "grammar adjective-agreement → adjective-meaning; situation food-drink → time-dates; level A1 → A2 (past)",
+      "orders +fronted Hele …"
+    ]
+  },
+  {
+    "sense_id": "49239e18-c170-5e75-99bc-7af495e7b87e",
+    "lemma": "nu",
+    "changes": [
+      "variant +Min mor sover nu",
+      "orders +fronted Nu"
+    ]
+  },
+  {
+    "sense_id": "a79c5176-1026-5711-ad8f-397afe699ecc",
+    "lemma": "gå",
+    "changes": [
+      "\"går i skole / på arbejde\" (fixed expressions for attending; tager also fits) → \"går til skole / til arbejde\" = walks, en \"walk\", ru \"пешком\"",
+      "accepted −tager",
+      "variant +Min bror går til stranden"
+    ]
+  },
+  {
+    "sense_id": "1d4a0662-9e79-51a4-ab6d-865de2de2398",
+    "lemma": "gøre",
+    "changes": [
+      "rewritten: \"gør sit bedste til eksamen\" (fixed phrase; ru делает всё возможное для экзамена unnatural) → \"Hvad kan jeg gøre for dig?\" where lave does not fit",
+      "accepted −yder",
+      "grammar verb-present → verb-meaning; situation work → social",
+      "variant +Hvad kan jeg gøre for hende"
+    ]
+  },
+  {
+    "sense_id": "95bfa9d5-c9aa-5109-bba7-9935aff138c4",
+    "lemma": "gøre",
+    "changes": [
+      "rewritten: \"gjorde klogt ved at vente\" (idiom is gøre klogt i at) → \"Børnene gjorde, som de fik besked på\"",
+      "level B1 → A2; situation feelings-opinions → family",
+      "variant +Vi gjorde, som mor sagde",
+      "accepted −handlede (handle som … sagde is not idiomatic); ru поступил → сделал так, как"
+    ]
+  },
+  {
+    "sense_id": "967a4518-6eb8-51f0-a6c9-83290c71bc29",
+    "lemma": "se",
+    "changes": [
+      "variant +Vi ser en båd på vandet"
+    ]
+  },
+  {
+    "sense_id": "a3aa8909-39c4-5916-ada6-c85f613c9ba4",
+    "lemma": "dansk",
+    "changes": [
+      "variant +Hun elsker danske film"
+    ]
+  },
+  {
+    "sense_id": "c02be616-0f73-529e-a3b2-c642ace2f5d9",
+    "lemma": "dansk",
+    "changes": [
+      "variant +Vi lærer dansk om aftenen"
+    ]
+  },
+  {
+    "sense_id": "e35f8447-10b0-508f-bb15-fd34d6247ffd",
+    "lemma": "over",
+    "changes": [
+      "accepted −ovenover (as a preposition it is written oven over; one word is the adverb)",
+      "variant +Uret hænger over døren"
+    ]
+  },
+  {
+    "sense_id": "08c44b6c-4375-5ec1-80e3-d809849a4956",
+    "lemma": "over",
+    "changes": [
+      "ru: идём через улицу / идёт через мост → переходим улицу / переходит через мост (natural Russian)",
+      "variant +Børnene går over vejen"
+    ]
+  },
+  {
+    "sense_id": "d32105da-f5e8-59ab-902a-81e9277f3c55",
+    "lemma": "over",
+    "changes": [
+      "accepted −\"mere end\" (not a single word); ru больше тридцати лет → Ему за тридцать so the Russian points to over",
+      "variant +Min bedstefar er over firs år gammel"
+    ]
+  },
+  {
+    "sense_id": "bd9c67aa-29d0-5375-8304-b768d31c835e",
+    "lemma": "når",
+    "changes": [
+      "\"det er sommer\" / ru \"когда наступает лето\" (added наступает) → \"det sner\"",
+      "frame: bliver glad moved into the slot so a plural subject agrees (glade)",
+      "variant +Børnene bliver glade, når de får is"
+    ]
+  },
+  {
+    "sense_id": "63ef2ad5-55bf-555d-b374-7f798a798f18",
+    "lemma": "op",
+    "changes": [
+      "variant +Vi går op ad bjerget",
+      "grammar particle-verbs → prepositions-place (op ad = direction)"
+    ]
+  }
+]

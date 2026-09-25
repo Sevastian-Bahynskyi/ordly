@@ -9,13 +9,21 @@
   "frame": "Emnet vækker {target} {noun}.",
   "slots": {
    "noun": [
-    { "da": "interesse" },
-    { "da": "bekymring" }
+    {
+     "da": "interesse"
+    },
+    {
+     "da": "bekymring"
+    },
+    {
+     "da": "opmærksomhed"
+    }
    ]
   },
   "variants": [
-   { "slots": { "noun": 0 }, "target": "megen", "en": "The topic arouses much interest.", "ru": "Тема вызывает много интереса.", "orders": [], "accepted": ["meget", "stor"] },
-   { "slots": { "noun": 1 }, "target": "megen", "en": "The topic arouses much concern.", "ru": "Тема вызывает много беспокойства.", "orders": [], "accepted": ["meget", "stor"] }
+    {"slots": {"noun": 0}, "target": "megen", "en": "The topic arouses a lot of interest.", "ru": "Тема вызывает большой интерес.", "orders": [], "accepted": ["meget", "stor"]},
+    {"slots": {"noun": 1}, "target": "megen", "en": "The topic causes a lot of concern.", "ru": "Тема вызывает большое беспокойство.", "orders": [], "accepted": ["meget", "stor"]},
+    {"slots": {"noun": 2}, "target": "megen", "en": "The topic attracts a lot of attention.", "ru": "Тема привлекает много внимания.", "orders": [], "accepted": ["meget", "stor"]}
   ]
  },
  {
@@ -28,13 +36,21 @@
   "frame": "Det er {target} {adj} i dag.",
   "slots": {
    "adj": [
-    { "da": "koldt" },
-    { "da": "varmt" }
+    {
+     "da": "koldt"
+    },
+    {
+     "da": "varmt"
+    },
+    {
+     "da": "blæsende"
+    }
    ]
   },
   "variants": [
-   { "slots": { "adj": 0 }, "target": "så", "en": "It is so cold today.", "ru": "Сегодня так холодно.", "orders": [] },
-   { "slots": { "adj": 1 }, "target": "så", "en": "It is so hot today.", "ru": "Сегодня так жарко.", "orders": [] }
+    {"slots": {"adj": 0}, "target": "så", "en": "It is so cold today.", "ru": "Сегодня так холодно.", "orders": ["I dag er det så koldt."]},
+    {"slots": {"adj": 1}, "target": "så", "en": "It is so hot today.", "ru": "Сегодня так жарко.", "orders": ["I dag er det så varmt."]},
+    {"slots": {"adj": 2}, "target": "så", "en": "It is so windy today.", "ru": "Сегодня так ветрено.", "orders": ["I dag er det så blæsende."]}
   ]
  },
  {
@@ -47,17 +63,47 @@
   "frame": "{clause}, {target} {result}.",
   "slots": {
    "clause": [
-    { "da": "Jeg var træt" },
-    { "da": "Hun havde ondt i hovedet" }
+    {
+     "da": "Jeg var træt"
+    },
+    {
+     "da": "Hun havde ondt i hovedet"
+    },
+    {
+     "da": "Det regnede"
+    }
    ],
    "result": [
-    { "da": "jeg gik tidligt i seng" },
-    { "da": "hun tog en pille" }
+    {
+     "da": "jeg gik tidligt i seng",
+     "requires": {
+      "clause": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "hun tog en pille",
+     "requires": {
+      "clause": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "vi blev hjemme",
+     "requires": {
+      "clause": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "clause": 0, "result": 0 }, "target": "så", "en": "I was tired, so I went to bed early.", "ru": "Я устал, поэтому рано лёг спать.", "orders": [] },
-   { "slots": { "clause": 1, "result": 1 }, "target": "så", "en": "She had a headache, so she took a pill.", "ru": "У неё болела голова, поэтому она приняла таблетку.", "orders": [] }
+    {"slots": {"clause": 0, "result": 0}, "target": "så", "en": "I was tired, so I went to bed early.", "ru": "Я устал, поэтому рано лёг спать.", "orders": []},
+    {"slots": {"clause": 1, "result": 1}, "target": "så", "en": "She had a headache, so she took a pill.", "ru": "У неё болела голова, поэтому она приняла таблетку.", "orders": []},
+    {"slots": {"clause": 2, "result": 2}, "target": "så", "en": "It was raining, so we stayed at home.", "ru": "Шёл дождь, поэтому мы остались дома.", "orders": []}
   ]
  },
  {
@@ -70,13 +116,21 @@
   "frame": "Vi spiser morgenmad, og {target} går vi {place}.",
   "slots": {
    "place": [
-    { "da": "i skole" },
-    { "da": "på arbejde" }
+    {
+     "da": "i skole"
+    },
+    {
+     "da": "på arbejde"
+    },
+    {
+     "da": "en tur"
+    }
    ]
   },
   "variants": [
-   { "slots": { "place": 0 }, "target": "så", "en": "We eat breakfast, and then we go to school.", "ru": "Мы завтракаем, а потом идём в школу.", "orders": [], "accepted": ["bagefter", "derefter"] },
-   { "slots": { "place": 1 }, "target": "så", "en": "We eat breakfast, and then we go to work.", "ru": "Мы завтракаем, а потом идём на работу.", "orders": [], "accepted": ["bagefter", "derefter"] }
+    {"slots": {"place": 0}, "target": "så", "en": "We eat breakfast, and then we go to school.", "ru": "Мы завтракаем, а потом идём в школу.", "orders": [], "accepted": ["bagefter", "derefter", "dernæst"]},
+    {"slots": {"place": 1}, "target": "så", "en": "We eat breakfast, and then we go to work.", "ru": "Мы завтракаем, а потом идём на работу.", "orders": [], "accepted": ["bagefter", "derefter", "dernæst"]},
+    {"slots": {"place": 2}, "target": "så", "en": "We eat breakfast, and then we go for a walk.", "ru": "Мы завтракаем, а потом идём гулять.", "orders": [], "accepted": ["bagefter", "derefter", "dernæst"]}
   ]
  },
  {
@@ -89,13 +143,21 @@
   "frame": "{subject} vasker {target} hver morgen.",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hun" }
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "De"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "sig", "en": "He washes himself every morning.", "ru": "Он умывается каждое утро.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "sig", "en": "She washes herself every morning.", "ru": "Она умывается каждое утро.", "orders": [] }
+    {"slots": {"subject": 0}, "target": "sig", "en": "He washes himself every morning.", "ru": "Он умывается каждое утро.", "orders": []},
+    {"slots": {"subject": 1}, "target": "sig", "en": "She washes herself every morning.", "ru": "Она умывается каждое утро.", "orders": []},
+    {"slots": {"subject": 2}, "target": "sig", "en": "They wash themselves every morning.", "ru": "Они умываются каждое утро.", "orders": []}
   ]
  },
  {
@@ -108,20 +170,32 @@
   "frame": "{subject} {target} gerne {verb}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Hun" },
-    { "da": "Vi" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "verb": [
-    { "da": "rejse til udlandet" },
-    { "da": "lære dansk" },
-    { "da": "se en film" }
+    {
+     "da": "rejse til udlandet"
+    },
+    {
+     "da": "lære dansk"
+    },
+    {
+     "da": "se en film"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "verb": 0 }, "target": "vil", "en": "I would like to travel abroad.", "ru": "Я хотел бы поехать за границу.", "orders": [] },
-   { "slots": { "subject": 1, "verb": 1 }, "target": "vil", "en": "She would like to learn Danish.", "ru": "Она хотела бы выучить датский.", "orders": [] },
-   { "slots": { "subject": 2, "verb": 2 }, "target": "vil", "en": "We would like to watch a movie.", "ru": "Мы хотели бы посмотреть фильм.", "orders": [] }
+    {"slots": {"subject": 0, "verb": 0}, "target": "vil", "en": "I would like to travel abroad.", "ru": "Я хотел бы поехать за границу.", "orders": [], "accepted": ["ville"]},
+    {"slots": {"subject": 1, "verb": 1}, "target": "vil", "en": "She would like to learn Danish.", "ru": "Она хотела бы выучить датский.", "orders": [], "accepted": ["ville"]},
+    {"slots": {"subject": 2, "verb": 2}, "target": "vil", "en": "We would like to watch a movie.", "ru": "Мы хотели бы посмотреть фильм.", "orders": [], "accepted": ["ville"]}
   ]
  },
  {
@@ -129,26 +203,52 @@
   "kind": "word",
   "sense_id": "f1a0b83a-edd6-52ec-a175-a5318be6e87a",
   "level": "A2",
-  "situation": "weather-nature",
+  "situation": "transport",
   "grammar": "verb-future",
-  "frame": "{subject} {target} {verb} {time}.",
+  "frame": "{subject} {target} tage {time}.",
   "slots": {
    "subject": [
-    { "da": "Det" },
-    { "da": "Vejret" }
-   ],
-   "verb": [
-    { "da": "regne" },
-    { "da": "blive koldt" }
+    {
+     "da": "Turen"
+    },
+    {
+     "da": "Rejsen"
+    },
+    {
+     "da": "Reparationen af bilen"
+    }
    ],
    "time": [
-    { "da": "i morgen" },
-    { "da": "i næste uge" }
+    {
+     "da": "cirka en time",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "to timer",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "to dage",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "verb": 0, "time": 0 }, "target": "vil", "en": "It will rain tomorrow.", "ru": "Завтра будет дождь.", "orders": [] },
-   { "slots": { "subject": 1, "verb": 1, "time": 1 }, "target": "vil", "en": "The weather will get cold next week.", "ru": "На следующей неделе погода будет холодной.", "orders": [] }
+    {"slots": {"subject": 0, "time": 0}, "target": "vil", "en": "The trip will take about an hour.", "ru": "Поездка займёт около часа.", "orders": []},
+    {"slots": {"subject": 1, "time": 1}, "target": "vil", "en": "The journey will take two hours.", "ru": "Дорога займёт два часа.", "orders": []},
+    {"slots": {"subject": 2, "time": 2}, "target": "vil", "en": "The car repair will take two days.", "ru": "Ремонт машины займёт два дня.", "orders": []}
   ]
  },
  {
@@ -161,44 +261,106 @@
   "frame": "{subject} {target} {object} {source}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Han" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "object": [
-    { "da": "en gave" },
-    { "da": "et brev" }
+    {
+     "da": "en gave"
+    },
+    {
+     "da": "et brev"
+    },
+    {
+     "da": "en besked"
+    }
    ],
    "source": [
-    { "da": "fra min bror" },
-    { "da": "fra sin chef" }
+    {
+     "da": "fra min bror",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "fra sin chef",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "fra skolen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "object": 0, "source": 0 }, "target": "fik", "en": "I got a present from my brother.", "ru": "Я получил подарок от брата.", "orders": [], "accepted": ["modtog"] },
-   { "slots": { "subject": 1, "object": 1, "source": 1 }, "target": "fik", "en": "He got a letter from his boss.", "ru": "Он получил письмо от своего начальника.", "orders": [], "accepted": ["modtog"] }
+    {"slots": {"subject": 0, "object": 0, "source": 0}, "target": "fik", "en": "I got a present from my brother.", "ru": "Я получил подарок от брата.", "orders": [], "accepted": ["modtog"]},
+    {"slots": {"subject": 1, "object": 1, "source": 1}, "target": "fik", "en": "He got a letter from his boss.", "ru": "Он получил письмо от своего начальника.", "orders": [], "accepted": ["modtog"]},
+    {"slots": {"subject": 2, "object": 2, "source": 2}, "target": "fik", "en": "We got a message from the school.", "ru": "Мы получили сообщение из школы.", "orders": [], "accepted": ["modtog"]}
   ]
  },
  {
   "lemma": "få",
   "kind": "word",
   "sense_id": "699b552d-98b3-5d95-9a38-8e0e0c19930f",
-  "level": "A1",
-  "situation": "social",
+  "level": "A2",
+  "situation": "leisure",
   "grammar": "adjective-meaning",
-  "frame": "{target} {noun} kom {place}.",
+  "frame": "Der kom {target} {noun} {place}.",
   "slots": {
    "noun": [
-    { "da": "gæster" },
-    { "da": "venner" }
+    {
+     "da": "gæster"
+    },
+    {
+     "da": "mennesker"
+    },
+    {
+     "da": "tilskuere"
+    }
    ],
    "place": [
-    { "da": "til festen" },
-    { "da": "til mødet" }
+    {
+     "da": "til festen",
+     "requires": {
+      "noun": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "til koncerten",
+     "requires": {
+      "noun": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "til kampen",
+     "requires": {
+      "noun": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "noun": 0, "place": 0 }, "target": "få", "en": "Few guests came to the party.", "ru": "На вечеринку пришло мало гостей.", "orders": [] },
-   { "slots": { "noun": 1, "place": 1 }, "target": "få", "en": "Few friends came to the meeting.", "ru": "На встречу пришло мало друзей.", "orders": [] }
+    {"slots": {"noun": 0, "place": 0}, "target": "få", "en": "Few guests came to the party.", "ru": "На вечеринку пришло мало гостей.", "orders": ["Til festen kom der få gæster."]},
+    {"slots": {"noun": 1, "place": 1}, "target": "få", "en": "Few people came to the concert.", "ru": "На концерт пришло мало людей.", "orders": ["Til koncerten kom der få mennesker."]},
+    {"slots": {"noun": 2, "place": 2}, "target": "få", "en": "Few spectators came to the match.", "ru": "На матч пришло мало зрителей.", "orders": ["Til kampen kom der få tilskuere."]}
   ]
  },
  {
@@ -207,40 +369,89 @@
   "sense_id": "c1b8ee96-e3f7-59b8-b7dc-239c693afdbc",
   "level": "A2",
   "situation": "social",
-  "grammar": "subordinate-clause",
+  "grammar": "verb-past",
   "frame": "{subject} {target}, at {clause}.",
   "slots": {
    "subject": [
-    { "da": "Hun" },
-    { "da": "Han" }
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "De"
+    }
    ],
    "clause": [
-    { "da": "hun kom for sent" },
-    { "da": "han var syg" }
+    {
+     "da": "hun var træt",
+     "requires": {
+      "subject": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "han var syg",
+     "requires": {
+      "subject": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "de var sultne",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "clause": 0 }, "target": "sagde", "en": "She said that she was late.", "ru": "Она сказала, что опоздала.", "orders": [] },
-   { "slots": { "subject": 1, "clause": 1 }, "target": "sagde", "en": "He said that he was sick.", "ru": "Он сказал, что болен.", "orders": [] }
+    {"slots": {"subject": 0, "clause": 0}, "target": "sagde", "en": "She said that she was tired.", "ru": "Она сказала, что устала.", "orders": [], "accepted": ["fortalte"]},
+    {"slots": {"subject": 1, "clause": 1}, "target": "sagde", "en": "He said that he was sick.", "ru": "Он сказал, что болен.", "orders": [], "accepted": ["fortalte"]},
+    {"slots": {"subject": 2, "clause": 2}, "target": "sagde", "en": "They said that they were hungry.", "ru": "Они сказали, что голодны.", "orders": [], "accepted": ["fortalte"]}
   ]
  },
  {
   "lemma": "år",
   "kind": "word",
   "sense_id": "7c4f0e8e-141a-53bd-8efa-fde97a8a150b",
-  "level": "A1",
-  "situation": "time-dates",
-  "grammar": "noun-definite",
-  "frame": "{target} begyndte {manner}.",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-plural",
+  "frame": "{subject} har boet her i {number} {target}.",
   "slots": {
-   "manner": [
-    { "da": "roligt" },
-    { "da": "med en fest" }
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "Naboerne"
+    }
+   ],
+   "number": [
+    {
+     "da": "tre"
+    },
+    {
+     "da": "ti"
+    },
+    {
+     "da": "mange"
+    }
    ]
   },
   "variants": [
-   { "slots": { "manner": 0 }, "target": "året", "en": "The year began quietly.", "ru": "Год начался спокойно.", "orders": [] },
-   { "slots": { "manner": 1 }, "target": "året", "en": "The year began with a party.", "ru": "Год начался с вечеринки.", "orders": [] }
+    {"slots": {"subject": 0, "number": 0}, "target": "år", "en": "We have lived here for three years.", "ru": "Мы живём здесь три года.", "orders": []},
+    {"slots": {"subject": 1, "number": 1}, "target": "år", "en": "My sister has lived here for ten years.", "ru": "Моя сестра живёт здесь десять лет.", "orders": []},
+    {"slots": {"subject": 2, "number": 2}, "target": "år", "en": "The neighbours have lived here for many years.", "ru": "Соседи живут здесь много лет.", "orders": []}
   ]
  },
  {
@@ -253,17 +464,32 @@
   "frame": "{subject} kan {target} lide {object}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Han" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "object": [
-    { "da": "te" },
-    { "da": "kage" }
+    {
+     "da": "te"
+    },
+    {
+     "da": "kage"
+    },
+    {
+     "da": "is"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "object": 0 }, "target": "også", "en": "I also like tea.", "ru": "Я тоже люблю чай.", "orders": [] },
-   { "slots": { "subject": 1, "object": 1 }, "target": "også", "en": "He also likes cake.", "ru": "Он тоже любит торт.", "orders": [] }
+    {"slots": {"subject": 0, "object": 0}, "target": "også", "en": "I also like tea.", "ru": "Я тоже люблю чай.", "orders": []},
+    {"slots": {"subject": 1, "object": 1}, "target": "også", "en": "He also likes cake.", "ru": "Он тоже любит торты.", "orders": []},
+    {"slots": {"subject": 2, "object": 2}, "target": "også", "en": "We also like ice cream.", "ru": "Мы тоже любим мороженое.", "orders": []}
   ]
  },
  {
@@ -276,13 +502,21 @@
   "frame": "{subject} er {target}.",
   "slots": {
    "subject": [
-    { "da": "Maden" },
-    { "da": "Brødet" }
+    {
+     "da": "Maden"
+    },
+    {
+     "da": "Brødet"
+    },
+    {
+     "da": "Æblerne"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "god", "en": "The food is good.", "ru": "Еда хорошая.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "godt", "en": "The bread is good.", "ru": "Хлеб хороший.", "orders": [] }
+    {"slots": {"subject": 0}, "target": "god", "en": "The food is good.", "ru": "Еда хорошая.", "orders": []},
+    {"slots": {"subject": 1}, "target": "godt", "en": "The bread is good.", "ru": "Хлеб хороший.", "orders": []},
+    {"slots": {"subject": 2}, "target": "gode", "en": "The apples are good.", "ru": "Яблоки хорошие.", "orders": []}
   ]
  },
  {
@@ -295,13 +529,21 @@
   "frame": "Er der {target} {place}?",
   "slots": {
    "place": [
-    { "da": "hjemme" },
-    { "da": "i køkkenet" }
+    {
+     "da": "hjemme"
+    },
+    {
+     "da": "i køkkenet"
+    },
+    {
+     "da": "på badeværelset"
+    }
    ]
   },
   "variants": [
-   { "slots": { "place": 0 }, "target": "nogen", "en": "Is anyone home?", "ru": "Кто-нибудь дома?", "orders": [] },
-   { "slots": { "place": 1 }, "target": "nogen", "en": "Is anyone in the kitchen?", "ru": "Кто-нибудь на кухне?", "orders": [] }
+    {"slots": {"place": 0}, "target": "nogen", "en": "Is anyone home?", "ru": "Кто-нибудь дома?", "orders": []},
+    {"slots": {"place": 1}, "target": "nogen", "en": "Is anyone in the kitchen?", "ru": "На кухне кто-нибудь есть?", "orders": []},
+    {"slots": {"place": 2}, "target": "nogen", "en": "Is anyone in the bathroom?", "ru": "В ванной кто-нибудь есть?", "orders": []}
   ]
  },
  {
@@ -314,15 +556,21 @@
   "frame": "{subject} er {target}.",
   "slots": {
    "subject": [
-    { "da": "Bilen" },
-    { "da": "Huset" },
-    { "da": "Værelserne" }
+    {
+     "da": "Bilen"
+    },
+    {
+     "da": "Huset"
+    },
+    {
+     "da": "Værelserne"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "stor", "en": "The car is big.", "ru": "Машина большая.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "stort", "en": "The house is big.", "ru": "Дом большой.", "orders": [] },
-   { "slots": { "subject": 2 }, "target": "store", "en": "The rooms are big.", "ru": "Комнаты большие.", "orders": [] }
+    {"slots": {"subject": 0}, "target": "stor", "en": "The car is big.", "ru": "Машина большая.", "orders": []},
+    {"slots": {"subject": 1}, "target": "stort", "en": "The house is big.", "ru": "Дом большой.", "orders": []},
+    {"slots": {"subject": 2}, "target": "store", "en": "The rooms are big.", "ru": "Комнаты большие.", "orders": []}
   ]
  },
  {
@@ -335,17 +583,32 @@
   "frame": "{subject} står {target} {place}.",
   "slots": {
    "subject": [
-    { "da": "Bordet" },
-    { "da": "Stolen" }
+    {
+     "da": "Bordet"
+    },
+    {
+     "da": "Stolen"
+    },
+    {
+     "da": "Sofaen"
+    }
    ],
    "place": [
-    { "da": "vinduet" },
-    { "da": "døren" }
+    {
+     "da": "vinduet"
+    },
+    {
+     "da": "døren"
+    },
+    {
+     "da": "væggen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "ved", "en": "The table stands by the window.", "ru": "Стол стоит у окна.", "orders": [], "accepted": ["nær"] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "ved", "en": "The chair stands by the door.", "ru": "Стул стоит у двери.", "orders": [], "accepted": ["nær"] }
+    {"slots": {"subject": 0, "place": 0}, "target": "ved", "en": "The table stands by the window.", "ru": "Стол стоит у окна.", "orders": [], "accepted": ["nær"]},
+    {"slots": {"subject": 1, "place": 1}, "target": "ved", "en": "The chair stands by the door.", "ru": "Стул стоит у двери.", "orders": [], "accepted": ["nær"]},
+    {"slots": {"subject": 2, "place": 2}, "target": "ved", "en": "The sofa stands by the wall.", "ru": "Диван стоит у стены.", "orders": [], "accepted": ["nær"]}
   ]
  },
  {
@@ -358,13 +621,21 @@
   "frame": "{target} bor {subject}?",
   "slots": {
    "subject": [
-    { "da": "du" },
-    { "da": "han" }
+    {
+     "da": "du"
+    },
+    {
+     "da": "han"
+    },
+    {
+     "da": "de"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "hvor", "en": "Where do you live?", "ru": "Где ты живёшь?", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "hvor", "en": "Where does he live?", "ru": "Где он живёт?", "orders": [] }
+    {"slots": {"subject": 0}, "target": "hvor", "en": "Where do you live?", "ru": "Где ты живёшь?", "orders": []},
+    {"slots": {"subject": 1}, "target": "hvor", "en": "Where does he live?", "ru": "Где он живёт?", "orders": []},
+    {"slots": {"subject": 2}, "target": "hvor", "en": "Where do they live?", "ru": "Где они живут?", "orders": []}
   ]
  },
  {
@@ -377,13 +648,21 @@
   "frame": "{target} er det {adj}!",
   "slots": {
    "adj": [
-    { "da": "smukt" },
-    { "da": "koldt" }
+    {
+     "da": "smukt"
+    },
+    {
+     "da": "koldt"
+    },
+    {
+     "da": "dejligt"
+    }
    ]
   },
   "variants": [
-   { "slots": { "adj": 0 }, "target": "hvor", "en": "How beautiful it is!", "ru": "Как красиво!", "orders": [] },
-   { "slots": { "adj": 1 }, "target": "hvor", "en": "How cold it is!", "ru": "Как холодно!", "orders": [] }
+    {"slots": {"adj": 0}, "target": "hvor", "en": "How beautiful it is!", "ru": "Как красиво!", "orders": []},
+    {"slots": {"adj": 1}, "target": "hvor", "en": "How cold it is!", "ru": "Как холодно!", "orders": []},
+    {"slots": {"adj": 2}, "target": "hvor", "en": "How lovely it is!", "ru": "Как чудесно!", "orders": []}
   ]
  },
  {
@@ -396,20 +675,32 @@
   "frame": "{subject} passer {target} {noun}.",
   "slots": {
    "subject": [
-    { "da": "Manden" },
-    { "da": "Kvinden" },
-    { "da": "De" }
+    {
+     "da": "Manden"
+    },
+    {
+     "da": "Kvinden"
+    },
+    {
+     "da": "Min mormor"
+    }
    ],
    "noun": [
-    { "da": "have" },
-    { "da": "kæledyr" },
-    { "da": "planter" }
+    {
+     "da": "have"
+    },
+    {
+     "da": "kæledyr"
+    },
+    {
+     "da": "planter"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "noun": 0 }, "target": "sin", "en": "The man tends his own garden.", "ru": "Мужчина ухаживает за своим садом.", "orders": [] },
-   { "slots": { "subject": 1, "noun": 1 }, "target": "sit", "en": "The woman takes care of her own pet.", "ru": "Женщина заботится о своём питомце.", "orders": [] },
-   { "slots": { "subject": 2, "noun": 2 }, "target": "sine", "en": "They take care of their own plants.", "ru": "Они заботятся о своих растениях.", "orders": [] }
+    {"slots": {"subject": 0, "noun": 0}, "target": "sin", "en": "The man looks after his garden.", "ru": "Мужчина ухаживает за своим садом.", "orders": []},
+    {"slots": {"subject": 1, "noun": 1}, "target": "sit", "en": "The woman looks after her pet.", "ru": "Женщина ухаживает за своим питомцем.", "orders": []},
+    {"slots": {"subject": 2, "noun": 2}, "target": "sine", "en": "My grandmother looks after her plants.", "ru": "Моя бабушка ухаживает за своими растениями.", "orders": []}
   ]
  },
  {
@@ -422,17 +713,32 @@
   "frame": "{subject} {target} {time}.",
   "slots": {
    "subject": [
-    { "da": "Toget" },
-    { "da": "Bussen" }
+    {
+     "da": "Toget"
+    },
+    {
+     "da": "Bussen"
+    },
+    {
+     "da": "Færgen"
+    }
    ],
    "time": [
-    { "da": "klokken otte" },
-    { "da": "klokken ni" }
+    {
+     "da": "klokken otte"
+    },
+    {
+     "da": "klokken ni"
+    },
+    {
+     "da": "klokken ti"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "time": 0 }, "target": "kommer", "en": "The train arrives at eight o'clock.", "ru": "Поезд прибывает в восемь часов.", "orders": [], "accepted": ["ankommer"] },
-   { "slots": { "subject": 1, "time": 1 }, "target": "kommer", "en": "The bus arrives at nine o'clock.", "ru": "Автобус прибывает в девять часов.", "orders": [], "accepted": ["ankommer"] }
+    {"slots": {"subject": 0, "time": 0}, "target": "kommer", "en": "The train arrives at eight o'clock.", "ru": "Поезд прибывает в восемь часов.", "orders": [], "accepted": ["ankommer"]},
+    {"slots": {"subject": 1, "time": 1}, "target": "kommer", "en": "The bus arrives at nine o'clock.", "ru": "Автобус прибывает в девять часов.", "orders": [], "accepted": ["ankommer"]},
+    {"slots": {"subject": 2, "time": 2}, "target": "kommer", "en": "The ferry arrives at ten o'clock.", "ru": "Паром прибывает в десять часов.", "orders": [], "accepted": ["ankommer"]}
   ]
  },
  {
@@ -445,13 +751,21 @@
   "frame": "{target} er {role}.",
   "slots": {
    "role": [
-    { "da": "lærer" },
-    { "da": "sygeplejerske" }
+    {
+     "da": "lærer"
+    },
+    {
+     "da": "sygeplejerske"
+    },
+    {
+     "da": "læge"
+    }
    ]
   },
   "variants": [
-   { "slots": { "role": 0 }, "target": "hun", "en": "She is a teacher.", "ru": "Она учительница.", "orders": [] },
-   { "slots": { "role": 1 }, "target": "hun", "en": "She is a nurse.", "ru": "Она медсестра.", "orders": [] }
+    {"slots": {"role": 0}, "target": "hun", "en": "She is a teacher.", "ru": "Она учительница.", "orders": []},
+    {"slots": {"role": 1}, "target": "hun", "en": "She is a nurse.", "ru": "Она медсестра.", "orders": []},
+    {"slots": {"role": 2}, "target": "hun", "en": "She is a doctor.", "ru": "Она врач.", "orders": []}
   ]
  },
  {
@@ -464,17 +778,32 @@
   "frame": "Vil du have {item1} {target} {item2} til aftensmad?",
   "slots": {
    "item1": [
-    { "da": "fisk" },
-    { "da": "suppe" }
+    {
+     "da": "fisk"
+    },
+    {
+     "da": "suppe"
+    },
+    {
+     "da": "pasta"
+    }
    ],
    "item2": [
-    { "da": "kylling" },
-    { "da": "salat" }
+    {
+     "da": "kylling"
+    },
+    {
+     "da": "salat"
+    },
+    {
+     "da": "ris"
+    }
    ]
   },
   "variants": [
-   { "slots": { "item1": 0, "item2": 0 }, "target": "eller", "en": "Do you want fish or chicken for dinner?", "ru": "Хочешь рыбу или курицу на ужин?", "orders": [] },
-   { "slots": { "item1": 1, "item2": 1 }, "target": "eller", "en": "Do you want soup or salad for dinner?", "ru": "Хочешь суп или салат на ужин?", "orders": [] }
+    {"slots": {"item1": 0, "item2": 0}, "target": "eller", "en": "Do you want fish or chicken for dinner?", "ru": "Хочешь рыбу или курицу на ужин?", "orders": []},
+    {"slots": {"item1": 1, "item2": 1}, "target": "eller", "en": "Do you want soup or salad for dinner?", "ru": "Хочешь суп или салат на ужин?", "orders": []},
+    {"slots": {"item1": 2, "item2": 2}, "target": "eller", "en": "Do you want pasta or rice for dinner?", "ru": "Хочешь пасту или рис на ужин?", "orders": []}
   ]
  },
  {
@@ -487,20 +816,29 @@
   "frame": "{target} {noun} er {state}.",
   "slots": {
    "noun": [
-    { "da": "maden" },
-    { "da": "brødet" },
-    { "da": "kagerne" }
+    {
+     "da": "maden"
+    },
+    {
+     "da": "brødet"
+    },
+    {
+     "da": "kagerne"
+    }
    ],
    "state": [
-    { "da": "væk" },
-    { "da": "spist" },
-    { "da": "spist" }
+    {
+     "da": "væk"
+    },
+    {
+     "da": "spist"
+    }
    ]
   },
   "variants": [
-   { "slots": { "noun": 0, "state": 0 }, "target": "al", "en": "All the food is gone.", "ru": "Вся еда исчезла.", "orders": [], "accepted": ["hele"] },
-   { "slots": { "noun": 1, "state": 1 }, "target": "alt", "en": "All the bread has been eaten.", "ru": "Весь хлеб съеден.", "orders": [], "accepted": ["hele"] },
-   { "slots": { "noun": 2, "state": 2 }, "target": "alle", "en": "All the cakes have been eaten.", "ru": "Все пирожные съедены.", "orders": [] }
+    {"slots": {"noun": 0, "state": 0}, "target": "al", "en": "All the food is gone.", "ru": "Вся еда закончилась.", "orders": []},
+    {"slots": {"noun": 1, "state": 1}, "target": "alt", "en": "All the bread has been eaten.", "ru": "Весь хлеб съеден.", "orders": [], "accepted": ["hele"]},
+    {"slots": {"noun": 2, "state": 1}, "target": "alle", "en": "All the cakes have been eaten.", "ru": "Все пирожные съедены.", "orders": []}
   ]
  },
  {
@@ -509,21 +847,36 @@
   "sense_id": "2445dcf8-df56-5cd8-a827-7fd028171159",
   "level": "A2",
   "situation": "home",
-  "grammar": "particle-verbs",
+  "grammar": "prepositions-place",
   "frame": "{subject} går {target} {place}.",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hunden" }
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Børnene"
+    },
+    {
+     "da": "Hun"
+    }
    ],
    "place": [
-    { "da": "i haven" },
-    { "da": "på gaden" }
+    {
+     "da": "i haven"
+    },
+    {
+     "da": "i gården"
+    },
+    {
+     "da": "på altanen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "ud", "en": "He goes out into the garden.", "ru": "Он выходит в сад.", "orders": [] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "ud", "en": "The dog goes out onto the street.", "ru": "Собака выходит на улицу.", "orders": [] }
+    {"slots": {"subject": 0, "place": 0}, "target": "ud", "en": "He goes out into the garden.", "ru": "Он выходит в сад.", "orders": []},
+    {"slots": {"subject": 1, "place": 1}, "target": "ud", "en": "The children go out into the yard.", "ru": "Дети выходят во двор.", "orders": []},
+    {"slots": {"subject": 2, "place": 2}, "target": "ud", "en": "She goes out onto the balcony.", "ru": "Она выходит на балкон.", "orders": []}
   ]
  },
  {
@@ -531,22 +884,63 @@
   "kind": "word",
   "sense_id": "d0de2ac2-0e9d-53ba-b6db-a3ce78192763",
   "level": "A1",
-  "situation": "food-drink",
+  "situation": "daily-routine",
   "grammar": "prepositions-time",
-  "frame": "{subject} spiser dessert {target} {event}.",
+  "frame": "{subject} {verb} {target} {event}.",
   "slots": {
    "subject": [
-    { "da": "Vi" },
-    { "da": "Børnene" }
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Børnene"
+    },
+    {
+     "da": "Min far"
+    }
+   ],
+   "verb": [
+    {
+     "da": "spiser dessert"
+    },
+    {
+     "da": "leger udenfor"
+    },
+    {
+     "da": "drikker kaffe"
+    }
    ],
    "event": [
-    { "da": "middagen" },
-    { "da": "frokosten" }
+    {
+     "da": "middagen",
+     "requires": {
+      "verb": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "skolen",
+     "requires": {
+      "verb": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "maden",
+     "requires": {
+      "verb": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "event": 0 }, "target": "efter", "en": "We eat dessert after dinner.", "ru": "Мы едим десерт после ужина.", "orders": [] },
-   { "slots": { "subject": 1, "event": 1 }, "target": "efter", "en": "The children eat dessert after lunch.", "ru": "Дети едят десерт после обеда.", "orders": [] }
+    {"slots": {"subject": 0, "verb": 0, "event": 0}, "target": "efter", "en": "We eat dessert after dinner.", "ru": "Мы едим десерт после ужина.", "orders": ["Efter middagen spiser vi dessert."]},
+    {"slots": {"subject": 1, "verb": 1, "event": 1}, "target": "efter", "en": "The children play outside after school.", "ru": "Дети играют на улице после школы.", "orders": ["Efter skolen leger børnene udenfor."]},
+    {"slots": {"subject": 2, "verb": 2, "event": 2}, "target": "efter", "en": "My father drinks coffee after the meal.", "ru": "Мой отец пьёт кофе после еды.", "orders": ["Efter maden drikker min far kaffe."]}
   ]
  },
  {
@@ -559,38 +953,98 @@
   "frame": "{subject} løber {target} {object}.",
   "slots": {
    "subject": [
-    { "da": "Hunden" },
-    { "da": "Katten" }
+    {
+     "da": "Hunden"
+    },
+    {
+     "da": "Katten"
+    },
+    {
+     "da": "Drengen"
+    }
    ],
    "object": [
-    { "da": "bolden" },
-    { "da": "musen" }
+    {
+     "da": "bolden"
+    },
+    {
+     "da": "musen"
+    },
+    {
+     "da": "bussen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "object": 0 }, "target": "efter", "en": "The dog runs after the ball.", "ru": "Собака бежит за мячом.", "orders": [] },
-   { "slots": { "subject": 1, "object": 1 }, "target": "efter", "en": "The cat runs after the mouse.", "ru": "Кошка бежит за мышью.", "orders": [] }
+    {"slots": {"subject": 0, "object": 0}, "target": "efter", "en": "The dog runs after the ball.", "ru": "Собака бежит за мячом.", "orders": []},
+    {"slots": {"subject": 1, "object": 1}, "target": "efter", "en": "The cat runs after the mouse.", "ru": "Кошка бежит за мышью.", "orders": []},
+    {"slots": {"subject": 2, "object": 2}, "target": "efter", "en": "The boy runs after the bus.", "ru": "Мальчик бежит за автобусом.", "orders": []}
   ]
  },
  {
   "lemma": "hel",
   "kind": "word",
   "sense_id": "a9f1c498-6074-5c73-a915-55ce37a77f47",
-  "level": "A1",
-  "situation": "food-drink",
-  "grammar": "adjective-agreement",
-  "frame": "{subject} er {target}.",
+  "level": "A2",
+  "situation": "time-dates",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} {verb} {target} {time}.",
   "slots": {
    "subject": [
-    { "da": "Kagen" },
-    { "da": "Æblet" },
-    { "da": "Kagerne" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Det"
+    }
+   ],
+   "verb": [
+    {
+     "da": "arbejdede",
+     "requires": {
+      "subject": [
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "da": "sov",
+     "requires": {
+      "subject": [
+       0,
+       1
+      ]
+     }
+    },
+    {
+     "da": "regnede",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
+   ],
+   "time": [
+    {
+     "da": "dagen"
+    },
+    {
+     "da": "natten"
+    },
+    {
+     "da": "weekenden"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "hel", "en": "The cake is whole.", "ru": "Торт целый.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "helt", "en": "The apple is whole.", "ru": "Яблоко целое.", "orders": [] },
-   { "slots": { "subject": 2 }, "target": "hele", "en": "The cakes are whole.", "ru": "Торты целые.", "orders": [] }
+    {"slots": {"subject": 0, "verb": 0, "time": 0}, "target": "hele", "en": "I worked the whole day.", "ru": "Я работал весь день.", "orders": ["Hele dagen arbejdede jeg."]},
+    {"slots": {"subject": 1, "verb": 1, "time": 1}, "target": "hele", "en": "She slept the whole night.", "ru": "Она спала всю ночь.", "orders": ["Hele natten sov hun."]},
+    {"slots": {"subject": 2, "verb": 2, "time": 2}, "target": "hele", "en": "It rained the whole weekend.", "ru": "Дождь шёл все выходные.", "orders": ["Hele weekenden regnede det."]}
   ]
  },
  {
@@ -603,15 +1057,21 @@
   "frame": "{subject} er {target}.",
   "slots": {
    "subject": [
-    { "da": "Bilen" },
-    { "da": "Huset" },
-    { "da": "Skoene" }
+    {
+     "da": "Bilen"
+    },
+    {
+     "da": "Huset"
+    },
+    {
+     "da": "Skoene"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "ny", "en": "The car is new.", "ru": "Машина новая.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "nyt", "en": "The house is new.", "ru": "Дом новый.", "orders": [] },
-   { "slots": { "subject": 2 }, "target": "nye", "en": "The shoes are new.", "ru": "Туфли новые.", "orders": [] }
+    {"slots": {"subject": 0}, "target": "ny", "en": "The car is new.", "ru": "Машина новая.", "orders": []},
+    {"slots": {"subject": 1}, "target": "nyt", "en": "The house is new.", "ru": "Дом новый.", "orders": []},
+    {"slots": {"subject": 2}, "target": "nye", "en": "The shoes are new.", "ru": "Туфли новые.", "orders": []}
   ]
  },
  {
@@ -624,13 +1084,21 @@
   "frame": "{subject} sover {target}.",
   "slots": {
    "subject": [
-    { "da": "Børnene" },
-    { "da": "Katten" }
+    {
+     "da": "Børnene"
+    },
+    {
+     "da": "Katten"
+    },
+    {
+     "da": "Min mor"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0 }, "target": "nu", "en": "The children are sleeping now.", "ru": "Дети сейчас спят.", "orders": [] },
-   { "slots": { "subject": 1 }, "target": "nu", "en": "The cat is sleeping now.", "ru": "Кошка сейчас спит.", "orders": [] }
+    {"slots": {"subject": 0}, "target": "nu", "en": "The children are sleeping now.", "ru": "Дети сейчас спят.", "orders": ["Nu sover børnene."]},
+    {"slots": {"subject": 1}, "target": "nu", "en": "The cat is sleeping now.", "ru": "Кошка сейчас спит.", "orders": ["Nu sover katten."]},
+    {"slots": {"subject": 2}, "target": "nu", "en": "My mother is sleeping now.", "ru": "Моя мама сейчас спит.", "orders": ["Nu sover min mor."]}
   ]
  },
  {
@@ -643,17 +1111,32 @@
   "frame": "{subject} {target} {place} hver dag.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Hun" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min bror"
+    }
    ],
    "place": [
-    { "da": "i skole" },
-    { "da": "på arbejde" }
+    {
+     "da": "til skole"
+    },
+    {
+     "da": "til arbejde"
+    },
+    {
+     "da": "til stranden"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "går", "en": "I go to school every day.", "ru": "Я хожу в школу каждый день.", "orders": [] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "går", "en": "She goes to work every day.", "ru": "Она ходит на работу каждый день.", "orders": [], "accepted": ["tager"] }
+    {"slots": {"subject": 0, "place": 0}, "target": "går", "en": "I walk to school every day.", "ru": "Я каждый день хожу в школу пешком.", "orders": []},
+    {"slots": {"subject": 1, "place": 1}, "target": "går", "en": "She walks to work every day.", "ru": "Она каждый день ходит на работу пешком.", "orders": []},
+    {"slots": {"subject": 2, "place": 2}, "target": "går", "en": "My brother walks to the beach every day.", "ru": "Мой брат каждый день ходит на пляж пешком.", "orders": []}
   ]
  },
  {
@@ -661,45 +1144,77 @@
   "kind": "word",
   "sense_id": "1d4a0662-9e79-51a4-ab6d-865de2de2398",
   "level": "A2",
-  "situation": "work",
-  "grammar": "verb-present",
-  "frame": "{subject} {target} sit bedste {context}.",
+  "situation": "social",
+  "grammar": "verb-meaning",
+  "frame": "Hvad kan {subject} {target} for {object}?",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hun" }
+    {
+     "da": "jeg"
+    },
+    {
+     "da": "vi"
+    }
    ],
-   "context": [
-    { "da": "til eksamen" },
-    { "da": "på arbejdet" }
+   "object": [
+    {
+     "da": "dig"
+    },
+    {
+     "da": "jer"
+    },
+    {
+     "da": "hende"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "context": 0 }, "target": "gør", "en": "He does his best for the exam.", "ru": "Он делает всё возможное для экзамена.", "orders": [], "accepted": ["yder"] },
-   { "slots": { "subject": 1, "context": 1 }, "target": "gør", "en": "She does her best at work.", "ru": "Она делает всё возможное на работе.", "orders": [], "accepted": ["yder"] }
+    {"slots": {"subject": 0, "object": 0}, "target": "gøre", "en": "What can I do for you?", "ru": "Что я могу для тебя сделать?", "orders": []},
+    {"slots": {"subject": 1, "object": 1}, "target": "gøre", "en": "What can we do for you?", "ru": "Что мы можем для вас сделать?", "orders": []},
+    {"slots": {"subject": 0, "object": 2}, "target": "gøre", "en": "What can I do for her?", "ru": "Что я могу для неё сделать?", "orders": []}
   ]
  },
  {
   "lemma": "gøre",
   "kind": "word",
   "sense_id": "95bfa9d5-c9aa-5109-bba7-9935aff138c4",
-  "level": "B1",
-  "situation": "feelings-opinions",
+  "level": "A2",
+  "situation": "family",
   "grammar": "verb-past",
-  "frame": "{subject} {target} klogt ved at {action}.",
+  "frame": "{subject} {target}, som {clause}.",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hun" }
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Børnene"
+    }
    ],
-   "action": [
-    { "da": "vente" },
-    { "da": "spørge om hjælp" }
+   "clause": [
+    {
+     "da": "læreren sagde"
+    },
+    {
+     "da": "mor sagde"
+    },
+    {
+     "da": "de fik besked på",
+     "requires": {
+      "subject": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "action": 0 }, "target": "gjorde", "en": "He acted wisely by waiting.", "ru": "Он поступил мудро, подождав.", "orders": [], "accepted": ["handlede"] },
-   { "slots": { "subject": 1, "action": 1 }, "target": "gjorde", "en": "She acted wisely by asking for help.", "ru": "Она поступила мудро, попросив помощи.", "orders": [], "accepted": ["handlede"] }
+    {"slots": {"subject": 0, "clause": 0}, "target": "gjorde", "en": "He did as the teacher said.", "ru": "Он сделал так, как сказал учитель.", "orders": []},
+    {"slots": {"subject": 1, "clause": 1}, "target": "gjorde", "en": "We did as Mum said.", "ru": "Мы сделали так, как сказала мама.", "orders": []},
+    {"slots": {"subject": 2, "clause": 2}, "target": "gjorde", "en": "The children did as they were told.", "ru": "Дети сделали так, как им велели.", "orders": []}
   ]
  },
  {
@@ -712,21 +1227,58 @@
   "frame": "{subject} {target} {object} {place}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Hun" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "object": [
-    { "da": "en fugl" },
-    { "da": "en stjerne" }
+    {
+     "da": "en fugl"
+    },
+    {
+     "da": "en stjerne"
+    },
+    {
+     "da": "en båd"
+    }
    ],
    "place": [
-    { "da": "i træet" },
-    { "da": "på himlen" }
+    {
+     "da": "i træet",
+     "requires": {
+      "object": [
+       0
+      ]
+     }
+    },
+    {
+     "da": "på himlen",
+     "requires": {
+      "object": [
+       1
+      ]
+     }
+    },
+    {
+     "da": "på vandet",
+     "requires": {
+      "object": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "object": 0, "place": 0 }, "target": "ser", "en": "I see a bird in the tree.", "ru": "Я вижу птицу на дереве.", "orders": [] },
-   { "slots": { "subject": 1, "object": 1, "place": 1 }, "target": "ser", "en": "She sees a star in the sky.", "ru": "Она видит звезду на небе.", "orders": [] }
+    {"slots": {"subject": 0, "object": 0, "place": 0}, "target": "ser", "en": "I see a bird in the tree.", "ru": "Я вижу птицу на дереве.", "orders": []},
+    {"slots": {"subject": 1, "object": 1, "place": 1}, "target": "ser", "en": "She sees a star in the sky.", "ru": "Она видит звезду на небе.", "orders": []},
+    {"slots": {"subject": 2, "object": 2, "place": 2}, "target": "ser", "en": "We see a boat on the water.", "ru": "Мы видим лодку на воде.", "orders": []}
   ]
  },
  {
@@ -739,17 +1291,32 @@
   "frame": "{subject} elsker {target} {noun}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Vi" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Hun"
+    }
    ],
    "noun": [
-    { "da": "mad" },
-    { "da": "traditioner" }
+    {
+     "da": "mad"
+    },
+    {
+     "da": "traditioner"
+    },
+    {
+     "da": "film"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "noun": 0 }, "target": "dansk", "en": "I love Danish food.", "ru": "Я люблю датскую еду.", "orders": [] },
-   { "slots": { "subject": 1, "noun": 1 }, "target": "danske", "en": "We love Danish traditions.", "ru": "Мы любим датские традиции.", "orders": [] }
+    {"slots": {"subject": 0, "noun": 0}, "target": "dansk", "en": "I love Danish food.", "ru": "Я люблю датскую еду.", "orders": []},
+    {"slots": {"subject": 1, "noun": 1}, "target": "danske", "en": "We love Danish traditions.", "ru": "Мы любим датские традиции.", "orders": []},
+    {"slots": {"subject": 2, "noun": 2}, "target": "danske", "en": "She loves Danish films.", "ru": "Она любит датские фильмы.", "orders": []}
   ]
  },
  {
@@ -762,17 +1329,32 @@
   "frame": "{subject} lærer {target} {context}.",
   "slots": {
    "subject": [
-    { "da": "Jeg" },
-    { "da": "Han" }
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "context": [
-    { "da": "i skolen" },
-    { "da": "på et kursus" }
+    {
+     "da": "i skolen"
+    },
+    {
+     "da": "på et kursus"
+    },
+    {
+     "da": "om aftenen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "context": 0 }, "target": "dansk", "en": "I am learning Danish at school.", "ru": "Я учу датский в школе.", "orders": [] },
-   { "slots": { "subject": 1, "context": 1 }, "target": "dansk", "en": "He is learning Danish in a course.", "ru": "Он учит датский на курсе.", "orders": [] }
+    {"slots": {"subject": 0, "context": 0}, "target": "dansk", "en": "I am learning Danish at school.", "ru": "Я учу датский в школе.", "orders": []},
+    {"slots": {"subject": 1, "context": 1}, "target": "dansk", "en": "He is learning Danish on a course.", "ru": "Он учит датский на курсах.", "orders": []},
+    {"slots": {"subject": 2, "context": 2}, "target": "dansk", "en": "We learn Danish in the evenings.", "ru": "Мы учим датский по вечерам.", "orders": []}
   ]
  },
  {
@@ -785,17 +1367,32 @@
   "frame": "{subject} hænger {target} {place}.",
   "slots": {
    "subject": [
-    { "da": "Lampen" },
-    { "da": "Billedet" }
+    {
+     "da": "Lampen"
+    },
+    {
+     "da": "Billedet"
+    },
+    {
+     "da": "Uret"
+    }
    ],
    "place": [
-    { "da": "bordet" },
-    { "da": "sofaen" }
+    {
+     "da": "bordet"
+    },
+    {
+     "da": "sofaen"
+    },
+    {
+     "da": "døren"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "over", "en": "The lamp hangs above the table.", "ru": "Лампа висит над столом.", "orders": [], "accepted": ["ovenover"] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "over", "en": "The picture hangs above the sofa.", "ru": "Картина висит над диваном.", "orders": [], "accepted": ["ovenover"] }
+    {"slots": {"subject": 0, "place": 0}, "target": "over", "en": "The lamp hangs above the table.", "ru": "Лампа висит над столом.", "orders": []},
+    {"slots": {"subject": 1, "place": 1}, "target": "over", "en": "The picture hangs above the sofa.", "ru": "Картина висит над диваном.", "orders": []},
+    {"slots": {"subject": 2, "place": 2}, "target": "over", "en": "The clock hangs above the door.", "ru": "Часы висят над дверью.", "orders": []}
   ]
  },
  {
@@ -808,17 +1405,32 @@
   "frame": "{subject} går {target} {place}.",
   "slots": {
    "subject": [
-    { "da": "Vi" },
-    { "da": "Han" }
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Børnene"
+    }
    ],
    "place": [
-    { "da": "gaden" },
-    { "da": "broen" }
+    {
+     "da": "gaden"
+    },
+    {
+     "da": "broen"
+    },
+    {
+     "da": "vejen"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "over", "en": "We walk across the street.", "ru": "Мы идём через улицу.", "orders": [] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "over", "en": "He walks across the bridge.", "ru": "Он идёт через мост.", "orders": [] }
+    {"slots": {"subject": 0, "place": 0}, "target": "over", "en": "We walk across the street.", "ru": "Мы переходим улицу.", "orders": []},
+    {"slots": {"subject": 1, "place": 1}, "target": "over", "en": "He walks across the bridge.", "ru": "Он переходит через мост.", "orders": []},
+    {"slots": {"subject": 2, "place": 2}, "target": "over", "en": "The children walk across the road.", "ru": "Дети переходят дорогу.", "orders": []}
   ]
  },
  {
@@ -831,17 +1443,32 @@
   "frame": "{subject} er {target} {number} år gammel.",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hun" }
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min bedstefar"
+    }
    ],
    "number": [
-    { "da": "tredive" },
-    { "da": "halvtreds" }
+    {
+     "da": "tredive"
+    },
+    {
+     "da": "halvtreds"
+    },
+    {
+     "da": "firs"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "number": 0 }, "target": "over", "en": "He is over thirty years old.", "ru": "Ему больше тридцати лет.", "orders": [], "accepted": ["mere end"] },
-   { "slots": { "subject": 1, "number": 1 }, "target": "over", "en": "She is over fifty years old.", "ru": "Ей больше пятидесяти лет.", "orders": [], "accepted": ["mere end"] }
+    {"slots": {"subject": 0, "number": 0}, "target": "over", "en": "He is over thirty years old.", "ru": "Ему за тридцать.", "orders": []},
+    {"slots": {"subject": 1, "number": 1}, "target": "over", "en": "She is over fifty years old.", "ru": "Ей за пятьдесят.", "orders": []},
+    {"slots": {"subject": 2, "number": 2}, "target": "over", "en": "My grandfather is over eighty years old.", "ru": "Моему дедушке за восемьдесят.", "orders": []}
   ]
  },
  {
@@ -851,20 +1478,40 @@
   "level": "A2",
   "situation": "feelings-opinions",
   "grammar": "subordinate-clause",
-  "frame": "{subject} bliver glad, {target} {clause}.",
+  "frame": "{main}, {target} {clause}.",
   "slots": {
-   "subject": [
-    { "da": "Jeg" },
-    { "da": "Hun" }
+   "main": [
+    {
+     "da": "Jeg bliver glad"
+    },
+    {
+     "da": "Hun bliver glad"
+    },
+    {
+     "da": "Børnene bliver glade"
+    }
    ],
    "clause": [
-    { "da": "solen skinner" },
-    { "da": "det er sommer" }
+    {
+     "da": "solen skinner"
+    },
+    {
+     "da": "det sner"
+    },
+    {
+     "da": "de får is",
+     "requires": {
+      "main": [
+       2
+      ]
+     }
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "clause": 0 }, "target": "når", "en": "I get happy when the sun shines.", "ru": "Я радуюсь, когда светит солнце.", "orders": [] },
-   { "slots": { "subject": 1, "clause": 1 }, "target": "når", "en": "She gets happy when it is summer.", "ru": "Она радуется, когда наступает лето.", "orders": [] }
+    {"slots": {"main": 0, "clause": 0}, "target": "når", "en": "I get happy when the sun shines.", "ru": "Я радуюсь, когда светит солнце.", "orders": []},
+    {"slots": {"main": 1, "clause": 1}, "target": "når", "en": "She gets happy when it snows.", "ru": "Она радуется, когда идёт снег.", "orders": []},
+    {"slots": {"main": 2, "clause": 2}, "target": "når", "en": "The children get happy when they get ice cream.", "ru": "Дети радуются, когда получают мороженое.", "orders": []}
   ]
  },
  {
@@ -873,21 +1520,36 @@
   "sense_id": "63ef2ad5-55bf-555d-b374-7f798a798f18",
   "level": "A2",
   "situation": "leisure",
-  "grammar": "particle-verbs",
+  "grammar": "prepositions-place",
   "frame": "{subject} går {target} ad {place}.",
   "slots": {
    "subject": [
-    { "da": "Han" },
-    { "da": "Hun" }
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
    ],
    "place": [
-    { "da": "trappen" },
-    { "da": "bakken" }
+    {
+     "da": "trappen"
+    },
+    {
+     "da": "bakken"
+    },
+    {
+     "da": "bjerget"
+    }
    ]
   },
   "variants": [
-   { "slots": { "subject": 0, "place": 0 }, "target": "op", "en": "He walks up the stairs.", "ru": "Он поднимается по лестнице.", "orders": [] },
-   { "slots": { "subject": 1, "place": 1 }, "target": "op", "en": "She walks up the hill.", "ru": "Она поднимается на холм.", "orders": [] }
+    {"slots": {"subject": 0, "place": 0}, "target": "op", "en": "He walks up the stairs.", "ru": "Он поднимается по лестнице.", "orders": []},
+    {"slots": {"subject": 1, "place": 1}, "target": "op", "en": "She walks up the hill.", "ru": "Она поднимается на холм.", "orders": []},
+    {"slots": {"subject": 2, "place": 2}, "target": "op", "en": "We walk up the mountain.", "ru": "Мы поднимаемся на гору.", "orders": []}
   ]
  }
 ]
