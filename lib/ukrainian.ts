@@ -33,9 +33,12 @@ const MIXED_WORD = /(?=[\p{L}'’ʼ-]*\p{Script=Latin})(?=[\p{L}'’ʼ-]*\p{Scri
  * against a Ukrainian dictionary before it was added. Without them the Russian dictionary, which
  * does list them, would call them Russian.
  */
-const UKRAINIAN_EXTRA = new Set(['клятва'])
-/** An abbreviation (`напр.`, `дн.`, `числ.`): a short word followed by a full stop, not a sentence end. */
-const ABBREVIATION = /(?<![\p{L}])(\p{Script=Cyrillic}{1,4})\.(?=\s*[\p{Ll}\d,;)]|$)/gu
+const UKRAINIAN_EXTRA = new Set(['клятва', 'доставка'])
+/**
+ * Standard Ukrainian abbreviations, which Hunspell does not list. Only these, and only whole
+ * words: a guess from "short word before a full stop" read the end of `комп'ютер.` as one.
+ */
+const ABBREVIATION = /(?<![\p{L}'’ʼ-])(?:напр|див|дн|числ|ім|прикм|дієсл|присл|займ|прийм|спол|виг|хв|год|міс|тис|млн)\./gu
 
 /** Words Hunspell should judge: apostrophes unified, hyphen-edges trimmed, abbreviations left out. */
 function words(text: string): string[] {
