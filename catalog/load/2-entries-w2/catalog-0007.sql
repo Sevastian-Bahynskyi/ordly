@@ -1,0 +1,4 @@
+insert into public.word_catalog_sense (lemma, kind, sense_id, ordinal, lang, text, pos, gender, example, example_translation)
+select * from jsonb_to_recordset($j0$[{"lemma":"pc","kind":"word","sense_id":"f9c20ab1-306f-5991-93c2-ec4cfe7c756b","ordinal":1,"lang":"ru","text":"персональный компьютер","pos":"noun","gender":"en","example":null,"example_translation":null},{"lemma":"anno","kind":"word","sense_id":"06419e38-63db-58d7-a047-eb38161903bb","ordinal":1,"lang":"ru","text":"в году (при указании года)","pos":"phrase","gender":null,"example":null,"example_translation":null}]$j0$::jsonb) as r(lemma text, kind text, sense_id uuid, ordinal integer, lang text, text text, pos text, gender text, example text, example_translation text)
+on conflict (lemma, kind, sense_id, lang) do update set ordinal = excluded.ordinal, text = excluded.text, pos = excluded.pos,
+  gender = excluded.gender, example = excluded.example, example_translation = excluded.example_translation;
