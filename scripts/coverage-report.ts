@@ -39,9 +39,12 @@ const lemmas = new Set<string>()
 let entries = 0
 let senses = 0
 for (const dir of outDirs) {
+  // Rows the catalog gate quarantined are not in the catalog, so they cover nothing.
+  const reviewPath = join(dir, '..', 'needs_review.jsonl')
+  const quarantined = new Set(existsSync(reviewPath) ? (await readFile(reviewPath, 'utf8')).split(/\r?\n/u).filter(Boolean).map((line) => String((JSON.parse(line) as { lemma?: unknown }).lemma)) : [])
   for (const name of (await readdir(dir)).filter((file) => /^batch-\d+\.json$/.test(file))) {
     for (const value of parseCatalogGeneratorText(await readFile(join(dir, name), 'utf8'))) {
-      if (!isGeneratedCatalogRow(value)) continue
+      if (!isGeneratedCatalogRow(value) || quarantined.has(value.lemma)) continue
       entries += 1
       lemmas.add(value.lemma.toLocaleLowerCase('da-DK'))
       for (const sense of value.senses) { senses += 1; if (sense.pos) ru.add(supportKey(value.lemma, sense.pos)) }
@@ -86,10 +89,11 @@ const text = textCoverage(unseen, (form) => lemmasByForm.get(form), lemmas)
 
 // Learning coverage from the published families.
 const matrix = JSON.parse(await readFile('catalog/benchmark/cefr-matrix.json', 'utf8')) as { version: string; situations: { id: string; levels: string[]; label: string }[]; grammar: { id: string; levels: string[]; label: string }[] }
-const publishedPath = 'catalog/families/published.jsonl'
-const families = existsSync(publishedPath)
-  ? (await readFile(publishedPath, 'utf8')).split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line) as { level: string; situation: string; grammar: string; lemma: string; sense_id: string; variants: unknown[] })
-  : []
+type Published = { level: string; situation: string; grammar: string; lemma: string; sense_id: string; variants: unknown[] }
+const families: Published[] = []
+for (const publishedPath of ['catalog/families/published.jsonl', 'catalog/expansion/families/published.jsonl'].filter(existsSync)) {
+  families.push(...(await readFile(publishedPath, 'utf8')).split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line) as Published))
+}
 const cells = matrixCoverage(matrix, families)
 const CELL_MIN = 3
 const coveredCells = cells.filter((cell) => cell.families >= CELL_MIN)
