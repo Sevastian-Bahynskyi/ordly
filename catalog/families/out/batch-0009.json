@@ -6,7 +6,7 @@
   "level": "A1",
   "situation": "home",
   "grammar": "modal-verbs",
-  "frame": "{subject} bør {action}.",
+  "frame": "{subject} {target} {action}.",
   "slots": {
    "subject": [
     {
@@ -1067,7 +1067,7 @@
   "level": "A1",
   "situation": "shopping",
   "grammar": "verb-present",
-  "frame": "{subject} handler {place}.",
+  "frame": "{subject} {target} {place}.",
   "slots": {
    "subject": [
     {
@@ -1141,7 +1141,7 @@
   "level": "B1",
   "situation": "abstract",
   "grammar": "verb-meaning",
-  "frame": "{subject} handler {manner} i {situation}.",
+  "frame": "{subject} {target} {manner} i {situation}.",
   "slots": {
    "subject": [
     {
@@ -1291,7 +1291,7 @@
   "level": "A1",
   "situation": "shopping",
   "grammar": "verb-present",
-  "frame": "{subject} køber {object}.",
+  "frame": "{subject} {target} {object}.",
   "slots": {
    "subject": [
     {
@@ -1677,7 +1677,7 @@
   "level": "A2",
   "situation": "social",
   "grammar": "verb-present",
-  "frame": "{subject} kalder {object} {nickname}.",
+  "frame": "{subject} {target} {object} {nickname}.",
   "slots": {
    "subject": [
     {
@@ -1759,7 +1759,7 @@
   "level": "A2",
   "situation": "home",
   "grammar": "verb-present",
-  "frame": "{subject} kalder på {object}.",
+  "frame": "{subject} {target} på {object}.",
   "slots": {
    "subject": [
     {
@@ -1831,7 +1831,7 @@
   "level": "A2",
   "situation": "family",
   "grammar": "verb-present",
-  "frame": "{subject} lever {complement}.",
+  "frame": "{subject} {target} {complement}.",
   "slots": {
    "subject": [
     {
@@ -2030,7 +2030,7 @@
  },
  {
   "lemma": "går",
-  "kind": "phrase",
+  "kind": "word",
   "sense_id": "fc2e4e81-ed10-56cb-a4bf-a7f1187ba6da",
   "level": "A2",
   "situation": "time-dates",
