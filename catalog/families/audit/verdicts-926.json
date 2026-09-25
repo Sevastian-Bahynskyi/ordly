@@ -77,7 +77,10 @@
  },
  {
   "id": "c47960d6-e54b-5457-9df5-84b461cc270d",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "sisters are not a shopping situation"
  },
  {
   "id": "96251b4f-7daa-554a-9857-92e88338a65c",
@@ -145,15 +148,24 @@
  },
  {
   "id": "0dccb45f-94e0-571b-8a87-6f8c2c0ab4f8",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "virkelige/reelle also fit \"real\""
  },
  {
   "id": "db4103cc-c6b5-551d-ba47-7bd5c27e1b3c",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "virkelige/reelle also fit \"real\""
  },
  {
   "id": "547e3dd5-07ed-5a08-b018-da2053367d33",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "virkelige/reelle also fit \"real\""
  },
  {
   "id": "0af56b4c-a36c-5c0e-b17c-1a5531596dab",
@@ -205,15 +217,24 @@
  },
  {
   "id": "0ee03188-93fb-57f8-aef8-f5cffa8ade66",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ondt (\"Jeg har ondt i benene\") fits \"aches\"; værk is chronic pain, not post-run soreness"
  },
  {
   "id": "76ba85dc-a9a8-571e-9e45-4e9f165a12ee",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ondt (\"Jeg har ondt i benene\") fits \"aches\"; værk is chronic pain, not post-run soreness"
  },
  {
   "id": "51963f18-3278-577b-b5a9-33236d272fad",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ondt (\"Jeg har ondt i benene\") fits \"aches\"; værk is chronic pain, not post-run soreness"
  },
  {
   "id": "4ae961fa-bfaa-5ce0-a106-7bb5291715eb",
@@ -301,15 +322,24 @@
  },
  {
   "id": "30cb388b-a93d-5c73-9a9b-03bcc314e2bd",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udsalg (and tilbud) fit \"sale\""
  },
  {
   "id": "2420d6ba-b078-53fd-87db-28bdd16f70aa",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udsalg (and tilbud) fit \"sale\""
  },
  {
   "id": "a329e45e-3245-59fd-aae0-68a282347ed9",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udsalg (and tilbud) fit \"sale\""
  },
  {
   "id": "9e6b351e-f9f6-58a4-b06f-452e8bd78807",
@@ -325,15 +355,24 @@
  },
  {
   "id": "6c7e0150-abb1-54ba-9c23-490a81b18a43",
-  "failures": []
+  "failures": [
+   "translation_ru"
+  ],
+  "note": "сорванцов adds \"rascals\"; детишек/ребят"
  },
  {
   "id": "20787bac-cb05-5d87-af1a-77b2f8b70f56",
-  "failures": []
+  "failures": [
+   "translation_ru"
+  ],
+  "note": "сорванцов adds \"rascals\"; детишек/ребят"
  },
  {
   "id": "389e492c-6671-50a7-89d9-98143b965abd",
-  "failures": []
+  "failures": [
+   "translation_ru"
+  ],
+  "note": "сорванцов adds \"rascals\"; детишек/ребят"
  },
  {
   "id": "769048c4-d5e2-5b5b-a9a7-6120cabab982",
@@ -541,15 +580,24 @@
  },
  {
   "id": "0424adb1-e531-5ce2-9869-4409cad93066",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "kendt fits and is far more common"
  },
  {
   "id": "aa1d77c2-1543-5e69-8b98-0f22021eae00",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "kendt fits and is far more common"
  },
  {
   "id": "6bd99fc6-95dd-5f94-80aa-ec55fc2c81df",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "kendt fits and is far more common"
  },
  {
   "id": "5efd0a30-1385-5e68-9205-75cf13cd9f3e",
@@ -573,7 +621,10 @@
  },
  {
   "id": "7b0ce8d0-8a28-51eb-af2a-89435cc33f06",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "øve sig i sport is unnatural (træne)"
  },
  {
   "id": "9f9e9281-3bdc-5774-a7cb-5d9a39db3c00",
@@ -625,27 +676,51 @@
  },
  {
   "id": "b7525bd3-7149-5ba0-989c-43cb5c4c3840",
-  "failures": []
+  "failures": [
+   "translation_en",
+   "translation_ru",
+   "unnatural"
+  ],
+  "note": "\"landets fædre\" is not \"founding fathers\" (landsfædre); translations add \"founding\""
  },
  {
   "id": "f3afece2-d773-5ec6-b18d-b42c3a495f5f",
-  "failures": []
+  "failures": [
+   "translation_en",
+   "translation_ru",
+   "unnatural"
+  ],
+  "note": "\"landets fædre\" is not \"founding fathers\" (landsfædre); translations add \"founding\""
  },
  {
   "id": "3fa598ab-b14f-59a1-bb74-c7af253ebd6a",
-  "failures": []
+  "failures": [
+   "translation_en",
+   "translation_ru",
+   "unnatural"
+  ],
+  "note": "\"landets fædre\" is not \"founding fathers\" (landsfædre); translations add \"founding\""
  },
  {
   "id": "d706274c-7803-5cc3-9500-5dcaad5cde86",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slutningen fits \"the end\""
  },
  {
   "id": "c37ff3e7-81e6-50b7-8b59-4dc23daad42d",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slutningen fits \"the end\""
  },
  {
   "id": "cfd7e091-5ef8-5612-a157-31199cc4207e",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slutningen fits \"the end\""
  },
  {
   "id": "12bfa72e-07d1-5406-89b9-e036b8f2b460",
@@ -709,15 +784,24 @@
  },
  {
   "id": "b917200b-0752-5020-a744-3d37e2817428",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "enhed for a thermometer is unnatural (apparat, instrument)"
  },
  {
   "id": "cc0b0aef-4040-5060-9c34-214d5cff101d",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "enhed for a thermometer is unnatural (apparat, instrument)"
  },
  {
   "id": "b7e5449e-d308-549b-97fa-841548af9a55",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "enhed for a thermometer is unnatural (apparat, instrument)"
  },
  {
   "id": "352aa54c-3cf7-5d53-8678-6780922e1987",
@@ -757,15 +841,24 @@
  },
  {
   "id": "eccde39e-7aed-5520-a3a0-880848974216",
-  "failures": []
+  "failures": [
+   "ungrammatical"
+  ],
+  "note": "da with present tense: habitual \"when\" is når"
  },
  {
   "id": "0d97be32-b214-5625-ad64-90b3cc47878d",
-  "failures": []
+  "failures": [
+   "ungrammatical"
+  ],
+  "note": "da with present tense: habitual \"when\" is når"
  },
  {
   "id": "83006a34-d867-52f9-b4e8-0496878904e9",
-  "failures": []
+  "failures": [
+   "ungrammatical"
+  ],
+  "note": "da with present tense: habitual \"when\" is når"
  },
  {
   "id": "ba634f9b-4e78-5a41-b6a5-6520cb921d27",
@@ -777,7 +870,10 @@
  },
  {
   "id": "d48e063a-6e7b-51db-bad5-89e89b468758",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "Systemet idømmer is not idiomatic"
  },
  {
   "id": "c940286e-b2ad-51a0-80a3-f25ea506857d",
@@ -853,15 +949,24 @@
  },
  {
   "id": "662c392e-6507-5360-aa59-994a13c031bd",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ankommet fits \"arrived\""
  },
  {
   "id": "cca63e44-c896-530d-902f-2fae79558410",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ankommet fits \"arrived\""
  },
  {
   "id": "d34d5e36-15ef-5217-bc46-a68eddefbf99",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "ankommet fits \"arrived\""
  },
  {
   "id": "6cf1bf12-7cf6-5ab6-aa11-a097eefb0385",
@@ -901,27 +1006,45 @@
  },
  {
   "id": "f3a0c9d9-fe60-55e2-b60a-568e13427369",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "\"rider … som en dygtig rytter\" is tautological"
  },
  {
   "id": "f4b783c5-60d7-5c03-8e70-830b76c91ac9",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "\"rider … som en dygtig rytter\" is tautological"
  },
  {
   "id": "01ea13bd-b189-57cd-b89a-11b1ff52fb93",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "\"rider … som en dygtig rytter\" is tautological"
  },
  {
   "id": "97ed87ec-4596-54de-9179-c3ee84922cad",
-  "failures": []
+  "failures": [
+   "wrong_sense"
+  ],
+  "note": "nothing in the Danish shows cycling; reads as horse rider"
  },
  {
   "id": "3fa9d32b-b577-5e53-8ad6-a270b994e7aa",
-  "failures": []
+  "failures": [
+   "wrong_sense"
+  ],
+  "note": "nothing in the Danish shows cycling; reads as horse rider"
  },
  {
   "id": "d742c2ee-1340-5b40-82a3-3a13d2dc4681",
-  "failures": []
+  "failures": [
+   "wrong_sense"
+  ],
+  "note": "nothing in the Danish shows cycling; reads as horse rider"
  },
  {
   "id": "49c89212-28a6-50da-8e74-0fef9d76a67e",
@@ -937,27 +1060,45 @@
  },
  {
   "id": "b6d2952a-77de-51a9-ad3b-1c7e6743b5e9",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udover fits \"besides\""
  },
  {
   "id": "77ed54ed-6266-5d25-8307-53b6e89dfdc1",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udover fits \"besides\""
  },
  {
   "id": "36905d99-a7c3-5849-8687-06db33409ff1",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "udover fits \"besides\""
  },
  {
   "id": "4a86241c-c183-5f1d-8d9e-604417415c14",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "landmanden fits \"farmer\""
  },
  {
   "id": "ef8f955a-bed4-5301-95c3-d7077417c676",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "landmanden fits \"farmer\""
  },
  {
   "id": "677d831c-5928-5234-a10f-aa58b7e6367d",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "landmanden fits \"farmer\""
  },
  {
   "id": "2446fa96-868f-5f85-9500-f988d642e520",
@@ -1033,15 +1174,24 @@
  },
  {
   "id": "5a1b864b-24ce-5c45-bfc0-99e0059dfd3c",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "løber fits \"spills\""
  },
  {
   "id": "e1544c37-c110-5182-9ecf-aaf7cc0675b8",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "løber fits \"spills\""
  },
  {
   "id": "dc3ab1d9-193b-58aa-aedc-5ea27197964e",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "løber fits \"spills\""
  },
  {
   "id": "cf3d22c1-fb59-5625-ac83-2389537df718",
@@ -1057,15 +1207,24 @@
  },
  {
   "id": "9576c484-c33d-5ead-9ffa-3998da101c52",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "krydse … af / sætte kryds ved"
  },
  {
   "id": "165bfcd7-7b30-5643-b440-3a6fb0e6f6f2",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "krydse … af / sætte kryds ved"
  },
  {
   "id": "a6fdb71a-5ed5-5c5e-adc2-8c55e7d82dc6",
-  "failures": []
+  "failures": [
+   "unnatural"
+  ],
+  "note": "krydse … af / sætte kryds ved"
  },
  {
   "id": "dcada6fc-c6f1-5728-979c-6466dad70b40",
@@ -1081,15 +1240,24 @@
  },
  {
   "id": "0783a4b3-00ae-5b62-a9b6-f3372696e71f",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "forslag fits \"proposal\""
  },
  {
   "id": "40ae908d-60aa-53c0-ad23-6fbe1d031af1",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "forslag fits \"proposal\""
  },
  {
   "id": "89fe22a8-f007-520f-87a5-ed3f8a551fb1",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "forslag fits \"proposal\""
  },
  {
   "id": "70f4b28c-3073-584e-b1aa-18d8af5002e2",
@@ -1129,15 +1297,24 @@
  },
  {
   "id": "af59ea57-9206-5e5b-b240-9d051b6721bd",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "skifte fits and is the usual noun"
  },
  {
   "id": "940cd059-8722-56f8-b458-05d169251cfa",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "skifte fits and is the usual noun"
  },
  {
   "id": "4fcb5c27-4079-5675-88b9-601fb3db7c8f",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "skifte fits and is the usual noun"
  },
  {
   "id": "64bda06d-89f8-52e6-8787-95a77ce91d10",
@@ -1189,15 +1366,24 @@
  },
  {
   "id": "efc2d46c-2718-5a23-8869-e2e8013d31f0",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "rejse fits \"journey\""
  },
  {
   "id": "bce23109-f24d-5c08-94ea-ccd38eea82a0",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "rejse fits \"journey\""
  },
  {
   "id": "b415ee71-0327-5d50-9994-a14616574771",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "rejse fits \"journey\""
  },
  {
   "id": "9187791b-cae8-5a47-ade3-638f37d9d42f",
@@ -1225,15 +1411,24 @@
  },
  {
   "id": "e99aee1f-1277-5309-a6f7-fd1b9fa50d17",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "frisk fits \"brisk\""
  },
  {
   "id": "e6f754c9-9495-5132-9502-59abcc6be6ff",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "frisk fits \"brisk\""
  },
  {
   "id": "0f18a71e-0ed2-5c13-a512-a44716a8363b",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "frisk fits \"brisk\""
  },
  {
   "id": "62f54eda-2f30-5420-9d53-fc1375337ccd",
@@ -1273,15 +1468,24 @@
  },
  {
   "id": "77e40f61-0137-5b66-94f4-81d2bc072047",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "a figure on the horizon is not \"abstract\""
  },
  {
   "id": "c360a5e8-8770-5058-8a47-027ef6bdb4fd",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "a figure on the horizon is not \"abstract\""
  },
  {
   "id": "3a8f1b8b-3cf5-5181-854d-745f07f0496c",
-  "failures": []
+  "failures": [
+   "level_or_cell"
+  ],
+  "note": "a figure on the horizon is not \"abstract\""
  },
  {
   "id": "7ec5d045-e67f-593c-9a0c-39fa931b4098",
@@ -1309,15 +1513,24 @@
  },
  {
   "id": "0e20dd3e-48c3-506c-846c-9aa3de56c56a",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slår fits \"defeats\""
  },
  {
   "id": "10dbc774-6eeb-5969-86c4-3ade3905bb2b",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slår fits \"defeats\""
  },
  {
   "id": "3e4659a5-1df1-5ebd-96ed-dc5e7b3d1340",
-  "failures": []
+  "failures": [
+   "ambiguous_gap"
+  ],
+  "note": "slår fits \"defeats\""
  },
  {
   "id": "b19e31c8-354d-535c-bb5e-a4a0d3846ec8",

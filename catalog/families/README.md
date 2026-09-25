@@ -8,6 +8,7 @@ Russian translation.
 ```
 pnpm exec tsx scripts/write-family-work.ts --fullforms <ddo-fullforms.csv>          # work files
 # generator writes catalog/families/out/batch-NNNN.json for each work file
+# a reviewer applies catalog/families/REVIEW.md to the reply, in place
 pnpm exec tsx scripts/check-family-batches.ts --fullforms <csv> --only batch-NNNN.json
 pnpm exec tsx scripts/check-family-batches.ts --fullforms <csv> --merge             # snapshot
 ```
@@ -121,6 +122,24 @@ sentence; do not skip merely because the word is hard.
    that belongs to a different word, like *udtalelse* glossed as "pronunciation", which is
    *udtale*), do not write a family for it: skip with `"skip": "gloss wrong: …"` and say what the
    word actually means. These skips become catalog repairs.
+
+14. **Back-translate every gap before you finish.** Cover the Danish, read only the English, then
+   only the Russian, and write down every single Danish word you would put in the gap. The
+   round-2 audit (seed 926) found most failures here: *bekendt* → **kendt**, *foruden* →
+   **udover**, *bonden* → **landmanden**, *besejrer* → **slår**, *oplæg* "proposal" → **forslag**,
+   *færd* → **rejse**, *afslutningen* → **slutningen**, *fremme* "arrived" → **ankommet**, *værk*
+   → **ondt**, *salg* → **udsalg**, *flyder* "spills" → **løber**, *rask* "brisk" → **frisk**,
+   *egentlige* "real" → **virkelige**, *skift* → **skifte**. Each correct one goes in `accepted`
+   (inflected to fit the gap exactly) or the sentence changes until only the target fits.
+15. **`når`, `da`, `hvis`.** *da* is one past occasion (*Da jeg kom hjem, …*); anything habitual,
+   general or in the present or future is *når* (*Hun tænder lyset, når det bliver mørkt*).
+16. **The Danish alone must select the sense.** For a word with several senses, the sentence
+   without its translation must point to this one: *rytter* "cyclist" needs a bike in the
+   sentence (*Han er den bedste rytter på cykelholdet*), not just *på holdet*.
+17. **Particle verbs keep their particle** (*krydse af*, *skrue op for*, *tage imod*), and every
+   subject must be able to do the action (*Retten idømmer ham …*, not *Systemet idømmer*).
+18. **No tautology or padding** (*Hun rider som en dygtig rytter* says nothing; *Hun er en dygtig
+   rytter* does). Figurative uses stay out unless the sense is the figurative one.
 
 ### Choosing `grammar` and `situation`
 
