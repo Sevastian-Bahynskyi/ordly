@@ -1,0 +1,1996 @@
+[
+ {
+  "lemma": "april",
+  "kind": "word",
+  "sense_id": "1a21c798-88c4-5114-9f40-e47c9eeead86",
+  "level": "A1",
+  "situation": "time-dates",
+  "grammar": "noun-meaning",
+  "frame": "{subject} holder ferie i {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "De"
+    },
+    {
+     "da": "Min bror"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "april",
+    "en": "We are on vacation in April.",
+    "ru": "Мы в отпуске в апреле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "april",
+    "en": "They are on vacation in April.",
+    "ru": "Они в отпуске в апреле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "april",
+    "en": "My brother is on vacation in April.",
+    "ru": "Мой брат в отпуске в апреле.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "stilling",
+  "kind": "word",
+  "sense_id": "25312888-640e-5a87-9a3e-4a99bb2f53ec",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har fået en ny {target} i firmaet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min nabo"
+    },
+    {
+     "da": "Han"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "stilling",
+    "en": "She has gotten a new position at the company.",
+    "ru": "Она получила новую должность в компании.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "stilling",
+    "en": "My neighbor has gotten a new position at the company.",
+    "ru": "Мой сосед получил новую должность в компании.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "stilling",
+    "en": "He has gotten a new position at the company.",
+    "ru": "Он получил новую должность в компании.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "stilling",
+  "kind": "word",
+  "sense_id": "5ab814ab-96f1-5a92-91ba-abfe495e956b",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} er i en god {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Holdet"
+    },
+    {
+     "da": "Vores hold"
+    },
+    {
+     "da": "Det andet hold"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "stilling",
+    "en": "The team is in a good position.",
+    "ru": "Команда в хорошем положении.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "stilling",
+    "en": "Our team is in a good position.",
+    "ru": "Наша команда в хорошем положении.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "stilling",
+    "en": "The other team is in a good position.",
+    "ru": "Другая команда в хорошем положении.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "trods",
+  "kind": "word",
+  "sense_id": "5efb5393-0074-59fb-9d91-dd0077464d53",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "prepositions-other",
+  "frame": "{subject} gik en tur {target} regnen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "trods",
+    "en": "We went for a walk despite the rain.",
+    "ru": "Мы пошли гулять, несмотря на дождь.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "trods",
+    "en": "He went for a walk despite the rain.",
+    "ru": "Он пошёл гулять, несмотря на дождь.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "trods",
+    "en": "They went for a walk despite the rain.",
+    "ru": "Они пошли гулять, несмотря на дождь.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "trods",
+  "kind": "word",
+  "sense_id": "7cbc8f44-3d28-564f-9be7-387af8765cf1",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "noun-meaning",
+  "frame": "{subject} gjorde det af ren {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Drengen"
+    },
+    {
+     "da": "Barnet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "trods",
+    "en": "She did it out of pure defiance.",
+    "ru": "Она сделала это из чистого упрямства.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "trods",
+    "en": "The boy did it out of pure defiance.",
+    "ru": "Мальчик сделал это из чистого упрямства.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "trods",
+    "en": "The child did it out of pure defiance.",
+    "ru": "Ребёнок сделал это из чистого упрямства.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "understrege",
+  "kind": "word",
+  "sense_id": "ee7dbd7e-a94d-5f99-968d-39dc965bcbdc",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} det vigtige ord i teksten.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Læreren"
+    },
+    {
+     "da": "Eleven"
+    },
+    {
+     "da": "Redaktøren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "understreger",
+    "en": "The teacher underlines the important word in the text.",
+    "ru": "Учитель подчёркивает важное слово в тексте.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "understreger",
+    "en": "The student underlines the important word in the text.",
+    "ru": "Ученик подчёркивает важное слово в тексте.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "understreger",
+    "en": "The editor underlines the important word in the text.",
+    "ru": "Редактор подчёркивает важное слово в тексте.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "forskel",
+  "kind": "word",
+  "sense_id": "80817e04-512b-5292-95bf-63d99c1eb0f3",
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "Der er en stor {target} på {pair}.",
+  "slots": {
+   "pair": [
+    {
+     "da": "de to huse"
+    },
+    {
+     "da": "søstrene"
+    },
+    {
+     "da": "prisen på de to produkter"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "pair": 0
+    },
+    "target": "forskel",
+    "en": "There is a big difference between the two houses.",
+    "ru": "Между двумя домами есть большая разница.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "pair": 1
+    },
+    "target": "forskel",
+    "en": "There is a big difference between the sisters.",
+    "ru": "Между сёстрами есть большая разница.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "pair": 2
+    },
+    "target": "forskel",
+    "en": "There is a big difference in the price of the two products.",
+    "ru": "Есть большая разница в цене двух товаров.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "oktober",
+  "kind": "word",
+  "sense_id": "adac19f3-fb8e-59c2-9de8-da1eb9b30be7",
+  "level": "A1",
+  "situation": "family",
+  "grammar": "noun-meaning",
+  "frame": "{subject} blev født i {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min mor"
+    },
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "Jeg"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "oktober",
+    "en": "My mother was born in October.",
+    "ru": "Моя мама родилась в октябре.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "oktober",
+    "en": "My sister was born in October.",
+    "ru": "Моя сестра родилась в октябре.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "oktober",
+    "en": "I was born in October.",
+    "ru": "Я родился в октябре.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "indgå",
+  "kind": "word",
+  "sense_id": "bce3f3fa-afc1-5f0f-8f0e-8145b2398f4c",
+  "level": "B1",
+  "situation": "work",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} en aftale med leverandøren.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Firmaet"
+    },
+    {
+     "da": "Virksomheden"
+    },
+    {
+     "da": "Kommunen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "indgår",
+    "en": "The company enters into an agreement with the supplier.",
+    "ru": "Компания заключает соглашение с поставщиком.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "indgår",
+    "en": "The business enters into an agreement with the supplier.",
+    "ru": "Предприятие заключает соглашение с поставщиком.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "indgår",
+    "en": "The municipality enters into an agreement with the supplier.",
+    "ru": "Муниципалитет заключает соглашение с поставщиком.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "indgå",
+  "kind": "word",
+  "sense_id": "aa11c3d1-7abc-5f33-9067-7587a1f93d5b",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} i et større projekt.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Denne bygning"
+    },
+    {
+     "da": "Denne rapport"
+    },
+    {
+     "da": "Dette forslag"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "indgår",
+    "en": "This building is part of a larger project.",
+    "ru": "Это здание входит в более крупный проект.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "indgår",
+    "en": "This report is part of a larger project.",
+    "ru": "Этот отчёт входит в более крупный проект.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "indgår",
+    "en": "This proposal is part of a larger project.",
+    "ru": "Это предложение входит в более крупный проект.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "britisk",
+  "kind": "word",
+  "sense_id": "330c2bf5-3bf0-5fe7-b0ac-cc47b5b732e5",
+  "level": "A1",
+  "situation": "personal-info",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Journalisten"
+    },
+    {
+     "da": "Skuespillerne"
+    },
+    {
+     "da": "Ministeren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "britisk",
+    "en": "The journalist is British.",
+    "ru": "Журналист — британец.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "britiske",
+    "en": "The actors are British.",
+    "ru": "Актёры — британцы.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "britisk",
+    "en": "The minister is British.",
+    "ru": "Министр — британец.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "egentlig",
+  "kind": "word",
+  "sense_id": "b746d4b0-290e-50f0-9132-7dfa15bb72fa",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "sentence-adverbs",
+  "frame": "{subject} vil {target} gerne rejse til udlandet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "egentlig",
+    "en": "Actually, I would quite like to travel abroad.",
+    "ru": "На самом деле я бы с удовольствием поехал за границу.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "egentlig",
+    "en": "Actually, she would quite like to travel abroad.",
+    "ru": "На самом деле она бы с удовольствием поехала за границу.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "egentlig",
+    "en": "Actually, we would quite like to travel abroad.",
+    "ru": "На самом деле мы бы с удовольствием поехали за границу.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "egentlig",
+  "kind": "word",
+  "sense_id": "17fb9932-3cd0-5baf-b4bc-89281f54547b",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-agreement",
+  "frame": "Det er ikke den {target} {noun}.",
+  "slots": {
+   "noun": [
+    {
+     "da": "grund"
+    },
+    {
+     "da": "årsag"
+    },
+    {
+     "da": "løsning"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "noun": 0
+    },
+    "target": "egentlige",
+    "en": "That is not the real reason.",
+    "ru": "Это не настоящая причина.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 1
+    },
+    "target": "egentlige",
+    "en": "That is not the real cause.",
+    "ru": "Это не истинная причина.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "noun": 2
+    },
+    "target": "egentlige",
+    "en": "That is not the real solution.",
+    "ru": "Это не настоящее решение.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "klare",
+  "kind": "word",
+  "sense_id": "e4cac7b7-c2d3-50fd-90f7-08b3a8355c0f",
+  "level": "A2",
+  "situation": "education",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} eksamen uden problemer.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Min datter"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "klarer",
+    "en": "She handles the exam without any problems.",
+    "ru": "Она справляется с экзаменом без проблем.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "klarer",
+    "en": "He handles the exam without any problems.",
+    "ru": "Он справляется с экзаменом без проблем.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "klarer",
+    "en": "My daughter handles the exam without any problems.",
+    "ru": "Моя дочь справляется с экзаменом без проблем.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "sense_id": "9b5b28fd-6668-503c-a9c8-e5d3d1574ebb",
+  "lemma": "klare",
+  "skip": "klare 'to clear up (of weather)' is idiomatic mainly as the particle verb klare op; I could not confidently write a natural sentence using bare klare (without op) for weather clearing, and op is not offered as a separate lemma here. Skipping rather than risking an unnatural sentence."
+ },
+ {
+  "lemma": "afgørende",
+  "kind": "word",
+  "sense_id": "4d38a829-a2d2-55ca-ba03-f37cdbaa5d5b",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "adjective-meaning",
+  "frame": "{subject} var {target} for resultatet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hans indsats"
+    },
+    {
+     "da": "Denne beslutning"
+    },
+    {
+     "da": "Vejret"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "afgørende",
+    "en": "His effort was decisive for the result.",
+    "ru": "Его усилия были решающими для результата.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "afgørende",
+    "en": "This decision was decisive for the result.",
+    "ru": "Это решение было решающим для результата.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "afgørende",
+    "en": "The weather was decisive for the result.",
+    "ru": "Погода была решающей для результата.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "nat",
+  "kind": "word",
+  "sense_id": "3cbffae2-f476-5f9d-8586-a5502e26c47a",
+  "level": "A1",
+  "situation": "daily-routine",
+  "grammar": "noun-definite",
+  "frame": "{subject} sov hele {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Barnet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "natten",
+    "en": "He slept the whole night.",
+    "ru": "Он спал всю ночь.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "natten",
+    "en": "She slept the whole night.",
+    "ru": "Она спала всю ночь.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "natten",
+    "en": "The child slept the whole night.",
+    "ru": "Ребёнок спал всю ночь.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "værk",
+  "kind": "word",
+  "sense_id": "47da8a03-04e7-522a-b0e4-569f826365b7",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-meaning",
+  "frame": "{subject} opfører et berømt {target} af komponisten.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Orkestret"
+    },
+    {
+     "da": "Koret"
+    },
+    {
+     "da": "Symfoniorkestret"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "værk",
+    "en": "The orchestra performs a famous work by the composer.",
+    "ru": "Оркестр исполняет знаменитое произведение композитора.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "værk",
+    "en": "The choir performs a famous work by the composer.",
+    "ru": "Хор исполняет знаменитое произведение композитора.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "værk",
+    "en": "The symphony orchestra performs a famous work by the composer.",
+    "ru": "Симфонический оркестр исполняет знаменитое произведение композитора.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "værk",
+  "kind": "word",
+  "sense_id": "f863a220-482b-5a58-8dec-a09a17357e03",
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har {target} i benene efter løbeturen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Han"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "værk",
+    "en": "I have aches in my legs after the run.",
+    "ru": "У меня ломота в ногах после пробежки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "værk",
+    "en": "She has aches in her legs after the run.",
+    "ru": "У неё ломота в ногах после пробежки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "værk",
+    "en": "He has aches in his legs after the run.",
+    "ru": "У него ломота в ногах после пробежки.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "kigge",
+  "kind": "word",
+  "sense_id": "41aac673-22ab-5de4-9692-d61bcd5922d0",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "verb-present",
+  "frame": "{subject} {target} ud af vinduet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Katten"
+    },
+    {
+     "da": "Hun"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "kigger",
+    "en": "I look out of the window.",
+    "ru": "Я смотрю в окно.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "kigger",
+    "en": "The cat looks out of the window.",
+    "ru": "Кошка смотрит в окно.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "kigger",
+    "en": "She looks out of the window.",
+    "ru": "Она смотрит в окно.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "fungere",
+  "kind": "word",
+  "sense_id": "3bedca00-6772-5c42-8027-923221d25cc7",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} ikke længere.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Fjernsynet"
+    },
+    {
+     "da": "Opvaskemaskinen"
+    },
+    {
+     "da": "Bilen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "fungerer",
+    "en": "The TV doesn't work anymore.",
+    "ru": "Телевизор больше не работает.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "fungerer",
+    "en": "The dishwasher doesn't work anymore.",
+    "ru": "Посудомоечная машина больше не работает.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "fungerer",
+    "en": "The car doesn't work anymore.",
+    "ru": "Машина больше не работает.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "mærke",
+  "kind": "word",
+  "sense_id": "1f129d31-ab9b-540d-81e8-c154309a4c19",
+  "level": "A2",
+  "situation": "body-health",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} smerten i ryggen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Hun"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mærker",
+    "en": "I feel the pain in my back.",
+    "ru": "Я чувствую боль в спине.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mærker",
+    "en": "He feels the pain in his back.",
+    "ru": "Он чувствует боль в спине.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mærker",
+    "en": "She feels the pain in her back.",
+    "ru": "Она чувствует боль в спине.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "mærke",
+  "kind": "word",
+  "sense_id": "06a1db74-2789-5268-82be-64cb7a07dc30",
+  "level": "A1",
+  "situation": "shopping",
+  "grammar": "noun-indefinite",
+  "frame": "{subject} køber altid tøj fra et kendt {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min søster"
+    },
+    {
+     "da": "De"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "mærke",
+    "en": "She always buys clothes from a well-known brand.",
+    "ru": "Она всегда покупает одежду известной марки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "mærke",
+    "en": "My sister always buys clothes from a well-known brand.",
+    "ru": "Моя сестра всегда покупает одежду известной марки.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "mærke",
+    "en": "They always buy clothes from a well-known brand.",
+    "ru": "Они всегда покупают одежду известной марки.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "jord",
+  "kind": "word",
+  "sense_id": "70a64676-08d0-5939-b512-bc7a2d6d6353",
+  "level": "A2",
+  "situation": "home",
+  "grammar": "noun-definite",
+  "frame": "{subject} planter blomster i {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Gartneren"
+    },
+    {
+     "da": "Vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "jorden",
+    "en": "She plants flowers in the soil.",
+    "ru": "Она сажает цветы в землю.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "jorden",
+    "en": "The gardener plants flowers in the soil.",
+    "ru": "Садовник сажает цветы в землю.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "jorden",
+    "en": "We plant flowers in the soil.",
+    "ru": "Мы сажаем цветы в землю.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "jord",
+  "kind": "word",
+  "sense_id": "90f4565c-bec4-5e70-8533-4e64c67f63f8",
+  "level": "B1",
+  "situation": "weather-nature",
+  "grammar": "noun-meaning",
+  "frame": "Videnskabsmænd undersøger {aspect} på {target}.",
+  "slots": {
+   "aspect": [
+    {
+     "da": "klimaet"
+    },
+    {
+     "da": "vejret"
+    },
+    {
+     "da": "temperaturen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "aspect": 0
+    },
+    "target": "Jorden",
+    "en": "Scientists are studying the climate on Earth.",
+    "ru": "Учёные изучают климат на Земле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "aspect": 1
+    },
+    "target": "Jorden",
+    "en": "Scientists are studying the weather on Earth.",
+    "ru": "Учёные изучают погоду на Земле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "aspect": 2
+    },
+    "target": "Jorden",
+    "en": "Scientists are studying the temperature on Earth.",
+    "ru": "Учёные изучают температуру на Земле.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "smuk",
+  "kind": "word",
+  "sense_id": "ecf0da85-6600-5b1f-b1e4-4e7a5c2c854b",
+  "level": "A1",
+  "situation": "home",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} er {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Stuen"
+    },
+    {
+     "da": "Køkkenet"
+    },
+    {
+     "da": "Gardinerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "smuk",
+    "en": "The living room is beautiful.",
+    "ru": "Гостиная красивая.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "smukt",
+    "en": "The kitchen is beautiful.",
+    "ru": "Кухня красивая.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "smukke",
+    "en": "The curtains are beautiful.",
+    "ru": "Занавески красивые.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "salg",
+  "kind": "word",
+  "sense_id": "2ecc3a62-14d6-5031-bcd8-246774b316a2",
+  "level": "A2",
+  "situation": "shopping",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har {target} i denne uge.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Tøjbutikken"
+    },
+    {
+     "da": "Supermarkedet"
+    },
+    {
+     "da": "Boghandlen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "salg",
+    "en": "The clothing store has a sale this week.",
+    "ru": "В магазине одежды распродажа на этой неделе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "salg",
+    "en": "The supermarket has a sale this week.",
+    "ru": "В супермаркете распродажа на этой неделе.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "salg",
+    "en": "The bookshop has a sale this week.",
+    "ru": "В книжном магазине распродажа на этой неделе.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "unge",
+  "kind": "word",
+  "sense_id": "d0e59022-41e0-596b-80d8-d60c0b8a6914",
+  "level": "A2",
+  "situation": "weather-nature",
+  "grammar": "noun-meaning",
+  "frame": "{subject} passer godt på sin {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Løven"
+    },
+    {
+     "da": "Bjørnen"
+    },
+    {
+     "da": "Ræven"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "unge",
+    "en": "The lion takes good care of her cub.",
+    "ru": "Львица хорошо заботится о своём детёныше.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "unge",
+    "en": "The bear takes good care of her cub.",
+    "ru": "Медведица хорошо заботится о своём детёныше.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "unge",
+    "en": "The fox takes good care of her cub.",
+    "ru": "Лисица хорошо заботится о своём детёныше.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "unge",
+  "kind": "word",
+  "sense_id": "12ad6bd6-1cd3-55e4-b5f6-205e5a3a3651",
+  "level": "A2",
+  "situation": "family",
+  "grammar": "noun-plural",
+  "frame": "{subject} har tre {target} derhjemme.",
+  "slots": {
+   "subject": [
+    {
+     "da": "De"
+    },
+    {
+     "da": "Naboerne"
+    },
+    {
+     "da": "Mine venner"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "unger",
+    "en": "They have three kids at home.",
+    "ru": "У них дома трое сорванцов.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "unger",
+    "en": "The neighbors have three kids at home.",
+    "ru": "У соседей дома трое сорванцов.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "unger",
+    "en": "My friends have three kids at home.",
+    "ru": "У моих друзей дома трое сорванцов.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "oplysning",
+  "kind": "word",
+  "sense_id": "fadfa579-31de-5b19-8684-97390d1cc9e0",
+  "level": "A2",
+  "situation": "services",
+  "grammar": "noun-plural",
+  "frame": "{subject} har brug for flere {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Vi"
+    },
+    {
+     "da": "Politiet"
+    },
+    {
+     "da": "Banken"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "oplysninger",
+    "en": "We need more information.",
+    "ru": "Нам нужно больше сведений.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "oplysninger",
+    "en": "The police need more information.",
+    "ru": "Полиции нужно больше сведений.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "oplysninger",
+    "en": "The bank needs more information.",
+    "ru": "Банку нужно больше сведений.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "journalist",
+  "kind": "word",
+  "sense_id": "653a4955-0f80-5ba2-ad50-e552023d2d83",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-meaning",
+  "frame": "{subject} arbejder som {target} på en stor avis.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Hun"
+    },
+    {
+     "da": "Min ven"
+    },
+    {
+     "da": "Han"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "journalist",
+    "en": "She works as a journalist at a big newspaper.",
+    "ru": "Она работает журналистом в крупной газете.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "journalist",
+    "en": "My friend works as a journalist at a big newspaper.",
+    "ru": "Мой друг работает журналистом в крупной газете.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "journalist",
+    "en": "He works as a journalist at a big newspaper.",
+    "ru": "Он работает журналистом в крупной газете.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hente",
+  "kind": "word",
+  "sense_id": "f545be78-0924-5022-bff4-a769ac0749df",
+  "level": "A2",
+  "situation": "family",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} børnene fra skole.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Min mand"
+    },
+    {
+     "da": "Bedstemor"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "henter",
+    "en": "I pick up the children from school.",
+    "ru": "Я забираю детей из школы.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "henter",
+    "en": "My husband picks up the children from school.",
+    "ru": "Мой муж забирает детей из школы.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "henter",
+    "en": "Grandma picks up the children from school.",
+    "ru": "Бабушка забирает детей из школы.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "hente",
+  "kind": "word",
+  "sense_id": "8bf27a3e-02b5-5b94-b207-59c97ce163a4",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "verb-meaning",
+  "frame": "{subject} {target} filen fra internettet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Jeg"
+    },
+    {
+     "da": "Han"
+    },
+    {
+     "da": "Vi"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "henter",
+    "en": "I download the file from the internet.",
+    "ru": "Я скачиваю файл из интернета.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "henter",
+    "en": "He downloads the file from the internet.",
+    "ru": "Он скачивает файл из интернета.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "henter",
+    "en": "We download the file from the internet.",
+    "ru": "Мы скачиваем файл из интернета.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "udtryk",
+  "kind": "word",
+  "sense_id": "7568660d-ca46-5608-90d1-869625a58079",
+  "level": "A2",
+  "situation": "communication-media",
+  "grammar": "noun-meaning",
+  "frame": "Det er et {desc} dansk {target}.",
+  "slots": {
+   "desc": [
+    {
+     "da": "gammelt"
+    },
+    {
+     "da": "sjovt"
+    },
+    {
+     "da": "underligt"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "desc": 0
+    },
+    "target": "udtryk",
+    "en": "It's an old Danish expression.",
+    "ru": "Это старое датское выражение.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "desc": 1
+    },
+    "target": "udtryk",
+    "en": "It's a funny Danish expression.",
+    "ru": "Это забавное датское выражение.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "desc": 2
+    },
+    "target": "udtryk",
+    "en": "It's a strange Danish expression.",
+    "ru": "Это странное датское выражение.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "myndighed",
+  "kind": "word",
+  "sense_id": "5a23aac3-ccba-52b8-871e-4182c1573541",
+  "level": "B1",
+  "situation": "services",
+  "grammar": "noun-meaning",
+  "frame": "{subject} skal kontakte de lokale {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Borgerne"
+    },
+    {
+     "da": "Virksomhederne"
+    },
+    {
+     "da": "Beboerne"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "myndigheder",
+    "en": "Citizens must contact the local authorities.",
+    "ru": "Гражданам нужно обратиться в местные органы власти.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "myndigheder",
+    "en": "Businesses must contact the local authorities.",
+    "ru": "Предприятиям нужно обратиться в местные органы власти.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "myndigheder",
+    "en": "Residents must contact the local authorities.",
+    "ru": "Жителям нужно обратиться в местные органы власти.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "myndighed",
+  "kind": "word",
+  "sense_id": "f089ea85-3e51-5f4f-8c9b-3a8779fe0736",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har {target} til at træffe beslutninger.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Direktøren"
+    },
+    {
+     "da": "Lederen"
+    },
+    {
+     "da": "Bestyrelsen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "myndighed",
+    "en": "The director has the authority to make decisions.",
+    "ru": "Директор обладает полномочиями принимать решения.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "myndighed",
+    "en": "The manager has the authority to make decisions.",
+    "ru": "Руководитель обладает полномочиями принимать решения.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "myndighed",
+    "en": "The board has the authority to make decisions.",
+    "ru": "Правление обладает полномочиями принимать решения.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "minister",
+  "kind": "word",
+  "sense_id": "9b8138ac-a386-5b73-b986-005a64f8c9ae",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} interviewer {target} i aften.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Journalisten"
+    },
+    {
+     "da": "Radioværten"
+    },
+    {
+     "da": "Tv-værten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "ministeren",
+    "en": "The journalist interviews the minister tonight.",
+    "ru": "Журналист берёт интервью у министра сегодня вечером.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "ministeren",
+    "en": "The radio host interviews the minister tonight.",
+    "ru": "Радиоведущий берёт интервью у министра сегодня вечером.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "ministeren",
+    "en": "The TV host interviews the minister tonight.",
+    "ru": "Телеведущий берёт интервью у министра сегодня вечером.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "bane",
+  "kind": "word",
+  "sense_id": "a1aaeff1-33aa-52a1-af3d-90b7998f4d21",
+  "level": "A2",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "{subject} løber ud på {target}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Spillerne"
+    },
+    {
+     "da": "Holdet"
+    },
+    {
+     "da": "Dommeren"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "banen",
+    "en": "The players run out onto the field.",
+    "ru": "Игроки выбегают на поле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "banen",
+    "en": "The team runs out onto the field.",
+    "ru": "Команда выбегает на поле.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "banen",
+    "en": "The referee runs out onto the field.",
+    "ru": "Судья выбегает на поле.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "bane",
+  "kind": "word",
+  "sense_id": "de1751cf-bf25-5369-ac20-0228721c5524",
+  "level": "B1",
+  "situation": "abstract",
+  "grammar": "noun-meaning",
+  "frame": "{subject} følger en fast {target} om Jorden.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Satellitten"
+    },
+    {
+     "da": "Månen"
+    },
+    {
+     "da": "Raketten"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "bane",
+    "en": "The satellite follows a fixed orbit around the Earth.",
+    "ru": "Спутник движется по фиксированной орбите вокруг Земли.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "bane",
+    "en": "The moon follows a fixed orbit around the Earth.",
+    "ru": "Луна движется по фиксированной орбите вокруг Земли.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "bane",
+    "en": "The rocket follows a fixed orbit around the Earth.",
+    "ru": "Ракета движется по фиксированной орбите вокруг Земли.",
+    "orders": []
+   }
+  ]
+ },
+ {
+  "lemma": "magt",
+  "kind": "word",
+  "sense_id": "a444e5ee-eb1c-5fbb-a560-01a9be50b118",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-meaning",
+  "frame": "{subject} har {target} i landet.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Regeringen"
+    },
+    {
+     "da": "Kongen"
+    },
+    {
+     "da": "Partiet"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "magten",
+    "en": "The government holds the power in the country.",
+    "ru": "Правительство обладает властью в стране.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "magten",
+    "en": "The king holds the power in the country.",
+    "ru": "Король обладает властью в стране.",
+    "orders": []
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "magten",
+    "en": "The party holds the power in the country.",
+    "ru": "Партия обладает властью в стране.",
+    "orders": []
+   }
+  ]
+ }
+]
