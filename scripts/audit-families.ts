@@ -52,7 +52,8 @@ if (argv.includes('--sample')) {
       `## ${index + 1}. ${item.lemma} — ${item.sense.en ?? ''} / ${item.sense.ru}`,
       `\`${item.id}\` · ${item.level} · ${item.situation} · ${item.grammar} · ${item.source}${item.risk.length ? ` · ${item.risk.join(', ')}` : ''}`,
       '', `- da: ${item.variant.danish}  (target: **${item.variant.target}**)`, `- en: ${item.variant.en}`, `- ru: ${item.variant.ru}`,
-      ...(item.variant.orders.length ? [`- also accepted: ${item.variant.orders.join(' · ')}`] : []), '',
+      ...(item.variant.orders.length ? [`- other word orders: ${item.variant.orders.join(' · ')}`] : []),
+      ...(item.variant.accepted?.length ? [`- gap also accepts: ${item.variant.accepted.join(' · ')}`] : []), '',
     ].join('\n'))].join('\n')
   await writeFile(join(dir, `sample-${seed}.md`), `${md}\n`)
   console.log(`Sampled ${items.length} sentences → ${dir}/sample-${seed}.md; verdicts in ${verdictsPath}`)

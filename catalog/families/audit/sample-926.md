@@ -59,6 +59,7 @@
 - da: Holdet er i en god stilling.  (target: **stilling**)
 - en: The team is in a good position.
 - ru: Команда в хорошем положении.
+- gap also accepts: position
 
 ## 8. stilling — position (situation, standing) / позиция, положение (например, в игре)
 `3edc5bc4-ae22-55bb-af7a-1ff9444b214b` · A2 · leisure · noun-meaning · catalog
@@ -66,6 +67,7 @@
 - da: Vores hold er i en god stilling.  (target: **stilling**)
 - en: Our team is in a good position.
 - ru: Наша команда в хорошем положении.
+- gap also accepts: position
 
 ## 9. stilling — position (situation, standing) / позиция, положение (например, в игре)
 `dd73f107-445c-5518-be21-a418321d2094` · A2 · leisure · noun-meaning · catalog
@@ -73,6 +75,7 @@
 - da: Det andet hold er i en god stilling.  (target: **stilling**)
 - en: The other team is in a good position.
 - ru: Другая команда в хорошем положении.
+- gap also accepts: position
 
 ## 10. trods — despite, in spite of / несмотря на
 `8e07e9b4-a825-5bb3-96ad-248b271bd122` · B1 · weather-nature · prepositions-other · catalog
@@ -248,6 +251,7 @@
 - da: Jeg vil egentlig gerne rejse til udlandet.  (target: **egentlig**)
 - en: Actually, I would quite like to travel abroad.
 - ru: На самом деле я бы с удовольствием поехал за границу.
+- gap also accepts: faktisk
 
 ## 35. egentlig — actually, really (in fact) / на самом деле, вообще-то
 `aed86516-e0cc-51cf-9398-87103022cad7` · B1 · feelings-opinions · sentence-adverbs · catalog
@@ -255,6 +259,7 @@
 - da: Hun vil egentlig gerne rejse til udlandet.  (target: **egentlig**)
 - en: Actually, she would quite like to travel abroad.
 - ru: На самом деле она бы с удовольствием поехала за границу.
+- gap also accepts: faktisk
 
 ## 36. egentlig — actually, really (in fact) / на самом деле, вообще-то
 `8b012905-3195-5114-80a5-5fe161bd06bc` · B1 · feelings-opinions · sentence-adverbs · catalog
@@ -262,6 +267,7 @@
 - da: Vi vil egentlig gerne rejse til udlandet.  (target: **egentlig**)
 - en: Actually, we would quite like to travel abroad.
 - ru: На самом деле мы бы с удовольствием поехали за границу.
+- gap also accepts: faktisk
 
 ## 37. egentlig — real, actual, true / настоящий, истинный
 `0dccb45f-94e0-571b-8a87-6f8c2c0ab4f8` · B1 · abstract · adjective-agreement · catalog
@@ -269,6 +275,7 @@
 - da: Det er ikke den egentlige grund.  (target: **egentlige**)
 - en: That is not the real reason.
 - ru: Это не настоящая причина.
+- gap also accepts: sande
 
 ## 38. egentlig — real, actual, true / настоящий, истинный
 `db4103cc-c6b5-551d-ba47-7bd5c27e1b3c` · B1 · abstract · adjective-agreement · catalog
@@ -276,6 +283,7 @@
 - da: Det er ikke den egentlige årsag.  (target: **egentlige**)
 - en: That is not the real cause.
 - ru: Это не истинная причина.
+- gap also accepts: sande
 
 ## 39. egentlig — real, actual, true / настоящий, истинный
 `547e3dd5-07ed-5a08-b018-da2053367d33` · B1 · abstract · adjective-agreement · catalog
@@ -283,6 +291,7 @@
 - da: Det er ikke den egentlige løsning.  (target: **egentlige**)
 - en: That is not the real solution.
 - ru: Это не настоящее решение.
+- gap also accepts: sande
 
 ## 40. klare — to manage, to handle / справляться, суметь (сделать)
 `0af56b4c-a36c-5c0e-b17c-1a5531596dab` · A2 · education · verb-meaning · catalog
@@ -374,6 +383,7 @@
 - da: Jeg har værk i benene efter løbeturen.  (target: **værk**)
 - en: I have aches in my legs after the run.
 - ru: У меня ломота в ногах после пробежки.
+- gap also accepts: smerter
 
 ## 53. værk — ache, soreness (in the body) / боль, ломота (в теле)
 `76ba85dc-a9a8-571e-9e45-4e9f165a12ee` · A2 · body-health · noun-meaning · catalog
@@ -381,6 +391,7 @@
 - da: Hun har værk i benene efter løbeturen.  (target: **værk**)
 - en: She has aches in her legs after the run.
 - ru: У неё ломота в ногах после пробежки.
+- gap also accepts: smerter
 
 ## 54. værk — ache, soreness (in the body) / боль, ломота (в теле)
 `51963f18-3278-577b-b5a9-33236d272fad` · A2 · body-health · noun-meaning · catalog
@@ -388,6 +399,7 @@
 - da: Han har værk i benene efter løbeturen.  (target: **værk**)
 - en: He has aches in his legs after the run.
 - ru: У него ломота в ногах после пробежки.
+- gap also accepts: smerter
 
 ## 55. kigge — to look / смотреть, глядеть
 `4ae961fa-bfaa-5ce0-a106-7bb5291715eb` · A1 · home · verb-present · catalog
@@ -395,6 +407,7 @@
 - da: Jeg kigger ud af vinduet.  (target: **kigger**)
 - en: I look out of the window.
 - ru: Я смотрю в окно.
+- gap also accepts: ser
 
 ## 56. kigge — to look / смотреть, глядеть
 `5ce95500-355f-58cc-9bcb-cd5b8fc8edfd` · A1 · home · verb-present · catalog
@@ -402,6 +415,7 @@
 - da: Katten kigger ud af vinduet.  (target: **kigger**)
 - en: The cat looks out of the window.
 - ru: Кошка смотрит в окно.
+- gap also accepts: ser
 
 ## 57. kigge — to look / смотреть, глядеть
 `ac75b91d-4b0b-5852-b782-d689fa7f7218` · A1 · home · verb-present · catalog
@@ -409,6 +423,7 @@
 - da: Hun kigger ud af vinduet.  (target: **kigger**)
 - en: She looks out of the window.
 - ru: Она смотрит в окно.
+- gap also accepts: ser
 
 ## 58. fungere — to work, to function / работать, функционировать
 `733197b8-2664-5b98-8bde-c9cf657e8b7e` · A2 · home · verb-present · catalog
@@ -416,6 +431,7 @@
 - da: Fjernsynet fungerer ikke længere.  (target: **fungerer**)
 - en: The TV doesn't work anymore.
 - ru: Телевизор больше не работает.
+- gap also accepts: virker
 
 ## 59. fungere — to work, to function / работать, функционировать
 `90f2c524-ee75-551d-be86-2afed0e9882d` · A2 · home · verb-present · catalog
@@ -423,6 +439,7 @@
 - da: Opvaskemaskinen fungerer ikke længere.  (target: **fungerer**)
 - en: The dishwasher doesn't work anymore.
 - ru: Посудомоечная машина больше не работает.
+- gap also accepts: virker
 
 ## 60. fungere — to work, to function / работать, функционировать
 `8cea20fd-2730-5ac8-a1b5-11ad827c1eb8` · A2 · home · verb-present · catalog
@@ -430,6 +447,7 @@
 - da: Bilen fungerer ikke længere.  (target: **fungerer**)
 - en: The car doesn't work anymore.
 - ru: Машина больше не работает.
+- gap also accepts: virker
 
 ## 61. mærke — to feel, to notice / чувствовать, замечать
 `b85508a9-0763-5553-ae93-91af9b1928a1` · A2 · body-health · verb-meaning · catalog
@@ -437,6 +455,7 @@
 - da: Jeg mærker smerten i ryggen.  (target: **mærker**)
 - en: I feel the pain in my back.
 - ru: Я чувствую боль в спине.
+- gap also accepts: føler
 
 ## 62. mærke — to feel, to notice / чувствовать, замечать
 `63806ebf-db26-5880-af3d-0fc618be159e` · A2 · body-health · verb-meaning · catalog
@@ -444,6 +463,7 @@
 - da: Han mærker smerten i ryggen.  (target: **mærker**)
 - en: He feels the pain in his back.
 - ru: Он чувствует боль в спине.
+- gap also accepts: føler
 
 ## 63. mærke — to feel, to notice / чувствовать, замечать
 `be5a09d7-cda6-507d-8fb1-8eb585b4a377` · A2 · body-health · verb-meaning · catalog
@@ -451,6 +471,7 @@
 - da: Hun mærker smerten i ryggen.  (target: **mærker**)
 - en: She feels the pain in her back.
 - ru: Она чувствует боль в спине.
+- gap also accepts: føler
 
 ## 64. mærke — brand, mark / марка, бренд, метка
 `d0709200-fa1a-5f82-9c36-e29ade44f806` · A1 · shopping · noun-indefinite · catalog
@@ -521,6 +542,7 @@
 - da: Stuen er smuk.  (target: **smuk**)
 - en: The living room is beautiful.
 - ru: Гостиная красивая.
+- gap also accepts: flot
 
 ## 74. smuk — beautiful / красивый
 `3cbf613d-bcbc-521d-9e8d-ff273d38fd7a` · A1 · home · adjective-agreement · catalog
@@ -528,6 +550,7 @@
 - da: Køkkenet er smukt.  (target: **smukt**)
 - en: The kitchen is beautiful.
 - ru: Кухня красивая.
+- gap also accepts: flot
 
 ## 75. smuk — beautiful / красивый
 `443cd669-fbac-5346-b5c9-87398afddc91` · A1 · home · adjective-agreement · catalog
@@ -535,6 +558,7 @@
 - da: Gardinerne er smukke.  (target: **smukke**)
 - en: The curtains are beautiful.
 - ru: Занавески красивые.
+- gap also accepts: flotte
 
 ## 76. salg — sale / продажа
 `30cb388b-a93d-5c73-9a9b-03bcc314e2bd` · A2 · shopping · noun-meaning · catalog
@@ -584,6 +608,7 @@
 - da: De har tre unger derhjemme.  (target: **unger**)
 - en: They have three kids at home.
 - ru: У них дома трое сорванцов.
+- gap also accepts: børn
 
 ## 83. unge — kid, child (informal) / ребёнок, чадо (разговорное)
 `20787bac-cb05-5d87-af1a-77b2f8b70f56` · A2 · family · noun-plural · catalog
@@ -591,6 +616,7 @@
 - da: Naboerne har tre unger derhjemme.  (target: **unger**)
 - en: The neighbors have three kids at home.
 - ru: У соседей дома трое сорванцов.
+- gap also accepts: børn
 
 ## 84. unge — kid, child (informal) / ребёнок, чадо (разговорное)
 `389e492c-6671-50a7-89d9-98143b965abd` · A2 · family · noun-plural · catalog
@@ -598,6 +624,7 @@
 - da: Mine venner har tre unger derhjemme.  (target: **unger**)
 - en: My friends have three kids at home.
 - ru: У моих друзей дома трое сорванцов.
+- gap also accepts: børn
 
 ## 85. oplysning — piece of information / сведение, информация
 `769048c4-d5e2-5b5b-a9a7-6120cabab982` · A2 · services · noun-plural · catalog
@@ -668,6 +695,7 @@
 - da: Jeg henter filen fra internettet.  (target: **henter**)
 - en: I download the file from the internet.
 - ru: Я скачиваю файл из интернета.
+- gap also accepts: downloader
 
 ## 95. hente — to download / скачивать (файл)
 `fde5744b-5583-534b-8e25-de76ebf3c8c5` · A2 · communication-media · verb-meaning · catalog
@@ -675,6 +703,7 @@
 - da: Han henter filen fra internettet.  (target: **henter**)
 - en: He downloads the file from the internet.
 - ru: Он скачивает файл из интернета.
+- gap also accepts: downloader
 
 ## 96. hente — to download / скачивать (файл)
 `a0ad9ee1-9782-5722-ab66-7051b1eb3565` · A2 · communication-media · verb-meaning · catalog
@@ -682,6 +711,7 @@
 - da: Vi henter filen fra internettet.  (target: **henter**)
 - en: We download the file from the internet.
 - ru: Мы скачиваем файл из интернета.
+- gap also accepts: downloader
 
 ## 97. udtryk — expression / выражение
 `465611da-e8df-5348-a046-1275518a168e` · A2 · communication-media · noun-indefinite · catalog
@@ -731,6 +761,7 @@
 - da: Direktøren har myndighed til at træffe beslutninger.  (target: **myndighed**)
 - en: The director has the authority to make decisions.
 - ru: Директор обладает полномочиями принимать решения.
+- gap also accepts: magt
 
 ## 104. myndighed — authority (power) / полномочия, власть
 `90b040a3-6751-5409-9c0c-0aeec2a3a0d3` · B1 · society · noun-meaning · catalog
@@ -738,6 +769,7 @@
 - da: Lederen har myndighed til at træffe beslutninger.  (target: **myndighed**)
 - en: The manager has the authority to make decisions.
 - ru: Руководитель обладает полномочиями принимать решения.
+- gap also accepts: magt
 
 ## 105. myndighed — authority (power) / полномочия, власть
 `0a39b77f-acc4-5ec4-bc87-563eb1202b20` · B1 · society · noun-meaning · catalog
@@ -745,6 +777,7 @@
 - da: Bestyrelsen har myndighed til at træffe beslutninger.  (target: **myndighed**)
 - en: The board has the authority to make decisions.
 - ru: Правление обладает полномочиями принимать решения.
+- gap also accepts: magt
 
 ## 106. minister — minister (government) / министр
 `a38272d3-05fa-5f93-8cb8-ad80a660bce6` · B1 · society · noun-definite · catalog
@@ -1004,6 +1037,7 @@
 - da: Jo mere du øver dig i dansk, desto bedre bliver du.  (target: **desto**)
 - en: The more you practice Danish, the better you become.
 - ru: Чем больше ты практикуешь датский, тем лучше ты становишься.
+- gap also accepts: jo
 
 ## 143. desto — the (in 'the...the...' constructions) / тем (в конструкциях чем... тем...)
 `049c3302-e8e7-5e51-8e3f-d1869467789e` · B1 · education · conjunctions · catalog · long_sentence
@@ -1011,6 +1045,7 @@
 - da: Jo mere du øver dig i musik, desto bedre bliver du.  (target: **desto**)
 - en: The more you practice music, the better you become.
 - ru: Чем больше ты занимаешься музыкой, тем лучше ты становишься.
+- gap also accepts: jo
 
 ## 144. desto — the (in 'the...the...' constructions) / тем (в конструкциях чем... тем...)
 `7b0ce8d0-8a28-51eb-af2a-89435cc33f06` · B1 · education · conjunctions · catalog · long_sentence
@@ -1018,6 +1053,7 @@
 - da: Jo mere du øver dig i sport, desto bedre bliver du.  (target: **desto**)
 - en: The more you practice sport, the better you become.
 - ru: Чем больше ты тренируешься в спорте, тем лучше ты становишься.
+- gap also accepts: jo
 
 ## 145. hollandsk — Dutch / голландский
 `9f9e9281-3bdc-5774-a7cb-5d9a39db3c00` · B1 · shopping · adjective-agreement · catalog
@@ -1235,6 +1271,7 @@
 - da: Vi betaler forud for rejsen.  (target: **forud**)
 - en: We pay in advance for the trip.
 - ru: Мы платим заранее за поездку.
+- gap also accepts: på forhånd
 
 ## 176. forud — beforehand, in advance / заранее, вперёд
 `c16f1801-6305-517d-81b0-b67cbde35fa9` · B1 · transport · adverbs · catalog
@@ -1242,6 +1279,7 @@
 - da: Kunderne betaler forud for rejsen.  (target: **forud**)
 - en: The customers pay in advance for the trip.
 - ru: Клиенты платят заранее за поездку.
+- gap also accepts: på forhånd
 
 ## 177. forud — beforehand, in advance / заранее, вперёд
 `2f904349-0d54-554c-9229-1e5bc1bcf366` · B1 · transport · adverbs · catalog
@@ -1249,6 +1287,7 @@
 - da: Hun betaler forud for rejsen.  (target: **forud**)
 - en: She pays in advance for the trip.
 - ru: Она платит заранее за поездку.
+- gap also accepts: på forhånd
 
 ## 178. enhed — unit, device / единица, устройство
 `b917200b-0752-5020-a744-3d37e2817428` · B1 · education · noun-meaning · catalog
