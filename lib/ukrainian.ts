@@ -24,7 +24,6 @@ export interface SpellCheckers {
 
 const RUSSIAN_ONLY_LETTERS = ['ы', 'э', 'ъ', 'ё']
 const CYRILLIC = /\p{Script=Cyrillic}/u
-const LATIN = /\p{Script=Latin}/u
 const UKRAINIAN_LETTERS = /[іїєґ]/iu
 const WORD = /[\p{Script=Cyrillic}'’ʼ-]+/gu
 /** A word written in both scripts: a Latin homoglyph inside Cyrillic (`кaва` with a Latin a). */

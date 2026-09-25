@@ -23,6 +23,7 @@ import {
   LOCALE_AUDIT_LABELS,
   localeAuditBlocks,
   tallyLocaleAudit,
+  unreadLocaleItems,
   type LocaleAuditItem,
   type LocaleAuditSense,
   type LocaleAuditVariant,
@@ -87,7 +88,7 @@ if (argv.includes('--draw')) {
   const items = drawLocaleAudit(senses, variants, { seed, size: Number(option('--size') || 240) })
   await writeFile(samplePath, `${JSON.stringify(items, null, 1)}\n`)
   await writeFile(join(auditDir, `sample-${seed}.md`), render(items, seed))
-  if (!existsSync(verdictPath)) await writeFile(verdictPath, `${JSON.stringify(items.map((item): LocaleAuditVerdict => ({ id: item.id, failures: [] })), null, 1)}\n`)
+  if (!existsSync(verdictPath)) await writeFile(verdictPath, `${JSON.stringify(items.map((item): LocaleAuditVerdict => ({ id: item.id, failures: null })), null, 1)}\n`)
   console.log(`Drew ${items.length} of ${senses.length} wordings, ${senses.filter((sense) => sense.example_translation).length} examples and ${variants.length} family sentences → ${join(auditDir, `sample-${seed}.md`)}`)
 } else {
   const items = JSON.parse(await readFile(samplePath, 'utf8')) as LocaleAuditItem[]
@@ -95,7 +96,12 @@ if (argv.includes('--draw')) {
   const rows = tallyLocaleAudit(items, verdicts)
   const table = ['| stratum | reviewed | clean | rate | ±95% | severe |', '|---|---|---|---|---|---|',
     ...rows.map((row) => `| ${row.stratum} | ${row.reviewed} | ${row.clean} | ${(100 * row.rate).toFixed(1)}% | ${(100 * row.margin).toFixed(1)} | ${row.severe} |`)]
-  const findings = verdicts.filter((verdict) => verdict.failures.length).map((verdict) => `- \`${verdict.id}\`: ${verdict.failures.join(', ')}${verdict.note ? ` — ${verdict.note}` : ''}`)
+  const findings = verdicts.filter((verdict) => verdict.failures?.length).map((verdict) => `- \`${verdict.id}\`: ${(verdict.failures || []).join(', ')}${verdict.note ? ` — ${verdict.note}` : ''}`)
+  const unread = unreadLocaleItems(items, verdicts)
+  if (unread.length) {
+    console.error(`${unread.length} of ${items.length} sampled items have no verdict yet (failures: null). Read them first.`)
+    process.exit(1)
+  }
   const blocks = localeAuditBlocks(rows)
   const report = [`# Ukrainian audit report, seed ${seed}`, '', ...table, '', '## Findings', '', ...(findings.length ? findings : ['None.']), '',
     blocks.length ? `**STOP**: ${blocks.map((row) => row.stratum).join(', ')}` : '**PASS**: every stratum at or above 95% clean, no severe finding.'].join('\n')

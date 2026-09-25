@@ -295,7 +295,8 @@ export function MaterialClient({
       if (!Object.keys(proposal).length) throw new Error(t.material.noSuggestions)
       setPreview({ word, proposal, selected, senses: body.senses || [] })
     } catch (error) {
-      window.alert(error instanceof Error ? error.message : t.material.enrichFailed)
+      // A route's own line is already in the learner's language; a network failure is not shown raw.
+      window.alert(error instanceof Error && !(error instanceof TypeError) ? error.message : t.material.enrichFailed)
     } finally {
       setEnriching(null)
     }
@@ -359,7 +360,7 @@ export function MaterialClient({
       const commitUrl = typeof body === 'object' && body !== null && 'commitUrl' in body && typeof body.commitUrl === 'string' ? body.commitUrl : null
       window.alert(commitUrl ? `${t.material.uploaded}\n${commitUrl}` : t.material.uploaded)
     } catch (error) {
-      window.alert(error instanceof Error ? error.message : t.material.uploadFailed)
+      window.alert(error instanceof Error && !(error instanceof TypeError) ? error.message : t.material.uploadFailed)
     } finally {
       setUploadingGithub(false)
     }

@@ -216,7 +216,8 @@ export function EntryEditor({
   }
 
   function notifyError(error: unknown, fallback: string): void {
-    setNotice({ text: error instanceof Error ? error.message : fallback, tone: 'error' })
+    // Route error lines are already in the learner's language; a network failure (TypeError) is not.
+    setNotice({ text: error instanceof Error && !(error instanceof TypeError) ? error.message : fallback, tone: 'error' })
   }
 
   function commitDraft(updater: (current: Draft) => Draft): Draft {

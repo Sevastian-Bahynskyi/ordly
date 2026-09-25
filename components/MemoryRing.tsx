@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import type { JSX } from 'react'
 import { fsrs, type Card } from 'ts-fsrs'
 import type { Messages } from '@/lib/i18n'
+import { LEARNER_LANGUAGE_LOCALES } from '@/lib/learner-language'
 import type { ReviewCard, TranslationLanguage } from '@/lib/types'
 import { useI18n } from './I18nProvider'
 
@@ -75,7 +76,7 @@ function nextReviewLabel(t: Messages, language: TranslationLanguage, dueValue: s
     }
   }
 
-  const exact = new Intl.DateTimeFormat(language === 'en' ? 'en-GB' : language === 'ru' ? 'ru-RU' : 'uk-UA', {
+  const exact = new Intl.DateTimeFormat(LEARNER_LANGUAGE_LOCALES[language], {
     timeZone: 'Europe/Copenhagen',
     day: 'numeric',
     month: 'short',

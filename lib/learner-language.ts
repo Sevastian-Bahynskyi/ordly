@@ -15,6 +15,9 @@ export const LEARNER_LANGUAGES: readonly TranslationLanguage[] = ['en', 'ru', 'u
 /** English names, for prompts sent to a model. Interface text names languages through `lib/i18n`. */
 export const LEARNER_LANGUAGE_NAMES: Record<TranslationLanguage, string> = { en: 'English', ru: 'Russian', uk: 'Ukrainian' }
 
+/** BCP 47 tags, for `Intl` formatting and locale-aware case in each language. */
+export const LEARNER_LANGUAGE_LOCALES: Record<TranslationLanguage, string> = { en: 'en-GB', ru: 'ru-RU', uk: 'uk-UA' }
+
 /** Each language in its own words, for the picker: a learner finds their language by its name. */
 export const LEARNER_LANGUAGE_NATIVE_NAMES: Record<TranslationLanguage, string> = { en: 'English', ru: 'Русский', uk: 'Українська' }
 

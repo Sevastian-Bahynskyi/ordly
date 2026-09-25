@@ -61,8 +61,11 @@ export interface LocaleAuditItem {
 
 export interface LocaleAuditVerdict {
   id: string
-  failures: LocaleAuditFailure[]
+  /** `null` until a person has read the item; an unread item is never counted as clean. */
+  failures: LocaleAuditFailure[] | null
   note?: string
+  /** The finding was fixed in the data after the reading. It still counts against the rate. */
+  repaired?: boolean
 }
 
 function senseStrata(sense: LocaleAuditSense, type: 'wording' | 'example'): string[] {
@@ -113,18 +116,18 @@ export interface LocaleStratumTally { stratum: string; reviewed: number; clean: 
 
 function tally(stratum: string, verdicts: readonly LocaleAuditVerdict[]): LocaleStratumTally {
   const reviewed = verdicts.length
-  const clean = verdicts.filter((verdict) => !verdict.failures.length).length
+  const clean = verdicts.filter((verdict) => verdict.failures?.length === 0).length
   const rate = reviewed ? clean / reviewed : 0
   return {
     stratum, reviewed, clean, rate,
     margin: reviewed ? 1.96 * Math.sqrt((rate * (1 - rate)) / reviewed) : 1,
-    severe: verdicts.filter((verdict) => verdict.failures.some((failure) => SEVERE_LOCALE_FAILURES.has(failure))).length,
+    severe: verdicts.filter((verdict) => !verdict.repaired && (verdict.failures || []).some((failure) => SEVERE_LOCALE_FAILURES.has(failure))).length,
   }
 }
 
 /** Overall, then every stratum, over the items that have a verdict. */
 export function tallyLocaleAudit(items: readonly LocaleAuditItem[], verdicts: readonly LocaleAuditVerdict[]): LocaleStratumTally[] {
-  const byId = new Map(verdicts.map((verdict) => [verdict.id, verdict]))
+  const byId = new Map(verdicts.filter((verdict) => verdict.failures !== null).map((verdict) => [verdict.id, verdict]))
   const judged = items.filter((item) => byId.has(item.id))
   const rows = [tally('overall', judged.map((item) => byId.get(item.id) as LocaleAuditVerdict))]
   const strata = [...new Set(judged.flatMap((item) => item.strata))].sort()
@@ -132,7 +135,13 @@ export function tallyLocaleAudit(items: readonly LocaleAuditItem[], verdicts: re
   return rows
 }
 
-/** What stops the load: a stratum below 95% clean with enough rows to say so, or any severe finding. */
+/** What stops the load: a stratum below 95% clean with enough rows to say so, or a severe finding not yet repaired. */
 export function localeAuditBlocks(rows: readonly LocaleStratumTally[], minimum = 10): LocaleStratumTally[] {
   return rows.filter((row) => row.severe > 0 || (row.reviewed >= minimum && row.rate < 0.95))
+}
+
+/** Sampled items nobody has read yet. Any at all and the audit has not happened. */
+export function unreadLocaleItems(items: readonly LocaleAuditItem[], verdicts: readonly LocaleAuditVerdict[]): LocaleAuditItem[] {
+  const read = new Set(verdicts.filter((verdict) => verdict.failures !== null).map((verdict) => verdict.id))
+  return items.filter((item) => !read.has(item.id))
 }

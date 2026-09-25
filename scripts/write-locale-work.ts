@@ -45,7 +45,8 @@ let total = 0
 if (argv.includes('--from-db')) {
   const size = Number(option('--batch-size') || 50)
   const rows = await queryJson<LocaleWorkRow>(`select r.lemma, r.kind, r.sense_id, r.ordinal, r.pos, r.gender, r.text as ru, e.text as en,
-      coalesce(e.example, r.example) as example, r.example_translation as example_ru, e.example_translation as example_en
+      coalesce(e.example, r.example) as example,
+      case when r.example = coalesce(e.example, r.example) then r.example_translation end as example_ru, e.example_translation as example_en
     from public.word_catalog_sense r
     join public.word_catalog_sense e on e.lemma = r.lemma and e.kind = r.kind and e.sense_id = r.sense_id and e.lang = 'en'
     where r.lang = 'ru' and not exists (
@@ -54,6 +55,10 @@ if (argv.includes('--from-db')) {
   for (let start = 0; start < rows.length; start += size) {
     await writeFile(join(outDir, `batch-${String(start / size + 1).padStart(4, '0')}.json`), `${JSON.stringify(rows.slice(start, start + size), null, 1)}\n`)
   }
+  // The join needs an English wording; a sense that has only Russian would be skipped, so say so.
+  const [orphans] = await queryJson<{ n: number }>(`select count(*)::int as n from public.word_catalog_sense r where r.lang = 'ru'
+    and not exists (select 1 from public.word_catalog_sense e where e.lemma = r.lemma and e.kind = r.kind and e.sense_id = r.sense_id and e.lang = 'en')`)
+  if (orphans?.n) console.warn(`${orphans.n} Russian senses have no English wording and are not in the work files`)
   console.log(`${rows.length} senses need a ${lang} wording (${Math.ceil(rows.length / size)} batches)`)
   process.exit(0)
 }

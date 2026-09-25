@@ -45,6 +45,10 @@ for (const name of names) {
   let reply: unknown
   try { reply = JSON.parse(await readFile(replyPath, 'utf8')) } catch { reply = null }
   const errors = [...validateLocaleFile(reply), ...(reply ? checkLocaleReply(work, reply as LocaleFile, lang, spell) : [])]
+  // Rows the generator flagged (a reviewer rejection with no usable correction, no verdict at all)
+  // pass the language check but were never vouched for, so the batch waits for a repair.
+  const flagPath = replyPath.replace(/\.json$/u, '.flags.json')
+  if (existsSync(flagPath)) for (const flag of JSON.parse(await readFile(flagPath, 'utf8')) as { lemma: string; field: string; note: string }[]) errors.push(`${flag.lemma}: ${flag.field} flagged (${flag.note})`)
   if (errors.length) {
     failed += 1
     console.log(`✗ ${name}: ${errors.length} problem(s)\n  ${errors.slice(0, 12).join('\n  ')}`)
