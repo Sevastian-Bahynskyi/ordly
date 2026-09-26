@@ -7,9 +7,8 @@ import { interfaceMessages } from '@/lib/i18n/server'
  * Danish spelling, checked against the local dictionary (issue #5 §3).
  *
  * No model, no key, no network — the answer is a dictionary lookup, so the composer can ask while
- * the learner is still typing. It is a hint and never a verdict: `/api/ai/check-example` remains
- * the thing that judges whether a sentence is natural Danish, which is the common failure and the
- * one a spell checker cannot see.
+ * the learner is still typing. It is a hint and never a verdict: it catches orthography, not the
+ * wrong form of a real word or Danish that is correct but unnatural.
  */
 
 const MAX_LENGTH = 700

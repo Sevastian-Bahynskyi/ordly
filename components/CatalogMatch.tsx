@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ChevronRight, Sparkles } from 'lucide-react'
+import { ChevronRight, PenLine } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useI18n } from '@/components/I18nProvider'
 import { encounteredFormOf, lookupCatalog, unlockedDraft, type CatalogEntry, type CatalogMiss, type UnlockedDraft } from '@/lib/catalog'
 import { inferDanishInputKind } from '@/lib/entry-kind'
+import type { CatalogStatus } from '@/lib/manual-entry'
 import type { TranslationLanguage } from '@/lib/types'
 
 /**
@@ -27,8 +28,8 @@ import type { TranslationLanguage } from '@/lib/types'
  * meaning.
  *
  * A miss is said out loud rather than hidden. It means the word is rarer than the catalog's
- * depth, or is a phrase, which a lemma list cannot contain at all — both are useful to know, and
- * both fall through to the live AI path unchanged.
+ * depth, or is a phrase the catalog does not hold. Either way the learner fills the entry in by
+ * hand (issue #25): nothing builds it for them, and the editor says what that means.
  */
 const LOOKUP_DELAY_MS = 350
 
@@ -40,9 +41,11 @@ interface Props {
    * verified spellings, used to find it in Material under any of them.
    */
   onUnlock: (draft: UnlockedDraft, lemma: string, senseId: string | null, forms: string[]) => void
+  /** Whether the catalog holds what is typed, so the editor knows when the entry is manual. */
+  onStatus: (status: CatalogStatus) => void
 }
 
-export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Element | null {
+export function CatalogMatch({ danish, lang, onUnlock, onStatus }: Props): React.JSX.Element | null {
   const { t } = useI18n()
   const [candidates, setCandidates] = useState<CatalogEntry[]>([])
   const [miss, setMiss] = useState<CatalogMiss | null>(null)
@@ -57,16 +60,19 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
     if (!text || inferDanishInputKind(text) === 'sentence') {
       setCandidates([])
       setMiss(null)
+      onStatus(text ? 'miss' : 'idle')
       return
     }
     let cancelled = false
     setLoading(true)
+    onStatus('pending')
     const timer = setTimeout(() => {
       void lookupCatalog(createClient(), text, lang).then((result) => {
         if (cancelled) return
         setCandidates(result.candidates)
         setMiss(result.miss)
         setLoading(false)
+        onStatus(result.candidates.length ? 'hit' : 'miss')
       })
     }, LOOKUP_DELAY_MS)
     return () => {
@@ -80,7 +86,7 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
   if (loading && !candidates.length) return null
 
   if (!candidates.length) {
-    return miss ? <small className="catalog-miss"><Sparkles size={12} />{t.catalog.miss[miss]}</small> : null
+    return miss ? <small className="catalog-miss"><PenLine size={12} />{t.catalog.miss[miss]}</small> : null
   }
 
   return (

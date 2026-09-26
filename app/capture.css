@@ -1,5 +1,5 @@
 /* Add / edit entry, "Focus" layout: one big Danish field, details revealed once there is
-   something to describe, quiet pills, and a single AI entry point next to Save. */
+   something to describe, quiet pills, and one quiet secondary action next to Save. */
 
 .capture-focus .composer-heading { margin-bottom: 12px; }
 
@@ -69,13 +69,7 @@
   font-size: 12px;
   font-weight: 650;
   white-space: nowrap;
-  cursor: pointer;
 }
-
-.capture-kind:disabled { opacity: .6; cursor: default; }
-.capture-kind .capture-kind-name { color: #9d90c9; font-weight: 600; }
-.capture-kind.ok { background: #e3f4ea; color: #2f7d52; }
-.capture-kind.ok .capture-kind-name { color: #6fa888; }
 
 .capture-duplicate {
   display: flex;
@@ -175,72 +169,86 @@
   margin-top: 16px;
 }
 
-.capture-ai { position: relative; flex: 0 0 auto; }
-
-.capture-ai-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-width: 96px;
-  height: 44px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: 13px;
-  background: var(--purple-soft);
-  color: #684dc7;
-  font-size: 15px;
-  font-weight: 650;
-  cursor: pointer;
-}
-
-.capture-ai-button:hover { background: #e7defe; }
-
 .capture-actions .save-wrap { flex: 1 1 auto; justify-content: flex-end; }
 .capture-actions .save-wrap .primary-button { height: 44px; min-width: 160px; border-radius: 13px; font-size: 15px; }
 
-.capture-ai-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
+/* The one secondary action beside Save: quiet, never filled (one prominent button per view). */
+.capture-clear {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 13px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.capture-clear:hover:not(:disabled) { background: var(--surface-2); }
+.capture-clear:disabled { opacity: .5; cursor: default; }
+
+/* ---- Manual entry (issue #25) ---- */
+/* Said before saving and on the word's page: nothing checks it, and it is Review-only. */
+.manual-entry-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--amber-soft);
+  color: var(--ink);
+}
+
+.manual-entry-note svg { flex: 0 0 auto; margin-top: 2px; color: var(--amber); }
+.manual-entry-note p { margin: 0; font-size: 13.5px; line-height: 1.5; }
+
+/* A typed paradigm: one row per form, separated by hairlines rather than boxes. */
+.manual-form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 11em) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 6px;
+  border-top: 1px solid var(--line);
+}
+
+.manual-forms .capture-section-head + .manual-form-row { border-top: 0; }
+.manual-form-row > span { color: var(--muted); font-size: 13px; }
+
+.manual-form-row input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 6px;
   border: 0;
   background: transparent;
-  cursor: default;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
 }
 
-.capture-ai-sheet {
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 8px);
-  z-index: 61;
-  display: flex;
-  flex-direction: column;
-  min-width: 250px;
-  padding: 6px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 16px 44px rgba(31, 24, 43, .18), 0 0 0 1px rgba(31, 24, 43, .05);
+.manual-form-row input:focus { outline: none; box-shadow: inset 0 -2px 0 var(--purple-2); }
+
+@media (max-width: 420px) {
+  .manual-form-row { grid-template-columns: minmax(0, 8.5em) minmax(0, 1fr); }
 }
 
-.capture-ai-sheet > small {
-  padding: 6px 12px 4px;
-  color: #8a8492;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.capture-ai-grab { display: none; }
-
-.capture-ai-sheet hr, .overflow-menu-list hr {
+.overflow-menu-list hr {
   height: 1px;
   margin: 4px 8px;
   border: 0;
   background: #efedf2;
 }
 
-.capture-ai-sheet button, .overflow-menu-list button {
+.overflow-menu-list button {
   display: flex;
   align-items: center;
   gap: 11px;
@@ -257,11 +265,10 @@
   cursor: pointer;
 }
 
-.capture-ai-sheet button svg, .overflow-menu-list button svg { flex: 0 0 auto; color: #7b7485; }
-.capture-ai-sheet button:hover:not(:disabled), .overflow-menu-list button:hover:not(:disabled) { background: #f4f2f7; }
-.capture-ai-sheet button:disabled, .overflow-menu-list button:disabled { opacity: .4; cursor: default; }
-.capture-ai-sheet button.danger, .overflow-menu-list button.danger,
-.capture-ai-sheet button.danger svg, .overflow-menu-list button.danger svg { color: #b0453f; }
+.overflow-menu-list button svg { flex: 0 0 auto; color: #7b7485; }
+.overflow-menu-list button:hover:not(:disabled) { background: #f4f2f7; }
+.overflow-menu-list button:disabled { opacity: .4; cursor: default; }
+.overflow-menu-list button.danger, .overflow-menu-list button.danger svg { color: #b0453f; }
 
 /* ---- ⋯ menu ---- */
 .overflow-menu { position: relative; display: inline-flex; flex: 0 0 auto; }
@@ -286,8 +293,7 @@
   .capture-focus textarea.capture-danish { font-size: 24px; }
 
   /* The bar rides above the floating tab bar while the form scrolls, and rests at the end. */
-  /* Above the tab bar's z-index: sticky positioning makes this bar a stacking context, so the
-     AI sheet and its backdrop can never rise past whatever this is set to. */
+  /* Above the tab bar's z-index: sticky positioning makes this bar a stacking context. */
   .capture-actions {
     position: sticky;
     bottom: calc(78px + env(safe-area-inset-bottom, 0px));
@@ -299,8 +305,7 @@
   }
 
   /* The frosting lives on a pseudo-element: `backdrop-filter` on the bar itself would make it
-     the containing block for the fixed-position AI sheet, which then hangs off the bar's
-     bottom edge instead of the screen's. */
+     the containing block for any fixed-position descendant. */
   .capture-actions::before {
     content: "";
     position: absolute;
@@ -314,37 +319,6 @@
 
   .capture-actions .save-wrap { flex: 1 1 auto; width: auto; }
   .capture-actions .save-wrap .primary-button { width: 100%; min-width: 0; }
-
-  /* A bottom sheet on phones, over the tab bar. */
-  .capture-ai-backdrop { background: rgba(28, 27, 34, .3); }
-
-  .capture-ai-sheet {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    min-width: 0;
-    padding: 6px 12px calc(14px + env(safe-area-inset-bottom, 0px));
-    border-radius: 22px 22px 0 0;
-    animation: capture-sheet .24s cubic-bezier(.22, .8, .2, 1) both;
-  }
-
-  .capture-ai-grab {
-    display: block;
-    width: 38px;
-    height: 5px;
-    margin: 4px auto 6px;
-    border-radius: 3px;
-    background: #dcd8e1;
-  }
-
-  .capture-ai-sheet button { min-height: 48px; font-size: 16px; }
-
-  @keyframes capture-sheet { from { transform: translateY(100%); } }
-}
-
-@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
-  .capture-ai-sheet { animation: none; }
 }
 
 /* ---- Catalog (issue #6 §7) ---- */
@@ -420,8 +394,8 @@
 .catalog-sense:focus-visible { border-radius: 8px; outline: 2px solid var(--purple-2); outline-offset: 1px; }
 .catalog-sense:active { transform: translateY(1px); }
 
-/* A miss is said plainly. It means the word is rarer than the catalog's depth, or is a phrase,
-   which a lemma frequency list cannot contain at all. Both fall through to the live AI path. */
+/* A miss is said plainly. It means the word is rarer than the catalog's depth, or is a phrase the
+   catalog does not hold. Both are filled in by hand (issue #25). */
 .catalog-miss {
   display: flex;
   align-items: center;

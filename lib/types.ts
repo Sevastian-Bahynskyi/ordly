@@ -113,6 +113,11 @@ export interface VocabularyEntry {
   icon_name: string | null
   /** The catalog row this entry was unlocked from, for provenance only (issue #6 §5). */
   catalog_lemma: string | null
+  /**
+   * Entered by hand outside the catalog: checked by nothing, studied in Review only and never in
+   * Practice (issue #25). Set by the database, never by the client.
+   */
+  unverified: boolean
   entry_kind: EntryKind
   learning_status: LearningStatus
   familiarity: number

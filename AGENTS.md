@@ -11,7 +11,7 @@ Core product constraints:
 - Danish is always the source language.
 - Learner language is one app-wide preference: English (default for new profiles), Russian, Ukrainian. It drives the whole interface (`lib/i18n`, §26) and the supplied content. Read it through `learnerLanguage()` in `lib/learner-language.ts`, never with an inline fallback.
 - Danish level is configurable A1–C1; default A1.
-- Manual-first entry. AI assists only when explicitly requested.
+- No runtime AI (§27). Words and phrases come from the catalog; anything it does not hold is entered entirely by hand and studied in Review only.
 - Support single words, phrases, sentence fragments, and full sentences.
 - No folders/tags/taxonomy.
 - No XP/coins. Streaks and useful progress statistics are fine.
@@ -62,7 +62,7 @@ Production project:
 
 The browser Supabase URL/publishable key are intentionally public configuration. `lib/supabase/config.ts` contains safe public fallbacks so the app does not crash if those public Vercel env vars are absent.
 
-Never expose or commit service-role credentials, Groq API keys, or other private secrets.
+Never expose or commit service-role credentials, provider keys, or other private secrets.
 
 Important tables/functions currently include:
 
@@ -123,7 +123,7 @@ Bottom nav is heavily used on iPhone and must remain responsive, animated, and s
 
 ## 6. Add Danish / composer
 
-Main implementation: `components/EntryEditor.tsx`, shared by `components/AddWordComposer.tsx` (create) and `/words/[id]` (edit). Meaning rows live in `components/SenseRow.tsx`. Add an AI action to `EntryEditor` and both surfaces get it.
+Main implementation: `components/EntryEditor.tsx`, shared by `components/AddWordComposer.tsx` (create) and `/words/[id]` (edit). Meaning rows live in `components/SenseRow.tsx`.
 
 Required fields/behaviors:
 
@@ -131,10 +131,9 @@ Required fields/behaviors:
 - simplified Cyrillic pronunciation
 - translation
 - optional separate example sentence + translated example
-- all fields remain manually editable
-- mini AI buttons per field, plus per-meaning `Grammar` (part of speech/gender) and `Example for this meaning`
-- `Fill missing with AI` (empty fields only) and `Regenerate all` (every field, with a single Undo)
-- `Clear`
+- all fields remain manually editable; per-meaning part of speech and gender are picked by hand
+- the catalog offer under the Danish field (§23); a miss makes the entry manual (§27)
+- `Clear` / `Revert changes` as the one quiet secondary action beside Save
 - Cmd/Ctrl+Enter saves
 - duplicate lookup while typing: minimal but noticeable `Already saved · <meaning>` hint
 - duplicate save confirmation supports adding another meaning
@@ -144,34 +143,13 @@ The `⌘ Enter` visual hint must appear **below** the Save button on desktop. Th
 
 ### Word / phrase / sentence detection
 
-This recently changed and is regression-sensitive.
-
-`lib/entry-kind.ts` now distinguishes UI input kind:
+`lib/entry-kind.ts` distinguishes UI input kind:
 
 - `word`
 - `phrase`
 - `sentence`
 
-Stored DB `entry_kind` remains `word | sentence`; phrases are vocabulary entries stored as `word` for existing review behavior.
-
-The AI action beside the Danish input MUST depend on detected input kind:
-
-- one word → `Base form` (applied in place)
-- phrase → `Verify phrase` (a correction is proposed with a red/green diff; the learner accepts or keeps theirs; a correct phrase is confirmed)
-- sentence / sentence fragment → `Verify sentence` (same as phrase)
-
-`Fill missing with AI` and `Regenerate all` run the same check first. For a word it is awaited so enrichment uses the base form; for a phrase/sentence it runs alongside. The same text is never checked twice automatically.
-
-Endpoint: `app/api/ai/base-form/route.ts`.
-
-Rules:
-
-- Word mode normalizes to dictionary/base form.
-- Phrase mode verifies the complete expression and proposes the smallest correction. It must never collapse `helt sikker` or another multi-word phrase to one word.
-- There is a defensive server check that rejects a multi-word phrase result if Groq collapses it to a single word.
-- Sentence mode DOES NOT base-form words. It checks overall Danish grammar/spelling/word order/agreement/punctuation/naturalness and applies only the smallest correction required.
-
-Do not remove this distinction.
+Stored DB `entry_kind` remains `word | sentence`; phrases are vocabulary entries stored as `word` for existing review behavior. The kind is shown as a quiet label beside the Danish field. A single word is checked against the word register before it is saved (§22); phrases and sentences are not checked by anything.
 
 ### Sentences and examples
 
@@ -183,51 +161,19 @@ When separate example is OFF:
 - translation remains required
 - example fields are cleared/not stored
 
-## 7. AI enrichment behavior
+## 7. AI enrichment behavior (removed)
 
-Groq runs server-side only.
+Removed by issue #25 (§27). There is no enrich route, no "Fill missing" / "Regenerate all", no per-field AI button and no per-word AI preview. Do not bring any of it back.
 
-Default model fallback: `openai/gpt-oss-20b`.
+## 8. Pronunciation
 
-`GROQ_API_KEY` must remain private/server-side.
+The pronunciation field is simplified Cyrillic that a Russian speaker can read aloud close to real Danish. It is NOT transliteration of Danish spelling. Catalog words carry a pronunciation made offline from source IPA (§23); a manual entry carries whatever the learner types as a hint. The former runtime pipeline (DDO/Wiktionary lookup, model validation, `pronunciation_cache`) is gone; the table is left in place, unused.
 
-AI enrichment should be resilient: pronunciation and other enrichment work were separated so a pronunciation failure does not wipe out translation/example generation. Transient 429/5xx calls retry once where implemented.
-
-When the Danish source text changes after AI filled fields, pressing the full AI action should regenerate stale AI-generated fields for the new source rather than saying everything is already filled.
-
-In the Words list, AI enrichment is preview-first:
-
-1. request enrichment
-2. show current vs proposed values
-3. allow selecting fields
-4. only mutate DB after explicit `Apply selected`
-
-Never silently overwrite row values before confirmation.
-
-## 8. Pronunciation architecture
-
-This area had several failed iterations. Do not regress to "ask the LLM to transliterate Danish spelling".
-
-Goal: simplified Cyrillic text that a Russian speaker can read aloud and get as close as practical to real Danish pronunciation. It is NOT linguistic transliteration.
-
-Current intended pipeline:
-
-1. Check `pronunciation_cache` first.
-2. For normal words, query DDO and Wiktionary pronunciation sources in parallel with short timeouts / long revalidation.
-3. Choose/compare reliable IPA. Groq acts as a tie-breaker if source confidence is low or sources disagree materially.
-4. Convert selected IPA deterministically to a Cyrillic draft.
-5. Groq validates/corrects the final Cyrillic **against the authoritative IPA**, not against Danish spelling.
-6. Cache final result.
-
-Translation/example generation should run concurrently with pronunciation where possible so `Fill missing` does not serialize unnecessary calls.
-
-Important anchors from user feedback:
+Anchors from user feedback, still binding for the catalog pipeline:
 
 - `synes` should be close to `сюнес`, not `сйенс` etc.
 - `stadig` should be around `сдэ́эди` / a similarly Russian-readable rendering, NOT `штадик` or `стаади`.
 - `selvfølgelig` reduced natural speech is closer to `сэфёли` than spelling-based output.
-
-The source IPA is authoritative. Groq may substantially rewrite the deterministic Cyrillic draft if a Russian reader would otherwise pronounce it incorrectly.
 
 ## 9. Material page
 
@@ -243,15 +189,14 @@ Features:
   the vocabulary actually has and how many carry each. It resets when the tab changes, so it can
   never hide rows from behind a tab that does not show it.
 - no per-word icons: the Iconify/AI icon feature was removed (the `icon_name` column remains, unused)
-- per-word AI preview/confirm
 - delete
 - memory/retrievability ring on each word
 
-Bulk raw/untranslated entries are excluded from review until sufficiently enriched/translated.
+Untranslated entries are excluded from review until they have a meaning.
 
 Row click opens `/words/[id]`, which is the entry editor plus a synonym ego-graph. Rows show synonym chips. Confirmed and suggested chips must stay visually distinct in more ways than colour.
 
-A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It carries the same search the list does — Danish, meanings, and the concept an edge is about. A match is brightened and the camera frames it; everything else dims rather than disappearing, so the graph never changes shape under the learner's hands, and an edge matched by its concept lights up both of its ends and explains itself at any zoom. It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. **Find links** re-runs discovery across the whole vocabulary, one call at a time, for entries that predate discovery or whose edges were cleared. It is resumable and must stay that way: iOS suspends the page as soon as Ordly leaves the screen, so a long run stopping partway is the normal case. `lib/discovery-run.ts` holds the rules — a stopped run can be restarted, a live one cannot, and a restart carries on from the cursor so the AI is not paid twice for the same entries.
+A **Show graph** button opens the whole meaning graph near full screen (`components/VocabularyGraph.tsx`, laid out by `lib/graph-layout.ts`). It carries the same search the list does — Danish, meanings, and the concept an edge is about. A match is brightened and the camera frames it; everything else dims rather than disappearing, so the graph never changes shape under the learner's hands, and an edge matched by its concept lights up both of its ends and explains itself at any zoom. It reuses the entries and edges the page already fetched, so it costs no extra query. Only entries that link to something are drawn; the rest are counted in the caption. Colour is one hue per connected island (`--cluster-*`), the layout is deterministic and never animates, and the camera opens framing everything. Each edge shows its `concept` — past a zoom threshold on the edge itself, and always in the panel for a selected node. Synonym discovery (and **Find links**) was a model call and is removed (§27); existing edges stay as stored.
 
 ## 10. FSRS / memory rings
 
@@ -295,8 +240,7 @@ Key behaviors that must remain:
 - typed answers
 - deterministic answer checker first; recognition accepts every stored sense and every sense of a synonym-linked entry (loaded with the cards in one parallel query)
 - `My answer was right` flips the verdict and stores the typed meaning as a `source: 'user'` sense (never for sentences, which keep exactly one sense)
-- if deterministic checker rejects a non-empty answer, AI semantic checking can decide whether it is a valid synonym/close meaning
-  - example: Russian `тяжело` should be accepted for Danish `svært` when stored answer is `трудно, сложно`
+- if the deterministic checker rejects a non-empty answer, it is wrong; `My answer was right` is the learner's override (there is no model fallback, §27)
 - user always selects final FSRS rating: Again / Hard / Good / Easy
 
 ### Empty answer
@@ -422,10 +366,7 @@ Principles already used:
 
 - prefetch navigation
 - show route-loading feedback rather than appearing frozen
-- run independent AI/data calls in parallel
-- cache pronunciation results
-- DDO/Wiktionary lookup in parallel
-- avoid Groq unless it adds value
+- run independent data calls in parallel
 - avoid serial server round-trips where possible
 - service worker remains network-first so stale app bundles do not mask fixes
 
@@ -468,15 +409,13 @@ At the start of the next session, do this before assuming anything:
 - Do not ask unnecessary clarifying questions; inspect code and proceed when intent is clear.
 - Do not claim deployment success without evidence.
 - Do not bring back folders/tags or heavy gamification.
-- Do not let AI silently overwrite data where preview/confirmation is expected.
-- Do not let phrase normalization collapse expressions to one word.
+- Do not call a model from the app or its API routes (§27).
 - Do not base-form complete sentences.
 - Do not use spelling-based Danish→Cyrillic transliteration as pronunciation.
 - Do not write or serve a pronunciation that mixes Latin letters into Cyrillic (§22).
-- Do not ask a model for a noun's gender before asking COR (§22).
 - Do not make `Again` require leaving/re-entering Review.
 - Do not make Review and Material use the same nav icon.
-- Do not bring back per-word icons, practice audio (Listen / Slower / Say it aloud), or a timed practice autosave (it disabled the answer field mid-typing).
+- Do not bring back per-word icons or a timed practice autosave (it disabled the answer field mid-typing). Listening practice is allowed again (decided 2026-09-26), but only from prerecorded Azure Speech audio made offline and checked by speech recognition. Never synthesize speech at runtime or use the device voice.
 - Do not re-add a Danish flag to the installed app icon.
 - Do not let Practice write Review cards, logs, status, streaks, coverage or Material, or call a model (§21).
 - Do not expose private keys/secrets.
@@ -491,7 +430,7 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
 - Sense ids are permanent. Regeneration goes through `mergeSenses` (`lib/sense-merge.ts`), and vanished senses are soft-deleted with `removed_at`. Practice objectives are keyed `entry:<id>:sense:<sid>`, so a new id silently strands FSRS state.
 - A sense objective's version (`senseContentVersion`) covers only the Danish, the sense id and that sense's text. `entryContentVersion` ignores `source: 'user'` senses. Do not widen either, or unrelated edits will reset schedules.
 - Coverage (`recognized`, `produced`, `last_seen`) is Review evidence, written only through `record_sense_coverage(review_log_id, …)` right after a Review rating. The routine takes the entry from that log and refuses unless the log is the caller's own, from the last ten minutes, and a success. Practice never creates a Review log, so it cannot reach it (§21). The trigger carries coverage forward monotonically, so a stale editor save cannot roll it back.
-- `entry_links`: symmetric kinds are stored once with `a_id < b_id`. Discovery runs after save, never blocking. Dismissing a suggestion writes a tombstone (`dismissed_at`, `source: 'user'`). Every reader that shows, grades or teaches must filter `dismissed_at is null`. Distractors use confirmed edges only.
+- `entry_links`: symmetric kinds are stored once with `a_id < b_id`. Discovery (a model call) is removed (§27); the rules below describe how the stored edges were made and still bind every reader. Dismissing a suggestion writes a tombstone (`dismissed_at`, `source: 'user'`). Every reader that shows, grades or teaches must filter `dismissed_at is null`. Distractors use confirmed edges only.
 - Discovery answers in the learner's own translation language, read server-side from `profiles.default_translation_language`. This is load-bearing, not cosmetic: left to itself the model glosses into English, and English merges meanings the learner's language keeps apart — `bare` ("только") was linked to `lige` ("только что") under the English concept "just now", because English "just" spans both. `conceptMatchesSenseScript` drops any edge whose concept is written in a different script from the senses.
 - Whether two meanings are the same is decided **deterministically, before any AI call** — the model is the last filter, never the only one. Three rules in `lib/synonyms.ts`, each written from a real bad edge:
   - a sense is split on commas into alternatives first (`трудно, сложно` is two wordings, not a phrase), and wordings are compared one to one;
@@ -499,7 +438,7 @@ The design is `docs/meaning-model-plan.md` (decisions D1–D18). Read it before 
   - an overlap resting only on tokens shorter than `MIN_MEANINGFUL_TOKEN` is noise (`получать в качестве` vs `иметь в виду` share only `в`).
 - The concept the model names must be a meaning **both** entries carry (`conceptSharedBySenses`). Requiring it to come from the pair was not enough: the model picked whichever side read better and answered `только что` for a word that only means `только`.
 - An edge is about **one meaning**, and `entry_links.concept` names it. Discovery ranks sense *pairs* and asks the model to rule on the single pair that matched, not on two entries' full meaning lists; an edge whose concept the model will not name is dropped. Keep both halves — judging entries as bags of meanings made `kun` ("только") a synonym of `lige`, whose third sense is "только что". `STOP_WORDS` in `lib/synonyms.ts` is a search-selectivity tool only: stripping it when *comparing* meanings is what made those two identical, so comparison keeps every word.
-- Phase-1 migrated senses are `source: 'split'` with no part of speech. `SenseRefinementBackfill` refines a few at a time on the home and Words pages via `/api/ai/refine-senses`. It only fills grammar and re-joins adjacent comma fragments, and never changes the `translation` string. The word register answers before the model does, and a sense it classified is `source: 'cor'` (§22).
+- Phase-1 migrated senses are `source: 'split'` with no part of speech. The model refinement that classified them is removed (§27); the learner sets part of speech and gender by hand, and the composer still fills a noun's gender from COR on save (§22).
 
 ## 21. Practice (issue #13)
 
@@ -535,9 +474,8 @@ Issue #5. The research, with every measurement and its source, is `docs/free-dat
 Read it before "optimising" anything here — several obvious-looking ideas were measured and
 rejected, and the reasons are in the doc.
 
-**The point is correctness, not savings.** One or two calls out of three or four per new word go
-away; the big one (`/api/ai/enrich`, which fills meanings and the example) is untouched and must
-stay. What changes is that gender stops being a guess and bad data stops entering the database.
+**The point is correctness.** Gender is a recorded fact, not a guess, and bad data stops entering
+the database. Everything here is deterministic and stays after the runtime AI removal (§27).
 
 ### COR — `public.cor_form`, read only through `lib/cor.ts`
 
@@ -558,10 +496,6 @@ The load-bearing rules:
 
 Where it is used:
 
-- `/api/ai/refine-senses` reads COR first. One unambiguous reading settles the entry and **no
-  model is called** (63% of the real vocabulary). Otherwise the model rules on the part of speech
-  only, and COR still decides the gender of whatever it called a noun. A COR-classified sense is
-  stored with `source: 'cor'`.
 - **Every single word is checked against the register before it can be saved.** A word COR does
   not know, and a word that is not its dictionary form, both stop the save with a proposal in the
   Danish field's correction box and an amber toast saying why (`verifyDanishBeforeSave`). The
@@ -570,7 +504,7 @@ Where it is used:
   told from `dovne` without knowing which one the card is about. Pressing Save
   again keeps the text exactly as typed — the register is missing a few real forms and knows no
   proper nouns, so the check warns and proposes, and never traps. Phrases and sentences are not
-  judged here; `Verify phrase` / `Verify sentence` is what checks those.
+  judged by anything.
 - `corBaseForm` is the rule behind it, and **the part of speech filters before the question is
   asked**. `dovne` is the plural adjective of `doven` *and* a verb in its own right; `alt` is a
   lemma as an adverb but an inflection of `al` as the pronoun. Only the card's own word class
@@ -591,10 +525,6 @@ Where it is used:
   the refinement queue is `'split'`-only, so a noun sense left with a null gender by an earlier
   model pass is filled the next time the entry is saved, not by a page view. Nothing is in that
   state today — all 23 noun senses carry a gender, and all 22 COR can rule on agree with it.
-- `/api/ai/enrich` refuses to enrich a single word COR does not know — that is how `tinker`, which
-  is not Danish, acquired a confident invented Russian translation. Multi-word input is never
-  judged this way (COR holds none), and the learner overrides it by running the action again,
-  because the `N` filter really is missing a few forms (`yndlings` is one).
 
 ### Write-time checks
 
@@ -609,9 +539,8 @@ instance because construction costs ~571 ms and ~126 MB. The dictionary's Hunspe
 fields are stripped first — without that it flags 12.2% of the real vocabulary, `blive` and
 `hvem` included. `dictionary-da` stays in `serverExternalPackages`, or it cannot find its own data
 files. It is a **fast path and never a gate**: it catches orthography, while the wrong form of a
-real word and correct-but-unnatural Danish stay with the model. The composer calls
-`/api/danish/spell` while the learner types; `/api/ai/check-example` passes its findings to the
-model as evidence. `findMisspellings` returns `null`, not `[]`, when the dictionary could not be
+real word and correct-but-unnatural Danish are not caught by it. The composer calls
+`/api/danish/spell` while the learner types. `findMisspellings` returns `null`, not `[]`, when the dictionary could not be
 built — an empty list means "every word is spelled correctly", and no caller may claim that on
 behalf of a check that never ran.
 
@@ -647,8 +576,7 @@ anything here. The shape:
   A missing recording never blocks a row; the button simply does not render.
 - **`word_catalog` / `word_catalog_sense` are reference data**, like `cor_form`: no `user_id`,
   read-only to the app, and **loaded by a script, never by a migration**. An environment with no
-  catalog misses every lookup and falls through to the live AI path, which is the designed
-  behaviour for the 15–25% of words the catalog will never hold.
+  catalog misses every lookup, and every entry is then manual (§27).
 - **Unlocking copies; it never references.** The catalog's `sense_id` is carried into the entry
   verbatim, because practice objectives are keyed `entry:<id>:sense:<sid>` and a fresh id strands
   FSRS state (§20). `vocabulary_entries.catalog_lemma` is provenance only — nothing reads the
@@ -659,17 +587,18 @@ anything here. The shape:
   learner met. `activeSenses` filters locked meanings in TypeScript and
   `private.translation_from_senses` filters them in SQL, so one cannot leak into grading from
   either side. A sense with no `locked` key is not locked, so every pre-catalog row is unaffected.
-- **The live AI path is not removed.** It is the miss path, and the rules in §7, §8 and §22 still
-  bind it. A miss is told to the learner rather than hidden, and a phrase miss says something
-  different from a rare-word miss.
+- **A miss is manual entry** (§27). It is told to the learner rather than hidden, and a phrase
+  miss says something different from a rare-word miss.
 - **The audit samples by stratum, not uniformly** (`scripts/audit-catalog.ts`). It exists for the
   residue the gate cannot see — a translation that is plausible and wrong passes every validator.
   It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
   so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
   model.
-- **The audio button is a narrow reversal of §19.** What stays removed is the three-button
-  Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
-  is not that.
+- **Audio.** Words and phrases carry one play button when a recording exists. Listening practice
+  was removed earlier, when the only voice was the device's. On 2026-09-26 it was allowed again, now
+  that every clip is Azure Speech, made offline and checked by Danish speech recognition. A
+  listening exercise may only use a stored, verified recording; a missing recording means the
+  exercise is not offered, never a runtime voice.
 
 ## 24. Catalog headwords and learner languages (issue #14)
 
@@ -749,6 +678,40 @@ The runbook and progress log are `docs/content-population.md`; the published num
   and no severe finding before loading) → `import-catalog-locale.ts` / `import-catalog-families.ts`.
   Translator pivots through English, so a round trip alone does not catch a mistranslation; the
   reviewer pass exists because of that. Runbook and spend: `docs/content-population.md`.
+
+## 27. No runtime AI; manual entry outside the catalog (issue #25)
+
+- **The running app calls no model.** There is no `app/api/ai/*`, no provider client and no provider
+  key in code or environments. `lib/no-runtime-ai.test.mjs` walks every import reachable from
+  `app/`, `components/`, `proxy.ts` and the service worker and fails if any of it names a provider,
+  its key or an AI route. Deterministic helpers stay: COR (§22), spelling, the answer checker.
+- **Paid services are offline only**: DeepSeek (wording, generation, checks), Azure Translator
+  (translation) and Azure Speech (audio), from `scripts/` and never from the app. Budget: at most
+  $70 per service across all work. Estimate before a large run, record actual spend with the run
+  in `docs/content-population.md`, and stop and ask before a run would exceed what remains. No
+  other paid provider (Groq, OpenRouter, …) is used.
+- **A catalog miss is manual entry.** The learner fills in everything: headword, part of speech and
+  gender (per meaning), every form of the paradigm (a new single word; its forms are saved as
+  `word_forms` rows with `source: 'user'`, and edited later in `WordStructure`), meanings, example
+  and translation, pronunciation hint. When no forms are typed, COR still records the forms it
+  knows.
+- **The warning** ("not checked; not used in Practice exercises; Review only") is shown before
+  saving and on the word's page, in the interface language. `lib/manual-entry.ts` decides when; it
+  mirrors the database rule, and a new entry cannot be saved while the catalog is still being
+  asked (`pending`), so the warning cannot be skipped.
+- **`vocabulary_entries.unverified`** is owned by the trigger `private.mark_unverified_entry`
+  (`20260926090913_unverified_manual_entries.sql`, hardened by
+  `20260926091417_unverified_backed_by_text.sql`), never by the client: a new entry is unverified
+  unless its `catalog_lemma` names a real catalog row **and** its Danish is that word (the
+  headword or one of its catalog forms); an entry whose Danish changes to text no catalog row
+  backs becomes unverified, even if a stale lemma is left behind; nothing clears it. SQL test:
+  `supabase/tests/unverified_entries.sql`. Rows that existed before are
+  `false`, so existing Material — including entries a model filled earlier — keeps its data,
+  Review history and place in Practice.
+- **Practice excludes unverified entries** entirely (`isReviewOnly` in `lib/practice-planner.ts`):
+  never a target, board item or distractor. A shortfall carries `reviewOnly`, and the start screen
+  says those entries are left to Review rather than inventing content for them. Review treats them
+  like any other entry.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

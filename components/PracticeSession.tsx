@@ -12,14 +12,14 @@ import { isFeedbackCode, PRACTICE_COPY, type PracticeCopy } from '@/lib/practice
 import { isPracticeSession, isRecord } from '@/lib/practice-validation'
 import type { TranslationLanguage } from '@/lib/types'
 
-type Shortfall = { requestedMinutes: number; availableMinutes: number }
+type Shortfall = { requestedMinutes: number; availableMinutes: number; reviewOnly: number }
 type PracticeView = { revision: number; session: PracticeSessionState | null; retired: boolean; shortfall: Shortfall | null }
 
 function isView(value: unknown): value is PracticeView {
   if (!isRecord(value) || !Number.isInteger(value.revision) || typeof value.retired !== 'boolean') return false
   if (value.session !== null && !isPracticeSession(value.session)) return false
   const shortfall = value.shortfall
-  return shortfall === null || (isRecord(shortfall) && Number.isInteger(shortfall.requestedMinutes) && Number.isInteger(shortfall.availableMinutes))
+  return shortfall === null || (isRecord(shortfall) && Number.isInteger(shortfall.requestedMinutes) && Number.isInteger(shortfall.availableMinutes) && Number.isInteger(shortfall.reviewOnly))
 }
 
 /** A flash card that has been revealed but not yet rated keeps that state across a pause. */
@@ -382,10 +382,11 @@ function PracticeStart({ t, busy, shortfall, retired, finished, onStart }: { t: 
     {finished ? <SessionSummary t={t} session={finished} /> : <p>{t.intro}</p>}
     {retired && <p className="practice-quiet-note">{t.retired}</p>}
     {empty
-      ? <div className="practice-shortfall" role="status"><p>{t.emptyMaterial}</p><Link className="primary-button practice-start" href="/review">{t.openReview}<ArrowRight size={18} /></Link></div>
+      ? <div className="practice-shortfall" role="status"><p>{t.emptyMaterial}</p>{shortfall && shortfall.reviewOnly > 0 && <p className="practice-quiet-note">{t.reviewOnly(shortfall.reviewOnly)}</p>}<Link className="primary-button practice-start" href="/review">{t.openReview}<ArrowRight size={18} /></Link></div>
       : shortfall
         ? <div className="practice-shortfall" role="status">
             <p>{t.shortfall(shortfall.availableMinutes, shortfall.requestedMinutes)}</p>
+            {shortfall.reviewOnly > 0 && <p className="practice-quiet-note">{t.reviewOnly(shortfall.reviewOnly)}</p>}
             <button className="primary-button practice-start" disabled={busy} onClick={() => onStart(shortfall.requestedMinutes, true)}>{t.startShorter(shortfall.availableMinutes)}<ArrowRight size={18} /></button>
           </div>
         : <>

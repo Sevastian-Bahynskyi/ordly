@@ -1,6 +1,6 @@
 'use client'
 
-import { DEFAULT_LEARNER_LANGUAGE, LEARNER_LANGUAGE_NAMES } from '@/lib/learner-language'
+import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import type { Messages } from '@/lib/i18n'
 import { useI18n } from '@/components/I18nProvider'
 import { useState } from 'react'
@@ -53,7 +53,7 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
   autoplayAudio?: boolean
 }): React.JSX.Element {
   const { t } = useI18n()
-  // The interface names the language in its own words; the AI checker is told it in English.
+  // The interface names the language in its own words.
   const languageLabel = t.languageNames[translationLanguage]
   const reviewItems = initialItems.filter((item) => item.vocabulary_entries.entry_kind !== 'sentence')
   const [items, setItems] = useState(reviewItems)
@@ -64,7 +64,6 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
   const [revealedWithoutAnswer, setRevealedWithoutAnswer] = useState(false)
   const [completed, setCompleted] = useState(0)
   const [ratingLoading, setRatingLoading] = useState(false)
-  const [checkingMeaning, setCheckingMeaning] = useState(false)
   const [acceptingAnswer, setAcceptingAnswer] = useState(false)
   const [history, setHistory] = useState<ReviewedItem[]>([])
   const [historyIndex, setHistoryIndex] = useState<number | null>(null)
@@ -101,45 +100,17 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
       return
     }
 
-    setCheckingMeaning(true)
-    let finalResult: AnswerResult = quickResult
-    try {
-      const res = await fetch('/api/ai/check-answer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          danish: entry?.danish,
-          expected,
-          answer: typedAnswer,
-          mode: 'recognition',
-          language: LEARNER_LANGUAGE_NAMES[translationLanguage],
-        }),
-      })
-      if (res.ok) {
-        const body = await res.json()
-        if (body.result === 'correct' || body.result === 'mostly' || body.result === 'incorrect') {
-          finalResult = body.result
-          if (['valid_alternative', 'near', 'incorrect'].includes(body.relation) && typeof body.note === 'string') {
-            setFeedback({ relation: body.relation, note: body.note })
-          }
-        }
-      }
-    } catch {
-      // Keep the deterministic result if AI semantic checking is unavailable.
-    }
-    setCheckingMeaning(false)
-    setResult(finalResult)
-    if (finalResult === 'incorrect') setFeedback((value) => value || { relation: 'incorrect', note: t.review.notSaved })
+    setResult('incorrect')
+    setFeedback({ relation: 'incorrect', note: t.review.notSaved })
     setRevealedWithoutAnswer(false)
     setRevealed(true)
   }
 
   /**
-   * `My answer was right` (D5). Neither grader knows every way a meaning can be phrased, so the
+   * `My answer was right` (D5). The checker does not know every way a meaning can be phrased, so the
    * learner gets the last word: the verdict flips to correct — which is what the rating call
    * records and what the suggested FSRS rating is derived from — and the typed answer is stored
-   * as a `source: 'user'` sense, so the deterministic checker accepts it from now on instead of
-   * asking the AI again.
+   * as a `source: 'user'` sense, so the deterministic checker accepts it from now on.
    *
    * The learner still picks the FSRS rating themselves (AGENTS.md §11); this never rates for them.
    */
@@ -293,14 +264,14 @@ export function ReviewSession({ initialItems, formsByEntry = {}, translationLang
         <div className={`answer-input-wrap ${revealed ? result || '' : ''}`}>
           <input
             autoFocus
-            disabled={revealed || checkingMeaning}
+            disabled={revealed}
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder={t.review.typeMeaning(languageLabel)}
           />
           {revealed && (result === 'incorrect' ? <X size={20}/> : <Check size={20}/>)}
         </div>
-        {!revealed && <button disabled={checkingMeaning} className="primary-button answer-submit">{checkingMeaning ? t.review.checkingMeaning : answer.trim() ? t.review.checkAnswer : t.review.showAnswer} {!checkingMeaning && <ArrowRight size={17}/>}</button>}
+        {!revealed && <button className="primary-button answer-submit">{answer.trim() ? t.review.checkAnswer : t.review.showAnswer} <ArrowRight size={17}/></button>}
       </form>
 
       {revealed && <div className="answer-reveal">

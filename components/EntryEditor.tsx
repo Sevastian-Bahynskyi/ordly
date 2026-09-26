@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Check, CircleAlert, Loader2, Plus, RotateCcw, Sparkles, Undo2, WandSparkles, X } from 'lucide-react'
+import { Check, CircleAlert, Loader2, Plus, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { CatalogMatch } from '@/components/CatalogMatch'
@@ -11,28 +11,30 @@ import { catalogMerge, findSavedCatalogWord, type CatalogPick, type SavedCatalog
 import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import { SenseRow } from '@/components/SenseRow'
 import { Toast, type ToastTone } from '@/components/Toast'
-import { errorMessage, readJsonRecord, readMisspellings, requestEnrichment, stringField, UnknownDanishError } from '@/lib/ai-responses'
+import { readJsonRecord, readMisspellings } from '@/lib/api-responses'
 import { diffAnswer } from '@/lib/answer-diff'
 import { corBaseForm, corLookupForm, fetchCorForms, fillCorGender, isKnownDanishForm, syncCorParadigm, type CorForm } from '@/lib/cor'
 import { replaceWordInText, type Misspelling } from '@/lib/danish-text'
 import { inferDanishInputKind, inferEntryKind, type DanishInputKind } from '@/lib/entry-kind'
-import { mergeSenses } from '@/lib/sense-merge'
-import { parseRefinedMeanings } from '@/lib/sense-refinement'
+import { manualEntryVerdict, type CatalogStatus, type ManualEntryInput } from '@/lib/manual-entry'
 import {
   activeSenses,
   createSense,
   entrySenses,
   lockedSenses,
   parseSenses,
-  splitTranslationIntoSenses,
   translationFromSenses,
 } from '@/lib/senses'
 import type { EntryKind, EntrySense, NounGender, PartOfSpeech, TranslationLanguage, VocabularyEntry } from '@/lib/types'
+import { FORM_SECTIONS, type FormPartOfSpeech, type WordFormKey } from '@/lib/word-forms'
 
 /**
  * The one editor behind both `Add Danish` and `/words/[id]` (D7). Add-new and edit-existing are
- * the same component with the same AI actions; only the persistence ends differ, which is the
- * whole point — an action added here can never again exist on one surface and not the other.
+ * the same component; only the persistence ends differ.
+ *
+ * No model is called from here (issue #25). A catalog word is filled from the catalog; anything
+ * else is entered entirely by hand — headword, grammar, forms, meanings, example, pronunciation —
+ * and the learner is told before saving that it is checked by nothing and studied in Review only.
  */
 export type EntryEditorMode = 'create' | 'edit'
 
@@ -41,11 +43,7 @@ interface Draft {
   pronunciation: string
   /** Recording copied from a catalog unlock. Manual entries receive it from the audio backfill. */
   audio_path: string | null
-  /**
-   * Derived from `senses` and never edited directly. It stays on the draft so the enrich field
-   * plumbing (`EnrichableField`, per-field mini buttons, fill-missing) is unchanged, and so the
-   * write keeps setting the denormalized column the DB expects.
-   */
+  /** Derived from `senses` and never edited directly; the write keeps the denormalized column set. */
   translation: string
   /** Live senses only. Soft-deleted ones live in `archived` so their ids survive (D15). */
   senses: EntrySense[]
@@ -54,33 +52,24 @@ interface Draft {
   example_translation: string
   /** The catalog row this draft was unlocked from, if any. Provenance only (issue #6 §5). */
   catalog_lemma: string | null
+  /**
+   * The paradigm a learner types for a word the catalog does not hold, keyed by form. Only a new
+   * manual word carries these; a saved word's forms are edited on its page (`WordStructure`).
+   */
+  forms: Partial<Record<WordFormKey, string>>
 }
 
-type EnrichableField = Exclude<keyof Draft, 'danish' | 'senses' | 'catalog_lemma' | 'audio_path'>
+type TextField = 'pronunciation' | 'example_sentence' | 'example_translation'
 type DuplicateEntry = { id: string; danish: string; translation: string | null }
-type ExampleCheckStatus = 'idle' | 'correct' | 'suggestion'
 
-/** Everything a regenerate overwrites, kept so a single Undo can put it back. */
-interface DraftSnapshot {
-  draft: Draft
-  archived: EntrySense[]
-  exampleSuggestion: string | null
-  exampleCheckStatus: ExampleCheckStatus
-  usedAI: boolean
+function hasParadigm(pos: PartOfSpeech | null | undefined): pos is FormPartOfSpeech {
+  return Boolean(pos && pos in FORM_SECTIONS)
 }
 
-const allEnrichableFields: EnrichableField[] = [
-  'pronunciation',
-  'translation',
-  'example_sentence',
-  'example_translation',
-]
-
-/** Fields the AI may fill for this entry kind. Sentences never gain example fields. */
-function enrichableFieldsFor(entryKind: EntryKind, includeExample: boolean): EnrichableField[] {
-  if (entryKind === 'sentence') return ['pronunciation', 'translation']
-  if (!includeExample) return allEnrichableFields.filter((key) => key !== 'example_sentence' && key !== 'example_translation')
-  return allEnrichableFields
+/** The first meaning's part of speech, when it is one with a paradigm to type in. */
+function formPartOf(senses: readonly EntrySense[]): FormPartOfSpeech | null {
+  const pos = activeSenses(senses).find((sense) => sense.pos)?.pos
+  return hasParadigm(pos) ? pos : null
 }
 
 type CatalogDuplicate = SavedCatalogWord & { pick: CatalogPick; status: 'added' | 'already-saved' }
@@ -95,6 +84,7 @@ function blankDraft(): Draft {
     example_sentence: '',
     example_translation: '',
     catalog_lemma: null,
+    forms: {},
   }
 }
 
@@ -110,6 +100,7 @@ function draftFromEntry(entry: VocabularyEntry): Draft {
     example_sentence: entry.example_sentence || '',
     example_translation: entry.example_translation || '',
     catalog_lemma: entry.catalog_lemma || null,
+    forms: {},
   }
 }
 
@@ -150,8 +141,6 @@ export function EntryEditor({
   const [examplePreferenceTouched, setExamplePreferenceTouched] = useState(editing)
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [aiLoading, setAiLoading] = useState<string | null>(null)
-  const [undoSnapshot, setUndoSnapshot] = useState<DraftSnapshot | null>(null)
   const [duplicate, setDuplicate] = useState<DuplicateEntry[] | null>(null)
   const [liveDuplicate, setLiveDuplicate] = useState<DuplicateEntry[]>([])
   const [allowDuplicate, setAllowDuplicate] = useState(false)
@@ -166,30 +155,19 @@ export function EntryEditor({
    */
   const [catalogDuplicate, setCatalogDuplicate] = useState<CatalogDuplicate | null>(null)
   const [notice, setNotice] = useState<{ text: string; tone: ToastTone } | null>(null)
-  /** The undo toast is transient; `undoSnapshot` outlives it and keeps Undo in the AI sheet. */
-  const [undoToastOpen, setUndoToastOpen] = useState(false)
-  const [usedAI, setUsedAI] = useState(false)
-  const [exampleSuggestion, setExampleSuggestion] = useState<string | null>(null)
   /** Words the Danish dictionary does not know, shown while the learner is still typing (§3). */
   const [exampleSpelling, setExampleSpelling] = useState<Misspelling[]>([])
   /**
-   * The last AI verdict on the Danish text itself. It only applies while the text is unchanged,
-   * which is also what stops Fill missing / Regenerate all from checking the same text twice.
+   * The word register's proposal for the Danish text, made when a save was stopped. It only
+   * applies while the text is unchanged.
    */
   const [danishCheck, setDanishCheck] = useState<DanishCheck | null>(null)
-  const [aiMenuOpen, setAiMenuOpen] = useState(false)
   const danishCheckRef = useRef<DanishCheck | null>(null)
-  const [exampleCheckStatus, setExampleCheckStatus] = useState<ExampleCheckStatus>('idle')
+  /** Whether the catalog holds what is typed. A miss is what makes this a manual entry. */
+  const [catalogStatus, setCatalogStatus] = useState<CatalogStatus>('idle')
   const firstInput = useRef<HTMLTextAreaElement>(null)
-  const exampleSentenceDirty = useRef(false)
-  const latestExampleSentence = useRef(entry?.example_sentence || '')
 
-  /**
-   * Every draft write goes through `commitDraft`, so the async AI flows can read the current
-   * draft synchronously. Per-sense example generation runs after a regenerate has already
-   * rewritten `senses`, and a stale closure there would write examples onto senses that no
-   * longer exist.
-   */
+  /** Every draft write goes through `commitDraft`, so async save paths read the current draft. */
   const draftRef = useRef(draft)
   const archivedRef = useRef(archived)
   /**
@@ -198,12 +176,6 @@ export function EntryEditor({
    * would just be noise. Refreshed on every successful save.
    */
   const savedSenseIds = useRef<Set<string>>(new Set(parseSenses(entry?.senses).map((sense) => sense.id)))
-  /**
-   * The Danish text the word register refused to enrich (issue #5 §2). Holding it here is what
-   * turns the refusal into a warning: the second press on the same text enriches anyway, and
-   * typing something else arms the check again.
-   */
-  const enrichAnyway = useRef('')
   /**
    * The Danish text the register refused, held so the learner's second press saves it anyway.
    * Every word is checked against COR before it can be saved, but the register is missing a few
@@ -249,22 +221,12 @@ export function EntryEditor({
     resetDraft(draftFromEntry(entry), archivedFromEntry(entry))
     setEntryKind(entry.entry_kind || 'word')
     setIncludeExample(entry.entry_kind !== 'sentence' && Boolean(entry.example_sentence || entry.example_translation))
-    latestExampleSentence.current = entry.example_sentence || ''
-    setUndoSnapshot(null)
     setNotice(null)
-    setUsedAI(false)
-    resetExampleCheck()
   }, [entryId, mode])
 
   useEffect(() => {
     if (open) setTimeout(() => firstInput.current?.focus(), 50)
   }, [open])
-
-  // Every path that offers an undo goes through `undoSnapshot`, so opening the toast here covers
-  // all of them, and re-opens it when a second regenerate replaces the first snapshot.
-  useEffect(() => {
-    if (undoSnapshot) setUndoToastOpen(true)
-  }, [undoSnapshot])
 
   useEffect(() => {
     if (!compact) return
@@ -307,8 +269,7 @@ export function EntryEditor({
    * Instant typo feedback on the example sentence (issue #5 §3).
    *
    * A local dictionary lookup, so it answers while the learner is still typing — no model, no key,
-   * no cost. It is never a verdict: `Checking…` on blur is what judges whether the sentence is
-   * natural Danish, and a word the dictionary does not know may still be right.
+   * no cost. It is never a verdict: a word the dictionary does not know may still be right.
    */
   useEffect(() => {
     const sentence = draft.example_sentence.trim()
@@ -336,15 +297,9 @@ export function EntryEditor({
     }
   }, [draft.example_sentence, entryKind, includeExample])
 
-  function resetExampleCheck() {
-    setExampleSuggestion(null)
-    setExampleCheckStatus('idle')
-  }
-
   /** Apply one dictionary suggestion to the example sentence, and drop it from the hint. */
   function applySpellingFix(word: string, replacement: string): void {
     commitDraft((current) => ({ ...current, example_sentence: replaceWordInText(current.example_sentence, word, replacement) }))
-    exampleSentenceDirty.current = true
     setExampleSpelling((current) => current.filter((item) => item.word !== word))
   }
 
@@ -364,7 +319,7 @@ export function EntryEditor({
     return withSenses(current, [{ ...first, text: translationFromSenses(active) }])
   }
 
-  function patch(key: 'danish' | EnrichableField, value: string) {
+  function patch(key: 'danish' | TextField, value: string) {
     if (key === 'danish') {
       const nextKind = inferEntryKind(value)
       const becameSentence = nextKind === 'sentence' && entryKind !== 'sentence'
@@ -382,28 +337,12 @@ export function EntryEditor({
       })
       setEntryKind(nextKind)
 
-      if (nextKind === 'sentence') {
-        if (becameSentence) {
-          exampleSentenceDirty.current = false
-          latestExampleSentence.current = ''
-          resetExampleCheck()
-        }
-        setIncludeExample(false)
-      } else if (!examplePreferenceTouched) {
-        setIncludeExample(false)
-      }
+      if (nextKind === 'sentence' || !examplePreferenceTouched) setIncludeExample(false)
 
-      // The snapshot belongs to the previous Danish text; restoring it here would
-      // silently revert what the user just typed.
-      setUndoSnapshot(null)
       setDuplicate(null)
       setAllowDuplicate(false)
       setCatalogDuplicate(null)
     } else {
-      if (key === 'example_sentence') {
-        latestExampleSentence.current = value
-        resetExampleCheck()
-      }
       commitDraft((current) => ({ ...current, [key]: value }))
     }
 
@@ -426,6 +365,10 @@ export function EntryEditor({
 
   function setSenseGender(id: string, gender: NounGender | null) {
     updateSense(id, { gender })
+  }
+
+  function setForm(key: WordFormKey, value: string): void {
+    commitDraft((current) => ({ ...current, forms: { ...current.forms, [key]: value } }))
   }
 
   function addSense() {
@@ -464,17 +407,11 @@ export function EntryEditor({
     setExamplePreferenceTouched(true)
 
     if (!enabled) {
-      exampleSentenceDirty.current = false
-      latestExampleSentence.current = ''
-      resetExampleCheck()
       commitDraft((current) => ({ ...current, example_sentence: '', example_translation: '' }))
     }
   }
 
   function clearDraft() {
-    exampleSentenceDirty.current = false
-    resetExampleCheck()
-    setUndoSnapshot(null)
     setDuplicate(null)
     setLiveDuplicate([])
     setAllowDuplicate(false)
@@ -487,18 +424,14 @@ export function EntryEditor({
       resetDraft(draftFromEntry(entry), archivedFromEntry(entry))
       setEntryKind(entry.entry_kind || 'word')
       setIncludeExample(entry.entry_kind !== 'sentence' && Boolean(entry.example_sentence || entry.example_translation))
-      latestExampleSentence.current = entry.example_sentence || ''
-      setUsedAI(false)
       notify(t.editor.reverted, 'success')
       return
     }
 
-    latestExampleSentence.current = ''
     resetDraft(blankDraft(), [])
     setEntryKind('word')
     setIncludeExample(false)
     setExamplePreferenceTouched(false)
-    setUsedAI(false)
     window.setTimeout(() => firstInput.current?.focus(), 0)
   }
 
@@ -507,296 +440,17 @@ export function EntryEditor({
     setDanishCheck(next)
   }
 
-  /**
-   * Check the Danish text by what it is. A word is brought to its base form in place: the base
-   * form is what gets saved, translated and reviewed. A phrase or sentence is verified: a needed
-   * correction is proposed for the learner to accept, never applied silently, and a correct one is
-   * confirmed. Returns the text the rest of an AI action should work from.
-   */
-  async function checkDanishForm(options: { quiet?: boolean } = {}): Promise<string | null> {
-    const original = draftRef.current.danish.trim()
-    if (!original) {
-      if (!options.quiet) notify(t.editor.typeDanishFirst)
-      return null
-    }
-    const previous = danishCheckRef.current
-    // An automatic check never repeats itself for the same text; an explicit tap always runs.
-    if (options.quiet && previous && (previous.text === original || previous.checked === original)) return original
-
-    const kind = inferDanishInputKind(original)
-    if (!options.quiet) setAiLoading('danish-check')
-    try {
-      const res = await fetch('/api/ai/base-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ danish: original, mode: kind }),
-      })
-      const body = await readJsonRecord(res)
-      if (!res.ok) throw new Error(errorMessage(body, t.editor.couldNotCheckDanish))
-
-      const result = (stringField(body, 'result') || '').trim()
-      if (!result) throw new Error(t.editor.emptyDanish)
-      // The learner kept typing while the check ran; its verdict is about text that is gone.
-      if (draftRef.current.danish.trim() !== original) return draftRef.current.danish.trim()
-
-      const correct = body.is_correct === true || result === original
-      if (kind === 'word') {
-        if (!correct) {
-          patch('danish', result)
-          setUsedAI(true)
-        }
-        recordDanishCheck({ text: result, checked: original, kind, status: correct ? 'correct' : 'changed', suggestion: correct ? null : original })
-        return result
-      }
-      recordDanishCheck({ text: original, checked: original, kind, status: correct ? 'correct' : 'suggestion', suggestion: correct ? null : result })
-      setUsedAI(true)
-      return original
-    } catch (error) {
-      if (!options.quiet) notifyError(error, t.editor.couldNotCheckDanish)
-      return original
-    } finally {
-      if (!options.quiet) setAiLoading((current) => current === 'danish-check' ? null : current)
-    }
-  }
-
   function applyDanishSuggestion() {
     const check = danishCheckRef.current
     if (!check?.suggestion || check.status !== 'suggestion') return
     patch('danish', check.suggestion)
     recordDanishCheck({ ...check, text: check.suggestion, status: 'applied' })
-    setUsedAI(true)
-  }
-
-  async function checkExampleSentence() {
-    const sourceSentence = draftRef.current.example_sentence.trim()
-    if (!sourceSentence) return
-
-    setAiLoading('example-check')
-    try {
-      const res = await fetch('/api/ai/check-example', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sentence: sourceSentence }),
-      })
-      const body = await readJsonRecord(res)
-      if (!res.ok) throw new Error(errorMessage(body, t.editor.couldNotCheckExample))
-
-      if (latestExampleSentence.current.trim() !== sourceSentence) return
-
-      const corrected = (stringField(body, 'corrected_sentence') || '').trim()
-      const translation = (stringField(body, 'translation') || '').trim()
-
-      if (translation) {
-        commitDraft((current) => current.example_sentence.trim() === sourceSentence
-          ? { ...current, example_translation: translation }
-          : current)
-      }
-
-      if (body.is_correct !== true && corrected && corrected !== sourceSentence) {
-        setExampleSuggestion(corrected)
-        setExampleCheckStatus('suggestion')
-      } else {
-        setExampleSuggestion(null)
-        setExampleCheckStatus('correct')
-      }
-
-      setUsedAI(true)
-      setNotice(null)
-    } catch (error) {
-      if (latestExampleSentence.current.trim() === sourceSentence) {
-        notifyError(error, t.editor.couldNotCheckExample)
-      }
-    } finally {
-      setAiLoading((current) => current === 'example-check' ? null : current)
-    }
-  }
-
-  function applyExampleSuggestion() {
-    if (!exampleSuggestion) return
-    const corrected = exampleSuggestion
-    latestExampleSentence.current = corrected
-    exampleSentenceDirty.current = false
-    commitDraft((current) => ({ ...current, example_sentence: corrected }))
-    setExampleSuggestion(null)
-    setExampleCheckStatus('correct')
-    setUsedAI(true)
-  }
-
-  function activeEnrichableFields(): EnrichableField[] {
-    return enrichableFieldsFor(entryKind, entryKind !== 'sentence' && includeExample)
-  }
-
-  /** Per-field mini AI buttons. */
-  async function enrich(fields: EnrichableField[]) {
-    await runEnrich(fields, fields.join(','), false, false)
-  }
-
-  /** Only the fields that are still empty right now. */
-  async function fillMissingWithAI() {
-    const snapshot = await verifyBeforeEnrich('fill-missing')
-    if (!snapshot) return
-    const current = draftRef.current
-    const missing = activeEnrichableFields().filter((key) => key === 'translation'
-      ? !translationFromSenses(current.senses).trim()
-      : !current[key].trim())
-    if (!missing.length) {
-      await snapshot.pending
-      setAiLoading(null)
-      notify(t.editor.nothingEmpty)
-      return
-    }
-    await Promise.all([runEnrich(missing, 'fill-missing', false, false), snapshot.pending])
-  }
-
-  /**
-   * Both whole-entry AI actions check the Danish first (item: base form / verify). A word's base
-   * form has to be settled before translating, so that check is awaited; a phrase or sentence
-   * check only proposes a correction, so it runs alongside enrichment instead of delaying it.
-   */
-  async function verifyBeforeEnrich(loadingKey: string): Promise<{ pending: Promise<unknown>; snapshot: DraftSnapshot } | null> {
-    const current = draftRef.current
-    if (!current.danish.trim()) {
-      notify(t.editor.typeDanishFirst)
-      return null
-    }
-    const snapshot: DraftSnapshot = { draft: current, archived: archivedRef.current, exampleSuggestion, exampleCheckStatus, usedAI }
-    if (inferDanishInputKind(current.danish) === 'word') {
-      setAiLoading(loadingKey)
-      await checkDanishForm({ quiet: true })
-      return { pending: Promise.resolve(), snapshot }
-    }
-    return { pending: checkDanishForm({ quiet: true }), snapshot }
-  }
-
-  /**
-   * Every active field, unconditionally — including a hand-typed example sentence.
-   * Origin is deliberately not consulted: a manually typed field has no AI origin,
-   * so any origin check would silently skip exactly the field the user wants redone.
-   *
-   * Sense examples follow the same rule with one limit from D10: an example that already
-   * exists is regenerated, an absent one is never eagerly created. Generating an example for
-   * every meaning of every word is exactly the cost the lazy model exists to avoid.
-   */
-  async function regenerateAll() {
-    const verified = await verifyBeforeEnrich('regenerate-all')
-    if (!verified) return
-    const [succeeded] = await Promise.all([runEnrich(activeEnrichableFields(), 'regenerate-all', true, true, verified.snapshot), verified.pending])
-    if (!succeeded || !editing) return
-
-    const targets = activeSenses(draftRef.current.senses)
-      .slice(1)
-      .filter((sense) => sense.example?.trim())
-      .map((sense) => sense.id)
-
-    for (const senseId of targets) {
-      await generateSenseExample(senseId, true, false)
-    }
-  }
-
-  async function runEnrich(
-    requestedFields: EnrichableField[],
-    loadingKey: string,
-    offerUndo: boolean,
-    regenerate: boolean,
-    /** What Undo restores, when an earlier step of the same action already changed the draft. */
-    undoTo?: DraftSnapshot,
-  ): Promise<boolean> {
-    const current = draftRef.current
-    const sourceDanish = current.danish.trim()
-    if (!sourceDanish) {
-      notify(t.editor.typeDanishFirst)
-      return false
-    }
-    if (!requestedFields.length) return false
-
-    const effectiveIncludeExample = entryKind !== 'sentence' && includeExample
-    const snapshot: DraftSnapshot = undoTo || {
-      draft: current,
-      archived: archivedRef.current,
-      exampleSuggestion,
-      exampleCheckStatus,
-      usedAI,
-    }
-
-    setUndoSnapshot(null)
-    setAiLoading(loadingKey)
-
-    try {
-      const body = await requestEnrichment({
-        draft: {
-          danish: sourceDanish,
-          pronunciation: current.pronunciation,
-          translation: current.translation,
-          example_sentence: current.example_sentence,
-          example_translation: current.example_translation,
-        },
-        fields: requestedFields,
-        entryKind,
-        includeExample: effectiveIncludeExample,
-        regenerate,
-        allowUnknownDanish: enrichAnyway.current === sourceDanish,
-      })
-
-      commitDraft((latest) => {
-        let next = { ...latest }
-        for (const key of requestedFields) {
-          const value = body[key]
-          if (typeof value === 'string') next[key] = value
-        }
-        if (requestedFields.includes('translation')) {
-          // `senses` is the real payload (D16 puts pos and gender in this same response);
-          // the flat `translation` string is the fallback for an older/partial response.
-          const returned = body.senses || []
-          const generated = returned.length ? returned : splitTranslationIntoSenses(next.translation, entryKind)
-          if (generated.length) next = applyGeneratedSenses(next, generated)
-        }
-        if (!effectiveIncludeExample) {
-          next.example_sentence = ''
-          next.example_translation = ''
-        }
-        return next
-      })
-
-      if (requestedFields.includes('example_sentence') && typeof body.example_sentence === 'string') {
-        latestExampleSentence.current = body.example_sentence
-        resetExampleCheck()
-      }
-
-      if (requestedFields.includes('example_sentence') || requestedFields.includes('example_translation')) {
-        exampleSentenceDirty.current = false
-      }
-      setUsedAI(true)
-      setNotice(null)
-      if (offerUndo) setUndoSnapshot(snapshot)
-      return true
-    } catch (error) {
-      if (error instanceof UnknownDanishError) enrichAnyway.current = sourceDanish
-      notifyError(error, t.editor.enrichFailed)
-      return false
-    } finally {
-      setAiLoading(null)
-    }
-  }
-
-  /**
-   * Fold regenerated senses into the ones already on the draft (D15). Matching is by normalized
-   * text; a match keeps its id, coverage and created_at, and a meaning that vanished is
-   * soft-deleted rather than dropped, because an id that disappears strands the FSRS objective
-   * keyed to it. A draft that was never saved has no such state, so its tombstones are dropped.
-   */
-  function applyGeneratedSenses(current: Draft, generated: EntrySense[]): Draft {
-    const previousPrimaryId = activeSenses(current.senses)[0]?.id
-    const merged = mergeSenses([...current.senses, ...archivedRef.current], generated)
-    const live = merged.filter((sense) => !sense.removed_at)
-    const removed = merged.filter((sense) => sense.removed_at)
-    commitArchived(editing ? removed : [])
-    return rebalanceExamples(withSenses(current, live), previousPrimaryId)
   }
 
   /**
    * The primary sense reads the entry's example columns; every other sense carries its own
-   * example (D10). When the primary sense changes, the two swap, or a regenerate would leave the
-   * old primary's example attached to a meaning that no longer owns those columns.
+   * example (D10). When the primary sense changes, the two swap, or a reorder would leave the old
+   * primary's example attached to a meaning that no longer owns those columns.
    */
   function rebalanceExamples(next: Draft, previousPrimaryId: string | undefined): Draft {
     const live = activeSenses(next.senses)
@@ -823,111 +477,6 @@ export function EntryEditor({
   }
 
   /**
-   * Per-sense AI action (D10). The request carries the meaning so the sentence demonstrates
-   * that sense and not another meaning of the same Danish word.
-   */
-  async function generateSenseExample(senseId: string, regenerate: boolean, clearUndo = true) {
-    const current = draftRef.current
-    const sense = current.senses.find((item) => item.id === senseId)
-    const sourceDanish = current.danish.trim()
-    if (!sense || !sense.text.trim()) {
-      notify(t.editor.writeMeaningFirst)
-      return
-    }
-    if (!sourceDanish) {
-      notify(t.editor.typeDanishFirst)
-      return
-    }
-
-    if (clearUndo) setUndoSnapshot(null)
-    setAiLoading(`sense-example:${senseId}`)
-    try {
-      const body = await requestEnrichment({
-        draft: {
-          danish: sourceDanish,
-          example_sentence: regenerate ? '' : sense.example || '',
-          example_translation: '',
-        },
-        fields: ['example_sentence', 'example_translation'],
-        entryKind: 'word',
-        includeExample: true,
-        regenerate,
-        sense: { text: sense.text.trim(), pos: sense.pos },
-        allowUnknownDanish: enrichAnyway.current === sourceDanish,
-      })
-
-      const example = (body.example_sentence || '').trim()
-      const exampleTranslation = (body.example_translation || '').trim()
-      if (!example) throw new Error(t.editor.noExample)
-
-      commitDraft((latest) => withSenses(latest, latest.senses.map((item) => item.id === senseId
-        ? { ...item, example, example_translation: exampleTranslation || null }
-        : item)))
-      setUsedAI(true)
-      setNotice(null)
-    } catch (error) {
-      notifyError(error, t.editor.enrichFailed)
-    } finally {
-      setAiLoading(null)
-    }
-  }
-
-  /**
-   * Per-sense grammar action: part of speech and gender for one meaning (D11's refinement, on
-   * demand). The other meanings ride along as context so a model can tell which sense this one
-   * is, but only this row is changed, and its text never is.
-   *
-   * The route answers from the word register whenever COR's candidates agree, in which case no
-   * model was called and the entry is not marked AI-enriched (issue #5 §1).
-   */
-  async function classifySenseGrammar(senseId: string) {
-    const current = draftRef.current
-    const live = activeSenses(current.senses)
-    const index = live.findIndex((sense) => sense.id === senseId)
-    const sourceDanish = current.danish.trim()
-    if (index < 0 || !live[index].text.trim()) return notify(t.editor.writeMeaningFirst)
-    if (!sourceDanish) return notify(t.editor.typeDanishFirst)
-
-    setUndoSnapshot(null)
-    setAiLoading(`sense-grammar:${senseId}`)
-    try {
-      const res = await fetch('/api/ai/refine-senses', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ draft: { danish: sourceDanish, senses: live.map((sense) => sense.text.trim()) } }),
-      })
-      const body = await readJsonRecord(res)
-      if (!res.ok) throw new Error(errorMessage(body, t.editor.couldNotClassify))
-      const meaning = parseRefinedMeanings(body, live.length).find((item) => item.indices.includes(index + 1))
-      if (!meaning?.pos) throw new Error(t.editor.noPos)
-      updateSense(senseId, { pos: meaning.pos, gender: meaning.pos === 'noun' ? meaning.gender : null })
-      if (stringField(body, 'source') !== 'cor') setUsedAI(true)
-      setNotice(null)
-    } catch (error) {
-      notifyError(error, t.editor.couldNotClassify)
-    } finally {
-      setAiLoading(null)
-    }
-  }
-
-  function setSenseExample(senseId: string, patchSense: Pick<Partial<EntrySense>, 'example' | 'example_translation'>) {
-    updateSense(senseId, patchSense)
-  }
-
-  function undoRegenerate() {
-    if (!undoSnapshot) return
-
-    exampleSentenceDirty.current = false
-    latestExampleSentence.current = undoSnapshot.draft.example_sentence
-    resetDraft(undoSnapshot.draft, undoSnapshot.archived)
-    setExampleSuggestion(undoSnapshot.exampleSuggestion)
-    setExampleCheckStatus(undoSnapshot.exampleCheckStatus)
-    setUsedAI(undoSnapshot.usedAI)
-    setUndoSnapshot(null)
-    notify(t.editor.restored, 'success')
-  }
-
-  /**
    * Check a single word against the word register before it is allowed to be saved.
    *
    * Two things are refused, both with a proposal the learner can take or leave: a word COR does
@@ -936,8 +485,7 @@ export function EntryEditor({
    * correction box, where it stays until it is acted on; the toast only says why the save
    * stopped. Pressing Save again keeps the text exactly as typed.
    *
-   * Phrases and sentences are not judged here — COR holds no multi-word expressions, and
-   * `Verify phrase` / `Verify sentence` is what checks those.
+   * Phrases and sentences are not judged here: COR holds no multi-word expressions.
    */
   async function verifyDanishBeforeSave(rows: CorForm[], danish: string, senses: EntrySense[]): Promise<boolean> {
     if (inferDanishInputKind(danish) !== 'word' || saveAnyway.current === danish) return true
@@ -948,7 +496,7 @@ export function EntryEditor({
     if (!isKnownDanishForm(rows)) {
       const suggestion = await firstSpellingSuggestion(danish)
       if (suggestion) {
-        recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion })
+        recordDanishCheck({ text: danish, kind: 'word', status: 'suggestion', suggestion })
         notify(t.editor.notDanishDidYouMean(danish, suggestion), 'warning')
       } else {
         notify(t.editor.notInRegister(danish), 'warning')
@@ -960,7 +508,7 @@ export function EntryEditor({
     const base = corBaseForm(rows, corLookupForm(danish), [...new Set(senses.map((sense) => sense.pos).filter((pos) => pos !== null))])
     if (!base) return true
 
-    recordDanishCheck({ text: danish, checked: danish, kind: 'word', status: 'suggestion', suggestion: base })
+    recordDanishCheck({ text: danish, kind: 'word', status: 'suggestion', suggestion: base })
     notify(t.editor.notBaseForm(danish), 'warning')
     saveAnyway.current = danish
     return false
@@ -984,11 +532,30 @@ export function EntryEditor({
     }
   }
 
+  /** What decides whether this is a manual entry (issue #25), read from the draft as it is now. */
+  function manualInput(current: Draft): ManualEntryInput {
+    return {
+      editing,
+      storedUnverified: entry?.unverified === true,
+      danishChanged: current.danish.trim() !== (entry?.danish.trim() ?? ''),
+      hasDanish: Boolean(current.danish.trim()),
+      catalogLemma: current.catalog_lemma,
+      catalogStatus,
+      wroteMeaning: activeSenses(current.senses).some((sense) => sense.text.trim()),
+    }
+  }
+
   async function save() {
-    if (aiLoading) return notify(t.editor.waitForAi)
     const current = draftRef.current
     if (!current.danish.trim()) return notify(t.editor.danishRequired)
-    const senses = activeSenses(current.senses).map((sense) => ({ ...sense, text: sense.text.trim() }))
+    // The catalog's answer decides whether the manual-entry warning is owed; never save past it.
+    if (manualEntryVerdict(manualInput(current)) === 'pending') return notify(t.editor.checkingCatalog)
+    const senses = activeSenses(current.senses).map((sense) => ({
+      ...sense,
+      text: sense.text.trim(),
+      example: sense.example?.trim() || null,
+      example_translation: sense.example_translation?.trim() || null,
+    }))
     if (!senses.length) return notify(t.editor.addTranslation)
 
     setSaving(true)
@@ -1045,7 +612,7 @@ export function EntryEditor({
     const payload = {
       danish: current.danish.trim(),
       pronunciation: current.pronunciation.trim() || null,
-       audio_path: current.audio_path,
+      audio_path: current.audio_path,
       translation: translationFromSenses(graded),
       // Soft-deleted senses ride along so their ids stay resolvable (D15).
       senses: [
@@ -1063,7 +630,7 @@ export function EntryEditor({
       example_sentence: storeExample ? current.example_sentence.trim() || null : null,
       example_translation: storeExample ? current.example_translation.trim() || null : null,
       entry_kind: entryKind,
-      ai_enriched: (entry?.ai_enriched ?? false) || usedAI,
+      // `unverified` is not sent: the database decides it from `catalog_lemma` (issue #25).
       catalog_lemma: current.catalog_lemma,
     }
 
@@ -1083,14 +650,9 @@ export function EntryEditor({
 
       const saved = updated as VocabularyEntry
       if (entryKind === 'word' && !current.catalog_lemma) await syncCorParadigm(supabase, saved.id, saved.danish, graded)
-      exampleSentenceDirty.current = false
-      latestExampleSentence.current = saved.example_sentence || ''
-      resetExampleCheck()
       savedSenseIds.current = new Set(parseSenses(saved.senses).map((sense) => sense.id))
       saveAnyway.current = ''
       resetDraft(draftFromEntry(saved), archivedFromEntry(saved))
-      setUndoSnapshot(null)
-      setUsedAI(false)
       notify(t.editor.savedLive, 'success')
       setSaving(false)
       router.refresh()
@@ -1109,25 +671,30 @@ export function EntryEditor({
       return
     }
 
-    if (savedEntry?.id) {
-      if (entryKind === 'word' && !current.catalog_lemma) await syncCorParadigm(supabase, savedEntry.id, current.danish, graded)
+    let formsSaved = true
+    if (savedEntry?.id && entryKind === 'word' && !current.catalog_lemma) {
+      // A paradigm the learner typed is theirs and stands as typed; with none typed, the word
+      // register still records the forms it knows (issue #5).
+      const typed = typedForms(current)
+      if (typed.length) {
+        // `gender: ''` is the table's "no gender": only register rows carry one.
+        const { error: formsError } = await supabase.from('word_forms').insert(typed.map((form) => ({ ...form, entry_id: savedEntry.id, gender: '', source: 'user' })))
+        formsSaved = !formsError
+      } else {
+        await syncCorParadigm(supabase, savedEntry.id, current.danish, graded)
+      }
     }
 
-    exampleSentenceDirty.current = false
-    latestExampleSentence.current = ''
     saveAnyway.current = ''
-    resetExampleCheck()
     resetDraft(blankDraft(), [])
     setEntryKind('word')
     setIncludeExample(false)
     setExamplePreferenceTouched(false)
-    setUndoSnapshot(null)
     setDuplicate(null)
     setLiveDuplicate([])
     setAllowDuplicate(false)
     catalogPick.current = null
-    setUsedAI(false)
-    notify(t.editor.savedReady, 'success')
+    notify(formsSaved ? t.editor.savedReady : t.editor.formsNotSaved, formsSaved ? 'success' : 'warning')
     setSaving(false)
 
     router.refresh()
@@ -1187,9 +754,7 @@ export function EntryEditor({
   const primaryId = activeSenses(draft.senses)[0]?.id ?? draft.senses[0]?.id ?? ''
   const inputKind = inferDanishInputKind(draft.danish)
   const hasDanish = Boolean(draft.danish.trim())
-  const danishActionLabel = inputKind === 'word' ? t.editor.baseForm : inputKind === 'phrase' ? t.editor.verifyPhrase : t.editor.verifySentence
   const currentCheck = danishCheck && danishCheck.text === draft.danish.trim() ? danishCheck : null
-  const verified = currentCheck && ['correct', 'applied', 'changed'].includes(currentCheck.status)
   const kindName = t.editor.kindNames[inputKind]
   const translationLabel = entryKind === 'sentence' ? t.editor.translation : t.editor.meanings(t.languageNames[translationLanguage])
   const translationPlaceholder = entryKind === 'sentence' ? t.editor.placeholders.sentence : t.editor.placeholders.meaning
@@ -1201,13 +766,10 @@ export function EntryEditor({
   // Details appear once there is something to describe (progressive disclosure). Anything already
   // filled in stays visible even if the Danish is cleared, so nothing typed is ever hidden.
   const showDetails = editing || hasDanish || Boolean(draft.pronunciation.trim() || translationFromSenses(draft.senses).trim() || draft.example_sentence.trim() || draft.example_translation.trim())
-  const aiBusy = Boolean(aiLoading)
   const exampleOn = entryKind !== 'sentence' && includeExample
-
-  function runAi(action: () => unknown): void {
-    setAiMenuOpen(false)
-    void action()
-  }
+  const manual = manualEntryVerdict(manualInput(draft)) === 'manual'
+  // A new manual word gets its paradigm typed here; a saved one is edited on its page.
+  const formPart = !editing && manual && entryKind === 'word' && inputKind === 'word' ? formPartOf(draft.senses) : null
 
   return (
     <section className={`composer-card capture-focus${editing ? ' entry-editor-card' : ''}`} onKeyDown={keyDown}>
@@ -1243,17 +805,7 @@ export function EntryEditor({
         )}
         {hasDanish && (
           <div className="capture-meta">
-            <button
-              type="button"
-              className={`capture-kind${verified ? ' ok' : ''}`}
-              disabled={aiBusy}
-              onClick={() => void checkDanishForm()}
-              aria-label={danishActionLabel}
-            >
-              {aiLoading === 'danish-check' ? <Loader2 className="spin" size={13} /> : verified ? <Check size={13} /> : <Sparkles size={13} />}
-              <span className="capture-kind-name">{kindName} ·</span>
-              {verified ? (inputKind === 'word' ? t.editor.baseForm : t.editor.correct) : danishActionLabel}
-            </button>
+            <span className="capture-kind">{kindName}</span>
             {liveDuplicate.length > 0 && (
               <small className="capture-duplicate">
                 <CircleAlert size={12} />
@@ -1268,6 +820,7 @@ export function EntryEditor({
           <CatalogMatch
             danish={draft.danish}
             lang={translationLanguage}
+            onStatus={setCatalogStatus}
             onUnlock={(unlocked, lemma, senseId, forms) => {
               catalogPick.current = { lemma, senseId, forms }
               setCatalogDuplicate(null)
@@ -1276,6 +829,8 @@ export function EntryEditor({
                 ...unlocked,
                 translation: translationFromSenses(unlocked.senses),
                 catalog_lemma: lemma,
+                // The catalog copies its verified forms on save; nothing typed competes with them.
+                forms: {},
               }))
               setIncludeExample(Boolean(unlocked.example_sentence))
               notify(t.editor.filledFromCatalog, 'success')
@@ -1314,18 +869,9 @@ export function EntryEditor({
                   // Own examples only exist once the entry does, and never on the primary sense,
                   // which reads the entry's example columns instead (D10).
                   exampleState={editing && sense.id !== primaryId ? {
-                    loading: aiLoading === `sense-example:${sense.id}`,
-                    disabled: aiBusy,
-                    onGenerate: () => void generateSenseExample(sense.id, false),
-                    onRegenerate: () => void generateSenseExample(sense.id, true),
-                    onChange: (patchSense) => setSenseExample(sense.id, patchSense),
-                    onClear: () => setSenseExample(sense.id, { example: null, example_translation: null }),
+                    onChange: (patchSense) => updateSense(sense.id, patchSense),
+                    onClear: () => updateSense(sense.id, { example: null, example_translation: null }),
                   } : null}
-                  grammarState={{
-                    loading: aiLoading === `sense-grammar:${sense.id}`,
-                    disabled: aiBusy || !sense.text.trim() || !hasDanish,
-                    onClassify: () => void classifySenseGrammar(sense.id),
-                  }}
                   onText={(value) => updateSense(sense.id, { text: value })}
                   onPos={(value) => setSensePos(sense.id, value)}
                   onGender={(value) => setSenseGender(sense.id, value)}
@@ -1341,12 +887,32 @@ export function EntryEditor({
         </div>
       )}
 
+      {formPart && (
+        <div className="capture-section capture-reveal manual-forms">
+          <div className="capture-section-head"><span>{t.editor.formsOf(t.formParts[formPart])}</span></div>
+          {FORM_SECTIONS[formPart].map(([key]) => (
+            <label key={key} className="manual-form-row">
+              <span>{t.forms[key]}</span>
+              <input
+                lang="da"
+                value={draft.forms[key] || ''}
+                maxLength={200}
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                onChange={(e) => setForm(key, e.target.value)}
+                aria-label={t.editor.formAria(t.forms[key])}
+              />
+            </label>
+          ))}
+        </div>
+      )}
+
       {showDetails && entryKind !== 'sentence' && (exampleOn ? (
         <div className="capture-section capture-reveal">
           <div className="capture-section-head">
             <span>{exampleFieldLabel}</span>
             <span className="capture-section-tools">
-              {aiLoading === 'example-check' && <small><Loader2 className="spin" size={11} /> {t.editor.checking}</small>}
               <button type="button" className="capture-link danger" onClick={() => setExampleEnabled(false)}>{t.common.remove}</button>
             </span>
           </div>
@@ -1354,16 +920,7 @@ export function EntryEditor({
             className="capture-bare"
             lang="da"
             value={draft.example_sentence}
-            onChange={(e) => {
-              exampleSentenceDirty.current = true
-              patch('example_sentence', e.target.value)
-            }}
-            onBlur={(e) => {
-              const nextTarget = e.relatedTarget as HTMLElement | null
-              if (!exampleSentenceDirty.current || !draft.example_sentence.trim() || nextTarget?.closest('.capture-ai') || nextTarget?.closest('.example-correction-action')) return
-              exampleSentenceDirty.current = false
-              void checkExampleSentence()
-            }}
+            onChange={(e) => patch('example_sentence', e.target.value)}
             placeholder="Jeg synes, det er godt."
             aria-label={t.editor.exampleAria}
           />
@@ -1374,7 +931,7 @@ export function EntryEditor({
             placeholder={t.editor.placeholders.exampleTranslation}
             aria-label={t.editor.exampleTranslationAria}
           />
-          {exampleSpelling.length > 0 && !exampleSuggestion && (
+          {exampleSpelling.length > 0 && (
             <div className="danish-check spelling">
               <small>{t.editor.notInDictionary}</small>
               <ul>
@@ -1386,7 +943,7 @@ export function EntryEditor({
                         key={suggestion}
                         type="button"
                         lang="da"
-                        className="soft-button example-correction-action"
+                        className="soft-button"
                         onClick={(e) => { e.preventDefault(); applySpellingFix(item.word, suggestion) }}
                       >
                         {suggestion}
@@ -1397,25 +954,19 @@ export function EntryEditor({
               </ul>
             </div>
           )}
-          {exampleCheckStatus === 'correct' && !exampleSuggestion && !exampleSpelling.length && (
-            <small className="danish-check correct"><Check size={12} /> {t.editor.looksGood}</small>
-          )}
-          {exampleSuggestion && (
-            <div className="danish-check suggestion">
-              <small>{t.editor.suggestedCorrection}</small>
-              <p lang="da">{exampleSuggestion}</p>
-              <div>
-                <button type="button" className="soft-button strong example-correction-action" onClick={(e) => { e.preventDefault(); applyExampleSuggestion() }}><Check size={13} /> {t.editor.useCorrection}</button>
-                <button type="button" className="soft-button example-correction-action" onClick={(e) => { e.preventDefault(); setExampleSuggestion(null); setExampleCheckStatus('idle') }}>{t.editor.keepMine}</button>
-              </div>
-            </div>
-          )}
         </div>
       ) : (
         <button type="button" className="capture-disclose capture-reveal" onClick={() => setExampleEnabled(true)}>
           <Plus size={16} /> {t.editor.addExample}
         </button>
       ))}
+
+      {manual && (
+        <div className="manual-entry-note capture-reveal" role="note">
+          <CircleAlert size={16} aria-hidden="true" />
+          <p><strong>{t.editor.manualTitle}</strong> {t.editor.manualBody}</p>
+        </div>
+      )}
 
       {catalogDuplicate && (
         <div className="duplicate-box">
@@ -1442,75 +993,51 @@ export function EntryEditor({
         </div>
       )}
 
-      {/* One quiet AI button and one prominent Save (HIG: one or two prominent buttons per view).
-          On a phone the bar sticks above the tab bar while the form scrolls. */}
+      {/* One quiet secondary action and one prominent Save. On a phone the bar sticks above the
+          tab bar while the form scrolls. */}
       <div className="capture-actions">
-        <div className="capture-ai">
-          <button
-            type="button"
-            className="capture-ai-button"
-            aria-haspopup="menu"
-            aria-expanded={aiMenuOpen}
-            onClick={() => setAiMenuOpen((value) => !value)}
-          >
-            {aiBusy && aiLoading !== 'example-check' ? <Loader2 className="spin" size={17} /> : <Sparkles size={17} />}
-            AI
+        {showDetails && (
+          <button type="button" className="capture-clear" disabled={saving} onClick={clearDraft}>
+            <X size={17} />{editing ? t.editor.revertChanges : t.editor.clearForm}
           </button>
-          {aiMenuOpen && (
-            <>
-              <button type="button" className="capture-ai-backdrop" aria-label={t.editor.closeAi} onClick={() => setAiMenuOpen(false)} />
-              <div className="capture-ai-sheet" role="menu" aria-label={t.editor.aiForEntry} onKeyDown={(e) => { if (e.key === 'Escape') setAiMenuOpen(false) }}>
-                <span className="capture-ai-grab" aria-hidden="true" />
-                <small>{t.editor.aiForEntry}</small>
-                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(fillMissingWithAI)}><WandSparkles size={17} />{t.editor.fillMissing}</button>
-                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(regenerateAll)}><RotateCcw size={17} />{t.editor.regenerateAll}</button>
-                {/* The undo toast is gone within seconds; the way back has to outlive it. */}
-                {undoSnapshot && <button type="button" role="menuitem" disabled={aiBusy} onClick={() => { setAiMenuOpen(false); undoRegenerate() }}><Undo2 size={17} />{t.editor.undoRegenerate}</button>}
-                <hr />
-                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(checkDanishForm)}><Check size={17} />{danishActionLabel}</button>
-                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['pronunciation']))}><Sparkles size={17} />{t.editor.pronunciationOnly}</button>
-                <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['translation']))}><Sparkles size={17} />{entryKind === 'sentence' ? t.editor.translationOnly : t.editor.meaningsOnly}</button>
-                {exampleOn && <button type="button" role="menuitem" disabled={aiBusy || !hasDanish} onClick={() => runAi(() => enrich(['example_sentence', 'example_translation']))}><Sparkles size={17} />{t.editor.exampleOnly}</button>}
-                <hr />
-                <button type="button" role="menuitem" className="danger" disabled={saving || aiBusy} onClick={() => { setAiMenuOpen(false); clearDraft() }}><X size={17} />{editing ? t.editor.revertChanges : t.editor.clearForm}</button>
-              </div>
-            </>
-          )}
-        </div>
+        )}
         <div className="save-wrap">
           <span className="keyboard-hint">⌘ Enter</span>
-          <button className="primary-button" disabled={saving || aiBusy} onClick={save}>
+          <button className="primary-button" disabled={saving} onClick={save}>
             {saving ? <Loader2 className="spin" size={17} /> : <Plus size={17} />}
             {saveLabel}
           </button>
         </div>
       </div>
 
-      {(notice || (undoSnapshot && undoToastOpen)) && (
+      {notice && (
         <div className="toast-stack">
-          {undoSnapshot && undoToastOpen && (
-            <Toast
-              message={t.editor.regenerated}
-              action={{ label: t.common.undo, onAct: undoRegenerate, disabled: aiBusy }}
-              onDismiss={() => setUndoToastOpen(false)}
-            />
-          )}
-          {notice && <Toast message={notice.text} tone={notice.tone} onDismiss={() => setNotice(null)} />}
+          <Toast message={notice.text} tone={notice.tone} onDismiss={() => setNotice(null)} />
         </div>
       )}
     </section>
   )
 }
 
+/** The typed paradigm, for the part of speech the word has now; stale keys and blanks are dropped. */
+function typedForms(draft: Draft): { form_key: WordFormKey; form_text: string }[] {
+  const part = formPartOf(draft.senses)
+  if (!part) return []
+  const seen = new Set<string>()
+  return FORM_SECTIONS[part].flatMap(([key]) => {
+    const text = (draft.forms[key] || '').trim().toLocaleLowerCase('da-DK')
+    if (!text || seen.has(`${key}:${text}`)) return []
+    seen.add(`${key}:${text}`)
+    return [{ form_key: key, form_text: text }]
+  })
+}
+
 interface DanishCheck {
-  /** The Danish text this verdict applies to. */
+  /** The Danish text this proposal applies to. */
   text: string
-  /** The text that was actually sent to be checked. */
-  checked: string
   kind: DanishInputKind
-  /** `changed`: a word was brought to its base form. `applied`: a proposed correction was accepted. */
-  status: 'correct' | 'suggestion' | 'changed' | 'applied' | 'dismissed'
-  /** The correction for `suggestion`; the original text for `changed`. */
+  /** `applied`: the proposed correction was accepted. */
+  status: 'suggestion' | 'applied' | 'dismissed'
   suggestion: string | null
 }
 
@@ -1532,8 +1059,6 @@ function DanishCheckNotice({ check, onApply, onDismiss }: { check: DanishCheck; 
       </div>
     )
   }
-  // A plain "correct" verdict is shown by the kind chip itself; only a change needs a sentence.
-  if (check.status === 'correct') return null
-  const message = check.status === 'changed' ? t.editor.broughtToBase(check.suggestion || '') : t.editor.corrected(noun)
-  return <small className="field-wide danish-check correct" role="status"><Check size={12} /> {message}</small>
+  if (check.status !== 'applied') return null
+  return <small className="field-wide danish-check correct" role="status"><Check size={12} /> {t.editor.corrected(noun)}</small>
 }

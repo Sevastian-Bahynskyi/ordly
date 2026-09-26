@@ -4,7 +4,10 @@ import type { EntryKind, EntryLinkKind, EntrySense, PartOfSpeech } from './types
 /**
  * Deterministic synonym-candidate generation (D4).
  *
- * Discovery is one AI call per saved entry, and its cost must not grow with the size of the
+ * The model-backed discovery that used this was removed with runtime AI (issue #25); the stored
+ * edges and `synonymNeighbourIds` remain in use. The notes below record how it was bounded.
+ *
+ * Discovery was one AI call per saved entry, and its cost must not grow with the size of the
  * vocabulary (AGENTS.md §16). Three things keep it flat:
  *
  * 1. `synonymSearchTerms` turns the entry's meanings into a handful of terms, so the database

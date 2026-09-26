@@ -1,11 +1,9 @@
 import { learnerLanguage } from '@/lib/learner-language'
 import { AppShell } from '@/components/AppShell'
 import { MaterialClient, type MaterialKind } from '@/components/MaterialClient'
-import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
 import { requireUser } from '@/lib/auth'
 import { fetchCorDefiniteForms } from '@/lib/cor'
 import { isPartOfSpeech, nounGenderOf, parseSenses } from '@/lib/senses'
-import { needsRefinement, REFINEMENT_BATCH_LIMIT } from '@/lib/sense-refinement'
 import type { WordForm } from '@/lib/word-forms'
 
 export const dynamic = 'force-dynamic'
@@ -22,8 +20,6 @@ export default async function MaterialPage({ searchParams }: { searchParams: Pro
     supabase.from('word_forms').select('*'),
   ])
   const all = entries || []
-  // D11 phase 2, on demand: only the newest few still-unclassified words per visit.
-  const unrefined = all.filter((entry) => entry.entry_kind !== 'sentence' && needsRefinement(entry.senses)).slice(0, REFINEMENT_BATCH_LIMIT).map((entry) => entry.id)
   const initialKind = kinds.find((kind) => kind === params.kind) || 'all'
   const initialPos = isPartOfSpeech(params.pos) ? params.pos : 'all'
   // One extra indexed read for the whole list: every noun's definite singular, so the gender is
@@ -38,5 +34,5 @@ export default async function MaterialPage({ searchParams }: { searchParams: Pro
   ])
   const audioByCatalogKey = Object.fromEntries((catalogAudio.data || []).map((row) => [`${row.lemma}:${row.kind}`, row.audio_path]))
   const language = learnerLanguage(profile?.default_translation_language)
-  return <AppShell language={language}><SenseRefinementBackfill entryIds={unrefined} /><div className="page-wrap"><MaterialClient initialWords={all} initialCards={cards || []} initialForms={(forms || []) as WordForm[]} catalogAudio={audioByCatalogKey} initialMissingAudio={params.missingAudio === '1'} initialQuery={params.q || ''} initialKind={initialKind} initialPos={initialPos} translationLanguage={language} definiteForms={Object.fromEntries(definiteForms)} /></div></AppShell>
+  return <AppShell language={language}><div className="page-wrap"><MaterialClient initialWords={all} initialCards={cards || []} initialForms={(forms || []) as WordForm[]} catalogAudio={audioByCatalogKey} initialMissingAudio={params.missingAudio === '1'} initialQuery={params.q || ''} initialKind={initialKind} initialPos={initialPos} translationLanguage={language} definiteForms={Object.fromEntries(definiteForms)} /></div></AppShell>
 }
