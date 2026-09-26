@@ -1,0 +1,653 @@
+{
+ "reviews": {
+  "m:lade være med at|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "meaning: Danish 'lade være med at' means 'to refrain from doing' or 'not to do', not 'to stop (doing something)'. The Russian 'переставать' and Ukrainian 'припиняти' mean 'to stop/cease', which is a different meaning."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish phrase 'lade være med at' means 'to refrain from' or 'not to do', not 'to stop doing', so the Russian 'переставать' and Ukrainian 'припиняти' are incorrect translations."
+   }
+  },
+  "e:lade være med at|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish sentence 'Hun lod være med at spise slik' means 'She refrained from eating sweets' or 'She didn't eat sweets (by choice/omission)', not 'She stopped eating sweets'. The meaning 'to stop (doing something)' is not shown.",
+     "translations: The English 'She didn't eat sweets' is a simple negation, not 'She stopped eating sweets'. The Russian 'Она не ела сладости' and Ukrainian 'Вона не їла солодощів' similarly mean 'She didn't eat sweets', not 'She stopped eating sweets'. The translations do not match the stated meaning 'to stop (doing something)'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'She didn't eat sweets.' means she simply did not eat sweets, while the Danish 'Hun lod være med at spise slik' means she stopped eating sweets or refrained from eating them. The meaning is different (cessation vs. simple negation).",
+     "The Russian translation 'Она не ела сладости.' means she did not eat sweets, missing the nuance of stopping or refraining.",
+     "The Ukrainian translation 'Вона не їла солодощів.' means she did not eat sweets, missing the nuance of stopping or refraining."
+    ]
+   }
+  },
+  "m:komme tilbage|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme tilbage|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:give sig|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "meaning: Danish 'give sig' does not mean 'to give up' in the sense of surrendering or ceasing effort. The correct meaning is 'to give way', 'to yield', or 'to ease'. The Russian 'сдаваться' and Ukrainian 'здаватися' mean 'to surrender/give up', which is incorrect."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish phrase 'give sig' does not mean 'to give up' but rather 'to yield' or 'give way', making the Russian 'сдаваться' and Ukrainian 'здаватися' incorrect."
+   }
+  },
+  "e:give sig|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish sentence 'Han gav sig til sidst og gik hjem' means 'He finally gave way/yielded and went home', not 'He gave up'. The meaning 'to give up' is not shown.",
+     "translations: The English 'He finally gave in and went home' uses 'gave in', which matches 'yielded', not 'gave up'. The Russian 'сдался' and Ukrainian 'здався' mean 'surrendered/gave up', which is a mistranslation of the Danish 'gav sig'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence means 'He finally yielded and went home', not 'gave up', so the translations using 'gave in' (English), 'сдался' (Russian), and 'здався' (Ukrainian) are mistranslations."
+   }
+  },
+  "m:give sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:give sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Головная боль прошла' uses the word 'прошла' (went away), while the meaning states 'утихать' (to subside/ease). The translation does not match the meaning exactly; 'утихла' would be more precise.",
+     "The Ukrainian translation 'Головний біль минув' uses 'минув' (passed/went away), while the meaning states 'вщухати' (to subside/ease). The translation does not match the meaning exactly; 'вщух' would be more precise."
+    ]
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian and Ukrainian translations use 'прошла'/'минув' (went away) instead of the more precise 'утихла'/'вщух' (subsided) required by the stated meaning."
+   }
+  },
+  "m:tage til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage til|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage til|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå ind|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå ind|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå ind|phrase#3": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "Meaning mismatch: 'gå ind' does not mean 'to understand (information)' in Danish. The phrase 'gå ind' with the preposition 'hos' can mean 'to sink in' or 'to be understood', but the meaning given is too broad and not a standard dictionary definition for 'gå ind' alone."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The meaning 'to understand (information)' is not a standard meaning of 'gå ind'. The phrase 'gå ind' with the preposition 'hos' can mean 'to sink in' or 'to be understood', but the headword alone does not carry this meaning without context."
+    ]
+   }
+  },
+  "e:gå ind|phrase#3": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "Sense: The Danish sentence 'Matematikken gik ind hos ham til sidst' means 'The mathematics finally sank in for him', which matches the intended meaning of understanding. However, the English translation 'Mathematics went in with him in the end' is unnatural and a calque; a natural translation is 'The mathematics finally sank in for him' or 'He finally understood the mathematics'.",
+     "Translation (ru): 'В конце концов с ним пошла математика' is unnatural and does not convey the meaning of understanding; a correct translation would be 'В конце концов математика до него дошла'.",
+     "Translation (uk): 'Врешті-решт з ним пішла математика' is unnatural and a calque; a correct translation would be 'Врешті-решт математика до нього дійшла'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'Mathematics went in with him in the end' is unnatural and unidiomatic. A better translation would be 'He finally understood mathematics' or 'The mathematics finally sank in'.",
+     "The Russian translation 'В конце концов с ним пошла математика' is unnatural and does not convey the intended meaning of understanding.",
+     "The Ukrainian translation 'Врешті-решт з ним пішла математика' is unnatural and does not convey the intended meaning of understanding."
+    ]
+   }
+  },
+  "m:holde sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde sig|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "Sense: The Danish sentence 'Barnet holdt sig hele vejen hjem fra stranden' means 'The child held it in the whole way home from the beach', matching the meaning 'to hold it in (not go to the toilet)'. The English translation 'The child stayed all the way home from the beach' is incorrect; it misses the meaning of holding in urine/feces and is unnatural.",
+     "Translation (ru): 'Ребёнок остался домой с пляжа' is incorrect and unnatural; it means 'The child stayed home from the beach', which does not match the Danish. A correct translation is 'Ребёнок терпел всю дорогу домой с пляжа'.",
+     "Translation (uk): 'Дитина залишилася додому аж до пляжу' is incorrect and unnatural; it means 'The child stayed home all the way to the beach', which is the opposite direction and misses the meaning. A correct translation is 'Дитина терпіла всю дорогу додому з пляжу'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'The child stayed all the way home from the beach' does not match the Danish meaning of 'holdt sig' (held it in/refrained from using the toilet). It incorrectly translates 'holdt sig' as 'stayed'.",
+     "The Russian translation 'Ребёнок остался домой с пляжа' is grammatically incorrect and nonsensical. It translates 'holdt sig' as 'stayed' and misinterprets the sentence.",
+     "The Ukrainian translation 'Дитина залишилася додому аж до пляжу' is grammatically incorrect and nonsensical. It translates 'holdt sig' as 'stayed' and misinterprets the sentence."
+    ]
+   }
+  },
+  "m:holde sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være nødt til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være nødt til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'I have to walk now' adds 'walk' not present in the Danish 'gå' (which means 'go/leave'); the Danish does not specify walking.",
+     "translations: Russian 'Теперь мне нужно идти пешком' adds 'пешком' (on foot) not in the Danish.",
+     "translations: Ukrainian 'Тепер мені треба йти пішки' adds 'пішки' (on foot) not in the Danish."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'I have to walk now to catch the bus.' adds 'walk' not present in the Danish 'at gå' which means 'to go/leave', not specifically 'walk'."
+    ]
+   }
+  },
+  "m:sige til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sige til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'Hun sagde til, hvis hun kom for sent' means 'She said so (in advance) in case she was late', not 'She let me know if she was late' (which would be a conditional report). The meaning 'to let know' is not clearly shown.",
+     "translations: English 'She let me know if she was late' is a conditional statement, not matching the Danish 'hvis' meaning 'in case'.",
+     "translations: Russian 'Она сообщала мне, если опоздала' uses past tense 'опоздала' and conditional 'если', not matching the Danish 'kom for sent' in a 'hvis'-clause meaning 'in case'.",
+     "translations: Ukrainian 'Вона повідомила, якщо запізнилася' uses past tense 'запізнилася' and conditional 'якщо', not matching the Danish."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'She let me know if she was late.' adds 'me' not present in the Danish 'Hun sagde til'.",
+     "Russian translation 'Она сообщала мне, если опоздала.' adds 'мне' not present in the Danish.",
+     "Ukrainian translation 'Вона повідомила, якщо запізнилася.' uses past perfective 'повідомила' and 'запізнилася' while Danish 'sagde til ... kom for sent' uses past tense in a habitual/conditional context, better matching imperfective aspect."
+    ]
+   }
+  },
+  "m:sige til|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sige til|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'Læreren sagde til eleven, fordi han glemte bogen' means 'The teacher said to the student because he forgot the book', which does not convey 'told off' (scolded). The phrase 'sagde til' here is not idiomatic for scolding.",
+     "translations: English 'The teacher told the student because he forgot the book' does not convey scolding; 'told' is ambiguous and misses the 'off'.",
+     "translations: Russian 'Учитель сказал ученику, потому что забыл книгу' means 'said to the student', not 'ругал' (scolded).",
+     "translations: Ukrainian 'Вчитель розповів учню, бо забув книгу' means 'told/recounted to the student', not 'лаяти' (scolded)."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'The teacher told the student because he forgot the book.' misses the meaning 'told off'; 'told' does not convey scolding.",
+     "Russian translation 'Учитель сказал ученику, потому что забыл книгу.' misses the meaning 'ругать'; 'сказал' does not convey scolding.",
+     "Ukrainian translation 'Вчитель розповів учню, бо забув книгу.' misses the meaning 'лаяти'; 'розповів' means 'told/narrated', not 'scolded'."
+    ]
+   }
+  },
+  "s:8e1fa0c5-058c-51d9-a8e7-b851819204d1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'CEO' is narrower than the meaning 'director, manager'; Russian 'генеральным директором' is narrower than 'директор'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The English and Russian translations use 'CEO'/'генеральным директором', which are narrower than the stated meaning 'director, manager'/'директор'."
+   }
+  },
+  "s:33489967-20b1-5794-a9b4-72a6eb83d9c5": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'CEO' is narrower than the meaning 'director, manager'; Russian 'генеральным директором' is narrower than 'директор'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The English and Russian translations use 'CEO'/'генеральным директором', which are narrower than the stated meaning 'director, manager'/'директор'."
+   }
+  },
+  "s:6262658b-151c-56a3-aeae-2d9914a8fad5": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:a4fabf07-ee96-5f49-aa92-cd217d5495bc": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:75fed2e3-45ff-5bc4-bf25-1f0b04f2319f": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:eff734c4-599f-5a46-8f78-976acfa1806c": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:fcb1c458-9a70-5560-ac2f-d4e5a467f1f8": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: Danish 'erklærede sig enig i' means 'declared himself in agreement with', not simply 'agreed to'; translations drop 'erklærede' and render only 'agreed'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence uses 'erklærede sig enig i', which means 'declared oneself in agreement with', but the English translation 'agreed to' drops the declarative nuance and changes the prepositional meaning. The Russian translation 'согласился с' also misses the 'erklærede' component. The Ukrainian translation 'погодився на' uses 'на' (to) instead of 'з' (with), mismatching the Danish 'i' (in/with)."
+    ]
+   }
+  },
+  "s:2a3bd184-acc1-5872-9e55-41d547a9747b": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: Danish 'erklærede sig enig i' means 'declared itself in agreement with', not simply 'agreed with'; translations drop 'erklærede' and render only 'agreed'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence uses 'erklærede sig enig i', meaning 'declared oneself in agreement with', but the English translation 'agreed with' drops the declarative nuance. The Russian translation 'согласился с' also misses the 'erklærede' component. The Ukrainian translation 'погодився з' similarly omits the declarative meaning."
+    ]
+   }
+  },
+  "s:cbd70bce-7626-589e-9086-fbc4f9a0fb57": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:4b55b75a-1bfd-5ad4-a191-77ca5e9ea6bc": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'en kriser' is incorrect Danish; the indefinite plural is 'kriser', but it cannot take 'en'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Landet befinder sig i en kriser' is grammatically incorrect; the indefinite plural form should be 'kriser' without the article 'en', or the singular 'en krise'. The target 'kriser' is a plural form, but the sentence structure uses a singular article. The English translation 'a state of crisis' does not match the plural 'kriser'. The Russian translation 'в состоянии кризиса' and Ukrainian 'у стані кризи' use singular, not plural."
+    ]
+   }
+  },
+  "s:52a165a8-5ff7-51e3-ba25-b19e5bdef254": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:052b88c4-40cc-592f-aca9-0547afd47b07": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: The grammar feature is 'verb-present', but the target 'hældte' is past tense."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "grammar field says 'verb-present' but target 'hældte' is past tense"
+    ]
+   }
+  },
+  "s:06c67965-18fa-5b4f-974a-f1f0e8e3d716": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Ukrainian translation 'розлючений' is stronger than 'angry'/'сердитый, злой' (means 'furious')"
+    ]
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Ukrainian translation 'розлючений' means 'furious', which is stronger than the stated meaning 'angry'/'сердитый, злой'."
+   }
+  },
+  "s:fd4ddc5d-5300-5938-afff-0fa7486b22fb": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Ukrainian translation 'Вся рада була обурена відсутністю комунікації.' uses 'обурена' (outraged/indignant) which is stronger than the Danish 'vrede' (angry) and the English 'angry'. The Russian 'зол' and English 'angry' match the Danish, but the Ukrainian does not."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Ukrainian translation 'обурена' means 'indignant', not 'angry'/'сердитый, злой'"
+    ]
+   }
+  }
+ },
+ "backchecks": {
+  "e:lade være med at|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:komme tilbage|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:give sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:give sig|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage til|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå ind|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå ind|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå ind|phrase#3": {
+   "same": false,
+   "note": "Matematikken gik ind means he understood math; Matematik fulgte med ham means math followed him, a different situation."
+  },
+  "e:holde sig|phrase#1": {
+   "same": false,
+   "note": "holdt sig means held it in (didn't urinate); blev means stayed, a different action."
+  },
+  "e:holde sig|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:være nødt til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sige til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sige til|phrase#2": {
+   "same": false,
+   "note": "sagde til (reprimanded) became fortalte (told/informed)"
+  },
+  "s:8e1fa0c5-058c-51d9-a8e7-b851819204d1": {
+   "same": true,
+   "note": ""
+  },
+  "s:33489967-20b1-5794-a9b4-72a6eb83d9c5": {
+   "same": true,
+   "note": ""
+  },
+  "s:6262658b-151c-56a3-aeae-2d9914a8fad5": {
+   "same": true,
+   "note": ""
+  },
+  "s:a4fabf07-ee96-5f49-aa92-cd217d5495bc": {
+   "same": true,
+   "note": ""
+  },
+  "s:75fed2e3-45ff-5bc4-bf25-1f0b04f2319f": {
+   "same": true,
+   "note": ""
+  },
+  "s:eff734c4-599f-5a46-8f78-976acfa1806c": {
+   "same": true,
+   "note": ""
+  },
+  "s:fcb1c458-9a70-5560-ac2f-d4e5a467f1f8": {
+   "same": true,
+   "note": ""
+  },
+  "s:2a3bd184-acc1-5872-9e55-41d547a9747b": {
+   "same": true,
+   "note": ""
+  },
+  "s:cbd70bce-7626-589e-9086-fbc4f9a0fb57": {
+   "same": true,
+   "note": ""
+  },
+  "s:4b55b75a-1bfd-5ad4-a191-77ca5e9ea6bc": {
+   "same": false,
+   "note": "kriser (plural) changed to krisetilstand (state of crisis), altering the meaning"
+  },
+  "s:52a165a8-5ff7-51e3-ba25-b19e5bdef254": {
+   "same": true,
+   "note": ""
+  },
+  "s:052b88c4-40cc-592f-aca9-0547afd47b07": {
+   "same": true,
+   "note": ""
+  },
+  "s:06c67965-18fa-5b4f-974a-f1f0e8e3d716": {
+   "same": true,
+   "note": ""
+  },
+  "s:fd4ddc5d-5300-5938-afff-0fa7486b22fb": {
+   "same": true,
+   "note": ""
+  }
+ }
+}

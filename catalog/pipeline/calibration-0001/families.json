@@ -1,0 +1,327 @@
+[
+ {
+  "lemma": "direktør",
+  "kind": "word",
+  "sense_id": "50b25d06-4de9-5494-b311-af2cdebabd81",
+  "level": "A2",
+  "situation": "work",
+  "grammar": "noun-definite",
+  "frame": "{subject} mødtes med {target} i går.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Medarbejderne"
+    },
+    {
+     "da": "Konsulenterne"
+    },
+    {
+     "da": "Hele afdelingen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "direktøren",
+    "en": "The employees met with the CEO yesterday.",
+    "ru": "Сотрудники встретились с генеральным директором вчера.",
+    "uk": "Працівники зустрілися з генеральним директором учора.",
+    "back": "Medarbejderne mødtes med direktøren i går."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "direktøren",
+    "en": "The consultants met with the CEO yesterday.",
+    "ru": "Консультанты встретились с генеральным директором вчера.",
+    "uk": "Консультанти зустрілися з генеральним директором учора.",
+    "back": "Konsulenterne mødtes med CEO'en i går."
+   },
+   {
+    "slots": {
+     "subject": 2
+    },
+    "target": "direktøren",
+    "en": "The entire department met with the director yesterday.",
+    "ru": "Вчера весь отдел встретился с директором.",
+    "uk": "Вчора весь відділ зустрівся з директором.",
+    "back": "Hele afdelingen mødtes med direktøren i går."
+   }
+  ]
+ },
+ {
+  "sense_id": "8166fbce-7a6c-5648-94b2-effdde9a08d2",
+  "lemma": "grad",
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "noun-plural"
+  },
+  "skip": "style check: \"slots\": {} with the same target form in every variant — nothing in the family can then make the variants different sentences; use at least two genuinely different target forms (tense/number) or add a real varying slot"
+ },
+ {
+  "sense_id": "8665a100-d047-56e9-b18d-0e01dcd55d8d",
+  "lemma": "tvinge",
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-past"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "udtrykke",
+  "kind": "word",
+  "sense_id": "81f408f9-8c4c-56d5-9ef3-e8e3a1b812c9",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "verb-present",
+  "frame": "I sin kronik {target} journalisten sin bekymring for {issue}.",
+  "slots": {
+   "issue": [
+    {
+     "da": "den stigende ulighed"
+    },
+    {
+     "da": "klimaforandringerne"
+    },
+    {
+     "da": "manglen på billige boliger"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "issue": 0
+    },
+    "target": "udtrykker",
+    "en": "In his op-ed, the journalist expresses his concern about the increasing inequality.",
+    "ru": "В своей колонке журналист выражает обеспокоенность растущим неравенством.",
+    "uk": "У своїй колонці журналіст висловлює занепокоєння зростаючою нерівністю.",
+    "back": "I sin debatindlæg udtrykker journalisten sin bekymring over den stigende ulighed."
+   },
+   {
+    "slots": {
+     "issue": 1
+    },
+    "target": "udtrykker",
+    "en": "In his op-ed, the journalist expresses his concern about climate change.",
+    "ru": "В своей колонке журналист выражает обеспокоенность изменением климата.",
+    "uk": "У своїй колонці журналіст висловлює занепокоєння щодо зміни клімату.",
+    "back": "I sin kronik udtrykker journalisten sin bekymring over klimaforandringer."
+   },
+   {
+    "slots": {
+     "issue": 2
+    },
+    "target": "udtrykker",
+    "en": "In his op-ed, the journalist expresses his concern about the lack of affordable housing.",
+    "ru": "В своей колонке журналист выражает обеспокоенность отсутствием доступного жилья.",
+    "uk": "У своїй колонці журналіст висловлює занепокоєння через відсутність доступного житла.",
+    "back": "I sin kronik udtrykker journalisten sin bekymring over manglen på overkommelige boliger."
+   }
+  ]
+ },
+ {
+  "lemma": "erklære",
+  "kind": "word",
+  "sense_id": "395d657d-97cb-5d11-bee5-e3f14c50257f",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "verb-past",
+  "frame": "Efter lang tids debat {target} {subject} sig enig i reformen.",
+  "slots": {
+   "subject": [
+    {
+     "da": "borgmesteren"
+    },
+    {
+     "da": "udvalget"
+    },
+    {
+     "da": "partilederen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0
+    },
+    "target": "erklærede",
+    "en": "After a long debate, the mayor agreed to the reform.",
+    "ru": "После долгих дебатов мэр согласился с реформой.",
+    "uk": "Після тривалих дебатів мер погодився на реформу.",
+    "back": "Efter en lang debat gik borgmesteren med til reformen."
+   },
+   {
+    "slots": {
+     "subject": 1
+    },
+    "target": "erklærede",
+    "en": "After a long debate, the committee agreed with the reform.",
+    "ru": "После долгих дебатов комитет согласился с реформой.",
+    "uk": "Після тривалих дебатів комітет погодився з реформою.",
+    "back": "Efter en lang debat godkendte udvalget reformen."
+   }
+  ]
+ },
+ {
+  "lemma": "krise",
+  "kind": "word",
+  "sense_id": "bccf5894-039a-5c85-8e06-8375285e80a6",
+  "level": "B1",
+  "situation": "society",
+  "grammar": "noun-indefinite",
+  "frame": "Landet befinder sig i en {target}.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "krise",
+    "en": "The country is in a crisis.",
+    "ru": "Страна находится в кризисе.",
+    "uk": "Країна перебуває у кризі.",
+    "back": "Landet er i krise."
+   },
+   {
+    "slots": {},
+    "target": "kriser",
+    "en": "The country is in a state of crisis.",
+    "ru": "Страна находится в состоянии кризиса.",
+    "uk": "Країна перебуває у стані кризи.",
+    "back": "Landet er i en krisetilstand."
+   }
+  ]
+ },
+ {
+  "sense_id": "fdbad7da-a8fb-54f4-97e4-8db24915775c",
+  "lemma": "springe",
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "verb-past"
+  },
+  "skip": "style check: the alternative order \"Jeg har sprunget morgenmaden over, fordi jeg havde travlt.\" does not use exactly the words of \"Jeg sprunget morgenmaden over, fordi jeg havde travlt.\" — omit it or fix it"
+ },
+ {
+  "sense_id": "aa0cc8df-3f57-560e-9ef3-1174a2e9735b",
+  "lemma": "venlig",
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "adjective-agreement"
+  },
+  "skip": "style check: adjective target with \"slots\": {} — an adjective family always needs a real varying slot (subject/time/place); its own inflection cannot safely vary with nothing to agree with, and cannot safely repeat with nothing else to vary either"
+ },
+ {
+  "lemma": "hælde",
+  "kind": "word",
+  "sense_id": "0aa12819-b234-5767-ab09-7b29b835bcc7",
+  "level": "B1",
+  "situation": "food-drink",
+  "grammar": "verb-present",
+  "frame": "Hun {target} mælk i glasset.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "hælder",
+    "en": "She pours milk into the glass.",
+    "ru": "Она наливает молоко в стакан.",
+    "uk": "Вона наливає молоко в склянку.",
+    "back": "Hun hælder mælk i glasset."
+   },
+   {
+    "slots": {},
+    "target": "hældte",
+    "en": "She poured milk into the glass.",
+    "ru": "Она налила молоко в стакан.",
+    "uk": "Вона налила молоко в склянку.",
+    "back": "Hun hældte mælk i glasset."
+   }
+  ]
+ },
+ {
+  "sense_id": "562c2b4d-ac7e-5999-9420-80ec8e4cf774",
+  "lemma": "hensigt",
+  "target": {
+   "level": "B1",
+   "situation": "abstract",
+   "grammar": "noun-definite"
+  },
+  "skip": "translation fidelity: 0 of 2 variants survived"
+ },
+ {
+  "sense_id": "fef7bce3-a1a2-5338-97e0-bba428423378",
+  "lemma": "fantasi",
+  "target": {
+   "level": "B1",
+   "situation": "leisure",
+   "grammar": "noun-definite"
+  },
+  "skip": "translation fidelity: 1 of 2 variants survived"
+ },
+ {
+  "lemma": "vred",
+  "kind": "word",
+  "sense_id": "affead7c-d4c1-5378-996c-a210ee6da3b6",
+  "level": "B1",
+  "situation": "feelings-opinions",
+  "grammar": "adjective-agreement",
+  "frame": "{subject} var {target} over {reason}.",
+  "slots": {
+   "subject": [
+    {
+     "da": "Min chef"
+    },
+    {
+     "da": "Hele bestyrelsen"
+    },
+    {
+     "da": "Beboerne i opgangen"
+    }
+   ],
+   "reason": [
+    {
+     "da": "forsinkelsen"
+    },
+    {
+     "da": "den manglende kommunikation"
+    },
+    {
+     "da": "støjen fra naboen"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "subject": 0,
+     "reason": 0
+    },
+    "target": "vred",
+    "en": "My boss was angry about the delay.",
+    "ru": "Мой начальник был зол из-за задержки.",
+    "uk": "Мій керівник був розлючений через затримку.",
+    "back": "Min chef var vred over forsinkelsen."
+   },
+   {
+    "slots": {
+     "subject": 1,
+     "reason": 1
+    },
+    "target": "vrede",
+    "en": "The entire board was angry about the lack of communication.",
+    "ru": "Весь совет был зол из-за отсутствия коммуникации.",
+    "uk": "Вся рада була обурена відсутністю комунікації.",
+    "back": "Hele bestyrelsen var vrede over manglen på kommunikation."
+   }
+  ]
+ }
+]

@@ -1,0 +1,95 @@
+{
+ "seed": 2701,
+ "entries": [
+  {
+   "id": "e:gå ind|phrase#1",
+   "kind": "example",
+   "verdict": "minor",
+   "note": "en \"I go into the living room now\" is unnatural (I'm going into); uk drops \"nu\" (зараз)"
+  },
+  {
+   "id": "e:holde sig|phrase#2",
+   "kind": "example",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "e:komme tilbage|phrase#1",
+   "kind": "example",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "e:gå ind|phrase#2",
+   "kind": "example",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "e:tage til|phrase#2",
+   "kind": "example",
+   "verdict": "minor",
+   "note": "ferien rendered as holidays/festivities: ru \"праздников\", uk \"свят\" (should be отпуска/відпустки)"
+  },
+  {
+   "id": "e:tage til|phrase#1",
+   "kind": "example",
+   "verdict": "minor",
+   "note": "en \"We go to the beach tomorrow morning\": present simple for a plan (We are going)"
+  },
+  {
+   "id": "m:tage til|phrase#2",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "m:komme tilbage|phrase#1",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "m:gå ind|phrase#1",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "m:tage til|phrase#1",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "m:gå ind|phrase#2",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "m:holde sig|phrase#2",
+   "kind": "meaning",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "s:75fed2e3-45ff-5bc4-bf25-1f0b04f2319f",
+   "kind": "sentence",
+   "verdict": "clean",
+   "note": ""
+  },
+  {
+   "id": "s:a4fabf07-ee96-5f49-aa92-cd217d5495bc",
+   "kind": "sentence",
+   "verdict": "minor",
+   "note": "uk \"занепокоєння зростаючою нерівністю\": Russian-style instrumental; standard is \"занепокоєння через зростання нерівності\""
+  },
+  {
+   "id": "s:eff734c4-599f-5a46-8f78-976acfa1806c",
+   "kind": "sentence",
+   "verdict": "clean",
+   "note": ""
+  }
+ ]
+}

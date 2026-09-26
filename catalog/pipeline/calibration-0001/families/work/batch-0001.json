@@ -1,0 +1,315 @@
+[
+ {
+  "lemma": "direktør",
+  "kind": "word",
+  "sense_id": "50b25d06-4de9-5494-b311-af2cdebabd81",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 232,
+  "min_level": "A1",
+  "ru": "директор",
+  "en": "director, manager",
+  "forms": [
+   "direktør",
+   "direktøren",
+   "direktørens",
+   "direktører",
+   "direktørerne",
+   "direktørernes",
+   "direktørers",
+   "direktørs"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "work",
+   "grammar": "noun-definite"
+  }
+ },
+ {
+  "lemma": "grad",
+  "kind": "word",
+  "sense_id": "8166fbce-7a6c-5648-94b2-effdde9a08d2",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 297,
+  "min_level": "A1",
+  "ru": "градус",
+  "en": "degree (temperature)",
+  "forms": [
+   "grad",
+   "graden",
+   "gradens",
+   "grader",
+   "graderne",
+   "gradernes",
+   "graders",
+   "grads"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "weather-nature",
+   "grammar": "noun-plural"
+  }
+ },
+ {
+  "lemma": "tvinge",
+  "kind": "word",
+  "sense_id": "8665a100-d047-56e9-b18d-0e01dcd55d8d",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 839,
+  "min_level": "A2",
+  "ru": "заставлять",
+  "en": "to force",
+  "forms": [
+   "tvang",
+   "tving",
+   "tvinge",
+   "tvingende",
+   "tvinger",
+   "tvinges",
+   "tvungen",
+   "tvunget",
+   "tvungne"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "udtrykke",
+  "kind": "word",
+  "sense_id": "81f408f9-8c4c-56d5-9ef3-e8e3a1b812c9",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 1089,
+  "min_level": "A2",
+  "ru": "выражать",
+  "en": "to express",
+  "forms": [
+   "udtryk",
+   "udtrykke",
+   "udtrykkende",
+   "udtrykker",
+   "udtrykkes",
+   "udtrykt",
+   "udtrykte",
+   "udtryktes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "feelings-opinions",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "erklære",
+  "kind": "word",
+  "sense_id": "395d657d-97cb-5d11-bee5-e3f14c50257f",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 1097,
+  "min_level": "A2",
+  "ru": "объявлять, заявлять",
+  "en": "to declare, to state",
+  "forms": [
+   "erklær",
+   "erklære",
+   "erklærede",
+   "erklæredes",
+   "erklærende",
+   "erklærer",
+   "erklæres",
+   "erklæret"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "krise",
+  "kind": "word",
+  "sense_id": "bccf5894-039a-5c85-8e06-8375285e80a6",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 1231,
+  "min_level": "A2",
+  "ru": "кризис",
+  "en": "crisis",
+  "forms": [
+   "krise",
+   "krisen",
+   "krisens",
+   "kriser",
+   "kriserne",
+   "krisernes",
+   "krisers",
+   "krises"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "society",
+   "grammar": "noun-indefinite"
+  }
+ },
+ {
+  "lemma": "springe",
+  "kind": "word",
+  "sense_id": "fdbad7da-a8fb-54f4-97e4-8db24915775c",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 1347,
+  "min_level": "A2",
+  "ru": "пропускать",
+  "en": "to skip",
+  "forms": [
+   "sprang",
+   "spring",
+   "springe",
+   "springende",
+   "springer",
+   "springes",
+   "sprungen",
+   "sprunget",
+   "sprungne"
+  ],
+  "target": {
+   "level": "A2",
+   "situation": "daily-routine",
+   "grammar": "verb-past"
+  }
+ },
+ {
+  "lemma": "venlig",
+  "kind": "word",
+  "sense_id": "aa0cc8df-3f57-560e-9ef3-1174a2e9735b",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 1583,
+  "min_level": "B1",
+  "ru": "дружелюбный",
+  "en": "friendly, kind",
+  "forms": [
+   "venlig",
+   "venlige",
+   "venligere",
+   "venligst",
+   "venligste",
+   "venligt"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "social",
+   "grammar": "adjective-agreement"
+  }
+ },
+ {
+  "lemma": "hælde",
+  "kind": "word",
+  "sense_id": "0aa12819-b234-5767-ab09-7b29b835bcc7",
+  "pos": "verb",
+  "gender": null,
+  "freq_rank": 2118,
+  "min_level": "B1",
+  "ru": "лить, наливать",
+  "en": "to pour",
+  "forms": [
+   "hæld",
+   "hælde",
+   "hældede",
+   "hældedes",
+   "hældende",
+   "hælder",
+   "hældes",
+   "hældet",
+   "hældt",
+   "hældte",
+   "hældtes"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "food-drink",
+   "grammar": "verb-present"
+  }
+ },
+ {
+  "lemma": "hensigt",
+  "kind": "word",
+  "sense_id": "562c2b4d-ac7e-5999-9420-80ec8e4cf774",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2222,
+  "min_level": "B1",
+  "ru": "цель",
+  "en": "intent, purpose",
+  "forms": [
+   "hensigt",
+   "hensigten",
+   "hensigtens",
+   "hensigter",
+   "hensigterne",
+   "hensigternes",
+   "hensigters",
+   "hensigts"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "abstract",
+   "grammar": "noun-definite"
+  }
+ },
+ {
+  "lemma": "fantasi",
+  "kind": "word",
+  "sense_id": "fef7bce3-a1a2-5338-97e0-bba428423378",
+  "pos": "noun",
+  "gender": "en",
+  "freq_rank": 2235,
+  "min_level": "B1",
+  "ru": "фантазия",
+  "en": "imagination",
+  "forms": [
+   "fantasi",
+   "fantasien",
+   "fantasiens",
+   "fantasier",
+   "fantasierne",
+   "fantasiernes",
+   "fantasiers",
+   "fantasis"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "leisure",
+   "grammar": "noun-definite"
+  }
+ },
+ {
+  "lemma": "vred",
+  "kind": "word",
+  "sense_id": "affead7c-d4c1-5378-996c-a210ee6da3b6",
+  "pos": "adjective",
+  "gender": null,
+  "freq_rank": 2247,
+  "min_level": "B1",
+  "ru": "сердитый, злой",
+  "en": "angry",
+  "forms": [
+   "vred",
+   "vrede",
+   "vredere",
+   "vredest",
+   "vredeste",
+   "vredt"
+  ],
+  "target": {
+   "level": "B1",
+   "situation": "feelings-opinions",
+   "grammar": "adjective-agreement"
+  }
+ }
+]

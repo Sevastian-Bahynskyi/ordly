@@ -1,0 +1,59 @@
+{
+ "run": "2026-09-26-10-53-22-i27-calibration-0001-45526",
+ "issue": 27,
+ "batch": "calibration-0001",
+ "command": "content-batch.ts --batch catalog/pipeline/calibration-0001",
+ "startedAt": "2026-09-26T10:53:22.191Z",
+ "updatedAt": "2026-09-26T10:53:44.570Z",
+ "estimateUsd": 0.43837814222222227,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.backcheck",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 2,
+   "inputTokens": 1024,
+   "outputTokens": 414,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00322248
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.backcheck",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "family",
+   "calls": 2,
+   "inputTokens": 1347,
+   "outputTokens": 599,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.0044283
+  },
+  {
+   "service": "speech",
+   "op": "speech.tts",
+   "model": null,
+   "scope": "family",
+   "calls": 6,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 460,
+   "seconds": 0,
+   "usd": 0.0069
+  },
+  {
+   "service": "speech",
+   "op": "speech.stt",
+   "model": null,
+   "scope": "family",
+   "calls": 3,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 0,
+   "seconds": 16.1183125,
+   "usd": 0.00447731
+  }
+ ]
+}

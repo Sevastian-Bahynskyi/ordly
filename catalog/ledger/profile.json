@@ -1,0 +1,299 @@
+{
+ "source": "calibration-0001",
+ "measuredAt": "2026-09-26T10:54:21.724Z",
+ "units": {
+  "entry": {
+   "units": 8,
+   "items": {
+    "meaning": 14,
+    "example": 14
+   },
+   "lines": [
+    {
+     "service": "deepseek",
+     "op": "deepseek.entry-senses",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "entry",
+     "calls": 11,
+     "inputTokens": 5122,
+     "outputTokens": 1306,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.01345716
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-uk",
+     "model": null,
+     "scope": "entry",
+     "calls": 14,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 524,
+     "seconds": 0,
+     "usd": 0.00524
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-en",
+     "model": null,
+     "scope": "entry",
+     "calls": 13,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 493,
+     "seconds": 0,
+     "usd": 0.00493
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-ru",
+     "model": null,
+     "scope": "entry",
+     "calls": 13,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 493,
+     "seconds": 0,
+     "usd": 0.00493
+    },
+    {
+     "service": "translator",
+     "op": "translator.en-da",
+     "model": null,
+     "scope": "entry",
+     "calls": 13,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 501,
+     "seconds": 0,
+     "usd": 0.00501
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.backcheck",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "entry",
+     "calls": 4,
+     "inputTokens": 1906,
+     "outputTokens": 816,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.006156119999999999
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review-a",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "entry",
+     "calls": 3,
+     "inputTokens": 4220,
+     "outputTokens": 2279,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.01527372
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review-b",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "entry",
+     "calls": 3,
+     "inputTokens": 4082,
+     "outputTokens": 1562,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.01253844
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.adjudicate",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "entry",
+     "calls": 1,
+     "inputTokens": 1128,
+     "outputTokens": 291,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.0029754
+    },
+    {
+     "service": "speech",
+     "op": "speech.tts",
+     "model": null,
+     "scope": "entry",
+     "calls": 8,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 72,
+     "seconds": 0,
+     "usd": 0.00108
+    },
+    {
+     "service": "speech",
+     "op": "speech.stt",
+     "model": null,
+     "scope": "entry",
+     "calls": 4,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 0,
+     "seconds": 8.2795,
+     "usd": 0.00229987
+    }
+   ]
+  },
+  "family": {
+   "units": 12,
+   "items": {
+    "sentence": 14
+   },
+   "lines": [
+    {
+     "service": "translator",
+     "op": "translator.da-uk",
+     "model": null,
+     "scope": "family",
+     "calls": 14,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 695,
+     "seconds": 0,
+     "usd": 0.00695
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.backcheck",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "family",
+     "calls": 4,
+     "inputTokens": 2552,
+     "outputTokens": 1364,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.0091872
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review-a",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "family",
+     "calls": 2,
+     "inputTokens": 3270,
+     "outputTokens": 994,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.00914892
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review-b",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "family",
+     "calls": 2,
+     "inputTokens": 3178,
+     "outputTokens": 948,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.00882876
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.adjudicate",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "family",
+     "calls": 1,
+     "inputTokens": 932,
+     "outputTokens": 234,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.002436
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.generate",
+     "model": "DeepSeek-V4-Pro",
+     "scope": "family",
+     "calls": 22,
+     "inputTokens": 86768,
+     "outputTokens": 3914,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.16459704
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-en",
+     "model": null,
+     "scope": "family",
+     "calls": 23,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 1128,
+     "seconds": 0,
+     "usd": 0.01128
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-ru",
+     "model": null,
+     "scope": "family",
+     "calls": 23,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 1128,
+     "seconds": 0,
+     "usd": 0.01128
+    },
+    {
+     "service": "translator",
+     "op": "translator.en-da",
+     "model": null,
+     "scope": "family",
+     "calls": 20,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 1045,
+     "seconds": 0,
+     "usd": 0.01045
+    },
+    {
+     "service": "translator",
+     "op": "translator.ru-da",
+     "model": null,
+     "scope": "family",
+     "calls": 19,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 910,
+     "seconds": 0,
+     "usd": 0.0091
+    },
+    {
+     "service": "speech",
+     "op": "speech.tts",
+     "model": null,
+     "scope": "family",
+     "calls": 6,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 460,
+     "seconds": 0,
+     "usd": 0.0069
+    },
+    {
+     "service": "speech",
+     "op": "speech.stt",
+     "model": null,
+     "scope": "family",
+     "calls": 3,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 0,
+     "seconds": 16.1183125,
+     "usd": 0.00447731
+    }
+   ]
+  }
+ }
+}

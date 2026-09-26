@@ -1,12 +1,14 @@
 /**
- * The corpus pipeline's two paid providers (issue #16), shared by every generation stage so one
- * ledger (`catalog/families/azure-usage.json`) carries every call and one budget check stops all
- * of them: DeepSeek-V4-Pro on Azure AI Foundry for semantic/generative work, Azure Translator for
- * mechanical EN/RU translation. Credentials come from `.env.corpus.local` (`tsx --env-file`).
+ * The corpus pipeline's two text providers (issue #16), shared by every generation stage:
+ * DeepSeek-V4-Pro on Azure AI Foundry for semantic/generative work, Azure Translator for
+ * mechanical translation. Every call is checked against the budget before it is made and recorded
+ * in the committed spend ledger after it (`scripts/spend-ledger.ts`, issue #27), against the issue
+ * named by `CONTENT_ISSUE`. Credentials come from `.env.corpus.local` (`tsx --env-file`).
  */
 import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { normalizeSentence } from '../lib/catalog-families'
+import { assertBudget, recordPaid, spendLine } from './spend-ledger'
 
 function requireEnv(name: string): string {
   const value = process.env[name]
@@ -19,53 +21,7 @@ const FOUNDRY_KEY = requireEnv('AZURE_FOUNDRY_API_KEY')
 export const MODEL = requireEnv('AZURE_CORPUS_MODEL')
 const TRANSLATOR_KEY = requireEnv('AZURE_TRANSLATOR_KEY')
 const TRANSLATOR_ENDPOINT = requireEnv('AZURE_TRANSLATOR_ENDPOINT')
-export const BUDGET_USD = Number(process.env.AZURE_CORPUS_BUDGET_USD || '100')
-
-// Azure AI Foundry list price for DeepSeek-V4-Pro, 2026-09-25 (input/output per token). A
-// Microsoft Q&A thread reports live billing running up to ~4.5x list on this route, so the
-// running budget check applies SAFETY_MARGIN on top of this estimate rather than trusting it bare.
-const PRICE_PER_TOKEN_IN = 1.74 / 1_000_000
-const PRICE_PER_TOKEN_OUT = 3.48 / 1_000_000
-export const SAFETY_MARGIN = 5
-
-const usagePath = 'catalog/families/azure-usage.json'
-interface Usage { modelUsd: number; translatorChars: number; calls: { op: string; model?: string; inputTokens?: number; outputTokens?: number; usd?: number; chars?: number; seconds?: number; at: string }[] }
-async function readUsage(): Promise<Usage> {
-  return existsSync(usagePath) ? JSON.parse(await readFile(usagePath, 'utf8')) as Usage : { modelUsd: 0, translatorChars: 0, calls: [] }
-}
-/** The ledger as of the last save; the budget check reads it. */
-export const usage: Usage = await readUsage()
-// Calls made by this process and not yet written. Several stages run at once, so a save re-reads
-// the ledger and adds only this process's own calls: writing a whole in-memory copy would erase
-// whatever another process recorded in between (observed: the total went down).
-let unsaved: Usage['calls'] = []
-let saving: Promise<void> = Promise.resolve()
-
-/** Record one paid call (model, Translator, Speech) in the shared ledger. */
-export function record(call: Usage['calls'][number]): Promise<void> {
-  unsaved.push(call)
-  saving = saving.then(async () => {
-    const batch = unsaved
-    unsaved = []
-    if (!batch.length) return
-    const ledger = await readUsage()
-    for (const entry of batch) {
-      ledger.modelUsd += entry.usd ?? 0
-      if (entry.op.startsWith('translator.')) ledger.translatorChars += entry.chars ?? 0
-      ledger.calls.push(entry)
-    }
-    await writeFile(usagePath, `${JSON.stringify(ledger, null, 1)}\n`)
-    Object.assign(usage, ledger)
-  })
-  return saving
-}
-
-function assertBudget(): void {
-  if (BUDGET_USD - usage.modelUsd * SAFETY_MARGIN <= 0) {
-    console.error(`Budget exhausted: $${usage.modelUsd.toFixed(4)} spent (×${SAFETY_MARGIN} safety margin) of $${BUDGET_USD} ceiling. Stopping.`)
-    process.exit(1)
-  }
-}
+export { spendLine }
 
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms))
@@ -96,10 +52,10 @@ export function extractJson(text: string, open: '{' | '[' = '{'): unknown {
   return JSON.parse(text.slice(start, end + 1))
 }
 
-/** One DeepSeek completion, billed to the ledger under `op`; the reply's JSON value is returned. */
-export async function deepseekJson(op: string, label: string, system: string, user: string, options: { maxTokens?: number; temperature?: number; open?: '{' | '[' } = {}): Promise<unknown> {
+/** One DeepSeek completion, recorded in the ledger under `op`; the reply text is returned as written. */
+export async function deepseekText(op: string, label: string, system: string, user: string, options: { maxTokens?: number; temperature?: number } = {}): Promise<string> {
   return withRetry(`DeepSeek ${label}`, async () => {
-    assertBudget()
+    await assertBudget()
     const res = await fetch(`${FOUNDRY_ENDPOINT}/chat/completions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'api-key': FOUNDRY_KEY },
@@ -112,14 +68,16 @@ export async function deepseekJson(op: string, label: string, system: string, us
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`)
     const body = await res.json() as { choices: { message: { content: string } }[]; usage?: { prompt_tokens: number; completion_tokens: number } }
+    if (body.usage) await recordPaid({ op, model: MODEL, inputTokens: body.usage.prompt_tokens, outputTokens: body.usage.completion_tokens })
     const content = body.choices?.[0]?.message?.content
     if (!content) throw new Error('empty completion')
-    if (body.usage) {
-      const usd = body.usage.prompt_tokens * PRICE_PER_TOKEN_IN + body.usage.completion_tokens * PRICE_PER_TOKEN_OUT
-      await record({ op, model: MODEL, inputTokens: body.usage.prompt_tokens, outputTokens: body.usage.completion_tokens, usd, at: new Date().toISOString() })
-    }
-    return extractJson(content, options.open ?? '{')
+    return content
   })
+}
+
+/** One DeepSeek completion whose reply must hold JSON; a reply without it is asked again. */
+export async function deepseekJson(op: string, label: string, system: string, user: string, options: { maxTokens?: number; temperature?: number; open?: '{' | '[' } = {}): Promise<unknown> {
+  return withRetry(`DeepSeek ${label}`, async () => extractJson(await deepseekText(op, label, system, user, options), options.open ?? '{'), 3)
 }
 
 const translationCachePath = 'catalog/families/translation-cache.json'
@@ -140,6 +98,7 @@ export async function translate(text: string, to: string, from = 'da'): Promise<
   const cached = translationCache[key]
   if (cached) return cached
   const result = await withRetry(`Translator ${from}->${to} "${text.slice(0, 30)}…"`, async () => {
+    await assertBudget()
     const res = await fetch(`${TRANSLATOR_ENDPOINT}/translate?api-version=3.0&from=${from}&to=${to}`, {
       method: 'POST',
       headers: { 'Ocp-Apim-Subscription-Key': TRANSLATOR_KEY, 'Content-Type': 'application/json' },
@@ -151,7 +110,7 @@ export async function translate(text: string, to: string, from = 'da'): Promise<
     if (!out) throw new Error('empty translation')
     return out
   })
-  await record({ op: `translator.${from}-${to}`, chars: text.length, at: new Date().toISOString() })
+  await recordPaid({ op: `translator.${from}-${to}`, chars: text.length })
   translationCache[key] = result
   await saveTranslationCache()
   return result
@@ -185,8 +144,4 @@ export async function translationFidelityOk(danish: string, en: string, ru: stri
     return false
   }
   return true
-}
-
-export function spendLine(): string {
-  return `Model spend: $${usage.modelUsd.toFixed(4)} (×${SAFETY_MARGIN} margin = $${(usage.modelUsd * SAFETY_MARGIN).toFixed(4)} of $${BUDGET_USD} budget) · Translator: ${usage.translatorChars} characters`
 }

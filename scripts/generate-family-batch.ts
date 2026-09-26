@@ -14,7 +14,7 @@
  *     --work catalog/families/work/batch-0100.json --out catalog/families/out/batch-0100.json
  */
 import { existsSync } from 'node:fs'
-import { deepseekJson, spendLine, translate, translationFidelityOk, usage } from './azure-corpus'
+import { deepseekJson, spendLine, translate, translationFidelityOk } from './azure-corpus'
 import { readFile, writeFile } from 'node:fs/promises'
 import { normalizeSentence, variantDanish, type FamilyWorkSense } from '../lib/catalog-families'
 import { adverbBeforeVerbInMainClause, emptySlotsNeedVaryingTarget, finitePhraseAfterFrontedAdverbial, frontedSubordinateNeedsComma, infinitiveAfterAtOrModal, subjectPronounAfterPreposition, ordersUseSameWords, slotsDeclaredInFrame, invalidRequiresTarget, lemmaNotDuplicatedInFrame, mixedSFormConstruction, needsMinimumVariants, nonAsciiSlotName, sentenceAdverbBeforeVerb, targetMustOccurOnce } from '../lib/catalog-families-style'
@@ -328,7 +328,7 @@ for (const row of work) {
   }
   results.push({ ...accepted, variants })
   await writeFile(outPath, `${JSON.stringify(results, null, 1)}\n`)
-  console.log(`  ok: ${variants.length} variant(s) · spend so far $${usage.modelUsd.toFixed(4)} model, ${usage.translatorChars} translator chars`)
+  console.log(`  ok: ${variants.length} variant(s) · ${spendLine()}`)
 }
 
 console.log(`Done. ${results.length} row(s) → ${outPath}`)

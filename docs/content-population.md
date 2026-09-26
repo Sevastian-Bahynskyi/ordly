@@ -142,9 +142,10 @@ pnpm exec tsx scripts/import-catalog-families.ts --sql-dir <dir>   # merges the 
   translations (= en), 1,362/1,362 family sentences with `translations.uk`, one snapshot
   (`ca4f6225b2bfa6a4`, cleanup removed 0), 0 duplicate rows.
   `supabase/tests/catalog-contexts.mjs` passes 24/24 (every band × en/ru/uk × word/phrase) locally.
-- **Spend** (local ledger `catalog/families/azure-usage.json`, not committed; list price): DeepSeek $3.70 for this issue
-  ($9.14 cumulative); Azure Translator 477,064 characters for this issue (≈$4.77; 641,968 cumulative,
-  ≈$6.42); Azure Speech not used. All well under the $70-per-service budget.
+- **Spend** (then a local log, `catalog/families/azure-usage.json`; now the committed opening balance in
+  `catalog/ledger/opening.json`, list price): DeepSeek $3.70 for this issue ($9.14 cumulative); Azure
+  Translator 477,064 characters for this issue (≈$4.77; 641,968 cumulative, ≈$6.42); Azure Speech not
+  used.
 
 ## Baseline (2026-09-24)
 
@@ -169,3 +170,141 @@ Terms checked 2026-09-24: DSL Open permits use and derived works with attributio
 competing dictionary product; Tatoeba sentences are CC BY 2.0 FR with per-sentence attribution by
 id. DDO website examples and audio are **not** covered by DSL Open and are not copied into any new
 asset in this pass.
+
+## Corpus expansion pipeline (issue #27)
+
+The pipeline for #28 (phrases), #29 (words) and #30 (sentences and their audio). It runs the stages
+above for one batch with one command and accounts for every dollar. Nothing here runs in the app
+(AGENTS.md §27).
+
+### Spend ledger
+
+Committed, in `catalog/ledger/`, with no keys and no learner data:
+
+| file | holds |
+|---|---|
+| `budget.json` | the program: $120 for #27, #28, #29, #30 and #17 together, the planned split per issue, and every transfer between issues with its reason |
+| `opening.json` | what #16 and #24 spent before the program ($14.87 and $8.47 at list price), rebuilt once from the old local per-call log with `content-ledger.ts --opening` |
+| `runs/*.json` | one record per process that made a paid call: issue, batch, command, the estimate it started from, and per op, model and unit scope the calls, tokens, characters, audio seconds and list price |
+| `profile.json` | what one unit (an entry, a family) costs per op, measured on a calibration batch; the estimates scale it |
+
+Every paid call goes through `scripts/spend-ledger.ts` (`azure-corpus.ts` for DeepSeek and
+Translator, `speech-clip.ts` for Speech). It is priced at the list prices in `lib/content-ledger.ts`
+(DeepSeek-V4-Pro on Azure AI Foundry $1.74 / $3.48 per million input / output tokens, Translator
+$10 per million characters, neural speech $15 per million characters, recognition and
+pronunciation assessment $1 per audio hour; free-tier allowances ignored). **A paid call needs an
+issue**: `CONTENT_ISSUE=<n>` in the environment (the batch command sets it from `batch.json`), or
+the call is refused before it is made. Every stage script (`generate-family-batch.ts`,
+`generate-locale-batch.ts`, `synthesize-audio.ts`, …) records the same way, so a hand-run stage
+is accounted for too:
+
+```
+CONTENT_ISSUE=30 pnpm exec tsx --env-file=.env.corpus.local scripts/synthesize-audio.ts --synthesize
+```
+
+Report and transfers (no paid call):
+
+```
+pnpm exec tsx scripts/content-ledger.ts             # per service, per issue, against $120
+pnpm exec tsx scripts/content-ledger.ts --batches   # each batch's estimate against its actual spend
+pnpm exec tsx scripts/content-ledger.ts --transfer --from 30 --to 28 --usd 2 --note "why"
+```
+
+### Budget rule
+
+- Before a run: its estimate (`--estimate`) must fit what is left of **its issue's allocation**
+  (plan plus transfers) **and of the program**; otherwise the run refuses to start. Move money
+  between issues only with a recorded transfer.
+- During a run: before every paid call, the process stops when its issue's allocation or the
+  program is spent, or when the run reaches its cap (twice its estimate, at least $0.25 over it).
+  Other runs' spend is re-read every minute.
+- After a run: nothing to do by hand; the run record is the actual spend. Commit it with the batch.
+- Stop and ask before a run would take cumulative program spend past $120.
+
+### One batch
+
+A batch is a directory `catalog/pipeline/<name>/` with `batch.json`: the issue, the units, whether
+to record audio, and the audit's seed and size. Units are **entries** (a headword or phrase with
+verified forms; DeepSeek writes one to three meanings in Russian, English and Ukrainian and one
+Danish example each) and **families** (a sense and a matrix cell, written by
+`generate-family-batch.ts`). Items are every meaning, every example and every family sentence.
+
+```
+pnpm exec tsx scripts/content-batch.ts --batch catalog/pipeline/<name> --estimate           # dry run: cost against what is left
+pnpm exec tsx --env-file=.env.corpus.local scripts/content-batch.ts --batch catalog/pipeline/<name>
+pnpm exec tsx --env-file=.env.corpus.local scripts/content-batch.ts --batch catalog/pipeline/<name> --load
+```
+
+Stages, each writing its result into the batch directory and skipping what is already there, so
+the same command resumes after any stop without paying twice:
+
+1. **Estimate** against the ledger; refuse if it does not fit.
+2. **Generate**: entries (`entries.json`), families (`families/out/`, via the family generator).
+3. **Translate and back-translate**: every Danish sentence into English, Russian and Ukrainian
+   (Azure Translator); the English back into Danish. Translations are cached, so a retry is free.
+4. **Reviews** (`reviews.json`): every item by two DeepSeek reviewers with different instructions
+   and no shared context (A: a linguist's rubric; B: reads the Danish alone first, then compares its
+   reading with the item). Where they disagree, an adjudicator sees both verdicts and decides. Every
+   sentence also gets the **back-translation check**: a reviewer compares the original Danish with
+   the round trip through English; drift rejects the item. A reply that is not the promised JSON or
+   leaves items out is asked again for the missing items; an item still without a verdict is
+   quarantined as unresolved. (`lib/content-review.ts`, tested offline on recorded replies.)
+5. **Gate**: only what the reviews passed. Entries: `lib/content-gate.ts` (script and language of
+   each wording, Ukrainian check, one verified form in the example, spelling, translations present,
+   no two senses worded alike). Families: `validateFamily` (the family gate) plus the Ukrainian
+   check. Everything rejected, at any stage, goes to `needs_review.jsonl` with its reasons.
+6. **Audio** (when `audio` is set): the headword of every entry and every family sentence, with
+   the speech-recognition check of `synthesize-audio.ts` — a clip not heard as written is made
+   again with the second voice, and one still not matching is judged by DeepSeek (`audio.json`).
+7. **Report** (`report.json`): items generated and passed per kind, disagreement rate,
+   adjudications, back-translation drift, audio checks, and cost against the estimate, per item.
+8. **Audit**: a seeded sample of passed items (`audit-sample.md`, verdicts in `audit.json`). The
+   run stops until every verdict is set; the batch passes at ≥95% clean with no severe finding.
+9. **Load** (`--load`, after the audit passed): families into `publish/families.jsonl` and
+   `publish/translations-uk.json` — `import-catalog-families.ts` loads every pipeline snapshot
+   together with `catalog/families/published.jsonl`, so its cleanup never drops another batch —
+   and the SQL into `load/` (run each file with `supabase db query --linked`, see **Loading
+   data**). Entries into `publish/rows.json` and `publish/locale-{en,uk}.json`, the contracts
+   `import-catalog.ts` and `import-catalog-locale.ts` take; a new headword also needs its facts
+   (forms, pronunciation), which #28 and #29 derive for their sources.
+
+### Calibration (2026-09-26)
+
+Two batches, run end to end with both reviews, adjudication, back-translation, audio and an audit
+(`catalog/pipeline/calibration-000{1,2}/`, `report.json` in each). Entries were phrases from the
+#28 inventory pool; families were senses with no family yet (#30 pool). Neither was loaded: both
+audits failed, which is the pipeline doing its job.
+
+| | calibration-0001 | calibration-0002 |
+|---|---|---|
+| units | 8 entries, 12 families | 5 entries, 5 families |
+| items reviewed (meaning / example / sentence) | 14 / 14 / 14 | 8 / 8 / 7 |
+| passed reviews, back-translation and gate | 6 / 6 / 3 | 2 / 2 / 3 |
+| reviewer disagreement | 7 / 42 (16.7%) | 3 / 23 (13.0%) |
+| adjudicated → accepted | 7 → 0 | 3 → 2 |
+| back-translation drift | 4 / 28 | 0 / 15 |
+| audio clips heard as written | 7 / 7 | 5 / 5 (1 on the second voice) |
+| audit | 11 / 15 clean, 0 severe — fail | 6 / 7 clean, 1 severe — fail |
+| estimate → actual | $0.4384 → $0.3285 (−25.1%, prior profile) | $0.1523 → $0.1485 (**−2.5%**, calibrated profile) |
+| cost per item reviewed | $0.0078 | $0.0065 |
+
+- **Estimates.** The first batch was estimated from a prior built from the #16/#24 ledger; the
+  profile measured on it (`catalog/ledger/profile.json`, `content-ledger.ts --profile`) then
+  estimated the second, independent batch within 2.5%. A batch of 600 families for #27 was refused
+  before any call ($12.81 estimated, $2.52 left).
+- **Cost per unit** (both batches): an entry ≈ $0.0087 (DeepSeek 67%, Translator 28%, Speech 5%);
+  a family ≈ $0.0214 (DeepSeek 77%: the family generator's retries dominate). 600 phrases (#28)
+  ≈ $5.2 and 1,000 words (#29) ≈ $8.7 before re-runs, inside their $12 each.
+- **Yield, and what it means for #30.** 17 families produced 21 sentences, of which 6 passed:
+  about $0.061 per passing sentence, so 20,000 sentences at this yield would cost about $1,200,
+  far beyond #30's $78. The losses are real defects the reviews and the gate caught (`en kriser`,
+  a past-tense target filed as `verb-present`, "CEO" for *direktør*, families left with one
+  variant), plus the family generator's own skips (5 of 12). #30 has to raise the yield (fewer
+  generator retries, cheaper sentence sources) or cut the target; stop and ask before planning
+  its runs on these numbers.
+- **What the audits found that both reviewers let through**: Translator's present simple for a
+  plan ("We go to the beach tomorrow"), *ferien* as "праздники/свята", a Russian-style
+  instrumental in Ukrainian, and one severe: *Jeg tænker mig at tage tidligt hjem* (intention needs
+  *har tænkt mig at*). The adjudicator sided with the rejecting reviewer in 8 of 10 disputes.
+- **Back-translation.** Its first prompt asked for the same meaning of every content word and
+  flagged plain paraphrase (11/28); it now flags only a changed situation (4/28, all real).
