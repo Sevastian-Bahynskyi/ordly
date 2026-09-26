@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowDown, ArrowUp, ChevronDown, Ellipsis, Loader2, RotateCcw, Sparkles, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, ChevronDown, Ellipsis, Plus, Trash2 } from 'lucide-react'
 import { AutoGrowTextarea } from '@/components/AutoGrowTextarea'
 import { OverflowMenu, type OverflowMenuItem } from '@/components/OverflowMenu'
 import { useI18n } from '@/components/I18nProvider'
@@ -13,22 +13,12 @@ import type { EntrySense, NounGender, PartOfSpeech } from '@/lib/types'
  */
 
 export interface SenseExampleState {
-  loading: boolean
-  disabled: boolean
-  onGenerate: () => void
-  onRegenerate: () => void
   onChange: (patch: Pick<Partial<EntrySense>, 'example' | 'example_translation'>) => void
   onClear: () => void
 }
 
-export interface SenseGrammarState {
-  loading: boolean
-  disabled: boolean
-  onClassify: () => void
-}
-
 export function SenseRow({
-  sense, index, total, isPrimary, showGrammar, allowRemove, placeholder, exampleState, grammarState,
+  sense, index, total, isPrimary, showGrammar, allowRemove, placeholder, exampleState,
   onText, onPos, onGender, onMove, onRemove,
 }: {
   sense: EntrySense
@@ -39,7 +29,6 @@ export function SenseRow({
   allowRemove: boolean
   placeholder: string
   exampleState: SenseExampleState | null
-  grammarState: SenseGrammarState | null
   onText: (value: string) => void
   onPos: (value: PartOfSpeech | null) => void
   onGender: (value: NounGender | null) => void
@@ -52,7 +41,6 @@ export function SenseRow({
   const menuItems: (OverflowMenuItem | 'separator')[] = [
     ...(index > 0 ? [{ label: t.sense.moveUp, icon: <ArrowUp size={16} />, onSelect: () => onMove(-1) }] : []),
     ...(index < total - 1 ? [{ label: t.sense.moveDown, icon: <ArrowDown size={16} />, onSelect: () => onMove(1) }] : []),
-    ...(grammarState ? [{ label: t.sense.detectGrammar, icon: <Sparkles size={16} />, onSelect: grammarState.onClassify, disabled: grammarState.disabled }] : []),
     ...(allowRemove ? ['separator' as const, { label: t.sense.removeMeaning, icon: <Trash2 size={16} />, onSelect: onRemove, danger: true }] : []),
   ]
 
@@ -109,18 +97,6 @@ export function SenseRow({
               ))}
             </span>
           )}
-
-          {grammarState && (
-            <button
-              type="button"
-              className="pill pill-grammar"
-              disabled={grammarState.disabled}
-              onClick={grammarState.onClassify}
-              aria-label={t.sense.detectFor(n)}
-            >
-              {grammarState.loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} {t.sense.grammar}
-            </button>
-          )}
         </div>
       )}
 
@@ -135,10 +111,7 @@ export function SenseRow({
   )
 }
 
-/**
- * A non-primary sense's own example (D10). It is generated only when asked for, never
- * eagerly: a word with four meanings would otherwise cost four example calls at save time.
- */
+/** A non-primary sense's own example (D10), written by the learner and shown once asked for. */
 function SenseExample({ sense, index, state }: {
   sense: EntrySense
   index: number
@@ -146,16 +119,17 @@ function SenseExample({ sense, index, state }: {
 }): React.JSX.Element {
   const { t } = useI18n()
   const n = index + 1
-  if (!sense.example) {
+  // An empty string is an example being written; only null has none yet.
+  if (sense.example == null) {
     return (
       <div className="sense-example">
         <button
           type="button"
           className="sense-example-add"
-          disabled={state.disabled || !sense.text.trim()}
-          onClick={state.onGenerate}
+          disabled={!sense.text.trim()}
+          onClick={() => state.onChange({ example: '' })}
         >
-          {state.loading ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />} {t.sense.exampleForMeaning}
+          <Plus size={12} /> {t.sense.exampleForMeaning}
         </button>
       </div>
     )
@@ -166,10 +140,7 @@ function SenseExample({ sense, index, state }: {
       <div className="sense-example-head">
         <small>{t.sense.exampleForMeaning}</small>
         <span className="sense-example-actions">
-          <button type="button" className="ai-mini" disabled={state.disabled} onClick={state.onRegenerate} aria-label={t.sense.regenerateFor(n)}>
-            {state.loading ? <Loader2 className="spin" size={12} /> : <RotateCcw size={12} />} {t.sense.regenerate}
-          </button>
-          <button type="button" className="icon-button danger" disabled={state.disabled} onClick={state.onClear} aria-label={t.sense.removeExampleFor(n)}>
+          <button type="button" className="icon-button danger" onClick={state.onClear} aria-label={t.sense.removeExampleFor(n)}>
             <Trash2 size={13} />
           </button>
         </span>

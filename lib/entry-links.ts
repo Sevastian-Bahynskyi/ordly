@@ -272,33 +272,3 @@ export function truncateLabel(text: string, max = 14): string {
   if (trimmed.length <= max) return trimmed
   return `${trimmed.slice(0, Math.max(1, max - 1)).trimEnd()}…`
 }
-
-/* ---- Discovery ------------------------------------------------------------------------- */
-
-/**
- * Ask the server to look for synonyms of a freshly saved entry (D16).
- *
- * Deliberately swallows everything. Discovery runs after the save has already succeeded, so a
- * rate limit, a missing AI key or an offline phone must cost the learner nothing at all — the
- * worst outcome allowed here is that no chips appear.
- *
- * Returns how many edges the run produced, so the caller can decide whether refreshing the
- * route is worth it.
- */
-export async function discoverSynonyms(entryId: string): Promise<number> {
-  if (!entryId) return 0
-  try {
-    const response = await fetch('/api/synonyms/discover', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ entryId }),
-    })
-    if (!response.ok) return 0
-    const body: unknown = await response.json()
-    if (!body || typeof body !== 'object') return 0
-    const links = (body as { links?: unknown }).links
-    return Array.isArray(links) ? links.length : 0
-  } catch {
-    return 0
-  }
-}

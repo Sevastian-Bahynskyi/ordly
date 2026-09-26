@@ -13,9 +13,8 @@ The values live in the code, not in this file: design tokens in `:root` at the t
 - Take colour from a `:root` token. A screen that needs a colour the tokens lack needs a new
   token, not a hex literal in a component stylesheet.
 - Purple marks what the learner can act on. Green confirms, amber cautions, red is failure.
-- Tint one element per group. In a row of pills only the AI action gets a filled background; the
-  others carry their colour in the text and a small dot. When everything is tinted, the tint stops
-  meaning anything.
+- Tint one element per group. Pills carry their colour in the text and a small dot rather than a
+  filled background. When everything is tinted, the tint stops meaning anything.
 
 ## Type and touch
 

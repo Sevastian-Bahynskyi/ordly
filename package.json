@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "test:openrouter": "node --experimental-strip-types --test lib/openrouter.test.mjs",
     "test": "tsx --test lib/*.test.mjs lib/i18n/*.test.mjs"
   },
   "dependencies": {

@@ -2,17 +2,15 @@
 
 import { DEFAULT_LEARNER_LANGUAGE } from '@/lib/learner-language'
 import Link from 'next/link'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BookOpenText, Check, CloudUpload, Loader2, Search, Sparkles, VolumeX, Waypoints, X } from 'lucide-react'
+import { BookOpenText, CloudUpload, Loader2, Search, VolumeX, Waypoints, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
-import { requestEnrichment, UnknownDanishError, type EnrichField } from '@/lib/ai-responses'
 import { definiteFormKey } from '@/lib/cor'
 import { inferDanishInputKind } from '@/lib/entry-kind'
-import { mergeSenses } from '@/lib/sense-merge'
 import { hasWordRecording } from '@/lib/material-audio'
 import { activeSenses, nounGenderOf, parseSenses, PARTS_OF_SPEECH } from '@/lib/senses'
-import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
+import type { LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
 import type { WordForm } from '@/lib/word-forms'
 import { DefiniteNoun } from './DefiniteNoun'
 import { MemoryRing } from './MemoryRing'
@@ -37,16 +35,6 @@ function kindOf(entry: VocabularyEntry): 'word' | 'phrase' | 'sentence' {
   if (entry.entry_kind === 'sentence') return 'sentence'
   return inferDanishInputKind(entry.danish) === 'word' ? 'word' : 'phrase'
 }
-
-type PreviewState = {
-  word: VocabularyEntry
-  proposal: Partial<Record<EnrichField, string>>
-  selected: Record<EnrichField, boolean>
-  /** The sense objects behind `proposal.translation`, kept so applying preserves sense ids. */
-  senses: EntrySense[]
-}
-
-const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example_sentence', 'example_translation']
 
 export function MaterialClient({
   initialWords,
@@ -84,11 +72,6 @@ export function MaterialClient({
   const [status, setStatus] = useState<StatusFilter>('all')
   /** Part of speech, offered only while the list is showing words — a sentence has none. */
   const [pos, setPos] = useState<PartOfSpeech | 'all'>(initialPos)
-  const [enriching, setEnriching] = useState<string | null>(null)
-  /** Entries the word register refused to enrich; a second press on the row goes ahead anyway. */
-  const enrichAnyway = useRef<Set<string>>(new Set())
-  const [preview, setPreview] = useState<PreviewState | null>(null)
-  const [applyingPreview, setApplyingPreview] = useState(false)
   const [uploadingGithub, setUploadingGithub] = useState(false)
 
   const cardsByEntry = useMemo(() => new Map(cards.map((card) => [card.entry_id, card])), [cards])
@@ -232,111 +215,6 @@ export function MaterialClient({
     return gender && definite ? <DefiniteNoun definite={definite} gender={gender} /> : null
   }
 
-  function enrichFieldsFor(word: VocabularyEntry) {
-    const includeExample = word.entry_kind !== 'sentence' || Boolean(word.example_sentence || word.example_translation)
-    return includeExample ? allEnrichFields : allEnrichFields.slice(0, 2)
-  }
-
-  /** The composer's enrich call, for a row of this list. Same route, same reader, same errors. */
-  async function enrichWord(word: VocabularyEntry, fields: EnrichField[]) {
-    try {
-      return await requestEnrichment({
-        draft: {
-          danish: word.danish,
-          pronunciation: word.pronunciation || '',
-          translation: word.translation || '',
-          example_sentence: word.example_sentence || '',
-          example_translation: word.example_translation || '',
-        },
-        fields,
-        entryKind: word.entry_kind === 'sentence' ? 'sentence' : 'word',
-        includeExample: fields.includes('example_sentence') || fields.includes('example_translation'),
-        regenerate: false,
-        allowUnknownDanish: enrichAnyway.current.has(word.id),
-      })
-    } catch (error) {
-      // The word register does not know this Danish form. Pressing enrich again goes ahead
-      // anyway, because the register really is missing a few real words (issue #5 §2).
-      if (error instanceof UnknownDanishError) enrichAnyway.current.add(word.id)
-      throw error
-    }
-  }
-
-  /**
-   * Writing only `translation` lets the DB trigger re-derive `senses` from the string, which
-   * mints a fresh id for every meaning and strands whatever FSRS state was keyed to the old
-   * ones. Merging here keeps the ids the entry already had (D15).
-   */
-  function mergedSensesFor(word: VocabularyEntry, generated: EntrySense[]): EntrySense[] | null {
-    if (!generated.length) return null
-    return mergeSenses(parseSenses(word.senses), generated)
-  }
-
-  async function previewEnrichWord(word: VocabularyEntry) {
-    setEnriching(word.id)
-    try {
-      const fields = enrichFieldsFor(word)
-      const body = await enrichWord(word, fields)
-      const proposal: Partial<Record<EnrichField, string>> = {}
-      const selected: Record<EnrichField, boolean> = {
-        pronunciation: false,
-        translation: false,
-        example_sentence: false,
-        example_translation: false,
-      }
-
-      for (const field of fields) {
-        const value = (body[field] || '').trim()
-        if (!value) continue
-        proposal[field] = value
-        selected[field] = value !== currentFieldValue(word, field)
-      }
-
-      if (!Object.keys(proposal).length) throw new Error(t.material.noSuggestions)
-      setPreview({ word, proposal, selected, senses: body.senses || [] })
-    } catch (error) {
-      // A route's own line is already in the learner's language; a network failure is not shown raw.
-      window.alert(error instanceof Error && !(error instanceof TypeError) ? error.message : t.material.enrichFailed)
-    } finally {
-      setEnriching(null)
-    }
-  }
-
-  async function applyPreview() {
-    if (!preview) return
-    const selectedFields = (Object.keys(preview.selected) as EnrichField[]).filter((field) => preview.selected[field] && preview.proposal[field] !== undefined)
-    if (!selectedFields.length) {
-      setPreview(null)
-      return
-    }
-
-    setApplyingPreview(true)
-    const patch: Record<string, string | boolean | null | EntrySense[]> = { ai_enriched: true }
-    for (const field of selectedFields) patch[field] = preview.proposal[field] || null
-
-    if (selectedFields.includes('translation')) {
-      // Applying the translation also applies the part of speech and gender that came with it,
-      // and keeps every sense id the entry already had.
-      const merged = mergedSensesFor(preview.word, preview.senses)
-      if (merged) patch.senses = merged
-    }
-
-    const { data, error } = await createClient()
-      .from('vocabulary_entries')
-      .update(patch)
-      .eq('id', preview.word.id)
-      .select('*')
-      .single()
-
-    if (!error && data) {
-      setWords((current) => current.map((word) => word.id === data.id ? data : word))
-      setPreview(null)
-    } else if (error) {
-      window.alert(t.editor.couldNotSave)
-    }
-    setApplyingPreview(false)
-  }
-
   async function removeWord(id: string) {
     if (!confirm(t.material.confirmDelete)) return
     const { error } = await createClient().from('vocabulary_entries').delete().eq('id', id)
@@ -415,7 +293,7 @@ export function MaterialClient({
           <span>{word.translation || <em className="muted">{t.common.notAdded}</em>}</span>
           <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">{t.material.yourSentence}</em> : word.example_sentence || <em className="muted">{t.material.noExample}</em>}</span>
           <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{t.status[word.learning_status]}</span></div>
-          <div className="row-menu"><button className="icon-button" title={t.material.previewEnrich} disabled={enriching === word.id} onClick={() => previewEnrichWord(word)}>{enriching === word.id ? <Loader2 className="spin" size={16}/> : <Sparkles size={16}/>}</button><button className="icon-button danger" title={t.material.delete} onClick={() => removeWord(word.id)}><X size={16}/></button></div>
+          <div className="row-menu"><button className="icon-button danger" title={t.material.delete} onClick={() => removeWord(word.id)}><X size={16}/></button></div>
           {/* A real link rather than an onClick, so the row prefetches, middle-clicks, and
               triggers the app's route-loading feedback (AGENTS.md §5, §16). It is appended
               last and absolutely positioned: the mobile grid in globals.css places the other
@@ -431,42 +309,6 @@ export function MaterialClient({
       <FormForest entries={words} forms={initialForms} initialQuery={query} />
     </div>}
 
-    {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>
-      <section className="modal-card enrich-preview-card" onMouseDown={(event) => event.stopPropagation()}>
-        <div className="modal-title">
-          <div><span className="eyebrow"><Sparkles size={14}/> {t.material.previewEyebrow}</span><h2>{t.material.reviewChanges(preview.word.danish)}</h2></div>
-          <button className="icon-button" aria-label={t.common.close} disabled={applyingPreview} onClick={() => setPreview(null)}><X size={18}/></button>
-        </div>
-        <p>{t.material.nothingChanged}</p>
-        <div className="enrich-preview-list">
-          {(Object.keys(preview.proposal) as EnrichField[]).map((field) => {
-            const current = currentFieldValue(preview.word, field)
-            const proposed = preview.proposal[field] || ''
-            const changed = current !== proposed
-            return <label className={`enrich-preview-row ${preview.selected[field] ? 'selected' : ''}`} key={field}>
-              <input type="checkbox" checked={preview.selected[field]} disabled={!changed || applyingPreview} onChange={(event) => setPreview((state) => state ? { ...state, selected: { ...state.selected, [field]: event.target.checked } } : state)} />
-              <div className="enrich-preview-copy">
-                <strong>{t.material.fields[field]}</strong>
-                {current && <span className="enrich-current">{t.material.current(current)}</span>}
-                <span className="enrich-proposed"><Sparkles size={12}/> {proposed}</span>
-                {!changed && <small>{t.material.alreadySame}</small>}
-              </div>
-            </label>
-          })}
-        </div>
-        <div className="modal-footer">
-          <span><Check size={15}/> {t.material.applyOnlySelected}</span>
-          <div className="row-actions">
-            <button className="soft-button" disabled={applyingPreview} onClick={() => setPreview(null)}>{t.common.cancel}</button>
-            <button className="primary-button" disabled={applyingPreview || !(Object.keys(preview.selected) as EnrichField[]).some((field) => preview.selected[field])} onClick={applyPreview}>{applyingPreview ? <Loader2 className="spin" size={17}/> : <Check size={17}/>} {t.material.applySelected}</button>
-          </div>
-        </div>
-      </section>
-    </div>}
-
   </>
 }
 
-function currentFieldValue(word: VocabularyEntry, field: EnrichField) {
-  return String(word[field] || '').trim()
-}

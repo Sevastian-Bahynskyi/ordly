@@ -6,18 +6,15 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 
 ## Features
 
-- Manual-first Danish word, phrase, and sentence capture
-- Phrase-aware base/normalization and sentence correctness checking
-- OpenRouter AI enrichment for pronunciation, translation, example sentence, sentence translation, review checking, and icon concepts
-- Deterministic model routing: GLM 5.2 Free first, Gemma 4 31B Free second, Nemotron 3 Super Free third
-- DDO + Wiktionary IPA pronunciation pipeline with deterministic Cyrillic conversion and AI validation
-- Russian, English, or Ukrainian translations
+- Danish word, phrase, and sentence capture from a prepared catalog: meanings, forms, pronunciation and audio
+- Manual entry for anything the catalog does not hold, marked unverified and studied in Review only
+- No runtime AI: the running app calls no model. Paid services (DeepSeek, Azure Translator, Azure Speech) are used only by the offline content pipeline in `scripts/`
+- Word-register (COR) base-form and spelling checks before a single word is saved
+- Russian, English, or Ukrainian interface and translations
 - FSRS scheduling with typed recall and `Again / Hard / Good / Easy` ratings
-- AI semantic fallback for valid synonyms during review
 - Reversible review ratings and in-session `Again` requeueing
 - FSRS recall/stability rings in Review and Words
 - Configurable daily new-word limit in Settings, default 10
-- Bulk raw import with optional enrichment
 - New / Learning / Mastered states
 - Installable iOS/desktop PWA with Web Push notifications
 - Due-review reminders, occasional word challenges, and per-weekday mandatory study reminders
@@ -26,7 +23,7 @@ A personal Danish vocabulary trainer built for frictionless capture and serious 
 
 ## Stack
 
-Next.js, TypeScript, Supabase, OpenRouter, `ts-fsrs`, Vercel, and Web Push.
+Next.js, TypeScript, Supabase, `ts-fsrs`, Vercel, and Web Push.
 
 ## Deployment
 
@@ -38,13 +35,12 @@ Copy `.env.example` to `.env.local` and provide:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
-- `OPENROUTER_API_KEY`
 
 GitHub learning-stat exports also require the server-only `GITHUB_APP_PRIVATE_KEY`, plus
 `GITHUB_APP_ID`, `GITHUB_APP_INSTALLATION_ID`, `GITHUB_EXPORT_REPOSITORY`, and
 `GITHUB_EXPORT_BRANCH`. Never prefix these with `NEXT_PUBLIC_` or commit the private key.
 
-The OpenRouter key and all other private server credentials must remain server-side.
+All private server credentials must remain server-side. The app itself needs no model key; the content scripts read their DeepSeek and Azure keys from the shell environment.
 
 ## Database
 

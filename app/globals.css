@@ -84,8 +84,6 @@ button { color: inherit; }
 .field textarea { min-height: 62px; resize: vertical; padding: 11px 12px; line-height: 1.45; }
 .field input:focus, .field textarea:focus, select:focus, .number-input:focus, .bulk-textarea:focus { background: #fff; border-color: #9c86e6; box-shadow: 0 0 0 3px rgba(117,87,219,.11); }
 .field input::placeholder, .field textarea::placeholder, .search-box input::placeholder, .answer-input-wrap input::placeholder { color: #b3afba; }
-.ai-mini { display: inline-flex; align-items: center; gap: 3px; border: 0; padding: 2px 6px; border-radius: 6px; color: #7157c9; background: #f1ecff; font-size: 9.5px; font-weight: 720; cursor: pointer; }
-.ai-mini:hover { background: #e8e0ff; }
 .composer-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
 .primary-button, .soft-button, .review-start { border: 0; border-radius: 11px; height: 39px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; font-size: 12.5px; font-weight: 650; transition: transform .14s ease, box-shadow .14s ease, background .14s ease, opacity .14s; }
 .primary-button { background: var(--ink); color: #fff; box-shadow: 0 4px 12px rgba(39,35,47,.16); }
@@ -105,7 +103,6 @@ button { color: inherit; }
 .duplicate-box > div:first-child { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
 .duplicate-box span { color: var(--muted); }
 .row-actions { display: flex; gap: 6px; }
-
 
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
 .stat-card { min-height: 94px; padding: 17px; border-radius: 16px; background: rgba(255,255,255,.78); border: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; }
@@ -156,14 +153,7 @@ button { color: inherit; }
 .example-cell { color: #77717d; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .muted { color: #b0aab5; font-style: normal; }
 .row-menu { display: flex; justify-content: flex-end; gap: 2px; }
-.modal-backdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(34,29,39,.28); backdrop-filter: blur(6px); animation: fadeIn .16s ease; }
-.modal-card { width: min(560px, 100%); border: 1px solid rgba(255,255,255,.8); border-radius: 20px; padding: 24px; background: #fff; box-shadow: 0 24px 80px rgba(30,23,39,.2); animation: popIn .18s ease; }
-.modal-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
-.modal-title h2 { margin: 6px 0 0; font-size: 22px; letter-spacing: -.035em; }
-.modal-card > p { color: var(--muted); font-size: 12px; }
 .bulk-textarea { min-height: 230px; padding: 13px; resize: vertical; line-height: 1.6; }
-.modal-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
-.modal-footer > span { display: flex; align-items: center; gap: 5px; color: #99929f; font-size: 10px; }
 
 .settings-card { overflow: hidden; }
 .setting-row { min-height: 95px; padding: 20px 22px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 180px; gap: 28px; align-items: center; }
@@ -254,8 +244,6 @@ button { color: inherit; }
 
 .spin { animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes fadeIn { from { opacity: 0; } }
-@keyframes popIn { from { opacity: 0; transform: translateY(8px) scale(.985); } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(7px); } }
 @keyframes successFloat { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
 

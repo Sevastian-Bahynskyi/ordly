@@ -201,9 +201,16 @@ export interface PracticePlanInput {
 /** Group boards take at most this share of the session, so single-word practice still leads. */
 const GROUP_SHARE = 0.4
 
+/** Entered by hand outside the catalog: Review studies it, Practice never does (issue #25). */
+export function isReviewOnly(item: ReviewItem): boolean {
+  return item.vocabulary_entries.unverified === true
+}
+
 export function planPractice(input: PracticePlanInput): PracticeSessionState {
   const { attempts, now } = input
-  const usable = input.items.filter((item) => item.vocabulary_entries.translation?.trim())
+  // An entry entered by hand outside the catalog was checked by nothing, so it is studied in Review
+  // only (issue #25): it is never a target, a board item or a distractor here.
+  const usable = input.items.filter((item) => item.vocabulary_entries.translation?.trim() && !isReviewOnly(item))
   const scores = scoreTargets({ items: usable, attempts, now })
 
   const fresh = scores.filter((score) => score.isNew)

@@ -6,7 +6,7 @@ import {
 } from './practice'
 import { isTranslationLanguage } from './learner-language'
 import type { ReviewItem, TranslationLanguage } from './types'
-import { planPractice } from './practice-planner'
+import { isReviewOnly, planPractice } from './practice-planner'
 import { gradePracticeAnswer } from './practice-grading'
 import { currentTaskContentVersion } from './practice-content'
 import { contextsBySense, type CatalogContext } from './practice-contexts'
@@ -36,6 +36,8 @@ export interface PracticeShortfall {
   requestedMinutes: number
   /** Whole minutes of usable Practice; 0 when nothing safe can be built. */
   availableMinutes: number
+  /** Saved entries entered by hand outside the catalog, left to Review (issue #25). */
+  reviewOnly: number
 }
 
 /** The saved session. Only planning needs the attempt history, so only planning pays for it. */
@@ -143,6 +145,7 @@ export async function startPractice(supabase: SupabaseClient, userId: string, in
   if (!isTranslationLanguage(locale)) throw new Error('Invalid practice language')
   // Only the learner's own saved Material can become a target.
   const items = (cards.data || []).filter(isReviewSource).filter((item) => item.user_id === userId)
+  const reviewOnly = items.filter(isReviewOnly).length
   const [formsByEntry, contexts] = await Promise.all([
     verifiedForms(supabase, userId, items.map((item) => item.vocabulary_entries.id)),
     catalogContexts(supabase, items, locale, typeof profile.data?.danish_level === 'string' ? profile.data.danish_level : null),
@@ -153,10 +156,10 @@ export async function startPractice(supabase: SupabaseClient, userId: string, in
   let session = planPractice({ items, attempts, targetMinutes: input.minutes, seed, locale, now, formsByEntry, contextsBySense: contexts })
   const available = queueSeconds(session.queue)
   const unchanged = viewOf(store, retired)
-  if (!session.queue.length) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes: 0 } }
+  if (!session.queue.length) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes: 0, reviewOnly } }
   if (available + NEAR_TARGET_SECONDS < input.minutes * 60) {
     const availableMinutes = Math.max(1, Math.floor(available / 60))
-    if (!input.acceptShorter) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes } }
+    if (!input.acceptShorter) return { view: unchanged, shortfall: { requestedMinutes: input.minutes, availableMinutes, reviewOnly } }
     session = { ...session, targetMinutes: Math.min(input.minutes, availableMinutes) }
   }
   return { view: await commit(supabase, store, session), shortfall: null }

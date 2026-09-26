@@ -56,8 +56,8 @@
   padding: 0 4px;
 }
 
-/* Quiet pills: one height, one type size. Colour carries the part of speech; only the AI
-   action gets a tinted background, so the one pill that does something stands out. */
+/* Quiet pills: one height, one type size. Colour carries the part of speech in the text and a
+   small dot, never a filled background. */
 .pill {
   position: relative;
   display: inline-flex;
@@ -115,23 +115,6 @@
   font-size: 16px !important;
   cursor: pointer;
   appearance: none;
-}
-
-.pill-grammar {
-  margin-left: auto;
-  padding: 0 11px;
-  background: #f3effe;
-  color: #684dc7;
-  cursor: pointer;
-}
-
-.pill-grammar:hover:not(:disabled) {
-  background: #e9e1fd;
-}
-
-.pill-grammar:disabled {
-  opacity: .45;
-  cursor: default;
 }
 
 .pos-none { --pos-bg: #f1eff3; --pos-fg: #8d8793; --pos-border: #e7e3ec; }

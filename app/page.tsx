@@ -6,9 +6,7 @@ import { AppShell } from '@/components/AppShell'
 import { ReviewAurora } from '@/components/ReviewAurora'
 import { AddWordComposer } from '@/components/AddWordComposer'
 import { StatCard } from '@/components/StatCard'
-import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
 import { requireUser } from '@/lib/auth'
-import { needsRefinement } from '@/lib/sense-refinement'
 import type { LearningStatus } from '@/lib/types'
 import { messagesFor } from '@/lib/i18n'
 import { activeSenses, parseSenses } from '@/lib/senses'
@@ -47,11 +45,9 @@ export default async function HomePage() {
   const recentWords = recentResult.data || []
   const language = learnerLanguage(profile?.default_translation_language)
   const t = messagesFor(language)
-  const unrefinedRecent = recentWords.filter((word) => word.entry_kind !== 'sentence' && needsRefinement(word.senses)).map((word) => word.id)
 
   return (
     <AppShell language={language}>
-      <SenseRefinementBackfill entryIds={unrefinedRecent} />
       <div className="page-wrap dashboard-page">
         <header className="top-header">
           <div><span className="eyebrow">{t.home.eyebrow}</span><h1>{t.home.title}</h1></div>

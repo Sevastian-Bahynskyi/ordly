@@ -40,6 +40,8 @@ export interface PracticeCopy {
   intro: string
   retired: string
   emptyMaterial: string
+  /** Entries entered by hand outside the catalog are left to Review (issue #25). */
+  reviewOnly: (count: number) => string
   shortfall: (available: number, requested: number) => string
   startShorter: (minutes: number) => string
   summary: (count: number, minutes: number, right: number) => string
@@ -133,6 +135,7 @@ const en: PracticeCopy = {
   intro: 'Short exercises from your Material. Practice never changes your Review schedule.',
   retired: 'Practice was updated, so your earlier session was closed. Your Review progress is unchanged.',
   emptyMaterial: 'There isn’t enough saved Material with meanings to build Practice yet. Save a few words, or review what you have.',
+  reviewOnly: (count) => `${count} ${count === 1 ? 'entry you wrote yourself isn’t' : 'entries you wrote yourself aren’t'} in Practice: nothing checked ${count === 1 ? 'it' : 'them'}, so ${count === 1 ? 'it’s' : 'they’re'} studied in Review only.`,
   shortfall: (available, requested) => `Your saved Material fills about ${available} ${available === 1 ? 'minute' : 'minutes'} of Practice, not ${requested}.`,
   startShorter: (minutes) => `Start ${minutes}-minute session`,
   summary: (count, minutes, right) => `${count} ${count === 1 ? 'exercise' : 'exercises'} in about ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}${count ? `, ${right} right` : ''}.`,
@@ -201,6 +204,7 @@ const ru: PracticeCopy = {
   intro: 'Короткие упражнения из вашего материала. Практика никогда не меняет расписание повторения.',
   retired: 'Практика обновилась, поэтому прежнее занятие закрыто. Ваш прогресс в повторении не изменился.',
   emptyMaterial: 'Пока недостаточно сохранённых слов со значениями, чтобы собрать практику. Сохраните несколько слов или повторите то, что есть.',
+  reviewOnly: (count) => `Записей, введённых вами вручную, в практике нет: ${count}. Их никто не проверял, поэтому они изучаются только в повторении.`,
   shortfall: (available, requested) => `Сохранённого материала хватит примерно на ${available} мин практики, а не на ${requested}.`,
   startShorter: (minutes) => `Начать занятие на ${minutes} мин`,
   summary: (count, minutes, right) => `Упражнений: ${count}, примерно ${minutes} мин${count ? `, верно: ${right}` : ''}.`,
@@ -269,6 +273,7 @@ const uk: PracticeCopy = {
   intro: 'Короткі вправи з вашого матеріалу. Практика ніколи не змінює розклад повторення.',
   retired: 'Практику оновлено, тому попереднє заняття закрито. Ваш прогрес у повторенні не змінився.',
   emptyMaterial: 'Поки що замало збережених слів зі значеннями, щоб скласти практику. Збережіть кілька слів або повторіть те, що є.',
+  reviewOnly: (count) => `Записів, які ви ввели вручну, у практиці немає: ${count}. Їх ніхто не перевіряв, тому вони вивчаються лише в повторенні.`,
   shortfall: (available, requested) => `Збереженого матеріалу вистачить приблизно на ${available} хв практики, а не на ${requested}.`,
   startShorter: (minutes) => `Почати заняття на ${minutes} хв`,
   summary: (count, minutes, right) => `Вправ: ${count}, приблизно ${minutes} хв${count ? `, правильно: ${right}` : ''}.`,
