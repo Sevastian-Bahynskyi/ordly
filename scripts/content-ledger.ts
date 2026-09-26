@@ -4,7 +4,7 @@
  *   pnpm exec tsx scripts/content-ledger.ts                      # report: per service, per issue, against $120
  *   pnpm exec tsx scripts/content-ledger.ts --batches            # also each batch's estimate against its spend
  *   pnpm exec tsx scripts/content-ledger.ts --transfer --from 30 --to 28 --usd 2 --note "why"
- *   pnpm exec tsx scripts/content-ledger.ts --profile catalog/pipeline/calibration-0001   # estimates from a measured batch
+ *   pnpm exec tsx scripts/content-ledger.ts --profile catalog/pipeline/calibration-0001,catalog/pipeline/calibration-0002   # estimates from measured batches
  *   pnpm exec tsx scripts/content-ledger.ts --opening catalog/families/azure-usage.json   # once: #16/#24 balance
  *
  * Reads only committed files (`catalog/ledger/`); never calls a paid service.
@@ -30,18 +30,24 @@ if (openingPath) {
 
 const profileBatch = option('--profile')
 if (profileBatch) {
-  // The measured batch's spend per unit becomes the profile every estimate scales.
-  const spec = JSON.parse(await readFile(join(profileBatch, 'batch.json'), 'utf8')) as { name: string; entries: unknown[]; families: unknown[] }
-  const outcomes = JSON.parse(await readFile(join(profileBatch, 'outcome.json'), 'utf8')) as { kind: string; unit: string }[]
-  const items = (prefix: string): Record<string, number> => {
-    const counts: Record<string, number> = {}
-    for (const outcome of outcomes.filter((entry) => entry.unit.startsWith(prefix))) counts[outcome.kind] = (counts[outcome.kind] ?? 0) + 1
-    return counts
+  // The measured batches' spend per unit becomes the profile every estimate scales.
+  const counts = { entry: { units: 0, items: {} as Record<string, number> }, family: { units: 0, items: {} as Record<string, number> } }
+  const names: string[] = []
+  for (const batchDir of profileBatch.split(',')) {
+    const spec = JSON.parse(await readFile(join(batchDir, 'batch.json'), 'utf8')) as { name: string; entries: unknown[]; families: unknown[] }
+    const outcomes = JSON.parse(await readFile(join(batchDir, 'outcome.json'), 'utf8')) as { kind: string; unit: string }[]
+    names.push(spec.name)
+    counts.entry.units += spec.entries.length
+    counts.family.units += spec.families.length
+    for (const outcome of outcomes) {
+      const bucket = outcome.unit.startsWith('entry:') ? counts.entry : counts.family
+      bucket.items[outcome.kind] = (bucket.items[outcome.kind] ?? 0) + 1
+    }
   }
-  const runs = (await readRuns()).filter((record) => record.batch === spec.name)
-  const profile = profileFromRuns(runs, { entry: { units: spec.entries.length, items: items('entry:') }, family: { units: spec.families.length, items: items('family:') } }, spec.name)
+  const runs = (await readRuns()).filter((record) => record.batch !== null && names.includes(record.batch))
+  const profile = profileFromRuns(runs, counts, names.join('+'))
   await writeFile(join(LEDGER_DIR, 'profile.json'), `${JSON.stringify(profile, null, 1)}\n`)
-  console.log(`profile ← ${spec.name}: ${spec.entries.length} entries, ${spec.families.length} families, ${runs.length} run record(s)`)
+  console.log(`profile ← ${names.join(' + ')}: ${counts.entry.units} entries, ${counts.family.units} families, ${runs.length} run record(s)`)
   process.exit(0)
 }
 

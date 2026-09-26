@@ -20,8 +20,11 @@ export interface ReviewItem {
   lemma: string
   entry_kind: 'word' | 'phrase'
   pos: string | null
-  /** For a `meaning` item, the wording under review; otherwise the meaning the Danish demonstrates. */
-  meaning: { ru: string; en: string; uk: string }
+  /**
+   * For a `meaning` item, the wording under review (all three languages); otherwise the meaning the
+   * Danish demonstrates, in whichever languages the sense already has.
+   */
+  meaning: { ru: string; en: string; uk?: string }
   danish?: string
   /** The form of the headword the sentence uses. */
   target?: string
@@ -81,7 +84,7 @@ ${REPLY}`,
 
 export const ADJUDICATOR_PROMPT = `Two independent reviewers of Danish course content (adult learners, A1–B2, languages English,
 Russian and Ukrainian) disagreed about each item below: one accepted it, the other rejected it with
-the problems listed. Decide who is right. A problem counts only when it is a real defect: a native
+the problems listed. Weigh both: decide who is right. A problem counts only when it is a real defect: a native
 speaker would correct the Danish, a translation or wording says something else, or a learner would
 be misled. A preference between two correct options is not a defect.
 ${ITEM_KINDS}
@@ -156,18 +159,18 @@ export function parseBackchecks(text: string, ids: readonly string[]): Map<strin
   return parseItems(text, ids, (entry) => typeof entry.same === 'boolean' ? { same: entry.same, note: typeof entry.note === 'string' ? entry.note.trim() : '' } : null)
 }
 
-export interface PassOptions {
+export interface PassOptions<T> {
   /** Items per call. */
   chunk?: number
   /** Calls per item before it is left unresolved. */
   attempts?: number
   /** Called with each chunk's results as they arrive, so a caller can save progress. */
-  onResults?: (results: Map<string, unknown>) => Promise<void> | void
+  onResults?: (results: Map<string, T>) => Promise<void> | void
 }
 
 async function chunkedPass<I extends { id: string }, T>(
   items: readonly I[], payload: (item: I) => unknown, call: (label: string, user: string, maxTokens: number) => Promise<string>,
-  parse: (text: string, ids: readonly string[]) => Map<string, T>, options: PassOptions, tokensPerItem: number,
+  parse: (text: string, ids: readonly string[]) => Map<string, T>, options: PassOptions<T>, tokensPerItem: number,
 ): Promise<Map<string, T>> {
   const chunk = options.chunk ?? 10
   const attempts = options.attempts ?? 3
@@ -179,7 +182,7 @@ async function chunkedPass<I extends { id: string }, T>(
       const text = await call(`${ids[0]}… (${ids.length}) attempt ${attempt}`, JSON.stringify({ items: pending.map(payload) }), 200 + tokensPerItem * ids.length)
       const found = parse(text, ids)
       for (const [id, value] of found) results.set(id, value)
-      if (found.size && options.onResults) await options.onResults(found as Map<string, unknown>)
+      if (found.size && options.onResults) await options.onResults(found)
       pending = pending.filter((item) => !found.has(item.id))
     }
   }
@@ -192,7 +195,7 @@ function itemPayload(item: ReviewItem): Record<string, unknown> {
 }
 
 /** One reviewer over the items; items it never answered properly are absent from the result. */
-export function reviewPass(reviewer: Reviewer, items: readonly ReviewItem[], complete: Complete, options: PassOptions = {}): Promise<Map<string, Verdict>> {
+export function reviewPass(reviewer: Reviewer, items: readonly ReviewItem[], complete: Complete, options: PassOptions<Verdict> = {}): Promise<Map<string, Verdict>> {
   return chunkedPass(items, itemPayload, (label, user, maxTokens) => complete(`deepseek.review-${reviewer}`, `review ${reviewer} ${label}`, REVIEWER_PROMPTS[reviewer], user, maxTokens), parseVerdicts, options, 160)
 }
 
@@ -201,16 +204,15 @@ export function needsAdjudication(a: Verdict | undefined, b: Verdict | undefined
 }
 
 /** The adjudicator over items whose reviewers disagreed; it sees both verdicts. */
-export function adjudicatePass(items: readonly ReviewItem[], verdicts: { a: Map<string, Verdict>; b: Map<string, Verdict> }, complete: Complete, options: PassOptions = {}): Promise<Map<string, Adjudication>> {
+export function adjudicatePass(items: readonly ReviewItem[], verdicts: { a: Map<string, Verdict>; b: Map<string, Verdict> }, complete: Complete, options: PassOptions<Adjudication> = {}): Promise<Map<string, Adjudication>> {
   const payload = (item: ReviewItem): unknown => {
-    const a = verdicts.a.get(item.id) as Verdict
-    const b = verdicts.b.get(item.id) as Verdict
-    return { ...itemPayload(item), rejected_because: a.ok ? b.problems : a.problems }
+    const rejecting = [verdicts.a.get(item.id), verdicts.b.get(item.id)].find((verdict) => verdict && !verdict.ok)
+    return { ...itemPayload(item), accepted_by: 'one reviewer, who found no defect', rejected_by_the_other_because: rejecting?.problems ?? [] }
   }
   return chunkedPass(items, payload, (label, user, maxTokens) => complete('deepseek.adjudicate', `adjudicate ${label}`, ADJUDICATOR_PROMPT, user, maxTokens), parseAdjudications, options, 90)
 }
 
-export function backcheckPass(items: readonly { id: string; danish: string; back: string }[], complete: Complete, options: PassOptions = {}): Promise<Map<string, Backcheck>> {
+export function backcheckPass(items: readonly { id: string; danish: string; back: string }[], complete: Complete, options: PassOptions<Backcheck> = {}): Promise<Map<string, Backcheck>> {
   return chunkedPass(items, (item) => item, (label, user, maxTokens) => complete('deepseek.backcheck', `backcheck ${label}`, BACKCHECK_PROMPT, user, maxTokens), parseBackchecks, options, 60)
 }
 

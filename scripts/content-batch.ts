@@ -31,12 +31,13 @@ import { drawBatchAudit, tallyBatchAudit, type AuditEntry } from '../lib/content
 import { estimateBatch, type CostProfile, type ItemKind, type UnitType } from '../lib/content-estimate'
 import { entryProblems, type EntrySense, type EntryWork } from '../lib/content-gate'
 import { budgetCheck, runUsd, type RunRecord, type Service } from '../lib/content-ledger'
-import { adjudicatePass, backcheckPass, decideReview, disagreementStats, needsAdjudication, reviewPass, type Adjudication, type Backcheck, type Complete, type ItemReviews, type ReviewItem, type Verdict } from '../lib/content-review'
+import { adjudicatePass, backcheckPass, decideReview, disagreementStats, needsAdjudication, reviewPass, type Backcheck, type Complete, type ItemReviews, type ReviewItem, type Verdict } from '../lib/content-review'
 import { parseFullForms } from '../lib/ddo-fullform'
 import { SPEECH_VOICE } from '../lib/speech-audio'
 import { findMisspellings } from '../lib/spelling'
 import { ukrainianProblems } from '../lib/ukrainian'
 import { loadUkrainianCheckers } from '../lib/ukrainian-dictionaries'
+import * as ledger from './spend-ledger'
 import { LEDGER_DIR, readBudget, readRuns } from './spend-ledger'
 
 const argv = process.argv.slice(2)
@@ -93,9 +94,10 @@ if (argv.includes('--estimate')) process.exit(0)
 
 process.env.CONTENT_ISSUE = String(spec.issue)
 process.env.CONTENT_BATCH = spec.name
-const ledger = await import('./spend-ledger')
 const corpus = await import('./azure-corpus')
-await ledger.beginRun({ issue: spec.issue, batch: spec.name, command: `content-batch.ts --batch ${dir}`, estimateUsd: estimate.usd, capUsd: Math.max(toSpend * 2, toSpend + 0.25) })
+// The cap covers the child processes too: each gets what is left of it when it starts.
+const runCap = Math.max(toSpend * 2, toSpend + 0.25)
+await ledger.beginRun({ issue: spec.issue, batch: spec.name, command: `content-batch.ts --batch ${dir}`, estimateUsd: estimate.usd, capUsd: runCap })
 const complete: Complete = (op, label, system, user, maxTokens) => corpus.deepseekText(op, label, system, user, { maxTokens, temperature: 0 })
 const spell = await loadUkrainianCheckers()
 const known = parseFullForms(await readFile(FULLFORMS, 'utf8')).known
@@ -143,10 +145,9 @@ async function generateEntries(): Promise<GeneratedEntry[]> {
         const text = (key: string): string => typeof sense[key] === 'string' ? (sense[key] as string).trim() : ''
         return { ordinal: index + 1, ru: text('ru'), en: text('en'), uk: text('uk'), example: text('example') }
       })
-      // The gate's own checks, before any translation is paid for; translations are not written yet.
-      const draft = await Promise.all(senses.map(async (sense) => ({ ...sense, example_en: '-', example_ru: '-', example_uk: 'переклад' })))
+      // The gate's own checks, before any translation is paid for.
       const unknown = new Map(await Promise.all(senses.map(async (sense) => [sense.example, await unknownWords(sense.example)] as const)))
-      const problems = senses.length ? entryProblems(unit, draft, { spell, unknownWords: (sentence) => unknown.get(sentence) ?? null }).filter((problem) => !/example_(en|ru|uk)/u.test(problem)) : ['no senses']
+      const problems = senses.length ? entryProblems(unit, senses, { spell, translations: false, unknownWords: (sentence) => unknown.get(sentence) ?? null }) : ['no senses']
       if (problems.length) { correction = problems.join('; '); console.log(`  ${unit.lemma} attempt ${attempt}: ${correction}`); continue }
       accepted = senses
     }
@@ -177,7 +178,8 @@ type FamilyResult = TranslatedFamily | { sense_id: string; lemma: string; target
 
 async function runChild(script: string, args: string[], scope: string): Promise<void> {
   await new Promise<void>((resolve, reject) => {
-    const child = spawn(process.execPath, ['--import', 'tsx', script, ...args], { stdio: 'inherit', env: { ...process.env, CONTENT_SCOPE: scope } })
+    const capLeft = Math.max(0.01, runCap - runUsd(ledger.currentRun() ?? { lines: [] }))
+    const child = spawn(process.execPath, ['--import', 'tsx', script, ...args], { stdio: 'inherit', env: { ...process.env, CONTENT_SCOPE: scope, CONTENT_RUN_CAP_USD: String(capLeft) } })
     child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`${script} exited with ${code}`))))
   })
 }
@@ -194,9 +196,9 @@ async function generateFamilies(): Promise<FamilyResult[]> {
   if (answered < spec.families.length) await runChild('scripts/generate-family-batch.ts', ['--work', path('families', 'work', 'batch-0001.json'), '--out', outFile, '--fullforms', FULLFORMS], 'family')
   const replies = JSON.parse(await readFile(outFile, 'utf8')) as (FamilyReply | { sense_id: string; lemma: string; skip: string })[]
   const translated = await readJson<FamilyResult[]>('families.json', [])
-  const key = (row: { sense_id: string; level?: string; situation?: string; grammar?: string; target?: unknown }): string => JSON.stringify([row.sense_id, row.level ?? null, row.situation ?? null, row.grammar ?? null, row.target ?? null])
+  const key = (row: FamilyResult | FamilyReply): string => JSON.stringify('skip' in row ? [row.sense_id, row.target ?? null] : [row.sense_id, row.level, row.situation, row.grammar])
   for (const reply of replies) {
-    if (translated.some((row) => key(row as never) === key(reply as never))) continue
+    if (translated.some((row) => key(row) === key(reply))) continue
     if ('skip' in reply) { translated.push(reply); continue }
     const variants: TranslatedVariant[] = []
     for (const variant of reply.variants) {
@@ -231,7 +233,7 @@ function buildItems(entries: readonly GeneratedEntry[], families: readonly Famil
     const id = familyId(family)
     for (const variant of family.variants) {
       const danish = variantDanish(family, variant) as string
-      items.push({ id: `s:${variantId(id, danish)}`, kind: 'sentence', lemma: family.lemma, entry_kind: family.kind, pos: work?.pos ?? null, meaning: { ru: work?.ru ?? '', en: work?.en ?? '', uk: '(not given)' }, danish, target: variant.target, level: family.level, grammar: family.grammar, translations: { en: variant.en, ru: variant.ru, uk: variant.uk }, back: variant.back, unit: `family:${id}` })
+      items.push({ id: `s:${variantId(id, danish)}`, kind: 'sentence', lemma: family.lemma, entry_kind: family.kind, pos: work?.pos ?? null, meaning: { ru: work?.ru ?? '', en: work?.en ?? '' }, danish, target: variant.target, level: family.level, grammar: family.grammar, translations: { en: variant.en, ru: variant.ru, uk: variant.uk }, back: variant.back, unit: `family:${id}` })
     }
   }
   return items
@@ -251,21 +253,21 @@ async function reviewAll(items: readonly PipelineItem[]): Promise<ReviewLog> {
     const sentences = own.filter((item) => item.danish && item.back !== undefined && !log.backchecks[item.id])
     if (sentences.length) {
       await backcheckPass(sentences.map((item) => ({ id: item.id, danish: item.danish as string, back: item.back as string })), complete, {
-        onResults: async (found) => { for (const [id, value] of found) log.backchecks[id] = value as Backcheck; await save() },
+        onResults: async (found) => { for (const [id, value] of found) log.backchecks[id] = value; await save() },
       })
     }
     for (const reviewer of ['a', 'b'] as const) {
       const pending = own.filter((item) => !log.reviews[item.id]?.[reviewer])
       if (!pending.length) continue
       await reviewPass(reviewer, pending, complete, {
-        onResults: async (found) => { for (const [id, value] of found) (log.reviews[id] ||= {})[reviewer] = value as Verdict; await save() },
+        onResults: async (found) => { for (const [id, value] of found) (log.reviews[id] ||= {})[reviewer] = value; await save() },
       })
     }
     const disputed = own.filter((item) => needsAdjudication(log.reviews[item.id]?.a, log.reviews[item.id]?.b) && !log.reviews[item.id]?.adjudication)
     if (disputed.length) {
       const verdicts = { a: new Map(disputed.map((item) => [item.id, log.reviews[item.id].a as Verdict])), b: new Map(disputed.map((item) => [item.id, log.reviews[item.id].b as Verdict])) }
       await adjudicatePass(disputed, verdicts, complete, {
-        onResults: async (found) => { for (const [id, value] of found) log.reviews[id].adjudication = value as Adjudication; await save() },
+        onResults: async (found) => { for (const [id, value] of found) log.reviews[id].adjudication = value; await save() },
       })
     }
   }

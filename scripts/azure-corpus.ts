@@ -75,9 +75,17 @@ export async function deepseekText(op: string, label: string, system: string, us
   })
 }
 
-/** One DeepSeek completion whose reply must hold JSON; a reply without it is asked again. */
+/**
+ * One DeepSeek completion whose reply must hold JSON; a reply without it is asked again, at most
+ * twice more. Transport failures are retried inside `deepseekText` and never multiply with these.
+ */
 export async function deepseekJson(op: string, label: string, system: string, user: string, options: { maxTokens?: number; temperature?: number; open?: '{' | '[' } = {}): Promise<unknown> {
-  return withRetry(`DeepSeek ${label}`, async () => extractJson(await deepseekText(op, label, system, user, options), options.open ?? '{'), 3)
+  let lastError: unknown
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const text = await deepseekText(op, label, system, user, options)
+    try { return extractJson(text, options.open ?? '{') } catch (error) { lastError = error; console.error(`DeepSeek ${label}: reply ${attempt}/3 held no JSON`) }
+  }
+  throw lastError
 }
 
 const translationCachePath = 'catalog/families/translation-cache.json'

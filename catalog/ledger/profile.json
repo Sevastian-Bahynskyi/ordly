@@ -1,12 +1,12 @@
 {
- "source": "calibration-0001",
- "measuredAt": "2026-09-26T10:54:21.724Z",
+ "source": "calibration-0001+calibration-0002",
+ "measuredAt": "2026-09-26T11:00:04.139Z",
  "units": {
   "entry": {
-   "units": 8,
+   "units": 13,
    "items": {
-    "meaning": 14,
-    "example": 14
+    "meaning": 22,
+    "example": 22
    },
    "lines": [
     {
@@ -14,139 +14,139 @@
      "op": "deepseek.entry-senses",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 11,
-     "inputTokens": 5122,
-     "outputTokens": 1306,
+     "calls": 16,
+     "inputTokens": 7397,
+     "outputTokens": 1884,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01345716
+     "usd": 0.0194271
     },
     {
      "service": "translator",
      "op": "translator.da-uk",
      "model": null,
      "scope": "entry",
-     "calls": 14,
+     "calls": 22,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 524,
+     "chars": 812,
      "seconds": 0,
-     "usd": 0.00524
+     "usd": 0.00812
     },
     {
      "service": "translator",
      "op": "translator.da-en",
      "model": null,
      "scope": "entry",
-     "calls": 13,
+     "calls": 21,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 493,
+     "chars": 781,
      "seconds": 0,
-     "usd": 0.00493
+     "usd": 0.007810000000000001
     },
     {
      "service": "translator",
      "op": "translator.da-ru",
      "model": null,
      "scope": "entry",
-     "calls": 13,
+     "calls": 21,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 493,
+     "chars": 781,
      "seconds": 0,
-     "usd": 0.00493
+     "usd": 0.007810000000000001
     },
     {
      "service": "translator",
      "op": "translator.en-da",
      "model": null,
      "scope": "entry",
-     "calls": 13,
+     "calls": 21,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 501,
+     "chars": 792,
      "seconds": 0,
-     "usd": 0.00501
+     "usd": 0.00792
     },
     {
      "service": "deepseek",
      "op": "deepseek.backcheck",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 4,
-     "inputTokens": 1906,
-     "outputTokens": 816,
+     "calls": 5,
+     "inputTokens": 2465,
+     "outputTokens": 1069,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.006156119999999999
+     "usd": 0.00800922
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-a",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 3,
-     "inputTokens": 4220,
-     "outputTokens": 2279,
+     "calls": 5,
+     "inputTokens": 6802,
+     "outputTokens": 3231,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01527372
+     "usd": 0.02307936
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-b",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 3,
-     "inputTokens": 4082,
-     "outputTokens": 1562,
+     "calls": 5,
+     "inputTokens": 6572,
+     "outputTokens": 2480,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01253844
+     "usd": 0.02006568
     },
     {
      "service": "deepseek",
      "op": "deepseek.adjudicate",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 1,
-     "inputTokens": 1128,
-     "outputTokens": 291,
+     "calls": 2,
+     "inputTokens": 1939,
+     "outputTokens": 409,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.0029754
+     "usd": 0.00479718
     },
     {
      "service": "speech",
      "op": "speech.tts",
      "model": null,
      "scope": "entry",
-     "calls": 8,
+     "calls": 14,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 72,
+     "chars": 114,
      "seconds": 0,
-     "usd": 0.00108
+     "usd": 0.0017100000000000001
     },
     {
      "service": "speech",
      "op": "speech.stt",
      "model": null,
      "scope": "entry",
-     "calls": 4,
+     "calls": 7,
      "inputTokens": 0,
      "outputTokens": 0,
      "chars": 0,
-     "seconds": 8.2795,
-     "usd": 0.00229987
+     "seconds": 13.8573125,
+     "usd": 0.00384927
     }
    ]
   },
   "family": {
-   "units": 12,
+   "units": 17,
    "items": {
-    "sentence": 14
+    "sentence": 21
    },
    "lines": [
     {
@@ -154,144 +154,144 @@
      "op": "translator.da-uk",
      "model": null,
      "scope": "family",
-     "calls": 14,
+     "calls": 20,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 695,
+     "chars": 973,
      "seconds": 0,
-     "usd": 0.00695
+     "usd": 0.009729999999999999
     },
     {
      "service": "deepseek",
      "op": "deepseek.backcheck",
      "model": "DeepSeek-V4-Pro",
      "scope": "family",
-     "calls": 4,
-     "inputTokens": 2552,
-     "outputTokens": 1364,
+     "calls": 5,
+     "inputTokens": 3190,
+     "outputTokens": 1692,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.0091872
+     "usd": 0.01143876
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-a",
      "model": "DeepSeek-V4-Pro",
      "scope": "family",
-     "calls": 2,
-     "inputTokens": 3270,
-     "outputTokens": 994,
+     "calls": 3,
+     "inputTokens": 4845,
+     "outputTokens": 1529,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.00914892
+     "usd": 0.01375122
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-b",
      "model": "DeepSeek-V4-Pro",
      "scope": "family",
-     "calls": 2,
-     "inputTokens": 3178,
-     "outputTokens": 948,
+     "calls": 3,
+     "inputTokens": 4707,
+     "outputTokens": 1433,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.00882876
+     "usd": 0.01317702
     },
     {
      "service": "deepseek",
      "op": "deepseek.adjudicate",
      "model": "DeepSeek-V4-Pro",
      "scope": "family",
-     "calls": 1,
-     "inputTokens": 932,
-     "outputTokens": 234,
+     "calls": 2,
+     "inputTokens": 1467,
+     "outputTokens": 306,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.002436
+     "usd": 0.00361746
     },
     {
      "service": "deepseek",
      "op": "deepseek.generate",
      "model": "DeepSeek-V4-Pro",
      "scope": "family",
-     "calls": 22,
-     "inputTokens": 86768,
-     "outputTokens": 3914,
+     "calls": 32,
+     "inputTokens": 126335,
+     "outputTokens": 5699,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.16459704
+     "usd": 0.23965542
     },
     {
      "service": "translator",
      "op": "translator.da-en",
      "model": null,
      "scope": "family",
-     "calls": 23,
+     "calls": 30,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 1128,
+     "chars": 1432,
      "seconds": 0,
-     "usd": 0.01128
+     "usd": 0.01432
     },
     {
      "service": "translator",
      "op": "translator.da-ru",
      "model": null,
      "scope": "family",
-     "calls": 23,
+     "calls": 30,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 1128,
+     "chars": 1432,
      "seconds": 0,
-     "usd": 0.01128
+     "usd": 0.01432
     },
     {
      "service": "translator",
      "op": "translator.en-da",
      "model": null,
      "scope": "family",
-     "calls": 20,
+     "calls": 27,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 1045,
+     "chars": 1337,
      "seconds": 0,
-     "usd": 0.01045
+     "usd": 0.01337
     },
     {
      "service": "translator",
      "op": "translator.ru-da",
      "model": null,
      "scope": "family",
-     "calls": 19,
+     "calls": 26,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 910,
+     "chars": 1177,
      "seconds": 0,
-     "usd": 0.0091
+     "usd": 0.011770000000000001
     },
     {
      "service": "speech",
      "op": "speech.tts",
      "model": null,
      "scope": "family",
-     "calls": 6,
+     "calls": 12,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 460,
+     "chars": 756,
      "seconds": 0,
-     "usd": 0.0069
+     "usd": 0.01134
     },
     {
      "service": "speech",
      "op": "speech.stt",
      "model": null,
      "scope": "family",
-     "calls": 3,
+     "calls": 6,
      "inputTokens": 0,
      "outputTokens": 0,
      "chars": 0,
-     "seconds": 16.1183125,
-     "usd": 0.00447731
+     "seconds": 28.677687499999998,
+     "usd": 0.007966029999999999
     }
    ]
   }

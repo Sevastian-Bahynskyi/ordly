@@ -215,9 +215,12 @@ pnpm exec tsx scripts/content-ledger.ts --transfer --from 30 --to 28 --usd 2 --n
 - Before a run: its estimate (`--estimate`) must fit what is left of **its issue's allocation**
   (plan plus transfers) **and of the program**; otherwise the run refuses to start. Move money
   between issues only with a recorded transfer.
-- During a run: before every paid call, the process stops when its issue's allocation or the
-  program is spent, or when the run reaches its cap (twice its estimate, at least $0.25 over it).
-  Other runs' spend is re-read every minute.
+- During a run: before every paid call, the process stops when that call could take its issue's
+  allocation or the program past its limit (it keeps $0.05 of room, more than any single call
+  costs), or when the run reaches its cap (twice its estimate, at least $0.25 over it; child
+  processes such as the family generator get what is left of it). Other runs' spend is re-read
+  every minute. A stage script run by hand has no estimate of its own: estimate its batch with
+  `content-batch.ts --estimate` first, or give it a cap with `CONTENT_RUN_CAP_USD`.
 - After a run: nothing to do by hand; the run record is the actual spend. Commit it with the batch.
 - Stop and ask before a run would take cumulative program spend past $120.
 
@@ -256,6 +259,8 @@ the same command resumes after any stop without paying twice:
 6. **Audio** (when `audio` is set): the headword of every entry and every family sentence, with
    the speech-recognition check of `synthesize-audio.ts` — a clip not heard as written is made
    again with the second voice, and one still not matching is judged by DeepSeek (`audio.json`).
+   A clip judged a `problem` is counted in the report and must not be uploaded; uploading sentence
+   audio is #30's, which reads `audio.json`.
 7. **Report** (`report.json`): items generated and passed per kind, disagreement rate,
    adjudications, back-translation drift, audio checks, and cost against the estimate, per item.
 8. **Audit**: a seeded sample of passed items (`audit-sample.md`, verdicts in `audit.json`). The
@@ -266,7 +271,9 @@ the same command resumes after any stop without paying twice:
    and the SQL into `load/` (run each file with `supabase db query --linked`, see **Loading
    data**). Entries into `publish/rows.json` and `publish/locale-{en,uk}.json`, the contracts
    `import-catalog.ts` and `import-catalog-locale.ts` take; a new headword also needs its facts
-   (forms, pronunciation), which #28 and #29 derive for their sources.
+   (forms, pronunciation), which #28 and #29 derive for their sources. Because the family snapshot
+   is every published file together, removing a pipeline batch directory removes its families
+   from the database at the next load: never delete a loaded batch.
 
 ### Calibration (2026-09-26)
 
@@ -289,8 +296,10 @@ audits failed, which is the pipeline doing its job.
 | cost per item reviewed | $0.0078 | $0.0065 |
 
 - **Estimates.** The first batch was estimated from a prior built from the #16/#24 ledger; the
-  profile measured on it (`catalog/ledger/profile.json`, `content-ledger.ts --profile`) then
-  estimated the second, independent batch within 2.5%. A batch of 600 families for #27 was refused
+  profile measured on it (`content-ledger.ts --profile`) then estimated the second, independent
+  batch within 2.5%. `catalog/ledger/profile.json` now holds both batches (13 entries, 17
+  families), the profile for #28–#30. The first batch's $0.33 includes the back-translation pass
+  run twice (its prompt was corrected mid-calibration), so the profile errs slightly high. A batch of 600 families for #27 was refused
   before any call ($12.81 estimated, $2.52 left).
 - **Cost per unit** (both batches): an entry ≈ $0.0087 (DeepSeek 67%, Translator 28%, Speech 5%);
   a family ≈ $0.0214 (DeepSeek 77%: the family generator's retries dominate). 600 phrases (#28)

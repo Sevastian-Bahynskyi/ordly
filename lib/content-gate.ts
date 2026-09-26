@@ -15,6 +15,9 @@ export interface EntryWork {
   forms: string[]
 }
 
+/** A sense before its example is translated has no translations yet. */
+export type DraftSense = Omit<EntrySense, 'example_en' | 'example_ru' | 'example_uk'> & Partial<Pick<EntrySense, 'example_en' | 'example_ru' | 'example_uk'>>
+
 export interface EntrySense {
   ordinal: number
   ru: string
@@ -28,6 +31,8 @@ export interface EntrySense {
 
 export interface EntryGateChecks {
   spell: SpellCheckers
+  /** False before the example is translated: the generator's own check, ahead of any paid translation. */
+  translations?: boolean
   /** Words of a Danish sentence missing from the spelling sources; null when they are unavailable. */
   unknownWords: (sentence: string) => string[] | null
 }
@@ -41,7 +46,7 @@ function wordingKey(value: string): string {
 }
 
 /** Every problem of an entry's senses, one line each, prefixed with the sense. Empty means clean. */
-export function entryProblems(entry: EntryWork, senses: readonly EntrySense[], checks: EntryGateChecks): string[] {
+export function entryProblems(entry: EntryWork, senses: readonly DraftSense[], checks: EntryGateChecks): string[] {
   const problems: string[] = []
   const seen = { ru: new Map<string, number>(), en: new Map<string, number>(), uk: new Map<string, number>() }
   for (const sense of senses) {
@@ -64,10 +69,11 @@ export function entryProblems(entry: EntryWork, senses: readonly EntrySense[], c
     if (/\d/u.test(example)) problems.push(`${at}: no digits in the example`)
     const unknown = checks.unknownWords(example)
     if (unknown?.length) problems.push(`${at}: unknown word(s) in the example: ${unknown.join(', ')}`)
+    if (checks.translations === false) continue
     for (const field of ['example_en', 'example_ru', 'example_uk'] as const) if (!text(sense[field])) problems.push(`${at}: ${field} is missing`)
-    if (text(sense.example_en) && DANISH_LETTERS.test(sense.example_en)) problems.push(`${at}: example_en contains Danish letters`)
-    if (text(sense.example_ru) && !/\p{Script=Cyrillic}/u.test(sense.example_ru)) problems.push(`${at}: example_ru is not Russian`)
-    if (text(sense.example_uk)) for (const problem of ukrainianProblems(sense.example_uk, checks.spell)) problems.push(`${at}: example_uk is not Ukrainian (${problem})`)
+    if (sense.example_en && DANISH_LETTERS.test(sense.example_en)) problems.push(`${at}: example_en contains Danish letters`)
+    if (sense.example_ru && !/\p{Script=Cyrillic}/u.test(sense.example_ru)) problems.push(`${at}: example_ru is not Russian`)
+    if (sense.example_uk?.trim()) for (const problem of ukrainianProblems(sense.example_uk, checks.spell)) problems.push(`${at}: example_uk is not Ukrainian (${problem})`)
   }
   return problems
 }

@@ -42,6 +42,8 @@ let current: { record: RunRecord; path: string; capUsd: number | null } | null =
 let scope: string | null = process.env.CONTENT_SCOPE || null
 /** Program and issue spend of every other run, refreshed now and then while this one runs. */
 let others: { program: number; issue: number; allocation: number; programUsd: number; inProgram: boolean; at: number } | null = null
+/** Room kept below every limit for the next call (a DeepSeek review chunk costs about a cent). */
+const NEXT_CALL_USD = 0.05
 let writing: Promise<void> = Promise.resolve()
 let dirty = false
 
@@ -92,7 +94,8 @@ async function refreshOthers(): Promise<void> {
 export async function assertBudget(): Promise<void> {
   const run = await ensureRun()
   if (!others || Date.now() - others.at > 60_000) await refreshOthers()
-  const spent = runUsd(run.record)
+  // The next call must fit too, so the check is made with room for it: a limit is never crossed.
+  const spent = runUsd(run.record) + NEXT_CALL_USD
   const limits = others as NonNullable<typeof others>
   const stop = (why: string): never => {
     console.error(`Stopping before the next paid call: ${why}. ${spendLine()}`)
