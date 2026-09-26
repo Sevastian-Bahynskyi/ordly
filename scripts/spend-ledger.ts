@@ -13,7 +13,7 @@
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, readdir, rename, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { addCall, issueAllocation, runUsd, summarize, type Budget, type PaidCall, type RunRecord } from '../lib/content-ledger'
+import { addCall, issueAllocation, runUsd, serviceAllowed, summarize, type Budget, type PaidCall, type RunRecord } from '../lib/content-ledger'
 
 export const LEDGER_DIR = join('catalog', 'ledger')
 const RUNS_DIR = join(LEDGER_DIR, 'runs')
@@ -41,7 +41,7 @@ interface RunOptions { issue: number; batch: string | null; command: string; est
 let current: { record: RunRecord; path: string; capUsd: number | null } | null = null
 let scope: string | null = process.env.CONTENT_SCOPE || null
 /** Program and issue spend of every other run, refreshed now and then while this one runs. */
-let others: { program: number; issue: number; allocation: number; programUsd: number; inProgram: boolean; at: number } | null = null
+let others: { program: number; issue: number; allocation: number; programUsd: number; inProgram: boolean; services: Pick<Budget, 'services'>; at: number } | null = null
 /** Room kept below every limit for the next call (a DeepSeek review chunk costs about a cent). */
 const NEXT_CALL_USD = 0.05
 let writing: Promise<void> = Promise.resolve()
@@ -83,15 +83,15 @@ async function refreshOthers(): Promise<void> {
   const runs = (await readRuns()).filter((record) => record.run !== current?.record.run)
   const summary = summarize(runs, budget)
   const issue = summary.byIssue.find((row) => row.issue === current?.record.issue)
-  others = { program: summary.program.spent, issue: issue?.spent ?? 0, allocation: issueAllocation(budget, current.record.issue), programUsd: budget.programUsd, inProgram: String(current.record.issue) in budget.issues, at: Date.now() }
+  others = { program: summary.program.spent, issue: issue?.spent ?? 0, allocation: issueAllocation(budget, current.record.issue), programUsd: budget.programUsd, inProgram: String(current.record.issue) in budget.issues, services: { services: budget.services }, at: Date.now() }
 }
 
 /**
- * Before every paid call: stop the process when this run has used up what is left of its issue's
+ * Before every paid call to `op`: refuse a service the program does not pay for, and stop the process when this run has used up what is left of its issue's
  * allocation or of the program, or passed its own cap. Other runs' spend is re-read every minute,
  * so two runs at once cannot both spend the same remaining dollars for long.
  */
-export async function assertBudget(): Promise<void> {
+export async function assertBudget(op: string): Promise<void> {
   const run = await ensureRun()
   if (!others || Date.now() - others.at > 60_000) await refreshOthers()
   // The next call must fit too, so the check is made with room for it: a limit is never crossed.
@@ -101,6 +101,7 @@ export async function assertBudget(): Promise<void> {
     console.error(`Stopping before the next paid call: ${why}. ${spendLine()}`)
     process.exit(1)
   }
+  if (!serviceAllowed(limits.services, op)) stop(`the program does not pay for ${op.split('.')[0]} (catalog/ledger/budget.json "services")`)
   if (!limits.inProgram) stop(`#${run.record.issue} has no allocation in catalog/ledger/budget.json`)
   if (limits.issue + spent >= limits.allocation) stop(`#${run.record.issue} has spent its allocation of $${limits.allocation.toFixed(2)}`)
   if (limits.program + spent >= limits.programUsd) stop(`the program budget of $${limits.programUsd} is spent — ask before going further`)

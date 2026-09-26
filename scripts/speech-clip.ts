@@ -55,7 +55,7 @@ async function speechFetch(url: string, init: RequestInit): Promise<Response> {
 /** Audio for `text` in `format`, recorded in the ledger. */
 export async function tts(text: string, voice: string, format: string, rate = RATE): Promise<Buffer> {
   const audio = await withRetry(`TTS "${text.slice(0, 40)}"`, async () => {
-    await assertBudget()
+    await assertBudget('speech.tts')
     const res = await speechFetch(`https://${REGION}.tts.speech.microsoft.com/cognitiveservices/v1`, {
       method: 'POST',
       headers: { 'Ocp-Apim-Subscription-Key': KEY as string, 'Content-Type': 'application/ssml+xml', 'X-Microsoft-OutputFormat': format, 'User-Agent': 'ordly-catalog' },
@@ -75,7 +75,7 @@ const seconds = (wav: Buffer): number => Math.max(1, (wav.length - 44) / 32000)
 /** What Danish speech recognition hears in a 16 kHz mono PCM clip. */
 export async function stt(wav: Buffer): Promise<string | null> {
   const transcript = await withRetry('STT', async () => {
-    await assertBudget()
+    await assertBudget('speech.stt')
     const res = await speechFetch(`https://${REGION}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=da-DK&format=simple`, {
       method: 'POST',
       headers: { 'Ocp-Apim-Subscription-Key': KEY as string, 'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000' },
@@ -93,7 +93,7 @@ export async function stt(wav: Buffer): Promise<string | null> {
 export async function assess(wav: Buffer, reference: string): Promise<number | null> {
   const header = Buffer.from(JSON.stringify({ ReferenceText: reference, GradingSystem: 'HundredMark', Granularity: 'Word', EnableMiscue: false })).toString('base64')
   const score = await withRetry('assessment', async () => {
-    await assertBudget()
+    await assertBudget('speech.assess')
     const res = await speechFetch(`https://${REGION}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=da-DK&format=detailed`, {
       method: 'POST',
       headers: { 'Ocp-Apim-Subscription-Key': KEY as string, 'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000', 'Pronunciation-Assessment': header },

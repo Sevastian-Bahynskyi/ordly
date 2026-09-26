@@ -74,6 +74,8 @@ export interface Budget {
   /** Planned USD per issue; the program's issues are exactly these keys. */
   issues: Record<string, number>
   transfers: Transfer[]
+  /** The services the program may pay for; a call to any other is refused. Absent means all three. */
+  services?: Service[]
 }
 
 export function serviceOf(op: string): Service {
@@ -138,6 +140,11 @@ export function openingFromRawLog(calls: readonly (PaidCall & { at: string; note
     if (call.note) record.note = call.note
   }
   return [...records.values()].sort((a, b) => a.issue - b.issue)
+}
+
+/** Whether the program may pay for a call to `op` at all. */
+export function serviceAllowed(budget: Pick<Budget, 'services'>, op: string): boolean {
+  return !budget.services || budget.services.includes(serviceOf(op))
 }
 
 export function issueAllocation(budget: Budget, issue: number): number {

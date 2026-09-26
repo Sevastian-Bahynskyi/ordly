@@ -1,7 +1,17 @@
 {
- "programUsd": 120,
+ "programUsd": 170,
  "since": "2026-09-26",
- "note": "Program budget for the corpus expansion (issue #27): DeepSeek, Azure Translator and Azure Speech together, for #27, #28, #29, #30 and #17, on top of the opening balance. A transfer between issues is recorded here, with its reason.",
- "issues": { "27": 3, "28": 12, "29": 12, "30": 78, "17": 15 },
- "transfers": []
+ "note": "Program budget for the corpus expansion (issue #27), revised 2026-09-26: $170 for DeepSeek and Azure Translator together, for #27, #28, #29, #30 and #17, on top of the opening balance. Azure Speech is not used for new content: its calls are refused. A transfer between issues is recorded here, with its reason.",
+ "issues": {
+  "27": 3,
+  "28": 10,
+  "29": 12,
+  "30": 110,
+  "17": 35
+ },
+ "transfers": [],
+ "services": [
+  "deepseek",
+  "translator"
+ ]
 }

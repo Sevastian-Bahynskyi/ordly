@@ -687,14 +687,16 @@ The runbook and progress log are `docs/content-population.md`; the published num
   its key or an AI route. Deterministic helpers stay: COR (§22), spelling, the answer checker.
 - **Paid services are offline only**: DeepSeek (wording, generation, checks), Azure Translator
   (translation) and Azure Speech (audio), from `scripts/` and never from the app. Budget (issue
-  #27, replacing the earlier $70 per service): **$120 in total** for #27, #28, #29, #30 and #17,
-  split per issue in `catalog/ledger/budget.json`; money moves between issues only as a recorded
-  transfer. Every paid call is priced at list price into the committed ledger
+  #27, revised 2026-09-26): **$170 in total for DeepSeek and Translator** for #27, #28, #29, #30
+  and #17, split per issue in `catalog/ledger/budget.json`; money moves between issues only as a
+  recorded transfer. **Azure Speech is not used for new content**: `budget.json` lists the paid
+  services, and a Speech call is refused (existing recordings stay; new words, phrases and
+  sentences get none, so they have no listening task). Every paid call is priced at list price into the committed ledger
   (`catalog/ledger/runs/`, via `scripts/spend-ledger.ts`) against the issue in `CONTENT_ISSUE`; a
   call without an issue is refused. Estimate before every run (`scripts/content-batch.ts
   --estimate`); a run whose estimate does not fit what is left is refused, and a run that reaches
   its issue's allocation or the program total stops. Stop and ask before cumulative program spend
-  would pass $120. No other paid provider (Groq, OpenRouter, …) is used. Runbook:
+  would pass $170. No other paid provider (Groq, OpenRouter, …) is used. Runbook:
   `docs/content-population.md`, "Corpus expansion pipeline".
 - **A catalog miss is manual entry.** The learner fills in everything: headword, part of speech and
   gender (per meaning), every form of the paradigm (a new single word; its forms are saved as

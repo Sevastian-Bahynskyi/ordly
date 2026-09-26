@@ -55,7 +55,7 @@ export function extractJson(text: string, open: '{' | '[' = '{'): unknown {
 /** One DeepSeek completion, recorded in the ledger under `op`; the reply text is returned as written. */
 export async function deepseekText(op: string, label: string, system: string, user: string, options: { maxTokens?: number; temperature?: number } = {}): Promise<string> {
   return withRetry(`DeepSeek ${label}`, async () => {
-    await assertBudget()
+    await assertBudget(op)
     const res = await fetch(`${FOUNDRY_ENDPOINT}/chat/completions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'api-key': FOUNDRY_KEY },
@@ -106,7 +106,7 @@ export async function translate(text: string, to: string, from = 'da'): Promise<
   const cached = translationCache[key]
   if (cached) return cached
   const result = await withRetry(`Translator ${from}->${to} "${text.slice(0, 30)}…"`, async () => {
-    await assertBudget()
+    await assertBudget(`translator.${from}-${to}`)
     const res = await fetch(`${TRANSLATOR_ENDPOINT}/translate?api-version=3.0&from=${from}&to=${to}`, {
       method: 'POST',
       headers: { 'Ocp-Apim-Subscription-Key': TRANSLATOR_KEY, 'Content-Type': 'application/json' },

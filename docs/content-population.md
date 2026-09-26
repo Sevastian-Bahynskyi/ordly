@@ -183,7 +183,7 @@ Committed, in `catalog/ledger/`, with no keys and no learner data:
 
 | file | holds |
 |---|---|
-| `budget.json` | the program: $120 for #27, #28, #29, #30 and #17 together, the planned split per issue, and every transfer between issues with its reason |
+| `budget.json` | the program: $170 for #27, #28, #29, #30 and #17 together (revised 2026-09-26 from $120), the services it pays for (DeepSeek and Translator; Speech is refused), the planned split per issue, and every transfer between issues with its reason |
 | `opening.json` | what #16 and #24 spent before the program ($14.87 and $8.47 at list price), rebuilt once from the old local per-call log with `content-ledger.ts --opening` |
 | `runs/*.json` | one record per process that made a paid call: issue, batch, command, the estimate it started from, and per op, model and unit scope the calls, tokens, characters, audio seconds and list price |
 | `profile.json` | what one unit (an entry, a family) costs per op, measured on a calibration batch; the estimates scale it |
@@ -205,13 +205,20 @@ CONTENT_ISSUE=30 pnpm exec tsx --env-file=.env.corpus.local scripts/synthesize-a
 Report and transfers (no paid call):
 
 ```
-pnpm exec tsx scripts/content-ledger.ts             # per service, per issue, against $120
+pnpm exec tsx scripts/content-ledger.ts             # per service, per issue, against $170
 pnpm exec tsx scripts/content-ledger.ts --batches   # each batch's estimate against its actual spend
 pnpm exec tsx scripts/content-ledger.ts --transfer --from 30 --to 28 --usd 2 --note "why"
 ```
 
 ### Budget rule
 
+- **$170, DeepSeek and Translator only.** Split: #27 $3, #28 $10, #29 $12, #30 $110, #17 and
+  reserve $35. Azure Speech is not paid for: a batch with `"audio": true` refuses to start, and any
+  Speech call stops the run. The calibration's $0.02 of Speech predates this rule.
+- **The ledger errs high.** It records list price. The Azure bill for September 2026 showed about
+  DKK 39 (≈ $5.7) for DeepSeek, against $9.49 in the ledger, and Translator below the charts (its
+  free tier). Compare the bill with the ledger once after each issue's first large batch; if the
+  bill ever runs above the ledger, stop and re-estimate.
 - Before a run: its estimate (`--estimate`) must fit what is left of **its issue's allocation**
   (plan plus transfers) **and of the program**; otherwise the run refuses to start. Move money
   between issues only with a recorded transfer.
@@ -222,7 +229,7 @@ pnpm exec tsx scripts/content-ledger.ts --transfer --from 30 --to 28 --usd 2 --n
   every minute. A stage script run by hand has no estimate of its own: estimate its batch with
   `content-batch.ts --estimate` first, or give it a cap with `CONTENT_RUN_CAP_USD`.
 - After a run: nothing to do by hand; the run record is the actual spend. Commit it with the batch.
-- Stop and ask before a run would take cumulative program spend past $120.
+- Stop and ask before a run would take cumulative program spend past $170.
 
 ### One batch
 
@@ -256,7 +263,7 @@ the same command resumes after any stop without paying twice:
    each wording, Ukrainian check, one verified form in the example, spelling, translations present,
    no two senses worded alike). Families: `validateFamily` (the family gate) plus the Ukrainian
    check. Everything rejected, at any stage, goes to `needs_review.jsonl` with its reasons.
-6. **Audio** (when `audio` is set): the headword of every entry and every family sentence, with
+6. **Audio** (only when `audio` is set, which the current budget refuses): the headword of every entry and every family sentence, with
    the speech-recognition check of `synthesize-audio.ts` — a clip not heard as written is made
    again with the second voice, and one still not matching is judged by DeepSeek (`audio.json`).
    A clip judged a `problem` is counted in the report and must not be uploaded; uploading sentence

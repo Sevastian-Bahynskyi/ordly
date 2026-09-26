@@ -30,7 +30,7 @@ import type { LocaleFile } from '../lib/catalog-locale'
 import { drawBatchAudit, tallyBatchAudit, type AuditEntry } from '../lib/content-audit'
 import { estimateBatch, type CostProfile, type ItemKind, type UnitType } from '../lib/content-estimate'
 import { entryProblems, type EntrySense, type EntryWork } from '../lib/content-gate'
-import { budgetCheck, runUsd, type RunRecord, type Service } from '../lib/content-ledger'
+import { budgetCheck, runUsd, serviceAllowed, type RunRecord, type Service } from '../lib/content-ledger'
 import { adjudicatePass, backcheckPass, decideReview, disagreementStats, needsAdjudication, reviewPass, type Backcheck, type Complete, type ItemReviews, type ReviewItem, type Verdict } from '../lib/content-review'
 import { parseFullForms } from '../lib/ddo-fullform'
 import { SPEECH_VOICE } from '../lib/speech-audio'
@@ -79,7 +79,9 @@ const estimate = estimateBatch(counts, profile, { audio: spec.audio })
 const runs = await readRuns()
 const spentHere = batchSpend(runs).reduce((sum, record) => sum + runUsd(record), 0)
 const toSpend = Math.max(0, estimate.usd - spentHere)
-const decision = budgetCheck(toSpend, spec.issue, runs, await readBudget())
+const budget = await readBudget()
+const decision = budgetCheck(toSpend, spec.issue, runs, budget)
+if (spec.audio && !serviceAllowed(budget, 'speech.tts')) decision.reasons.push('batch.json asks for audio, but the program does not pay for Azure Speech: set "audio": false'), decision.ok = false
 console.log(`${spec.name} (#${spec.issue}): ${spec.entries.length} entries, ${spec.families.length} families → about ${Object.entries(estimate.items).map(([kind, count]) => `${count} ${kind}s`).join(', ')}`)
 console.log(`estimate $${estimate.usd.toFixed(4)} (deepseek $${estimate.byService.deepseek.toFixed(4)}, translator $${estimate.byService.translator.toFixed(4)}, speech $${estimate.byService.speech.toFixed(4)}) from profile ${profile.source}`)
 if (spentHere) console.log(`already spent on this batch $${spentHere.toFixed(4)}; still to spend ≈ $${toSpend.toFixed(4)}`)
