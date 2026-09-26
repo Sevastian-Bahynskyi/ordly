@@ -264,12 +264,13 @@ export function disagreementStats(items: readonly ReviewItem[], reviews: Readonl
 /**
  * One repair round (issue #28): an item the reviews rejected goes back to DeepSeek with every
  * defect they named, and comes back fixed in the one part a repair may touch — a meaning's three
- * wordings, an example's three translations, or a pronunciation hint — or dropped. The Danish of an
+ * wordings or an example's three translations — or dropped. (Pronunciation hints are not reviewed,
+ * so they never reach a repair.) The Danish of an
  * example is never rewritten here: a sentence that is wrong is dropped, not patched, because its
  * translations and back-translation were made from it. A repaired item is reviewed again from
  * scratch by both reviewers; nothing is accepted on the repairer's word.
  */
-export type Repair = { drop: string } | { meaning: { ru: string; en: string; uk: string } } | { translations: { en: string; ru: string; uk: string } } | { pronunciation: string }
+export type Repair = { drop: string } | { meaning: { ru: string; en: string; uk: string } } | { translations: { en: string; ru: string; uk: string } }
 
 export const REPAIR_PROMPT = `You repair Danish course content (adult learners, A1–B2, languages English, Russian and Ukrainian)
 that two reviewers rejected. Each item comes with "problems", the defects they found.
@@ -280,8 +281,6 @@ item's kind allows:
   worded correctly in all three languages (Ukrainian is standard modern Ukrainian).
 - "example" or "sentence": {"id": "...", "translations": {"en": "...", "ru": "...", "uk": "..."}} — faithful,
   natural translations of the Danish exactly as it stands (tense, person, number, register).
-- "pronunciation": {"id": "...", "pronunciation": "..."} — Cyrillic letters only, one word per Danish word,
-  one acute accent on "stressed_word".
 If the defect is in the Danish itself (ungrammatical, unnatural, or not showing the meaning), or the
 meaning is not a real meaning of the Danish, reply {"id": "...", "drop": "<why, one sentence>"}: never
 rewrite the Danish. A problem that is not a real defect (a preference between two correct options)
@@ -314,7 +313,6 @@ export function parseRepairs(text: string, items: readonly ReviewItem[]): Map<st
     const kind = kinds.get(String(entry.id))
     if (kind === 'meaning') { const meaning = threeWordings(entry.meaning, ['ru', 'en', 'uk'] as const); return meaning ? { meaning } : null }
     if (kind === 'example' || kind === 'sentence') { const translations = threeWordings(entry.translations, ['en', 'ru', 'uk'] as const); return translations ? { translations } : null }
-    if (kind === 'pronunciation') { const pronunciation = repairText(entry.pronunciation); return pronunciation ? { pronunciation } : null }
     return null
   })) found.set(id, repair)
   return found

@@ -25,7 +25,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { familyId, publishFamily, validateFamily, variantDanish, variantId, normalizeSentence, type CefrMatrix, type FamilyReply, type FamilyVariant, type FamilyWorkSense } from '../lib/catalog-families'
 import { catalogPhraseFormsJsonSql, senseId } from '../lib/catalog-import'
-import type { CatalogGeneratedRow } from '../lib/catalog-contract'
+import type { CatalogGeneratedRow, CatalogIpaSource } from '../lib/catalog-contract'
+import type { PhraseType } from '../lib/catalog-phrases'
 import type { LocaleFile } from '../lib/catalog-locale'
 import { drawBatchAudit, tallyBatchAudit, type AuditEntry } from '../lib/content-audit'
 import { estimateBatch, type CostProfile, type ItemKind, type UnitType } from '../lib/content-estimate'
@@ -51,7 +52,7 @@ const FULLFORMS = option('--fullforms') || 'ddo-fullforms_251126.csv'
 const PROFILE_PATH = join(LEDGER_DIR, 'profile.json')
 
 /** `ipa` (a phrase's, issue #28) asks for a Cyrillic pronunciation hint read from it; `ipa_source` is loaded with it. */
-interface EntryUnit extends EntryWork { level?: string; note?: string; ipa?: string | null; ipa_source?: 'ddo' | 'wiktionary' | 'components'; type?: string; stress?: number; form_rows?: { form_key: string; form_text: string }[] }
+interface EntryUnit extends EntryWork { level?: string; note?: string; ipa?: string | null; ipa_source?: CatalogIpaSource; type?: PhraseType; stress?: number; form_rows?: { form_key: string; form_text: string }[] }
 type FamilyUnit = FamilyWorkSense & { target: { level: string; situation: string; grammar: string }; note?: string }
 interface BatchSpec {
   issue: number
@@ -242,12 +243,18 @@ async function generateFamilies(): Promise<FamilyResult[]> {
 interface PipelineItem extends ReviewItem { unit: string; back?: string }
 
 const entryKey = (lemma: string, kind: string): string => `${lemma}|${kind}`
+/** The batch unit a generated entry came from; every entry has one, since entries are made from units. */
+function unitOf(entry: { lemma: string; kind: string }): EntryUnit {
+  const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind)
+  if (!unit) throw new Error(`${entry.lemma} (${entry.kind}) is not in ${spec.name}/batch.json`)
+  return unit
+}
 function buildItems(entries: readonly GeneratedEntry[], families: readonly FamilyResult[]): PipelineItem[] {
   const items: PipelineItem[] = []
   for (const entry of entries) {
     const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind)
     if (entry.pronunciation && unit?.ipa && entry.senses?.length) {
-      items.push({ id: `p:${entryKey(entry.lemma, entry.kind)}`, kind: 'pronunciation', lemma: entry.lemma, entry_kind: entry.kind, pos: unit.pos, meaning: { ru: entry.senses[0].ru, en: entry.senses[0].en, uk: entry.senses[0].uk }, ipa: unit.ipa, pronunciation: entry.pronunciation, ...(unit.stress !== undefined ? { stressed_word: unit.lemma.split(' ')[unit.stress] } : {}), unit: `entry:${entryKey(entry.lemma, entry.kind)}` })
+      items.push({ id: `p:${entryKey(entry.lemma, entry.kind)}`, kind: 'pronunciation', lemma: entry.lemma, entry_kind: entry.kind, pos: unit.pos, meaning: { ru: entry.senses[0].ru, en: entry.senses[0].en, uk: entry.senses[0].uk }, ipa: unit.ipa, pronunciation: entry.pronunciation, ...(stressOf(unit) !== null ? { stressed_word: unit.lemma.split(' ')[stressOf(unit) as number] } : {}), unit: `entry:${entryKey(entry.lemma, entry.kind)}` })
     }
     for (const sense of entry.senses ?? []) {
       const base = { lemma: entry.lemma, entry_kind: entry.kind, pos: unit?.pos ?? null, meaning: { ru: sense.ru, en: sense.en, uk: sense.uk }, unit: `entry:${entryKey(entry.lemma, entry.kind)}` }
@@ -332,7 +339,6 @@ async function repairRound(entries: GeneratedEntry[], items: readonly PipelineIt
     const [kind, ordinal] = rest.split('#')
     const entry = entries.find((candidate) => candidate.lemma === lemma && candidate.kind === kind)
     if (!entry) continue
-    if ('pronunciation' in repair) entry.pronunciation = cleanPronunciation(repair.pronunciation)
     const sense = entry.senses?.find((candidate) => String(candidate.ordinal) === ordinal)
     if ('meaning' in repair && sense) Object.assign(sense, repair.meaning)
     if ('translations' in repair && sense) Object.assign(sense, { example_en: repair.translations.en, example_ru: repair.translations.ru, example_uk: repair.translations.uk })
@@ -368,7 +374,8 @@ function applyCorrections(entries: readonly GeneratedEntry[], corrections: reado
   // The stress rule applies to every hint, including one generated before it existed.
   for (const entry of copy) {
     const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind)
-    if (entry.pronunciation && unit?.ipa && unit.stress !== undefined) entry.pronunciation = placePhraseStress(entry.pronunciation, unit.stress, unit.ipa)
+    const stress = unit ? stressOf(unit) : null
+    if (entry.pronunciation && unit?.ipa && stress !== null) entry.pronunciation = placePhraseStress(entry.pronunciation, stress, unit.ipa)
   }
   for (const correction of corrections) {
     if (correction.drop) continue
@@ -405,7 +412,7 @@ async function gate(items: readonly PipelineItem[], log: ReviewLog, entries: rea
   // together (two senses may not share a wording) and numbered again from 1.
   const keptEntries: GeneratedEntry[] = []
   for (const entry of entries) {
-    const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind) as EntryUnit
+    const unit = unitOf(entry)
     const key = entryKey(entry.lemma, entry.kind)
     // An entry that needs a pronunciation hint is taught only with one that passed.
     if (unit.ipa) {
@@ -550,7 +557,7 @@ async function load(entries: readonly GeneratedEntry[], families: readonly Trans
   const rows: CatalogGeneratedRow[] = []
   const locales: Record<'en' | 'uk', LocaleFile> = { en: { lang: 'en', generator: `pipeline-${spec.name}`, senses: [] }, uk: { lang: 'uk', generator: `pipeline-${spec.name}`, senses: [] } }
   for (const entry of entries) {
-    const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind) as EntryUnit
+    const unit = unitOf(entry)
     const senses = (entry.senses ?? []).map((sense, index) => ({ ...sense, ordinal: index + 1 }))
     rows.push({ lemma: entry.lemma, kind: entry.kind, pronunciation: entry.pronunciation ?? null, senses: senses.map((sense) => ({ ordinal: sense.ordinal, text: sense.ru, pos: unit.pos, gender: null, example: sense.example, example_translation: sense.example_ru })) })
     for (const lang of ['en', 'uk'] as const) {
@@ -562,7 +569,7 @@ async function load(entries: readonly GeneratedEntry[], families: readonly Trans
   await mkdir(path('publish', 'rows'), { recursive: true })
   await writeJson(join('publish', 'rows', 'rows.json'), rows)
   const facts = entries.map((entry) => {
-    const unit = spec.entries.find((candidate) => candidate.lemma === entry.lemma && candidate.kind === entry.kind) as EntryUnit
+    const unit = unitOf(entry)
     const ipa = entry.pronunciation && unit.ipa ? unit.ipa : null
     return { lemma: entry.lemma, kind: entry.kind, freq_rank: null, pos: unit.pos, gender: null, definite_singular: null, indefinite_plural: null, ipa, ipa_source: ipa ? unit.ipa_source ?? null : null }
   })

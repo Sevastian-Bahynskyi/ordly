@@ -1,3 +1,5 @@
+import { TYPED_GAP } from './catalog-phrases'
+
 export type EntryKind = 'word' | 'sentence'
 export type DanishInputKind = 'word' | 'phrase' | 'sentence'
 
@@ -20,7 +22,7 @@ export function inferDanishInputKind(value: string): DanishInputKind {
   if (/[.!?]$/u.test(text)) return 'sentence'
   if (words.length >= 6) return 'sentence'
   // A gap between words is a split phrase (`står … op`), whatever its finite verb could open.
-  if (/\p{L}\s*(?:\.{2,}|…)\s*\p{L}/u.test(text)) return 'phrase'
+  if (new RegExp(TYPED_GAP.source, 'u').test(text)) return 'phrase'
 
   const first = words[0]?.toLocaleLowerCase('da-DK') || ''
   if (words.length >= 4 && sentenceStarters.has(first)) return 'sentence'

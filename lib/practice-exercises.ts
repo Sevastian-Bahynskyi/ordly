@@ -1,6 +1,7 @@
 import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
 import { senseContentVersion } from './practice-content'
+import { PHRASE_GAP } from './catalog-phrases'
 import { senseExample, type SenseCandidate } from './practice-senses'
 import type { CatalogContext } from './practice-contexts'
 import { seedHash, type PracticeTask } from './practice'
@@ -316,7 +317,7 @@ export function findInSentence(sentence: string, danish: string, forms: readonly
   if (/\s/u.test(target)) {
     // A phrase is found only in one of its verified contiguous forms (`stod op`); a split one
     // (`stod … op`) is never one gap.
-    const contiguous = forms.filter((form) => /\s/u.test(form.trim()) && !form.includes('…')).sort((left, right) => right.length - left.length)
+    const contiguous = forms.filter((form) => /\s/u.test(form.trim()) && !form.includes(PHRASE_GAP)).sort((left, right) => right.length - left.length)
     for (const form of contiguous) {
       const found = exactly(form.trim())
       if (found) return found

@@ -224,6 +224,14 @@ export function comparePhraseCandidates(left: PhraseCandidate, right: PhraseCand
 
 /** Where a split phrase's other words go: `står … op`. One character, spaced, so it reads as a gap. */
 export const PHRASE_GAP = '…'
+/** A gap as a learner types it between two words: `…` or `...`, spaced or not. */
+export const TYPED_GAP = /(?<=\p{L})\s*(?:\.{2,}|…)\s*(?=\p{L})/gu
+/**
+ * The auxiliaries of a compound tense (`er stået op`, `har givet op`). A phrase records its past
+ * participle, not which auxiliary it takes, so a lookup may set one aside before a participle form
+ * but never claims the whole as a recorded form.
+ */
+export const PERFECT_AUXILIARIES = new Set(['er', 'var', 'har', 'havde', 'blev', 'bliver', 'være', 'have', 'været', 'haft'])
 
 /** The head verb forms a phrase is recorded in, and the finite ones it can be split after. */
 const PHRASE_FORM_KEYS = ['infinitive', 'present', 'past', 'past_participle', 'imperative'] as const
@@ -281,7 +289,7 @@ const UNSTRESSED = new Set([...PREPOSITIONS, ...REFLEXIVE_PRONOUNS, 'at', 'og', 
  * The pronunciation hint is checked against it, so the stress is not left to a model's habit of
  * copying each word's own.
  */
-export function phraseStressIndex(tokens: readonly string[], type: string): number {
+export function phraseStressIndex(tokens: readonly string[], type: PhraseType): number {
   if (type === 'particle-verb' && tokens.length > 1 && tokens[1] !== 'sig') {
     // `finde UD af`: a closing preposition or reflexive is unstressed; `tage af STED`: a two-word particle stresses its last word.
     const last = tokens.length - 1

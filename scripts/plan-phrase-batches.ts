@@ -21,7 +21,7 @@
  */
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { phraseComponentIpa, phraseFormRows, phraseStressIndex, PHRASE_GAP, type PhraseCandidate, type PhraseFormRow, type PhraseLabel } from '../lib/catalog-phrases'
+import { phraseComponentIpa, phraseFormRows, phraseStressIndex, PHRASE_GAP, type PhraseCandidate, type PhraseFormRow, type PhraseLabel, type PhraseType } from '../lib/catalog-phrases'
 import { parseKaikkiLine, selectIpaForPos, type WiktionaryIpa } from '../lib/catalog-ipa'
 import { corParadigm } from '../lib/cor'
 import type { PartOfSpeech } from '../lib/types'
@@ -43,7 +43,7 @@ interface PhraseFacts {
   lemma: string
   pos: PartOfSpeech
   shape: string
-  type: string
+  type: PhraseType
   level: string
   attested: number
   ipa: string

@@ -2,7 +2,9 @@
 
 Every batch in `catalog/pipeline/phrases-0001` … `phrases-0014` went through the corpus pipeline
 (`scripts/content-batch.ts`): DeepSeek generation, Azure Translator, back-translation, two independent
-reviews with adjudication, one repair round, the deterministic gate, then **a full read of every item
+reviews with adjudication for every meaning and example (pronunciation hints are checked by the
+deterministic gate and read, not model-reviewed: see `docs/content-population.md`, "Phrases (issue #28)"),
+one repair round, the deterministic gate, then **a full read of every item
 that passed** (defects corrected or dropped in each batch's `corrections.json`, with a note), and only
 then a **seeded, stratified audit sample** of 30 items (`audit.json`, seed in `batch.json`). A batch was
 loaded only at ≥95% clean with no severe finding; every finding in a passing sample was repaired too
