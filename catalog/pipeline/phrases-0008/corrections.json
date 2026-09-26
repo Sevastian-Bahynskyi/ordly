@@ -1,34 +1,207 @@
 [
- {"id": "m:skyde af|phrase#1", "drop": "skyde af takes the weapon as object (skyde et gevær af); skød af mod fuglen is not idiomatic"},
- {"id": "e:skyde af|phrase#1", "drop": "not idiomatic Danish"},
- {"id": "e:røre rundt|phrase#1", "translations": {"en": "She stirs the pot with a spoon.", "ru": "Она помешивает в кастрюле ложкой.", "uk": "Вона помішує в каструлі ложкою."}, "note": "one stirs in the pot"},
- {"id": "p:ryste på hovedet|phrase", "pronunciation": "рёсдэ по хо́оэд", "note": "hovedet [ˈhoːəð]"},
- {"id": "p:skille sig af med|phrase", "pronunciation": "сгелэ сай а́ мэ", "stress": 2, "note": "the particle af takes the stress"},
- {"id": "p:tilbringe tid|phrase", "pronunciation": "тэльбрэнэ ти́д", "note": "stray ъ"},
- {"id": "p:klæde sig af|phrase", "pronunciation": "клэ сай а́", "stress": 2, "note": "the particle af takes the stress"},
- {"id": "p:græde over|phrase", "pronunciation": "гра́адэ оуа", "note": "[ˈgʁaːðə] [ɒwʌ]"},
- {"id": "p:køle af|phrase", "pronunciation": "кёлэ а́", "note": "af [a]"},
- {"id": "p:sværge på|phrase", "pronunciation": "свэ́ау по", "note": "[ˈsʋ̥æɐ̯ʊ]"},
- {"id": "p:komme sig over|phrase", "pronunciation": "ко́мэ сай оуа", "stress": 0, "note": "a reflexive verb: stress on komme"},
- {"id": "p:tage tid|phrase", "pronunciation": "тэ ти́д", "note": "tage [tæˀ]"},
- {"id": "e:tage tid|phrase#1", "translations": {"en": "It takes time to learn Danish.", "ru": "Чтобы выучить датский, нужно время.", "uk": "Щоб вивчити данську, потрібен час."}, "note": "Потрібно час is ungrammatical"},
- {"id": "p:finde sammen|phrase", "pronunciation": "фенэ са́мэн", "note": "sammen"},
- {"id": "p:stå sammen|phrase", "pronunciation": "сдо са́мэн", "note": "sammen, not сдэмэн"},
- {"id": "e:stå sammen|phrase#1", "translations": {"en": "We stand together when things are difficult.", "ru": "Мы держимся вместе, когда трудно.", "uk": "Ми тримаємося разом, коли важко."}, "note": "стоим вместе is literal"},
- {"id": "p:det er lige meget|phrase", "pronunciation": "дэ эа лиэ ма́д", "note": "er [ɛɐ̯], meget [ˈmɑð]"},
- {"id": "p:sætte sig for|phrase", "pronunciation": "сэдэ сай фо́", "stress": 2, "note": "for is stressed in this phrase"},
- {"id": "p:sætte sig for at|phrase", "pronunciation": "сэдэ сай фо́ ад", "stress": 2, "note": "for is stressed in this phrase"},
- {"id": "p:tale sammen|phrase", "pronunciation": "тээлэ са́мэн", "note": "sammen"},
- {"id": "e:tale sammen|phrase#1", "translations": {"en": "We talk to each other every evening.", "ru": "Мы разговариваем каждый вечер.", "uk": "Ми розмовляємо щовечора."}, "note": "aften is evening"},
- {"id": "p:bruge penge på|phrase", "pronunciation": "бруэ пэ́нгэ по", "stress": 1, "note": "penge takes the stress"},
- {"id": "p:lægge ud|phrase", "pronunciation": "лэгэ у́д", "note": "soft d ≈ д"},
- {"id": "m:lægge ud|phrase#2", "meaning": {"ru": "платить за других (с последующим возвратом)", "en": "to pay (for others, to be paid back)", "uk": "платити за інших (з подальшим поверненням)"}, "note": "the meaning is paying on someone's behalf"},
- {"id": "e:lægge ud|phrase#2", "translations": {"en": "I paid for everyone's concert tickets for now.", "ru": "Я пока заплатил за билеты на концерт за всех.", "uk": "Я поки що заплатив за квитки на концерт за всіх."}, "note": "the meaning is paying on someone's behalf"},
- {"id": "e:gå rundt om|phrase#1", "translations": {"en": "We walked around the lake yesterday evening.", "ru": "Вчера вечером мы обошли вокруг озера.", "uk": "Вчора ввечері ми обійшли навколо озера."}, "note": "i aftes is yesterday evening"},
- {"id": "p:leve for|phrase", "pronunciation": "лэ́эвэ фо", "note": "[ˈleːvə]"},
- {"id": "p:leve videre|phrase", "pronunciation": "лээвэ ви́даа", "note": "[ˈviðʌʌ]"},
- {"id": "p:sætte ord på|phrase", "pronunciation": "сэдэ о́а по", "note": "[ˈoˀɐ̯] has no r"},
- {"id": "p:stå stille|phrase", "pronunciation": "сдо сдэ́лэ", "note": "one l"},
- {"id": "e:stå stille|phrase#2", "translations": {"en": "The work is at a standstill because of the rain.", "ru": "Работа стоит из-за дождя.", "uk": "Робота стоїть через дощ."}, "note": "a state, not a change"},
- {"id": "p:trække ud|phrase", "pronunciation": "трагэ у́д", "note": "ud [ˈuðˀ], trække [ˈtʁagə]"}
+ {
+  "id": "m:skyde af|phrase#1",
+  "drop": "skyde af takes the weapon as object (skyde et gevær af); skød af mod fuglen is not idiomatic"
+ },
+ {
+  "id": "e:skyde af|phrase#1",
+  "drop": "not idiomatic Danish"
+ },
+ {
+  "id": "e:røre rundt|phrase#1",
+  "translations": {
+   "en": "She stirs the pot with a spoon.",
+   "ru": "Она помешивает в кастрюле ложкой.",
+   "uk": "Вона помішує в каструлі ложкою."
+  },
+  "note": "one stirs in the pot"
+ },
+ {
+  "id": "p:ryste på hovedet|phrase",
+  "pronunciation": "рёсдэ по хо́оэд",
+  "note": "hovedet [ˈhoːəð]"
+ },
+ {
+  "id": "p:skille sig af med|phrase",
+  "pronunciation": "сгелэ сай а́ мэ",
+  "stress": 2,
+  "note": "the particle af takes the stress"
+ },
+ {
+  "id": "p:tilbringe tid|phrase",
+  "pronunciation": "тэльбрэнэ ти́д",
+  "note": "stray ъ"
+ },
+ {
+  "id": "p:klæde sig af|phrase",
+  "pronunciation": "клэ сай а́",
+  "stress": 2,
+  "note": "the particle af takes the stress"
+ },
+ {
+  "id": "p:græde over|phrase",
+  "pronunciation": "гра́адэ оуа",
+  "note": "[ˈgʁaːðə] [ɒwʌ]"
+ },
+ {
+  "id": "p:køle af|phrase",
+  "pronunciation": "кёлэ а́",
+  "note": "af [a]"
+ },
+ {
+  "id": "p:sværge på|phrase",
+  "pronunciation": "свэ́ау по",
+  "note": "[ˈsʋ̥æɐ̯ʊ]"
+ },
+ {
+  "id": "p:komme sig over|phrase",
+  "pronunciation": "ко́мэ сай оуа",
+  "stress": 0,
+  "note": "a reflexive verb: stress on komme"
+ },
+ {
+  "id": "p:tage tid|phrase",
+  "pronunciation": "тэ ти́д",
+  "note": "tage [tæˀ]"
+ },
+ {
+  "id": "e:tage tid|phrase#1",
+  "translations": {
+   "en": "It takes time to learn Danish.",
+   "ru": "Чтобы выучить датский, нужно время.",
+   "uk": "Щоб вивчити данську, потрібен час."
+  },
+  "note": "Потрібно час is ungrammatical"
+ },
+ {
+  "id": "p:finde sammen|phrase",
+  "pronunciation": "фенэ са́мэн",
+  "note": "sammen"
+ },
+ {
+  "id": "p:stå sammen|phrase",
+  "pronunciation": "сдо са́мэн",
+  "note": "sammen, not сдэмэн"
+ },
+ {
+  "id": "e:stå sammen|phrase#1",
+  "translations": {
+   "en": "We stand together when things are difficult.",
+   "ru": "Мы держимся вместе, когда трудно.",
+   "uk": "Ми тримаємося разом, коли важко."
+  },
+  "note": "стоим вместе is literal"
+ },
+ {
+  "id": "p:det er lige meget|phrase",
+  "pronunciation": "дэ эа лиэ ма́д",
+  "note": "er [ɛɐ̯], meget [ˈmɑð]"
+ },
+ {
+  "id": "p:sætte sig for|phrase",
+  "pronunciation": "сэдэ сай фо́",
+  "stress": 2,
+  "note": "for is stressed in this phrase"
+ },
+ {
+  "id": "p:sætte sig for at|phrase",
+  "pronunciation": "сэдэ сай фо́ ад",
+  "stress": 2,
+  "note": "for is stressed in this phrase"
+ },
+ {
+  "id": "p:tale sammen|phrase",
+  "pronunciation": "тээлэ са́мэн",
+  "note": "sammen"
+ },
+ {
+  "id": "e:tale sammen|phrase#1",
+  "translations": {
+   "en": "We talk to each other every evening.",
+   "ru": "Мы разговариваем каждый вечер.",
+   "uk": "Ми розмовляємо щовечора."
+  },
+  "note": "aften is evening"
+ },
+ {
+  "id": "p:bruge penge på|phrase",
+  "pronunciation": "бруэ пэ́нгэ по",
+  "stress": 1,
+  "note": "penge takes the stress"
+ },
+ {
+  "id": "p:lægge ud|phrase",
+  "pronunciation": "лэгэ у́д",
+  "note": "soft d ≈ д"
+ },
+ {
+  "id": "m:lægge ud|phrase#2",
+  "meaning": {
+   "ru": "платить за других (с последующим возвратом)",
+   "en": "to pay (for others, to be paid back)",
+   "uk": "платити за інших (з подальшим поверненням)"
+  },
+  "note": "the meaning is paying on someone's behalf"
+ },
+ {
+  "id": "e:lægge ud|phrase#2",
+  "translations": {
+   "en": "I paid for everyone's concert tickets for now.",
+   "ru": "Я пока заплатил за билеты на концерт за всех.",
+   "uk": "Я поки що заплатив за квитки на концерт за всіх."
+  },
+  "note": "the meaning is paying on someone's behalf"
+ },
+ {
+  "id": "e:gå rundt om|phrase#1",
+  "translations": {
+   "en": "We walked around the lake yesterday evening.",
+   "ru": "Вчера вечером мы обошли вокруг озера.",
+   "uk": "Вчора ввечері ми обійшли навколо озера."
+  },
+  "note": "i aftes is yesterday evening"
+ },
+ {
+  "id": "p:leve for|phrase",
+  "pronunciation": "лэ́эвэ фо",
+  "note": "[ˈleːvə]"
+ },
+ {
+  "id": "p:leve videre|phrase",
+  "pronunciation": "лээвэ ви́даа",
+  "note": "[ˈviðʌʌ]"
+ },
+ {
+  "id": "p:sætte ord på|phrase",
+  "pronunciation": "сэдэ о́а по",
+  "note": "[ˈoˀɐ̯] has no r"
+ },
+ {
+  "id": "p:stå stille|phrase",
+  "pronunciation": "сдо сдэ́лэ",
+  "note": "one l"
+ },
+ {
+  "id": "e:stå stille|phrase#2",
+  "translations": {
+   "en": "The work is at a standstill because of the rain.",
+   "ru": "Работа стоит из-за дождя.",
+   "uk": "Робота стоїть через дощ."
+  },
+  "note": "a state, not a change"
+ },
+ {
+  "id": "p:trække ud|phrase",
+  "pronunciation": "трагэ у́д",
+  "note": "ud [ˈuðˀ], trække [ˈtʁagə]"
+ },
+ {
+  "id": "e:køle af|phrase#2",
+  "translations": {
+   "en": "He needs to cool down before we talk about it.",
+   "ru": "Ему нужно остыть, прежде чем мы поговорим об этом.",
+   "uk": "Йому треба охолонути, перш ніж ми про це поговоримо."
+  },
+  "note": "audit 2808: perfective"
+ }
 ]

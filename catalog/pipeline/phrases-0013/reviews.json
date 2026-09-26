@@ -1,0 +1,2010 @@
+{
+ "reviews": {
+  "m:tage ved lære|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage ved lære|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Ukrainian 'Він навчився на своїх помилках' uses past perfective 'навчився', but Danish 'tog ved lære' is past imperfective; should be 'вчився' to match the aspect and meaning 'learned from' as a process"
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Ukrainian perfective 'навчився' correctly translates the Danish perfective past 'tog ved lære' (learned from), as the phrase describes a completed act of learning from mistakes, not an ongoing process."
+   }
+  },
+  "m:få en ende|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:få en ende|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:rejse sig op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:rejse sig op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være ude at rejse|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være ude at rejse|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lukke ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lukke ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lukke op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lukke øjnene for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lukke øjnene for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:finde hjem|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:finde hjem|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: the Danish sentence 'Efter den lange tur fandt hjem de hurtigt' has incorrect word order. The subject 'de' must come immediately after the verb 'fandt' in a main clause when an adverbial phrase occupies the first position (V2 rule). It should be 'fandt de hjem'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Efter den lange tur fandt hjem de hurtigt' has incorrect word order. The subject 'de' should come before the verb 'fandt' in a main clause when the sentence starts with an adverbial phrase. The correct word order is 'Efter den lange tur fandt de hurtigt hjem'."
+    ]
+   }
+  },
+  "m:tage med hjem|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage med hjem|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: the Danish sentence 'Jeg tager med hjem en gave til dig' has incorrect word order. The object 'en gave' should precede the adverbial particle 'med hjem' or the sentence should be restructured. A natural word order is 'Jeg tager en gave med hjem til dig'.",
+     "natural: 'Jeg tager med hjem en gave til dig' is not idiomatic Danish. A native speaker would say 'Jeg tager en gave med hjem til dig'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Jeg tager med hjem en gave til dig' has incorrect word order. The object 'en gave' should be placed before the adverbial phrase 'med hjem'. The correct word order is 'Jeg tager en gave med hjem til dig'."
+    ]
+   }
+  },
+  "m:hen imod|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sætte sig hen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sætte sig hen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sætte vand over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sælge sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sælge sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:ind ad|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Ukrainian meaning 'всередину' is misspelled; correct is 'всередину' -> 'всередину' (should be 'всередину' or more naturally 'всередину')"
+    ]
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Ukrainian 'всередину' is correctly spelled and is a standard, natural equivalent for the directional meaning 'ind ad'."
+   }
+  },
+  "m:løbe over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:løbe over|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:vokse frem|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:vokse til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:arbejde sort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå i sort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå i sort|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage på tur|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:rødt kort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:rødt kort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:se rødt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være skyld i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:passe ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:passe ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:passe sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:passe sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage alvorligt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage alvorligt|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: Danish word order is incorrect. 'tage alvorligt' is a phrasal verb, and the object 'hvad læreren siger' must be placed after the particle 'alvorligt' or the particle must be split, but the current order 'tage alvorligt hvad læreren siger' is ungrammatical. Correct would be 'tage hvad læreren siger alvorligt'.",
+     "translations: The English translation 'You must take seriously what the teacher says' is unnatural; a more natural rendering is 'You must take what the teacher says seriously'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish word order 'tage alvorligt hvad læreren siger' is ungrammatical because the object clause must follow the full phrasal verb or the particle must be split, making it a real defect."
+   }
+  },
+  "m:hænge fast|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge fast|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge fast|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge fast|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge sig i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge sig i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge ved|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge ved|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge ved|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stemme om|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stemme om|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stemme ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:blive rød i hovedet|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bruge hovedet|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge med hovedet|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:regne efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:regne efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:ikke lægge mærke til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:ikke lægge mærke til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'I couldn't notice the quiet sound' is unnatural; a native speaker would say 'I couldn't hear the quiet sound' or 'I didn't notice the quiet sound'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The English translation 'I couldn't notice the quiet sound' is grammatically correct and conveys the meaning, and a preference for 'didn't notice' is stylistic, not a defect."
+   }
+  },
+  "m:mærke på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:komme til magten|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme til magten|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sige stop|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sige stop|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:handle derefter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:handle derefter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:drive den af|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bære på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bære på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bære på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bære på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:holde pause|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slå fejl|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:slå fejl|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:give en chance|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:give en chance|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'Jeg gav en chance til den nye elev i klassen' is unnatural Danish; the prepositional phrase 'til den nye elev' is a calque from English. Natural Danish would be 'Jeg gav den nye elev i klassen en chance'.",
+     "translations: English translation 'I gave a chance to the new student in the class' is unnatural; natural English would be 'I gave the new student in the class a chance'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence 'Jeg gav en chance til den nye elev' is a calque from English and unnatural; the correct Danish word order places the indirect object before the direct object."
+   }
+  },
+  "m:lide med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lide med|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish sentence 'Hun led med, da hendes ven var syg' does not clearly show the meaning 'to suffer (along with someone)'. 'Lide med' implies shared suffering, but the sentence only states she suffered when her friend was ill, not that she suffered together with her friend."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence 'Hun led med, da hendes ven var syg' fails to demonstrate the shared suffering inherent in 'lide med', as it only states she suffered when her friend was ill, not that she suffered together with her friend."
+   }
+  },
+  "m:få besøg|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være på besøg hos|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tjene på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tjene på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:det er slut|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:det er slut|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slippe af sted med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:give koncert|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:give koncert|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lukke op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hen imod|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sætte vand over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:ind ad|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Кот вошёл в дверной проём' is unnatural; a native speaker would say 'Кот вошёл в дверь' or 'Кот зашёл в дверь'.",
+     "translations: Ukrainian 'Кіт зайшов у дверний проріз' is unnatural; a native speaker would say 'Кіт зайшов у двері'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian and Ukrainian translations are unnatural; a native speaker would use 'в дверь' or 'у двері' instead of the overly literal 'в дверной проём'/'у дверний проріз'."
+   }
+  },
+  "e:løbe over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:løbe over|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Ukrainian 'Холодне тремтіння пробігло по спині' is unnatural; 'тремтіння' is not idiomatic for a shiver, a native speaker would say 'Холодний дрож пробіг по спині' or 'Мороз пробіг по спині'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Ukrainian translation uses 'тремтіння', which is not idiomatic for a shiver; a native speaker would say 'дрож' or 'мороз'."
+   }
+  },
+  "e:vokse frem|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'grow forth' is unnatural; a native speaker would say 'grow' or 'come up'.",
+     "translations: Ukrainian 'виростають' is unnatural for flowers appearing in spring; a native speaker would say 'з'являються' or 'розквітають'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The English translation 'grow forth' is unnatural for flowers appearing in spring; a native speaker would say 'grow' or 'come up'."
+   }
+  },
+  "e:vokse til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:arbejde sort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå i sort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå i sort|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage på tur|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:se rødt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være skyld i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge ved|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stemme ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:blive rød i hovedet|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bruge hovedet|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: missing comma before subordinate clause 'når du løser den opgave'"
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence is missing a required comma before the subordinate clause 'når du løser den opgave'."
+   }
+  },
+  "e:hænge med hovedet|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:mærke på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:drive den af|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde pause|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:få besøg|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'will have a visit' is future, but Danish 'får' is present tense; the translation should be present ('have visitors' or 'are having visitors') to match the Danish tense."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The English translation 'will have a visit' is a natural and acceptable way to express a future arrangement, and the Danish present tense 'får' is commonly used for future events, so this is not a defect."
+   }
+  },
+  "e:være på besøg hos|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'навещаю подругу' means 'visiting a (female) friend', but Danish 'min ven' is masculine/common gender ('my friend', not specifically female); the translation adds gender not present in the Danish."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian translation 'навещаю подругу' is a natural rendering of the sentence, and the gender specification is a common and acceptable translation choice that does not misrepresent the Danish meaning, as 'min ven' can refer to a male friend."
+   }
+  },
+  "e:slippe af sted med|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Ukrainian 'Він уникнув покарання, списуючи на іспиті' means 'He avoided punishment by cheating on the exam', which changes the meaning from 'got away with' (implying he was not caught/punished for the act) to actively avoiding punishment; a more accurate translation would be 'Йому зійшло з рук списування на іспиті'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Ukrainian translation 'Він уникнув покарання, списуючи на іспиті' changes the meaning from 'got away with' to 'avoided punishment by cheating', which is a different nuance."
+   }
+  },
+  "m:tage magten|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage magten|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå ud at spise|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå ud at spise|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  }
+ },
+ "backchecks": {
+  "e:tage ved lære|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:få en ende|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:rejse sig op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være ude at rejse|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lukke ned|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lukke op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lukke øjnene for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:finde hjem|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage med hjem|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hen imod|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sætte sig hen|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sætte vand over|phrase#1": {
+   "same": false,
+   "note": "Tense changed from present to past (sætter → satte)."
+  },
+  "e:sælge sig selv|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:ind ad|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:løbe over|phrase#1": {
+   "same": false,
+   "note": "Action changed from boiling over (løb over) to spilling (spildte ud)."
+  },
+  "e:løbe over|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:vokse frem|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:vokse til|phrase#1": {
+   "same": false,
+   "note": "Lost 'til' (overgrown) and became just 'grew' (voksede)."
+  },
+  "e:arbejde sort|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå i sort|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå i sort|phrase#2": {
+   "same": false,
+   "note": "gik i sort (passed out) → blev sort (turned black)"
+  },
+  "e:tage på tur|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:rødt kort|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:se rødt|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være skyld i|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:passe ind|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:passe sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage alvorligt|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge fast|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge fast|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge på|phrase#2": {
+   "same": false,
+   "note": "hang → lagde på (changed verb meaning from 'froze' to 'hung up')"
+  },
+  "e:hænge sig i|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge ved|phrase#1": {
+   "same": false,
+   "note": "hænger ved → hænger hele tiden (changed from 'freezes' to 'hangs all the time')"
+  },
+  "e:hænge ved|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:stemme om|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:stemme ud|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:blive rød i hovedet|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bruge hovedet|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge med hovedet|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:regne efter|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:ikke lægge mærke til|phrase#1": {
+   "same": false,
+   "note": "lægge mærke til (notice) changed to høre (hear), changing the sense from general noticing to specifically hearing"
+  },
+  "e:mærke på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:komme til magten|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sige stop|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:handle derefter|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:drive den af|phrase#1": {
+   "same": false,
+   "note": "driver den af (lazing around) changed to kører den (running it), changing the meaning"
+  },
+  "e:bære på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bære på|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:holde pause|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:slå fejl|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:give en chance|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lide med|phrase#1": {
+   "same": false,
+   "note": "The phrase 'led med' (suffered with/empathized) was changed to 'led' (suffered), losing the sense of shared suffering. Also, 'ven' (friend, gender-neutral) became 'veninde' (female friend)."
+  },
+  "e:få besøg|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være på besøg hos|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tjene på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:det er slut|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:slippe af sted med|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:give koncert|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage magten|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå ud at spise|phrase#1": {
+   "same": true,
+   "note": ""
+  }
+ },
+ "repairs": {
+  "e:lukke op|phrase#1": {
+   "problems": [
+    "sense: the Danish 'Hun lukker op for gæsterne' means 'She opens the door for the guests', not 'She opens up to the guests' (which would be figurative). The stated meaning is 'to open (a door, window, etc.)', but the English and Russian translations render it figuratively as 'opens up to' / 'открывается', which does not match the literal meaning.",
+    "translations: English 'opens up to the guests' is a figurative meaning not present in the Danish, which is literal. Russian 'открывается гостям' is also figurative and unnatural for opening a door. Ukrainian 'відкривається гостям' is similarly figurative and incorrect for the literal action.",
+    "The English translation 'She opens up to the guests when they ring the doorbell' does not match the Danish meaning 'to open (a door, window, etc.)'. The Danish sentence means 'She opens the door for the guests when they ring the doorbell'. The English translation uses 'opens up to' which implies emotional openness, not physically opening a door. The Russian translation 'Она открывается гостям' and Ukrainian translation 'Вона відкривається гостям' have the same error, using a reflexive verb that implies emotional opening rather than physically opening the door."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She opens the door for the guests when they ring the doorbell.",
+     "ru": "Она открывает дверь гостям, когда они звонят в дверь.",
+     "uk": "Вона відчиняє двері гостям, коли вони дзвонять у двері."
+    }
+   }
+  },
+  "e:finde hjem|phrase#1": {
+   "problems": [
+    "grammar: the Danish sentence 'Efter den lange tur fandt hjem de hurtigt' has incorrect word order. The subject 'de' must come immediately after the verb 'fandt' in a main clause when an adverbial phrase occupies the first position (V2 rule). It should be 'fandt de hjem'.",
+    "The Danish sentence 'Efter den lange tur fandt hjem de hurtigt' has incorrect word order. The subject 'de' should come before the verb 'fandt' in a main clause when the sentence starts with an adverbial phrase. The correct word order is 'Efter den lange tur fandt de hurtigt hjem'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence has incorrect word order (V2 rule violated); it should be 'fandt de hjem', not 'fandt hjem de'."
+   }
+  },
+  "e:tage med hjem|phrase#1": {
+   "problems": [
+    "grammar: the Danish sentence 'Jeg tager med hjem en gave til dig' has incorrect word order. The object 'en gave' should precede the adverbial particle 'med hjem' or the sentence should be restructured. A natural word order is 'Jeg tager en gave med hjem til dig'.",
+    "natural: 'Jeg tager med hjem en gave til dig' is not idiomatic Danish. A native speaker would say 'Jeg tager en gave med hjem til dig'.",
+    "The Danish sentence 'Jeg tager med hjem en gave til dig' has incorrect word order. The object 'en gave' should be placed before the adverbial phrase 'med hjem'. The correct word order is 'Jeg tager en gave med hjem til dig'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence has incorrect word order; a natural phrasing is 'Jeg tager en gave med hjem til dig', not 'Jeg tager med hjem en gave til dig'."
+   }
+  },
+  "e:hen imod|phrase#1": {
+   "problems": [
+    "translations: the Ukrainian translation 'Наближається до вечора холодно' is unnatural and grammatically incorrect. A natural translation would be 'Надвечір стане холодно' or 'Ближче до вечора похолодає'.",
+    "The Ukrainian translation 'Наближається до вечора холодно' is grammatically incorrect and unnatural. A correct translation would be 'Ближче до вечора стане холодно' or 'Надвечір похолодає'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "It will be cold towards evening.",
+     "ru": "Ближе к вечеру будет холодно.",
+     "uk": "Надвечір стане холодно."
+    }
+   }
+  },
+  "e:sætte vand over|phrase#1": {
+   "problems": [
+    "translations: English 'I put water over for tea' is unnatural; 'over' is a calque of Danish 'over'. Should be 'I put water on for tea' or 'I put the kettle on for tea'.",
+    "translations: Russian 'Я наливаю воду на чай' means 'I pour water onto the tea', not 'put water on to boil'. Should be 'Я ставлю воду для чая' or similar.",
+    "translations: Ukrainian 'Я наливаю воду на чай' means 'I pour water onto the tea', not 'put water on to boil'. Should be 'Я ставлю воду для чаю' or similar.",
+    "English translation 'I put water over for tea' is unnatural; should be 'I put water on for tea' or 'I put the kettle on for tea'",
+    "Russian translation 'Я наливаю воду на чай' means 'I pour water onto the tea', not 'put water on to boil'",
+    "Ukrainian translation 'Я наливаю воду на чай' means 'I pour water onto the tea', not 'put water on to boil'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "I put water on for tea.",
+     "ru": "Я ставлю воду для чая.",
+     "uk": "Я ставлю воду для чаю."
+    }
+   }
+  },
+  "e:ind ad|phrase#1": {
+   "problems": [
+    "translations: English 'The cat walked through the door' implies passing from one side to the other, not entering. Should be 'The cat walked in through the door' or 'The cat went in the door'.",
+    "translations: Russian 'Кот вошёл в дверь' is unnatural; 'в дверь' suggests into the door itself. Should be 'Кот вошёл в дверной проём' or 'Кот зашёл через дверь'.",
+    "translations: Ukrainian 'Кіт зайшов у двері' is unnatural; 'у двері' suggests into the door itself. Should be 'Кіт зайшов у дверний проріз' or 'Кіт зайшов через двері'.",
+    "English translation 'The cat walked through the door' does not match the directional meaning 'in (direction)'; it should be 'in through the door'",
+    "Russian translation 'Кот вошёл в дверь' is ungrammatical; should be 'Кот вошёл в дверь' -> 'Кот вошёл в дверь' (should be 'вошёл в дверь' or 'зашёл в дверь')",
+    "Ukrainian translation 'Кіт зайшов у двері' is ungrammatical; should be 'зайшов у двері' -> 'зайшов у двері' (should be 'увійшов у двері' or 'зайшов через двері')"
+   ],
+   "repair": {
+    "translations": {
+     "en": "The cat walked in through the door.",
+     "ru": "Кот вошёл в дверной проём.",
+     "uk": "Кіт зайшов у дверний проріз."
+    }
+   }
+  },
+  "e:løbe over|phrase#1": {
+   "problems": [
+    "sense: Danish 'Mælken løb over på komfuret' means the milk overflowed onto the stove, which matches the meaning 'to overflow'. However, the English translation 'The milk spilled onto the stove' does not specify that it overflowed (could be a knock-over), and the Russian/Ukrainian translations 'пролилось/розлилося' mean 'spilled', not 'overflowed'. The translations should reflect the boiling-over action, e.g., 'The milk boiled over onto the stove', 'Молоко убежало на плиту', 'Молоко втекло на плиту'.",
+    "English translation 'The milk spilled onto the stove' does not convey the meaning 'to overflow'; it should be 'The milk boiled over on the stove'",
+    "Russian translation 'Молоко пролилось на плиту' means 'spilled', not 'overflowed'; should be 'Молоко убежало на плиту'",
+    "Ukrainian translation 'Молоко розлилося на плиту' means 'spilled', not 'overflowed'; should be 'Молоко збігло на плиту'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "The milk boiled over onto the stove.",
+     "ru": "Молоко убежало на плиту.",
+     "uk": "Молоко збігло на плиту."
+    }
+   }
+  },
+  "e:løbe over|phrase#2": {
+   "problems": [
+    "Ukrainian translation: 'Холодний тремтіння' is grammatically incorrect (neuter noun 'тремтіння' requires neuter adjective 'холодне').",
+    "Ukrainian translation: 'по моєму хребту' is unnatural; 'по спині' or 'по хребту' is more idiomatic, and 'моєму' is unnecessary.",
+    "Ukrainian translation 'Холодний тремтіння пробігло по моєму хребту' has grammatical errors: 'тремтіння' is neuter, so it should be 'Холодне тремтіння пробігло', and 'хребту' is Russian/incorrect; correct is 'хребту' -> 'хребті' or 'спині'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "A cold shiver ran across my spine.",
+     "ru": "Холодная дрожь пробежала по спине.",
+     "uk": "Холодне тремтіння пробігло по спині."
+    }
+   }
+  },
+  "e:vokse frem|phrase#1": {
+   "problems": [
+    "Translations do not match the Danish meaning: 'vokser frem' means 'grow forth/emerge (of plants)', but Russian 'появляются' and Ukrainian \"з'являються\" mean 'appear' in general, losing the 'grow' component. English 'emerge' also lacks the 'grow' sense.",
+    "English translation 'emerge' does not match the meaning 'to grow forth (of plants)'; 'grow forth' or 'sprout' would be more accurate.",
+    "Russian translation 'появляются' does not match the meaning 'вырастать'; 'вырастают' would be more accurate.",
+    "Ukrainian translation 'з'являються' does not match the meaning 'виростати'; 'виростають' would be more accurate."
+   ],
+   "repair": {
+    "translations": {
+     "en": "Many flowers grow forth in spring.",
+     "ru": "Многие цветы вырастают весной.",
+     "uk": "Багато квітів виростають навесні."
+    }
+   }
+  },
+  "e:vokse til|phrase#1": {
+   "problems": [
+    "English translation: 'grew with nettles' is unidiomatic; 'became overgrown with nettles' is natural.",
+    "Russian translation: 'росла крапивой' is unidiomatic; 'заросла крапивой' is correct for 'became overgrown'.",
+    "Ukrainian translation: 'росла кропивою' is unidiomatic; 'заросла кропивою' is correct for 'became overgrown'.",
+    "English translation 'grew with nettles' is unnatural and does not convey 'became overgrown'; should be 'became overgrown with nettles'.",
+    "Russian translation 'росла крапивой' is unnatural and does not convey 'зарастать'; should be 'заросла крапивой'.",
+    "Ukrainian translation 'росла кропивою' is unnatural and does not convey 'заростати'; should be 'заросла кропивою'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The path became overgrown with nettles during the summer.",
+     "ru": "Тропа заросла крапивой за лето.",
+     "uk": "Стежка заросла кропивою за літо."
+    }
+   }
+  },
+  "e:arbejde sort|phrase#1": {
+   "problems": [
+    "English translation: 'work undeclared' is not the most natural equivalent for 'arbejde sort'; 'work off the books' or 'work cash-in-hand' is more idiomatic.",
+    "Russian translation: 'работают без декларации' is unnatural; 'работают нелегально' or 'работают вчерную' is correct.",
+    "Ukrainian translation: 'працюють без визначеності' is incorrect and unnatural; 'працюють нелегально' is correct.",
+    "Ukrainian translation 'без визначеності' is incorrect; 'визначеність' means 'certainty', not 'declaration'. Should be 'нелегально' or 'без декларування'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "Many craftsmen work off the books in the summer.",
+     "ru": "Многие ремесленники летом работают нелегально.",
+     "uk": "Багато ремісників влітку працюють нелегально."
+    }
+   }
+  },
+  "e:gå i sort|phrase#1": {
+   "problems": [
+    "English translation: 'went black' is not idiomatic for a computer crash; 'crashed' or 'went blank' is natural.",
+    "Russian translation: 'погас' means 'went out (light)' and is not idiomatic for a computer crash; 'завис' or 'выключился' is correct.",
+    "Ukrainian translation: 'потемнів' means 'became dark' and is not idiomatic for a computer crash; 'завис' or 'вимкнувся' is correct.",
+    "English translation 'went black' is too literal; the meaning is 'crashed'.",
+    "Russian translation 'погас' means 'went out/dark', not 'crashed/froze'; should be 'завис' or 'выключился'.",
+    "Ukrainian translation 'потемнів' means 'darkened', not 'crashed/froze'; should be 'завис' or 'вимкнувся'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "My computer crashed in the middle of the meeting.",
+     "ru": "Мой компьютер завис посреди встречи.",
+     "uk": "Мій комп'ютер завис посеред зустрічі."
+    }
+   }
+  },
+  "e:gå i sort|phrase#2": {
+   "problems": [
+    "sense: 'gå i sort' means to black out/lose consciousness, but the Danish sentence 'Han gik i sort efter at have drukket for meget' is natural for that meaning. However, the English translation 'He went black after drinking too much' is not idiomatic; 'went black' is not used for losing consciousness. A natural translation would be 'He blacked out after drinking too much.'",
+    "translations: Russian 'Он почернел после того, как слишком много выпил' is a calque and not idiomatic; 'почернел' does not mean 'lost consciousness'. A correct translation would be 'Он отключился после того, как слишком много выпил.'",
+    "translations: Ukrainian 'Він став чорним після надмірного вживання алкоголю' is a calque and not idiomatic; 'став чорним' does not mean 'lost consciousness'. A correct translation would be 'Він знепритомнів після надмірного вживання алкоголю.'",
+    "English translation 'He went black' is incorrect for the meaning 'to black out, lose consciousness'; it should be 'He blacked out'.",
+    "Russian translation 'Он почернел' is incorrect; it means 'He turned black' (in color), not 'He blacked out'.",
+    "Ukrainian translation 'Він став чорним' is incorrect; it means 'He became black' (in color), not 'He lost consciousness'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He blacked out after drinking too much.",
+     "ru": "Он отключился после того, как слишком много выпил.",
+     "uk": "Він знепритомнів після надмірного вживання алкоголю."
+    }
+   }
+  },
+  "e:tage på tur|phrase#1": {
+   "problems": [
+    "translations: Russian 'Завтра мы едем на пляж' drops 'tage på tur' (go on a trip) and only says 'we are going to the beach'. It does not render the meaning of the Danish phrase. A faithful translation would be 'Завтра мы отправляемся в поездку на пляж.'",
+    "translations: Ukrainian 'Завтра їдемо на пляж' drops 'tage på tur' (go on a trip) and only says 'we are going to the beach'. It does not render the meaning of the Danish phrase. A faithful translation would be 'Завтра вирушаємо в подорож на пляж.'",
+    "English translation 'We go on a trip to the beach tomorrow' uses present simple instead of future 'We are going on a trip' or 'We will go'.",
+    "Russian translation 'Завтра мы едем на пляж' omits 'on a trip' (на экскурсию/в поездку).",
+    "Ukrainian translation 'Завтра їдемо на пляж' omits 'on a trip' (у подорож/на екскурсію)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "We are going on a trip to the beach tomorrow.",
+     "ru": "Завтра мы отправляемся в поездку на пляж.",
+     "uk": "Завтра вирушаємо в подорож на пляж."
+    }
+   }
+  },
+  "e:se rødt|phrase#1": {
+   "problems": [
+    "translations: Russian 'Я горю, когда кто-то мне лжёт' is not a faithful translation of 'Jeg ser rødt, når nogen lyver for mig'. 'Я горю' (I burn) does not convey the meaning 'to see red' (become very angry). A correct translation would be 'Я прихожу в ярость, когда кто-то мне лжёт.'",
+    "translations: Ukrainian 'Я почервоніла, коли хтось мені бреше' is not a faithful translation. 'Я почервоніла' (I blushed) does not convey the meaning 'to see red' (become very angry). Also, the tense is past, while the Danish is present. A correct translation would be 'Я розлючуюся, коли хтось мені бреше.'",
+    "Russian translation 'Я горю' is incorrect for 'to see red'; it means 'I am on fire' or 'I am burning'.",
+    "Ukrainian translation 'Я почервоніла' is incorrect; it means 'I blushed' (feminine), not 'I see red / I become furious'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I see red when someone lies to me.",
+     "ru": "Я прихожу в ярость, когда кто-то мне лжёт.",
+     "uk": "Я розлючуюся, коли хтось мені бреше."
+    }
+   }
+  },
+  "e:være skyld i|phrase#1": {
+   "problems": [
+    "translations: English 'The heavy rain was to blame for the flooding' is a natural translation, but it does not exactly match the meaning 'to be the cause of (something bad)'. 'Was to blame' implies fault or responsibility, while 'var skyld i' simply means 'was the cause of'. A more faithful translation is 'The heavy rain caused the flooding.' However, 'was the cause of' is also acceptable. The given translation is not incorrect, but it is a slight shift in meaning. Re-evaluating: 'to be the cause of' and 'to be to blame for' are close, but 'to blame' adds a nuance of culpability not necessarily present in the Danish. This is a minor defect.",
+    "translations: Russian 'Сильный дождь стал причиной наводнения' is a faithful and natural translation.",
+    "translations: Ukrainian 'Сильний дощ був причиною повені' is a faithful and natural translation.",
+    "English translation 'was to blame for' is a different expression than 'was the cause of'; it implies fault rather than just causation."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The heavy rain was the cause of the flooding.",
+     "ru": "Сильный дождь стал причиной наводнения.",
+     "uk": "Сильний дощ був причиною повені."
+    }
+   }
+  },
+  "e:tage alvorligt|phrase#1": {
+   "problems": [
+    "grammar: Danish word order is incorrect. 'tage alvorligt' is a phrasal verb, and the object 'hvad læreren siger' must be placed after the particle 'alvorligt' or the particle must be split, but the current order 'tage alvorligt hvad læreren siger' is ungrammatical. Correct would be 'tage hvad læreren siger alvorligt'.",
+    "translations: The English translation 'You must take seriously what the teacher says' is unnatural; a more natural rendering is 'You must take what the teacher says seriously'.",
+    "adjudicator: The Danish word order 'tage alvorligt hvad læreren siger' is ungrammatical because the object clause must follow the full phrasal verb or the particle must be split, making it a real defect."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Du skal tage alvorligt hvad læreren siger' is ungrammatical; the object clause must follow the particle or the particle must be split."
+   }
+  },
+  "e:hænge på|phrase#2": {
+   "problems": [
+    "translations: English 'hung up' is unnatural for a computer freezing; a native speaker would say 'froze' or 'hung'.",
+    "translations: Russian 'повесился' means 'hanged himself' (suicide), not 'froze'; correct is 'завис'.",
+    "translations: Ukrainian 'поклав слухавку' means 'hung up the phone', not 'froze'; correct is 'завис'.",
+    "Russian translation 'Компьютер повесился' is incorrect; 'повесился' means 'hanged himself', not 'froze'. Correct would be 'завис'.",
+    "Ukrainian translation 'Комп'ютер поклав слухавку' is incorrect; 'поклав слухавку' means 'hung up the phone', not 'froze'. Correct would be 'завис'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The computer froze when I opened the program.",
+     "ru": "Компьютер завис, когда я открыл программу.",
+     "uk": "Комп'ютер завис, коли я відкрив програму."
+    }
+   }
+  },
+  "e:hænge ved|phrase#2": {
+   "problems": [
+    "translations: English 'lingered around' is not a faithful translation of 'hang ved' (to cling); it adds the idea of lingering and changes the meaning.",
+    "translations: Russian 'вокруг одежды остался запах дыма' does not translate 'hang ved' (прилипать); it says 'around the clothes remained the smell of smoke', missing the clinging sense.",
+    "translations: Ukrainian 'залишався навколо мого одягу' does not translate 'hang ved' (прилипати); it says 'remained around my clothes', missing the clinging sense.",
+    "English translation 'lingered around' does not match the meaning 'to cling' (smell, dirt).",
+    "Russian translation 'остался запах дыма' does not convey the meaning 'прилипать' (to cling).",
+    "Ukrainian translation 'запах диму залишався' does not convey the meaning 'прилипати' (to cling)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The smell of smoke clung to my clothes after the party.",
+     "ru": "Запах дыма прилип к моей одежде после вечеринки.",
+     "uk": "Запах диму прилип до мого одягу після вечірки."
+    }
+   }
+  },
+  "e:stemme ud|phrase#1": {
+   "problems": [
+    "Russian translation 'выбили' is unnatural and inaccurate for 'voted out'; a better rendering would be 'исключили голосованием' or 'выголосовали'.",
+    "Ukrainian translation 'проголосували за' means 'voted for', which contradicts the meaning 'to vote out'; it should be 'виключили голосуванням' or 'проголосували за виключення'.",
+    "Russian translation 'выбили' means 'knocked out', not 'voted out'",
+    "Ukrainian translation 'проголосували за' means 'voted for', not 'voted out'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "They voted out the last participant in the program.",
+     "ru": "Они исключили голосованием последнего участника программы.",
+     "uk": "Вони виключили голосуванням останнього учасника програми."
+    }
+   }
+  },
+  "e:blive rød i hovedet|phrase#1": {
+   "problems": [
+    "English translation 'turns red in the head' is unnatural; a native speaker would say 'blushes' or 'turns red'.",
+    "Russian translation 'У неё краснеет голова' is unnatural and overly literal; a native speaker would say 'Она краснеет'.",
+    "Ukrainian translation 'Вона червоніє' drops 'i hovedet' (in the head), but this is acceptable as it conveys the meaning naturally. However, the English and Russian translations are defective.",
+    "English translation 'turns red in the head' is not idiomatic for blushing",
+    "Russian translation 'краснеет голова' is not idiomatic for blushing"
+   ],
+   "repair": {
+    "translations": {
+     "en": "She blushes when she receives compliments.",
+     "ru": "Она краснеет, когда получает комплименты.",
+     "uk": "Вона червоніє, коли отримує компліменти."
+    }
+   }
+  },
+  "e:bruge hovedet|phrase#1": {
+   "problems": [
+    "Danish sentence is missing a comma before 'når' (subordinate clause).",
+    "English translation 'You have to use your head when you solve that task' is unnatural; a native speaker would say 'You need to use your head when solving that task' or 'You have to use your head to solve that task'.",
+    "Russian translation 'Нужно использовать голову' is a calque and unnatural; a native speaker would say 'Нужно шевелить мозгами' or 'Надо думать головой'.",
+    "Ukrainian translation 'Треба використовувати голову' is a calque and unnatural; a native speaker would say 'Треба мізкувати' or 'Треба думати головою'.",
+    "Russian translation 'использовать голову' is not idiomatic for 'use one's head'",
+    "Ukrainian translation 'використовувати голову' is not idiomatic for 'use one's head'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "You need to use your head when solving that task.",
+     "ru": "Нужно шевелить мозгами, когда решаешь эту задачу.",
+     "uk": "Треба мізкувати, коли вирішуєш це завдання."
+    }
+   }
+  },
+  "e:hænge med hovedet|phrase#1": {
+   "problems": [
+    "English translation 'He hung his head all day after the news' is unnatural; a native speaker would say 'He moped around all day after the news' or 'He was downcast all day after the news'.",
+    "Russian translation 'Он весь день опустил голову после новостей' is a calque and unnatural; a native speaker would say 'Он весь день ходил понурый после новостей' or 'Он повесил нос после новостей'.",
+    "Ukrainian translation 'Він опустив голову весь день після новини' is a calque and unnatural; a native speaker would say 'Він журився весь день після новини' or 'Він повісив носа після новини'.",
+    "English translation 'hung his head' means physical head-hanging, not being downcast",
+    "Russian translation 'опустил голову' means physical head-lowering, not being downcast",
+    "Ukrainian translation 'опустив голову' means physical head-lowering, not being downcast"
+   ],
+   "repair": {
+    "translations": {
+     "en": "He moped around all day after the news.",
+     "ru": "Он весь день ходил понурый после новостей.",
+     "uk": "Він журився весь день після новини."
+    }
+   }
+  },
+  "e:mærke på|phrase#1": {
+   "problems": [
+    "translations: English 'I can feel on the glass that it is hot' is unnatural; a native speaker would say 'I can feel from the glass that it is hot' or 'I can tell by touching the glass that it is hot'.",
+    "translations: Russian 'Я чувствую на стекле, что оно горячее' is unnatural; a native speaker would say 'Я чувствую по стеклу, что оно горячее' or 'На ощупь стекло горячее'.",
+    "translations: Ukrainian 'Я відчуваю на склі, що воно гаряче' is unnatural; a native speaker would say 'Я відчуваю по склу, що воно гаряче' or 'На дотик скло гаряче'.",
+    "adjudicator: The Russian translation 'Я чувствую на стекле' is unnatural because the preposition 'на' with the locative does not convey the sense of 'by touching'; a native speaker would use 'по стеклу' or a different construction."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I can feel from the glass that it is hot.",
+     "ru": "Я чувствую по стеклу, что оно горячее.",
+     "uk": "Я відчуваю по склу, що воно гаряче."
+    }
+   }
+  },
+  "e:drive den af|phrase#1": {
+   "problems": [
+    "translations: English 'He runs it all day instead of working.' does not match the Danish meaning 'to laze around, slack off'. It should be something like 'He lazes around all day instead of working.'",
+    "translations: Russian 'Он бегает на ней весь день, вместо того чтобы работать.' does not match the Danish meaning 'бездельничать, лениться'. It should be something like 'Он бездельничает весь день, вместо того чтобы работать.'",
+    "translations: Ukrainian 'Він бігає ним цілий день замість роботи.' does not match the Danish meaning 'ледарювати, байдикувати'. It should be something like 'Він ледарює цілий день замість роботи.'",
+    "English translation 'He runs it all day instead of working.' does not match the Danish meaning 'to laze around, slack off'",
+    "Russian translation 'Он бегает на ней весь день, вместо того чтобы работать.' does not match the Danish meaning 'бездельничать, лениться'",
+    "Ukrainian translation 'Він бігає ним цілий день замість роботи.' does not match the Danish meaning 'ледарювати, байдикувати'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "He lazes around all day instead of working.",
+     "ru": "Он бездельничает весь день, вместо того чтобы работать.",
+     "uk": "Він ледарює цілий день замість роботи."
+    }
+   }
+  },
+  "e:holde pause|phrase#1": {
+   "problems": [
+    "translations: Ukrainian 'Робимо перерву о дванадцятої.' has a grammatical error in the time expression. It should be 'о дванадцятій' (locative case) instead of 'о дванадцятої' (genitive case).",
+    "Ukrainian translation 'Робимо перерву о дванадцятої.' has a grammatical error: 'о дванадцятої' should be 'о дванадцятій'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "We take a break at twelve.",
+     "ru": "Мы делаем перерыв в двенадцать.",
+     "uk": "Робимо перерву о дванадцятій."
+    }
+   }
+  },
+  "e:give en chance|phrase#1": {
+   "problems": [
+    "grammar: 'Jeg gav en chance til den nye elev i klassen' is unnatural Danish; the prepositional phrase 'til den nye elev' is a calque from English. Natural Danish would be 'Jeg gav den nye elev i klassen en chance'.",
+    "translations: English translation 'I gave a chance to the new student in the class' is unnatural; natural English would be 'I gave the new student in the class a chance'.",
+    "adjudicator: The Danish sentence 'Jeg gav en chance til den nye elev' is a calque from English and unnatural; the correct Danish word order places the indirect object before the direct object."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Jeg gav en chance til den nye elev i klassen' is a calque from English and unnatural; the correct word order is 'Jeg gav den nye elev i klassen en chance'."
+   }
+  },
+  "e:lide med|phrase#1": {
+   "problems": [
+    "sense: The Danish sentence 'Hun led med, da hendes ven var syg' does not clearly show the meaning 'to suffer (along with someone)'. 'Lide med' implies shared suffering, but the sentence only states she suffered when her friend was ill, not that she suffered together with her friend.",
+    "adjudicator: The Danish sentence 'Hun led med, da hendes ven var syg' fails to demonstrate the shared suffering inherent in 'lide med', as it only states she suffered when her friend was ill, not that she suffered together with her friend."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Hun led med, da hendes ven var syg' fails to demonstrate the shared suffering inherent in 'lide med', as it only states she suffered when her friend was ill, not that she suffered together with her friend."
+   }
+  },
+  "e:få besøg|phrase#1": {
+   "problems": [
+    "translations: Ukrainian translation 'Цього вікенду нас візитують мої батьки' uses the verb 'візитувати', which is a formal, bureaucratic term not natural for a family visit. A natural translation would be 'Цього вікенду до нас приїдуть мої батьки' or '...завітають мої батьки'.",
+    "adjudicator: The Ukrainian translation 'візитують' is a formal, bureaucratic term inappropriate for a family visit, making it a misleading and unnatural rendering for learners."
+   ],
+   "repair": {
+    "translations": {
+     "en": "We will have a visit from my parents this weekend.",
+     "ru": "В эти выходные к нам приедут мои родители.",
+     "uk": "Цього вікенду до нас приїдуть мої батьки."
+    }
+   }
+  },
+  "e:være på besøg hos|phrase#1": {
+   "problems": [
+    "translations: Ukrainian translation 'Сьогодні я їду до друга' means 'Today I am going to my friend's place', which does not match the Danish 'Jeg er på besøg hos min ven i dag' (I am visiting my friend today). The Ukrainian implies travel, not the state of being a guest. A correct translation would be 'Сьогодні я в гостях у друга'.",
+    "adjudicator: The Ukrainian translation 'їду до друга' means 'I am going to my friend's place', which changes the meaning from the state of being a guest to the act of traveling, a real defect."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I'm visiting my friend today.",
+     "ru": "Сегодня я навещаю подругу.",
+     "uk": "Сьогодні я в гостях у друга."
+    }
+   }
+  },
+  "e:slippe af sted med|phrase#1": {
+   "problems": [
+    "translations: Russian 'Ему сходило с рук списывать на экзамене' uses past imperfective, but Danish 'Han slap af sted med at snyde til eksamen' is past perfective (slap); should be 'Ему сошло с рук списывание на экзамене' or similar perfective construction.",
+    "Russian translation uses past tense 'сходило с рук' for Danish past tense 'slap af sted med', but the meaning is 'to get away with' and the example should show a natural equivalent; 'Ему сходило с рук' is imperfective past, while 'slap af sted med' is perfective past, better translated as 'Ему сошло с рук'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He got away with cheating on the exam.",
+     "ru": "Ему сошло с рук списывание на экзамене.",
+     "uk": "Він уникнув покарання, списуючи на іспиті."
+    }
+   }
+  }
+ }
+}

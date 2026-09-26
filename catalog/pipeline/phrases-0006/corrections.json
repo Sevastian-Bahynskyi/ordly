@@ -1,21 +1,128 @@
 [
- {"id": "p:stå over|phrase", "pronunciation": "сдо о́уа", "note": "[ɒwʌ] has no v"},
- {"id": "p:stå over for|phrase", "pronunciation": "сдо о́уа фо", "note": "[ɒwʌ] has no v or r"},
- {"id": "m:stige op|phrase#2", "drop": "one gets on a bus with stige på, not stige op på"},
- {"id": "e:stige op|phrase#2", "drop": "stiger op på bussen is not idiomatic"},
- {"id": "p:åbne øjnene|phrase", "pronunciation": "обнэ о́йнэ", "note": "one n"},
- {"id": "p:komme igennem|phrase", "pronunciation": "комэ игэ́нэм", "note": "no double consonants"},
- {"id": "p:gå fra hinanden|phrase", "pronunciation": "го фра хина́нэн", "note": "ы is not a Danish vowel"},
- {"id": "p:skrive hjem|phrase", "pronunciation": "сгривэ йэ́м", "note": "[sgʁiːvə]"},
- {"id": "e:stoppe op|phrase#1", "translations": {"en": "The car stops in front of the traffic lights.", "ru": "Машина останавливается перед светофором.", "uk": "Автомобіль зупиняється перед світлофором."}, "note": "one traffic light"},
- {"id": "p:pege på|phrase", "pronunciation": "па́йэ по", "note": "[ˈpɑjə]"},
- {"id": "p:gå om bord|phrase", "pronunciation": "го ом бо́а", "note": "[ˈboˀɐ̯] has no r"},
- {"id": "p:spise ude|phrase", "pronunciation": "сбиисэ у́удэ", "note": "[ˈuːðə]: soft d ≈ д"},
- {"id": "e:spise ude|phrase#1", "translations": {"en": "We eat out every Friday.", "ru": "Каждую пятницу мы едим в ресторане.", "uk": "Щоп'ятниці ми їмо в ресторані."}, "note": "едим вне дома is stilted"},
- {"id": "p:glæde sig over|phrase", "pronunciation": "глэ́эдэ сай оуа", "note": "[ɒwʌ]"},
- {"id": "p:dække bord|phrase", "pronunciation": "дэгэ бо́а", "note": "[ˈboˀɐ̯] has no r"},
- {"id": "e:have sex|phrase#1", "translations": {"en": "They have sex every evening.", "ru": "Они занимаются сексом каждый вечер.", "uk": "Вони займаються сексом щовечора."}, "note": "aften is evening"},
- {"id": "m:hoppe på|phrase#1", "meaning": {"ru": "охотно соглашаться (на что-л.)", "en": "to jump at (an offer)", "uk": "охоче погоджуватися (на щось)"}, "note": "the eagerness is the meaning"},
- {"id": "e:hoppe på|phrase#1", "translations": {"en": "He jumped at the offer immediately.", "ru": "Он сразу же ухватился за предложение.", "uk": "Він одразу ж ухопився за пропозицію."}, "note": "the eagerness is the meaning"},
- {"id": "e:løbe fra|phrase#1", "translations": {"en": "The dog ran away from its owner in the park.", "ru": "Собака убежала от хозяина в парке.", "uk": "Собака втік від господаря в парку."}, "note": "a completed action"}
+ {
+  "id": "p:stå over|phrase",
+  "pronunciation": "сдо о́уа",
+  "note": "[ɒwʌ] has no v"
+ },
+ {
+  "id": "p:stå over for|phrase",
+  "pronunciation": "сдо о́уа фо",
+  "note": "[ɒwʌ] has no v or r"
+ },
+ {
+  "id": "m:stige op|phrase#2",
+  "drop": "one gets on a bus with stige på, not stige op på"
+ },
+ {
+  "id": "e:stige op|phrase#2",
+  "drop": "stiger op på bussen is not idiomatic"
+ },
+ {
+  "id": "p:åbne øjnene|phrase",
+  "pronunciation": "обнэ о́йнэ",
+  "note": "one n"
+ },
+ {
+  "id": "p:komme igennem|phrase",
+  "pronunciation": "комэ игэ́нэм",
+  "note": "no double consonants"
+ },
+ {
+  "id": "p:gå fra hinanden|phrase",
+  "pronunciation": "го фра хина́нэн",
+  "note": "ы is not a Danish vowel"
+ },
+ {
+  "id": "p:skrive hjem|phrase",
+  "pronunciation": "сгривэ йэ́м",
+  "note": "[sgʁiːvə]"
+ },
+ {
+  "id": "e:stoppe op|phrase#1",
+  "translations": {
+   "en": "The car stops in front of the traffic lights.",
+   "ru": "Машина останавливается перед светофором.",
+   "uk": "Автомобіль зупиняється перед світлофором."
+  },
+  "note": "one traffic light"
+ },
+ {
+  "id": "p:pege på|phrase",
+  "pronunciation": "па́йэ по",
+  "note": "[ˈpɑjə]"
+ },
+ {
+  "id": "p:gå om bord|phrase",
+  "pronunciation": "го ом бо́а",
+  "note": "[ˈboˀɐ̯] has no r"
+ },
+ {
+  "id": "p:spise ude|phrase",
+  "pronunciation": "сбиисэ у́удэ",
+  "note": "[ˈuːðə]: soft d ≈ д"
+ },
+ {
+  "id": "e:spise ude|phrase#1",
+  "translations": {
+   "en": "We eat out every Friday.",
+   "ru": "Каждую пятницу мы едим в ресторане.",
+   "uk": "Щоп'ятниці ми їмо в ресторані."
+  },
+  "note": "едим вне дома is stilted"
+ },
+ {
+  "id": "p:glæde sig over|phrase",
+  "pronunciation": "глэ́эдэ сай оуа",
+  "note": "[ɒwʌ]"
+ },
+ {
+  "id": "p:dække bord|phrase",
+  "pronunciation": "дэгэ бо́а",
+  "note": "[ˈboˀɐ̯] has no r"
+ },
+ {
+  "id": "e:have sex|phrase#1",
+  "translations": {
+   "en": "They have sex every evening.",
+   "ru": "Они занимаются сексом каждый вечер.",
+   "uk": "Вони займаються сексом щовечора."
+  },
+  "note": "aften is evening"
+ },
+ {
+  "id": "m:hoppe på|phrase#1",
+  "meaning": {
+   "ru": "охотно соглашаться (на что-л.)",
+   "en": "to jump at (an offer)",
+   "uk": "охоче погоджуватися (на щось)"
+  },
+  "note": "the eagerness is the meaning"
+ },
+ {
+  "id": "e:hoppe på|phrase#1",
+  "translations": {
+   "en": "He jumped at the offer immediately.",
+   "ru": "Он сразу же ухватился за предложение.",
+   "uk": "Він одразу ж ухопився за пропозицію."
+  },
+  "note": "the eagerness is the meaning"
+ },
+ {
+  "id": "e:løbe fra|phrase#1",
+  "translations": {
+   "en": "The dog ran away from its owner in the park.",
+   "ru": "Собака убежала от хозяина в парке.",
+   "uk": "Собака втік від господаря в парку."
+  },
+  "note": "a completed action"
+ },
+ {
+  "id": "m:stå over for|phrase#1",
+  "meaning": {
+   "ru": "стоять перед (проблемой, выбором)",
+   "en": "to face (a problem, choice)",
+   "uk": "стояти перед (проблемою, вибором)"
+  },
+  "note": "audit 2806: double parenthetical"
+ }
 ]
