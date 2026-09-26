@@ -1,0 +1,4460 @@
+{
+ "issue": 28,
+ "name": "phrases-0006",
+ "note": "Issue #28: catalog phrases from the rights-cleared inventory, most attested first, labelled a unit at A1–B2. Facts (forms, IPA) from catalog/phrases/expansion.jsonl.",
+ "audio": false,
+ "audit": {
+  "seed": 2806,
+  "size": 30
+ },
+ "entries": [
+  {
+   "lemma": "ti stille",
+   "kind": "phrase",
+   "pos": "phrase",
+   "forms": [
+    "ti stille"
+   ],
+   "ipa": "[ˈtˢiˀ] [ˈsdelə]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 1,
+   "level": "B2",
+   "form_rows": []
+  },
+  {
+   "lemma": "tie stille",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "tav stille",
+    "ti stille",
+    "tie stille",
+    "tiede stille",
+    "tier stille",
+    "tiet stille"
+   ],
+   "ipa": "[ˈtˢiːi] [ˈsdelə]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 1,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "ti stille"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "tie stille"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tav stille"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tiede stille"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tav … stille"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tiede … stille"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "tiet stille"
+    },
+    {
+     "form_key": "present",
+     "form_text": "tier stille"
+    },
+    {
+     "form_key": "present",
+     "form_text": "tier … stille"
+    }
+   ]
+  },
+  {
+   "lemma": "slå plat eller krone",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "slog plat eller krone",
+    "slå plat eller krone",
+    "slået plat eller krone",
+    "slår plat eller krone"
+   ],
+   "ipa": "[ˈslɔˀ] [ˈpʰl̥ad̥] [εlʌ] [ˈkʁoːnə]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 3,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "slå plat eller krone"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "slå plat eller krone"
+    },
+    {
+     "form_key": "past",
+     "form_text": "slog plat eller krone"
+    },
+    {
+     "form_key": "past",
+     "form_text": "slog … plat eller krone"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "slået plat eller krone"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slår plat eller krone"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slår … plat eller krone"
+    }
+   ]
+  },
+  {
+   "lemma": "have det med at",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "haft det med at",
+    "har det med at",
+    "hav det med at",
+    "havde det med at",
+    "have det med at"
+   ],
+   "ipa": "[ˈha] [ˈde] [mε] [ad]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hav det med at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "have det med at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde det med at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde … det med at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "haft det med at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har det med at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har … det med at"
+    }
+   ]
+  },
+  {
+   "lemma": "gå om",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik om",
+    "gå om",
+    "gået om",
+    "går om"
+   ],
+   "ipa": "[ˈgɔˀ] [ʌm]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå om"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå om"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik om"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … om"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået om"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går om"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … om"
+    }
+   ]
+  },
+  {
+   "lemma": "gøre sig til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gjorde dig til",
+    "gjorde jer til",
+    "gjorde mig til",
+    "gjorde os til",
+    "gjorde sig til",
+    "gjort dig til",
+    "gjort jer til",
+    "gjort mig til",
+    "gjort os til",
+    "gjort sig til",
+    "gør dig til",
+    "gør jer til",
+    "gør mig til",
+    "gør os til",
+    "gør sig til",
+    "gøre dig til",
+    "gøre jer til",
+    "gøre mig til",
+    "gøre os til",
+    "gøre sig til"
+   ],
+   "ipa": "[ˈgɶːʌ] [ˈsɑj] [te]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gør dig til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gør jer til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gør mig til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gør os til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gør sig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gøre dig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gøre jer til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gøre mig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gøre os til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gøre sig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde dig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde jer til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde mig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde os til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde sig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde … dig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde … jer til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde … mig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde … os til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gjorde … sig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gjort dig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gjort jer til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gjort mig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gjort os til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gjort sig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør dig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør jer til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør mig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør os til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør sig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør … dig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør … jer til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør … mig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør … os til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gør … sig til"
+    }
+   ]
+  },
+  {
+   "lemma": "se stort på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "se stort på",
+    "ser stort på",
+    "set stort på",
+    "så stort på"
+   ],
+   "ipa": "[ˈseˀ] [ˈsd̥oˀɐ̯d̥] [pɔ]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 1,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "se stort på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "se stort på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "så stort på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "så … stort på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "set stort på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "ser stort på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "ser … stort på"
+    }
+   ]
+  },
+  {
+   "lemma": "stå over",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "stod over",
+    "stå over",
+    "stået over",
+    "står over"
+   ],
+   "ipa": "[ˈsdɔˀ] [ɒwʌ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "stå over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "stå over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stod over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stod … over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "stået over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "står over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "står … over"
+    }
+   ]
+  },
+  {
+   "lemma": "stå over for",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "stod over for",
+    "stå over for",
+    "stået over for",
+    "står over for"
+   ],
+   "ipa": "[ˈsdɔˀ] [ɒwʌ] [fʌ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "stå over for"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "stå over for"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stod over for"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stod … over for"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "stået over for"
+    },
+    {
+     "form_key": "present",
+     "form_text": "står over for"
+    },
+    {
+     "form_key": "present",
+     "form_text": "står … over for"
+    }
+   ]
+  },
+  {
+   "lemma": "komme til sig selv",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kom til dig selv",
+    "kom til jer selv",
+    "kom til mig selv",
+    "kom til os selv",
+    "kom til sig selv",
+    "komme til dig selv",
+    "komme til jer selv",
+    "komme til mig selv",
+    "komme til os selv",
+    "komme til sig selv",
+    "kommer til dig selv",
+    "kommer til jer selv",
+    "kommer til mig selv",
+    "kommer til os selv",
+    "kommer til sig selv",
+    "kommet til dig selv",
+    "kommet til jer selv",
+    "kommet til mig selv",
+    "kommet til os selv",
+    "kommet til sig selv"
+   ],
+   "ipa": "[ˈkʌmə] [te] [ˈsɑj] [ˈsεlˀ]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 3,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "kom til dig selv"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "kom til jer selv"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "kom til mig selv"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "kom til os selv"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "kom til sig selv"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme til dig selv"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme til jer selv"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme til mig selv"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme til os selv"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme til sig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom til dig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom til jer selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom til mig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom til os selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom til sig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … til dig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … til jer selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … til mig selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … til os selv"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … til sig selv"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet til dig selv"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet til jer selv"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet til mig selv"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet til os selv"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet til sig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer til dig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer til jer selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer til mig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer til os selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer til sig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … til dig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … til jer selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … til mig selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … til os selv"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … til sig selv"
+    }
+   ]
+  },
+  {
+   "lemma": "holde sig til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "hold dig til",
+    "hold jer til",
+    "hold mig til",
+    "hold os til",
+    "hold sig til",
+    "holde dig til",
+    "holde jer til",
+    "holde mig til",
+    "holde os til",
+    "holde sig til",
+    "holder dig til",
+    "holder jer til",
+    "holder mig til",
+    "holder os til",
+    "holder sig til",
+    "holdt dig til",
+    "holdt jer til",
+    "holdt mig til",
+    "holdt os til",
+    "holdt sig til"
+   ],
+   "ipa": "[ˈhʌlə] [ˈsɑj] [te]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hold dig til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "hold jer til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "hold mig til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "hold os til"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "hold sig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "holde dig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "holde jer til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "holde mig til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "holde os til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "holde sig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt dig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt jer til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt mig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt os til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt sig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt … dig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt … jer til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt … mig til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt … os til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "holdt … sig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "holdt dig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "holdt jer til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "holdt mig til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "holdt os til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "holdt sig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder dig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder jer til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder mig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder os til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder sig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder … dig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder … jer til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder … mig til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder … os til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "holder … sig til"
+    }
+   ]
+  },
+  {
+   "lemma": "gå frem",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik frem",
+    "gå frem",
+    "gået frem",
+    "går frem"
+   ],
+   "ipa": "[ˈgɔˀ] [ˈfʁamˀ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå frem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå frem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik frem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … frem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået frem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går frem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … frem"
+    }
+   ]
+  },
+  {
+   "lemma": "køre ind",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kør ind",
+    "køre ind",
+    "kører ind",
+    "kørt ind",
+    "kørte ind"
+   ],
+   "ipa": "[ˈkøːʌ] [ˈenˀ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "kør ind"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "køre ind"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kørte ind"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kørte … ind"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kørt ind"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kører ind"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kører … ind"
+    }
+   ]
+  },
+  {
+   "lemma": "høre op med",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "hør op med",
+    "høre op med",
+    "hører op med",
+    "hørt op med",
+    "hørte op med"
+   ],
+   "ipa": "[ˈhøːʌ] [ˈʌb] [mε]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hør op med"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "høre op med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "hørte op med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "hørte … op med"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "hørt op med"
+    },
+    {
+     "form_key": "present",
+     "form_text": "hører op med"
+    },
+    {
+     "form_key": "present",
+     "form_text": "hører … op med"
+    }
+   ]
+  },
+  {
+   "lemma": "slå til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "slog til",
+    "slå til",
+    "slået til",
+    "slår til"
+   ],
+   "ipa": "[ˈslɔˀ] [te]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "slå til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "slå til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "slog til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "slog … til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "slået til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slår til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slår … til"
+    }
+   ]
+  },
+  {
+   "lemma": "sætte pris på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "sat pris på",
+    "satte pris på",
+    "sæt pris på",
+    "sætte pris på",
+    "sætter pris på"
+   ],
+   "ipa": "[ˈsεdə] [ˈpʁiˀs] [pɔ]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "sæt pris på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sætte pris på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "satte pris på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "satte … pris på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sat pris på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sætter pris på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sætter … pris på"
+    }
+   ]
+  },
+  {
+   "lemma": "samle sig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "saml dig",
+    "saml jer",
+    "saml mig",
+    "saml os",
+    "saml sig",
+    "samle dig",
+    "samle jer",
+    "samle mig",
+    "samle os",
+    "samle sig",
+    "samlede dig",
+    "samlede jer",
+    "samlede mig",
+    "samlede os",
+    "samlede sig",
+    "samler dig",
+    "samler jer",
+    "samler mig",
+    "samler os",
+    "samler sig",
+    "samlet dig",
+    "samlet jer",
+    "samlet mig",
+    "samlet os",
+    "samlet sig"
+   ],
+   "ipa": "[ˈsɑmlə] [ˈsɑj]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "saml dig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "saml jer"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "saml mig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "saml os"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "saml sig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "samle dig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "samle jer"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "samle mig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "samle os"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "samle sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede … dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede … jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede … mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede … os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "samlede … sig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "samlet dig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "samlet jer"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "samlet mig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "samlet os"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "samlet sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler … dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler … jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler … mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler … os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "samler … sig"
+    }
+   ]
+  },
+  {
+   "lemma": "stige op",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "steg op",
+    "steget op",
+    "stig op",
+    "stige op",
+    "stiger op"
+   ],
+   "ipa": "[sd̥iːə ˈʌb̥]",
+   "ipa_source": "wiktionary",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "stig op"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "stige op"
+    },
+    {
+     "form_key": "past",
+     "form_text": "steg op"
+    },
+    {
+     "form_key": "past",
+     "form_text": "steg … op"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "steget op"
+    },
+    {
+     "form_key": "present",
+     "form_text": "stiger op"
+    },
+    {
+     "form_key": "present",
+     "form_text": "stiger … op"
+    }
+   ]
+  },
+  {
+   "lemma": "sikre sig at",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "sikr dig at",
+    "sikr jer at",
+    "sikr mig at",
+    "sikr os at",
+    "sikr sig at",
+    "sikre dig at",
+    "sikre jer at",
+    "sikre mig at",
+    "sikre os at",
+    "sikre sig at",
+    "sikrede dig at",
+    "sikrede jer at",
+    "sikrede mig at",
+    "sikrede os at",
+    "sikrede sig at",
+    "sikrer dig at",
+    "sikrer jer at",
+    "sikrer mig at",
+    "sikrer os at",
+    "sikrer sig at",
+    "sikret dig at",
+    "sikret jer at",
+    "sikret mig at",
+    "sikret os at",
+    "sikret sig at"
+   ],
+   "ipa": "[ˈsegʁʌ] [ˈsɑj] [ad]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "sikr dig at"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "sikr jer at"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "sikr mig at"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "sikr os at"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "sikr sig at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sikre dig at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sikre jer at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sikre mig at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sikre os at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sikre sig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede dig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede jer at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede mig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede os at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede sig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede … dig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede … jer at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede … mig at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede … os at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sikrede … sig at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sikret dig at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sikret jer at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sikret mig at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sikret os at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sikret sig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer dig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer jer at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer mig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer os at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer sig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer … dig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer … jer at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer … mig at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer … os at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sikrer … sig at"
+    }
+   ]
+  },
+  {
+   "lemma": "åbne øjnene",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "åbn øjnene",
+    "åbne øjnene",
+    "åbnede øjnene",
+    "åbner øjnene",
+    "åbnet øjnene"
+   ],
+   "ipa": "[ˈɔːbnə] [ˈʌɪ̯n̩nə]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 1,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "åbn øjnene"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "åbne øjnene"
+    },
+    {
+     "form_key": "past",
+     "form_text": "åbnede øjnene"
+    },
+    {
+     "form_key": "past",
+     "form_text": "åbnede … øjnene"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "åbnet øjnene"
+    },
+    {
+     "form_key": "present",
+     "form_text": "åbner øjnene"
+    },
+    {
+     "form_key": "present",
+     "form_text": "åbner … øjnene"
+    }
+   ]
+  },
+  {
+   "lemma": "komme igennem",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kom igennem",
+    "komme igennem",
+    "kommer igennem",
+    "kommet igennem"
+   ],
+   "ipa": "[ˈkʌmə] [iˈgεnˀəm]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "kom igennem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "komme igennem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom igennem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kom … igennem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kommet igennem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer igennem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kommer … igennem"
+    }
+   ]
+  },
+  {
+   "lemma": "lukke i",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "luk i",
+    "lukke i",
+    "lukkede i",
+    "lukker i",
+    "lukket i"
+   ],
+   "ipa": "[ˈlɔgə] [i]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "luk i"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "lukke i"
+    },
+    {
+     "form_key": "past",
+     "form_text": "lukkede i"
+    },
+    {
+     "form_key": "past",
+     "form_text": "lukkede … i"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "lukket i"
+    },
+    {
+     "form_key": "present",
+     "form_text": "lukker i"
+    },
+    {
+     "form_key": "present",
+     "form_text": "lukker … i"
+    }
+   ]
+  },
+  {
+   "lemma": "gå fra hinanden",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik fra hinanden",
+    "gå fra hinanden",
+    "gået fra hinanden",
+    "går fra hinanden"
+   ],
+   "ipa": "[ˈgɔˀ] [fʁɑ] [hiˈnanən]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 2,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå fra hinanden"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå fra hinanden"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik fra hinanden"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … fra hinanden"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået fra hinanden"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går fra hinanden"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … fra hinanden"
+    }
+   ]
+  },
+  {
+   "lemma": "skrive hjem",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "skrev hjem",
+    "skrevet hjem",
+    "skriv hjem",
+    "skrive hjem",
+    "skriver hjem"
+   ],
+   "ipa": "[ˈsgʁiːvə] [ˈjεmˀ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "skriv hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skrive hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skrev hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skrev … hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skrevet hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skriver hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skriver … hjem"
+    }
+   ]
+  },
+  {
+   "lemma": "søge efter",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "søg efter",
+    "søge efter",
+    "søger efter",
+    "søgt efter",
+    "søgte efter"
+   ],
+   "ipa": "[ˈsøːjə] [ˈεfdʌ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "søg efter"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "søge efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "søgte efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "søgte … efter"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "søgt efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "søger efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "søger … efter"
+    }
+   ]
+  },
+  {
+   "lemma": "løbe fra",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "løb fra",
+    "løbe fra",
+    "løbede fra",
+    "løber fra",
+    "løbet fra"
+   ],
+   "ipa": "[ˈløːbə] [fʁɑ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "løb fra"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "løbe fra"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb fra"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede fra"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb … fra"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede … fra"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "løbet fra"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber fra"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber … fra"
+    }
+   ]
+  },
+  {
+   "lemma": "løbe med",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "løb med",
+    "løbe med",
+    "løbede med",
+    "løber med",
+    "løbet med"
+   ],
+   "ipa": "[ˈløːbə] [mε]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "løb med"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "løbe med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb … med"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede … med"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "løbet med"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber med"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber … med"
+    }
+   ]
+  },
+  {
+   "lemma": "løbe rundt",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "løb rundt",
+    "løbe rundt",
+    "løbede rundt",
+    "løber rundt",
+    "løbet rundt"
+   ],
+   "ipa": "[ˈløːbə] [ˈʁɔnˀd]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "løb rundt"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "løbe rundt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb rundt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede rundt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løb … rundt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "løbede … rundt"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "løbet rundt"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber rundt"
+    },
+    {
+     "form_key": "present",
+     "form_text": "løber … rundt"
+    }
+   ]
+  },
+  {
+   "lemma": "kigge efter",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kig efter",
+    "kigge efter",
+    "kiggede efter",
+    "kigger efter",
+    "kigget efter",
+    "kik efter",
+    "kikke efter",
+    "kikkede efter",
+    "kikker efter",
+    "kikket efter"
+   ],
+   "ipa": "[ˈkigə] [ˈεfdʌ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "kig efter"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "kik efter"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "kigge efter"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "kikke efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kiggede efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kikkede efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kiggede … efter"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kikkede … efter"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kigget efter"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kikket efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kigger efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kikker efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kigger … efter"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kikker … efter"
+    }
+   ]
+  },
+  {
+   "lemma": "stoppe op",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "stop op",
+    "stoppe op",
+    "stoppede op",
+    "stopper op",
+    "stoppet op"
+   ],
+   "ipa": "[ˈsdʌbə] [ˈʌb]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "stop op"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "stoppe op"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stoppede op"
+    },
+    {
+     "form_key": "past",
+     "form_text": "stoppede … op"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "stoppet op"
+    },
+    {
+     "form_key": "present",
+     "form_text": "stopper op"
+    },
+    {
+     "form_key": "present",
+     "form_text": "stopper … op"
+    }
+   ]
+  },
+  {
+   "lemma": "pege på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "peg på",
+    "pege på",
+    "pegede på",
+    "peger på",
+    "peget på"
+   ],
+   "ipa": "[ˈpɑjə] [pɔ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "peg på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "pege på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "pegede på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "pegede … på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "peget på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "peger på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "peger … på"
+    }
+   ]
+  },
+  {
+   "lemma": "gå om bord",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik om bord",
+    "gå om bord",
+    "gået om bord",
+    "går om bord"
+   ],
+   "ipa": "[ˈgɔˀ] [ʌm] [ˈboˀɐ̯]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 2,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå om bord"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå om bord"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik om bord"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … om bord"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået om bord"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går om bord"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … om bord"
+    }
+   ]
+  },
+  {
+   "lemma": "ikke kunne lide",
+   "kind": "phrase",
+   "pos": "phrase",
+   "forms": [
+    "ikke kunne lide"
+   ],
+   "ipa": "[ˈegə] [ˈkunə] [ˈliːðə]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 2,
+   "level": "A1",
+   "form_rows": []
+  },
+  {
+   "lemma": "spise ude",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "spis ude",
+    "spise ude",
+    "spiser ude",
+    "spist ude",
+    "spiste ude"
+   ],
+   "ipa": "[ˈsbiːsə] [ˈuːðə]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "spis ude"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "spise ude"
+    },
+    {
+     "form_key": "past",
+     "form_text": "spiste ude"
+    },
+    {
+     "form_key": "past",
+     "form_text": "spiste … ude"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "spist ude"
+    },
+    {
+     "form_key": "present",
+     "form_text": "spiser ude"
+    },
+    {
+     "form_key": "present",
+     "form_text": "spiser … ude"
+    }
+   ]
+  },
+  {
+   "lemma": "kæmpe mod",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kæmp mod",
+    "kæmpe mod",
+    "kæmpede mod",
+    "kæmper mod",
+    "kæmpet mod"
+   ],
+   "ipa": "[ˈkεmbə] [moð]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "kæmp mod"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "kæmpe mod"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kæmpede mod"
+    },
+    {
+     "form_key": "past",
+     "form_text": "kæmpede … mod"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "kæmpet mod"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kæmper mod"
+    },
+    {
+     "form_key": "present",
+     "form_text": "kæmper … mod"
+    }
+   ]
+  },
+  {
+   "lemma": "byde på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "budt på",
+    "byd på",
+    "byde på",
+    "byder på",
+    "bød på"
+   ],
+   "ipa": "[ˈbyːðə] [pɔ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "byd på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "byde på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bød på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bød … på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "budt på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "byder på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "byder … på"
+    }
+   ]
+  },
+  {
+   "lemma": "glæde sig over",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "glæd dig over",
+    "glæd jer over",
+    "glæd mig over",
+    "glæd os over",
+    "glæd sig over",
+    "glæde dig over",
+    "glæde jer over",
+    "glæde mig over",
+    "glæde os over",
+    "glæde sig over",
+    "glædede dig over",
+    "glædede jer over",
+    "glædede mig over",
+    "glædede os over",
+    "glædede sig over",
+    "glæder dig over",
+    "glæder jer over",
+    "glæder mig over",
+    "glæder os over",
+    "glæder sig over",
+    "glædet dig over",
+    "glædet jer over",
+    "glædet mig over",
+    "glædet os over",
+    "glædet sig over"
+   ],
+   "ipa": "[ˈglεːðə] [ˈsɑj] [ɒwʌ]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "glæd dig over"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "glæd jer over"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "glæd mig over"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "glæd os over"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "glæd sig over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "glæde dig over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "glæde jer over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "glæde mig over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "glæde os over"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "glæde sig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede dig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede jer over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede mig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede os over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede sig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede … dig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede … jer over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede … mig over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede … os over"
+    },
+    {
+     "form_key": "past",
+     "form_text": "glædede … sig over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "glædet dig over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "glædet jer over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "glædet mig over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "glædet os over"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "glædet sig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder dig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder jer over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder mig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder os over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder sig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder … dig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder … jer over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder … mig over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder … os over"
+    },
+    {
+     "form_key": "present",
+     "form_text": "glæder … sig over"
+    }
+   ]
+  },
+  {
+   "lemma": "synge for",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "sang for",
+    "sunget for",
+    "syng for",
+    "synge for",
+    "synger for"
+   ],
+   "ipa": "[ˈsøŋə] [fʌ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "syng for"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "synge for"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sang for"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sang … for"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sunget for"
+    },
+    {
+     "form_key": "present",
+     "form_text": "synger for"
+    },
+    {
+     "form_key": "present",
+     "form_text": "synger … for"
+    }
+   ]
+  },
+  {
+   "lemma": "tage hensyn til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "tag hensyn til",
+    "tage hensyn til",
+    "tager hensyn til",
+    "taget hensyn til",
+    "tog hensyn til"
+   ],
+   "ipa": "[ˈtæˀ] [ˈhεnˌsyˀn] [te]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "tag hensyn til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "tage hensyn til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tog hensyn til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "tog … hensyn til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "taget hensyn til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "tager hensyn til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "tager … hensyn til"
+    }
+   ]
+  },
+  {
+   "lemma": "dække bord",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "dæk bord",
+    "dække bord",
+    "dækkede bord",
+    "dækker bord",
+    "dækket bord"
+   ],
+   "ipa": "[ˈdεgə] [ˈboˀɐ̯]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "dæk bord"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "dække bord"
+    },
+    {
+     "form_key": "past",
+     "form_text": "dækkede bord"
+    },
+    {
+     "form_key": "past",
+     "form_text": "dækkede … bord"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "dækket bord"
+    },
+    {
+     "form_key": "present",
+     "form_text": "dækker bord"
+    },
+    {
+     "form_key": "present",
+     "form_text": "dækker … bord"
+    }
+   ]
+  },
+  {
+   "lemma": "undre sig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "undr dig",
+    "undr jer",
+    "undr mig",
+    "undr os",
+    "undr sig",
+    "undre dig",
+    "undre jer",
+    "undre mig",
+    "undre os",
+    "undre sig",
+    "undrede dig",
+    "undrede jer",
+    "undrede mig",
+    "undrede os",
+    "undrede sig",
+    "undrer dig",
+    "undrer jer",
+    "undrer mig",
+    "undrer os",
+    "undrer sig",
+    "undret dig",
+    "undret jer",
+    "undret mig",
+    "undret os",
+    "undret sig"
+   ],
+   "ipa": "[ˈɔndʁʌ] [ˈsɑj]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "undr dig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "undr jer"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "undr mig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "undr os"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "undr sig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "undre dig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "undre jer"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "undre mig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "undre os"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "undre sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede … dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede … jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede … mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede … os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "undrede … sig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "undret dig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "undret jer"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "undret mig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "undret os"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "undret sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer … dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer … jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer … mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer … os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "undrer … sig"
+    }
+   ]
+  },
+  {
+   "lemma": "gemme sig under",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gem dig under",
+    "gem jer under",
+    "gem mig under",
+    "gem os under",
+    "gem sig under",
+    "gemme dig under",
+    "gemme jer under",
+    "gemme mig under",
+    "gemme os under",
+    "gemme sig under",
+    "gemmer dig under",
+    "gemmer jer under",
+    "gemmer mig under",
+    "gemmer os under",
+    "gemmer sig under",
+    "gemt dig under",
+    "gemt jer under",
+    "gemt mig under",
+    "gemt os under",
+    "gemt sig under",
+    "gemte dig under",
+    "gemte jer under",
+    "gemte mig under",
+    "gemte os under",
+    "gemte sig under"
+   ],
+   "ipa": "[ˈgεmə] [ˈsɑj] [ɔnʌ]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gem dig under"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gem jer under"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gem mig under"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gem os under"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "gem sig under"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gemme dig under"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gemme jer under"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gemme mig under"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gemme os under"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gemme sig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte dig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte jer under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte mig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte os under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte sig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte … dig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte … jer under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte … mig under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte … os under"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gemte … sig under"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gemt dig under"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gemt jer under"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gemt mig under"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gemt os under"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gemt sig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer dig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer jer under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer mig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer os under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer sig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer … dig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer … jer under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer … mig under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer … os under"
+    },
+    {
+     "form_key": "present",
+     "form_text": "gemmer … sig under"
+    }
+   ]
+  },
+  {
+   "lemma": "forberede sig på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "forbered dig på",
+    "forbered jer på",
+    "forbered mig på",
+    "forbered os på",
+    "forbered sig på",
+    "forberede dig på",
+    "forberede jer på",
+    "forberede mig på",
+    "forberede os på",
+    "forberede sig på",
+    "forbereder dig på",
+    "forbereder jer på",
+    "forbereder mig på",
+    "forbereder os på",
+    "forbereder sig på",
+    "forberedt dig på",
+    "forberedt jer på",
+    "forberedt mig på",
+    "forberedt os på",
+    "forberedt sig på",
+    "forberedte dig på",
+    "forberedte jer på",
+    "forberedte mig på",
+    "forberedte os på",
+    "forberedte sig på"
+   ],
+   "ipa": "[ˈfɒːbeˌʁεðˀə] [ˈsɑj] [pɔ]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "forbered dig på"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forbered jer på"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forbered mig på"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forbered os på"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forbered sig på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forberede dig på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forberede jer på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forberede mig på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forberede os på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forberede sig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte dig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte jer på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte mig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte os på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte sig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte … dig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte … jer på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte … mig på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte … os på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forberedte … sig på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forberedt dig på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forberedt jer på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forberedt mig på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forberedt os på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forberedt sig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder dig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder jer på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder mig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder os på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder sig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder … dig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder … jer på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder … mig på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder … os på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forbereder … sig på"
+    }
+   ]
+  },
+  {
+   "lemma": "gå for vidt",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik for vidt",
+    "gå for vidt",
+    "gået for vidt",
+    "går for vidt"
+   ],
+   "ipa": "[ˈgɔˀ] [fʌ] [ˈvid]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 2,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå for vidt"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå for vidt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik for vidt"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … for vidt"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået for vidt"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går for vidt"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … for vidt"
+    }
+   ]
+  },
+  {
+   "lemma": "drage i krig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "drag i krig",
+    "drage i krig",
+    "drager i krig",
+    "draget i krig",
+    "drog i krig"
+   ],
+   "ipa": "[ˈdʁɑːwə] [i] [ˈkʁiˀ]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 2,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "drag i krig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "drage i krig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "drog i krig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "drog … i krig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "draget i krig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "drager i krig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "drager … i krig"
+    }
+   ]
+  },
+  {
+   "lemma": "ryste af",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "ryst af",
+    "ryste af",
+    "rystede af",
+    "ryster af",
+    "rystet af"
+   ],
+   "ipa": "[ˈʁœsdə] [a]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "ryst af"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "ryste af"
+    },
+    {
+     "form_key": "past",
+     "form_text": "rystede af"
+    },
+    {
+     "form_key": "past",
+     "form_text": "rystede … af"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "rystet af"
+    },
+    {
+     "form_key": "present",
+     "form_text": "ryster af"
+    },
+    {
+     "form_key": "present",
+     "form_text": "ryster … af"
+    }
+   ]
+  },
+  {
+   "lemma": "have sex",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "haft sex",
+    "har sex",
+    "hav sex",
+    "havde sex",
+    "have sex"
+   ],
+   "ipa": "[ˈha] [ˈsεgs]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hav sex"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "have sex"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde sex"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde … sex"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "haft sex"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har sex"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har … sex"
+    }
+   ]
+  },
+  {
+   "lemma": "have en skrue løs",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "haft en skrue løs",
+    "har en skrue løs",
+    "hav en skrue løs",
+    "havde en skrue løs",
+    "have en skrue løs"
+   ],
+   "ipa": "[ˈha] [ˈeˀn] [ˈsgʁuːə] [ˈløˀs]",
+   "ipa_source": "components",
+   "type": "idiom",
+   "stress": 3,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hav en skrue løs"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "have en skrue løs"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde en skrue løs"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde … en skrue løs"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "haft en skrue løs"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har en skrue løs"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har … en skrue løs"
+    }
+   ]
+  },
+  {
+   "lemma": "sætte ild til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "sat ild til",
+    "satte ild til",
+    "sæt ild til",
+    "sætte ild til",
+    "sætter ild til"
+   ],
+   "ipa": "[ˈsεdə] [ˈilˀ] [te]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "sæt ild til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "sætte ild til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "satte ild til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "satte … ild til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "sat ild til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sætter ild til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "sætter … ild til"
+    }
+   ]
+  },
+  {
+   "lemma": "være vred på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "er vred på",
+    "var vred på",
+    "vær vred på",
+    "være vred på",
+    "været vred på"
+   ],
+   "ipa": "[ˈvεːʌ] [ˈvʁεðˀ] [pɔ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "A1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "vær vred på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "være vred på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "var vred på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "var … vred på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "været vred på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "er vred på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "er … vred på"
+    }
+   ]
+  },
+  {
+   "lemma": "hoppe på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "hop på",
+    "hoppe på",
+    "hoppede på",
+    "hopper på",
+    "hoppet på"
+   ],
+   "ipa": "[ˈhʌbə] [pɔ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hop på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "hoppe på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "hoppede på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "hoppede … på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "hoppet på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "hopper på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "hopper … på"
+    }
+   ]
+  },
+  {
+   "lemma": "forsyne sig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "forsyn dig",
+    "forsyn jer",
+    "forsyn mig",
+    "forsyn os",
+    "forsyn sig",
+    "forsyne dig",
+    "forsyne jer",
+    "forsyne mig",
+    "forsyne os",
+    "forsyne sig",
+    "forsynede dig",
+    "forsynede jer",
+    "forsynede mig",
+    "forsynede os",
+    "forsynede sig",
+    "forsyner dig",
+    "forsyner jer",
+    "forsyner mig",
+    "forsyner os",
+    "forsyner sig",
+    "forsynet dig",
+    "forsynet jer",
+    "forsynet mig",
+    "forsynet os",
+    "forsynet sig"
+   ],
+   "ipa": "[fʌˈsyˀnə] [ˈsɑj]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "forsyn dig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forsyn jer"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forsyn mig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forsyn os"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "forsyn sig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forsyne dig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forsyne jer"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forsyne mig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forsyne os"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "forsyne sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede … dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede … jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede … mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede … os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "forsynede … sig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forsynet dig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forsynet jer"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forsynet mig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forsynet os"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "forsynet sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner … dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner … jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner … mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner … os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "forsyner … sig"
+    }
+   ]
+  },
+  {
+   "lemma": "vaske af",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "vask af",
+    "vaske af",
+    "vaskede af",
+    "vasker af",
+    "vasket af"
+   ],
+   "ipa": "[ˈvasgə] [a]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "vask af"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "vaske af"
+    },
+    {
+     "form_key": "past",
+     "form_text": "vaskede af"
+    },
+    {
+     "form_key": "past",
+     "form_text": "vaskede … af"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "vasket af"
+    },
+    {
+     "form_key": "present",
+     "form_text": "vasker af"
+    },
+    {
+     "form_key": "present",
+     "form_text": "vasker … af"
+    }
+   ]
+  },
+  {
+   "lemma": "skynde sig hjem",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "skynd dig hjem",
+    "skynd jer hjem",
+    "skynd mig hjem",
+    "skynd os hjem",
+    "skynd sig hjem",
+    "skynde dig hjem",
+    "skynde jer hjem",
+    "skynde mig hjem",
+    "skynde os hjem",
+    "skynde sig hjem",
+    "skyndede dig hjem",
+    "skyndede jer hjem",
+    "skyndede mig hjem",
+    "skyndede os hjem",
+    "skyndede sig hjem",
+    "skynder dig hjem",
+    "skynder jer hjem",
+    "skynder mig hjem",
+    "skynder os hjem",
+    "skynder sig hjem",
+    "skyndet dig hjem",
+    "skyndet jer hjem",
+    "skyndet mig hjem",
+    "skyndet os hjem",
+    "skyndet sig hjem",
+    "skyndt dig hjem",
+    "skyndt jer hjem",
+    "skyndt mig hjem",
+    "skyndt os hjem",
+    "skyndt sig hjem",
+    "skyndte dig hjem",
+    "skyndte jer hjem",
+    "skyndte mig hjem",
+    "skyndte os hjem",
+    "skyndte sig hjem"
+   ],
+   "ipa": "[ˈsɡ̊ønə] [ˈsɑj] [ˈjεmˀ]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 2,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "skynd dig hjem"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "skynd jer hjem"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "skynd mig hjem"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "skynd os hjem"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "skynd sig hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skynde dig hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skynde jer hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skynde mig hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skynde os hjem"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "skynde sig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede dig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede jer hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede mig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede os hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede sig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte dig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte jer hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte mig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte os hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte sig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede … dig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede … jer hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede … mig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede … os hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndede … sig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte … dig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte … jer hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte … mig hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte … os hjem"
+    },
+    {
+     "form_key": "past",
+     "form_text": "skyndte … sig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndet dig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndet jer hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndet mig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndet os hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndet sig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndt dig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndt jer hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndt mig hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndt os hjem"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "skyndt sig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder dig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder jer hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder mig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder os hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder sig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder … dig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder … jer hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder … mig hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder … os hjem"
+    },
+    {
+     "form_key": "present",
+     "form_text": "skynder … sig hjem"
+    }
+   ]
+  },
+  {
+   "lemma": "slide ned",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "sled ned",
+    "slid ned",
+    "slide ned",
+    "slider ned",
+    "slidt ned"
+   ],
+   "ipa": "[ˈsliːðə] [ˈneðˀ]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "slid ned"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "slide ned"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sled ned"
+    },
+    {
+     "form_key": "past",
+     "form_text": "sled … ned"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "slidt ned"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slider ned"
+    },
+    {
+     "form_key": "present",
+     "form_text": "slider … ned"
+    }
+   ]
+  },
+  {
+   "lemma": "have for vane at",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "haft for vane at",
+    "har for vane at",
+    "hav for vane at",
+    "havde for vane at",
+    "have for vane at"
+   ],
+   "ipa": "[ˈha] [fʌ] [ˈvæːnə] [ad]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 2,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hav for vane at"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "have for vane at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde for vane at"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde … for vane at"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "haft for vane at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har for vane at"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har … for vane at"
+    }
+   ]
+  },
+  {
+   "lemma": "pønse på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "pøns på",
+    "pønse på",
+    "pønsede på",
+    "pønser på",
+    "pønset på"
+   ],
+   "ipa": "/ˈpønsə/ [pɔ]",
+   "ipa_source": "components",
+   "type": "prepositional-verb",
+   "stress": 0,
+   "level": "B2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "pøns på"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "pønse på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "pønsede på"
+    },
+    {
+     "form_key": "past",
+     "form_text": "pønsede … på"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "pønset på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "pønser på"
+    },
+    {
+     "form_key": "present",
+     "form_text": "pønser … på"
+    }
+   ]
+  },
+  {
+   "lemma": "bugte sig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "bugt dig",
+    "bugt jer",
+    "bugt mig",
+    "bugt os",
+    "bugt sig",
+    "bugte dig",
+    "bugte jer",
+    "bugte mig",
+    "bugte os",
+    "bugte sig",
+    "bugtede dig",
+    "bugtede jer",
+    "bugtede mig",
+    "bugtede os",
+    "bugtede sig",
+    "bugter dig",
+    "bugter jer",
+    "bugter mig",
+    "bugter os",
+    "bugter sig",
+    "bugtet dig",
+    "bugtet jer",
+    "bugtet mig",
+    "bugtet os",
+    "bugtet sig"
+   ],
+   "ipa": "[ˈb̥ɔɡ̊d̥ə] [ˈsɑj]",
+   "ipa_source": "components",
+   "type": "reflexive-verb",
+   "stress": 0,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "bugt dig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "bugt jer"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "bugt mig"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "bugt os"
+    },
+    {
+     "form_key": "imperative",
+     "form_text": "bugt sig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "bugte dig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "bugte jer"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "bugte mig"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "bugte os"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "bugte sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede sig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede … dig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede … jer"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede … mig"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede … os"
+    },
+    {
+     "form_key": "past",
+     "form_text": "bugtede … sig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "bugtet dig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "bugtet jer"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "bugtet mig"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "bugtet os"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "bugtet sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter sig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter … dig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter … jer"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter … mig"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter … os"
+    },
+    {
+     "form_key": "present",
+     "form_text": "bugter … sig"
+    }
+   ]
+  },
+  {
+   "lemma": "have hjemve",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "haft hjemve",
+    "har hjemve",
+    "hav hjemve",
+    "havde hjemve",
+    "have hjemve"
+   ],
+   "ipa": "[ˈha] [ˈjɛmˌveːˀ]",
+   "ipa_source": "components",
+   "type": "collocation",
+   "stress": 1,
+   "level": "A2",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "hav hjemve"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "have hjemve"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde hjemve"
+    },
+    {
+     "form_key": "past",
+     "form_text": "havde … hjemve"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "haft hjemve"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har hjemve"
+    },
+    {
+     "form_key": "present",
+     "form_text": "har … hjemve"
+    }
+   ]
+  },
+  {
+   "lemma": "gå med til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gik med til",
+    "gå med til",
+    "gået med til",
+    "går med til"
+   ],
+   "ipa": "[ˈgɔˀ] [mε] [te]",
+   "ipa_source": "components",
+   "type": "particle-verb",
+   "stress": 1,
+   "level": "B1",
+   "form_rows": [
+    {
+     "form_key": "imperative",
+     "form_text": "gå med til"
+    },
+    {
+     "form_key": "infinitive",
+     "form_text": "gå med til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik med til"
+    },
+    {
+     "form_key": "past",
+     "form_text": "gik … med til"
+    },
+    {
+     "form_key": "past_participle",
+     "form_text": "gået med til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går med til"
+    },
+    {
+     "form_key": "present",
+     "form_text": "går … med til"
+    }
+   ]
+  }
+ ],
+ "families": []
+}

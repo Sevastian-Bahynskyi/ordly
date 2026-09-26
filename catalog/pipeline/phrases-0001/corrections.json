@@ -1,0 +1,134 @@
+[
+ {
+  "id": "m:komme til|phrase#2",
+  "drop": "a meaning of komme til at, not of komme til"
+ },
+ {
+  "id": "e:komme til|phrase#2",
+  "drop": "a meaning of komme til at, not of komme til"
+ },
+ {
+  "id": "p:sige til|phrase",
+  "pronunciation": "си тэ́ль",
+  "note": "stressed til in its full form"
+ },
+ {
+  "id": "p:lade være|phrase",
+  "pronunciation": "ла вэ́э",
+  "note": "the IPA has no r"
+ },
+ {
+  "id": "m:lade være|phrase#2",
+  "drop": "the example shows lad være med at (don't), not 'leave alone', which is lade … være"
+ },
+ {
+  "id": "e:lade være|phrase#2",
+  "drop": "the example shows lad være med at (don't), not 'leave alone'"
+ },
+ {
+  "id": "p:tage til|phrase",
+  "pronunciation": "тэ́ тэ",
+  "stress": 0,
+  "note": "the main meaning (go to) is prepositional: til unstressed; tage [tæˀ] ≈ тэ"
+ },
+ {
+  "id": "e:tage til|phrase#1",
+  "translations": {
+   "en": "We are going to the beach tomorrow.",
+   "ru": "Завтра мы едем на пляж.",
+   "uk": "Завтра ми їдемо на пляж."
+  },
+  "note": "a plan: present progressive, not present simple"
+ },
+ {
+  "id": "m:gå med|phrase#1",
+  "meaning": {
+   "ru": "пойти вместе, присоединиться",
+   "en": "to come along, join",
+   "uk": "піти разом, приєднатися"
+  },
+  "note": "участвовать is 'participate'"
+ },
+ {
+  "id": "e:gå med|phrase#1",
+  "translations": {
+   "en": "Would you like to come along to the party on Saturday?",
+   "ru": "Хочешь пойти с нами на вечеринку в субботу?",
+   "uk": "Хочеш піти з нами на вечірку в суботу?"
+  },
+  "note": "no slash alternatives"
+ },
+ {
+  "id": "p:gå på|phrase",
+  "pronunciation": "го́ по",
+  "stress": 0,
+  "note": "the p was missing; 'attend' is prepositional, stress on gå"
+ },
+ {
+  "id": "p:give sig|phrase",
+  "pronunciation": "ги́ сай",
+  "note": "sig [sɑj] ≈ сай"
+ },
+ {
+  "id": "e:være nødt til|phrase#1",
+  "translations": {
+   "en": "I have to go now.",
+   "ru": "Мне надо идти.",
+   "uk": "Мені треба йти."
+  },
+  "note": "вынужден идти сейчас is stilted"
+ },
+ {
+  "id": "m:gøre sig|phrase#1",
+  "drop": "gøre sig + adjective is 'make oneself' (gøre sig klar); 'pretend' is not a meaning of it"
+ },
+ {
+  "id": "e:gøre sig|phrase#1",
+  "drop": "gør sig dum is not idiomatic for 'acts stupid' (spiller dum)"
+ },
+ {
+  "id": "e:spille på|phrase#1",
+  "translations": {
+   "en": "He plays the guitar every evening.",
+   "ru": "Он играет на гитаре каждый вечер.",
+   "uk": "Він грає на гітарі щовечора."
+  },
+  "note": "aften is evening"
+ },
+ {
+  "id": "e:skrive til|phrase#1",
+  "translations": {
+   "en": "I write to my friend every week.",
+   "ru": "Я пишу своему другу каждую неделю.",
+   "uk": "Я пишу своєму другові щотижня."
+  },
+  "note": "min ven is male: другові, not подрузі"
+ },
+ {
+  "id": "e:slå sig|phrase#1",
+  "translations": {
+   "en": "I hurt my knee when I fell.",
+   "ru": "Я ушиб колено, когда упал.",
+   "uk": "Я забив коліно, коли впав."
+  },
+  "note": "поранился коленом is ungrammatical"
+ },
+ {
+  "id": "m:rejse til|phrase#1",
+  "meaning": {
+   "ru": "ехать, путешествовать (куда-л.)",
+   "en": "to travel to (a place)",
+   "uk": "їхати, подорожувати (кудись)"
+  },
+  "note": "уезжать is 'leave for'"
+ },
+ {
+  "id": "m:sidde på|phrase#2",
+  "meaning": {
+   "ru": "держать при себе (информацию, секрет)",
+   "en": "to keep (information, a secret) to oneself",
+   "uk": "тримати при собі (інформацію, таємницю)"
+  },
+  "note": "audit 2801: удерживать is physical"
+ }
+]

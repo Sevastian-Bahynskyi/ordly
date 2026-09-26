@@ -10,7 +10,8 @@ import { priceCall, type LedgerLine, type RunRecord, type Service } from './cont
  * the batch and prices them at today's list prices, so a price change needs no new calibration.
  */
 export type UnitType = 'entry' | 'family'
-export type ItemKind = 'meaning' | 'example' | 'sentence'
+/** A `pronunciation` is a phrase's Cyrillic hint, read from its IPA (issue #28). */
+export type ItemKind = 'meaning' | 'example' | 'sentence' | 'pronunciation'
 
 export interface UnitProfile {
   units: number

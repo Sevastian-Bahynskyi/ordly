@@ -1,0 +1,74 @@
+{
+ "batch": "phrases-0008",
+ "issue": 28,
+ "at": "2026-09-26T14:06:07.210Z",
+ "units": {
+  "entries": 60,
+  "families": 0
+ },
+ "items": {
+  "meaning": {
+   "generated": 62,
+   "passed": 45
+  },
+  "example": {
+   "generated": 62,
+   "passed": 45
+  },
+  "sentence": {
+   "generated": 0,
+   "passed": 0
+  },
+  "pronunciation": {
+   "generated": 55,
+   "passed": 41
+  }
+ },
+ "quarantined": {
+  "review": 11,
+  "backcheck": 5,
+  "audit": 2,
+  "gate": 30
+ },
+ "corrected": 31,
+ "reviews": {
+  "reviewed": 124,
+  "disagreed": 7,
+  "rate": 0.056451612903225805,
+  "byKind": {
+   "meaning": {
+    "reviewed": 62,
+    "disagreed": 0
+   },
+   "example": {
+    "reviewed": 62,
+    "disagreed": 7
+   }
+  },
+  "adjudicated": 7,
+  "adjudicatorAccepted": 3,
+  "unresolved": 0
+ },
+ "backTranslation": {
+  "checked": 62,
+  "drifted": 9
+ },
+ "audio": {
+  "clips": 0,
+  "heardAsWritten": 0,
+  "secondVoice": 0,
+  "judgedProblem": 0
+ },
+ "cost": {
+  "estimateUsd": 0.45836536000000005,
+  "actualUsd": 0.45857146000000004,
+  "error": 0.00044964130797315666,
+  "byService": {
+   "deepseek": 0.36658146,
+   "translator": 0.09198999999999999,
+   "speech": 0
+  },
+  "perItem": 0.0025618517318435757,
+  "perPassedItem": 0.0035005454961832064
+ }
+}

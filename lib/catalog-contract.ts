@@ -6,7 +6,8 @@ export const CATALOG_BATCH_SIZE = 40
 export const CATALOG_MAX_SENSES = 3
 
 export type CatalogKind = 'word' | 'phrase'
-export type CatalogIpaSource = 'ddo' | 'wiktionary'
+/** `components`: a phrase's IPA, joined from the recorded IPA of each of its words (issue #28). */
+export type CatalogIpaSource = 'ddo' | 'wiktionary' | 'components'
 
 export interface CatalogFact {
   lemma: string
@@ -63,7 +64,7 @@ export function parseCatalogFact(value: unknown): CatalogFact | null {
 
   let ipaSource: CatalogIpaSource | null | undefined
   if (value.ipa_source !== undefined) {
-    if (value.ipa_source !== null && value.ipa_source !== 'ddo' && value.ipa_source !== 'wiktionary') return null
+    if (value.ipa_source !== null && value.ipa_source !== 'ddo' && value.ipa_source !== 'wiktionary' && value.ipa_source !== 'components') return null
     ipaSource = value.ipa_source
   }
 

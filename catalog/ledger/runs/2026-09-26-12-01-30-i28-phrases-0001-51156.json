@@ -1,0 +1,71 @@
+{
+ "run": "2026-09-26-12-01-30-i28-phrases-0001-51156",
+ "issue": 28,
+ "batch": "phrases-0001",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0001",
+ "startedAt": "2026-09-26T12:01:30.594Z",
+ "updatedAt": "2026-09-26T12:02:24.458Z",
+ "estimateUsd": 0.2470120153846154,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.entry-senses",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 19,
+   "inputTokens": 14497,
+   "outputTokens": 2326,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.03331926
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-en",
+   "model": null,
+   "scope": "entry",
+   "calls": 13,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 455,
+   "seconds": 0,
+   "usd": 0.00455
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-ru",
+   "model": null,
+   "scope": "entry",
+   "calls": 12,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 427,
+   "seconds": 0,
+   "usd": 0.00427
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-uk",
+   "model": null,
+   "scope": "entry",
+   "calls": 12,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 427,
+   "seconds": 0,
+   "usd": 0.00427
+  },
+  {
+   "service": "translator",
+   "op": "translator.en-da",
+   "model": null,
+   "scope": "entry",
+   "calls": 12,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 409,
+   "seconds": 0,
+   "usd": 0.00409
+  }
+ ]
+}

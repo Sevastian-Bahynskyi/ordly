@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { PERFECT_AUXILIARIES, PHRASE_GAP, TYPED_GAP } from './catalog-phrases'
 import { corLookupForm, parseCorForms } from './cor'
 import { isTranslationLanguage } from './learner-language'
 import { activeSenses, emptyCoverage, isNounGender, isPartOfSpeech, normalizeSenseText, parseSenses } from './senses'
@@ -130,7 +131,7 @@ export function parseCatalogEntry(value: unknown, lang: TranslationLanguage): Ca
  * what was typed, but the paradigm is never said to contain it (spec #12, decision 11).
  */
 export function encounteredFormOf(entry: Pick<CatalogEntry, 'lemma' | 'forms'>, typed: string): { text: string; verified: boolean; isHeadword: boolean } {
-  const form = corLookupForm(typed) || typed.trim().toLocaleLowerCase('da-DK')
+  const form = catalogLookupText(typed) || typed.trim().toLocaleLowerCase('da-DK')
   const isHeadword = form === entry.lemma
   return { text: form, isHeadword, verified: isHeadword || entry.forms.some((candidate) => candidate.form_text.toLocaleLowerCase('da-DK') === form) }
 }
@@ -165,7 +166,10 @@ const ENTRY_COLUMNS = 'lemma, kind, freq_rank, pos, gender, definite_singular, p
  * refuses anything with a space and a phrase must never be collapsed to one of its words.
  */
 export function catalogLookupText(typed: string): string {
-  const text = typed.normalize('NFC').trim().replace(/^[«»"'“”(\[]+|[«»"'“”)\].,!?;:]+$/g, '').trim().replace(/\s+/g, ' ').toLocaleLowerCase('da-DK')
+  const text = typed.normalize('NFC').trim().replace(/^[«»"'“”(\[]+|[«»"'“”)\].,!?;:…]+$/g, '').trim()
+    // A split phrase is typed with a gap, as `…` or `...`: `står … op` is stored with one spaced ellipsis.
+    .replace(TYPED_GAP, ` ${PHRASE_GAP} `)
+    .replace(/\s+/g, ' ').toLocaleLowerCase('da-DK')
   return /\s/u.test(text) ? (/\p{L}/u.test(text) ? text : '') : corLookupForm(text)
 }
 
@@ -176,18 +180,34 @@ export async function lookupCatalog(client: SupabaseClient, typed: string, lang:
 
   try {
     let lemmas = [form]
-    if (!isPhrase) {
-      const { data } = await client.from('cor_form').select('form, lemma, tag').eq('form', form)
-      lemmas = candidateLemmas(typed, parseCorForms(data))
+    let rows: unknown[]
+    if (isPhrase) {
+      // The headword and any recorded form (`stod op`, `står … op`) are asked at once; a form's
+      // headword costs one more read only when the typed text is not a headword itself.
+      // A compound tense (`er stået op`) is found through its participle form (`stået op`).
+      const [first, ...rest] = form.split(' ')
+      const participle = PERFECT_AUXILIARIES.has(first) && rest.length > 1 ? rest.join(' ') : null
+      const [byLemma, byForm] = await Promise.all([
+        client.from('word_catalog').select(ENTRY_COLUMNS).eq('kind', 'phrase').in('lemma', lemmas),
+        client.from('word_catalog_form').select('lemma, form_key, form_text').eq('kind', 'phrase').in('form_text', participle ? [form, participle] : [form]),
+      ])
+      rows = Array.isArray(byLemma.data) ? byLemma.data : []
+      const heads = [...new Set((Array.isArray(byForm.data) ? byForm.data : [])
+        .filter((row: { form_key?: unknown; form_text?: unknown }) => row.form_text === form || row.form_key === 'past_participle')
+        .map((row: { lemma?: unknown }) => row.lemma).filter((lemma): lemma is string => typeof lemma === 'string'))]
+      if (!rows.length && heads.length) {
+        lemmas = heads
+        const { data } = await client.from('word_catalog').select(ENTRY_COLUMNS).eq('kind', 'phrase').in('lemma', heads)
+        rows = Array.isArray(data) ? data : []
+      }
+    } else {
+      const { data: cor } = await client.from('cor_form').select('form, lemma, tag').eq('form', form)
+      lemmas = candidateLemmas(typed, parseCorForms(cor))
+      const { data } = await client.from('word_catalog').select(ENTRY_COLUMNS).eq('kind', 'word').in('lemma', lemmas)
+      rows = Array.isArray(data) ? data : []
     }
 
-    const { data } = await client
-      .from('word_catalog')
-      .select(ENTRY_COLUMNS)
-      .eq('kind', isPhrase ? 'phrase' : 'word')
-      .in('lemma', lemmas)
-
-    const candidates = (Array.isArray(data) ? data : [])
+    const candidates = rows
       .map((row) => parseCatalogEntry(row, lang))
       .filter((entry): entry is CatalogEntry => entry !== null)
       // The typed form's own lemma first; after that, the more common word.

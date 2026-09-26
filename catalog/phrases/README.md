@@ -57,3 +57,29 @@ then `generate-family-batch.ts`, `review-deepseek.ts --families`, `check-family-
 - Out of scope: phrases carrying an open-argument placeholder (`nogen`, `noget`, `sin`, a closing
   `en`), and a gap is one contiguous span, so a phrase whose ordinary use splits around its object
   (`holde det ud`) is passed over rather than taught in an unnatural order.
+
+## Expansion (issue #28)
+
+About 600 more phrases, through the corpus expansion pipeline (`scripts/content-batch.ts`, see
+`docs/content-population.md`, "Phrases (issue #28)"). What changed from the stages above:
+
+- **Labels for the whole inventory.** `classify-phrases.ts --top 2032` labelled every inventory item
+  (the first 600 were labelled for #16); selection still follows attestation and never reads the
+  frozen benchmark.
+- **Selection and facts**: `scripts/plan-phrase-batches.ts` writes `expansion.jsonl` (every planned
+  phrase with its facts) and one pipeline batch per 60 phrases (`catalog/pipeline/phrases-NNNN/`).
+- **Forms from COR**, not from the DDO full-form list: the head verb's register paradigm (infinitive,
+  present, past, past participle, imperative) with the other words fixed and `sig` expanded, plus a
+  **split form** after each finite head (`står … op`, `glæder … mig til`), because a main clause puts
+  its subject or an adverb between them. They are loaded into `word_catalog_form` with
+  `kind = 'phrase'`, so the composer finds the phrase from any of them and saves the headword, and a
+  saved phrase carries them into `word_forms` for Practice. The phrases of the first pass got theirs
+  from `forms-existing.jsonl` (`scripts/phrase-forms-sql.ts`).
+- **Pronunciation hints.** A phrase has no IPA of its own in any source, so its IPA is Wiktionary's
+  for the whole phrase when it has one, and otherwise each word's recorded IPA joined in order
+  (`ipa_source = 'components'`: DDO, the word catalog's facts, then Wiktionary when its readings agree).
+  A phrase with a word no source transcribes is passed over. DeepSeek writes the Cyrillic sounds;
+  the **stress is a rule** (`phraseStressIndex`: a particle verb stresses its particle, a
+  prepositional or reflexive verb its verb, anything else its last content word) placed by
+  `placePhraseStress` on the syllable that word's IPA stresses, and the gate checks it.
+- No audio: Azure Speech is outside the budget.

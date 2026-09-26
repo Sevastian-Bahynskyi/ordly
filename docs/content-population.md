@@ -324,3 +324,69 @@ audits failed, which is the pipeline doing its job.
   *har tænkt mig at*). The adjudicator sided with the rejecting reviewer in 8 of 10 disputes.
 - **Back-translation.** Its first prompt asked for the same meaning of every content word and
   flagged plain paraphrase (11/28); it now flags only a changed situation (4/28, all real).
+
+## Phrases (issue #28, 2026-09-26)
+
+**576 new catalog phrases are loaded** (the catalog now holds 705), each with its meanings in
+English, Russian and Ukrainian (same sense ids), an example with three translations, a Cyrillic
+pronunciation hint, and — for a verb phrase — its recorded forms, split forms included. No audio:
+Speech is outside the budget. Audit: `catalog/phrases/audit/expansion-report.md`.
+
+### How the batches ran
+
+```
+# labels for the whole inventory (the first 600 were labelled for #16): $0.27
+CONTENT_ISSUE=28 CONTENT_RUN_CAP_USD=1 pnpm exec tsx --env-file=.env.corpus.local scripts/classify-phrases.ts --top 2032
+# selection, facts (COR forms, IPA) and one batch per 60 phrases
+pnpm exec tsx scripts/plan-phrase-batches.ts --kaikki <kaikki.org-dictionary-Danish.jsonl> --count 780 --size 60 --first 2 [--existing]
+# each batch: run → full read (corrections.json) → audit → load
+pnpm exec tsx --env-file=.env.corpus.local scripts/content-batch.ts --batch catalog/pipeline/phrases-NNNN [--read] [--load]
+# forms of the phrases that were already in the catalog
+pnpm exec tsx scripts/phrase-forms-sql.ts --sql-dir catalog/phrases/load
+```
+
+Each batch's `load/` SQL was run in name order with `supabase db query --linked -f`. The coverage
+report was regenerated with COR from `https://ordregister.dk/files/cor1.5.1.0.tsv` (`--cor`).
+
+### What changed in the pipeline, and why
+
+- **Phrase pronunciation.** No source transcribes a phrase, so its IPA is Wiktionary's for the whole
+  phrase (9 phrases) or each word's recorded IPA joined (`ipa_source = 'components'`). 255 inventory
+  units were passed over because a word has no recorded IPA. DeepSeek writes the sounds; the stress
+  is a rule (`phraseStressIndex`, `placePhraseStress`), because in calibration the model copied every
+  word's citation stress (`gå med` → «го́ мэ»).
+- **Hints are not model-reviewed.** In calibration both reviewers rejected 22 of 25 hints, mostly for
+  disputing the given stress or asking for sounds Cyrillic cannot write (æ, stød); the rejection then
+  took the phrase's good meanings with it. A hint is checked by the gate (Cyrillic only, one word per
+  word, one stress on the right word) and read in full; the audit samples it as its own stratum.
+- **One repair round** (`repairPass`, `lib/content-review.ts`). Rejected items go back with the named
+  defects and return with new wording, new translations of the same Danish, or a new hint — or are
+  dropped; a repaired item is reviewed again by both reviewers. With the hint rejections no longer
+  cascading, it took the calibration batch from 2 to 24 of 36 meanings passing. The Danish of an example is never rewritten by a repair.
+- **Full read before the audit** (`corrections.json`, `read.json`). The first audit (77% clean, all
+  findings the reviewers had let through) showed a sample could not pass on reviews alone, so every
+  item that passes is read and corrected or dropped with a note before the seeded sample is drawn.
+  An item that passes after the read (a retried entry) stops the run until it is read (`--read`).
+- The translation cache is written atomically (`scripts/azure-corpus.ts`): three batches in
+  parallel once read it half-written and crashed a run.
+
+### Spend
+
+| | estimate | actual |
+|---|---|---|
+| labels (1,432 phrases) | — | $0.27 |
+| calibration phrases-0001 (30 phrases, incl. two restarted runs) | $0.25 | $0.55 |
+| phrases-0002 … 0014 (780 phrases) | $5.99 | $6.59 |
+| **#28 total** | | **$7.40 of $10.00** (DeepSeek ≈ $6.00, Translator ≈ $1.42) |
+
+≈ $0.013 per loaded phrase. The profile was re-measured on phrases-0002 (`profile.json`); later batches
+ran 0–28% above it, the repair round and generation retries being the variance. The Azure bill was
+not compared with the ledger in this session (no billing access); do that before #29's first large batch.
+
+### Coverage
+
+Phrase coverage on the frozen unseen set (reported, not targeted): on the denominator used before
+(units among the first 600 labels), **82.2% of 185 occurrences (90 of 115 phrases)**, up from 51.9%
+(51). With every inventory item labelled, the report's denominator grows to 135 phrases: 78.4% of 208
+occurrences (`docs/content-coverage-report.md`). A split verb phrase in running text (`står han op`)
+is still not counted.

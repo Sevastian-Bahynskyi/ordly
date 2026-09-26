@@ -1,0 +1,119 @@
+{
+ "run": "2026-09-26-14-00-15-i28-phrases-0012-59734",
+ "issue": 28,
+ "batch": "phrases-0012",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0012",
+ "startedAt": "2026-09-26T14:00:15.024Z",
+ "updatedAt": "2026-09-26T14:01:14.922Z",
+ "estimateUsd": 0.45836536000000005,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.entry-senses",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 14,
+   "inputTokens": 11187,
+   "outputTokens": 1530,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.02478978
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-en",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 60,
+   "seconds": 0,
+   "usd": 0.0006
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-ru",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 60,
+   "seconds": 0,
+   "usd": 0.0006
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-uk",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 60,
+   "seconds": 0,
+   "usd": 0.0006
+  },
+  {
+   "service": "translator",
+   "op": "translator.en-da",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 54,
+   "seconds": 0,
+   "usd": 0.00054
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.backcheck",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 265,
+   "outputTokens": 31,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00056898
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-a",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 880,
+   "outputTokens": 108,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00190704
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-b",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 834,
+   "outputTokens": 100,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00179916
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.repair",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 972,
+   "outputTokens": 49,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.0018618
+  }
+ ]
+}

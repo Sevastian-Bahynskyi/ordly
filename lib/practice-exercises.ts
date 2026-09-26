@@ -1,6 +1,7 @@
 import { clozeSentence } from './review'
 import { normalizeSenseText } from './senses'
 import { senseContentVersion } from './practice-content'
+import { PHRASE_GAP } from './catalog-phrases'
 import { senseExample, type SenseCandidate } from './practice-senses'
 import type { CatalogContext } from './practice-contexts'
 import { seedHash, type PracticeTask } from './practice'
@@ -303,13 +304,26 @@ function activeSenseList(senses: readonly EntrySense[]): EntrySense[] {
  * adds a short ending (`spise` → `spiste`, `hyggelig` → `hyggelige`, `bil` → `bilen`). Phrases and
  * irregular forms (`gå` → `gik`) must match exactly, so a gap is never placed on a guess.
  */
-export function findInSentence(sentence: string, danish: string): { gapped: string; surface: string } | null {
+export function findInSentence(sentence: string, danish: string, forms: readonly string[] = []): { gapped: string; surface: string } | null {
   const target = danish.trim().replace(/^at\s+/iu, '')
   if (!target || !sentence.trim()) return null
-  const escaped = target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+')
-  const exact = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'iu').exec(sentence)
-  if (exact) return { surface: exact[0], gapped: `${sentence.slice(0, exact.index)}_____${sentence.slice(exact.index + exact[0].length)}` }
-  if (/\s/u.test(target)) return null
+  const exactly = (text: string): { gapped: string; surface: string } | null => {
+    const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+')
+    const exact = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'iu').exec(sentence)
+    return exact ? { surface: exact[0], gapped: `${sentence.slice(0, exact.index)}_____${sentence.slice(exact.index + exact[0].length)}` } : null
+  }
+  const exact = exactly(target)
+  if (exact) return exact
+  if (/\s/u.test(target)) {
+    // A phrase is found only in one of its verified contiguous forms (`stod op`); a split one
+    // (`stod … op`) is never one gap.
+    const contiguous = forms.filter((form) => /\s/u.test(form.trim()) && !form.includes(PHRASE_GAP)).sort((left, right) => right.length - left.length)
+    for (const form of contiguous) {
+      const found = exactly(form.trim())
+      if (found) return found
+    }
+    return null
+  }
   const lower = target.toLocaleLowerCase('da-DK')
   const stem = lower.length > 4 && lower.endsWith('e') ? lower.slice(0, -1) : lower
   if (stem.length < 3) return null
@@ -391,7 +405,7 @@ export function clozeTypedTask(input: ExerciseInput): PracticeTask | null {
   const entry = item.vocabulary_entries
   if (entry.entry_kind === 'sentence') return sentenceClozeTask(input)
   const example = senseExample(item, candidate.sense, candidate.primary)
-  const found = findInSentence(example.sentence, entry.danish)
+  const found = findInSentence(example.sentence, entry.danish, input.forms)
   if (!found) return null
   return {
     ...baseTask(candidate, item),

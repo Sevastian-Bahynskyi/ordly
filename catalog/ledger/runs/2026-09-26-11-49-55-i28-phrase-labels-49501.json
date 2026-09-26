@@ -1,0 +1,23 @@
+{
+ "run": "2026-09-26-11-49-55-i28-phrase-labels-49501",
+ "issue": 28,
+ "batch": "phrase-labels",
+ "command": "./scripts/classify-phrases.ts --top 2032",
+ "startedAt": "2026-09-26T11:49:55.342Z",
+ "updatedAt": "2026-09-26T12:01:09.297Z",
+ "estimateUsd": null,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.classify-phrases",
+   "model": "DeepSeek-V4-Pro",
+   "scope": null,
+   "calls": 36,
+   "inputTokens": 34334,
+   "outputTokens": 59110,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.26544396
+  }
+ ]
+}

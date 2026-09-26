@@ -30,11 +30,15 @@ if (!freqPath || !fullFormsPath) {
   console.error('Usage: coverage-report.ts --freq <freq-30k-ex.txt> --fullforms <ddo-fullforms.csv> [--out dirs] [--locale files] [--report file]')
   process.exit(1)
 }
-const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out', 'catalog/phrases/out'].filter(existsSync).join(',')).split(',')
-const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json', 'catalog/phrases/locale-en.json'].filter(existsSync).join(',')).split(',')
+// Pipeline batches (issue #27) count once loaded: their SQL is in `load/`, their rows in `publish/rows`.
+const pipeline = existsSync('catalog/pipeline')
+  ? (await readdir('catalog/pipeline')).sort().map((name) => join('catalog', 'pipeline', name)).filter((dir) => existsSync(join(dir, 'load')) && existsSync(join(dir, 'publish', 'rows')))
+  : []
+const outDirs = (option('--out') || [...['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out', 'catalog/phrases/out'].filter(existsSync), ...pipeline.map((dir) => join(dir, 'publish', 'rows'))].join(',')).split(',')
+const localeFiles = (option('--locale') || [...['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json', 'catalog/phrases/locale-en.json'], ...pipeline.map((dir) => join(dir, 'publish', 'locale-en.json'))].filter(existsSync).join(',')).split(',')
 const reportPath = option('--report') || 'docs/content-coverage-report.md'
-// Ukrainian wording (issue #24): one merged file covering every sense.
-const ukrainianFiles = (option('--locale-uk') || ['catalog/locale-uk.json'].filter(existsSync).join(',')).split(',').filter(Boolean)
+// Ukrainian wording (issue #24): one merged file covering every sense, plus each loaded pipeline batch's.
+const ukrainianFiles = (option('--locale-uk') || ['catalog/locale-uk.json', ...pipeline.map((dir) => join(dir, 'publish', 'locale-uk.json'))].filter(existsSync).join(',')).split(',').filter(Boolean)
 
 // What the catalog supports, per learner language: `lemma|pos` with a worded sense.
 const ru = new Set<string>()
@@ -48,7 +52,7 @@ for (const dir of outDirs) {
   // Rows the catalog gate quarantined are not in the catalog, so they cover nothing.
   const reviewPath = join(dir, '..', 'needs_review.jsonl')
   const quarantined = new Set(existsSync(reviewPath) ? (await readFile(reviewPath, 'utf8')).split(/\r?\n/u).filter(Boolean).map((line) => String((JSON.parse(line) as { lemma?: unknown }).lemma)) : [])
-  for (const name of (await readdir(dir)).filter((file) => /^batch-\d+\.json$/.test(file))) {
+  for (const name of (await readdir(dir)).filter((file) => /^(batch-\d+|rows)\.json$/.test(file))) {
     for (const value of parseCatalogGeneratorText(await readFile(join(dir, name), 'utf8'))) {
       if (!isGeneratedCatalogRow(value) || quarantined.has(value.lemma)) continue
       entries += 1
