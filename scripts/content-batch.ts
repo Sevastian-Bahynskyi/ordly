@@ -608,9 +608,19 @@ const passed = items.filter((item) => gated.outcomes.find((outcome) => outcome.i
 // (an empty array when nothing needed it). Only then is the seeded sample drawn, from what is left.
 if (spec.entries.length && !existsSync(path('corrections.json'))) {
   await writeFile(path('read-all.md'), auditMarkdown(passed.map((item) => ({ id: item.id, kind: item.kind, verdict: null, note: '' })), items, 'Full read'))
+  await writeJson('read.json', passed.map((item) => item.id))
   console.log(`Stopped for the full read: ${passed.length} items in ${path('read-all.md')}; write corrections.json (see Correction in this script) and run again.`)
   process.exit(0)
 }
+// An item that passed only after the full read (a retried entry, a repair) is read before it can be sampled.
+const read = new Set(await readJson<string[]>('read.json', []))
+const unread = passed.filter((item) => item.unit.startsWith('entry:') && !read.has(item.id))
+if (unread.length && !argv.includes('--read')) {
+  await writeFile(path('read-more.md'), auditMarkdown(unread.map((item) => ({ id: item.id, kind: item.kind, verdict: null, note: '' })), items, 'Full read'))
+  console.log(`Stopped: ${unread.length} items passed after the full read, in ${path('read-more.md')}; add any corrections, then run again with --read.`)
+  process.exit(0)
+}
+if (unread.length) await writeJson('read.json', [...read, ...unread.map((item) => item.id)])
 if (!existsSync(path('audit.json'))) {
   const sample = drawBatchAudit(passed, spec.audit)
   await writeJson('audit.json', { seed: spec.audit.seed, entries: sample })

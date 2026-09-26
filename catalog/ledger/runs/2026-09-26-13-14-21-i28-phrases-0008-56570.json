@@ -1,0 +1,35 @@
+{
+ "run": "2026-09-26-13-14-21-i28-phrases-0008-56570",
+ "issue": 28,
+ "batch": "phrases-0008",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0008",
+ "startedAt": "2026-09-26T13:14:21.573Z",
+ "updatedAt": "2026-09-26T13:16:25.371Z",
+ "estimateUsd": 0.45836536000000005,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.entry-senses",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 15,
+   "inputTokens": 12034,
+   "outputTokens": 1874,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.02746068
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.adjudicate",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 1848,
+   "outputTokens": 356,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.0044544
+  }
+ ]
+}

@@ -282,12 +282,12 @@ const UNSTRESSED = new Set([...PREPOSITIONS, ...REFLEXIVE_PRONOUNS, 'at', 'og', 
  * copying each word's own.
  */
 export function phraseStressIndex(tokens: readonly string[], type: string): number {
-  if (type === 'particle-verb' && tokens.length > 1) {
+  if (type === 'particle-verb' && tokens.length > 1 && tokens[1] !== 'sig') {
     // `finde UD af`: a closing preposition or reflexive is unstressed; `tage af STED`: a two-word particle stresses its last word.
     const last = tokens.length - 1
     return last >= 2 && !UNSTRESSED.has(tokens[last]) ? last : 1
   }
-  if (type === 'reflexive-verb') {
+  if (type === 'reflexive-verb' || tokens[1] === 'sig') {
     // `sætte sig NED`, `sætte sig IND i`: an adverb particle after the reflexive takes the stress.
     const particle = tokens.findIndex((token, at) => at > 1 && ADVERB_PARTICLES.has(token))
     return particle > 0 ? particle : 0

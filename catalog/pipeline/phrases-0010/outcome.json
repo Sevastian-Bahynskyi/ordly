@@ -1,0 +1,1545 @@
+[
+ {
+  "id": "p:holde sig i ro|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:holde sig i ro|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:holde sig i ro|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:holde sig i ro|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:holde sig i ro|phrase#1",
+  "kind": "example",
+  "unit": "entry:holde sig i ro|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:holde sig i ro|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:holde sig i ro|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:holde sig i ro|phrase#2",
+  "kind": "example",
+  "unit": "entry:holde sig i ro|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:afholde sig fra|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:afholde sig fra|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:afholde sig fra|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:afholde sig fra|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:afholde sig fra|phrase#1",
+  "kind": "example",
+  "unit": "entry:afholde sig fra|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:rolig nu|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:rolig nu|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:rolig nu|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:rolig nu|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:rolig nu|phrase#1",
+  "kind": "example",
+  "unit": "entry:rolig nu|phrase",
+  "passed": false,
+  "stage": "backcheck",
+  "problems": [
+   "back-translation drifted: nok nå bussen (will catch the bus) became tager bussen (take the bus), changing the meaning from catching it to simply taking it."
+  ]
+ },
+ {
+  "id": "p:få besked om|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:få besked om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:få besked om|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:få besked om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:få besked om|phrase#1",
+  "kind": "example",
+  "unit": "entry:få besked om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:springe fra|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:springe fra|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:springe fra|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:springe fra|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:springe fra|phrase#1",
+  "kind": "example",
+  "unit": "entry:springe fra|phrase",
+  "passed": false,
+  "stage": "backcheck",
+  "problems": [
+   "back-translation drifted: sprang fra (backed out) became sprang ud (jumped out), changing the action entirely."
+  ]
+ },
+ {
+  "id": "p:byde velkommen|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:byde velkommen|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:byde velkommen|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:byde velkommen|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:byde velkommen|phrase#1",
+  "kind": "example",
+  "unit": "entry:byde velkommen|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:smage af|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:smage af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:smage af|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:smage af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:smage af|phrase#1",
+  "kind": "example",
+  "unit": "entry:smage af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:sove ind|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:sove ind|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:sove ind|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:sove ind|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:sove ind|phrase#1",
+  "kind": "example",
+  "unit": "entry:sove ind|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:sove ud|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:sove ud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:sove ud|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:sove ud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:sove ud|phrase#1",
+  "kind": "example",
+  "unit": "entry:sove ud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:kaste et blik|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:kaste et blik|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:kaste et blik|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:kaste et blik|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:kaste et blik|phrase#1",
+  "kind": "example",
+  "unit": "entry:kaste et blik|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:kaste et blik på|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:kaste et blik på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:kaste et blik på|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:kaste et blik på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:kaste et blik på|phrase#1",
+  "kind": "example",
+  "unit": "entry:kaste et blik på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:modsætte sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:modsætte sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:modsætte sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:modsætte sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:modsætte sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:modsætte sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:holde mund|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:holde mund|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:holde mund|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:holde mund|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:holde mund|phrase#1",
+  "kind": "example",
+  "unit": "entry:holde mund|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:gå i seng med|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:gå i seng med|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:gå i seng med|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:gå i seng med|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: the idiom means having sex; the meaning and example are the literal free combination"
+  ]
+ },
+ {
+  "id": "e:gå i seng med|phrase#1",
+  "kind": "example",
+  "unit": "entry:gå i seng med|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: literal, not the phrase's meaning"
+  ]
+ },
+ {
+  "id": "p:sove som en sten|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:sove som en sten|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:sove som en sten|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:sove som en sten|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:sove som en sten|phrase#1",
+  "kind": "example",
+  "unit": "entry:sove som en sten|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:tiltrække sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:tiltrække sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:tiltrække sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:tiltrække sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:tiltrække sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:tiltrække sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:en stor tjeneste|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:en stor tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:en stor tjeneste|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:en stor tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:en stor tjeneste|phrase#1",
+  "kind": "example",
+  "unit": "entry:en stor tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:gøre tjeneste|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:gøre tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:gøre tjeneste|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:gøre tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:gøre tjeneste|phrase#1",
+  "kind": "example",
+  "unit": "entry:gøre tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:gøre tjeneste|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:gøre tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:gøre tjeneste|phrase#2",
+  "kind": "example",
+  "unit": "entry:gøre tjeneste|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:gøre grin med|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:gøre grin med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:gøre grin med|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:gøre grin med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:gøre grin med|phrase#1",
+  "kind": "example",
+  "unit": "entry:gøre grin med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:sænke sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:sænke sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:sænke sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:sænke sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:sænke sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:sænke sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:stride med|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:stride med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:stride med|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:stride med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:stride med|phrase#1",
+  "kind": "example",
+  "unit": "entry:stride med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:kredse om|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:kredse om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:kredse om|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:kredse om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:kredse om|phrase#1",
+  "kind": "example",
+  "unit": "entry:kredse om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:kredse rundt|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:kredse rundt|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:kredse rundt|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:kredse rundt|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:kredse rundt|phrase#1",
+  "kind": "example",
+  "unit": "entry:kredse rundt|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:kredse rundt|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:kredse rundt|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:kredse rundt|phrase#2",
+  "kind": "example",
+  "unit": "entry:kredse rundt|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "Danish 'kredsede rundt om emnet' is unnatural; the idiomatic form is 'kredsede om emnet' or 'gik rundt om emnet'. 'Kredse rundt' alone is not a standard phrasal verb for this meaning.",
+   "adjudicator: The Danish phrase 'kredsede rundt om emnet' is unnatural; the standard idiomatic form is 'kredsede om emnet', making 'kredse rundt' a defective entry for this meaning."
+  ]
+ },
+ {
+  "id": "p:kredse rundt om|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:kredse rundt om|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:kredse rundt om|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:kredse rundt om|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:kredse rundt om|phrase#1",
+  "kind": "example",
+  "unit": "entry:kredse rundt om|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "Danish 'kredsede rundt om problemet' is unnatural; the idiomatic form is 'kredsede om problemet' or 'gik rundt om problemet'. 'Kredse rundt om' is not a standard phrasal verb for this meaning.",
+   "adjudicator: The Danish phrase 'kredsede rundt om problemet' is unnatural; the standard idiomatic form is 'kredsede om problemet', making 'kredse rundt om' a defective entry for this meaning."
+  ]
+ },
+ {
+  "id": "p:være fan af|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:være fan af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:være fan af|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:være fan af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:være fan af|phrase#1",
+  "kind": "example",
+  "unit": "entry:være fan af|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:skrue op|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:skrue op|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:skrue op|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:skrue op|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:skrue op|phrase#1",
+  "kind": "example",
+  "unit": "entry:skrue op|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:skrue op for|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:skrue op for|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:skrue op for|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:skrue op for|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:skrue op for|phrase#1",
+  "kind": "example",
+  "unit": "entry:skrue op for|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:betale forud|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:betale forud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:betale forud|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:betale forud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:betale forud|phrase#1",
+  "kind": "example",
+  "unit": "entry:betale forud|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:lege skjul|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:lege skjul|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:lege skjul|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:lege skjul|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:lege skjul|phrase#1",
+  "kind": "example",
+  "unit": "entry:lege skjul|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: English 'hide and seek' should be hyphenated as 'hide-and-seek' to match the Danish 'skjul' (a single game). The provided translation 'hide and seek' is a common variant, but the standard is 'hide-and-seek'. However, this is a minor spelling preference, not a real defect. The real defect is that the Russian translation 'Дети каждый день после обеда играют в прятки в саду' adds 'после обеда' (after lunch) which is not in the Danish 'hver eftermiddag' (every afternoon). The Danish says 'hver eftermiddag' (every afternoon), not 'после обеда'. Similarly, Ukrainian 'щодня після обіду' adds 'після обіду' (after lunch). The translations are not faithful; they add information not present in the original.",
+   "adjudicator: The Russian and Ukrainian translations incorrectly add 'после обеда'/'після обіду' (after lunch), which is not present in the Danish 'hver eftermiddag' (every afternoon)."
+  ]
+ },
+ {
+  "id": "p:bøde på|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:bøde på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:bøde på|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:bøde på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:bøde på|phrase#1",
+  "kind": "example",
+  "unit": "entry:bøde på|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:grine sig halvt ihjel|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:grine sig halvt ihjel|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:grine sig halvt ihjel|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:grine sig halvt ihjel|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:grine sig halvt ihjel|phrase#1",
+  "kind": "example",
+  "unit": "entry:grine sig halvt ihjel|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:råde over|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:råde over|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:råde over|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:råde over|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:råde over|phrase#1",
+  "kind": "example",
+  "unit": "entry:råde over|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:spille falsk|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:spille falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:spille falsk|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:spille falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:spille falsk|phrase#1",
+  "kind": "example",
+  "unit": "entry:spille falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:synge falsk|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:synge falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:synge falsk|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:synge falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:synge falsk|phrase#1",
+  "kind": "example",
+  "unit": "entry:synge falsk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:tage i betragtning|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:tage i betragtning|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:tage i betragtning|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:tage i betragtning|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:tage i betragtning|phrase#1",
+  "kind": "example",
+  "unit": "entry:tage i betragtning|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:standse ved|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:standse ved|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:standse ved|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:standse ved|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:standse ved|phrase#1",
+  "kind": "example",
+  "unit": "entry:standse ved|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:klæde sig ud|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:klæde sig ud|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:klæde sig ud|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:klæde sig ud|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:klæde sig ud|phrase#1",
+  "kind": "example",
+  "unit": "entry:klæde sig ud|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: Ukrainian 'вбиратися піратами' is incorrect. The correct form is 'вбиратися в піратів' or 'перевдягатися в піратів'. 'Вбиратися піратами' means 'to dress as pirates' but the instrumental case without preposition is not standard for this meaning; it should be 'вбиратися в піратів' (accusative with preposition).",
+   "adjudicator: The Ukrainian translation 'вбиратися піратами' is grammatically incorrect; the correct form is 'вбиратися в піратів'."
+  ]
+ },
+ {
+  "id": "p:beklage sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:beklage sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:beklage sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:beklage sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:beklage sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:beklage sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:rose sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:rose sig|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:rose sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:rose sig|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:rose sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:rose sig|phrase",
+  "passed": false,
+  "stage": "backcheck",
+  "problems": [
+   "back-translation drifted: 'roser sig af' (boasts about) changed to 'er stolt af' (is proud of), altering the action from boasting to a state of pride."
+  ]
+ },
+ {
+  "id": "p:blæse op|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:blæse op|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:blæse op|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:blæse op|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:blæse op|phrase#1",
+  "kind": "example",
+  "unit": "entry:blæse op|phrase",
+  "passed": false,
+  "stage": "backcheck",
+  "problems": [
+   "back-translation drifted: 'i aften' (this evening) changed to 'i nat' (tonight), and present tense changed to future tense."
+  ]
+ },
+ {
+  "id": "p:tilpasse sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:tilpasse sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:tilpasse sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:tilpasse sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:tilpasse sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:tilpasse sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:have en affære|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:have en affære|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:have en affære|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:have en affære|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:have en affære|phrase#1",
+  "kind": "example",
+  "unit": "entry:have en affære|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:være arbejdsløs|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:være arbejdsløs|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:være arbejdsløs|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:være arbejdsløs|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:være arbejdsløs|phrase#1",
+  "kind": "example",
+  "unit": "entry:være arbejdsløs|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:forsikre sig om|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:forsikre sig om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:forsikre sig om|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:forsikre sig om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:forsikre sig om|phrase#1",
+  "kind": "example",
+  "unit": "entry:forsikre sig om|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:skride frem|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:skride frem|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:skride frem|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:skride frem|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:skride frem|phrase#1",
+  "kind": "example",
+  "unit": "entry:skride frem|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:læse til eksamen|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:læse til eksamen|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:læse til eksamen|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:læse til eksamen|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:læse til eksamen|phrase#1",
+  "kind": "example",
+  "unit": "entry:læse til eksamen|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: The English translation 'I'm studying for an exam every night this week' uses the present continuous, which is natural for a temporary habit. The Danish 'Jeg læser til eksamen hver aften i denne uge' uses the simple present, which is also natural. The Russian 'Я готовлюсь к экзамену каждую ночь на этой неделе' is correct, but 'каждую ночь' is a bit literal; 'каждый вечер' would be more natural for 'hver aften'. The Ukrainian 'Я щовечора цього тижня готуюся до іспиту' is correct. The defect is in the Russian: 'ночь' means 'night', but 'aften' means 'evening'. The Danish says 'hver aften' (every evening), not 'hver nat' (every night). So the Russian should be 'каждый вечер'.",
+   "adjudicator: The Russian translation incorrectly uses 'каждую ночь' (every night) instead of 'каждый вечер' (every evening) for the Danish 'hver aften'."
+  ]
+ },
+ {
+  "id": "p:dyrke motion|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:dyrke motion|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:dyrke motion|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:dyrke motion|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:dyrke motion|phrase#1",
+  "kind": "example",
+  "unit": "entry:dyrke motion|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:hygge sig|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:hygge sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:hygge sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:hygge sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:hygge sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:hygge sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:komme til at fortryde|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:komme til at fortryde|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:komme til at fortryde|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:komme til at fortryde|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:komme til at fortryde|phrase#1",
+  "kind": "example",
+  "unit": "entry:komme til at fortryde|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: The Danish 'Jeg kom til at fortryde mit valg' means 'I ended up regretting my choice' or 'I came to regret my choice'. The English translation 'I came to regret my choice' is correct. The Russian 'Я пожалел о своём выборе' means 'I regretted my choice', missing the nuance of 'end up' or 'come to'. A better translation would be 'Я в конечном счёте пожалел о своём выборе' or 'Я пришёл к тому, что пожалел о своём выборе'. The Ukrainian 'Я зрештою пошкодував про свій вибір' correctly includes 'зрештою' (in the end). The Russian translation is missing this nuance.",
+   "adjudicator: The Russian translation 'Я пожалел о своём выборе' misses the 'end up'/'come to' nuance present in the Danish 'kom til at' and the meaning definition, making it a real defect."
+  ]
+ },
+ {
+  "id": "p:synke ned|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:synke ned|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:synke ned|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:synke ned|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:synke ned|phrase#1",
+  "kind": "example",
+  "unit": "entry:synke ned|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:fiske efter|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:fiske efter|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:fiske efter|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:fiske efter|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:fiske efter|phrase#1",
+  "kind": "example",
+  "unit": "entry:fiske efter|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: The Ukrainian translation 'випитує компліменти' is not idiomatic. 'Випитувати' means to interrogate or to extract information by asking, but it doesn't collocate with 'компліменти'. A better translation would be 'напрошується на компліменти' or 'виманює компліменти'. The Russian 'выуживает комплименты' is a direct calque from Danish and is not natural Russian. The natural Russian expression is 'напрашивается на комплименты'. The English 'fishes for compliments' is idiomatic.",
+   "adjudicator: The Ukrainian translation 'випитує компліменти' is unidiomatic because 'випитувати' does not collocate naturally with 'компліменти', misleading a learner."
+  ]
+ },
+ {
+  "id": "p:rende væk|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:rende væk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:rende væk|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:rende væk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:rende væk|phrase#1",
+  "kind": "example",
+  "unit": "entry:rende væk|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:slide op|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:slide op|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:slide op|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:slide op|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: slide op is transitive (slide skoene op); its example is not Danish"
+  ]
+ },
+ {
+  "id": "e:slide op|phrase#1",
+  "kind": "example",
+  "unit": "entry:slide op|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: Mine sko slider op is not idiomatic (skoene bliver slidt op)"
+  ]
+ },
+ {
+  "id": "p:slå et smut forbi|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:slå et smut forbi|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:slå et smut forbi|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:slå et smut forbi|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:slå et smut forbi|phrase#1",
+  "kind": "example",
+  "unit": "entry:slå et smut forbi|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: The Danish 'Jeg slår et smut forbi bageren' means 'I drop by the bakery briefly'. The English translation 'I drop by the bakery briefly on the way home' is correct. The Russian 'По дороге домой я заезжаю в пекарню' means 'I stop by the bakery on the way home', but it misses the 'briefly' nuance of 'et smut'. A better translation would be 'Я ненадолго заскакиваю в пекарню по дороге домой'. The Ukrainian 'Я заїжджаю в пекарню по дорозі додому' also misses the 'briefly' nuance. 'Заїжджаю' implies a stop, but not necessarily a very brief one. A better translation would be 'Я ненадовго заскакую в пекарню по дорозі додому'.",
+   "adjudicator: Both the Russian and Ukrainian translations omit the 'briefly' nuance of 'et smut', which is a real defect as the meaning explicitly includes 'ненадолго'/'briefly'."
+  ]
+ },
+ {
+  "id": "p:smutte forbi|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:smutte forbi|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:smutte forbi|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:smutte forbi|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:smutte forbi|phrase#1",
+  "kind": "example",
+  "unit": "entry:smutte forbi|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:spytte på|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:spytte på|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:spytte på|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:spytte på|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: the figurative 'not care about' is blæse på; spytte på is literal"
+  ]
+ },
+ {
+  "id": "e:spytte på|phrase#1",
+  "kind": "example",
+  "unit": "entry:spytte på|phrase",
+  "passed": false,
+  "stage": "audit",
+  "problems": [
+   "audit: not idiomatic in the figurative sense"
+  ]
+ },
+ {
+  "id": "p:klæde sig ud som|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:klæde sig ud som|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:klæde sig ud som|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:klæde sig ud som|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:klæde sig ud som|phrase#1",
+  "kind": "example",
+  "unit": "entry:klæde sig ud som|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "p:bryde ud i latter|phrase",
+  "kind": "pronunciation",
+  "unit": "entry:bryde ud i latter|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "every meaning of the entry was rejected"
+  ]
+ },
+ {
+  "id": "m:bryde ud i latter|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:bryde ud i latter|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:bryde ud i latter|phrase#1",
+  "kind": "example",
+  "unit": "entry:bryde ud i latter|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: The Ukrainian translation 'зайшовся сміхом' does not match the meaning 'розреготатися' and the Danish 'brød ud i latter'. 'Зайшовся сміхом' means 'went into a fit of laughter/coughing', while 'brød ud i latter' means 'burst out laughing'. The correct translation should be 'розреготався' or 'вибухнув сміхом'.",
+   "adjudicator: The Ukrainian translation 'зайшовся сміхом' does not match the neutral 'burst out laughing' meaning of the Danish phrase, as it implies a more intense, uncontrollable fit of laughter."
+  ]
+ }
+]

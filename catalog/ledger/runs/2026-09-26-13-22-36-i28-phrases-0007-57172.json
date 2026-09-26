@@ -1,0 +1,107 @@
+{
+ "run": "2026-09-26-13-22-36-i28-phrases-0007-57172",
+ "issue": 28,
+ "batch": "phrases-0007",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0007",
+ "startedAt": "2026-09-26T13:22:36.291Z",
+ "updatedAt": "2026-09-26T13:24:59.320Z",
+ "estimateUsd": 0.45836536000000005,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.entry-senses",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 7,
+   "inputTokens": 5908,
+   "outputTokens": 760,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.01292472
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-en",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 36,
+   "seconds": 0,
+   "usd": 0.00036
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-ru",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 36,
+   "seconds": 0,
+   "usd": 0.00036
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-uk",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 36,
+   "seconds": 0,
+   "usd": 0.00036
+  },
+  {
+   "service": "translator",
+   "op": "translator.en-da",
+   "model": null,
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 37,
+   "seconds": 0,
+   "usd": 0.00037
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.backcheck",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 249,
+   "outputTokens": 31,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00054114
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-a",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 907,
+   "outputTokens": 56,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00177306
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-b",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 1,
+   "inputTokens": 861,
+   "outputTokens": 56,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.00169302
+  }
+ ]
+}

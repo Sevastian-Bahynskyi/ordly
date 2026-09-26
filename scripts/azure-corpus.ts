@@ -6,7 +6,7 @@
  * named by `CONTENT_ISSUE`. Credentials come from `.env.corpus.local` (`tsx --env-file`).
  */
 import { existsSync } from 'node:fs'
-import { readFile, writeFile } from 'node:fs/promises'
+import { readFile, rename, writeFile } from 'node:fs/promises'
 import { normalizeSentence } from '../lib/catalog-families'
 import { assertBudget, recordPaid, spendLine } from './spend-ledger'
 
@@ -94,9 +94,14 @@ const translationCache: Record<string, string> = existsSync(translationCachePath
 let cacheSaving: Promise<void> = Promise.resolve()
 function saveTranslationCache(): Promise<void> {
   cacheSaving = cacheSaving.then(async () => {
-    const onDisk = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {}
+    // Several batch runs share the file: each merges what the others saved and replaces it whole
+    // (write and rename), so a reader never sees half a file.
+    let onDisk: Record<string, string> = {}
+    try { onDisk = existsSync(translationCachePath) ? JSON.parse(await readFile(translationCachePath, 'utf8')) as Record<string, string> : {} } catch { onDisk = {} }
     Object.assign(translationCache, { ...onDisk, ...translationCache })
-    await writeFile(translationCachePath, `${JSON.stringify(translationCache, null, 1)}\n`)
+    const temporary = `${translationCachePath}.${process.pid}.tmp`
+    await writeFile(temporary, `${JSON.stringify(translationCache, null, 1)}\n`)
+    await rename(temporary, translationCachePath)
   })
   return cacheSaving
 }
