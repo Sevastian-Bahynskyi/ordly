@@ -415,7 +415,7 @@ At the start of the next session, do this before assuming anything:
 - Do not write or serve a pronunciation that mixes Latin letters into Cyrillic (§22).
 - Do not make `Again` require leaving/re-entering Review.
 - Do not make Review and Material use the same nav icon.
-- Do not bring back per-word icons, practice audio (Listen / Slower / Say it aloud), or a timed practice autosave (it disabled the answer field mid-typing).
+- Do not bring back per-word icons or a timed practice autosave (it disabled the answer field mid-typing). Listening practice is allowed again (decided 2026-09-26), but only from prerecorded Azure Speech audio made offline and checked by speech recognition. Never synthesize speech at runtime or use the device voice.
 - Do not re-add a Danish flag to the installed app icon.
 - Do not let Practice write Review cards, logs, status, streaks, coverage or Material, or call a model (§21).
 - Do not expose private keys/secrets.
@@ -594,9 +594,11 @@ anything here. The shape:
   It reports rates per failure class with a margin, never a per-row certificate, and it is seeded
   so a sample can be redrawn. Pronunciation is the class to trust least when a model audits a
   model.
-- **The audio button is a narrow reversal of §19.** What stays removed is the three-button
-  Listen / Slower / Say-it-aloud practice mode. One button on a word that already has a recording
-  is not that.
+- **Audio.** Words and phrases carry one play button when a recording exists. Listening practice
+  was removed earlier, when the only voice was the device's. On 2026-09-26 it was allowed again, now
+  that every clip is Azure Speech, made offline and checked by Danish speech recognition. A
+  listening exercise may only use a stored, verified recording; a missing recording means the
+  exercise is not offered, never a runtime voice.
 
 ## 24. Catalog headwords and learner languages (issue #14)
 
