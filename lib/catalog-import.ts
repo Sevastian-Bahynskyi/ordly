@@ -101,3 +101,15 @@ export function catalogFormsJsonSql(rows: readonly [string, string, string, stri
 select f ->> 0, 'word', f ->> 1, f ->> 2, f ->> 3 from jsonb_array_elements(${dollarQuoted(JSON.stringify(rows))}::jsonb) f
 on conflict do nothing`
 }
+
+/**
+ * A catalog phrase's recorded forms (issue #28), `source: 'cor'` because they are the head verb's
+ * register paradigm. Only onto a phrase already in the catalog, so a form never names a headword
+ * the composer could not open; additive, so re-running a batch changes nothing.
+ */
+export function catalogPhraseFormsJsonSql(rows: readonly { lemma: string; form_key: string; form_text: string }[]): string {
+  return `insert into public.word_catalog_form (lemma, kind, form_key, form_text, gender, source)
+select f ->> 'lemma', 'phrase', f ->> 'form_key', f ->> 'form_text', '', 'cor' from jsonb_array_elements(${dollarQuoted(JSON.stringify(rows))}::jsonb) f
+join public.word_catalog c on c.lemma = f ->> 'lemma' and c.kind = 'phrase'
+on conflict do nothing`
+}

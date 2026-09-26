@@ -1,0 +1,746 @@
+[
+ {
+  "lemma": "gå på pension",
+  "kind": "phrase",
+  "pronunciation": "го по паншо́н",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "выходить на пенсию",
+    "pos": "verb",
+    "gender": null,
+    "example": "Min far gik på pension sidste år.",
+    "example_translation": "Мой отец ушёл на пенсию в прошлом году."
+   }
+  ]
+ },
+ {
+  "lemma": "være sammen",
+  "kind": "phrase",
+  "pronunciation": "вээ са́ман",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "быть вместе (в отношениях)",
+    "pos": "verb",
+    "gender": null,
+    "example": "De har været sammen i tre år.",
+    "example_translation": "Они вместе уже три года."
+   },
+   {
+    "ordinal": 2,
+    "text": "быть вместе (проводить время)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Børnene er sammen hver dag efter skole.",
+    "example_translation": "Дети вместе каждый день после школы."
+   }
+  ]
+ },
+ {
+  "lemma": "slå op",
+  "kind": "phrase",
+  "pronunciation": "сло о́б",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "расставаться (с партнёром)",
+    "pos": "verb",
+    "gender": null,
+    "example": "De slog op efter tre år sammen.",
+    "example_translation": "Они расстались после трёх лет вместе."
+   }
+  ]
+ },
+ {
+  "lemma": "holde øje med",
+  "kind": "phrase",
+  "pronunciation": "холэ о́йэ мэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "следить за",
+    "pos": "verb",
+    "gender": null,
+    "example": "Kan du holde øje med min taske mens jeg henter kaffe?",
+    "example_translation": "Можешь присмотреть за моей сумкой, пока я заберу кофе?"
+   }
+  ]
+ },
+ {
+  "lemma": "gå tur",
+  "kind": "phrase",
+  "pronunciation": "го ту́р",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "гулять (пешком)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Vi gik tur langs stranden i aftes.",
+    "example_translation": "Вчера вечером мы гуляли по пляжу."
+   }
+  ]
+ },
+ {
+  "lemma": "blive til virkelighed",
+  "kind": "phrase",
+  "pronunciation": "блиэ тэ ви́ргэлихэд",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "сбываться, становиться реальностью",
+    "pos": "verb",
+    "gender": null,
+    "example": "Drømmen om et hus ved havet blev til virkelighed sidste år.",
+    "example_translation": "Мечта о доме у моря стала реальностью в прошлом году."
+   }
+  ]
+ },
+ {
+  "lemma": "på trods af",
+  "kind": "phrase",
+  "pronunciation": "по тро́с а",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "несмотря на",
+    "pos": "preposition",
+    "gender": null,
+    "example": "På trods af regnen gik vi en tur.",
+    "example_translation": "Несмотря на дождь, мы вышли на прогулку."
+   }
+  ]
+ },
+ {
+  "lemma": "træde tilbage",
+  "kind": "phrase",
+  "pronunciation": "трээдэ тэбэ́эе",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "отступать (физически)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Han trådte tilbage for at give plads.",
+    "example_translation": "Он отступил, чтобы освободить место."
+   }
+  ]
+ },
+ {
+  "lemma": "forberede sig",
+  "kind": "phrase",
+  "pronunciation": "фо́бэрэдэ сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "готовиться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun forberedte sig til eksamen hele weekenden.",
+    "example_translation": "Она готовилась к экзамену весь уикенд."
+   }
+  ]
+ },
+ {
+  "lemma": "klage over",
+  "kind": "phrase",
+  "pronunciation": "клэ́эе оуэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "жаловаться на",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun klager over maden hver dag.",
+    "example_translation": "Она жалуется на еду каждый день."
+   }
+  ]
+ },
+ {
+  "lemma": "godt nytår",
+  "kind": "phrase",
+  "pronunciation": "год ню́до",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "с Новым годом",
+    "pos": "phrase",
+    "gender": null,
+    "example": "Jeg ønsker dig et godt nytår.",
+    "example_translation": "Желаю тебе счастливого Нового года."
+   }
+  ]
+ },
+ {
+  "lemma": "vaske sig",
+  "kind": "phrase",
+  "pronunciation": "ва́сгэ сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "мыться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg vasker mig hver morgen.",
+    "example_translation": "Я моюсь каждое утро."
+   }
+  ]
+ },
+ {
+  "lemma": "skrive under",
+  "kind": "phrase",
+  "pronunciation": "сгривэ о́нэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "подписывать",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun skrev under på kontrakten i går.",
+    "example_translation": "Она подписала контракт вчера."
+   }
+  ]
+ },
+ {
+  "lemma": "falde sammen",
+  "kind": "phrase",
+  "pronunciation": "фалэ са́мн",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "рушиться (о здании)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Det gamle hus faldt sammen under stormen.",
+    "example_translation": "Старый дом рухнул во время шторма."
+   }
+  ]
+ },
+ {
+  "lemma": "prøve på",
+  "kind": "phrase",
+  "pronunciation": "прё́эуэ по",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "пытаться (что-то сделать)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun prøver på at lære dansk.",
+    "example_translation": "Она пытается выучить датский."
+   }
+  ]
+ },
+ {
+  "lemma": "skifte mening",
+  "kind": "phrase",
+  "pronunciation": "сгифдэ мэ́энэнг",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "передумать",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg skiftede mening om filmen efter at have set den igen.",
+    "example_translation": "Я передумал насчёт фильма после повторного просмотра."
+   }
+  ]
+ },
+ {
+  "lemma": "kigge ud",
+  "kind": "phrase",
+  "pronunciation": "кигэ у́д",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "выглядывать (наружу)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Han kigger ud ad vinduet hver morgen.",
+    "example_translation": "Каждое утро он смотрит в окно."
+   }
+  ]
+ },
+ {
+  "lemma": "interessere sig for",
+  "kind": "phrase",
+  "pronunciation": "энтрэсэ́э сай фо",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "интересоваться (чем-л.)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun interesserer sig for dansk historie.",
+    "example_translation": "Её интересует датская история."
+   }
+  ]
+ },
+ {
+  "lemma": "sørge for",
+  "kind": "phrase",
+  "pronunciation": "сё́эуэ фо",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "обеспечивать, заботиться о том, чтобы",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg sørger for, at døren er låst.",
+    "example_translation": "Я слежу за тем, чтобы дверь была заперта."
+   },
+   {
+    "ordinal": 2,
+    "text": "организовывать, устраивать (что-либо)",
+    "pos": "verb",
+    "gender": null,
+    "example": "De sørgede for mad til alle gæsterne.",
+    "example_translation": "Они обеспечили едой всех гостей."
+   }
+  ]
+ },
+ {
+  "lemma": "blande sig",
+  "kind": "phrase",
+  "pronunciation": "бла́нэ сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "вмешиваться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun blander sig altid i vores samtaler.",
+    "example_translation": "Она всегда вмешивается в наши разговоры."
+   }
+  ]
+ },
+ {
+  "lemma": "indflydelse på",
+  "kind": "phrase",
+  "pronunciation": "э́нфлюдэльсэ по",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "влияние на",
+    "pos": "phrase",
+    "gender": null,
+    "example": "Hendes mening har stor indflydelse på beslutningen.",
+    "example_translation": "Её мнение сильно влияет на решение."
+   }
+  ]
+ },
+ {
+  "lemma": "holde jul",
+  "kind": "phrase",
+  "pronunciation": "холэ ю́ль",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "праздновать Рождество",
+    "pos": "verb",
+    "gender": null,
+    "example": "Vi holder jul hos mine forældre i år.",
+    "example_translation": "В этом году мы проводим Рождество у моих родителей."
+   }
+  ]
+ },
+ {
+  "lemma": "blive skilt",
+  "kind": "phrase",
+  "pronunciation": "блиэ сге́льд",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "разводиться",
+    "pos": "verb",
+    "gender": null,
+    "example": "De blev skilt efter ti års ægteskab.",
+    "example_translation": "Они развелись после десяти лет брака."
+   }
+  ]
+ },
+ {
+  "lemma": "begå selvmord",
+  "kind": "phrase",
+  "pronunciation": "бего сэ́лмор",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "совершать самоубийство",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun begik selvmord efter en lang depression.",
+    "example_translation": "Она покончила с собой после долгой депрессии."
+   }
+  ]
+ },
+ {
+  "lemma": "holde kæft",
+  "kind": "phrase",
+  "pronunciation": "холэ кэ́фд",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "заткнуться (грубо)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hold kæft og lyt til læreren.",
+    "example_translation": "Заткнись и слушай учителя."
+   }
+  ]
+ },
+ {
+  "lemma": "se frem til",
+  "kind": "phrase",
+  "pronunciation": "се фра́м тэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "ждать с нетерпением",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg ser frem til ferien.",
+    "example_translation": "Я с нетерпением жду праздников."
+   }
+  ]
+ },
+ {
+  "lemma": "få at vide",
+  "kind": "phrase",
+  "pronunciation": "фо а ви́дэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "узнавать (получать информацию)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg fik at vide, at mødet er aflyst.",
+    "example_translation": "Мне сказали, что встреча отменена."
+   }
+  ]
+ },
+ {
+  "lemma": "klare sig",
+  "kind": "phrase",
+  "pronunciation": "кла́а сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "справляться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg tror, at hun klarer sig fint på det nye job.",
+    "example_translation": "Думаю, она хорошо справится с новой работой."
+   }
+  ]
+ },
+ {
+  "lemma": "høre efter",
+  "kind": "phrase",
+  "pronunciation": "хёо э́фдэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "слушать (внимательно)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Børnene hører efter, når læreren taler.",
+    "example_translation": "Дети слушают, когда учитель говорит."
+   }
+  ]
+ },
+ {
+  "lemma": "falde ned",
+  "kind": "phrase",
+  "pronunciation": "фалэ нэ́д",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "падать (вниз)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Bogen faldt ned fra bordet.",
+    "example_translation": "Книга упала со стола."
+   }
+  ]
+ },
+ {
+  "lemma": "vende tilbage til",
+  "kind": "phrase",
+  "pronunciation": "вэнэ тэбэ́е тэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "возвращаться (к теме, месту)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Vi vender tilbage til emnet i morgen.",
+    "example_translation": "Завтра мы вернёмся к теме."
+   }
+  ]
+ },
+ {
+  "lemma": "gå væk",
+  "kind": "phrase",
+  "pronunciation": "го вэ́г",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "исчезать (о пятне, боли)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Pletten på skjorten gik væk i vask.",
+    "example_translation": "Пятно на рубашке исчезло при стирке."
+   }
+  ]
+ },
+ {
+  "lemma": "løbe ud",
+  "kind": "phrase",
+  "pronunciation": "лёбэ у́д",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "истекать (о сроке)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Mit pas løb ud i sidste uge.",
+    "example_translation": "Мой паспорт истёк на прошлой неделе."
+   },
+   {
+    "ordinal": 2,
+    "text": "вытекать (о жидкости)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Vandet løber ud af spanden.",
+    "example_translation": "Вода стекает из ведра."
+   }
+  ]
+ },
+ {
+  "lemma": "bryde ind",
+  "kind": "phrase",
+  "pronunciation": "брюдэ и́н",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "вламываться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Tyven brød ind i huset om natten.",
+    "example_translation": "Вор проник в дом ночью."
+   }
+  ]
+ },
+ {
+  "lemma": "bryde ud i",
+  "kind": "phrase",
+  "pronunciation": "брюдэ у́д и",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "разражаться (смехом, аплодисментами и т.п.)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Publikum brød ud i klapsalver.",
+    "example_translation": "Публика взорвалась аплодисментами."
+   }
+  ]
+ },
+ {
+  "lemma": "næste stop",
+  "kind": "phrase",
+  "pronunciation": "нэсдэ сдо́б",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "следующая остановка (в транспорте)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Næste stop er hovedbanegården.",
+    "example_translation": "Следующая остановка — Центральный вокзал."
+   }
+  ]
+ },
+ {
+  "lemma": "koncentrere sig",
+  "kind": "phrase",
+  "pronunciation": "консэнтре́э сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "сосредоточиться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg kan ikke koncentrere mig, når der er så meget larm.",
+    "example_translation": "Я не могу сосредоточиться при таком шуме."
+   }
+  ]
+ },
+ {
+  "lemma": "bøde for",
+  "kind": "phrase",
+  "pronunciation": "бё́эдэ фо",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "расплачиваться (за что-л.)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Han bøder for sine fejl hver dag.",
+    "example_translation": "Он расплачивается за свои ошибки каждый день."
+   }
+  ]
+ },
+ {
+  "lemma": "gå bort",
+  "kind": "phrase",
+  "pronunciation": "го бо́д",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "умирать",
+    "pos": "verb",
+    "gender": null,
+    "example": "Min nabo gik bort i sidste uge.",
+    "example_translation": "Мой сосед скончался на прошлой неделе."
+   }
+  ]
+ },
+ {
+  "lemma": "være ligeglad med",
+  "kind": "phrase",
+  "pronunciation": "вээ ли́эгла мэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "быть равнодушным к",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg er ligeglad med, hvad de andre tænker.",
+    "example_translation": "Мне всё равно, что думают другие."
+   }
+  ]
+ },
+ {
+  "lemma": "skjule sig",
+  "kind": "phrase",
+  "pronunciation": "сгю́улэ сай",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "прятаться",
+    "pos": "verb",
+    "gender": null,
+    "example": "Katten skjuler sig under bordet.",
+    "example_translation": "Кот прячется под столом."
+   }
+  ]
+ },
+ {
+  "lemma": "hilse på",
+  "kind": "phrase",
+  "pronunciation": "хи́льсэ по",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "здороваться (при встрече)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg hilser på min nabo hver morgen.",
+    "example_translation": "Каждое утро я здороваюсь с соседом."
+   }
+  ]
+ },
+ {
+  "lemma": "sige op",
+  "kind": "phrase",
+  "pronunciation": "си о́б",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "увольняться (с работы)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Hun sagde op i går.",
+    "example_translation": "Она уволилась вчера."
+   }
+  ]
+ },
+ {
+  "lemma": "samle på",
+  "kind": "phrase",
+  "pronunciation": "са́млэ по",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "коллекционировать",
+    "pos": "verb",
+    "gender": null,
+    "example": "Min bedstefar samler på gamle mønter.",
+    "example_translation": "Мой дедушка собирает старые монеты."
+   }
+  ]
+ },
+ {
+  "lemma": "redde liv",
+  "kind": "phrase",
+  "pronunciation": "рэдэ ли́в",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "спасать жизни",
+    "pos": "verb",
+    "gender": null,
+    "example": "Lægen reddede liv på hospitalet i nat.",
+    "example_translation": "Прошлой ночью врач спасал жизни в больнице."
+   }
+  ]
+ },
+ {
+  "lemma": "basere på",
+  "kind": "phrase",
+  "pronunciation": "басэ́э по",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "основывать(ся) на",
+    "pos": "verb",
+    "gender": null,
+    "example": "Filmen er baseret på en sand historie.",
+    "example_translation": "Фильм основан на реальной истории."
+   }
+  ]
+ },
+ {
+  "lemma": "kende til",
+  "kind": "phrase",
+  "pronunciation": "кэ́нэ тэ",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "знать (о существовании)",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg kender til en god restaurant i nærheden.",
+    "example_translation": "Я знаю хороший ресторан поблизости."
+   }
+  ]
+ },
+ {
+  "lemma": "frygte for",
+  "kind": "phrase",
+  "pronunciation": "фрё́гдэ фо",
+  "senses": [
+   {
+    "ordinal": 1,
+    "text": "бояться за",
+    "pos": "verb",
+    "gender": null,
+    "example": "Jeg frygter for hans helbred efter ulykken.",
+    "example_translation": "Я боюсь за его здоровье после аварии."
+   }
+  ]
+ }
+]

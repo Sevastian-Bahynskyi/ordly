@@ -1,12 +1,13 @@
 {
- "source": "calibration-0001+calibration-0002",
- "measuredAt": "2026-09-26T11:00:04.139Z",
+ "source": "phrases-0002",
+ "measuredAt": "2026-09-26T12:22:52.816Z",
  "units": {
   "entry": {
-   "units": 13,
+   "units": 60,
    "items": {
-    "meaning": 22,
-    "example": 22
+    "pronunciation": 52,
+    "meaning": 61,
+    "example": 61
    },
    "lines": [
     {
@@ -14,284 +15,120 @@
      "op": "deepseek.entry-senses",
      "model": "DeepSeek-V4-Pro",
      "scope": "entry",
-     "calls": 16,
-     "inputTokens": 7397,
-     "outputTokens": 1884,
+     "calls": 105,
+     "inputTokens": 82037,
+     "outputTokens": 10480,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.0194271
+     "usd": 0.17921478
     },
     {
      "service": "translator",
      "op": "translator.da-uk",
      "model": null,
      "scope": "entry",
-     "calls": 22,
+     "calls": 59,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 812,
+     "chars": 2121,
      "seconds": 0,
-     "usd": 0.00812
+     "usd": 0.02121
     },
     {
      "service": "translator",
      "op": "translator.da-en",
      "model": null,
      "scope": "entry",
-     "calls": 21,
+     "calls": 58,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 781,
+     "chars": 2096,
      "seconds": 0,
-     "usd": 0.007810000000000001
+     "usd": 0.02096
     },
     {
      "service": "translator",
      "op": "translator.da-ru",
      "model": null,
      "scope": "entry",
-     "calls": 21,
+     "calls": 58,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 781,
+     "chars": 2096,
      "seconds": 0,
-     "usd": 0.007810000000000001
+     "usd": 0.02096
     },
     {
      "service": "translator",
      "op": "translator.en-da",
      "model": null,
      "scope": "entry",
-     "calls": 21,
+     "calls": 58,
      "inputTokens": 0,
      "outputTokens": 0,
-     "chars": 792,
+     "chars": 2259,
      "seconds": 0,
-     "usd": 0.00792
+     "usd": 0.02259
     },
     {
      "service": "deepseek",
      "op": "deepseek.backcheck",
      "model": "DeepSeek-V4-Pro",
-     "scope": "entry",
-     "calls": 5,
-     "inputTokens": 2465,
-     "outputTokens": 1069,
-     "chars": 0,
-     "seconds": 0,
-     "usd": 0.00800922
-    },
-    {
-     "service": "deepseek",
-     "op": "deepseek.review-a",
-     "model": "DeepSeek-V4-Pro",
-     "scope": "entry",
-     "calls": 5,
-     "inputTokens": 6802,
-     "outputTokens": 3231,
-     "chars": 0,
-     "seconds": 0,
-     "usd": 0.02307936
-    },
-    {
-     "service": "deepseek",
-     "op": "deepseek.review-b",
-     "model": "DeepSeek-V4-Pro",
-     "scope": "entry",
-     "calls": 5,
-     "inputTokens": 6572,
-     "outputTokens": 2480,
-     "chars": 0,
-     "seconds": 0,
-     "usd": 0.02006568
-    },
-    {
-     "service": "deepseek",
-     "op": "deepseek.adjudicate",
-     "model": "DeepSeek-V4-Pro",
-     "scope": "entry",
-     "calls": 2,
-     "inputTokens": 1939,
-     "outputTokens": 409,
-     "chars": 0,
-     "seconds": 0,
-     "usd": 0.00479718
-    },
-    {
-     "service": "speech",
-     "op": "speech.tts",
-     "model": null,
-     "scope": "entry",
-     "calls": 14,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 114,
-     "seconds": 0,
-     "usd": 0.0017100000000000001
-    },
-    {
-     "service": "speech",
-     "op": "speech.stt",
-     "model": null,
      "scope": "entry",
      "calls": 7,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 0,
-     "seconds": 13.8573125,
-     "usd": 0.00384927
-    }
-   ]
-  },
-  "family": {
-   "units": 17,
-   "items": {
-    "sentence": 21
-   },
-   "lines": [
-    {
-     "service": "translator",
-     "op": "translator.da-uk",
-     "model": null,
-     "scope": "family",
-     "calls": 20,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 973,
-     "seconds": 0,
-     "usd": 0.009729999999999999
-    },
-    {
-     "service": "deepseek",
-     "op": "deepseek.backcheck",
-     "model": "DeepSeek-V4-Pro",
-     "scope": "family",
-     "calls": 5,
-     "inputTokens": 3190,
-     "outputTokens": 1692,
+     "inputTokens": 4173,
+     "outputTokens": 1886,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01143876
+     "usd": 0.0138243
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-a",
      "model": "DeepSeek-V4-Pro",
-     "scope": "family",
-     "calls": 3,
-     "inputTokens": 4845,
-     "outputTokens": 1529,
+     "scope": "entry",
+     "calls": 16,
+     "inputTokens": 26394,
+     "outputTokens": 7958,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01375122
+     "usd": 0.0736194
     },
     {
      "service": "deepseek",
      "op": "deepseek.review-b",
      "model": "DeepSeek-V4-Pro",
-     "scope": "family",
-     "calls": 3,
-     "inputTokens": 4707,
-     "outputTokens": 1433,
+     "scope": "entry",
+     "calls": 16,
+     "inputTokens": 25658,
+     "outputTokens": 5425,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.01317702
+     "usd": 0.06352392
     },
     {
      "service": "deepseek",
      "op": "deepseek.adjudicate",
      "model": "DeepSeek-V4-Pro",
-     "scope": "family",
-     "calls": 2,
-     "inputTokens": 1467,
-     "outputTokens": 306,
+     "scope": "entry",
+     "calls": 3,
+     "inputTokens": 6841,
+     "outputTokens": 1478,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.00361746
+     "usd": 0.01704678
     },
     {
      "service": "deepseek",
-     "op": "deepseek.generate",
+     "op": "deepseek.repair",
      "model": "DeepSeek-V4-Pro",
-     "scope": "family",
-     "calls": 32,
-     "inputTokens": 126335,
-     "outputTokens": 5699,
+     "scope": "entry",
+     "calls": 3,
+     "inputTokens": 10391,
+     "outputTokens": 2108,
      "chars": 0,
      "seconds": 0,
-     "usd": 0.23965542
-    },
-    {
-     "service": "translator",
-     "op": "translator.da-en",
-     "model": null,
-     "scope": "family",
-     "calls": 30,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 1432,
-     "seconds": 0,
-     "usd": 0.01432
-    },
-    {
-     "service": "translator",
-     "op": "translator.da-ru",
-     "model": null,
-     "scope": "family",
-     "calls": 30,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 1432,
-     "seconds": 0,
-     "usd": 0.01432
-    },
-    {
-     "service": "translator",
-     "op": "translator.en-da",
-     "model": null,
-     "scope": "family",
-     "calls": 27,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 1337,
-     "seconds": 0,
-     "usd": 0.01337
-    },
-    {
-     "service": "translator",
-     "op": "translator.ru-da",
-     "model": null,
-     "scope": "family",
-     "calls": 26,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 1177,
-     "seconds": 0,
-     "usd": 0.011770000000000001
-    },
-    {
-     "service": "speech",
-     "op": "speech.tts",
-     "model": null,
-     "scope": "family",
-     "calls": 12,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 756,
-     "seconds": 0,
-     "usd": 0.01134
-    },
-    {
-     "service": "speech",
-     "op": "speech.stt",
-     "model": null,
-     "scope": "family",
-     "calls": 6,
-     "inputTokens": 0,
-     "outputTokens": 0,
-     "chars": 0,
-     "seconds": 28.677687499999998,
-     "usd": 0.007966029999999999
+     "usd": 0.02541618
     }
    ]
   }

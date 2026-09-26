@@ -1,4 +1,5 @@
 import { countPhraseOccurrences } from './catalog-phrases'
+import { isReadableCyrillic } from './pronunciation'
 import type { PartOfSpeech } from './types'
 import { ukrainianProblems, ukrainianWordingProblems, type SpellCheckers } from './ukrainian'
 
@@ -76,4 +77,70 @@ export function entryProblems(entry: EntryWork, senses: readonly DraftSense[], c
     if (sense.example_uk?.trim()) for (const problem of ukrainianProblems(sense.example_uk, checks.spell)) problems.push(`${at}: example_uk is not Ukrainian (${problem})`)
   }
   return problems
+}
+
+/**
+ * The deterministic half of a phrase pronunciation's check (issue #28); the reviews judge whether it
+ * follows the IPA. Cyrillic letters only (AGENTS.md §22), one phrase stress as an acute accent, and
+ * one written word for every word of the phrase, so no word is dropped or run together. With
+ * `stressAt` (`phraseStressIndex`), the stress must sit on that word.
+ */
+export function pronunciationProblems(lemma: string, pronunciation: string, stressAt: number | null = null): string[] {
+  const text = cleanPronunciation(pronunciation)
+  if (!text) return ['the pronunciation is missing']
+  if (!isReadableCyrillic(text)) return ['the pronunciation must be Cyrillic letters only']
+  if (/['’ʼ]/u.test(text)) return ['the stress must be an acute accent (о́), not an apostrophe']
+  const stresses = [...text.normalize('NFD')].filter((character) => character === '\u0301').length
+  // Russian writes ё stressed and unmarked (нёд), so a word with ё carries its stress by itself.
+  const stressed = (word: string): boolean => word.normalize('NFD').includes('\u0301') || /ё/u.test(word)
+  if (!stresses && !/ё/u.test(text)) return ['the phrase stress is not marked']
+  // A phrase is said as one unit with one main stress (`stå op` ≈ сдо о́б); its words' own stresses are gone.
+  if (stresses > 1 && /\s/u.test(text)) return [`mark one phrase stress, not ${stresses}`]
+  const words = text.split(/\s+/u)
+  const tokens = lemma.trim().split(/\s+/u)
+  if (words.length !== tokens.length) return [`the pronunciation has ${words.length} words, the phrase ${tokens.length}`]
+  if (stressAt !== null && !(words[stressAt] && stressed(words[stressAt]))) return [`the stress belongs on "${tokens[stressAt]}"`]
+  return []
+}
+
+/** A hint as stored: NFC, and without the IPA's stød, length and stress marks a model may copy over. */
+export function cleanPronunciation(value: string): string {
+  return value.normalize('NFC').replace(/[ˀːˈˌʔ]/gu, '').replace(/\s+/gu, ' ').trim()
+}
+
+const IPA_VOWEL = /[aeiouyæøåɔɛεɑʌəɐɒɶœʊɪʏɤɘ]/u
+const CYRILLIC_VOWEL = /[аеёиоуыэюяіїє]/iu
+
+/**
+ * A hint with its one stress put where the phrase carries it (issue #28): every acute removed, then
+ * one placed on word `stressAt`, on the syllable that word's IPA stresses (`teˈbæːjə` → second).
+ * The model writes the sounds; where the stress goes is a rule (`phraseStressIndex`), not its call.
+ */
+export function placePhraseStress(hint: string, stressAt: number, ipa: string): string {
+  const words = cleanPronunciation(hint).normalize('NFD').replace(/\u0301/gu, '').normalize('NFC').split(' ')
+  const ipaWords = ipa.replace(/[[\]/]/gu, ' ').trim().split(/\s+/u)
+  const target = words[stressAt]
+  if (!target) return words.join(' ')
+  // The stressed syllable: how many vowel groups come before the IPA's stress mark.
+  const wordIpa = ipaWords.length === words.length ? ipaWords[stressAt] : ''
+  // The main stress mark, or a secondary one when the transcription gives only that (`iˌmoðˀ`).
+  const mark = wordIpa.includes('ˈ') ? wordIpa.indexOf('ˈ') : wordIpa.indexOf('ˌ')
+  let syllable = 0
+  if (mark > 0) {
+    let inVowel = false
+    for (const character of wordIpa.slice(0, mark)) {
+      const vowel = IPA_VOWEL.test(character)
+      if (vowel && !inVowel) syllable += 1
+      inVowel = vowel || (inVowel && /[ːˀ\u0303\u0329\u032F]/u.test(character))
+    }
+  }
+  const letters = [...target]
+  const groups: number[] = []
+  // A doubled vowel is one long vowel (вээ); two different vowels are two syllables (фоэльсгэд).
+  letters.forEach((letter, index) => { if (CYRILLIC_VOWEL.test(letter) && letter.toLowerCase() !== (letters[index - 1] ?? '').toLowerCase()) groups.push(index) })
+  if (!groups.length) return words.join(' ')
+  const at = groups[Math.min(syllable, groups.length - 1)]
+  letters.splice(at + 1, 0, '\u0301')
+  words[stressAt] = letters.join('').normalize('NFC')
+  return words.join(' ')
 }

@@ -1,0 +1,131 @@
+{
+ "run": "2026-09-26-12-24-06-i28-phrases-0004-53107",
+ "issue": 28,
+ "batch": "phrases-0004",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0004",
+ "startedAt": "2026-09-26T12:24:06.614Z",
+ "updatedAt": "2026-09-26T12:47:09.423Z",
+ "estimateUsd": 0.45836536000000005,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.entry-senses",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 108,
+   "inputTokens": 85740,
+   "outputTokens": 11477,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.18912756
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-en",
+   "model": null,
+   "scope": "entry",
+   "calls": 65,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 2508,
+   "seconds": 0,
+   "usd": 0.02508
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-ru",
+   "model": null,
+   "scope": "entry",
+   "calls": 65,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 2508,
+   "seconds": 0,
+   "usd": 0.02508
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-uk",
+   "model": null,
+   "scope": "entry",
+   "calls": 65,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 2508,
+   "seconds": 0,
+   "usd": 0.02508
+  },
+  {
+   "service": "translator",
+   "op": "translator.en-da",
+   "model": null,
+   "scope": "entry",
+   "calls": 64,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 2520,
+   "seconds": 0,
+   "usd": 0.0252
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.backcheck",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 7,
+   "inputTokens": 4488,
+   "outputTokens": 1967,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.01465428
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-a",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 15,
+   "inputTokens": 26485,
+   "outputTokens": 7543,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.07233354
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-b",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 15,
+   "inputTokens": 25795,
+   "outputTokens": 4949,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.06210582
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.adjudicate",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 3,
+   "inputTokens": 5660,
+   "outputTokens": 1110,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.0137112
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.repair",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 3,
+   "inputTokens": 8173,
+   "outputTokens": 1644,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.01994214
+  }
+ ]
+}

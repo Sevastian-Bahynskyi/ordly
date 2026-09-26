@@ -221,3 +221,78 @@ export function comparePhraseCandidates(left: PhraseCandidate, right: PhraseCand
     || (left.component_rank ?? Infinity) - (right.component_rank ?? Infinity)
     || left.phrase.localeCompare(right.phrase, 'da')
 }
+
+/** Where a split phrase's other words go: `står … op`. One character, spaced, so it reads as a gap. */
+export const PHRASE_GAP = '…'
+
+/** The head verb forms a phrase is recorded in, and the finite ones it can be split after. */
+const PHRASE_FORM_KEYS = ['infinitive', 'present', 'past', 'past_participle', 'imperative'] as const
+const SPLITTING_KEYS = new Set<string>(['present', 'past'])
+export type PhraseFormKey = typeof PHRASE_FORM_KEYS[number]
+export interface PhraseFormRow { form_key: PhraseFormKey; form_text: string }
+
+/**
+ * The recorded forms of a verb phrase (issue #28): the head verb's register paradigm with the other
+ * words held fixed and `sig` expanded, plus a split form after every finite head (`står … op`),
+ * because a main clause puts its subject or an adverb between them (`I morgen står jeg op`,
+ * `Han står ikke op`). The paradigm is COR's, keyed as `corParadigm` keys it; a head with none
+ * gives none, and a phrase with no head verb has only its headword.
+ */
+export function phraseFormRows(tokens: readonly string[], head: string | null, paradigm: readonly { form_key: string; form_text: string }[]): PhraseFormRow[] {
+  if (!head || tokens.length < 2) return []
+  const rest = tokens.slice(1)
+  const tails = rest.includes('sig')
+    ? REFLEXIVE_PRONOUNS.map((pronoun) => rest.map((token) => token === 'sig' ? pronoun : token).join(' '))
+    : [rest.join(' ')]
+  const rows = new Map<string, PhraseFormRow>()
+  for (const form of paradigm) {
+    const key = PHRASE_FORM_KEYS.find((candidate) => candidate === form.form_key)
+    const verb = form.form_text.trim().toLocaleLowerCase('da-DK')
+    if (!key || !verb || /\s/u.test(verb)) continue
+    for (const tail of tails) {
+      rows.set(`${key}|${verb} ${tail}`, { form_key: key, form_text: `${verb} ${tail}` })
+      if (SPLITTING_KEYS.has(key)) rows.set(`${key}|${verb} ${PHRASE_GAP} ${tail}`, { form_key: key, form_text: `${verb} ${PHRASE_GAP} ${tail}` })
+    }
+  }
+  const split = (row: PhraseFormRow): number => Number(row.form_text.includes(PHRASE_GAP))
+  return [...rows.values()].sort((left, right) => left.form_key.localeCompare(right.form_key) || split(left) - split(right) || left.form_text.localeCompare(right.form_text, 'da'))
+}
+
+/**
+ * The IPA a phrase's Cyrillic hint is read from: every word's own recorded IPA, in order. A word
+ * with none means the phrase has none, so its hint stays empty rather than read off spelling
+ * (AGENTS.md §8).
+ */
+export function phraseComponentIpa(tokens: readonly string[], ipaOf: (word: string) => string | null): string | null {
+  const parts = tokens.map((token) => ipaOf(token)?.trim() || null)
+  return parts.every((part): part is string => part !== null) ? parts.join(' ') : null
+}
+
+/** Particles that are adverbs, never unstressed prepositions: they take a phrase's stress. */
+const ADVERB_PARTICLES = new Set(['op', 'ned', 'ud', 'ind', 'frem', 'tilbage', 'væk', 'sammen', 'hjem', 'bort', 'rundt', 'løs', 'fast', 'forbi', 'hen', 'ihjel', 'fri', 'overens', 'sted', 'omkring'])
+
+/** Words that do not carry a phrase's stress when a content word follows them. */
+const UNSTRESSED = new Set([...PREPOSITIONS, ...REFLEXIVE_PRONOUNS, 'at', 'og', 'det', 'den', 'de', 'en', 'et', 'som', 'der', 'man'])
+
+/**
+ * Which word of a phrase carries its one stress (Danish unit accentuation), from its labelled type:
+ * a particle verb stresses its particle (`stå OP`), a prepositional or reflexive verb its verb
+ * (`VENte på`, `GLÆde sig til`), anything else its last content word (`have LYST til`, `i MORgen`).
+ * The pronunciation hint is checked against it, so the stress is not left to a model's habit of
+ * copying each word's own.
+ */
+export function phraseStressIndex(tokens: readonly string[], type: string): number {
+  if (type === 'particle-verb' && tokens.length > 1) {
+    // `finde UD af`: a closing preposition or reflexive is unstressed; `tage af STED`: a two-word particle stresses its last word.
+    const last = tokens.length - 1
+    return last >= 2 && !UNSTRESSED.has(tokens[last]) ? last : 1
+  }
+  if (type === 'reflexive-verb') {
+    // `sætte sig NED`, `sætte sig IND i`: an adverb particle after the reflexive takes the stress.
+    const particle = tokens.findIndex((token, at) => at > 1 && ADVERB_PARTICLES.has(token))
+    return particle > 0 ? particle : 0
+  }
+  if (type === 'prepositional-verb') return 0
+  for (let at = tokens.length - 1; at >= 0; at -= 1) if (!UNSTRESSED.has(tokens[at])) return at
+  return tokens.length - 1
+}

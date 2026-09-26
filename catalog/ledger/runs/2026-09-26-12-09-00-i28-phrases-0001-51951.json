@@ -1,0 +1,59 @@
+{
+ "run": "2026-09-26-12-09-00-i28-phrases-0001-51951",
+ "issue": 28,
+ "batch": "phrases-0001",
+ "command": "content-batch.ts --batch catalog/pipeline/phrases-0001",
+ "startedAt": "2026-09-26T12:09:00.193Z",
+ "updatedAt": "2026-09-26T12:10:13.540Z",
+ "estimateUsd": 0.2470120153846154,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-a",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 6,
+   "inputTokens": 8369,
+   "outputTokens": 2176,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.02213454
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.review-b",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 7,
+   "inputTokens": 9014,
+   "outputTokens": 2146,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.02315244
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.adjudicate",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 2,
+   "inputTokens": 1812,
+   "outputTokens": 299,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.0041934
+  },
+  {
+   "service": "deepseek",
+   "op": "deepseek.repair",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "entry",
+   "calls": 3,
+   "inputTokens": 9710,
+   "outputTokens": 1824,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.02324292
+  }
+ ]
+}

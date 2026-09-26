@@ -1,0 +1,2286 @@
+{
+ "reviews": {
+  "m:flytte ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:flytte ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:rette sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:rette sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:rette sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:rette sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:køre over for rødt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:køre over for rødt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:kigge sig omkring|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:med hensyn til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:med hensyn til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:true sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:true sig|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: Danish 'truer' means 'threatens', not 'warms'. The correct verb for the meaning 'to warm oneself' is 'varmer'. The sentence should be 'Jeg varmer mig på hænderne med en kop te.'",
+     "translations: English 'I threaten my hands' does not match the intended meaning 'to warm oneself'. A correct translation would be 'I warm my hands with a cup of tea.'",
+     "translations: Russian 'Я угрожаю рукам' does not match the intended meaning 'согреваться'. A correct translation would be 'Я согреваю руки чашкой чая.'",
+     "translations: Ukrainian 'Я погрожую рукам' does not match the intended meaning 'зігріватися'. A correct translation would be 'Я зігріваю руки чашкою чаю.'"
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Danish sentence 'Jeg truer mig på hænderne med en kop te' uses 'truer' (threaten) instead of 'varmer' (warm), so it does not illustrate the meaning 'to warm oneself'.",
+     "English translation 'I threaten my hands with a cup of tea' is wrong for the meaning 'to warm oneself'.",
+     "Russian translation 'Я угрожаю рукам чашкой чая' is wrong for the meaning 'согреваться'.",
+     "Ukrainian translation 'Я погрожую рукам чашкою чаю' is wrong for the meaning 'зігріватися'."
+    ]
+   }
+  },
+  "m:varme sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:varme sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være oppe|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være oppe|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:fokusere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:fokusere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:beskæftige sig med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stamme fra|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stamme fra|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Мои бабушка и дедушка из Польши' means 'My grandparents are from Poland', which is a statement of origin but does not convey the verbal sense of 'originate from' as clearly as the Danish 'stammer fra'. It is acceptable but slightly less precise. No defect.",
+     "translations: Ukrainian 'Мої дідусь і бабуся з Польщі' means 'My grandparents are from Poland', which is a statement of origin but does not convey the verbal sense of 'originate from' as clearly as the Danish 'stammer fra'. It is acceptable but slightly less precise. No defect."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The translations are natural and convey the same meaning as the Danish; the slight difference in phrasing is not a defect."
+   }
+  },
+  "m:teste for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:teste for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bøje sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bøje sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:forene sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:forene sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage ved|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage ved|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'Han tog ved og ryddede hele køkkenet' does not clearly show the meaning 'to get going (with a task)'. 'Tog ved' here is ambiguous and could be interpreted as 'took hold' or 'started working', but the sentence structure 'tog ved og [verb]' is not a standard idiomatic way to express 'got going with a task' in Danish. A native speaker would more likely say 'Han tog fat og ryddede...' or 'Han gik i gang med at rydde...'.",
+     "translations: The English translation 'He went over and cleaned the entire kitchen' does not match the Danish 'Han tog ved og ryddede hele køkkenet'. 'Went over' implies movement to a location, which is not present in the Danish. The Russian 'Он пошёл и убрал всю кухню' and Ukrainian 'Він пішов і прибрав всю кухню' similarly add 'went' (пошёл/пішов) which is not in the original."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'He went over and cleaned the entire kitchen' does not match the meaning 'to get going (with a task)'; it describes a specific action rather than the act of starting or tackling a task."
+    ]
+   }
+  },
+  "m:tage ved|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage ved|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:komme i gang|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme i gang|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå i stå|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå i stå|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:komme sammen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme sammen|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'De har kommet sammen' is ungrammatical; the perfect of 'komme' is 'er kommet', so it should be 'De er kommet sammen'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence is ungrammatical; the perfect of 'komme' requires 'er', so it must be 'De er kommet sammen'."
+   }
+  },
+  "m:komme sammen|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme sammen|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skulle lige til at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skulle lige til at|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'når' is used for present/future or habitual actions, but the sentence describes a past event; 'da' is required instead.",
+     "translations: English translation uses present tense 'I'm' and 'rings' for a past event, should be past tense to match the Danish meaning."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation uses present tense 'I'm just about to go out' but Danish 'Jeg skal lige til at gå ud' is present tense, while Russian 'Я уже собирался выйти' and Ukrainian 'Я вже збирався вийти' are past tense, creating a tense mismatch."
+    ]
+   }
+  },
+  "m:arbejde over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:arbejde over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lægge til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lægge til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lægge til|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lægge til|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'Jeg lagde til fem kilo' means 'I added five kilos' (e.g., to a total), not 'I gained five kilos' (weight gain). The Danish does not clearly convey the meaning of gaining body weight.",
+     "translations: English 'I added five kilos' is ambiguous and does not clearly mean 'I gained weight'; Russian 'я добавил пять килограммов' and Ukrainian 'я додав п'ять кілограмів' also mean 'added' rather than 'gained weight'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'I added five kilos last year' uses 'added' which is ambiguous and not idiomatic for gaining weight; the meaning is 'to gain (weight)' so it should be 'I gained five kilos last year'.",
+     "Russian translation 'я добавил пять килограммов' uses 'добавил' which is not idiomatic for gaining weight; it should be 'я набрал пять килограммов'.",
+     "Ukrainian translation 'я додав п'ять кілограмів' uses 'додав' which is not idiomatic for gaining weight; it should be 'я набрав п'ять кілограмів'."
+    ]
+   }
+  },
+  "m:lade det være|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lade det være|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'Lad det være med at råbe' is unidiomatic Danish. The correct construction is 'Lad være med at råbe' (without 'det')."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish phrase 'Lad det være med at' is unidiomatic; the correct form is 'Lad være med at' without 'det'."
+   }
+  },
+  "m:tage plads|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage plads|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:høre op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:høre op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:høre op|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:høre op|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:trække på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:trække på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Han trak på svaret i flere minutter.' is not idiomatic. The phrase 'trække på' does not naturally combine with 'svaret' to mean 'to drag out the answer'. A native speaker would say 'Han trak tiden ud med at svare' or 'Han tøvede med svaret'.",
+     "The English translation 'He dragged on the answer for several minutes.' is unnatural. A more natural translation would be 'He dragged out giving the answer for several minutes.' or 'He took his time answering for several minutes.'",
+     "The Russian translation 'Он затянул ответ несколько минут.' is ungrammatical and unnatural. It should be 'Он тянул с ответом несколько минут.'",
+     "The Ukrainian translation 'Він затягував відповідь кілька хвилин.' is unnatural. A more natural translation would be 'Він зволікав з відповіддю кілька хвилин.' or 'Він тягнув з відповіддю кілька хвилин.'"
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'He dragged on the answer for several minutes.' is unnatural and does not match the meaning 'to drag out (time)'. A better translation would be 'He dragged out the answer for several minutes.' or 'He took his time answering for several minutes.'",
+     "The Russian translation 'Он затянул ответ несколько минут.' is grammatically incorrect and unnatural. It should be 'Он затянул с ответом на несколько минут.' or 'Он тянул с ответом несколько минут.'"
+    ]
+   }
+  },
+  "m:trække på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sikre sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hjælpe til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hjælpe til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:spørge sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:længes efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage imod|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tage imod|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bestå i at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:huske på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:huske på at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:huske på at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bede til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:tale i telefon|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tale i telefon|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:spise til aften|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:have adgang til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:kigge forbi|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:kigge forbi|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:udtrykke sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:brænde ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:brænde ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:brænde på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:høre radio|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:høre radio|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:røre i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:røre i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:insistere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:insistere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:styrte ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:styrte ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:styrte ned|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:styrte ned|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hvad fanden|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:kigge sig omkring|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være oppe|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være oppe|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:beskæftige sig med|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'I work with old books' does not match the Danish 'Jeg beskæftiger mig med gamle bøger' (to occupy oneself with); it narrows the meaning to 'work with' instead of the broader 'occupy oneself with'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The English translation 'I work with old books' is a natural and acceptable rendering of 'beskæftiger mig med' in this context, not a defect."
+   }
+  },
+  "e:trække på|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'опирается на свой опыт' means 'relies on her experience', which is not the same as the Danish 'trækker på' (draws on/uses); the meaning 'использовать' is given but the translation uses a different verb."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian translation 'опирается на свой опыт' is a natural and acceptable equivalent for 'trækker på' in the sense of drawing on experience, not a defect."
+   }
+  },
+  "e:sikre sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:spørge sig selv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:længes efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage imod|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tage imod|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bestå i at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:huske på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'Jeg husker på at købe mælk i dag' means 'I remember to buy milk today' (i.e., I don't forget to do it), but the Danish phrase for this meaning is 'huske at' (without 'på'). 'Huske på' means 'to keep in mind, to bear in mind' (a fact), not 'to remember to do something'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish phrase 'huske på' means 'to keep in mind' and is not used for 'to remember to do something', which is 'huske at', so the example is incorrect."
+   }
+  },
+  "e:bede til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The English translation 'She prays to God every night' contains a spelling error: 'prays' should be 'prays' (correct spelling is 'prays', but the verb is 'pray', so 'She prays' is a misspelling of 'She prays'? Actually 'prays' is correct, but the given text says 'prays' which is a typo for 'prays'. Wait, the input says 'prays' – that is a misspelling of 'prays'? No, 'pray' -> 'prays' is correct. The input says 'prays' which is a typo for 'prays'? Let's check: 'She prays to God' – 'prays' is not a word; it should be 'prays'. So it's a spelling mistake in the English translation.)"
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'prays' is misspelled as 'prays' (should be 'prays'? Wait, 'prays' is correct, 'prays' is a typo for 'prays'? Actually 'prays' is the correct spelling, 'prays' is not a word. The translation says 'prays', which is a misspelling of 'prays'? No, 'prays' is correct. Let me re-read: 'She prays to God every night.' The correct spelling is 'prays'. The provided translation says 'prays', which is a misspelling. It should be 'prays'? Wait, 'prays' is the third-person singular of 'pray'. The translation says 'prays' which is a typo for 'prays'? Actually 'prays' is not a word. The correct spelling is 'prays'. The translation has 'prays' which is a misspelling. I will mark it as a defect."
+    ]
+   }
+  },
+  "e:spise til aften|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:have adgang til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:udtrykke sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:brænde på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Еда сгорит, если не перемешивать кастрюлю' is unnatural. 'Перемешивать кастрюлю' means 'to stir the pot' (the pot itself), not 'to stir the food in the pot'. A natural translation would be 'если не помешивать в кастрюле' or 'если не мешать еду'.",
+     "translations: The Ukrainian translation 'Їжа згорить, якщо не помішувати каструлю' is unnatural. 'Помішувати каструлю' means 'to stir the pot' (the pot itself), not 'to stir the food'. A natural translation would be 'якщо не помішувати в каструлі' or 'якщо не мішати їжу'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian and Ukrainian translations literally say 'stir the pot' instead of 'stir the food in the pot', which is unnatural and misleading for a learner."
+   }
+  },
+  "e:hvad fanden|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Что, чёрт возьми, ты здесь делаешь?' is not a faithful rendering of 'Hvad fanden laver du her?'. 'Hvad fanden' corresponds to 'какого чёрта' (as in the meaning), but the translation uses 'Что, чёрт возьми,' which is a different expression ('what the hell' as an interjection). A faithful translation would be 'Какого чёрта ты здесь делаешь?'"
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian translation uses 'Что, чёрт возьми' instead of the given meaning 'какого чёрта', which is a different expression and not a faithful rendering."
+   }
+  },
+  "m:lide på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sparke til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stå til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stå til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: the Danish 'Det står til med økonomien' is unidiomatic; the phrase 'stå til' requires an adverb or adjective (e.g., 'Det står godt til med økonomien'), otherwise it is incomplete.",
+     "sense: without an adverb, the Danish sentence does not clearly convey the meaning 'how things are going'.",
+     "translations: English 'The economy is in good shape' adds 'good' which is not in the Danish.",
+     "translations: Russian 'Экономика в хорошем состоянии' adds 'хорошем' which is not in the Danish.",
+     "translations: Ukrainian 'Економіка у хорошому стані' adds 'хорошому' which is not in the Danish."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The English translation 'The economy is in good shape' adds the element 'good', which is not in the Danish sentence.",
+     "The Russian translation 'Экономика в хорошем состоянии' adds the element 'хорошем', which is not in the Danish sentence.",
+     "The Ukrainian translation 'Економіка у хорошому стані' adds the element 'хорошому', which is not in the Danish sentence."
+    ]
+   }
+  },
+  "m:lægge på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lægge på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:lægge på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå foran|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå foran|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stemme for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stemme for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sige tak|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sige tak|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:springe ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:springe ud|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:lide på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'lide på' is not a correct Danish phrasal verb; the correct form is 'stole på' or 'regne med'.",
+     "natural: 'Jeg kan altid lide på min bedste ven' is not idiomatic Danish; a native speaker would say 'Jeg kan altid stole på min bedste ven' or 'Jeg kan altid regne med min bedste ven'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "'lide på' is not a correct Danish phrasal verb; the intended meaning requires 'stole på' or 'regne med', making the example unidiomatic and misleading."
+   }
+  },
+  "e:sparke til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Он пинал мяч' uses the imperfective aspect, which implies a repeated or ongoing action, while the Danish 'sparkede' (simple past) and English 'kicked' describe a single, completed action. A more faithful translation would be 'Он пнул мяч'.",
+     "translations: The Ukrainian translation 'Він копав м'яч' uses the imperfective aspect, implying a repeated or ongoing action, while the Danish 'sparkede' (simple past) and English 'kicked' describe a single, completed action. A more faithful translation would be 'Він копнув м'яч'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Russian translation uses wrong verb aspect: 'пинал' (imperfective) does not match the perfective meaning of 'He kicked the ball'"
+    ]
+   }
+  },
+  "e:lægge på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå foran|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå foran|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:springe ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:springe ud|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Она совершила каминг-аут перед своими родителями как гомосексуалка' is unnatural and overly formal; a more natural phrasing would be 'Она призналась своим родителям, что она лесбиянка' or 'Она совершила каминг-аут перед родителями'.",
+     "translations: The Ukrainian translation 'Вона здійснила камінг-аут перед батьками як гомосексуалка' is unnatural and overly formal; a more natural phrasing would be 'Вона зізналася батькам, що вона лесбійка' or 'Вона здійснила камінг-аут перед батьками'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Danish sentence is correct and idiomatic, and the translations, while perhaps not the most colloquial options, are accurate and not defective."
+   }
+  }
+ },
+ "backchecks": {
+  "e:flytte ind|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:rette sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:rette sig|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:køre over for rødt|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hænge sig|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:kigge sig omkring|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:med hensyn til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:true sig|phrase#1": {
+   "same": false,
+   "note": "Jeg truer mig på hænderne (I warm my hands) became Jeg truer mine hænder (I threaten my hands), changing the meaning from warming to threatening."
+  },
+  "e:varme sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være oppe|phrase#1": {
+   "same": false,
+   "note": "'er oppe' (am up) changed to 'står op' (get up), different state vs. action."
+  },
+  "e:være oppe|phrase#2": {
+   "same": false,
+   "note": "'var oppe' (was up) changed to 'hang' (was hanging), different state vs. action."
+  },
+  "e:fokusere på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:beskæftige sig med|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:stamme fra|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:teste for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bøje sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:forene sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage ved|phrase#1": {
+   "same": false,
+   "note": "'tog ved og ryddede' (pitched in and tidied) changed to 'gik over og gjorde rent' (went over and cleaned), different action."
+  },
+  "e:tage ved|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:komme i gang|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå i stå|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være sig selv|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:komme sammen|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:komme sammen|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:skulle lige til at|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:arbejde over|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lægge til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lægge til|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:lade det være|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage plads|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:høre op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:høre op|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:trække på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:trække på|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:sikre sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hjælpe til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:spørge sig selv|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:længes efter|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage imod|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tage imod|phrase#2": {
+   "same": false,
+   "note": "tog imod slaget (withstood the blow) → tog slaget (took the blow). The meaning changed from enduring without falling to simply taking the blow."
+  },
+  "e:bestå i at|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:huske på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:huske på at|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bede til|phrase#1": {
+   "same": false,
+   "note": "hver aften (every evening) → hver nat (every night). The time of day changed."
+  },
+  "e:tale i telefon|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:spise til aften|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:have adgang til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:kigge forbi|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:udtrykke sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:brænde ned|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:brænde på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:høre radio|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:røre i|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:insistere på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:styrte ned|phrase#1": {
+   "same": false,
+   "note": "styrtede ned i havet (crashed into the sea) became styrtede i havet (crashed in the sea), losing the downward direction and changing the event"
+  },
+  "e:styrte ned|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:hvad fanden|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lide på|phrase#1": {
+   "same": false,
+   "note": "lide på (trust/rely on) changed to godt lide (like)"
+  },
+  "e:sparke til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:stå til|phrase#1": {
+   "same": false,
+   "note": "stå til (how something is doing) changed to er i god form (is in good shape), losing the original meaning of 'how it stands'"
+  },
+  "e:lægge på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:lægge på|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå foran|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå foran|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:stemme for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sige tak|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:springe ud|phrase#1": {
+   "same": false,
+   "note": "sprang ud (bloomed/burst into leaf) changed to spirede (sprouted/germinated), a different stage of growth"
+  },
+  "e:springe ud|phrase#2": {
+   "same": true,
+   "note": ""
+  }
+ },
+ "repairs": {
+  "e:hænge sig|phrase#1": {
+   "problems": [
+    "Russian translation uses both masculine and feminine verb forms (повесился(лась)), which is unnatural and adds information not present in the Danish original.",
+    "Russian translation has both masculine and feminine forms: 'повесился(лась)'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "He hanged himself in the garage.",
+     "ru": "Он повесился в гараже.",
+     "uk": "Він повісився в гаражі."
+    }
+   }
+  },
+  "e:hænge sig|phrase#2": {
+   "problems": [
+    "translations: English 'hangs herself' is a literal translation of the reflexive verb but means suicide, not the meaning 'to get hung up on something'. A correct translation would be 'She always gets hung up on small details.'",
+    "translations: Russian 'вешается' means 'hangs herself' (suicide), not 'зацикливается'. A correct translation would be 'Она всегда зацикливается на мелочах.'",
+    "translations: Ukrainian 'вішається' means 'hangs herself' (suicide), not 'зациклюється'. A correct translation would be 'Вона завжди зациклюється на дрібницях.'",
+    "English translation 'She always hangs herself in small details' is incorrect; 'hangs herself' means suicide, not 'gets hung up'.",
+    "Russian translation 'Она всегда вешается на мелочах' is incorrect; 'вешается' means suicide, not 'зацикливается'.",
+    "Ukrainian translation 'Вона завжди вішається на дрібницях' is incorrect; 'вішається' means suicide, not 'зациклюватися'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She always gets hung up on small details.",
+     "ru": "Она всегда зацикливается на мелочах.",
+     "uk": "Вона завжди зациклюється на дрібницях."
+    }
+   }
+  },
+  "e:kigge sig omkring|phrase#1": {
+   "problems": [
+    "translations: Russian 'оглядывает' means 'inspects/examines' and is transitive without a reflexive sense, not 'осматривается'. A correct translation would be 'Она осматривается в новом доме.'",
+    "translations: Ukrainian 'оглядає' means 'inspects/examines' and is transitive without a reflexive sense, not 'озирається'. A correct translation would be 'Вона озирається в новому будинку.'",
+    "Russian translation 'Она оглядывает новый дом' does not match the meaning 'осматриваться (по сторонам)'; it means 'she inspects the new house', missing the reflexive 'around' sense.",
+    "Ukrainian translation 'Вона оглядає новий будинок' does not match the meaning 'озиратися (навколо)'; it means 'she inspects the new house', missing the reflexive 'around' sense."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She looks around the new house.",
+     "ru": "Она осматривается в новом доме.",
+     "uk": "Вона озирається в новому будинку."
+    }
+   }
+  },
+  "e:true sig|phrase#1": {
+   "problems": [
+    "sense: Danish 'truer' means 'threatens', not 'warms'. The correct verb for the meaning 'to warm oneself' is 'varmer'. The sentence should be 'Jeg varmer mig på hænderne med en kop te.'",
+    "translations: English 'I threaten my hands' does not match the intended meaning 'to warm oneself'. A correct translation would be 'I warm my hands with a cup of tea.'",
+    "translations: Russian 'Я угрожаю рукам' does not match the intended meaning 'согреваться'. A correct translation would be 'Я согреваю руки чашкой чая.'",
+    "translations: Ukrainian 'Я погрожую рукам' does not match the intended meaning 'зігріватися'. A correct translation would be 'Я зігріваю руки чашкою чаю.'",
+    "Danish sentence 'Jeg truer mig på hænderne med en kop te' uses 'truer' (threaten) instead of 'varmer' (warm), so it does not illustrate the meaning 'to warm oneself'.",
+    "English translation 'I threaten my hands with a cup of tea' is wrong for the meaning 'to warm oneself'.",
+    "Russian translation 'Я угрожаю рукам чашкой чая' is wrong for the meaning 'согреваться'.",
+    "Ukrainian translation 'Я погрожую рукам чашкою чаю' is wrong for the meaning 'зігріватися'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence uses 'truer' (threatens) instead of 'varmer' (warms), so it does not illustrate the meaning 'to warm oneself'."
+   }
+  },
+  "e:være oppe|phrase#1": {
+   "problems": [
+    "translations: Russian 'Я встаю в шесть утра' means 'I get up at six in the morning', which is a different action from 'being up/awake' (the state). The Danish 'Jeg er oppe klokken seks' means 'I am up at six o'clock' (state). The Russian translation should reflect the state, e.g. 'Я на ногах в шесть утра' or 'Я не сплю в шесть утра'.",
+    "translations: Ukrainian 'Я щоранку встаю о шостій' means 'I get up at six every morning', which is a different action from 'being up/awake' (the state). The Danish 'Jeg er oppe klokken seks' means 'I am up at six o'clock' (state). The Ukrainian translation should reflect the state, e.g. 'Я на ногах о шостій щоранку' or 'Я не сплю о шостій щоранку'.",
+    "Russian translation 'Я встаю в шесть утра' means 'I get up at six in the morning', not 'I am up (awake) at six'",
+    "Ukrainian translation 'Я щоранку встаю о шостій' means 'I get up at six every morning', not 'I am up (awake) at six'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "I'm up at six o'clock every morning.",
+     "ru": "Я на ногах в шесть утра.",
+     "uk": "Я на ногах о шостій щоранку."
+    }
+   }
+  },
+  "e:være oppe|phrase#2": {
+   "problems": [
+    "translations: Russian 'Фотография' means 'photograph', but the Danish 'Billedet' means 'the picture' (a broader term, could be a painting, drawing, etc.). The translation should be 'Картина' or 'Изображение' to match the Danish.",
+    "translations: Ukrainian 'Фото' means 'photo', but the Danish 'Billedet' means 'the picture' (a broader term, could be a painting, drawing, etc.). The translation should be 'Картина' or 'Зображення' to match the Danish.",
+    "Russian translation 'Фотография' means 'photograph', not 'picture' (картина)"
+   ],
+   "repair": {
+    "translations": {
+     "en": "The picture was up on the wall in the living room.",
+     "ru": "Картина висела на стене в гостиной.",
+     "uk": "Картина висіла на стіні у вітальні."
+    }
+   }
+  },
+  "e:beskæftige sig med|phrase#1": {
+   "problems": [
+    "translations: English 'I work with old books' is a natural translation, but the meaning 'to occupy oneself with' is broader. However, 'work with' is acceptable. No defect.",
+    "translations: Russian 'я работаю со старыми книгами' means 'I work with old books', which is a specific activity. The Danish 'beskæftiger mig med' means 'occupy myself with', which is broader and can include reading, collecting, etc. The translation is acceptable but slightly narrow. No defect.",
+    "translations: Ukrainian 'я працюю зі старими книгами' means 'I work with old books', which is a specific activity. The Danish 'beskæftiger mig med' means 'occupy myself with', which is broader. The translation is acceptable but slightly narrow. No defect.",
+    "English translation 'I work with old books' is narrower than the meaning 'to occupy oneself with'",
+    "Russian translation 'я работаю со старыми книгами' is narrower than the meaning 'заниматься (чем-л.)'",
+    "Ukrainian translation 'я працюю зі старими книгами' is narrower than the meaning 'займатися (чимсь)'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "I work with old books in my spare time.",
+     "ru": "В свободное время я работаю со старыми книгами.",
+     "uk": "У вільний час я працюю зі старими книгами."
+    }
+   }
+  },
+  "e:tage ved|phrase#1": {
+   "problems": [
+    "sense: The Danish 'Han tog ved og ryddede hele køkkenet' does not clearly show the meaning 'to get going (with a task)'. 'Tog ved' here is ambiguous and could be interpreted as 'took hold' or 'started working', but the sentence structure 'tog ved og [verb]' is not a standard idiomatic way to express 'got going with a task' in Danish. A native speaker would more likely say 'Han tog fat og ryddede...' or 'Han gik i gang med at rydde...'.",
+    "translations: The English translation 'He went over and cleaned the entire kitchen' does not match the Danish 'Han tog ved og ryddede hele køkkenet'. 'Went over' implies movement to a location, which is not present in the Danish. The Russian 'Он пошёл и убрал всю кухню' and Ukrainian 'Він пішов і прибрав всю кухню' similarly add 'went' (пошёл/пішов) which is not in the original.",
+    "The English translation 'He went over and cleaned the entire kitchen' does not match the meaning 'to get going (with a task)'; it describes a specific action rather than the act of starting or tackling a task."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Han tog ved og ryddede hele køkkenet' does not clearly show the meaning 'to get going (with a task)' and is not idiomatic."
+   }
+  },
+  "e:komme sammen|phrase#1": {
+   "problems": [
+    "grammar: 'De har kommet sammen' is ungrammatical; the perfect of 'komme' is 'er kommet', so it should be 'De er kommet sammen'.",
+    "adjudicator: The Danish sentence is ungrammatical; the perfect of 'komme' requires 'er', so it must be 'De er kommet sammen'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence is ungrammatical; the perfect of 'komme' requires 'er', so it must be 'De er kommet sammen'."
+   }
+  },
+  "e:skulle lige til at|phrase#1": {
+   "problems": [
+    "grammar: 'når' is used for present/future or habitual actions, but the sentence describes a past event; 'da' is required instead.",
+    "translations: English translation uses present tense 'I'm' and 'rings' for a past event, should be past tense to match the Danish meaning.",
+    "English translation uses present tense 'I'm just about to go out' but Danish 'Jeg skal lige til at gå ud' is present tense, while Russian 'Я уже собирался выйти' and Ukrainian 'Я вже збирався вийти' are past tense, creating a tense mismatch."
+   ],
+   "repair": {
+    "drop": "The Danish sentence uses 'når' for a past event, which is ungrammatical; 'da' is required."
+   }
+  },
+  "e:lægge til|phrase#2": {
+   "problems": [
+    "sense: 'Jeg lagde til fem kilo' means 'I added five kilos' (e.g., to a total), not 'I gained five kilos' (weight gain). The Danish does not clearly convey the meaning of gaining body weight.",
+    "translations: English 'I added five kilos' is ambiguous and does not clearly mean 'I gained weight'; Russian 'я добавил пять килограммов' and Ukrainian 'я додав п'ять кілограмів' also mean 'added' rather than 'gained weight'.",
+    "English translation 'I added five kilos last year' uses 'added' which is ambiguous and not idiomatic for gaining weight; the meaning is 'to gain (weight)' so it should be 'I gained five kilos last year'.",
+    "Russian translation 'я добавил пять килограммов' uses 'добавил' which is not idiomatic for gaining weight; it should be 'я набрал пять килограммов'.",
+    "Ukrainian translation 'я додав п'ять кілограмів' uses 'додав' which is not idiomatic for gaining weight; it should be 'я набрав п'ять кілограмів'."
+   ],
+   "repair": {
+    "drop": "The Danish 'Jeg lagde til fem kilo' does not mean 'I gained five kilos' (weight gain); it means 'I added five kilos' to something else. The phrase 'lægge til' is not used for gaining body weight."
+   }
+  },
+  "e:lade det være|phrase#1": {
+   "problems": [
+    "grammar: 'Lad det være med at råbe' is unidiomatic Danish. The correct construction is 'Lad være med at råbe' (without 'det').",
+    "adjudicator: The Danish phrase 'Lad det være med at' is unidiomatic; the correct form is 'Lad være med at' without 'det'."
+   ],
+   "repair": {
+    "drop": "The Danish 'Lad det være med at råbe' is unidiomatic; the correct phrase is 'Lad være med at' without 'det'."
+   }
+  },
+  "e:trække på|phrase#1": {
+   "problems": [
+    "The Danish sentence 'Han trak på svaret i flere minutter.' is not idiomatic. The phrase 'trække på' does not naturally combine with 'svaret' to mean 'to drag out the answer'. A native speaker would say 'Han trak tiden ud med at svare' or 'Han tøvede med svaret'.",
+    "The English translation 'He dragged on the answer for several minutes.' is unnatural. A more natural translation would be 'He dragged out giving the answer for several minutes.' or 'He took his time answering for several minutes.'",
+    "The Russian translation 'Он затянул ответ несколько минут.' is ungrammatical and unnatural. It should be 'Он тянул с ответом несколько минут.'",
+    "The Ukrainian translation 'Він затягував відповідь кілька хвилин.' is unnatural. A more natural translation would be 'Він зволікав з відповіддю кілька хвилин.' or 'Він тягнув з відповіддю кілька хвилин.'",
+    "The English translation 'He dragged on the answer for several minutes.' is unnatural and does not match the meaning 'to drag out (time)'. A better translation would be 'He dragged out the answer for several minutes.' or 'He took his time answering for several minutes.'",
+    "The Russian translation 'Он затянул ответ несколько минут.' is grammatically incorrect and unnatural. It should be 'Он затянул с ответом на несколько минут.' or 'Он тянул с ответом несколько минут.'"
+   ],
+   "repair": {
+    "drop": "The Danish 'Han trak på svaret' is not idiomatic; 'trække på' does not combine with 'svaret' to mean 'drag out the answer'."
+   }
+  },
+  "e:trække på|phrase#2": {
+   "problems": [
+    "The Russian translation 'Она опирается на опыт предыдущих работ.' is unnatural. 'Предыдущих работ' is not idiomatic for 'previous jobs'; it should be 'с предыдущих мест работы' or 'с прошлой работы'. A more natural translation is 'Она опирается на свой опыт с предыдущих мест работы.'",
+    "The Ukrainian translation 'Вона спирається на досвід попередніх робіт.' is unnatural. 'Попередніх робіт' is a calque from Russian and not idiomatic; it should be 'з попередніх місць роботи' or 'з попередньої роботи'. A more natural translation is 'Вона спирається на досвід з попередніх місць роботи.'",
+    "The Russian translation 'Она опирается на опыт предыдущих работ.' is unnatural. 'Предыдущих работ' is not idiomatic; it should be 'с предыдущих работ' or better 'предыдущей работы' or 'прошлого опыта работы'.",
+    "The Ukrainian translation 'Вона спирається на досвід попередніх робіт.' is unnatural. 'Попередніх робіт' is a calque from Russian; it should be 'з попередніх робіт' or better 'попередньої роботи' or 'минулого досвіду роботи'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She draws on her experience from previous jobs.",
+     "ru": "Она опирается на свой опыт с предыдущих мест работы.",
+     "uk": "Вона спирається на досвід з попередніх місць роботи."
+    }
+   }
+  },
+  "e:sikre sig|phrase#1": {
+   "problems": [
+    "translations: Russian 'заняла' means 'took' (occupied), not 'secured' (обеспечила себе); the meaning is 'обеспечивать себе', so the translation should reflect securing, not just taking a seat.",
+    "translations: Ukrainian 'знайшла' means 'found', not 'secured' (забезпечила собі); the meaning is 'забезпечувати собі', so the translation should reflect securing, not just finding a seat.",
+    "The Russian translation 'Она заняла хорошее место для концерта' means 'She took a good seat for the concert', which differs from the meaning 'обеспечивать себе' (to secure for oneself). A better translation would be 'Она обеспечила себе хорошее место на концерте'.",
+    "The Ukrainian translation 'Вона знайшла гарне місце для концерту' means 'She found a good seat for the concert', which differs from the meaning 'забезпечувати собі' (to secure for oneself). A better translation would be 'Вона забезпечила собі гарне місце на концерті'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She secured a good seat for the concert.",
+     "ru": "Она обеспечила себе хорошее место на концерте.",
+     "uk": "Вона забезпечила собі гарне місце на концерті."
+    }
+   }
+  },
+  "e:spørge sig selv|phrase#1": {
+   "problems": [
+    "translations: Russian 'Интересно, хорошая ли это идея' drops 'I ask myself' and uses an impersonal construction; it does not faithfully render the Danish 'Jeg spørger mig selv'.",
+    "translations: Ukrainian 'Цікаво, чи це хороша ідея' drops 'I ask myself' and uses an impersonal construction; it does not faithfully render the Danish 'Jeg spørger mig selv'.",
+    "adjudicator: The Russian and Ukrainian translations use impersonal constructions that drop the core meaning of 'I ask myself', failing to render the Danish faithfully."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I wonder if this is a good idea.",
+     "ru": "Я спрашиваю себя, хорошая ли это идея.",
+     "uk": "Я питаю себе, чи це хороша ідея."
+    }
+   }
+  },
+  "e:længes efter|phrase#1": {
+   "problems": [
+    "translations: Ukrainian 'сумує' means 'is sad/misses', not 'longs for' (тужить); the meaning is 'тужити за', so the translation should use a stronger verb like 'тужить' to match the intensity of 'længes'.",
+    "The Ukrainian translation 'Вона сумує за родиною у рідній країні' means 'She misses her family in her home country', which is a slightly different nuance from the meaning 'тужити за' (to long for/yearn for). A more accurate translation reflecting the intensity of 'længes efter' would be 'Вона тужить за своєю родиною на батьківщині'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She longs for her family in her home country.",
+     "ru": "Она тоскует по своей семье на родине.",
+     "uk": "Вона тужить за своєю родиною на батьківщині."
+    }
+   }
+  },
+  "e:tage imod|phrase#1": {
+   "problems": [
+    "translations: English 'welcomes' is narrower than 'receives'; the meaning includes receiving guests, not necessarily welcoming them, so 'receives' would be more faithful.",
+    "translations: Russian 'приветствует' means 'greets/welcomes', not 'receives' (принимает); the meaning is 'принимать', so the translation should use 'принимает'.",
+    "translations: Ukrainian 'вітає' means 'greets/welcomes', not 'receives' (приймає); the meaning is 'приймати', so the translation should use 'приймає'.",
+    "The English translation 'She welcomes guests throughout the day' uses 'welcomes' instead of 'receives', which does not match the given meaning 'to receive (guests, gifts, advice)'.",
+    "The Russian translation 'Она приветствует гостей в течение всего дня' uses 'приветствует' (welcomes/greets) instead of 'принимает' (receives), which does not match the given meaning 'принимать (гостей, подарки, советы)'.",
+    "The Ukrainian translation 'Вона вітає гостей протягом усього дня' uses 'вітає' (welcomes/greets) instead of 'приймає' (receives), which does not match the given meaning 'приймати (гостей, подарунки, поради)'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She receives guests throughout the day.",
+     "ru": "Она принимает гостей в течение всего дня.",
+     "uk": "Вона приймає гостей протягом усього дня."
+    }
+   }
+  },
+  "e:tage imod|phrase#2": {
+   "problems": [
+    "English translation unnatural: 'without knocking over' is unidiomatic; should be 'without falling' or 'without being knocked down'.",
+    "Russian translation unnatural: 'не сбив с ног' implies the boxer didn't knock someone else down, not that he himself stayed upright. Better: 'не упав' or 'не свалившись с ног'.",
+    "Ukrainian translation unnatural: 'не впавши з ніг' is awkward; better 'не впавши' or 'не збитий з ніг'.",
+    "English translation 'without knocking over' is ungrammatical and does not match the Danish 'uden at vælte' (without falling over/being knocked down)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The boxer took the blow without falling.",
+     "ru": "Боксер принял удар, не упав.",
+     "uk": "Боксер прийняв удар, не впавши."
+    }
+   }
+  },
+  "e:bestå i at|phrase#1": {
+   "problems": [
+    "English translation does not match the Danish meaning: 'The task is to find' does not convey 'consist in doing'; should be 'The task consists in finding' or 'The task consists of finding'.",
+    "Russian translation does not match the Danish meaning: 'Задача — найти' does not convey 'состоять в том, чтобы'; should be 'Задача состоит в том, чтобы найти'.",
+    "Ukrainian translation does not match the Danish meaning: 'Завдання — знайти' does not convey 'полягати в тому, щоб'; should be 'Завдання полягає в тому, щоб знайти'.",
+    "adjudicator: All three translations fail to convey the specific meaning 'consist in doing', using simpler constructions that do not match the Danish phrase."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The task consists in finding the errors in the text.",
+     "ru": "Задача состоит в том, чтобы найти ошибки в тексте.",
+     "uk": "Завдання полягає в тому, щоб знайти помилки в тексті."
+    }
+   }
+  },
+  "e:huske på|phrase#1": {
+   "problems": [
+    "Russian translation contradicts the Danish meaning: 'не помню' means 'I don't remember', but Danish 'husker på' means 'I remember'. Should be 'Я помню купить молоко' or 'Я не забываю купить молоко'.",
+    "Ukrainian translation contradicts the Danish meaning: 'не забув' is past tense 'did not forget', but Danish is present 'husker på' (remember). Should be 'Я пам'ятаю купити молоко' or 'Я не забуваю купити молоко'.",
+    "Russian translation 'Сегодня я не помню купить молоко' means 'Today I don't remember to buy milk', which contradicts the Danish 'Jeg husker på at købe mælk i dag' (I remember to buy milk today).",
+    "Ukrainian translation 'Я сьогодні не забув купити молоко' means 'I didn't forget to buy milk today', which is past tense, while the Danish is present tense."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I remember to buy milk today.",
+     "ru": "Я помню купить молоко сегодня.",
+     "uk": "Я пам'ятаю купити молоко сьогодні."
+    }
+   }
+  },
+  "e:bede til|phrase#1": {
+   "problems": [
+    "English translation has a spelling error: 'prays' should be 'prays'? Actually 'prays' is correct for third-person singular, but 'prays' is misspelled as 'prays'? Wait, 'prays' is correct. The problem is 'prays' is correct, but the input says 'prays'? The input says 'prays' which is correct. No defect here. Re-evaluating: 'She prays to God every night' is correct English. No problem.",
+    "Russian translation unnatural: 'каждую ночь' is not idiomatic for a habitual action; better 'каждый вечер' (every evening) to match 'hver aften'.",
+    "Ukrainian translation unnatural: 'щоночі' means 'every night', but Danish says 'hver aften' (every evening). Should be 'щовечора'.",
+    "English translation 'prays' is misspelled as 'prays'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She prays to God every night.",
+     "ru": "Она молится Богу каждый вечер.",
+     "uk": "Вона молиться Богові щовечора."
+    }
+   }
+  },
+  "e:spise til aften|phrase#1": {
+   "problems": [
+    "sense: 'Vi spiser til aften klokken seks.' means 'We have dinner at six o'clock', not 'We eat until evening at six'.",
+    "translations: English 'We eat until evening at six.' is a mistranslation; it should be 'We have dinner at six o'clock.'",
+    "translations: Russian 'Мы едим до вечера в шесть.' is a mistranslation; it should be 'Мы ужинаем в шесть часов.'",
+    "translations: Ukrainian 'Їмо до вечора о шостій.' is a mistranslation; it should be 'Ми вечеряємо о шостій.'",
+    "The English translation 'We eat until evening at six.' is wrong; it should be 'We have dinner at six o'clock.'",
+    "The Russian translation 'Мы едим до вечера в шесть.' is wrong; it should be 'Мы ужинаем в шесть часов.'",
+    "The Ukrainian translation 'Їмо до вечора о шостій.' is wrong; it should be 'Ми вечеряємо о шостій.'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "We have dinner at six o'clock.",
+     "ru": "Мы ужинаем в шесть часов.",
+     "uk": "Ми вечеряємо о шостій."
+    }
+   }
+  },
+  "e:have adgang til|phrase#1": {
+   "problems": [
+    "translations: Ukrainian 'Усі учні мають доступ...' uses 'учні' (pupils/schoolchildren) instead of 'студенти' (students) for 'studerende'.",
+    "The Ukrainian translation 'Усі учні мають доступ до онлайн-баз даних бібліотеки.' uses 'учні' (pupils) instead of 'студенти' (students) for 'studerende'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "All students have access to the library's online databases.",
+     "ru": "Все студенты имеют доступ к онлайн-базам данных библиотеки.",
+     "uk": "Усі студенти мають доступ до онлайн-баз даних бібліотеки."
+    }
+   }
+  },
+  "e:udtrykke sig|phrase#1": {
+   "problems": [
+    "translations: Russian 'Он всегда выражает себя очень ясно.' is a calque and unnatural; a natural rendering is 'Он всегда очень ясно выражается.'",
+    "translations: Ukrainian 'Він завжди дуже чітко висловлює.' is missing the reflexive 'ся' and is ungrammatical; it should be 'Він завжди дуже чітко висловлюється.'",
+    "The Russian translation 'Он всегда выражает себя очень ясно.' is unnatural; it should be 'Он всегда очень ясно выражается.'",
+    "The Ukrainian translation 'Він завжди дуже чітко висловлює.' is missing the reflexive particle; it should be 'Він завжди дуже чітко висловлюється.'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "He always expresses himself very clearly.",
+     "ru": "Он всегда очень ясно выражается.",
+     "uk": "Він завжди дуже чітко висловлюється."
+    }
+   }
+  },
+  "e:brænde på|phrase#1": {
+   "problems": [
+    "Ukrainian translation: 'ситуацію' is incorrect; it means 'situation', not 'pot'. Should be 'каструлю'.",
+    "Ukrainian translation 'ситуацію' is incorrect; it means 'situation', not 'pot' (каструлю/горщик)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The food will burn if you don't stir the pot.",
+     "ru": "Еда сгорит, если не перемешивать кастрюлю.",
+     "uk": "Їжа згорить, якщо не помішувати каструлю."
+    }
+   }
+  },
+  "e:hvad fanden|phrase#1": {
+   "problems": [
+    "translations: The Ukrainian translation 'Що ти тут робиш?' omits the expletive 'якого біса' (what the hell), failing to render the meaning of 'hvad fanden'.",
+    "The Ukrainian translation 'Що ти тут робиш?' omits the phrase 'якого біса', losing the meaning of 'hvad fanden'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "What the hell are you doing here?",
+     "ru": "Что, чёрт возьми, ты здесь делаешь?",
+     "uk": "Якого біса ти тут робиш?"
+    }
+   }
+  },
+  "e:lide på|phrase#1": {
+   "problems": [
+    "sense: the Danish 'Jeg kan altid lide på min bedste ven' means 'I can always rely on my best friend', but the translations render 'lide på' as 'like/love', which is a different meaning ('lide' vs 'lide på').",
+    "translations: English 'I always like my best friend' does not match the Danish meaning 'rely on'.",
+    "translations: Russian 'Я всегда любил своего лучшего друга' does not match the Danish meaning 'rely on'.",
+    "translations: Ukrainian 'Я завжди люблю свою найкращу подругу' does not match the Danish meaning 'rely on'.",
+    "The English translation 'I always like my best friend' does not match the Danish meaning 'to rely on'.",
+    "The Russian translation 'Я всегда любил своего лучшего друга' does not match the Danish meaning 'полагаться (на кого-л.)'.",
+    "The Ukrainian translation 'Я завжди люблю свою найкращу подругу' does not match the Danish meaning 'покладатися (на когось)'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I can always rely on my best friend.",
+     "ru": "Я всегда могу положиться на своего лучшего друга.",
+     "uk": "Я завжди можу покластися на свого найкращого друга."
+    }
+   }
+  },
+  "e:sparke til|phrase#1": {
+   "problems": [
+    "translations: Russian 'Он пнул мяч' uses the perfective 'пнул' (a single kick), while the Danish 'sparkede til' is a neutral past action; a more natural match would be 'Он пинал мяч' or 'Он ударил по мячу'.",
+    "translations: Ukrainian 'Він вдарив м'яч' means 'He hit the ball', not specifically 'kicked'; a more accurate translation for 'sparke til' is 'Він копнув м'яч' or 'Він ударив ногою по м'ячу'.",
+    "The Ukrainian translation 'Він вдарив м'яч' means 'He hit the ball', not 'He kicked the ball' (копати ногами)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He kicked the ball.",
+     "ru": "Он пинал мяч.",
+     "uk": "Він копав м'яч."
+    }
+   }
+  },
+  "e:stå til|phrase#1": {
+   "problems": [
+    "grammar: the Danish 'Det står til med økonomien' is unidiomatic; the phrase 'stå til' requires an adverb or adjective (e.g., 'Det står godt til med økonomien'), otherwise it is incomplete.",
+    "sense: without an adverb, the Danish sentence does not clearly convey the meaning 'how things are going'.",
+    "translations: English 'The economy is in good shape' adds 'good' which is not in the Danish.",
+    "translations: Russian 'Экономика в хорошем состоянии' adds 'хорошем' which is not in the Danish.",
+    "translations: Ukrainian 'Економіка у хорошому стані' adds 'хорошому' which is not in the Danish.",
+    "The English translation 'The economy is in good shape' adds the element 'good', which is not in the Danish sentence.",
+    "The Russian translation 'Экономика в хорошем состоянии' adds the element 'хорошем', which is not in the Danish sentence.",
+    "The Ukrainian translation 'Економіка у хорошому стані' adds the element 'хорошому', which is not in the Danish sentence."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Det står til med økonomien' is ungrammatical because 'stå til' requires an adverb or adjective."
+   }
+  },
+  "e:lægge på|phrase#2": {
+   "problems": [
+    "sense: the Danish 'Jeg må lægge på for at købe den dyre jakke' uses 'lægge på' in the sense 'add money', but the translations render it as 'hang up the phone', which is a different meaning.",
+    "translations: English 'I have to hang up to buy the expensive jacket' does not match the Danish meaning 'add money'.",
+    "translations: Russian 'Мне нужно положить трубку, чтобы купить дорогую куртку' does not match the Danish meaning 'add money'.",
+    "translations: Ukrainian 'Мені треба покласти слухавку, щоб купити дорогу куртку' does not match the Danish meaning 'add money'.",
+    "The English translation 'I have to hang up to buy the expensive jacket' uses the meaning 'hang up' instead of 'add (money)'.",
+    "The Russian translation 'Мне нужно положить трубку, чтобы купить дорогую куртку' uses the meaning 'вешать трубку' instead of 'добавлять (деньги)'.",
+    "The Ukrainian translation 'Мені треба покласти слухавку, щоб купити дорогу куртку' uses the meaning 'класти слухавку' instead of 'додавати (гроші)'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I have to add money to buy the expensive jacket.",
+     "ru": "Мне нужно добавить денег, чтобы купить дорогую куртку.",
+     "uk": "Мені треба додати грошей, щоб купити дорогу куртку."
+    }
+   }
+  },
+  "e:gå foran|phrase#1": {
+   "problems": [
+    "Ukrainian translation: 'аж до відділку' means 'all the way to the police station', not 'to the station'.",
+    "Ukrainian translation 'Вона йшла попереду нас аж до відділку.' uses 'відділку' (police station) instead of 'станції' (station)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She walked in front of us all the way to the station.",
+     "ru": "Она шла впереди нас всю дорогу до станции.",
+     "uk": "Вона йшла попереду нас всю дорогу до станції."
+    }
+   }
+  },
+  "e:gå foran|phrase#2": {
+   "problems": [
+    "English translation: 'take the lead' does not match the meaning 'to lead by example'.",
+    "Russian translation: 'взять на себя инициативу' does not match the meaning 'подавать пример'.",
+    "Ukrainian translation: 'взяти ініціативу' does not match the meaning 'подавати приклад'.",
+    "English translation 'The leader should take the lead and show how to do it.' does not match the meaning 'to lead by example' as closely as the Danish 'gå foran' implies; it uses 'take the lead' instead of 'lead by example'.",
+    "Russian translation 'Лидер должен взять на себя инициативу и показать, как это делать.' uses 'взять на себя инициативу' (take the initiative) instead of 'подавать пример' (lead by example).",
+    "Ukrainian translation 'Лідер має взяти ініціативу і показати, як це робити.' uses 'взяти ініціативу' (take the initiative) instead of 'подавати приклад' (lead by example)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The leader should lead by example and show how to do it.",
+     "ru": "Лидер должен подавать пример и показывать, как это делать.",
+     "uk": "Лідер має подавати приклад і показувати, як це робити."
+    }
+   }
+  },
+  "e:springe ud|phrase#1": {
+   "problems": [
+    "English translation: 'sprouted' does not match the meaning 'to bloom'.",
+    "Russian translation: 'проросла' does not match the meaning 'расцветать'.",
+    "Ukrainian translation: 'проросла' does not match the meaning 'розквітати'.",
+    "English translation 'The apple tree sprouted in April.' uses 'sprouted' which means to put out shoots, not 'bloomed' (to produce flowers).",
+    "Russian translation 'Яблоня проросла в апреле.' uses 'проросла' (sprouted/germinated) instead of 'расцвела' (bloomed).",
+    "Ukrainian translation 'Яблуня проросла в квітні.' uses 'проросла' (sprouted/germinated) instead of 'розквітла' (bloomed)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The apple tree bloomed in April.",
+     "ru": "Яблоня расцвела в апреле.",
+     "uk": "Яблуня розквітла в квітні."
+    }
+   }
+  },
+  "e:springe ud|phrase#2": {
+   "problems": [
+    "translations: English 'for her parents' is unnatural; should be 'to her parents'",
+    "translations: Russian 'призналась своим родителям, что она гей' is unnatural; better 'совершила каминг-аут перед своими родителями' or 'призналась родителям в своей гомосексуальности'",
+    "translations: Ukrainian 'зізналася у своїй гомосексуальності перед батьками' is unnatural; better 'здійснила камінг-аут перед батьками' or 'зізналася батькам у своїй гомосексуальності'",
+    "English translation 'for her parents' is unnatural; should be 'to her parents'",
+    "Russian translation 'призналась' means 'confessed', not 'came out'; more accurate would be 'совершила каминг-аут'",
+    "Ukrainian translation 'зізналася' means 'confessed', not 'came out'; more accurate would be 'здійснила камінг-аут'"
+   ],
+   "repair": {
+    "translations": {
+     "en": "She came out as gay to her parents.",
+     "ru": "Она совершила каминг-аут перед своими родителями как гомосексуалка.",
+     "uk": "Вона здійснила камінг-аут перед батьками як гомосексуалка."
+    }
+   }
+  }
+ }
+}

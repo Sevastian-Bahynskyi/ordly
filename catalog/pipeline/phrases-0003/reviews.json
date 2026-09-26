@@ -1,0 +1,2169 @@
+{
+ "reviews": {
+  "m:gå på pension|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå på pension|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være sammen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være sammen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være sammen|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være sammen|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slå op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:slå op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slå op|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:holde øje med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde øje med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå tur|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå tur|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:blive til virkelighed|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:blive til virkelighed|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:på trods af|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:på trods af|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:træde tilbage|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:træde tilbage|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:træde tilbage|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:træde tilbage|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:smide ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:smide ud|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'Jeg smider ud de gamle aviser i morgen' has incorrect word order; the object 'de gamle aviser' must come between 'smider' and 'ud' (e.g., 'Jeg smider de gamle aviser ud i morgen') or the phrase must be kept together in a different construction."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Danish sentence has unnatural word order: 'Jeg smider ud de gamle aviser i morgen' should be 'Jeg smider de gamle aviser ud i morgen'."
+    ]
+   }
+  },
+  "m:smide ud|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:smide ud|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'Vagten smed ud de støjende gæster fra baren' has incorrect word order; the object 'de støjende gæster' must come between 'smed' and 'ud' (e.g., 'Vagten smed de støjende gæster ud fra baren')."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Danish sentence has unnatural word order: 'Vagten smed ud de støjende gæster fra baren' should be 'Vagten smed de støjende gæster ud fra baren'."
+    ]
+   }
+  },
+  "m:forberede sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:forberede sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:klage over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:klage over|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:godt nytår|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:vaske sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skrive under|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skrive under|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Она подписала контракт вчера.' has a typo: 'Она' should be 'Она' (correct spelling is 'Она')."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The alleged typo 'Она' is actually the correct Russian spelling; the rejection is based on a false claim."
+   }
+  },
+  "m:høre til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:høre til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: Danish 'Den bog hører til på hylden.' means 'That book belongs on the shelf' (its proper place is there), but the meaning 'to belong (to)' implies ownership or membership, not location. The example does not clearly show the stated meaning."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Эта книга должна быть на полке' means 'This book should be on the shelf', which expresses obligation, not belonging. The Danish 'hører til' means 'belongs', so the correct translation is 'Эта книга принадлежит на полке' or more naturally 'Место этой книги на полке'."
+    ]
+   }
+  },
+  "m:falde sammen|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:falde sammen|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Старый дом рухнул во время шторма.' uses 'рухнул' which is perfective and matches past tense, but 'рушиться' in the meaning is imperfective; 'рухнул' is acceptable as a perfective counterpart, but the meaning given is 'рушиться (о здании)' which is imperfective. The translation should use imperfective 'рушился' to match the meaning, or the meaning should allow perfective. Alternatively, 'рухнул' is a natural translation for 'collapsed'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian translation 'рухнул' is a natural perfective counterpart for the past tense 'collapsed', and the meaning's imperfective form does not force the translation to be imperfective."
+   }
+  },
+  "m:falde sammen|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:falde sammen|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'Hun faldt sammen på sofaen' implies collapsing onto the sofa, which is a physical fall, but the meaning 'to collapse (of a person)' typically refers to collapsing from exhaustion or illness, not simply lying down. The sentence does not clearly convey the 'без сил' (without strength) aspect.",
+     "translations: The Russian translation 'рухнула' is too strong and implies a heavy, noisy fall, which is not necessarily implied by the Danish 'faldt sammen' in this context. A more neutral 'упала' or 'свалилась' would be better, but the current translation is not a faithful rendering of the Danish sentence's nuance."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'рухнула' means 'collapsed' in a more structural/physical sense (like a building), while the meaning is specifically about a person collapsing from exhaustion. The Danish 'faldt sammen' and the English 'collapsed' fit the meaning, but the Russian should be 'упала без сил' or similar to match the meaning precisely."
+    ]
+   }
+  },
+  "m:prøve på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:prøve på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skifte mening|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skifte mening|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:kigge ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:kigge ud|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'смотрит в окно' means 'looks at the window' or 'looks out the window' but does not explicitly convey the 'наружу' (outward) direction as strongly as the Danish 'kigger ud ad vinduet'. A more precise translation would be 'выглядывает в окно' or 'смотрит из окна'.",
+     "translations: The Ukrainian translation 'дивиться у вікно' similarly means 'looks at the window' and does not fully capture the 'назовні' (outside) direction. A better translation would be 'виглядає у вікно' or 'дивиться з вікна'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian and Ukrainian translations 'смотрит в окно' and 'дивиться у вікно' are natural and commonly understood to mean 'look out the window', not a defect."
+   }
+  },
+  "m:interessere sig for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:interessere sig for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sørge for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sørge for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:sørge for|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:blande sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:blande sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:indflydelse på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:indflydelse på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:holde jul|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde jul|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:blive skilt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:blive skilt|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:begå selvmord|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:begå selvmord|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:holde kæft|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:holde kæft|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skulle til at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skulle til at|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:se frem|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:se frem|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'Jeg ser frem mod lyskrydset' means 'I am looking forward (in space) towards the traffic lights', which does not match the meaning 'to look ahead' (as in looking forward in time or generally ahead). The phrase 'ser frem' here is literal, but the translations 'I look forward to the traffic lights', 'Я с нетерпением жду светофоров', 'Я з нетерпінням чекаю на світлофори' all express anticipation (looking forward to an event), which is a different meaning. The Danish does not show the stated meaning.",
+     "translations: The English translation 'I look forward to the traffic lights' expresses anticipation, not the literal 'look ahead' meaning. The Russian and Ukrainian translations also express anticipation ('с нетерпением жду', 'з нетерпінням чекаю'), which does not match the Danish sentence's literal spatial meaning."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Jeg ser frem mod lyskrydset' means 'I look ahead towards the traffic lights' (literal, physical direction), but the English translation 'I look forward to the traffic lights' and the Russian and Ukrainian translations ('Я с нетерпінням чекаю...' / 'Я з нетерпінням чекаю...') express anticipation ('to look forward to something'). The translations do not match the meaning of the Danish sentence."
+    ]
+   }
+  },
+  "m:se frem til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:se frem til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:få at vide|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:få at vide|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:klare sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:klare sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:høre efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:høre efter|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:falde ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:falde ned|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:falde ned|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:falde ned|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: the Danish 'falde ned' means 'to fall down', not 'to calm down'; the sentence does not show the stated meaning",
+     "translations: English 'You have to fall down and breathe' does not match the stated meaning 'to calm down'",
+     "translations: Russian 'Нужно упасть и дышать' does not match the stated meaning 'успокаиваться'",
+     "translations: Ukrainian 'Треба впасти і дихати' does not match the stated meaning 'заспокоюватися'"
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'You have to fall down and breathe' does not match the meaning 'to calm down'",
+     "Russian translation 'Нужно упасть и дышать' does not match the meaning 'успокаиваться'",
+     "Ukrainian translation 'Треба впасти і дихати' does not match the meaning 'заспокоюватися'"
+    ]
+   }
+  },
+  "m:vende tilbage til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:vende tilbage til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå væk|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:gå væk|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå væk|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:løbe ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:løbe ud|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:løbe ud|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bryde ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bryde ind|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bryde ind|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bryde ud i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bryde ud i|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'The audience erupted in applause.' uses 'erupted' which is a valid synonym for 'burst into', but the Danish 'brød ud i' is a direct phrasal verb. The translation is acceptable, but the Russian 'Публика взорвалась аплодисментами.' uses 'взорвалась' (exploded) which is a possible but slightly less natural rendering; a more standard translation would be 'Публика разразилась аплодисментами.' to match the given meaning 'разражаться'.",
+     "translations: Ukrainian 'Аудиторія вибухнула оплесками.' uses 'вибухнула' (exploded) which is a possible but slightly less natural rendering; a more standard translation would be 'Аудиторія вибухнула оплесками' is actually acceptable, but 'вибухнула' is a direct calque from 'burst into' and is used in Ukrainian. However, the given meaning is 'вибухати', so it matches. No defect."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The English 'erupted' is a valid synonym, and the Russian and Ukrainian translations are acceptable, natural renderings of the phrase."
+   }
+  },
+  "m:hænge i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hænge i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hænge i|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:næste stop|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:næste stop|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:koncentrere sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:koncentrere sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bøde for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bøde for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slå ihjel|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:slå ihjel|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: 'Vi slog ihjel med at spille kort hele eftermiddagen' is unidiomatic; the phrase 'slå ihjel' requires an object like 'tiden', e.g., 'Vi slog tiden ihjel med at spille kort...'",
+     "translations: English 'We killed playing cards all afternoon' is unnatural and ungrammatical; it should be 'We killed time playing cards all afternoon.'",
+     "translations: Russian 'Мы весь день убивали игровые карты' means 'We killed playing cards' (as in destroying cards), not 'killed time'; it should be 'Мы убивали время, играя в карты весь день.'",
+     "translations: Ukrainian 'Ми весь день грали в карти' means 'We played cards all day' and omits the meaning of 'killing time'; it should be 'Ми гаяли час, граючи в карти весь день.'"
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "English translation 'We killed playing cards all afternoon.' is ungrammatical and does not convey the meaning 'to kill time'.",
+     "Russian translation 'Мы весь день убивали игровые карты.' means 'We killed playing cards' (as in destroying them), not 'killed time playing cards'.",
+     "Ukrainian translation 'Ми весь день грали в карти.' means 'We played cards all day' and omits the 'killing time' aspect."
+    ]
+   }
+  },
+  "m:gå bort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå bort|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:være ligeglad med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:være ligeglad med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:slå op|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'slår op i ordbogen' means 'looks up in the dictionary', but the meaning is 'to open (a book, dictionary)'. The sentence does not show the meaning of opening a book, but of looking up a word.",
+     "translations: The English translation 'She looks up the word in the dictionary.' does not match the Danish 'Hun slår op i ordbogen for at finde ordet.' which means 'She opens the dictionary to find the word.' The translation changes the action from opening to looking up."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Hun slår op i ordbogen for at finde ordet' means 'She looks up in the dictionary to find the word', but the meaning provided is 'to open (a book, dictionary)'. The phrase 'slå op' here means 'to look up', not 'to open'.",
+     "The English translation 'She looks up the word in the dictionary' correctly translates the Danish meaning, but it does not match the provided meaning 'to open'.",
+     "The Russian translation 'Она ищет слово в словаре' means 'She looks for the word in the dictionary', which matches the Danish meaning 'look up', not 'open'.",
+     "The Ukrainian translation 'Вона шукає слово в словнику' means 'She looks for the word in the dictionary', which matches the Danish meaning 'look up', not 'open'."
+    ]
+   }
+  },
+  "e:godt nytår|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:vaske sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:sørge for|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Они обеспечили едой всех гостей.' uses 'обеспечили' (provided/supplied), which is a possible rendering, but the meaning is 'организовывать, устраивать' (to arrange, to organize). The Danish 'sørgede for' can mean 'arranged for' or 'provided', but the Russian meaning given is narrower. The translation should reflect 'arranged' rather than just 'provided' to match the stated meaning. However, 'обеспечили' is acceptable for 'provided'. The Ukrainian translation 'Вони забезпечили їжею всіх гостей.' similarly uses 'забезпечили' (provided). The meaning given is 'організовувати, влаштовувати', which implies arranging, not just providing. The translations are not strictly wrong, but they do not perfectly align with the meaning. Actually, 'sørge for' can mean both 'arrange' and 'provide'. The meaning states 'to arrange, to provide', so the translations are acceptable. No defect."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The meaning includes 'to provide', and the translations correctly convey this sense; the Russian and Ukrainian verbs are acceptable equivalents for providing food."
+   }
+  },
+  "e:gå væk|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Собака ушла, когда я её позвала.' uses 'позвала' (called, feminine) which implies the speaker is female. The Danish 'jeg kaldte' does not specify gender. The translation should be neutral or match the context. 'Позвал' would be masculine, but the default is often masculine. The Ukrainian translation 'Собака пішла, коли я її покликав.' uses 'покликав' (masculine). The English translation 'when I called it' is neutral. The Russian translation introduces a gender assumption not present in the original. This is a defect."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian translation 'позвала' imposes a feminine gender on the speaker not present in the gender-neutral Danish original, which is a real defect."
+   }
+  },
+  "e:løbe ud|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bryde ind|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The English translation 'He broke in in the middle of my sentence.' is unnatural. 'Broke in' is acceptable, but 'broke in in' is awkward. Better: 'He broke in mid-sentence.' or 'He interrupted me in the middle of my sentence.' The double 'in' is clumsy."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The English translation 'broke in in the middle' is awkward and unnatural due to the repeated 'in', which a native speaker would avoid."
+   }
+  },
+  "e:hænge i|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: The Russian translation 'Она продолжает стараться с домашним заданием каждый вечер.' is unnatural. 'Продолжает стараться с домашним заданием' is a calque. Better: 'Она усердно делает уроки каждый вечер.' or 'Она не бросает делать уроки каждый вечер.' The Ukrainian translation 'Вона продовжує старатися з домашнім завданням щовечора.' is similarly unnatural. Better: 'Вона наполегливо робить домашнє завдання щовечора.'"
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian and Ukrainian translations are unnatural calques; a native speaker would not say 'продолжает стараться с домашним заданием' or 'продовжує старатися з домашнім завданням'."
+   }
+  },
+  "e:slå ihjel|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:slå ihjel|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skjule sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skjule sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:hilse på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:hilse på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Я приветствую соседа каждое утро' is unnatural; a more natural rendering is 'Я здороваюсь с соседом каждое утро'."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian translation is a correct, natural rendering of the Danish meaning, and 'Я приветствую соседа' is not a defect."
+   }
+  },
+  "m:sige op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:samle på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:samle på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:redde liv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:basere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:basere på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:stå ved|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:kende til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:kende til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:kaste op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:frygte for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bide i|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:bide i|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bide i|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: Danish 'Fisken bed i med det samme, og jeg fik den op.' uses 'bed i' without an object, meaning 'bit' (as in took the bait), but the meaning 'to take the bait' is figurative; the sentence describes a literal fish biting a hook, which is a literal action, not the figurative meaning 'to take the bait' (попасться на удочку). The literal action is better covered by 'bide på' or similar, not the figurative phrase.",
+     "translations: English translation 'The fish bit in right away, and I got it up.' is unnatural; 'bit in' is not idiomatic for a fish taking a hook; should be 'bit' or 'took the bait'.",
+     "translations: Russian translation 'Рыба сразу же укусила, и я её поднял.' uses 'укусила' (bit, as in wounded with teeth) which is not idiomatic for a fish taking a hook; should be 'клюнула' or 'схватила наживку'.",
+     "translations: Ukrainian translation 'Риба одразу врізалася, і я її підняв.' uses 'врізалася' (crashed into) which is incorrect; should be 'клюнула' or 'вхопила наживку'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Рыба сразу же укусила' means 'The fish bit' in a general sense, not 'took the bait' as required by the meaning.",
+     "The Ukrainian translation 'Риба одразу врізалася' means 'The fish crashed into' or 'hit', which does not correspond to the meaning 'клюнути (на гачок)' or the Danish 'bed i' in this context."
+    ]
+   }
+  },
+  "m:pakke ind|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:pakke ind|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "grammar: Danish 'Jeg pakker ind gaverne til fødselsdagen.' has incorrect word order; the particle 'ind' should follow the object when it is a definite noun: 'Jeg pakker gaverne ind til fødselsdagen.'"
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Danish sentence has incorrect word order for a phrasal verb with a definite object; it should be 'Jeg pakker gaverne ind'."
+   }
+  },
+  "e:sige op|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:redde liv|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:stå ved|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian translation 'Он не отказывается от своего решения переехать' means 'He does not renounce his decision to move', which is a negation not present in the Danish 'Han står ved sin beslutning om at flytte' ('He stands by his decision to move'). The translation adds a negative framing not in the original.",
+     "translations: Ukrainian translation 'Він не відмовляється від свого рішення переїхати' means 'He does not renounce his decision to move', which is a negation not present in the Danish. The translation adds a negative framing not in the original."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian and Ukrainian translations use a negation ('не отказывается' / 'не відмовляється') that is absent in the Danish original, changing the meaning."
+   }
+  },
+  "e:kaste op|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian translation 'Собака вырвала на пол' uses the perfective verb 'вырвала' (vomited once/completed action) while the Danish 'kastede op' is past tense (imperfective/neutral aspect). The Russian should be 'Собаку рвало на пол' or 'Собака блевала на пол' to match the aspect and naturalness. 'Вырвала' is also less natural for an animal vomiting."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian translation 'Собака вырвала на пол' uses a perfective verb that does not match the neutral past tense of the Danish 'kastede op' and is unnatural for an animal vomiting."
+   }
+  },
+  "e:frygte for|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:bide i|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: The Danish 'Hunden bed i bolden' means 'The dog bit into the ball', but the English translation 'The dog bit the ball' drops the 'into' and does not fully convey the 'bide i' (bite into) meaning. It should be 'bit into the ball'.",
+     "translations: Russian translation 'Собака укусила мяч' means 'The dog bit the ball' (perfective, completed bite), missing the 'into' sense of 'bide i'. A better rendering would be 'Собака вцепилась зубами в мяч' or 'Собака укусила мяч' is acceptable but 'укусила' implies a single bite wound, not necessarily 'biting into' and holding on. More naturally: 'Собака вгрызлась в мяч'.",
+     "translations: Ukrainian translation 'Собака вкусила м'яч' means 'The dog bit the ball' (perfective), missing the 'into' sense. A better rendering would be 'Собака вгризлася в м'яч' or 'Собака вкусила м'яч' is borderline but 'вкусила' is typically a single bite, not 'biting into' and holding."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The English translation 'bit the ball' omits the 'into' required by the Danish 'bide i', and the Russian and Ukrainian translations similarly miss the 'into' sense and use perfective verbs that do not convey the ongoing action of biting and holding."
+   }
+  }
+ },
+ "backchecks": {
+  "e:gå på pension|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være sammen|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være sammen|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:slå op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:slå op|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:holde øje med|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå tur|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:blive til virkelighed|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:på trods af|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:træde tilbage|phrase#1": {
+   "same": false,
+   "note": "Statsministeren (prime minister) changed to Premierministeren (premier/prime minister, but a different word); trådte tilbage (stepped down) changed to trak sig (resigned). The meaning is the same, but the key words are different. Wait, the instruction says: false only when a reader would understand a different situation. Here, the situation is the same: the head of government left office after a scandal. So it should be true. Let me re-evaluate: 'Statsministeren' and 'Premierministeren' are synonyms in Danish context (both mean prime minister). 'trådte tilbage' and 'trak sig' both mean resigned/stepped down. The situation is identical. So same: true."
+  },
+  "e:træde tilbage|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:smide ud|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:smide ud|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:forberede sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:klage over|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:godt nytår|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:vaske sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:skrive under|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:høre til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:falde sammen|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:falde sammen|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:prøve på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:skifte mening|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:kigge ud|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:interessere sig for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sørge for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sørge for|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:blande sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:indflydelse på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:holde jul|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:blive skilt|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:begå selvmord|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:holde kæft|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:skulle til at|phrase#1": {
+   "same": false,
+   "note": "Tense changed from 'about to' (skal til at) to 'in the process of' (er ved at)."
+  },
+  "e:se frem|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:se frem til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:få at vide|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:klare sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:høre efter|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:falde ned|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:falde ned|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:vende tilbage til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå væk|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå væk|phrase#2": {
+   "same": true,
+   "note": "Synonym: gik væk → forsvandt; definite form: i vask → i vasken. Same situation."
+  },
+  "e:løbe ud|phrase#1": {
+   "same": true,
+   "note": "Synonym: løb ud → udløb. Same meaning."
+  },
+  "e:løbe ud|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:bryde ind|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bryde ind|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:bryde ud i|phrase#1": {
+   "same": true,
+   "note": "Synonym: klapsalver → applaus. Same situation."
+  },
+  "e:hænge i|phrase#1": {
+   "same": true,
+   "note": "Preposition change: i → på. Same situation."
+  },
+  "e:hænge i|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:næste stop|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:koncentrere sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bøde for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:slå ihjel|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:slå ihjel|phrase#2": {
+   "same": false,
+   "note": "Changed from killing time playing cards to destroying playing cards."
+  },
+  "e:gå bort|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:være ligeglad med|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:skjule sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:hilse på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:sige op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:samle på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:redde liv|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:basere på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:stå ved|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:kende til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:kaste op|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:frygte for|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bide i|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:bide i|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:pakke ind|phrase#1": {
+   "same": true,
+   "note": ""
+  }
+ },
+ "repairs": {
+  "e:slå op|phrase#2": {
+   "problems": [
+    "sense: The Danish sentence 'Hun slår op i ordbogen for at finde ordet' means 'She looks up in the dictionary to find the word', which matches the meaning 'to open (a book, dictionary)' only loosely; 'slå op i' specifically means 'to look up' (consult), not simply 'to open'.",
+    "translations: The English translation 'She looks up the dictionary to find the word' is unnatural; it should be 'She looks up the word in the dictionary' or 'She looks in the dictionary to find the word'. The Ukrainian translation 'Вона шукає словник у словнику, щоб знайти це слово' is incorrect and unnatural; it says 'She looks for the dictionary in the dictionary to find this word', which is nonsensical.",
+    "The English translation 'She looks up the dictionary' is incorrect; it should be 'She looks up the word in the dictionary' or 'She opens the dictionary'.",
+    "The Ukrainian translation 'Вона шукає словник у словнику, щоб знайти це слово' means 'She looks for the dictionary in the dictionary to find this word', which is nonsensical and does not match the Danish meaning."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She looks up the word in the dictionary.",
+     "ru": "Она ищет слово в словаре.",
+     "uk": "Вона шукає слово в словнику."
+    }
+   }
+  },
+  "e:smide ud|phrase#1": {
+   "problems": [
+    "grammar: 'Jeg smider ud de gamle aviser i morgen' has incorrect word order; the object 'de gamle aviser' must come between 'smider' and 'ud' (e.g., 'Jeg smider de gamle aviser ud i morgen') or the phrase must be kept together in a different construction.",
+    "Danish sentence has unnatural word order: 'Jeg smider ud de gamle aviser i morgen' should be 'Jeg smider de gamle aviser ud i morgen'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Jeg smider ud de gamle aviser i morgen' has incorrect word order; the object must be placed between the verb and the particle."
+   }
+  },
+  "e:smide ud|phrase#2": {
+   "problems": [
+    "grammar: 'Vagten smed ud de støjende gæster fra baren' has incorrect word order; the object 'de støjende gæster' must come between 'smed' and 'ud' (e.g., 'Vagten smed de støjende gæster ud fra baren').",
+    "Danish sentence has unnatural word order: 'Vagten smed ud de støjende gæster fra baren' should be 'Vagten smed de støjende gæster ud fra baren'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Vagten smed ud de støjende gæster fra baren' has incorrect word order; the object must be placed between the verb and the particle."
+   }
+  },
+  "e:godt nytår|phrase#1": {
+   "problems": [
+    "translations: Russian 'Желаю вам счастливого Нового года.' uses formal 'вам' while Danish 'dig' is informal singular; should be 'тебе' for consistency.",
+    "adjudicator: The Russian translation uses formal 'вам' while the Danish 'dig' is informal singular, creating an inconsistency in register."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I wish you a happy New Year.",
+     "ru": "Желаю тебе счастливого Нового года.",
+     "uk": "Бажаю тобі щасливого Нового року."
+    }
+   }
+  },
+  "e:vaske sig|phrase#1": {
+   "problems": [
+    "translations: Russian 'Я умываюсь каждое утро.' means 'I wash my face', which is narrower than Danish 'vasker mig' (to wash oneself, whole body). Should be 'Я моюсь каждое утро.'",
+    "adjudicator: The Russian translation 'умываюсь' means 'wash my face', which is narrower than the Danish 'vasker mig' (to wash oneself, whole body)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I wash myself every morning.",
+     "ru": "Я моюсь каждое утро.",
+     "uk": "Я миюся щоранку."
+    }
+   }
+  },
+  "e:høre til|phrase#1": {
+   "problems": [
+    "sense: Danish 'Den bog hører til på hylden.' means 'That book belongs on the shelf' (its proper place is there), but the meaning 'to belong (to)' implies ownership or membership, not location. The example does not clearly show the stated meaning.",
+    "The Russian translation 'Эта книга должна быть на полке' means 'This book should be on the shelf', which expresses obligation, not belonging. The Danish 'hører til' means 'belongs', so the correct translation is 'Эта книга принадлежит на полке' or more naturally 'Место этой книги на полке'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Den bog hører til på hylden' means 'That book belongs on the shelf' (its proper place), which does not clearly show the meaning 'to belong (to)' implying ownership or membership."
+   }
+  },
+  "e:falde sammen|phrase#2": {
+   "problems": [
+    "sense: 'Hun faldt sammen på sofaen' implies collapsing onto the sofa, which is a physical fall, but the meaning 'to collapse (of a person)' typically refers to collapsing from exhaustion or illness, not simply lying down. The sentence does not clearly convey the 'без сил' (without strength) aspect.",
+    "translations: The Russian translation 'рухнула' is too strong and implies a heavy, noisy fall, which is not necessarily implied by the Danish 'faldt sammen' in this context. A more neutral 'упала' or 'свалилась' would be better, but the current translation is not a faithful rendering of the Danish sentence's nuance.",
+    "The Russian translation 'рухнула' means 'collapsed' in a more structural/physical sense (like a building), while the meaning is specifically about a person collapsing from exhaustion. The Danish 'faldt sammen' and the English 'collapsed' fit the meaning, but the Russian should be 'упала без сил' or similar to match the meaning precisely."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Hun faldt sammen på sofaen efter arbejde' implies a physical collapse onto the sofa, which does not clearly convey the meaning 'to collapse (of a person) from exhaustion'."
+   }
+  },
+  "e:sørge for|phrase#2": {
+   "problems": [
+    "Ukrainian translation is unnatural: 'забезпечували їжею для всіх гостей' should be 'забезпечили їжею всіх гостей' (remove 'для', use perfective 'забезпечили' to match past completed action).",
+    "Ukrainian translation 'Вони забезпечували їжею для всіх гостей' is ungrammatical: 'забезпечували їжею' already means 'provided with food', adding 'для' is incorrect."
+   ],
+   "repair": {
+    "translations": {
+     "en": "They provided food for all the guests.",
+     "ru": "Они обеспечили едой всех гостей.",
+     "uk": "Вони забезпечили їжею всіх гостей."
+    }
+   }
+  },
+  "e:se frem|phrase#1": {
+   "problems": [
+    "sense: The Danish 'Jeg ser frem mod lyskrydset' means 'I am looking forward (in space) towards the traffic lights', which does not match the meaning 'to look ahead' (as in looking forward in time or generally ahead). The phrase 'ser frem' here is literal, but the translations 'I look forward to the traffic lights', 'Я с нетерпением жду светофоров', 'Я з нетерпінням чекаю на світлофори' all express anticipation (looking forward to an event), which is a different meaning. The Danish does not show the stated meaning.",
+    "translations: The English translation 'I look forward to the traffic lights' expresses anticipation, not the literal 'look ahead' meaning. The Russian and Ukrainian translations also express anticipation ('с нетерпением жду', 'з нетерпінням чекаю'), which does not match the Danish sentence's literal spatial meaning.",
+    "The Danish sentence 'Jeg ser frem mod lyskrydset' means 'I look ahead towards the traffic lights' (literal, physical direction), but the English translation 'I look forward to the traffic lights' and the Russian and Ukrainian translations ('Я с нетерпінням чекаю...' / 'Я з нетерпінням чекаю...') express anticipation ('to look forward to something'). The translations do not match the meaning of the Danish sentence."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Jeg ser frem mod lyskrydset' means 'I look ahead towards the traffic lights' (literal spatial direction), which does not match the stated meaning 'to look ahead' (as in looking forward in time or generally ahead)."
+   }
+  },
+  "e:falde ned|phrase#2": {
+   "problems": [
+    "sense: the Danish 'falde ned' means 'to fall down', not 'to calm down'; the sentence does not show the stated meaning",
+    "translations: English 'You have to fall down and breathe' does not match the stated meaning 'to calm down'",
+    "translations: Russian 'Нужно упасть и дышать' does not match the stated meaning 'успокаиваться'",
+    "translations: Ukrainian 'Треба впасти і дихати' does not match the stated meaning 'заспокоюватися'",
+    "English translation 'You have to fall down and breathe' does not match the meaning 'to calm down'",
+    "Russian translation 'Нужно упасть и дышать' does not match the meaning 'успокаиваться'",
+    "Ukrainian translation 'Треба впасти і дихати' does not match the meaning 'заспокоюватися'"
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Du skal falde ned og trække vejret' means 'You must fall down and breathe', which does not show the stated meaning 'to calm down'."
+   }
+  },
+  "e:gå væk|phrase#1": {
+   "problems": [
+    "grammar: 'Hunden' is common gender, but the pronoun 'den' is correct; however, the Ukrainian translation uses 'пішов' (masculine) for 'собака' (feminine), which is a grammatical error in Ukrainian",
+    "Ukrainian translation 'Собака пішов' uses masculine gender for 'собака', which is feminine in standard Ukrainian"
+   ],
+   "repair": {
+    "translations": {
+     "en": "The dog walked away when I called it.",
+     "ru": "Собака ушла, когда я её позвала.",
+     "uk": "Собака пішла, коли я її покликав."
+    }
+   }
+  },
+  "e:løbe ud|phrase#1": {
+   "problems": [
+    "translations: Russian 'Мой паспорт закончился' is unnatural; a passport does not 'закончился', it 'истёк' (истекать)",
+    "Russian translation 'Мой паспорт закончился' uses the wrong verb; 'истёк' is correct for a passport expiring"
+   ],
+   "repair": {
+    "translations": {
+     "en": "My passport ran out last week.",
+     "ru": "Мой паспорт истёк на прошлой неделе.",
+     "uk": "Мій паспорт закінчився минулого тижня."
+    }
+   }
+  },
+  "e:bryde ind|phrase#1": {
+   "problems": [
+    "translations: Russian 'Он ворвался прямо посреди моего предложения.' uses 'ворвался' (broke in forcibly) which does not match the meaning 'to interrupt (a conversation)'. A natural translation for interrupting a conversation would be 'Он перебил меня посреди предложения.'",
+    "translations: Ukrainian 'Він увірвався посеред мого речення.' uses 'увірвався' (broke in forcibly) which does not match the meaning 'to interrupt (a conversation)'. A natural translation would be 'Він перебив мене посеред речення.'",
+    "Russian translation 'Он ворвался прямо посреди моего предложения.' means 'He burst in right in the middle of my sentence' (physical entry), not 'He interrupted my sentence' (conversational interruption).",
+    "Ukrainian translation 'Він увірвався посеред мого речення.' means 'He burst in in the middle of my sentence' (physical entry), not 'He interrupted my sentence' (conversational interruption)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He broke in in the middle of my sentence.",
+     "ru": "Он перебил меня посреди предложения.",
+     "uk": "Він перебив мене посеред речення."
+    }
+   }
+  },
+  "e:hænge i|phrase#2": {
+   "problems": [
+    "sense: 'Hun hænger i med lektierne hver aften' means 'She perseveres with her homework every night', not 'She keeps up with her homework every night'. The Danish implies continuous effort, not necessarily successful completion.",
+    "translations: English 'She keeps up with her homework every night' implies she completes it successfully, which is not the exact meaning of 'hænge i' (to keep at it/persevere).",
+    "translations: Russian 'Она каждый вечер делает домашнее задание' means 'She does her homework every night', which drops the nuance of perseverance and changes the meaning.",
+    "translations: Ukrainian 'Вона встигає виконувати домашнє завдання щовечора' means 'She manages to complete her homework every night', which drops the nuance of perseverance and changes the meaning.",
+    "The English translation 'She keeps up with her homework every night' does not match the meaning 'to keep at it'. 'Keeps up with' implies completing or managing, while 'keep at it' means to persist or continue trying. The Russian and Ukrainian translations also reflect 'manages to do' rather than 'continues to try'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She keeps at it with her homework every night.",
+     "ru": "Она продолжает стараться с домашним заданием каждый вечер.",
+     "uk": "Вона продовжує старатися з домашнім завданням щовечора."
+    }
+   }
+  },
+  "e:slå ihjel|phrase#1": {
+   "problems": [
+    "translations: Russian 'Он впервые за войну убил' is unnatural. A more natural phrasing would be 'Он впервые убил на войне' or 'На войне он убил впервые'.",
+    "translations: Ukrainian 'Він убив уперше у війні' is unnatural. A more natural phrasing would be 'Він уперше вбив на війні'.",
+    "The Russian translation 'Он впервые за войну убил' means 'He killed for the first time in the war', which is a completed action in the past. The Danish sentence 'Han slog ihjel for første gang i krigen' uses the past tense 'slog ihjel', which also describes a completed action. However, the meaning given is the infinitive 'убивать' (to kill, imperfective), which implies an ongoing or repeated action. The example does not illustrate the imperfective aspect of the meaning."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He killed for the first time in the war.",
+     "ru": "Он впервые убил на войне.",
+     "uk": "Він уперше вбив на війні."
+    }
+   }
+  },
+  "m:slå ihjel|phrase#2": {
+   "problems": [
+    "meaning: Ukrainian 'згаяти (час)' is perfective, while the Danish 'slå ihjel' and Russian 'тратить (время) впустую' are imperfective; the meaning should be 'гаяти (час)' or 'згаювати (час)'.",
+    "adjudicator: The Ukrainian meaning 'згаяти' is perfective, while the Danish 'slå ihjel' and Russian 'тратить' are imperfective, creating an aspect mismatch."
+   ],
+   "repair": {
+    "meaning": {
+     "ru": "тратить (время) впустую",
+     "en": "to kill (time)",
+     "uk": "гаяти (час)"
+    }
+   }
+  },
+  "e:slå ihjel|phrase#2": {
+   "problems": [
+    "grammar: 'Vi slog ihjel med at spille kort hele eftermiddagen' is unidiomatic; the phrase 'slå ihjel' requires an object like 'tiden', e.g., 'Vi slog tiden ihjel med at spille kort...'",
+    "translations: English 'We killed playing cards all afternoon' is unnatural and ungrammatical; it should be 'We killed time playing cards all afternoon.'",
+    "translations: Russian 'Мы весь день убивали игровые карты' means 'We killed playing cards' (as in destroying cards), not 'killed time'; it should be 'Мы убивали время, играя в карты весь день.'",
+    "translations: Ukrainian 'Ми весь день грали в карти' means 'We played cards all day' and omits the meaning of 'killing time'; it should be 'Ми гаяли час, граючи в карти весь день.'",
+    "English translation 'We killed playing cards all afternoon.' is ungrammatical and does not convey the meaning 'to kill time'.",
+    "Russian translation 'Мы весь день убивали игровые карты.' means 'We killed playing cards' (as in destroying them), not 'killed time playing cards'.",
+    "Ukrainian translation 'Ми весь день грали в карти.' means 'We played cards all day' and omits the 'killing time' aspect."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Vi slog ihjel med at spille kort hele eftermiddagen' is ungrammatical because 'slå ihjel' requires an object like 'tiden'."
+   }
+  },
+  "e:sige op|phrase#1": {
+   "problems": [
+    "translations: Russian 'Вчера она ушла в отставку' is too formal and not a faithful translation of 'sagde op' (to resign from a job); a more accurate and natural translation is 'Она уволилась вчера'.",
+    "adjudicator: The Russian translation 'ушла в отставку' means 'resigned' in a formal, official capacity, which is a different meaning from the casual job resignation of 'sagde op'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "She resigned yesterday.",
+     "ru": "Она уволилась вчера.",
+     "uk": "Вона звільнилася вчора."
+    }
+   }
+  },
+  "e:redde liv|phrase#1": {
+   "problems": [
+    "sense: The Danish 'Lægen reddede liv på hospitalet i nat' uses 'liv' (singular) but the meaning is 'to save a life' (singular), while the English translation 'saved lives' and Russian 'спас жизни' are plural. The Danish should be 'reddede liv' (plural) or the translations should be singular.",
+    "translations: English 'The doctor saved lives' is plural, but the Danish 'reddede liv' is singular in form (though it can be idiomatic for saving lives in general, the meaning specifies 'a life'). The Ukrainian 'врятував життя' is singular, matching the Danish, but the English and Russian are inconsistent.",
+    "The Danish sentence 'Lægen reddede liv på hospitalet i nat.' means 'The doctor saved lives at the hospital last night', but the English translation says 'saved lives in the hospital', which is a minor difference, but the Russian translation 'Врач спас жизни в больнице прошлой ночью.' and Ukrainian translation 'Лікар врятував життя в лікарні минулої ночі.' both use plural 'жизни'/'життя' (lives) while the Danish 'liv' is singular/plural ambiguous, but the meaning is 'to save a life' (singular). The translations should match the singular meaning 'a life'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The doctor saved a life at the hospital last night.",
+     "ru": "Врач спас жизнь в больнице прошлой ночью.",
+     "uk": "Лікар врятував життя в лікарні минулої ночі."
+    }
+   }
+  },
+  "e:stå ved|phrase#1": {
+   "problems": [
+    "translations: Russian 'Он стоит на своём решении переехать' is unnatural; a more idiomatic rendering is 'Он не отказывается от своего решения переехать' or 'Он придерживается своего решения переехать'.",
+    "translations: Ukrainian 'Він стоїть на своєму рішенні переїхати' is a calque from Russian and unnatural; a more idiomatic rendering is 'Він не відмовляється від свого рішення переїхати' or 'Він дотримується свого рішення переїхати'.",
+    "Russian translation 'Он стоит на своём решении переехать' means 'He insists on his decision to move', not 'He stands by his decision to move' (which implies accepting responsibility for it).",
+    "Ukrainian translation 'Він стоїть на своєму рішенні переїхати' means 'He insists on his decision to move', not 'He stands by his decision to move' (which implies accepting responsibility for it)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "He stands by his decision to move.",
+     "ru": "Он не отказывается от своего решения переехать.",
+     "uk": "Він не відмовляється від свого рішення переїхати."
+    }
+   }
+  },
+  "e:kaste op|phrase#1": {
+   "problems": [
+    "translations: Ukrainian 'Собака блював на підлогу' uses masculine gender for 'собака', but 'собака' is feminine in standard Ukrainian; it should be 'Собака блювала на підлогу'.",
+    "Ukrainian translation 'Собака блював на підлогу' uses masculine verb form for 'собака', but 'собака' is feminine in standard Ukrainian, so it should be 'Собака блювала на підлогу'."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The dog vomited on the floor.",
+     "ru": "Собака вырвала на пол.",
+     "uk": "Собака блювала на підлогу."
+    }
+   }
+  },
+  "e:frygte for|phrase#1": {
+   "problems": [
+    "translations: Russian 'Я переживаю за его здоровье после аварии' translates 'frygter for' as 'переживаю', which is weaker and does not convey the fear implied by 'frygter for'; a more accurate translation is 'Я боюсь за его здоровье после аварии'.",
+    "translations: Ukrainian 'Я хвилююся за його здоров'я після аварії' translates 'frygter for' as 'хвилююся', which is weaker and does not convey the fear implied by 'frygter for'; a more accurate translation is 'Я боюся за його здоров'я після аварії'.",
+    "Russian translation 'Я переживаю за его здоровье после аварии' means 'I worry about his health', not 'I fear for his health' (which implies a stronger sense of danger or threat).",
+    "Ukrainian translation 'Я хвилююся за його здоров'я після аварії' means 'I worry about his health', not 'I fear for his health' (which implies a stronger sense of danger or threat)."
+   ],
+   "repair": {
+    "translations": {
+     "en": "I fear for his health after the accident.",
+     "ru": "Я боюсь за его здоровье после аварии.",
+     "uk": "Я боюся за його здоров'я після аварії."
+    }
+   }
+  },
+  "e:bide i|phrase#1": {
+   "problems": [
+    "translations: Ukrainian translation 'Собака вкусив м'яч і не відпускав.' uses masculine verb 'вкусив' and 'не відпускав' for 'собака', which is feminine in Ukrainian; should be 'вкусила' and 'не відпускала'.",
+    "adjudicator: The Ukrainian translation uses masculine verb forms 'вкусив' and 'не відпускав' for the feminine noun 'собака', which is a grammatical error."
+   ],
+   "repair": {
+    "translations": {
+     "en": "The dog bit the ball and wouldn't let go.",
+     "ru": "Собака укусила мяч и не отпускала.",
+     "uk": "Собака вкусила м'яч і не відпускала."
+    }
+   }
+  },
+  "e:bide i|phrase#2": {
+   "problems": [
+    "sense: Danish 'Fisken bed i med det samme, og jeg fik den op.' uses 'bed i' without an object, meaning 'bit' (as in took the bait), but the meaning 'to take the bait' is figurative; the sentence describes a literal fish biting a hook, which is a literal action, not the figurative meaning 'to take the bait' (попасться на удочку). The literal action is better covered by 'bide på' or similar, not the figurative phrase.",
+    "translations: English translation 'The fish bit in right away, and I got it up.' is unnatural; 'bit in' is not idiomatic for a fish taking a hook; should be 'bit' or 'took the bait'.",
+    "translations: Russian translation 'Рыба сразу же укусила, и я её поднял.' uses 'укусила' (bit, as in wounded with teeth) which is not idiomatic for a fish taking a hook; should be 'клюнула' or 'схватила наживку'.",
+    "translations: Ukrainian translation 'Риба одразу врізалася, і я її підняв.' uses 'врізалася' (crashed into) which is incorrect; should be 'клюнула' or 'вхопила наживку'.",
+    "The Russian translation 'Рыба сразу же укусила' means 'The fish bit' in a general sense, not 'took the bait' as required by the meaning.",
+    "The Ukrainian translation 'Риба одразу врізалася' means 'The fish crashed into' or 'hit', which does not correspond to the meaning 'клюнути (на гачок)' or the Danish 'bed i' in this context."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Fisken bed i med det samme' uses 'bed i' literally (the fish bit the hook), which does not illustrate the figurative meaning 'to take the bait' (попасться на удочку)."
+   }
+  },
+  "e:pakke ind|phrase#1": {
+   "problems": [
+    "grammar: Danish 'Jeg pakker ind gaverne til fødselsdagen.' has incorrect word order; the particle 'ind' should follow the object when it is a definite noun: 'Jeg pakker gaverne ind til fødselsdagen.'",
+    "adjudicator: The Danish sentence has incorrect word order for a phrasal verb with a definite object; it should be 'Jeg pakker gaverne ind'."
+   ],
+   "repair": {
+    "drop": "The Danish sentence 'Jeg pakker ind gaverne til fødselsdagen' has incorrect word order for a phrasal verb with a definite object; it should be 'Jeg pakker gaverne ind'."
+   }
+  }
+ }
+}
