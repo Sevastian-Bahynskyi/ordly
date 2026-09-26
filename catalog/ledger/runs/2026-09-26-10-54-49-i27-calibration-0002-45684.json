@@ -1,0 +1,71 @@
+{
+ "run": "2026-09-26-10-54-49-i27-calibration-0002-45684",
+ "issue": 27,
+ "batch": "calibration-0002",
+ "command": "./scripts/generate-family-batch.ts --work catalog/pipeline/calibration-0002/families/work/batch-0001.json --out catalog/pipeline/calibration-0002/families/out/batch-0001.json --fullforms ddo-fullforms_251126.csv",
+ "startedAt": "2026-09-26T10:54:49.568Z",
+ "updatedAt": "2026-09-26T10:55:46.929Z",
+ "estimateUsd": null,
+ "lines": [
+  {
+   "service": "deepseek",
+   "op": "deepseek.generate",
+   "model": "DeepSeek-V4-Pro",
+   "scope": "family",
+   "calls": 10,
+   "inputTokens": 39567,
+   "outputTokens": 1785,
+   "chars": 0,
+   "seconds": 0,
+   "usd": 0.07505838
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-en",
+   "model": null,
+   "scope": "family",
+   "calls": 7,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 304,
+   "seconds": 0,
+   "usd": 0.00304
+  },
+  {
+   "service": "translator",
+   "op": "translator.da-ru",
+   "model": null,
+   "scope": "family",
+   "calls": 7,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 304,
+   "seconds": 0,
+   "usd": 0.00304
+  },
+  {
+   "service": "translator",
+   "op": "translator.en-da",
+   "model": null,
+   "scope": "family",
+   "calls": 7,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 292,
+   "seconds": 0,
+   "usd": 0.00292
+  },
+  {
+   "service": "translator",
+   "op": "translator.ru-da",
+   "model": null,
+   "scope": "family",
+   "calls": 7,
+   "inputTokens": 0,
+   "outputTokens": 0,
+   "chars": 267,
+   "seconds": 0,
+   "usd": 0.00267
+  }
+ ]
+}

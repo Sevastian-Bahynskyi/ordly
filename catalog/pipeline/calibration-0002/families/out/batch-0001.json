@@ -1,0 +1,118 @@
+[
+ {
+  "lemma": "nuværende",
+  "kind": "word",
+  "sense_id": "6d47239d-4006-5cea-bbe9-24eca4723b3c",
+  "level": "B1",
+  "situation": "social",
+  "grammar": "adjective-agreement",
+  "frame": "Den {target} {situation} er ret udfordrende.",
+  "slots": {
+   "situation": [
+    {
+     "da": "boligsituation"
+    },
+    {
+     "da": "jobsituation"
+    },
+    {
+     "da": "økonomiske situation"
+    }
+   ]
+  },
+  "variants": [
+   {
+    "slots": {
+     "situation": 0
+    },
+    "target": "nuværende",
+    "en": "The current housing situation is quite challenging.",
+    "ru": "Текущая жилищная ситуация довольно сложная."
+   },
+   {
+    "slots": {
+     "situation": 1
+    },
+    "target": "nuværende",
+    "en": "The current job situation is quite challenging.",
+    "ru": "Текущая ситуация с работой довольно сложная."
+   },
+   {
+    "slots": {
+     "situation": 2
+    },
+    "target": "nuværende",
+    "en": "The current economic situation is quite challenging.",
+    "ru": "Текущая экономическая ситуация весьма сложная."
+   }
+  ]
+ },
+ {
+  "sense_id": "6607080d-bb95-5f35-ba8e-89c0d2dca76a",
+  "lemma": "indføre",
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-past"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (indførte, indførtes) — pick one construction and stay in it for every variant"
+ },
+ {
+  "lemma": "regning",
+  "kind": "word",
+  "sense_id": "589f8abf-7397-598a-8e44-688243ef11d7",
+  "level": "A2",
+  "situation": "food-drink",
+  "grammar": "noun-definite",
+  "frame": "Kan jeg få {target}, tak?",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "regningen",
+    "en": "Can I have the bill, please?",
+    "ru": "Можно счёт, пожалуйста?"
+   },
+   {
+    "slots": {},
+    "target": "regningerne",
+    "en": "Can I have the bills, please?",
+    "ru": "Можно мне счета, пожалуйста?"
+   }
+  ]
+ },
+ {
+  "sense_id": "0d077894-d314-53c0-906f-9d7f2de36edd",
+  "lemma": "orientere",
+  "target": {
+   "level": "B1",
+   "situation": "work",
+   "grammar": "verb-past"
+  },
+  "skip": "style check: target forms mix an -s form (passive, genitive, or an unrelated word) with a non-s form (orienterede, orienterede, orienteredes) — pick one construction and stay in it for every variant; the alternative order \"Medarbejderne orienteredes om de opdaterede retningslinjer af direktøren.\" does not use exactly the words of \"Direktøren orienteredes medarbejderne om de opdaterede retningslinjer.\" — omit it or fix it"
+ },
+ {
+  "lemma": "manuskript",
+  "kind": "word",
+  "sense_id": "59d52d29-3beb-5479-aa8f-4a4854b525b6",
+  "level": "B1",
+  "situation": "leisure",
+  "grammar": "noun-definite",
+  "frame": "Forfatteren arbejdede på {target} hele natten.",
+  "slots": {},
+  "variants": [
+   {
+    "slots": {},
+    "target": "manuskriptet",
+    "en": "The writer worked on the script all night.",
+    "ru": "Сценарист работал над сценарием всю ночь."
+   },
+   {
+    "slots": {},
+    "target": "manuskripterne",
+    "en": "The writer worked on the scripts all night.",
+    "ru": "Сценарист работал над сценариями всю ночь."
+   }
+  ]
+ }
+]

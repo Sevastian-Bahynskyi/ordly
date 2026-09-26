@@ -19,7 +19,8 @@ export function speechText(text: string): string {
   return text.normalize('NFC').trim().replace(/\s+/gu, ' ').toLocaleLowerCase('da-DK')
 }
 
-export function speechObjectKey(text: string): string {
+/** `sentences/` holds sentence recordings (issue #27); every word and phrase is under `words/`. */
+export function speechObjectKey(text: string, folder: 'words' | 'sentences' = 'words'): string {
   const key = speechText(text)
   const slug = key
     .replace(/æ/gu, 'ae')
@@ -32,7 +33,7 @@ export function speechObjectKey(text: string): string {
     .slice(0, 60)
     .replace(/-+$/u, '')
   const digest = createHash('sha1').update(key).digest('hex').slice(0, 8)
-  return `words/${slug || 'word'}-${digest}-azure.mp3`
+  return `${folder}/${slug || 'word'}-${digest}-azure.mp3`
 }
 
 function escapeXml(value: string): string {

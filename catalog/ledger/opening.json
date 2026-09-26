@@ -1,0 +1,281 @@
+{
+ "note": "Spend before the content program (2026-09-26), rebuilt from the local per-call log of #16 and #24 (catalog/families/azure-usage.json, not committed). Ukrainian ops are #24, the rest #16. DeepSeek at the price recorded per call; Translator and Speech priced at the list prices in lib/content-ledger.ts.",
+ "calls": 37610,
+ "runs": [
+  {
+   "run": "opening-16",
+   "issue": 16,
+   "batch": null,
+   "command": "opening balance from catalog/families/azure-usage.json",
+   "startedAt": "2026-09-25T13:51:03.394Z",
+   "updatedAt": "2026-09-25T19:48:38.472Z",
+   "estimateUsd": null,
+   "lines": [
+    {
+     "service": "deepseek",
+     "op": "deepseek.generate",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 442,
+     "inputTokens": 1463767,
+     "outputTokens": 93343,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 2.87178822
+    },
+    {
+     "service": "translator",
+     "op": "translator.en",
+     "model": null,
+     "scope": null,
+     "calls": 67,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 4328,
+     "seconds": 0,
+     "usd": 0.04328
+    },
+    {
+     "service": "translator",
+     "op": "translator.ru",
+     "model": null,
+     "scope": null,
+     "calls": 67,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 4328,
+     "seconds": 0,
+     "usd": 0.04328
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-en",
+     "model": null,
+     "scope": null,
+     "calls": 804,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 38514,
+     "seconds": 0,
+     "usd": 0.38514
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-ru",
+     "model": null,
+     "scope": null,
+     "calls": 804,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 38514,
+     "seconds": 0,
+     "usd": 0.38514
+    },
+    {
+     "service": "translator",
+     "op": "translator.en-da",
+     "model": null,
+     "scope": null,
+     "calls": 819,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 40645,
+     "seconds": 0,
+     "usd": 0.40645
+    },
+    {
+     "service": "translator",
+     "op": "translator.ru-da",
+     "model": null,
+     "scope": null,
+     "calls": 841,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 38575,
+     "seconds": 0,
+     "usd": 0.38575
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.classify-phrases",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 15,
+     "inputTokens": 13845,
+     "outputTokens": 24152,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.10813926
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.phrase-senses",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 167,
+     "inputTokens": 78523,
+     "outputTokens": 12170,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.17898162
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 590,
+     "inputTokens": 417995,
+     "outputTokens": 82570,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 1.0146549
+    },
+    {
+     "service": "deepseek",
+     "op": "ledger-correction",
+     "model": null,
+     "scope": null,
+     "calls": 1,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 1.2
+    },
+    {
+     "service": "speech",
+     "op": "speech.tts",
+     "model": null,
+     "scope": null,
+     "calls": 6262,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 83554,
+     "seconds": 0,
+     "usd": 1.25331
+    },
+    {
+     "service": "speech",
+     "op": "speech.stt",
+     "model": null,
+     "scope": null,
+     "calls": 5994,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 0,
+     "seconds": 11695.1715625,
+     "usd": 3.24866071
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.judge-speech",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 10,
+     "inputTokens": 5758,
+     "outputTokens": 16736,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.0682602
+    },
+    {
+     "service": "speech",
+     "op": "speech.assess",
+     "model": null,
+     "scope": null,
+     "calls": 5545,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 0,
+     "seconds": 11815.695625,
+     "usd": 3.28213682
+    }
+   ],
+   "note": "Concurrent runs on 2026-09-25 overwrote each other's ledger writes; per-process spend deltas show ~$1.0-1.1 unrecorded. Added $1.2 so the budget check errs high. Fixed in scripts/azure-corpus.ts (merge-on-write)."
+  },
+  {
+   "run": "opening-24",
+   "issue": 24,
+   "batch": null,
+   "command": "opening balance from catalog/families/azure-usage.json",
+   "startedAt": "2026-09-25T20:56:18.406Z",
+   "updatedAt": "2026-09-25T23:45:15.877Z",
+   "estimateUsd": null,
+   "lines": [
+    {
+     "service": "deepseek",
+     "op": "deepseek.locale-uk",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 177,
+     "inputTokens": 410922,
+     "outputTokens": 150786,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 1.23973956
+    },
+    {
+     "service": "translator",
+     "op": "translator.da-uk",
+     "model": null,
+     "scope": null,
+     "calls": 7427,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 241556,
+     "seconds": 0,
+     "usd": 2.41556
+    },
+    {
+     "service": "translator",
+     "op": "translator.uk-da",
+     "model": null,
+     "scope": null,
+     "calls": 7351,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 233737,
+     "seconds": 0,
+     "usd": 2.33737
+    },
+    {
+     "service": "translator",
+     "op": "translator.en-uk",
+     "model": null,
+     "scope": null,
+     "calls": 50,
+     "inputTokens": 0,
+     "outputTokens": 0,
+     "chars": 1771,
+     "seconds": 0,
+     "usd": 0.01771
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.translate-uk",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 1,
+     "inputTokens": 167,
+     "outputTokens": 22,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 0.00036714
+    },
+    {
+     "service": "deepseek",
+     "op": "deepseek.review-uk",
+     "model": "DeepSeek-V4-Pro",
+     "scope": null,
+     "calls": 176,
+     "inputTokens": 715847,
+     "outputTokens": 347523,
+     "chars": 0,
+     "seconds": 0,
+     "usd": 2.45495382
+    }
+   ]
+  }
+ ]
+}

@@ -5,8 +5,9 @@
  *   pnpm exec tsx scripts/import-catalog-families.ts --sql-dir <dir>    # write the chunk statements only
  *   … --published catalog/families/published.jsonl,catalog/expansion/families/published.jsonl
  *
- * Reads `catalog/families/published.jsonl` (or every snapshot named, as one), which only ever holds
- * families the gate accepted and an audit approved. One snapshot covers everything loaded: the
+ * Reads `catalog/families/published.jsonl` and every batch the content pipeline published
+ * (`catalog/pipeline/<batch>/publish/families.jsonl`, issue #27) — or every snapshot named, as one — which
+ * only ever hold families the gate accepted and an audit approved. One snapshot covers everything loaded: the
  * cleanup deletes whatever it lacks, so the catalog's and the expansion's families load together.
  * Chunks are idempotent upserts; the final cleanup removes families an older snapshot had, and
  * refuses to run unless every family of this snapshot is in the database.
@@ -14,7 +15,7 @@
  * Translation overlays beside the snapshot (`catalog/families/translations-<lang>.json`, issue #24)
  * are added to each variant whose Danish they still translate.
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { PublishedFamily } from '../lib/catalog-families'
 import { existsSync } from 'node:fs'
@@ -25,7 +26,9 @@ import { query } from './catalog-db'
 
 const argv = process.argv.slice(2)
 const option = (flag: string): string | null => (argv.includes(flag) ? argv[argv.indexOf(flag) + 1] : null)
-const path = option('--published') || 'catalog/families/published.jsonl'
+const pipelineDir = 'catalog/pipeline'
+const pipelineBatches = existsSync(pipelineDir) ? (await readdir(pipelineDir)).sort().map((name) => join(pipelineDir, name, 'publish')).filter((dir) => existsSync(join(dir, 'families.jsonl'))) : []
+const path = option('--published') || ['catalog/families/published.jsonl', ...pipelineBatches.map((dir) => join(dir, 'families.jsonl'))].join(',')
 const sqlDir = option('--sql-dir')
 const chunkSize = Number(option('--chunk') || 50)
 const generator = option('--generator') || 'families-2026-09-25'
@@ -41,8 +44,9 @@ const snapshot = snapshotId(lines)
 const families = lines.map((line) => JSON.parse(line) as PublishedFamily)
 const extra: TranslationOverlay = {}
 for (const lang of ['uk']) {
-  const overlayPath = `catalog/families/translations-${lang}.json`
-  if (existsSync(overlayPath)) extra[lang] = JSON.parse(await readFile(overlayPath, 'utf8'))
+  for (const overlayPath of [`catalog/families/translations-${lang}.json`, ...pipelineBatches.map((dir) => join(dir, `translations-${lang}.json`))]) {
+    if (existsSync(overlayPath)) extra[lang] = { ...extra[lang], ...JSON.parse(await readFile(overlayPath, 'utf8')) }
+  }
 }
 if (extra.uk) {
   // The overlay was gated when it was written; it is checked again here because it is a file

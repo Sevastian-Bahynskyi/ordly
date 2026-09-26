@@ -1,0 +1,229 @@
+[
+ {
+  "id": "m:komme hjem|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:komme hjem|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:komme hjem|phrase#1",
+  "kind": "example",
+  "unit": "entry:komme hjem|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: English 'I'll be home' is a future construction, while Danish 'Jeg kommer hjem' is present tense; the meaning is not faithfully rendered.",
+   "translations: Russian 'Сегодня я буду дома' means 'I will be at home', not 'I come home', dropping the motion verb.",
+   "translations: Ukrainian 'Я буду вдома' means 'I will be at home', not 'I come home', dropping the motion verb.",
+   "The Danish sentence 'Jeg kommer hjem klokken fem i dag.' means 'I am coming home at five o'clock today.' The English translation 'I'll be home at five o'clock today.' changes the verb from 'come home' to 'be home', which is a different meaning. The Russian translation 'Сегодня я буду дома в пять часов.' and Ukrainian translation 'Я буду вдома о п'ятій годині сьогодні.' also use 'be home' instead of 'come home'."
+  ]
+ },
+ {
+  "id": "m:tænke sig|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:tænke sig|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:tænke sig|phrase#1",
+  "kind": "example",
+  "unit": "entry:tænke sig|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: Russian 'Можешь представить себе дом у пляжа?' uses 'у пляжа' (by the beach, genitive) which is a calque from English; natural Russian would be 'дом на пляже' or 'дом у моря'.",
+   "The Russian translation 'Можешь представить себе дом у пляжа?' contains a grammatical error: 'у пляжа' should be 'на пляже' or 'у моря' to mean 'by the beach'."
+  ]
+ },
+ {
+  "id": "m:tænke sig|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:tænke sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:tænke sig|phrase#2",
+  "kind": "example",
+  "unit": "entry:tænke sig|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "m:skrive til|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:skrive til|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:skrive til|phrase#1",
+  "kind": "example",
+  "unit": "entry:skrive til|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: Ukrainian 'подрузі' means 'female friend', while Danish 'min ven' is masculine or gender-neutral; the gender is changed.",
+   "The Ukrainian translation 'Вчора я написав подрузі.' uses 'подрузі' (female friend), but the Danish 'min ven' and English 'my friend' are gender-neutral. The Russian translation 'своему другу' uses the masculine form, creating inconsistency."
+  ]
+ },
+ {
+  "id": "m:spille på|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:spille på|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:spille på|phrase#1",
+  "kind": "example",
+  "unit": "entry:spille på|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: Russian 'каждую ночь' means 'every night', but Danish 'hver aften' means 'every evening'; the time of day is changed.",
+   "adjudicator: The Russian translation 'каждую ночь' means 'every night', which does not match the Danish 'hver aften' (every evening), changing the time of day."
+  ]
+ },
+ {
+  "id": "m:spille på|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:spille på|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:spille på|phrase#2",
+  "kind": "example",
+  "unit": "entry:spille på|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "sense: the Danish 'Han spiller på, at han snart skal flytte' means 'He is betting on the fact that he will soon move' (relying on it), not 'alluding to' it. The English translation 'He is betting that he will soon be moving' is faithful to the Danish but does not match the meaning 'to allude to'.",
+   "translations: the Russian and Ukrainian translations ('ставит на то, что...') mean 'bets on the fact that...', which matches the Danish sentence but not the stated meaning 'намекать на' / 'натякати на'.",
+   "The Danish sentence 'Han spiller på, at han snart skal flytte.' means 'He is betting/alluding to the fact that he will soon move', but the English translation 'He is betting that he will soon be moving.' uses 'betting' which does not match the meaning 'to allude to'. The Russian and Ukrainian translations also use 'ставить на' (to bet on) instead of 'намекать на' / 'натякати на' (to allude to)."
+  ]
+ },
+ {
+  "id": "m:gå med|phrase#1",
+  "kind": "meaning",
+  "unit": "entry:gå med|phrase",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "its paired meaning or example was rejected"
+  ]
+ },
+ {
+  "id": "e:gå med|phrase#1",
+  "kind": "example",
+  "unit": "entry:gå med|phrase",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "translations: the Russian translation 'на участок' means 'to the police station/precinct', not 'to the station' (вокзал/станцию). The Ukrainian translation 'на вокзал' correctly means 'to the (train) station', but the Russian is a mistranslation.",
+   "The Russian translation 'Пойдёшь со мной на участок?' means 'Will you go with me to the precinct/plot?', which does not match the Danish 'stationen' (station) or the English 'station' and Ukrainian 'вокзал' (station)."
+  ]
+ },
+ {
+  "id": "m:gå med|phrase#2",
+  "kind": "meaning",
+  "unit": "entry:gå med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "e:gå med|phrase#2",
+  "kind": "example",
+  "unit": "entry:gå med|phrase",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "s:732979a9-f617-560a-8301-bfeb75b00815",
+  "kind": "sentence",
+  "unit": "family:3639c85e-24fd-56ed-a7b9-208538bff118",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "s:383ac909-d844-5c84-8a45-c176e692c3d5",
+  "kind": "sentence",
+  "unit": "family:3639c85e-24fd-56ed-a7b9-208538bff118",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "s:c0a992ca-0bed-5a48-a91f-855f40d0fed8",
+  "kind": "sentence",
+  "unit": "family:3639c85e-24fd-56ed-a7b9-208538bff118",
+  "passed": true,
+  "stage": null,
+  "problems": []
+ },
+ {
+  "id": "s:2f6bb179-006f-5d72-81c7-32b74384702d",
+  "kind": "sentence",
+  "unit": "family:a9dbf679-23e2-5e36-ae29-9b9a8c598fbb",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "regning: level A2 is below this word's band (B1)"
+  ]
+ },
+ {
+  "id": "s:398dc084-eb60-51e9-88d7-f8a8490a59e9",
+  "kind": "sentence",
+  "unit": "family:a9dbf679-23e2-5e36-ae29-9b9a8c598fbb",
+  "passed": false,
+  "stage": "gate",
+  "problems": [
+   "regning: level A2 is below this word's band (B1)"
+  ]
+ },
+ {
+  "id": "s:65c65af8-4f3c-581e-956e-3747e44f5a53",
+  "kind": "sentence",
+  "unit": "family:9da6fbd6-8cb8-5e04-a578-8b4434d1e643",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "sense: 'manuskriptet' means 'the manuscript', but the translations use 'script'/'сценарий'/'сценарій', which is a narrower meaning (screenplay) not stated in the meaning field ('manuscript'/'рукопись'). The Danish word can mean manuscript in general, but the translations restrict it incorrectly.",
+   "Meaning mismatch: Danish 'manuskript' means 'manuscript', but translations use 'script'/'сценарий'/'сценарій' (which is 'manuskript' in a film/theatre context, but the given meaning is 'manuscript'/'рукопись'). The English 'script' and Russian/Ukrainian 'сценарий'/'сценарій' do not match the stated meaning 'manuscript'/'рукопись'."
+  ]
+ },
+ {
+  "id": "s:fec58b6a-d65d-5acd-914b-2e867d3b1aea",
+  "kind": "sentence",
+  "unit": "family:9da6fbd6-8cb8-5e04-a578-8b4434d1e643",
+  "passed": false,
+  "stage": "review",
+  "problems": [
+   "sense: 'manuskripterne' means 'the manuscripts', but the translations use 'scripts'/'сценариями'/'сценаріями', which is a narrower meaning (screenplays) not stated in the meaning field ('manuscript'/'рукопись'). The Danish word can mean manuscripts in general, but the translations restrict it incorrectly.",
+   "Meaning mismatch: Danish 'manuskripterne' means 'the manuscripts', but translations use 'scripts'/'сценариями'/'сценаріями' (which is 'manuskripter' in a film/theatre context, but the given meaning is 'manuscript'/'рукопись'). The English 'scripts' and Russian/Ukrainian 'сценариями'/'сценаріями' do not match the stated meaning 'manuscript'/'рукопись'."
+  ]
+ }
+]

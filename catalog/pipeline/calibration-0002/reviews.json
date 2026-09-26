@@ -1,0 +1,345 @@
+{
+ "reviews": {
+  "m:komme hjem|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:komme hjem|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: English 'I'll be home' is a future construction, while Danish 'Jeg kommer hjem' is present tense; the meaning is not faithfully rendered.",
+     "translations: Russian 'Сегодня я буду дома' means 'I will be at home', not 'I come home', dropping the motion verb.",
+     "translations: Ukrainian 'Я буду вдома' means 'I will be at home', not 'I come home', dropping the motion verb."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Jeg kommer hjem klokken fem i dag.' means 'I am coming home at five o'clock today.' The English translation 'I'll be home at five o'clock today.' changes the verb from 'come home' to 'be home', which is a different meaning. The Russian translation 'Сегодня я буду дома в пять часов.' and Ukrainian translation 'Я буду вдома о п'ятій годині сьогодні.' also use 'be home' instead of 'come home'."
+    ]
+   }
+  },
+  "m:tænke sig|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tænke sig|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'Можешь представить себе дом у пляжа?' uses 'у пляжа' (by the beach, genitive) which is a calque from English; natural Russian would be 'дом на пляже' or 'дом у моря'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Можешь представить себе дом у пляжа?' contains a grammatical error: 'у пляжа' should be 'на пляже' or 'у моря' to mean 'by the beach'."
+    ]
+   }
+  },
+  "m:tænke sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:tænke sig|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "m:skrive til|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:skrive til|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Ukrainian 'подрузі' means 'female friend', while Danish 'min ven' is masculine or gender-neutral; the gender is changed."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Ukrainian translation 'Вчора я написав подрузі.' uses 'подрузі' (female friend), but the Danish 'min ven' and English 'my friend' are gender-neutral. The Russian translation 'своему другу' uses the masculine form, creating inconsistency."
+    ]
+   }
+  },
+  "m:spille på|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:spille på|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: Russian 'каждую ночь' means 'every night', but Danish 'hver aften' means 'every evening'; the time of day is changed."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": false,
+    "reason": "The Russian translation 'каждую ночь' means 'every night', which does not match the Danish 'hver aften' (every evening), changing the time of day."
+   }
+  },
+  "m:spille på|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:spille på|phrase#2": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: the Danish 'Han spiller på, at han snart skal flytte' means 'He is betting on the fact that he will soon move' (relying on it), not 'alluding to' it. The English translation 'He is betting that he will soon be moving' is faithful to the Danish but does not match the meaning 'to allude to'.",
+     "translations: the Russian and Ukrainian translations ('ставит на то, что...') mean 'bets on the fact that...', which matches the Danish sentence but not the stated meaning 'намекать на' / 'натякати на'."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Danish sentence 'Han spiller på, at han snart skal flytte.' means 'He is betting/alluding to the fact that he will soon move', but the English translation 'He is betting that he will soon be moving.' uses 'betting' which does not match the meaning 'to allude to'. The Russian and Ukrainian translations also use 'ставить на' (to bet on) instead of 'намекать на' / 'натякати на' (to allude to)."
+    ]
+   }
+  },
+  "m:gå med|phrase#1": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå med|phrase#1": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "translations: the Russian translation 'на участок' means 'to the police station/precinct', not 'to the station' (вокзал/станцию). The Ukrainian translation 'на вокзал' correctly means 'to the (train) station', but the Russian is a mistranslation."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Пойдёшь со мной на участок?' means 'Will you go with me to the precinct/plot?', which does not match the Danish 'stationen' (station) or the English 'station' and Ukrainian 'вокзал' (station)."
+    ]
+   }
+  },
+  "m:gå med|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "e:gå med|phrase#2": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "The Russian translation 'Я присоединился к игре, хотя был уставшим.' uses 'уставшим' which is grammatically correct but stylistically less common than 'усталым' in this context; however, the main issue is that the Danish 'selvom' is correctly translated, but the Russian 'хотя был уставшим' is acceptable. No critical defect found. Wait, re-evaluating: 'уставшим' is a valid short form adjective, but 'усталым' is more typical. This is a minor stylistic nuance, not a clear error. The item is ok."
+    ]
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The Russian adjective 'уставшим' is grammatically correct and acceptable, and the translations accurately convey the meaning of the Danish sentence."
+   }
+  },
+  "s:732979a9-f617-560a-8301-bfeb75b00815": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:383ac909-d844-5c84-8a45-c176e692c3d5": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:c0a992ca-0bed-5a48-a91f-855f40d0fed8": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:2f6bb179-006f-5d72-81c7-32b74384702d": {
+   "a": {
+    "ok": true,
+    "problems": []
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   }
+  },
+  "s:398dc084-eb60-51e9-88d7-f8a8490a59e9": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'regningerne' (plural) does not match the meaning 'bill, check (at a restaurant)', which is typically singular in this context; a plural request for multiple bills is unnatural and does not clearly show the stated meaning."
+    ]
+   },
+   "b": {
+    "ok": true,
+    "problems": []
+   },
+   "adjudication": {
+    "ok": true,
+    "reason": "The plural 'regningerne' is natural when asking for separate bills for a group, and the translations correctly reflect this meaning."
+   }
+  },
+  "s:65c65af8-4f3c-581e-956e-3747e44f5a53": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'manuskriptet' means 'the manuscript', but the translations use 'script'/'сценарий'/'сценарій', which is a narrower meaning (screenplay) not stated in the meaning field ('manuscript'/'рукопись'). The Danish word can mean manuscript in general, but the translations restrict it incorrectly."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Meaning mismatch: Danish 'manuskript' means 'manuscript', but translations use 'script'/'сценарий'/'сценарій' (which is 'manuskript' in a film/theatre context, but the given meaning is 'manuscript'/'рукопись'). The English 'script' and Russian/Ukrainian 'сценарий'/'сценарій' do not match the stated meaning 'manuscript'/'рукопись'."
+    ]
+   }
+  },
+  "s:fec58b6a-d65d-5acd-914b-2e867d3b1aea": {
+   "a": {
+    "ok": false,
+    "problems": [
+     "sense: 'manuskripterne' means 'the manuscripts', but the translations use 'scripts'/'сценариями'/'сценаріями', which is a narrower meaning (screenplays) not stated in the meaning field ('manuscript'/'рукопись'). The Danish word can mean manuscripts in general, but the translations restrict it incorrectly."
+    ]
+   },
+   "b": {
+    "ok": false,
+    "problems": [
+     "Meaning mismatch: Danish 'manuskripterne' means 'the manuscripts', but translations use 'scripts'/'сценариями'/'сценаріями' (which is 'manuskripter' in a film/theatre context, but the given meaning is 'manuscript'/'рукопись'). The English 'scripts' and Russian/Ukrainian 'сценариями'/'сценаріями' do not match the stated meaning 'manuscript'/'рукопись'."
+    ]
+   }
+  }
+ },
+ "backchecks": {
+  "e:komme hjem|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tænke sig|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:tænke sig|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:skrive til|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:spille på|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:spille på|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå med|phrase#1": {
+   "same": true,
+   "note": ""
+  },
+  "e:gå med|phrase#2": {
+   "same": true,
+   "note": ""
+  },
+  "s:732979a9-f617-560a-8301-bfeb75b00815": {
+   "same": true,
+   "note": ""
+  },
+  "s:383ac909-d844-5c84-8a45-c176e692c3d5": {
+   "same": true,
+   "note": ""
+  },
+  "s:c0a992ca-0bed-5a48-a91f-855f40d0fed8": {
+   "same": true,
+   "note": ""
+  },
+  "s:2f6bb179-006f-5d72-81c7-32b74384702d": {
+   "same": true,
+   "note": ""
+  },
+  "s:398dc084-eb60-51e9-88d7-f8a8490a59e9": {
+   "same": true,
+   "note": ""
+  },
+  "s:65c65af8-4f3c-581e-956e-3747e44f5a53": {
+   "same": true,
+   "note": ""
+  },
+  "s:fec58b6a-d65d-5acd-914b-2e867d3b1aea": {
+   "same": true,
+   "note": ""
+  }
+ }
+}

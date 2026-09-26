@@ -1,0 +1,221 @@
+{
+ "issue": 27,
+ "name": "calibration-0002",
+ "note": "Second, independent batch for issue #27: estimated from the profile measured on calibration-0001, then run, to check the estimate against the actual spend.",
+ "audio": true,
+ "audit": {
+  "seed": 2702,
+  "size": 20
+ },
+ "entries": [
+  {
+   "lemma": "komme hjem",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "kom hjem",
+    "komme hjem",
+    "kommede hjem",
+    "kommer hjem",
+    "kommet hjem"
+   ]
+  },
+  {
+   "lemma": "tænke sig",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "tænk dig",
+    "tænk jer",
+    "tænk mig",
+    "tænk os",
+    "tænk sig",
+    "tænke dig",
+    "tænke jer",
+    "tænke mig",
+    "tænke os",
+    "tænke sig",
+    "tænker dig",
+    "tænker jer",
+    "tænker mig",
+    "tænker os",
+    "tænker sig",
+    "tænkt dig",
+    "tænkt jer",
+    "tænkt mig",
+    "tænkt os",
+    "tænkt sig",
+    "tænkte dig",
+    "tænkte jer",
+    "tænkte mig",
+    "tænkte os",
+    "tænkte sig"
+   ]
+  },
+  {
+   "lemma": "skrive til",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "skrev til",
+    "skreven til",
+    "skrevet til",
+    "skrevne til",
+    "skriv til",
+    "skrive til",
+    "skriver til"
+   ]
+  },
+  {
+   "lemma": "spille på",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "spil på",
+    "spille på",
+    "spillede på",
+    "spiller på",
+    "spillet på"
+   ]
+  },
+  {
+   "lemma": "gå med",
+   "kind": "phrase",
+   "pos": "verb",
+   "forms": [
+    "gak med",
+    "gik med",
+    "gå med",
+    "gåede med",
+    "gået med",
+    "går med"
+   ]
+  }
+ ],
+ "families": [
+  {
+   "lemma": "nuværende",
+   "kind": "word",
+   "sense_id": "6d47239d-4006-5cea-bbe9-24eca4723b3c",
+   "pos": "adjective",
+   "gender": null,
+   "freq_rank": 488,
+   "min_level": "A1",
+   "ru": "нынешний, текущий",
+   "en": "current, present",
+   "forms": [
+    "nuværende"
+   ],
+   "target": {
+    "level": "B1",
+    "situation": "social",
+    "grammar": "adjective-agreement"
+   }
+  },
+  {
+   "lemma": "indføre",
+   "kind": "word",
+   "sense_id": "6607080d-bb95-5f35-ba8e-89c0d2dca76a",
+   "pos": "verb",
+   "gender": null,
+   "freq_rank": 761,
+   "min_level": "A2",
+   "ru": "вводить",
+   "en": "to introduce (a rule, system)",
+   "forms": [
+    "indfør",
+    "indføre",
+    "indførende",
+    "indfører",
+    "indføres",
+    "indført",
+    "indførte",
+    "indførtes"
+   ],
+   "target": {
+    "level": "B1",
+    "situation": "work",
+    "grammar": "verb-past"
+   }
+  },
+  {
+   "lemma": "regning",
+   "kind": "word",
+   "sense_id": "589f8abf-7397-598a-8e44-688243ef11d7",
+   "pos": "noun",
+   "gender": "en",
+   "freq_rank": 1684,
+   "min_level": "B1",
+   "ru": "счёт",
+   "en": "bill, check (at a restaurant)",
+   "forms": [
+    "regning",
+    "regningen",
+    "regningens",
+    "regninger",
+    "regningerne",
+    "regningernes",
+    "regningers",
+    "regnings"
+   ],
+   "target": {
+    "level": "A2",
+    "situation": "food-drink",
+    "grammar": "noun-definite"
+   }
+  },
+  {
+   "lemma": "orientere",
+   "kind": "word",
+   "sense_id": "0d077894-d314-53c0-906f-9d7f2de36edd",
+   "pos": "verb",
+   "gender": null,
+   "freq_rank": 2305,
+   "min_level": "B1",
+   "ru": "информировать",
+   "en": "to inform, to brief",
+   "forms": [
+    "orienter",
+    "orientere",
+    "orienterede",
+    "orienteredes",
+    "orienterende",
+    "orienterer",
+    "orienteres",
+    "orienteret",
+    "orientér"
+   ],
+   "target": {
+    "level": "B1",
+    "situation": "work",
+    "grammar": "verb-past"
+   }
+  },
+  {
+   "lemma": "manuskript",
+   "kind": "word",
+   "sense_id": "59d52d29-3beb-5479-aa8f-4a4854b525b6",
+   "pos": "noun",
+   "gender": "et",
+   "freq_rank": 2391,
+   "min_level": "B1",
+   "ru": "рукопись",
+   "en": "manuscript",
+   "forms": [
+    "manuskript",
+    "manuskripter",
+    "manuskripterne",
+    "manuskripternes",
+    "manuskripters",
+    "manuskriptet",
+    "manuskriptets",
+    "manuskripts"
+   ],
+   "target": {
+    "level": "B1",
+    "situation": "leisure",
+    "grammar": "noun-definite"
+   }
+  }
+ ]
+}

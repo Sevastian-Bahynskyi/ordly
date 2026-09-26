@@ -1,0 +1,140 @@
+{
+ "note": "Replies in the shape DeepSeek-V4-Pro returns them, for the offline review tests (issue #27). Malformed ones are the failure modes the pipeline must survive: prose around the JSON, a markdown fence, an item left out, a rejection without a reason, a non-boolean verdict, truncation.",
+ "items": [
+  {
+   "id": "s:1",
+   "kind": "sentence",
+   "lemma": "glæde sig til",
+   "entry_kind": "phrase",
+   "pos": "verb",
+   "meaning": {
+    "ru": "радоваться предстоящему",
+    "en": "to look forward to",
+    "uk": "з нетерпінням чекати"
+   },
+   "danish": "Jeg glæder mig til ferien.",
+   "target": "glæder mig til",
+   "translations": {
+    "en": "I am looking forward to the holiday.",
+    "ru": "Я жду не дождусь отпуска.",
+    "uk": "Я з нетерпінням чекаю відпустки."
+   }
+  },
+  {
+   "id": "s:2",
+   "kind": "sentence",
+   "lemma": "glæde sig til",
+   "entry_kind": "phrase",
+   "pos": "verb",
+   "meaning": {
+    "ru": "радоваться предстоящему",
+    "en": "to look forward to",
+    "uk": "з нетерпінням чекати"
+   },
+   "danish": "Børnene glæder sig til julen.",
+   "target": "glæder sig til",
+   "translations": {
+    "en": "The children are looking forward to Christmas.",
+    "ru": "Дети радуются Рождеству.",
+    "uk": "Діти з нетерпінням чекають Різдва."
+   }
+  },
+  {
+   "id": "m:1",
+   "kind": "meaning",
+   "lemma": "gå i stå",
+   "entry_kind": "phrase",
+   "pos": "verb",
+   "meaning": {
+    "ru": "остановиться, заглохнуть",
+    "en": "to stall, to come to a standstill",
+    "uk": "зупинитися, заглухнути"
+   }
+  }
+ ],
+ "replies": {
+  "a_clean": "{\"items\": [{\"id\": \"s:1\", \"ok\": true, \"problems\": []}, {\"id\": \"s:2\", \"ok\": true, \"problems\": []}, {\"id\": \"m:1\", \"ok\": true, \"problems\": []}]}",
+  "b_one_reject": "```json\n{\"items\": [{\"id\": \"s:1\", \"reading\": \"I look forward to the holiday\", \"ok\": true, \"problems\": []}, {\"id\": \"s:2\", \"reading\": \"The children look forward to Christmas\", \"ok\": false, \"problems\": [\"ru: \\\"радуются Рождеству\\\" means 'are glad about Christmas', not looking forward to it\"]}, {\"id\": \"m:1\", \"reading\": \"stop, stall\", \"ok\": true, \"problems\": []}]}\n```",
+  "adjudicate_reject": "Here is my decision:\n{\"items\": [{\"id\": \"s:2\", \"ok\": false, \"reason\": \"The Russian loses the anticipation that glæde sig til expresses.\"}]}",
+  "adjudicate_accept": "{\"items\": [{\"id\": \"s:2\", \"ok\": true, \"reason\": \"радоваться + dative is a common way to say it.\"}]}",
+  "not_json": "I have reviewed the items and they all look fine to me.",
+  "truncated": "{\"items\": [{\"id\": \"s:1\", \"ok\": true, \"problems\": []}, {\"id\": \"s:2\", \"ok\": tr",
+  "missing_m1": "{\"items\": [{\"id\": \"s:1\", \"ok\": true, \"problems\": []}, {\"id\": \"s:2\", \"ok\": true, \"problems\": []}]}",
+  "reject_without_reason": "{\"items\": [{\"id\": \"m:1\", \"ok\": false, \"problems\": []}]}",
+  "string_verdict": "{\"items\": [{\"id\": \"m:1\", \"ok\": \"yes\", \"problems\": []}]}",
+  "m1_ok": "{\"items\": [{\"id\": \"m:1\", \"ok\": true}]}",
+  "backcheck": "{\"items\": [{\"id\": \"s:1\", \"same\": true, \"note\": \"\"}, {\"id\": \"s:2\", \"same\": false, \"note\": \"back says 'are happy about', no anticipation\"}]}"
+ },
+ "recorded": {
+  "note": "Verdicts DeepSeek-V4-Pro returned for 'give sig' in calibration-0001 (2026-09-26), re-serialized into the reply shape.",
+  "items": [
+   {
+    "id": "m:give sig|phrase#1",
+    "kind": "meaning",
+    "lemma": "give sig",
+    "entry_kind": "phrase",
+    "pos": "verb",
+    "meaning": {
+     "ru": "сдаваться",
+     "en": "to give up",
+     "uk": "здаватися"
+    }
+   },
+   {
+    "id": "e:give sig|phrase#1",
+    "kind": "example",
+    "lemma": "give sig",
+    "entry_kind": "phrase",
+    "pos": "verb",
+    "meaning": {
+     "ru": "сдаваться",
+     "en": "to give up",
+     "uk": "здаватися"
+    },
+    "danish": "Han gav sig til sidst og gik hjem.",
+    "target": "give sig",
+    "translations": {
+     "en": "He finally gave in and went home.",
+     "ru": "В конце концов он сдался и ушёл домой.",
+     "uk": "Він нарешті здався і пішов додому."
+    }
+   },
+   {
+    "id": "m:give sig|phrase#2",
+    "kind": "meaning",
+    "lemma": "give sig",
+    "entry_kind": "phrase",
+    "pos": "verb",
+    "meaning": {
+     "ru": "утихать (о боли)",
+     "en": "to ease (of pain)",
+     "uk": "вщухати (про біль)"
+    }
+   },
+   {
+    "id": "e:give sig|phrase#2",
+    "kind": "example",
+    "lemma": "give sig",
+    "entry_kind": "phrase",
+    "pos": "verb",
+    "meaning": {
+     "ru": "утихать (о боли)",
+     "en": "to ease (of pain)",
+     "uk": "вщухати (про біль)"
+    },
+    "danish": "Hovedpinen gav sig efter en times hvile.",
+    "target": "give sig",
+    "translations": {
+     "en": "The headache subsided after an hour's rest.",
+     "ru": "Головная боль прошла после часа отдыха.",
+     "uk": "Головний біль минув після години відпочинку."
+    }
+   }
+  ],
+  "replies": {
+   "a": "{\"items\": [{\"id\": \"m:give sig|phrase#1\", \"ok\": false, \"problems\": [\"meaning: Danish 'give sig' does not mean 'to give up' in the sense of surrendering or ceasing effort. The correct meaning is 'to give way', 'to yield', or 'to ease'. The Russian 'сдаваться' and Ukrainian 'здаватися' mean 'to surrender/give up', which is incorrect.\"]}, {\"id\": \"e:give sig|phrase#1\", \"ok\": false, \"problems\": [\"sense: The Danish sentence 'Han gav sig til sidst og gik hjem' means 'He finally gave way/yielded and went home', not 'He gave up'. The meaning 'to give up' is not shown.\", \"translations: The English 'He finally gave in and went home' uses 'gave in', which matches 'yielded', not 'gave up'. The Russian 'сдался' and Ukrainian 'здався' mean 'surrendered/gave up', which is a mistranslation of the Danish 'gav sig'.\"]}, {\"id\": \"m:give sig|phrase#2\", \"ok\": true, \"problems\": []}, {\"id\": \"e:give sig|phrase#2\", \"ok\": true, \"problems\": []}]}",
+   "b": "{\"items\": [{\"id\": \"m:give sig|phrase#1\", \"ok\": true, \"problems\": []}, {\"id\": \"e:give sig|phrase#1\", \"ok\": true, \"problems\": []}, {\"id\": \"m:give sig|phrase#2\", \"ok\": true, \"problems\": []}, {\"id\": \"e:give sig|phrase#2\", \"ok\": false, \"problems\": [\"The Russian translation 'Головная боль прошла' uses the word 'прошла' (went away), while the meaning states 'утихать' (to subside/ease). The translation does not match the meaning exactly; 'утихла' would be more precise.\", \"The Ukrainian translation 'Головний біль минув' uses 'минув' (passed/went away), while the meaning states 'вщухати' (to subside/ease). The translation does not match the meaning exactly; 'вщух' would be more precise.\"]}]}",
+   "adjudicate": "{\"items\": [{\"id\": \"m:give sig|phrase#1\", \"ok\": false, \"reason\": \"The Danish phrase 'give sig' does not mean 'to give up' but rather 'to yield' or 'give way', making the Russian 'сдаваться' and Ukrainian 'здаватися' incorrect.\"}, {\"id\": \"e:give sig|phrase#1\", \"ok\": false, \"reason\": \"The Danish sentence means 'He finally yielded and went home', not 'gave up', so the translations using 'gave in' (English), 'сдался' (Russian), and 'здався' (Ukrainian) are mistranslations.\"}, {\"id\": \"e:give sig|phrase#2\", \"ok\": false, \"reason\": \"The Russian and Ukrainian translations use 'прошла'/'минув' (went away) instead of the more precise 'утихла'/'вщух' (subsided) required by the stated meaning.\"}]}"
+  }
+ }
+}
