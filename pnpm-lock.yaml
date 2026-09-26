@@ -51,6 +51,12 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.0
         version: 19.2.5(@types/react@19.2.18)
+      dictionary-ru:
+        specifier: 3.0.0
+        version: 3.0.0
+      dictionary-uk:
+        specifier: 4.0.0
+        version: 4.0.0
       sharp:
         specifier: 0.35.4
         version: 0.35.4(@types/node@22.20.1)
@@ -498,6 +504,12 @@ packages:
   dictionary-da@6.0.0:
     resolution: {integrity: sha512-gn0IPPVzFljxOOewzLPIEFQKdsPrtgGHEGCWjJeZArl7tZJpGwjXdbvOpteq1GK6YBl66Ljn91EtuGMlV7+itA==}
 
+  dictionary-ru@3.0.0:
+    resolution: {integrity: sha512-tigem0CDnNpxEciW6ktwVH3wWB4FYpuvpwA6IR6UlF7bVu2kez6vOejVNyZgBX1TJIjuYTCTuLxzg/YOls2mRQ==}
+
+  dictionary-uk@4.0.0:
+    resolution: {integrity: sha512-AgeLt1iIi3lvUQ8DpEvqhikPvnwF+ffYLdjP0lrh+iOhCwTMhmDRvczyPqIksmHAWxRkFfgDcn7Qw/23GJ/GvA==}
+
   esbuild@0.25.12:
     resolution: {integrity: sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg==}
     engines: {node: '>=18'}
@@ -916,6 +928,10 @@ snapshots:
   detect-libc@2.1.2: {}
 
   dictionary-da@6.0.0: {}
+
+  dictionary-ru@3.0.0: {}
+
+  dictionary-uk@4.0.0: {}
 
   esbuild@0.25.12:
     optionalDependencies:

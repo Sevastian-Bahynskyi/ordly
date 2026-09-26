@@ -61,6 +61,7 @@ export function validateLocaleFile(value: unknown): string[] {
     if (!nullableText(row.example) || !nullableText(row.example_translation)) errors.push(`${at}: bad example`)
     else if ((row.example === null) !== (row.example_translation === null)) errors.push(`${at}: an example needs its translation`)
     else if (typeof row.example_translation === 'string' && file.lang === 'en' && CYRILLIC.test(row.example_translation)) errors.push(`${at}: English example translation is not Latin script`)
+    else if (typeof row.example_translation === 'string' && file.lang !== 'en' && !CYRILLIC.test(row.example_translation)) errors.push(`${at}: ${file.lang} example translation is not Cyrillic`)
     const key = `${row.lemma}|${row.kind}|${row.sense_id}`
     if (seen.has(key)) errors.push(`${at}: duplicate sense`)
     seen.add(key)

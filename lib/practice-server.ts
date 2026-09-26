@@ -113,7 +113,7 @@ async function verifiedForms(supabase: SupabaseClient, userId: string, entryIds:
  */
 async function catalogContexts(supabase: SupabaseClient, items: readonly ReviewItem[], locale: TranslationLanguage, danishLevel: string | null): Promise<Record<string, CatalogContext[]>> {
   const senseIds = [...new Set(items.filter((item) => item.vocabulary_entries.catalog_lemma).flatMap((item) => itemSenses(item).map((sense) => sense.id)))]
-  if (!senseIds.length || (locale !== 'en' && locale !== 'ru')) return {}
+  if (!senseIds.length) return {}
   const chunks: string[][] = []
   for (let at = 0; at < senseIds.length; at += FORM_CHUNK) chunks.push(senseIds.slice(at, at + FORM_CHUNK))
   const results = await Promise.all(chunks.map((ids) => supabase.from('catalog_sentence_family')

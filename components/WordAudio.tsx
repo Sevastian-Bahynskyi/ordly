@@ -3,11 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Loader2, Volume2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { useI18n } from './I18nProvider'
 
 export const WORD_AUDIO_BUCKET = 'word-audio'
 const SIGNED_URL_TTL_SECONDS = 3600
 
 export function WordAudio({ audioPath, label, autoPlay = false }: { audioPath: string | null; label: string; autoPlay?: boolean }): React.JSX.Element | null {
+  const { t } = useI18n()
   const [loading, setLoading] = useState(false)
   const [recordingUnavailable, setRecordingUnavailable] = useState(false)
   const audio = useRef<HTMLAudioElement | null>(null)
@@ -60,8 +62,8 @@ export function WordAudio({ audioPath, label, autoPlay = false }: { audioPath: s
         if (event.detail > 0) event.currentTarget.blur()
       }}
       disabled={loading}
-      aria-label={`Hear ${label}`}
-      title={`Hear ${label}`}
+      aria-label={t.audio.hear(label)}
+      title={t.audio.hear(label)}
     >
       {loading ? <Loader2 className="spin" size={14} /> : <Volume2 size={14} />}
     </button>

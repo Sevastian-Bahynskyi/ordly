@@ -11,17 +11,18 @@ import { definiteFormKey } from '@/lib/cor'
 import { inferDanishInputKind } from '@/lib/entry-kind'
 import { mergeSenses } from '@/lib/sense-merge'
 import { hasWordRecording } from '@/lib/material-audio'
-import { activeSenses, nounGenderOf, parseSenses, PART_OF_SPEECH_LABELS, PARTS_OF_SPEECH } from '@/lib/senses'
+import { activeSenses, nounGenderOf, parseSenses, PARTS_OF_SPEECH } from '@/lib/senses'
 import type { EntrySense, LearningStatus, NounGender, PartOfSpeech, ReviewCard, VocabularyEntry } from '@/lib/types'
 import type { WordForm } from '@/lib/word-forms'
 import { DefiniteNoun } from './DefiniteNoun'
 import { MemoryRing } from './MemoryRing'
 import { FormForest } from './FormForest'
+import { useI18n } from './I18nProvider'
 
 export type MaterialKind = 'all' | 'words' | 'phrases' | 'sentences'
 type StatusFilter = 'all' | LearningStatus
 
-const kindFilters: [MaterialKind, string][] = [['all', 'All'], ['words', 'Words'], ['phrases', 'Phrases'], ['sentences', 'Sentences']]
+const kindFilters: readonly MaterialKind[] = ['all', 'words', 'phrases', 'sentences']
 
 /**
  * One row of the Material list. An entry is a saved word, phrase or sentence. A derived row is
@@ -43,13 +44,6 @@ type PreviewState = {
   selected: Record<EnrichField, boolean>
   /** The sense objects behind `proposal.translation`, kept so applying preserves sense ids. */
   senses: EntrySense[]
-}
-
-const fieldLabels: Record<EnrichField, string> = {
-  pronunciation: 'Pronunciation',
-  translation: 'Translation',
-  example_sentence: 'Example sentence',
-  example_translation: 'Example translation',
 }
 
 const allEnrichFields: EnrichField[] = ['pronunciation', 'translation', 'example_sentence', 'example_translation']
@@ -80,6 +74,7 @@ export function MaterialClient({
 }): React.JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
+  const { t } = useI18n()
   const [words, setWords] = useState(initialWords)
   const [cards, setCards] = useState(initialCards)
   const [missingAudio, setMissingAudio] = useState(initialMissingAudio)
@@ -297,10 +292,11 @@ export function MaterialClient({
         selected[field] = value !== currentFieldValue(word, field)
       }
 
-      if (!Object.keys(proposal).length) throw new Error('AI returned no enrichment suggestions.')
+      if (!Object.keys(proposal).length) throw new Error(t.material.noSuggestions)
       setPreview({ word, proposal, selected, senses: body.senses || [] })
     } catch (error) {
-      window.alert(error instanceof Error ? error.message : 'AI enrichment failed')
+      // A route's own line is already in the learner's language; a network failure is not shown raw.
+      window.alert(error instanceof Error && !(error instanceof TypeError) ? error.message : t.material.enrichFailed)
     } finally {
       setEnriching(null)
     }
@@ -336,13 +332,13 @@ export function MaterialClient({
       setWords((current) => current.map((word) => word.id === data.id ? data : word))
       setPreview(null)
     } else if (error) {
-      window.alert(error.message)
+      window.alert(t.editor.couldNotSave)
     }
     setApplyingPreview(false)
   }
 
   async function removeWord(id: string) {
-    if (!confirm('Delete this entry and its review history?')) return
+    if (!confirm(t.material.confirmDelete)) return
     const { error } = await createClient().from('vocabulary_entries').delete().eq('id', id)
     if (!error) {
       setWords((current) => current.filter((word) => word.id !== id))
@@ -358,90 +354,90 @@ export function MaterialClient({
       const response = await fetch('/api/export/github', { method: 'POST' })
       const body: unknown = await response.json()
       if (!response.ok) {
-        const message = typeof body === 'object' && body !== null && 'error' in body && typeof body.error === 'string' ? body.error : 'Could not upload your learning stats.'
+        const message = typeof body === 'object' && body !== null && 'error' in body && typeof body.error === 'string' ? body.error : t.material.uploadFailed
         throw new Error(message)
       }
       const commitUrl = typeof body === 'object' && body !== null && 'commitUrl' in body && typeof body.commitUrl === 'string' ? body.commitUrl : null
-      window.alert(commitUrl ? `Saved learning-stats.csv to GitHub.\n${commitUrl}` : 'Saved learning-stats.csv to GitHub.')
+      window.alert(commitUrl ? `${t.material.uploaded}\n${commitUrl}` : t.material.uploaded)
     } catch (error) {
-      window.alert(error instanceof Error ? error.message : 'Could not upload your learning stats.')
+      window.alert(error instanceof Error && !(error instanceof TypeError) ? error.message : t.material.uploadFailed)
     } finally {
       setUploadingGithub(false)
     }
   }
 
   return <>
-    <header className="page-header words-header"><div><span className="eyebrow">YOUR MATERIAL</span><h1>Everything you are learning.</h1></div><div className="header-actions"><button className="forest-open-button material-export-button" disabled={uploadingGithub} onClick={uploadMaterialToGithub}>{uploadingGithub ? <Loader2 className="spin" size={16}/> : <CloudUpload size={16}/>} {uploadingGithub ? 'Saving…' : 'Save to GitHub'}</button><button className="forest-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> Show forms</button></div></header>
+    <header className="page-header words-header"><div><span className="eyebrow">{t.material.eyebrow}</span><h1>{t.material.title}</h1></div><div className="header-actions"><button className="forest-open-button material-export-button" disabled={uploadingGithub} onClick={uploadMaterialToGithub}>{uploadingGithub ? <Loader2 className="spin" size={16}/> : <CloudUpload size={16}/>} {uploadingGithub ? t.material.saving : t.material.saveToGithub}</button><button className="forest-open-button" onClick={() => setGraphOpen(true)}><Waypoints size={16}/> {t.material.showForms}</button></div></header>
 
-    <div className="material-kinds segmented" role="tablist" aria-label="Show">
-      {kindFilters.map(([value, label]) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{label}<span className="material-count">{counts[value]}</span></button>)}
+    <div className="material-kinds segmented" role="tablist" aria-label={t.material.show}>
+      {kindFilters.map((value) => <button key={value} role="tab" aria-selected={kind === value} className={kind === value ? 'active' : ''} onClick={() => chooseKind(value)}>{t.material.kinds[value]}<span className="material-count">{counts[value]}</span></button>)}
     </div>
 
     <div className="words-toolbar">
-      <label className="search-box"><Search size={17}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={`Search Danish or ${translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}…`} /></label>
-      <div className="segmented">{(['all','new','learning','mastered'] as const).map((x) => <button key={x} className={status === x ? 'active' : ''} onClick={() => setStatus(x)}>{x[0].toUpperCase()+x.slice(1)}</button>)}</div>
+      <label className="search-box"><Search size={17}/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t.material.search(t.languageNames[translationLanguage])} /></label>
+      <div className="segmented">{(['all','new','learning','mastered'] as const).map((x) => <button key={x} className={status === x ? 'active' : ''} onClick={() => setStatus(x)}>{t.material.statuses[x]}</button>)}</div>
     </div>
 
     {kind === 'words' && posCounts.length > 1 && (
-      <div className="pos-filter" role="tablist" aria-label="Filter by part of speech">
-        <button role="tab" aria-selected={pos === 'all'} className={pos === 'all' ? 'active' : ''} onClick={() => choosePos('all')}>All</button>
+      <div className="pos-filter" role="tablist" aria-label={t.material.byPos}>
+        <button role="tab" aria-selected={pos === 'all'} className={pos === 'all' ? 'active' : ''} onClick={() => choosePos('all')}>{t.material.all}</button>
         {posCounts.map(([part, count]) => (
           <button key={part} role="tab" aria-selected={pos === part} className={`${pos === part ? 'active ' : ''}pos-${part}`} onClick={() => choosePos(pos === part ? 'all' : part)}>
-            {PART_OF_SPEECH_LABELS[part]}<span className="material-count">{count}</span>
+            {t.pos[part]}<span className="material-count">{count}</span>
           </button>
         ))}
       </div>
     )}
 
     <div className="material-audio-filter">
-      <button type="button" className={`material-audio-toggle${missingAudio ? ' active' : ''}`} aria-pressed={missingAudio} onClick={toggleMissingAudio}><VolumeX size={16}/> Missing audio</button>
-      {missingAudio && <span>{visible.length} {visible.length === 1 ? 'word' : 'words'} · <button type="button" onClick={toggleMissingAudio}>Show all</button></span>}
+      <button type="button" className={`material-audio-toggle${missingAudio ? ' active' : ''}`} aria-pressed={missingAudio} onClick={toggleMissingAudio}><VolumeX size={16}/> {t.material.missingAudio}</button>
+      {missingAudio && <span>{t.material.wordCount(visible.length)} · <button type="button" onClick={toggleMissingAudio}>{t.material.showAll}</button></span>}
     </div>
 
     <section className="word-table-card">
-      <div className="word-table-head"><span>Danish</span><span>{translationLanguage === 'ru' ? 'Russian' : translationLanguage === 'uk' ? 'Ukrainian' : 'English'}</span><span>Example</span><span>Memory</span><span /></div>
+      <div className="word-table-head"><span>{t.common.danish}</span><span>{t.languageNames[translationLanguage]}</span><span>{t.common.example}</span><span>{t.common.memory}</span><span /></div>
       {visible.map((row, index) => {
         if (row.type === 'example') {
           const firstExample = index === 0 || visible[index - 1].type !== 'example'
           return <div className="word-row sentence-row derived-sentence" key={row.key} data-first-example={firstExample || undefined}>
-            <div className="word-main"><span className="word-bubble small">{row.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{row.danish}</strong><small>Example from {row.entry.danish}</small></div></div>
-            <span>{row.translation || <em className="muted">Not added</em>}</span>
-            <span className="sentence-source-cell"><Link className="sentence-source" href={`/words/${row.entry.id}`}><BookOpenText size={13}/> From “{row.entry.danish}”</Link></span>
-            <div className="word-memory-cell"><span className="status-chip sentence-reference-chip">example</span></div>
-            <div className="row-menu"><Link className="icon-button" title="Open source word" href={`/words/${row.entry.id}`}><BookOpenText size={16}/></Link></div>
-            <Link className="word-row-link" href={`/words/${row.entry.id}`} aria-label={`Open ${row.entry.danish}`} />
+            <div className="word-main"><span className="word-bubble small">{row.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{row.danish}</strong><small>{t.material.exampleFrom(row.entry.danish)}</small></div></div>
+            <span>{row.translation || <em className="muted">{t.common.notAdded}</em>}</span>
+            <span className="sentence-source-cell"><Link className="sentence-source" href={`/words/${row.entry.id}`}><BookOpenText size={13}/> {t.material.fromWord(row.entry.danish)}</Link></span>
+            <div className="word-memory-cell"><span className="status-chip sentence-reference-chip">{t.material.exampleTag}</span></div>
+            <div className="row-menu"><Link className="icon-button" title={t.material.openSource} href={`/words/${row.entry.id}`}><BookOpenText size={16}/></Link></div>
+            <Link className="word-row-link" href={`/words/${row.entry.id}`} aria-label={t.material.open(row.entry.danish)} />
           </div>
         }
         const word = row.entry
         const card = cardsByEntry.get(word.id)
         return <div className={`word-row${row.kind === 'sentence' ? ' sentence-row' : ''}`} key={row.key}>
-          <div className="word-main"><span className={`word-bubble small pos-${activeSenses(parseSenses(word.senses))[0]?.pos || 'none'}`}>{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{row.kind}</span>}{definiteOf(word)}{word.pronunciation || 'No pronunciation'}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> No recording</span>}{word.canonical_entry_id && <span>In {wordById.get(word.canonical_entry_id)?.danish || 'word'} group</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)!.map((member) => member.danish).join(' · ')}</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{`${formsByEntry.get(word.id)!.length} forms`}</span>}</div>}</div></div>
-          <span>{word.translation || <em className="muted">Not added</em>}</span>
-          <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">Your sentence</em> : word.example_sentence || <em className="muted">No example yet</em>}</span>
-          <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span></div>
-          <div className="row-menu"><button className="icon-button" title="Preview AI enrichment" disabled={enriching === word.id} onClick={() => previewEnrichWord(word)}>{enriching === word.id ? <Loader2 className="spin" size={16}/> : <Sparkles size={16}/>}</button><button className="icon-button danger" title="Delete" onClick={() => removeWord(word.id)}><X size={16}/></button></div>
+          <div className="word-main"><span className={`word-bubble small pos-${activeSenses(parseSenses(word.senses))[0]?.pos || 'none'}`}>{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span><div><strong>{word.danish}</strong><small>{kind === 'all' && row.kind !== 'word' && <span className={`material-kind-tag ${row.kind}`}>{t.material.kindTags[row.kind]}</span>}{definiteOf(word)}{word.pronunciation || t.material.noPronunciation}</small>{row.kind === 'word' && <div className="material-word-meta">{!hasWordRecording(word, catalogAudio) && <span className="material-missing-audio"><VolumeX size={12}/> {t.material.noRecording}</span>}{word.canonical_entry_id && <span>{t.material.inGroup(wordById.get(word.canonical_entry_id)?.danish || t.material.wordFallback)}</span>}{!word.canonical_entry_id && Boolean(groupMembers.get(word.id)) && <span>{groupMembers.get(word.id)!.map((member) => member.danish).join(' · ')}</span>}{Boolean(formsByEntry.get(word.id)?.length) && <span>{t.material.formCount(formsByEntry.get(word.id)!.length)}</span>}</div>}</div></div>
+          <span>{word.translation || <em className="muted">{t.common.notAdded}</em>}</span>
+          <span className="example-cell">{row.kind === 'sentence' ? <em className="muted">{t.material.yourSentence}</em> : word.example_sentence || <em className="muted">{t.material.noExample}</em>}</span>
+          <div className="word-memory-cell">{card && <MemoryRing item={card} compact />}<span className={`status-chip ${word.learning_status}`}>{t.status[word.learning_status]}</span></div>
+          <div className="row-menu"><button className="icon-button" title={t.material.previewEnrich} disabled={enriching === word.id} onClick={() => previewEnrichWord(word)}>{enriching === word.id ? <Loader2 className="spin" size={16}/> : <Sparkles size={16}/>}</button><button className="icon-button danger" title={t.material.delete} onClick={() => removeWord(word.id)}><X size={16}/></button></div>
           {/* A real link rather than an onClick, so the row prefetches, middle-clicks, and
               triggers the app's route-loading feedback (AGENTS.md §5, §16). It is appended
               last and absolutely positioned: the mobile grid in globals.css places the other
               cells with :nth-child, and an extra leading child would shift every one of them. */}
-          <Link className="word-row-link" href={`/words/${word.id}`} aria-label={`Open ${word.danish}`} />
+          <Link className="word-row-link" href={`/words/${word.id}`} aria-label={t.material.open(word.danish)} />
         </div>
       })}
-      {!visible.length && <div className="empty-state tall">Nothing matches this view.</div>}
+      {!visible.length && <div className="empty-state tall">{t.material.nothingMatches}</div>}
     </section>
 
-    {graphOpen && <div className="forest-overlay" role="dialog" aria-modal="true" aria-label="Form forest">
-      <div className="forest-overlay-head"><span className="eyebrow"><Waypoints size={14}/> FORM FOREST</span><button className="icon-button" aria-label="Close the form forest" onClick={() => setGraphOpen(false)}><X size={18}/></button></div>
+    {graphOpen && <div className="forest-overlay" role="dialog" aria-modal="true" aria-label={t.material.formForest}>
+      <div className="forest-overlay-head"><span className="eyebrow"><Waypoints size={14}/> {t.material.formForestEyebrow}</span><button className="icon-button" aria-label={t.material.closeForest} onClick={() => setGraphOpen(false)}><X size={18}/></button></div>
       <FormForest entries={words} forms={initialForms} initialQuery={query} />
     </div>}
 
     {preview && <div className="modal-backdrop" onMouseDown={() => !applyingPreview && setPreview(null)}>
       <section className="modal-card enrich-preview-card" onMouseDown={(event) => event.stopPropagation()}>
         <div className="modal-title">
-          <div><span className="eyebrow"><Sparkles size={14}/> AI PREVIEW</span><h2>Review changes for “{preview.word.danish}”</h2></div>
-          <button className="icon-button" disabled={applyingPreview} onClick={() => setPreview(null)}><X size={18}/></button>
+          <div><span className="eyebrow"><Sparkles size={14}/> {t.material.previewEyebrow}</span><h2>{t.material.reviewChanges(preview.word.danish)}</h2></div>
+          <button className="icon-button" aria-label={t.common.close} disabled={applyingPreview} onClick={() => setPreview(null)}><X size={18}/></button>
         </div>
-        <p>Nothing is changed until you press Apply. Uncheck anything you want to keep as-is.</p>
+        <p>{t.material.nothingChanged}</p>
         <div className="enrich-preview-list">
           {(Object.keys(preview.proposal) as EnrichField[]).map((field) => {
             const current = currentFieldValue(preview.word, field)
@@ -450,19 +446,19 @@ export function MaterialClient({
             return <label className={`enrich-preview-row ${preview.selected[field] ? 'selected' : ''}`} key={field}>
               <input type="checkbox" checked={preview.selected[field]} disabled={!changed || applyingPreview} onChange={(event) => setPreview((state) => state ? { ...state, selected: { ...state.selected, [field]: event.target.checked } } : state)} />
               <div className="enrich-preview-copy">
-                <strong>{fieldLabels[field]}</strong>
-                {current && <span className="enrich-current">Current · {current}</span>}
+                <strong>{t.material.fields[field]}</strong>
+                {current && <span className="enrich-current">{t.material.current(current)}</span>}
                 <span className="enrich-proposed"><Sparkles size={12}/> {proposed}</span>
-                {!changed && <small>Already the same</small>}
+                {!changed && <small>{t.material.alreadySame}</small>}
               </div>
             </label>
           })}
         </div>
         <div className="modal-footer">
-          <span><Check size={15}/> Apply only selected fields.</span>
+          <span><Check size={15}/> {t.material.applyOnlySelected}</span>
           <div className="row-actions">
-            <button className="soft-button" disabled={applyingPreview} onClick={() => setPreview(null)}>Cancel</button>
-            <button className="primary-button" disabled={applyingPreview || !(Object.keys(preview.selected) as EnrichField[]).some((field) => preview.selected[field])} onClick={applyPreview}>{applyingPreview ? <Loader2 className="spin" size={17}/> : <Check size={17}/>} Apply selected</button>
+            <button className="soft-button" disabled={applyingPreview} onClick={() => setPreview(null)}>{t.common.cancel}</button>
+            <button className="primary-button" disabled={applyingPreview || !(Object.keys(preview.selected) as EnrichField[]).some((field) => preview.selected[field])} onClick={applyPreview}>{applyingPreview ? <Loader2 className="spin" size={17}/> : <Check size={17}/>} {t.material.applySelected}</button>
           </div>
         </div>
       </section>

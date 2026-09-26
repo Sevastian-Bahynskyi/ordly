@@ -6,6 +6,7 @@ import { applyRefinement, corRefinement, needsRefinement, withCorGender } from '
 import { classifySenses, MAX_REFINED_SENSES, MAX_REFINED_SENSE_LENGTH } from '@/lib/sense-refinement-ai'
 import { activeSenses, parseSenses } from '@/lib/senses'
 import { isUuid } from '@/lib/uuid'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 /**
  * Refinement of part of speech, gender and sense boundaries (D11, phase 2).
@@ -39,9 +40,10 @@ function readDraft(value: unknown): { danish: string; senses: string[] } | null 
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const body: unknown = await request.json().catch(() => null)
   const record = body && typeof body === 'object' ? body as Record<string, unknown> : {}
@@ -49,15 +51,15 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     if (record.draft !== undefined) {
       const draft = readDraft(record.draft)
-      if (!draft) return NextResponse.json({ error: 'Add the Danish text and a meaning first.' }, { status: 400 })
+      if (!draft) return NextResponse.json({ error: api.addDanishAndMeaning }, { status: 400 })
       const rows = await fetchCorForms(supabase, draft.danish)
       const settled = corRefinement(rows, draft.senses.length)
       if (settled) return NextResponse.json({ meanings: settled, source: 'cor' })
-      if (!hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured yet.' }, { status: 503 })
+      if (!hasOpenRouterKey()) return NextResponse.json({ error: api.aiUnavailable }, { status: 503 })
       return NextResponse.json({ meanings: withCorGender(await classifySenses(draft.danish, draft.senses), rows), source: 'ai' })
     }
 
-    if (!isUuid(record.entryId)) return NextResponse.json({ error: 'Vocabulary entry is required.' }, { status: 400 })
+    if (!isUuid(record.entryId)) return NextResponse.json({ error: api.entryRequired }, { status: 400 })
 
     // RLS scopes the read and the write to the signed-in owner.
     const { data: entry } = await supabase
@@ -65,7 +67,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       .select('id, danish, senses, entry_kind, updated_at')
       .eq('id', record.entryId)
       .maybeSingle()
-    if (!entry) return NextResponse.json({ error: 'Vocabulary entry was not found.' }, { status: 404 })
+    if (!entry) return NextResponse.json({ error: api.entryNotFound }, { status: 404 })
     // A sentence has exactly one meaning and no part of speech worth a call.
     if (entry.entry_kind === 'sentence' || !needsRefinement(entry.senses)) return NextResponse.json({ refined: false })
 
@@ -75,7 +77,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const rows = await fetchCorForms(supabase, String(entry.danish))
     const settled = corRefinement(rows, live.length)
-    if (!settled && !hasOpenRouterKey()) return NextResponse.json({ error: 'AI is not configured yet.' }, { status: 503 })
+    if (!settled && !hasOpenRouterKey()) return NextResponse.json({ error: api.aiUnavailable }, { status: 503 })
     const meanings = settled
       ?? withCorGender(await classifySenses(String(entry.danish), live.map((sense) => sense.text.trim().slice(0, MAX_REFINED_SENSE_LENGTH))), rows)
 
@@ -85,12 +87,12 @@ export async function POST(request: Request): Promise<NextResponse> {
       .eq('id', entry.id)
       .eq('updated_at', entry.updated_at)
       .select('id')
-    if (error) return NextResponse.json({ error: 'Could not save the refined meanings.' }, { status: 502 })
+    if (error) return NextResponse.json({ error: api.couldNotSaveRefined }, { status: 502 })
     return NextResponse.json({ refined: Boolean(written?.length) })
   } catch (error) {
     // The message only: the error object can carry the request, which holds the learner's words.
     console.error('Sense refinement failed', error instanceof Error ? error.message : 'unknown error')
-    if (isOpenRouterRateLimitError(error)) return NextResponse.json({ error: 'AI is temporarily busy. Please try again shortly.' }, { status: 429 })
-    return NextResponse.json({ error: 'Could not refine these meanings.' }, { status: 502 })
+    if (isOpenRouterRateLimitError(error)) return NextResponse.json({ error: api.aiBusy }, { status: 429 })
+    return NextResponse.json({ error: api.couldNotRefine }, { status: 502 })
   }
 }

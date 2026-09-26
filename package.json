@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "tsc --noEmit",
     "test:openrouter": "node --experimental-strip-types --test lib/openrouter.test.mjs",
-    "test": "tsx --test lib/*.test.mjs"
+    "test": "tsx --test lib/*.test.mjs lib/i18n/*.test.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.5",
@@ -28,6 +28,8 @@
     "@types/nspell": "^2.1.6",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "dictionary-ru": "3.0.0",
+    "dictionary-uk": "4.0.0",
     "sharp": "0.35.4",
     "tsx": "4.20.6",
     "typescript": "^5.9.0"

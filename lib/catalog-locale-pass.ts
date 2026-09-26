@@ -1,4 +1,5 @@
 import type { LocaleFile } from './catalog-locale'
+import { ukrainianProblems, ukrainianWordingProblems, type SpellCheckers } from './ukrainian'
 
 /**
  * A learner-language wording pass over senses that already exist (issue #16).
@@ -18,6 +19,9 @@ export interface LocaleWorkRow {
   ru: string
   example: string | null
   example_ru: string | null
+  /** The English wording and example translation, where the work came from the database (issue #24). */
+  en?: string | null
+  example_en?: string | null
 }
 
 const DANISH_LETTERS = /[æøåÆØÅ]/u
@@ -27,9 +31,11 @@ function normalized(value: string): string {
 }
 
 /** Every way a reply departs from its work file, one line each. Empty means it may be merged. */
-export function checkLocaleReply(work: readonly LocaleWorkRow[], reply: LocaleFile, lang: string): string[] {
+export function checkLocaleReply(work: readonly LocaleWorkRow[], reply: LocaleFile, lang: string, spell?: SpellCheckers): string[] {
   const errors: string[] = []
   if (reply.lang !== lang) errors.push(`lang is ${String(reply.lang)}, expected ${lang}`)
+  // Russian and Ukrainian share a script, so Ukrainian is checked by language, not by script.
+  if (lang === 'uk' && !spell) return [...errors, 'the Ukrainian check needs its dictionaries']
   const expected = new Map(work.map((row) => [row.sense_id, row]))
   const seen = new Set<string>()
   const wordings = new Map<string, string>()
@@ -45,6 +51,10 @@ export function checkLocaleReply(work: readonly LocaleWorkRow[], reply: LocaleFi
     if (lang === 'en') {
       if (DANISH_LETTERS.test(row.text || '')) errors.push(`${at}: English wording contains Danish letters`)
       if (DANISH_LETTERS.test(row.example_translation || '')) errors.push(`${at}: English example translation contains Danish letters`)
+    }
+    if (lang === 'uk' && spell) {
+      for (const problem of ukrainianWordingProblems(row.text || '', want.pos, spell)) errors.push(`${at}: wording is not Ukrainian (${problem})`)
+      if (row.example_translation) for (const problem of ukrainianProblems(row.example_translation, spell)) errors.push(`${at}: example translation is not Ukrainian (${problem})`)
     }
     // Two meanings of one word worded identically is a merged meaning, not two senses.
     const key = `${row.lemma}|${row.kind}|${normalized(row.text || '')}`

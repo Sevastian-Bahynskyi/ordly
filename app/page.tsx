@@ -9,6 +9,8 @@ import { StatCard } from '@/components/StatCard'
 import { SenseRefinementBackfill } from '@/components/SenseRefinementBackfill'
 import { requireUser } from '@/lib/auth'
 import { needsRefinement } from '@/lib/sense-refinement'
+import type { LearningStatus } from '@/lib/types'
+import { messagesFor } from '@/lib/i18n'
 import { activeSenses, parseSenses } from '@/lib/senses'
 
 export const dynamic = 'force-dynamic'
@@ -43,54 +45,56 @@ export default async function HomePage() {
   const due = dueReviews + Math.min(dueNew, remainingNewSlots)
   const todayProgress = Math.min(newReviewedToday, dailyLimit)
   const recentWords = recentResult.data || []
+  const language = learnerLanguage(profile?.default_translation_language)
+  const t = messagesFor(language)
   const unrefinedRecent = recentWords.filter((word) => word.entry_kind !== 'sentence' && needsRefinement(word.senses)).map((word) => word.id)
 
   return (
-    <AppShell>
+    <AppShell language={language}>
       <SenseRefinementBackfill entryIds={unrefinedRecent} />
       <div className="page-wrap dashboard-page">
         <header className="top-header">
-          <div><span className="eyebrow">TODAY</span><h1>Your Danish, one word at a time.</h1></div>
+          <div><span className="eyebrow">{t.home.eyebrow}</span><h1>{t.home.title}</h1></div>
           <div className="streak-pill">
             <span className="streak-fire" aria-hidden="true"><Flame className="streak-flame" size={17} /></span>
             <strong>{profile?.current_streak || 0}</strong>
-            <span>day streak</span>
+            <span>{t.home.streak}</span>
           </div>
         </header>
 
         <section className="hero-grid">
-          <AddWordComposer translationLanguage={learnerLanguage(profile?.default_translation_language)} />
+          <AddWordComposer translationLanguage={language} />
           <aside className="review-hero">
             <ReviewAurora />
             <div className="review-hero-content">
-              <span className="eyebrow">REVIEW QUEUE</span>
+              <span className="eyebrow">{t.home.queueEyebrow}</span>
               <div className="review-number">{due}</div>
-              <h2>{due === 1 ? 'word is due' : 'words are due'}</h2>
-              <p>Due cards first, then new words.</p>
-              <Link href="/review" className="review-start">Start review <BookOpenCheck size={18} /></Link>
-              {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">Practice →</Link>}
+              <h2>{t.home.wordsDue(due)}</h2>
+              <p>{t.home.queueNote}</p>
+              <Link href="/review" className="review-start">{t.home.startReview} <BookOpenCheck size={18} /></Link>
+              {guidedPracticeEnabled && <Link href="/review/practice" className="home-practice-link">{t.home.practice}</Link>}
             </div>
           </aside>
         </section>
 
         <section className="stats-grid">
-          <StatCard icon={Layers3} label="All words" value={total} detail={`${learning} learning`} />
-          <StatCard icon={Target} label="Mastered" value={mastered} detail={total ? `${Math.round(mastered / total * 100)}% of collection` : 'Start with your first word'} />
-          <StatCard icon={Flame} label="Current streak" value={`${profile?.current_streak || 0} days`} detail={`Best ${profile?.longest_streak || 0} days`} />
-          <StatCard icon={BookOpenCheck} label="Today's new words" value={`${todayProgress}/${dailyLimit}`} detail="Reviews always come first" />
+          <StatCard icon={Layers3} label={t.home.allWords} value={total} detail={t.home.learning(learning)} />
+          <StatCard icon={Target} label={t.home.mastered} value={mastered} detail={total ? t.home.ofCollection(Math.round(mastered / total * 100)) : t.home.firstWord} />
+          <StatCard icon={Flame} label={t.home.currentStreak} value={t.home.days(profile?.current_streak || 0)} detail={t.home.best(profile?.longest_streak || 0)} />
+          <StatCard icon={BookOpenCheck} label={t.home.newToday} value={`${todayProgress}/${dailyLimit}`} detail={t.home.reviewsFirst} />
         </section>
 
         <section className="section-card recent-section">
-          <div className="section-title-row"><div><span className="eyebrow">RECENTLY ADDED</span><h2>Fresh in your memory</h2></div><Link href="/words">See all material →</Link></div>
+          <div className="section-title-row"><div><span className="eyebrow">{t.home.recentEyebrow}</span><h2>{t.home.recentTitle}</h2></div><Link href="/words">{t.home.seeAll}</Link></div>
           <div className="recent-list">
             {recentWords.length ? recentWords.map((word) => (
               <div className="recent-word" key={word.id}>
                 <span className={`word-bubble pos-${activeSenses(parseSenses(word.senses))[0]?.pos || 'none'}`}>{word.danish.slice(0, 1).toLocaleUpperCase('da-DK')}</span>
-                <div><strong>{word.danish}</strong><small>{word.pronunciation || 'pronunciation not added'}</small></div>
+                <div><strong>{word.danish}</strong><small>{word.pronunciation || t.home.noPronunciation}</small></div>
                 <span className="recent-translation">{word.translation}</span>
-                <span className={`status-chip ${word.learning_status}`}>{word.learning_status}</span>
+                <span className={`status-chip ${word.learning_status}`}>{t.status[word.learning_status as LearningStatus] ?? word.learning_status}</span>
               </div>
-            )) : <div className="empty-state">Your first saved word will appear here.</div>}
+            )) : <div className="empty-state">{t.home.emptyRecent}</div>}
           </div>
         </section>
       </div>

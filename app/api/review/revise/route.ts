@@ -1,18 +1,20 @@
 import { NextResponse } from 'next/server'
 import { fsrs, type Card, type Grade } from 'ts-fsrs'
 import { createClient } from '@/lib/supabase/server'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 export async function POST(request: Request) {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
 
   const { logId, rating, answerResult, answerText } = await request.json()
-  if (!logId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: 'Invalid revision' }, { status: 400 })
+  if (!logId || ![1, 2, 3, 4].includes(rating)) return NextResponse.json({ error: api.invalidRevision }, { status: 400 })
 
   const { data: log, error } = await supabase.from('review_logs').select('*').eq('id', logId).single()
-  if (error || !log) return NextResponse.json({ error: 'Review log not found' }, { status: 404 })
-  if (!log.previous_card) return NextResponse.json({ error: 'This older review cannot be revised safely.' }, { status: 409 })
+  if (error || !log) return NextResponse.json({ error: api.logNotFound }, { status: 404 })
+  if (!log.previous_card) return NextResponse.json({ error: api.cannotRevise }, { status: 409 })
 
   const { data: later } = await supabase
     .from('review_logs')
@@ -20,7 +22,7 @@ export async function POST(request: Request) {
     .eq('card_id', log.card_id)
     .gt('reviewed_at', log.reviewed_at)
     .limit(1)
-  if (later?.length) return NextResponse.json({ error: 'This card has already been reviewed again.' }, { status: 409 })
+  if (later?.length) return NextResponse.json({ error: api.reviewedAgain }, { status: 409 })
 
   const prev = log.previous_card as Record<string, unknown>
   const card: Card = {
@@ -45,7 +47,7 @@ export async function POST(request: Request) {
     scheduled_days: next.scheduled_days, reps: next.reps, lapses: next.lapses, learning_steps: next.learning_steps,
     state: next.state, last_review: next.last_review?.toISOString() || reviewedAt.toISOString(),
   }).eq('id', log.card_id)
-  if (cardError) return NextResponse.json({ error: cardError.message }, { status: 500 })
+  if (cardError) return NextResponse.json({ error: api.couldNotSaveReview }, { status: 500 })
 
   const learningStatus = next.reps === 0 ? 'new' : next.reps >= 5 && next.stability >= 21 ? 'mastered' : 'learning'
   await supabase.from('vocabulary_entries').update({ learning_status: learningStatus }).eq('id', log.entry_id)
@@ -58,7 +60,7 @@ export async function POST(request: Request) {
     difficulty: next.difficulty,
     scheduled_days: next.scheduled_days,
   }).eq('id', logId)
-  if (logError) return NextResponse.json({ error: logError.message }, { status: 500 })
+  if (logError) return NextResponse.json({ error: api.couldNotSaveReview }, { status: 500 })
 
   return NextResponse.json({
     due: next.due.toISOString(),

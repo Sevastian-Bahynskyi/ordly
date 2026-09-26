@@ -3,6 +3,7 @@
  *
  *   pnpm exec tsx scripts/coverage-report.ts --freq <freq-30k-ex.txt> --fullforms <ddo-fullforms.csv> \
  *     [--out catalog/out,catalog/expansion/out] [--locale catalog/locale-en.json,catalog/locale-pilot.en.json] \
+ *     [--locale-uk catalog/locale-uk.json] \
  *     [--report docs/content-coverage-report.md]
  *
  * Reads only committed content and the two DSL source files. Writes the Markdown report; the
@@ -32,10 +33,13 @@ if (!freqPath || !fullFormsPath) {
 const outDirs = (option('--out') || ['catalog/out', 'catalog/expansion/out', 'catalog/expansion2/out', 'catalog/phrases/out'].filter(existsSync).join(',')).split(',')
 const localeFiles = (option('--locale') || ['catalog/locale-en.json', 'catalog/locale-pilot.en.json', 'catalog/expansion/locale-en.json', 'catalog/expansion2/locale-en.json', 'catalog/phrases/locale-en.json'].filter(existsSync).join(',')).split(',')
 const reportPath = option('--report') || 'docs/content-coverage-report.md'
+// Ukrainian wording (issue #24): one merged file covering every sense.
+const ukrainianFiles = (option('--locale-uk') || ['catalog/locale-uk.json'].filter(existsSync).join(',')).split(',').filter(Boolean)
 
 // What the catalog supports, per learner language: `lemma|pos` with a worded sense.
 const ru = new Set<string>()
 const en = new Set<string>()
+const uk = new Set<string>()
 const lemmas = new Set<string>()
 const phrases = new Set<string>()
 let entries = 0
@@ -59,7 +63,13 @@ for (const path of localeFiles) {
   const file = JSON.parse(await readFile(path, 'utf8')) as { senses: { lemma: string; pos: string | null }[] }
   for (const sense of file.senses) { englishSenses += 1; if (sense.pos) en.add(supportKey(sense.lemma, sense.pos)) }
 }
+let ukrainianSenses = 0
+for (const path of ukrainianFiles) {
+  const file = JSON.parse(await readFile(path, 'utf8')) as { senses: { lemma: string; pos: string | null }[] }
+  for (const sense of file.senses) { ukrainianSenses += 1; if (sense.pos) uk.add(supportKey(sense.lemma, sense.pos)) }
+}
 const both = new Set([...ru].filter((key) => en.has(key)))
+const all = new Set([...both].filter((key) => uk.has(key)))
 
 const { rows, excluded } = parseFrequencyList(await readFile(freqPath, 'utf8'))
 // The register's headword for a list lemma that is only a form in that class (`det` → `den`).
@@ -72,7 +82,7 @@ const headwordOf = (lemma: string, pos: string): string | null => {
   if (!rowsForForm.length || rowsForForm.some((row) => row.lemma === lemma.toLocaleLowerCase('da-DK'))) return null
   return rowsForForm[0].lemma
 }
-const lexical = { ru: weightedCoverage(rows, ru, headwordOf), en: weightedCoverage(rows, en, headwordOf), both: weightedCoverage(rows, both, headwordOf) }
+const lexical = { ru: weightedCoverage(rows, ru, headwordOf), en: weightedCoverage(rows, en, headwordOf), uk: weightedCoverage(rows, uk, headwordOf), both: weightedCoverage(rows, both, headwordOf), all: weightedCoverage(rows, all, headwordOf) }
 // The string-only figure, for comparison with the baseline measured before this pass.
 const byString = weightedCoverage(rows, new Set(rows.filter((row) => lemmas.has(row.lemma.toLocaleLowerCase('da-DK'))).map((row) => supportKey(row.lemma, DSL_CLASSES[row.cls]))))
 
@@ -115,7 +125,7 @@ const phraseMeasure = existsSync(phraseInventoryPath) && existsSync(phraseLabels
 
 // Learning coverage from the published families.
 const matrix = JSON.parse(await readFile('catalog/benchmark/cefr-matrix.json', 'utf8')) as { version: string; situations: { id: string; levels: string[]; label: string }[]; grammar: { id: string; levels: string[]; label: string }[] }
-type Published = { level: string; situation: string; grammar: string; lemma: string; sense_id: string; variants: unknown[] }
+type Published = { level: string; situation: string; grammar: string; lemma: string; sense_id: string; variants: { id: string; danish: string }[] }
 const families: Published[] = []
 for (const publishedPath of ['catalog/families/published.jsonl', 'catalog/expansion/families/published.jsonl'].filter(existsSync)) {
   families.push(...(await readFile(publishedPath, 'utf8')).split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line) as Published))
@@ -124,6 +134,8 @@ const cells = matrixCoverage(matrix, families)
 const CELL_MIN = 3
 const coveredCells = cells.filter((cell) => cell.families >= CELL_MIN)
 const variants = families.reduce((sum, family) => sum + family.variants.length, 0)
+const ukrainianOverlay = existsSync('catalog/families/translations-uk.json') ? JSON.parse(await readFile('catalog/families/translations-uk.json', 'utf8')) as Record<string, { danish: string }> : {}
+const ukrainianVariants = families.reduce((sum, family) => sum + family.variants.filter((variant) => ukrainianOverlay[variant.id]?.danish === variant.danish).length, 0)
 const byLevel = ['A1', 'A2', 'B1', 'B2'].map((level) => ({ level, families: families.filter((family) => family.level === level).length }))
 
 const pct = (value: number) => `${(value * 100).toFixed(1)}%`
@@ -137,8 +149,8 @@ added to another.
 
 ## Catalog size
 
-- ${entries.toLocaleString('en-US')} headwords (${phrases.size.toLocaleString('en-US')} of them multi-word phrases), ${senses.toLocaleString('en-US')} senses with Russian wording, ${englishSenses.toLocaleString('en-US')} with English wording.
-- ${families.length.toLocaleString('en-US')} published sentence families, ${variants.toLocaleString('en-US')} distinct checked sentences, each with an English and a Russian translation.
+- ${entries.toLocaleString('en-US')} headwords (${phrases.size.toLocaleString('en-US')} of them multi-word phrases), ${senses.toLocaleString('en-US')} senses with Russian wording, ${englishSenses.toLocaleString('en-US')} with English wording, ${ukrainianSenses.toLocaleString('en-US')} with Ukrainian wording.
+- ${families.length.toLocaleString('en-US')} published sentence families, ${variants.toLocaleString('en-US')} distinct checked sentences, each with an English and a Russian translation; ${ukrainianVariants.toLocaleString('en-US')} also carry a Ukrainian one.
   Each sentence can be offered as a typed gap and as a word-order task, so at most
   ${(variants * 2).toLocaleString('en-US')} distinct catalog exercises exist. That is the real count after constraints and
   de-duplication; no combination is generated at runtime.
@@ -155,7 +167,9 @@ sense is worded in the learner language.
 |---|---|---|---|---|---|
 | Russian | ${pct(lexical.ru.overall)} | ${pct(lexical.ru.viaHeadword)} | ${lexical.ru.covered.toLocaleString('en-US')} | ${pct(lexical.ru.open)} | ${pct(lexical.ru.closed)} |
 | English | ${pct(lexical.en.overall)} | ${pct(lexical.en.viaHeadword)} | ${lexical.en.covered.toLocaleString('en-US')} | ${pct(lexical.en.open)} | ${pct(lexical.en.closed)} |
-| both | ${pct(lexical.both.overall)} | ${pct(lexical.both.viaHeadword)} | ${lexical.both.covered.toLocaleString('en-US')} | ${pct(lexical.both.open)} | ${pct(lexical.both.closed)} |
+| Ukrainian | ${pct(lexical.uk.overall)} | ${pct(lexical.uk.viaHeadword)} | ${lexical.uk.covered.toLocaleString('en-US')} | ${pct(lexical.uk.open)} | ${pct(lexical.uk.closed)} |
+| English and Russian | ${pct(lexical.both.overall)} | ${pct(lexical.both.viaHeadword)} | ${lexical.both.covered.toLocaleString('en-US')} | ${pct(lexical.both.open)} | ${pct(lexical.both.closed)} |
+| all three | ${pct(lexical.all.overall)} | ${pct(lexical.all.viaHeadword)} | ${lexical.all.covered.toLocaleString('en-US')} | ${pct(lexical.all.open)} | ${pct(lexical.all.closed)} |
 
 "Via headword": the list names a word COR files as a form of another headword in the same class
 (\`det\` → \`den\`, \`far\` → \`fader\`, \`mens\` → \`medens\`); the catalog saves words under COR's
@@ -202,7 +216,7 @@ in the sentences.
 
 Matrix \`${matrix.version}\` (\`catalog/benchmark/cefr-matrix.json\`): ${matrix.situations.length} situations and ${matrix.grammar.length} grammar
 functions, each at the levels it is taught, aligned to the CEFR companion volume. A cell is
-covered with at least ${CELL_MIN} gated families (each usable in English and Russian).
+covered with at least ${CELL_MIN} gated families (each usable in ${ukrainianVariants === variants ? 'English, Russian and Ukrainian' : 'English and Russian'}).
 
 **${coveredCells.length} of ${cells.length} cells covered.** Families by level: ${byLevel.map((row) => `${row.level} ${row.families.toLocaleString('en-US')}`).join(' · ')}.
 
@@ -213,7 +227,7 @@ ${cells.map((cell) => `| ${cell.axis} | ${cell.id} | ${cell.level} | ${cell.fami
 Cells below the threshold: ${cells.filter((cell) => cell.families < CELL_MIN).map((cell) => `${cell.id} ${cell.level}`).join(', ') || 'none'}.
 `
 await writeFile(reportPath, report)
-console.log(`lexical both ${pct(lexical.both.overall)} (via headword ${pct(lexical.both.viaHeadword)}) · ru ${pct(lexical.ru.overall)} · en ${pct(lexical.en.overall)} · string ${pct(byString.overall)}`)
+console.log(`lexical all three ${pct(lexical.all.overall)} (via headword ${pct(lexical.all.viaHeadword)}) · ru ${pct(lexical.ru.overall)} · en ${pct(lexical.en.overall)} · uk ${pct(lexical.uk.overall)} · string ${pct(byString.overall)}`)
 console.log(`unseen tokens ${pct(text.tokenCoverage)} · lemmas ${pct(text.lemmaCoverage)} · sentences ${pct(text.sentenceCoverage)}`)
 console.log(`matrix ${coveredCells.length}/${cells.length} cells · ${families.length} families · ${variants} sentences → ${reportPath}`)
 

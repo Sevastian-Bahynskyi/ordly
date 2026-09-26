@@ -67,7 +67,7 @@
    button, so :has() gives us an immediate transition without another state or
    another network step. */
 .review-card-live:has(.review-rating-grid .rating-button:disabled)::after {
-  content: 'Loading next review…';
+  content: attr(data-loading-label);
   position: absolute;
   inset: 0;
   z-index: 40;

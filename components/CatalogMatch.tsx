@@ -3,10 +3,9 @@
 import { useEffect, useState } from 'react'
 import { ChevronRight, Sparkles } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { useI18n } from '@/components/I18nProvider'
 import { encounteredFormOf, lookupCatalog, unlockedDraft, type CatalogEntry, type CatalogMiss, type UnlockedDraft } from '@/lib/catalog'
-import { LEARNER_LANGUAGE_NAMES } from '@/lib/learner-language'
 import { inferDanishInputKind } from '@/lib/entry-kind'
-import { PART_OF_SPEECH_LABELS } from '@/lib/senses'
 import type { TranslationLanguage } from '@/lib/types'
 
 /**
@@ -43,13 +42,8 @@ interface Props {
   onUnlock: (draft: UnlockedDraft, lemma: string, senseId: string | null, forms: string[]) => void
 }
 
-const MISS_NOTE: Record<CatalogMiss, string> = {
-  rare: 'Not in the catalog — a rarer word. AI will build it when you save.',
-  phrase: 'Phrases are not in the catalog. AI will build this one.',
-  unknown: 'Not in the catalog yet. AI will build it when you save.',
-}
-
 export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Element | null {
+  const { t } = useI18n()
   const [candidates, setCandidates] = useState<CatalogEntry[]>([])
   const [miss, setMiss] = useState<CatalogMiss | null>(null)
   const [loading, setLoading] = useState(false)
@@ -86,12 +80,12 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
   if (loading && !candidates.length) return null
 
   if (!candidates.length) {
-    return miss ? <small className="catalog-miss"><Sparkles size={12} />{MISS_NOTE[miss]}</small> : null
+    return miss ? <small className="catalog-miss"><Sparkles size={12} />{t.catalog.miss[miss]}</small> : null
   }
 
   return (
-    <div className="catalog-match" role="group" aria-label="Choose meaning">
-      <span className="catalog-title">Choose meaning</span>
+    <div className="catalog-match" role="group" aria-label={t.catalog.chooseMeaning}>
+      <span className="catalog-title">{t.catalog.chooseMeaning}</span>
       {candidates.map((entry) => {
         const encountered = encounteredFormOf(entry, text)
         const unlock = (senseId: string | null): void => {
@@ -103,16 +97,16 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
             {(candidates.length > 1 || !encountered.isHeadword) && (
               <div className="catalog-candidate-head">
                 <strong>{entry.lemma}</strong>
-                {entry.pos && <span className="catalog-pos">{PART_OF_SPEECH_LABELS[entry.pos]}</span>}
+                {entry.pos && <span className="catalog-pos">{t.pos[entry.pos]}</span>}
                 {entry.pronunciation && <span className="catalog-pron">{entry.pronunciation}</span>}
               </div>
             )}
             {!encountered.isHeadword && (
               <p className="catalog-encountered">
-                {encountered.verified ? <>Saves as <strong lang="da">{entry.lemma}</strong>, with <strong lang="da">{encountered.text}</strong> among its forms.</> : <>Saves as <strong lang="da">{entry.lemma}</strong>.</>}
+                {encountered.verified ? <SavesAs parts={t.catalog.savesAsWith(entry.lemma, encountered.text)} /> : <SavesAs parts={t.catalog.savesAs(entry.lemma)} />}
               </p>
             )}
-            {entry.forms.length > 0 && <p className="catalog-form-preview">{entry.forms.length} recorded forms · {entry.forms.filter((form) => form.form_text !== entry.lemma).slice(0, 3).map((form) => form.form_text).join(' · ') || entry.lemma}</p>}
+            {entry.forms.length > 0 && <p className="catalog-form-preview">{t.catalog.recordedForms(entry.forms.length)} · {entry.forms.filter((form) => form.form_text !== entry.lemma).slice(0, 3).map((form) => form.form_text).join(' · ') || entry.lemma}</p>}
             <div className="catalog-senses">
               {entry.senses.map((sense) => (
                 <button key={sense.sense_id} type="button" className="catalog-sense" onClick={() => unlock(sense.sense_id)}>
@@ -122,14 +116,14 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
               ))}
               {!entry.senses.length && (
                 <button type="button" className="catalog-sense" onClick={() => unlock(null)}>
-                  <span>Use “{entry.lemma}” and write the meaning</span>
+                  <span>{t.catalog.useAndWrite(entry.lemma)}</span>
                   <ChevronRight size={16} aria-hidden="true" />
                 </button>
               )}
             </div>
             {entry.missing.length > 0 && (
               <small className="catalog-missing">
-                {entry.missing.length === 1 ? 'One meaning is' : `${entry.missing.length} meanings are`} not yet available in {LEARNER_LANGUAGE_NAMES[lang]}.
+                {t.catalog.missing(entry.missing.length, t.languageNames[lang])}
               </small>
             )}
           </div>
@@ -137,4 +131,9 @@ export function CatalogMatch({ danish, lang, onUnlock }: Props): React.JSX.Eleme
       })}
     </div>
   )
+}
+
+/** Interface text around Danish words, which are set in bold: text, word, text[, word, text]. */
+function SavesAs({ parts }: { parts: readonly string[] }): React.JSX.Element {
+  return <>{parts.map((part, index) => index % 2 ? <strong key={index} lang="da">{part}</strong> : <span key={index}>{part}</span>)}</>
 }

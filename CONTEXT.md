@@ -53,7 +53,7 @@ _Avoid_: Exercise, when referring to the format rather than a particular task.
 A particular learning task expressed through an exercise format and supplied with specific language content.
 
 **Learner language**:
-The language used for explanations, hints, translations, and other support while learning Danish. English and Russian are the supported languages for the new practice experience.
+The language used for the interface, explanations, hints, translations, and other support while learning Danish: English, Russian or Ukrainian, each with the same supplied content.
 
 **Text coverage**:
 The proportion of language in a specified collection of Danish texts covered by the learning content, under a declared counting method.

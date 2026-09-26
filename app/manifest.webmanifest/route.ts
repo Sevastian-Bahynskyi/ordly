@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { MetadataRoute } from 'next'
 import { appIconUrl } from '@/lib/app-icon'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 /**
  * The web app manifest, served by a plain route instead of Next's `app/manifest.ts` convention.
@@ -12,9 +13,7 @@ import { appIconUrl } from '@/lib/app-icon'
 const manifest: MetadataRoute.Manifest = {
   // Pinned to the value browsers already derived from start_url, so existing installs keep their identity.
   id: '/',
-  name: 'Ordly · Learn Danish',
   short_name: 'Ordly',
-  description: 'Fast Danish vocabulary and sentence capture with spaced repetition.',
   start_url: '/',
   scope: '/',
   display: 'standalone',
@@ -27,8 +26,10 @@ const manifest: MetadataRoute.Manifest = {
   ],
 }
 
-export function GET(): NextResponse {
-  return NextResponse.json(manifest, {
+/** Name and description follow the learner language (issue #24); it is fetched with cookies. */
+export async function GET(): Promise<NextResponse> {
+  const { meta } = await interfaceMessages()
+  return NextResponse.json({ ...manifest, name: meta.title, description: meta.description }, {
     headers: { 'Content-Type': 'application/manifest+json', 'Cache-Control': 'no-cache' },
   })
 }

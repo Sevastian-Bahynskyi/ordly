@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { useI18n } from './I18nProvider'
 
 export function RouteTransitionFeedback() {
   const pathname = usePathname()
+  const { t } = useI18n()
   const [loading, setLoading] = useState(false)
   const timeoutRef = useRef<number | null>(null)
 
@@ -53,12 +55,12 @@ export function RouteTransitionFeedback() {
   if (!loading) return null
 
   return (
-    <div className="route-loading" role="status" aria-live="polite" aria-label="Loading page">
+    <div className="route-loading" role="status" aria-live="polite" aria-label={t.route.loadingPage}>
       <div className="route-loading-card">
         <span className="route-loading-spinner" aria-hidden="true" />
         <div>
-          <strong>Loading</strong>
-          <span>Getting the next screen ready…</span>
+          <strong>{t.route.loading}</strong>
+          <span>{t.route.gettingReady}</span>
         </div>
       </div>
     </div>

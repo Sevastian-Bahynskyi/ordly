@@ -2,6 +2,7 @@ import { LEARNER_LANGUAGE_NAMES, learnerLanguage } from '@/lib/learner-language'
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { hasOpenRouterKey, OPENROUTER_MODEL_ROUTES, openRouterJson } from '@/lib/openrouter'
+import { interfaceMessages } from '@/lib/i18n/server'
 
 const reviewSentenceSchema = {
   type: 'object',
@@ -14,22 +15,23 @@ const reviewSentenceSchema = {
 }
 
 export async function POST(request: Request) {
+  const api = (await interfaceMessages()).api
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return NextResponse.json({ error: api.unauthorized }, { status: 401 })
   const { entryId, cycle } = await request.json()
-  if (!entryId || !Number.isInteger(cycle)) return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+  if (!entryId || !Number.isInteger(cycle)) return NextResponse.json({ error: api.invalidRequest }, { status: 400 })
 
   const { data: cached } = await supabase.from('review_sentence_cache').select('sentence, translation').eq('entry_id', entryId).eq('cycle', cycle).maybeSingle()
   if (cached) return NextResponse.json(cached)
-  if (!hasOpenRouterKey()) return NextResponse.json({ error: 'OpenRouter is not configured' }, { status: 503 })
+  if (!hasOpenRouterKey()) return NextResponse.json({ error: api.aiUnavailable }, { status: 503 })
 
   const [{ data: entry }, { data: profile }, { data: known }] = await Promise.all([
     supabase.from('vocabulary_entries').select('danish, translation').eq('id', entryId).single(),
     supabase.from('profiles').select('default_translation_language, danish_level').single(),
     supabase.from('vocabulary_entries').select('danish').in('learning_status', ['learning', 'mastered']).neq('id', entryId).limit(25),
   ])
-  if (!entry) return NextResponse.json({ error: 'Word not found' }, { status: 404 })
+  if (!entry) return NextResponse.json({ error: api.wordNotFound }, { status: 404 })
 
   const target = LEARNER_LANGUAGE_NAMES[learnerLanguage(profile?.default_translation_language)]
 
@@ -45,12 +47,12 @@ export async function POST(request: Request) {
 
     const sentence = String(result.sentence || '').trim()
     const translation = String(result.translation || '').trim()
-    if (!sentence || !translation) return NextResponse.json({ error: 'Empty sentence' }, { status: 502 })
+    if (!sentence || !translation) return NextResponse.json({ error: api.couldNotGenerate }, { status: 502 })
 
     await supabase.from('review_sentence_cache').insert({ entry_id: entryId, cycle, sentence, translation })
     return NextResponse.json({ sentence, translation })
   } catch (error) {
     console.error('OpenRouter review sentence generation failed', error)
-    return NextResponse.json({ error: 'Could not generate sentence' }, { status: 502 })
+    return NextResponse.json({ error: api.couldNotGenerate }, { status: 502 })
   }
 }

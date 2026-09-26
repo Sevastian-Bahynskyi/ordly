@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { ComposerKeyboardNavigation } from '@/components/ComposerKeyboardNavigation'
+import { I18nProvider } from '@/components/I18nProvider'
+import { messagesFor } from '@/lib/i18n'
+import { cookieLanguage } from '@/lib/i18n/server'
 import { PwaRegistration } from '@/components/PwaRegistration'
 import { APP_ICON_VERSION, appIconUrl } from '@/lib/app-icon'
 import './globals.css'
@@ -26,10 +29,8 @@ import './mobile-form-controls.css'
 import './practice.css'
 import './home-review.css'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL('https://ordly-sevastian-bahynskyis-projects.vercel.app'),
-  title: 'Ordly · Learn Danish',
-  description: 'Fast Danish vocabulary and sentence capture with spaced repetition.',
   applicationName: 'Ordly',
   icons: {
     icon: [
@@ -48,6 +49,11 @@ export const metadata: Metadata = {
   },
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = messagesFor(await cookieLanguage())
+  return { ...metadata, title: meta.title, description: meta.description }
+}
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -57,9 +63,12 @@ export const viewport: Viewport = {
   themeColor: '#7557db',
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>): React.JSX.Element {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>): Promise<React.JSX.Element> {
+  // Screens without a profile (sign-in) speak the mirrored preference; AppShell overrides it with
+  // the profile's own language on every signed-in page (issue #24).
+  const language = await cookieLanguage()
   return (
-    <html lang="en">
+    <html lang={language}>
       <head>
         {/* Written by hand instead of `metadata.manifest`, for `crossOrigin`. Browsers fetch a manifest
             without cookies by default, and the production host sits behind Vercel Deployment
@@ -67,7 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             never sees the real manifest or its icons — the installed app kept its old icon. */}
         <link rel="manifest" href="/manifest.webmanifest" crossOrigin="use-credentials" />
       </head>
-      <body>{children}<ComposerKeyboardNavigation /><PwaRegistration /></body>
+      <body><I18nProvider language={language}>{children}</I18nProvider><ComposerKeyboardNavigation /><PwaRegistration /></body>
     </html>
   )
 }
